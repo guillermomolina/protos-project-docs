@@ -70,6 +70,9 @@ Current role-first work records:
 - [`GITHUB015/GITHUB015_FORMAL_ISSUE_PUBLICATION.md`](GITHUB015/GITHUB015_FORMAL_ISSUE_PUBLICATION.md)
   — fail-closed formal Issue publication transaction, hierarchy/priority ordering, and decision-approval provenance.
 
+- [`GITHUB017/GITHUB017_CLOSURE.md`](GITHUB017/GITHUB017_CLOSURE.md)
+  — durable CI-reactivation closure record with exact product revision, live workflow-run evidence, and GITHUB020 closure-evidence reconciliation.
+
 - [`UPSTREAM002/UPSTREAM002_OL10_CONTAINER_BASE_MIGRATION.md`](UPSTREAM002/UPSTREAM002_OL10_CONTAINER_BASE_MIGRATION.md)
   — GraalVM Community container base migration evaluation OL8 → OL10, impact classification, and closure evidence.
 
