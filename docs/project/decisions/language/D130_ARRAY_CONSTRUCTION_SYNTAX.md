@@ -2,10 +2,10 @@
 
 Status: **RATIFIED — Candidate A′ selected**
 
-Explicit project-owner approval: **2026-09-16**  
-Decision issue: `guillermomolina/protos#502`  
-Protos baseline reviewed: `e99d0baba547ac41b3894f32ddca450172ee1f8b`  
-AUD009 sequencing dependency: `AUD009-A1` / `guillermomolina/protos#535`  
+Explicit project-owner approval: **2026-09-16**
+Decision issue: `guillermomolina/protos#502`
+Protos baseline reviewed: `e99d0baba547ac41b3894f32ddca450172ee1f8b`
+AUD009 sequencing dependency: `AUD009-A1` / `guillermomolina/protos#535`
 Related matching semantic decision: `D131` / `guillermomolina/protos#503`
 
 Nature: non-normative decision/rationale record for future normative grammar and
