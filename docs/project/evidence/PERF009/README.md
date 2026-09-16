@@ -189,3 +189,150 @@ are not copied into `protos-project-docs` by this record. No claim is made that
 those local working artifacts are retained reference results. Any later retained
 raw performance corpus must record immutable artifact identities and the exact
 Protos and benchmark-harness revisions that produced it.
+
+## PERF009-A1 — Current test-topology inventory checkpoint
+
+Status: **PUBLISHED — INVENTORY CONTRACT RETAINED; TIMING NOT YET RUN**
+
+This checkpoint records the bounded PERF009-A1 inventory slice published in
+`guillermomolina/protos-benchmarks`. It freezes the measurement surface for the
+next PERF009-A timing slices; it is not itself a latency measurement and does
+not close PERF009-A.
+
+### Exact revisions
+
+```text
+protos_revision=e5f56c6ee829090c3ed12a9b6703f5984d872a90
+protos_benchmarks_validation_repair=cdaf2ea33bf22c8afadd9ede9905f4f52d9ec9e4
+protos_benchmarks_inventory_revision=ee98980ca019c124214d9e9df21f028548fc2a7a
+```
+
+The validation-repair commit precedes the inventory commit and only repairs
+stale benchmark-repository validation guards exposed by the current IGV and
+PERF006 lineage. It does not alter Protos behavior or PERF009 measurement
+semantics.
+
+### Frozen operational topology
+
+The inventory runner materialized the exact Protos revision above in an isolated
+work directory and extracted the current operational test topology from the
+pinned source rather than relying on a hand-maintained summary.
+
+```text
+JAVA_DEFAULT_JOBS=8
+PROTOS_DEFAULT_JOBS=8
+JAVA_QUARANTINE_COUNT=8
+JAVA_SERIAL_TEST=ProtosI026FDapBehaviorTest
+TEST_TOOL_PHASE_COUNT=18
+MEASUREMENT_LANE_COUNT=4
+DIAGNOSTIC_PROTOS_JOBS=1,2,4,8
+MINIMUM_REPETITIONS=3
+```
+
+The eight Java quarantine classes are:
+
+```text
+ProtosTomlParserStressTest
+ProtosTomlEncoderModuleTest
+ProtosPackageToolProtosTest
+ProtosExternalPackagePlanningPreflightTest
+ProtosWorkspaceRunCliTest
+ProtosJsonParserModuleTest
+ProtosPackageExecutionPlanAdapterTest
+ProtosTestToolManifestPlanTest
+```
+
+The public Protos Test Tool exposes these 18 ordered phases at the pinned
+revision:
+
+```text
+main
+process-snapshot
+actor
+group
+package-toml
+uri
+csv
+cli
+math-integer
+crypto-sha256
+network-ip-addresses
+network-ip-endpoints
+package-tool-version
+package-tool-lock
+package-tool-resolution-input
+package-tool-resolution-root
+package-tool-execution-plan
+package-tool-project-projection
+```
+
+The inventory contract records four later measurement lanes:
+
+```text
+current-ci:
+  make test JAVA_TEST_JOBS=4 PROTOS_TEST_JOBS=4
+
+java-current:
+  make test-java JAVA_TEST_JOBS=4
+
+protos-current:
+  make test-protos PROTOS_TEST_JOBS=4
+
+java-complete-reference:
+  mvn test
+```
+
+The complete Maven lane is deliberately labelled as a reference lane, not as the
+current CI topology. Diagnostic Protos Test Tool runs are declared for
+`--jobs 1`, `2`, `4`, and `8`, with at least three repetitions per measurement
+condition.
+
+### Validation evidence
+
+Before publication, the PERF009-A1 focal suite passed 7/7 tests and the complete
+`protos-benchmarks` validation passed after repairing two pre-existing stale
+validation guards. The complete Python unit-test discovery reported 59/59 tests
+passing, including all seven PERF009-A1 tests.
+
+```text
+PERF009_A1_FOCAL_TESTS=7
+PERF009_A1_FOCAL_FAILURES=0
+FULL_PYTHON_TESTS=59
+FULL_PYTHON_FAILURES=0
+MAKE_VALIDATE=PASS
+GIT_DIFF_CHECK=PASS
+```
+
+The two stale validation guards discovered during prepublication were:
+
+1. the historical Graal 24 IGV assertions still pointed at the unsuffixed current
+   analyzer paths after the Graal 25 normalization; and
+2. the PERF006-D1 historical guard incorrectly required the current
+   `config/perf006d.json` to remain on slice D1 after that config had legitimately
+   advanced to D2A.
+
+Both were repaired in `cdaf2ea33bf22c8afadd9ede9905f4f52d9ec9e4` before the
+A1 inventory commit. The second guard now verifies D1 lineage through the exact
+`d1_harness_revision` while accepting the current D2A config state.
+
+### PERF009-A consequence
+
+A1 establishes the reproducible inventory contract required before timing:
+
+```text
+CURRENT_TEST_TOPOLOGY_INVENTORIED=YES
+JAVA_QUARANTINE_EXPLICIT=YES
+TEST_TOOL_PHASES_EXPLICIT=YES
+CURRENT_CI_LANE_EXPLICIT=YES
+COMPLETE_JAVA_REFERENCE_LANE_EXPLICIT=YES
+DIAGNOSTIC_JOBS_MATRIX_EXPLICIT=YES
+TIMING_MEASUREMENTS_RUN=NO
+PERF009_A_CLOSED=NO
+IS_PACKAGE_TOML_STILL_A_DOMINANT_CURRENT_BOTTLENECK=NOT_YET_RESOLVED
+```
+
+The next PERF009-A work must measure this frozen surface rather than infer the
+critical path from historical runs or isolated diagnostic workloads. In
+particular, the inventory alone does not establish the wall-clock share of
+package/TOML work, duplicated execution, fresh Process/RootActor creation,
+bootstrap/materialization, filesystem fixtures, or scheduler utilization.
