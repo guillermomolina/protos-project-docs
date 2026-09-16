@@ -1,694 +1,261 @@
-# TEST001 — Protos-native repository testing and validation ownership
+# TEST001 — Official Test Tool execution cutover
 
-Status: IN_PROGRESS
+Record state: FINAL DURABLE RECONCILIATION
 
-Nature: non-normative repository validation ownership and migration record
+Nature: non-normative repository validation ownership and closure record
 
 Live coordination: GitHub `TEST001 / #449`
 
-Related implementation authority:
+This record does not mirror the live Issue lifecycle state. GitHub remains the
+coordination authority; this file records the durable repository result needed
+to evaluate final closure.
 
-- `docs/project/work/TOOL002/TOOL002_TEST_TOOL.md`
-- `docs/design/TEST_TOOL_ARCHITECTURE.md`
-- `protos/tests/conformance/README.md`
-- `.github/workflows/tests.yml`
-- `scripts/publication_validation.py`
+## Final scope
 
-Audit baseline: `5c03c4d424195d5146160f9e6fa3b226a1e0c538`
+TEST001 owns the repository runner cutover for tests already written in Protos.
+It does **not** own a general campaign to rewrite Java/JUnit tests as Protos
+tests.
 
-## Purpose
-
-TEST001 moves repository validation to the ownership model already enabled by
-TOOL002: Protos-observable language and Standard Library behavior is primarily
-proved by ordinary Protos programs run through `protos test`, while Java/JUnit
-continues to prove Java/Truffle/runtime/host implementation mechanics and the
-independent bootstrap/integration floor.
-
-TEST001 does not reopen TOOL002 and does not add test syntax, a privileged Test
-object, assertion primitives, or another public testing API.
-
-## Fixed ownership classes
-
-Every retained test family has one primary ownership class:
-
-- `PROTOS_SEMANTIC` — observable language/Core behavior; primary owner TOOL002.
-- `STANDARD_LIBRARY` — public Standard Library behavior expressible from Protos;
-  primary owner TOOL002 where practical.
-- `HOST_RUNTIME` — Java/Truffle/compiler/runtime/backend implementation behavior;
-  primary owner JUnit or another host-level harness.
-- `INTEGRATION_BOOTSTRAP` — CLI/distribution/resolver/debugger/tool startup and
-  cross-boundary wiring; primary owner JUnit/shell/integration as appropriate.
-
-The Java package or class name is not an ownership decision. A Java test may
-currently encode public semantics and therefore be a migration candidate, while
-a Java test that executes guest code may still be a host-mechanism test that
-must remain Java-owned.
-
-## TEST001-A — inventory and ownership classification
-
-Status: CLOSED
-
-The inventory below classifies the current suite at durable family boundaries.
-A later migration slice must inspect the exact assertions before deleting any
-individual Java test from a `MIXED` family.
-
-### Already TOOL002-authoritative corpus
-
-`protos/tests/conformance/` is already an implementation-independent Protos
-corpus. TOOL002 owns every retained main-manifest expectation family, including
-the Future families, and owns the Actor/Group plans through its published
-execution paths. The retired direct Java manifest owner must not be recreated.
-
-This existing corpus is the first source checked before creating a new fixture:
-where it already proves the public contract, TEST001 should retire duplicate
-Java semantic policy rather than duplicate the same case again.
-
-### Top-level JUnit package classification
-
-| Current package | Primary classification | TEST001 treatment |
-|---|---|---|
-| `analysis` | HOST_RUNTIME | Retain. Static-analysis/session/definition algorithms are tooling implementation. Public LSP behavior remains integration-owned. |
-| `cli` | INTEGRATION_BOOTSTRAP, mixed | Retain CLI/REPL/DAP/LSP/tool-startup wiring. The full-corpus Test Tool JUnit checkpoint is reduced in B to a small independent bootstrap floor. |
-| `conformance` | MIXED: PROTOS_SEMANTIC / STANDARD_LIBRARY / host integration | Migrate or reconcile guest-visible Filesystem, Process/resource and similar contracts in D/G; retain host provisioning/orchestration mechanics. |
-| `documentation` | HOST_RUNTIME | Retain extractor/model/JSON documentation machinery tests; these do not define guest semantics. |
-| `execution` | MIXED | Main migration pool. Split by the thematic families below; never bulk-delete this package. |
-| `lexer` | HOST_RUNTIME plus semantic acceptance cross-check | Retain lexer/source-span/Unicode implementation tests. Observable source acceptance/rejection may also have TOOL002 conformance, but structural token assertions stay host-owned. |
-| `lsp` | INTEGRATION_BOOTSTRAP / HOST_RUNTIME | Retain protocol, diagnostics, symbols and workspace server behavior. |
-| `parser` | HOST_RUNTIME plus semantic acceptance cross-check | Retain AST/layout/parser-structure tests. Observable grammar acceptance/rejection belongs in conformance too where executable; parser object shape does not. |
-| `runtime` | MIXED | Public Actor/Group/Process/Future/resource semantics migrate/reconcile in E/G; runtime identities, schedulers, transfer, lifecycle machinery, interop and backends remain JUnit. |
-| `semantic` | HOST_RUNTIME | Retain canonicalizer and coverage-analyzer structural tests. Observable resulting semantics are independently covered through TOOL002, not by moving canonicalizer internals into the guest corpus. |
-
-### `execution` family split
-
-#### PROTOS_SEMANTIC candidates — TEST001-D
-
-These families encode guest-observable semantics and must end with TOOL002 as the
-primary policy owner where their assertions can be expressed by the existing
-corpus model:
-
-- canonical execution behavior for slots, lookup, objects, closures, composition
-  and member mutation, while retaining lowering/node-shape assertions separately;
-- `ProtosArrayConformanceCompletionTest`, `ProtosIdentityMapConformanceTest` and
-  other Core collection behavior;
-- match behavior (`ProtosArrayMatchExecutionTest`, `ProtosMapMatchExecutionTest`,
-  `ProtosOrMatchExecutionTest`, `ProtosGuardMatchExecutionTest`, ordinary
-  `ProtosMatchExecutionTest` semantics);
-- equality/identity and numeric public behavior;
-- ordinary non-local-return / invalid-super / receiver and closure semantics;
-- public module/import behavior where the assertion is about the language
-  contract rather than resolver implementation.
-
-Many of these contracts already have matching entries under the TOOL002 main
-manifest. Migration therefore begins by proving coverage equivalence and deleting
-only the duplicate Java semantic owner; it must not create redundant Protos cases
-by default.
-
-#### STANDARD_LIBRARY candidates — TEST001-F
-
-Public module/protocol behavior currently exercised through Java includes:
-
-- Collections (`ProtosCollections*ModuleTest`);
-- CLI parsing model (`ProtosCommandLine*`);
-- crypto SHA-256, CSV, JSON, TOML, URI and Math/Integer modules;
-- public networking address/endpoint modules;
-- public Core/standard protocols for Array, Boolean, Bytes, numeric operations,
-  Map, Path, String, Encoding, Future, Process and Text/Byte I/O.
-
-The target is TOOL002 for behavior callable from ordinary Protos. Java remains
-for native bridges, backend mechanics, resource provisioning and implementation
-invariants. Stress tests may remain host-owned when they intentionally exercise
-host resource limits or implementation-only instrumentation rather than a public
-semantic bound.
-
-#### HOST_RUNTIME — retain under JUnit
-
-The following are explicitly not migration targets merely because they execute
-Protos code:
-
-- `ProtosPerf006*`, `ProtosPlat*`, Bytecode DSL and C-prime continuation tests;
-- Truffle lowering, `CallTarget`, node/frame/activation and instrumentation tests;
-- polyglot Context routing and interop projection tests;
-- NIO filesystem/network/poller backend tests;
-- scheduler, execution-domain, operation/lifecycle and carrier machinery;
-- source compiler/loader internals and module-resolver implementation details;
-- DAP/LSP/debugger and source-section integration;
-- TOOL002's own scheduler/provider/resource/runner implementation tests.
-
-TOOL002 must keep an independent Java/bootstrap floor. Migrating its own complete
-implementation validation into TOOL002 would make the product its only bootstrap
-proof and is therefore prohibited by TEST001.
-
-#### INTEGRATION_BOOTSTRAP — retain or narrow
-
-Retain host-level proof for:
-
-- CLI command routing and external process entry;
-- bundled Tool resolution and entry-module loading;
-- minimal Test Tool execution and carrier/exit-status wiring;
-- workspace/package resolver bootstrap boundaries;
-- DAP/LSP transport and external tooling startup;
-- extracted distribution startup/packaging boundaries.
-
-The current full-corpus `ProtosCliTest` checkpoint is the important exception:
-TEST001-B removes its role as the complete corpus runner and leaves only the
-small independent bootstrap proof.
-
-### `runtime` family split
-
-`runtime` is intentionally `MIXED` rather than globally Java-owned.
-
-Guest-observable Actor/Group/Process/Future/cancellation/resource behavior should
-be reconciled with TOOL002 in TEST001-E/G. Examples include public API,
-termination, message/result behavior and value-transfer consequences that an
-ordinary Protos program can observe.
-
-JUnit remains primary for execution domains, mailbox scheduling machinery,
-transport implementations, host resource acquisition/provisioning, concrete NIO
-objects, interop messages, Context routing and internal lifecycle state. A public
-semantic test may coexist temporarily with such an internal test when the two
-prove different properties; that is not duplicate primary ownership.
-
-### Parser / lexer / canonicalizer boundary
-
-TEST001 does not equate source-language semantics with Java frontend structure.
-For example:
+The final ownership model is:
 
 ```text
-source accepted/rejected with defined guest behavior
-    -> TOOL002 conformance can be authoritative
-
-token span / AST node shape / canonical IR / lowering topology
-    -> Java frontend test remains authoritative
+repository validation
+  |
+  +-- Java / Truffle / runtime / host / bootstrap / integration evidence
+  |     -> Java/JUnit
+  |
+  +-- official repository-owned tests written in Protos
+        -> TOOL002 / protos test
 ```
 
-This rule preserves detailed compiler regression coverage while ensuring that a
-future non-Java frontend can still be validated against implementation-independent
-Protos behavior.
+The durable rule is about execution ownership:
 
-## TEST001-B — direct Test Tool CI ownership
+- `protos test` / TOOL002 is the official repository runner for selected Protos
+  corpora;
+- Java/JUnit remains the appropriate owner for Java, Truffle, compiler/backend,
+  runtime, scheduler, native/host, integration, architecture, and independent
+  bootstrap evidence;
+- using a `.protos` fixture from Java does not by itself make a Java test a
+  duplicate corpus owner;
+- an obsolete Java/JUnit wrapper whose primary purpose is to rerun an official
+  Protos corpus is retired or reduced to an independently justified host or
+  bootstrap assertion.
 
-Status: CLOSED
+## Final dependency result
 
-TEST001-B makes the already-closed TOOL002 corpus a direct CI authority instead
-of entering the complete corpus through one slow JUnit method.
+The TEST001 path completed through the following durable work:
 
-The CI order remains intentionally Java/host first and Protos-tool second:
+- `TEST001-A / #459` — existing Protos-corpus runner inventory: CLOSED;
+- `TEST001-B / #460` — direct TOOL002 repository/CI execution: CLOSED;
+- `TOOL005 / #468` — repository-wide Protos test corpus execution: CLOSED;
+- `TEST001-H / #466` — portable-distribution TOOL002 execution: CLOSED;
+- `GITHUB017 / #492` — automatic test CI reactivation: CLOSED;
+- `TEST001-I / #467` — superseded ownership-infrastructure cleanup and final
+  reconciliation: CLOSED as superseded/not-planned after the useful cleanup was
+  published;
+- `TEST002 / #538` — legacy Java-to-Protos semantic migration: separate work,
+  intentionally not a TEST001 closure dependency.
+
+The abandoned TEST001-C/D/E/F/G semantic-migration decomposition is historical
+only. It is not current TEST001 scope or dependency structure.
+
+## Repository-wide runner reconciliation
+
+`docs/project/work/TOOL005/TOOL005_B5_CLOSURE.md` is the durable repository-wide
+ownership audit. Its resulting boundary is:
 
 ```text
-impact-aware Java/runtime validation
-    -> build checkout CLI without rerunning JUnit
-    -> bin/protos test --jobs 2
+mvn test
+  -> Java / Truffle / runtime / host / bootstrap / architecture / integration
+
+protos test
+  -> repository-owned tests written in Protos and selected for official validation
 ```
 
-The second-stage command is the repository's ordinary checkout launcher. CI does
-not call a Java test method to obtain Test Tool coverage, does not introduce a
-special Test Tool entry point, and does not duplicate TOOL002 expectation policy
-in shell or Java.
+TOOL005-B5 records that obsolete Java/JUnit full-corpus owners were removed,
+mixed wrappers were reduced to legitimate Java/host assertions, retained Java
+tests were classified as host/runtime/integration/mechanism evidence, and no
+remaining Java/JUnit test was found to own an already-selected official Protos
+corpus as a full guest-semantic runner.
 
-`ProtosCliTest` retains an independent bootstrap floor by invoking
-`protos test --jobs 0`. The bundled Test Tool resolves and executes its public
-`Main.protos`, but the already-ratified positive-jobs check fails before any
-manifest is loaded. This keeps CLI -> bundled resolver -> Test Tool entry ->
-ordinary Protos option handling under JUnit without making TOOL002 execute its
-own complete corpus as its bootstrap proof.
+Its final integrated evidence was:
 
-`ProtosTestToolJClosureReconciliationTest` is reconciled in the same slice. Its
-architectural guard now requires the Java-first stage, the checkout CLI build,
-and the direct public `bin/protos test --jobs 2` stage in that order, while
-explicitly rejecting restoration of the former JUnit/property corpus launcher.
+```text
+JAVA_LANE=1876/1876_PASS
+PROTOS_LANE=1301/1301_PASS
+PACKAGE=PASS
+DIFF_CHECK=PASS
+JAVA_FULL_CORPUS_DUPLICATION=REMOVED
+OFFICIAL_PROTOS_CORPUS_OWNER=protos_test
+JAVA_HOST_RUNTIME_EVIDENCE=PRESERVED
+```
 
-Existing TOOL002 Java tests continue to own host/bootstrap mechanics such as
-resolver wiring, async execution facilities, result-carrier validation,
-provider/resource integration and public cutover invariants. TEST001-B does not
-retire those tests.
+## Independent TOOL002 bootstrap floor
 
-No Protos language, Standard Library, Test Tool semantic, scheduler, resource,
-timeout/retry, reporting, distribution or runtime behavior changes in B.
+TEST001-B retained an independent host/bootstrap proof rather than making the
+Test Tool its own only bootstrap evidence. Java/JUnit therefore remains present
+where it proves CLI-to-tool resolution, entry-module loading, result/exit
+propagation, runtime integration, and other host-side mechanics independently of
+the complete Protos corpus.
 
-### TEST001-B validation
+```text
+INDEPENDENT_TOOL002_BOOTSTRAP_FLOOR=YES
+HOST_RUNTIME_TESTS=JUNIT
+```
 
-B is test/CI-impacting and must prove all three layers on the integrated state:
+## Portable-distribution proof
 
-1. focal CLI/Test Tool bootstrap and TOOL002-J CI-architecture JUnit coverage;
-2. the complete Java/JUnit suite;
-3. a packaged checkout followed by direct `bin/protos test --jobs 2`.
+`docs/project/work/TEST001/TEST001_H_PORTABLE_DISTRIBUTION.md` proves that an
+extracted portable distribution invokes its bundled Test Tool through the public
+`protos test` entry point outside the source checkout.
 
-The direct Test Tool command is therefore validated before publication, not only
-after GitHub Actions receives the commit.
+The published TEST001-H closure signals include:
 
-## TEST001-C — semantic-test ownership and no-duplication guard
+```text
+PORTABLE_ARTIFACT_EXECUTES_BUNDLED_TEST_TOOL=YES
+PORTABLE_TEST_INVOCATION_OUTSIDE_CHECKOUT=YES
+OFFICIAL_SUITE_SELECTION_REUSED=YES
+CHECKOUT_JUNIT_CORPUS_WRAPPER_REQUIRED=NO
+TOOL002_SUCCESS_OUTCOME_PROPAGATED=YES
+PORTABLE_SELECTED_CASES=NONZERO
+PORTABLE_FAILED_CASES=0
+DISTRIBUTION_TEST_TOOL_VALIDATED=YES
+```
 
-Status: CLOSED
+## Superseded ownership infrastructure cleanup
 
-TEST001-C turns the duplicate-primary-owner rule into an executable repository
-invariant without pretending that semantic equivalence can be inferred from Java
-class names or Protos fixture filenames.
+The earlier semantic-migration expansion introduced a global semantic ownership
+registry and publication guard. The project owner later corrected TEST001 back
+to the narrower runner-cutover scope.
 
-The durable mechanism is:
+TEST001-I published the cleanup in `guillermomolina/protos` at exact revision:
 
-- `protos/tests/test_ownership.json` — machine-readable ownership ledger for
-  public semantic contracts that TEST001 reconciles;
-- `scripts/test_ownership_guard.py` — fail-closed validator for that ledger;
-- `scripts/publication_validation.py` — invokes the ownership guard before test
-  selection or Maven execution;
-- `AGENTS.md` — requires later migration slices to prove equivalence before
-  registering and retiring/reclassifying an owner.
+```text
+PROTOS_REVISION=e99d0baba547ac41b3894f32ddca450172ee1f8b
+```
 
-The registry is intentionally empty at C closure. A and C identify the migration
-families and establish the enforcement mechanism; D/E/F/G populate exact
-contract records only after each bounded slice has proved which assertions are
-actually equivalent. Pre-populating guessed mappings in C would recreate the
-name-based ownership inference that TEST001 explicitly rejects.
+That revision removed the superseded machinery, including:
 
-### Ownership states
+- `protos/tests/test_ownership.json`;
+- `scripts/test_ownership_guard.py`;
+- its dedicated guard tests;
+- publication-validation coupling to the ownership guard; and
+- the obsolete AGENTS semantic-ownership-registry policy.
 
-A registered semantic contract has one structural primary owner and one state:
+The current repository test-placement rule expresses the durable policy directly:
+prefer ordinary Protos/Test Tool coverage when it faithfully proves observable
+behavior, while retaining Java/JUnit for materially different Java/Truffle/
+runtime/host/bootstrap evidence. A global semantic-ownership registry is not
+required.
 
-- `RECONCILED` — TOOL002 is the primary owner. Any retained JUnit/shell evidence
-  must be explicitly `HOST_RUNTIME` or `INTEGRATION_BOOTSTRAP`;
-- `MIGRATION_OVERLAP` — TOOL002 has been selected as primary, but an explicitly
-  identified duplicate semantic-policy owner temporarily remains during bounded
-  migration work;
-- `EXCEPTION` — JUnit remains primary because TOOL002 is genuinely inappropriate
-  for that public contract; the registry requires an explicit reason.
+```text
+SUPERSEDED_C_D_E_F_G_PATH=HISTORICAL
+OWNERSHIP_REGISTRY_GUARD=RETIRED
+```
 
-A `RECONCILED` entry cannot contain `MIGRATION_OVERLAP`. Contract identifiers are
-unique and canonical, evidence paths are exact existing repository files, and
-the registry is sorted to keep review diffs deterministic.
+## TEST002 handoff
 
-### What the guard deliberately does not do
+The original desire to audit old Java/JUnit tests and migrate those whose primary
+contract is observable Protos behavior is intentionally preserved as separate
+work:
 
-The guard does not compare names and declare tests equivalent. Whether two tests
-own the same observable contract is a semantic audit result produced by the
-responsible TEST001-D/E/F/G slice. Once that result is recorded under one stable
-contract id, the guard prevents the repository from representing two primary
-owners or disguising semantic overlap as reconciled host evidence.
+```text
+FUTURE_JAVA_TO_PROTOS_MIGRATION=TEST002/#538
+TEST001_REOPENED_FOR_SEMANTIC_MIGRATION=NO
+OWNERSHIP_REGISTRY_RECREATION_REQUIRED=NO
+```
 
-This keeps legitimate Java implementation coverage beside Protos conformance
-without allowing permanent dual semantic authority.
+TEST002 must perform a fresh repository-wide inventory when resumed. It must not
+assume the superseded TEST001-C/D/E/F/G decomposition remains valid.
 
-### TEST001-C validation
+## Final CI evidence for TEST001-I product revision
 
-C changes repository validation machinery, so it is `TEST_IMPACT`, but its
-executable impact is confined to Python repository-validation helpers:
+GitHub Actions run `#1823` (`35081293631`) validates the exact TEST001-I product
+revision `e99d0baba547ac41b3894f32ddca450172ee1f8b`.
 
-1. focused ownership-guard unit tests exercise valid ownership, duplicate ids,
-   invalid primary ownership, legitimate host secondaries, overlap rejection and
-   explicit exceptions;
-2. focused publication-validator integration tests prove that a missing ownership
-   guard or malformed registry fails closed before Maven;
-3. the real repository ownership registry is validated directly.
+Attempt 1 failed only in
+`ProtosI026FDapTransportTest.realGraalVmDapInstrumentCompletesTcpHandshake` with
+a transient `java.net.SocketException: Broken pipe` while the Java parallel lane
+reported 1797 tests, 0 failures, and 1 error.
 
-C does not change Java/runtime code, Protos executable corpus, Test Tool code or
-CI execution wiring, so it does not mechanically rerun the Java suite or direct
-Test Tool corpus. Broader validation remains impact-driven rather than automatic.
+The same test then passed focally, and the same 1797-test Java parallel lane
+passed locally. No product correction was made. GitHub Actions attempt 2 reran
+the **same exact SHA** and completed successfully:
 
-No Protos specification, runtime implementation, Standard Library behavior,
-TOOL002 public behavior or implementation version changes in C.
+```text
+CI_RUN=35081293631
+CI_RUN_NUMBER=1823
+CI_ATTEMPT=2
+CI_HEAD_SHA=e99d0baba547ac41b3894f32ddca450172ee1f8b
+CI_CONCLUSION=SUCCESS
+```
 
-## TEST001-D — Core/language semantic migration
+The first failure is therefore retained as transient diagnostic history, not as
+evidence of an unresolved TEST001 product defect.
 
-Status: IN_PROGRESS
+## TEST001 closure criteria
 
-### TEST001-D1 — OR-pattern semantic ownership
+The TEST001/#449 closure contract is satisfied as follows:
 
-Status: CLOSED
+1. **Known host wrappers inventoried** — TEST001-A and the later TOOL005-B5
+   repository-wide reconciliation classified the relevant corpus runners.
+2. **Direct TOOL002 repository/CI execution** — TEST001-B established direct
+   `protos test` execution; restored CI consumes the separated repository test
+   lanes.
+3. **Obsolete full-corpus Java/JUnit wrappers retired or justified** — TOOL005-B5
+   removed duplicate full-corpus owners and reduced mixed wrappers while
+   retaining genuine host/runtime/bootstrap evidence.
+4. **Java/JUnit remains available for host/runtime tests** — preserved by the
+   final ownership boundary.
+5. **Independent bounded TOOL002 bootstrap smoke remains** — preserved by
+   TEST001-B and host-side Test Tool integration coverage.
+6. **Portable distribution exercises its bundled Test Tool** — proved by
+   TEST001-H.
+7. **Validation/documentation names `protos test` as the official Protos runner**
+   — established by TEST001-B, TOOL005-B5, TEST001-H, current repository test
+   placement policy, and this final reconciliation record.
 
-D1 reconciles the D090 OR/alternative-pattern conformance family.
+## Final closure signals
 
-The retiring Java class `ProtosOrMatchExecutionTest` directly executed seven
-ordinary conformance fixtures and asserted their public outcomes. Six of those
-fixtures were already authoritative TOOL002 main-manifest cases. D1 adds the
-remaining `matching/or-invalid-outcome-no-retry.protos` case to the same manifest
-with the already-supported `error` expectation, then removes the duplicate Java
-semantic-policy owner.
+```text
+TEST001_RESULT=RUNNER_CUTOVER_COMPLETE
+OFFICIAL_PROTOS_TEST_RUNNER=TOOL002
+PROTOS_CORPUS_EXECUTION=protos_test
+LEGACY_JUNIT_CORPUS_WRAPPERS=RETIRED_OR_JUSTIFIED
+HOST_RUNTIME_TESTS=JUNIT
+INDEPENDENT_TOOL002_BOOTSTRAP_FLOOR=YES
+DISTRIBUTION_TEST_TOOL_VALIDATED=YES
+SUPERSEDED_C_D_E_F_G_PATH=HISTORICAL
+OWNERSHIP_REGISTRY_GUARD=RETIRED
+FUTURE_JAVA_TO_PROTOS_MIGRATION=TEST002/#538
+PROTOS_REVISION=e99d0baba547ac41b3894f32ddca450172ee1f8b
+CI_RUN=35081293631
+CI_ATTEMPT=2
+CI_CONCLUSION=SUCCESS
+SPECIFICATION_CHANGED=NO
+PROTOS_IMPLEMENTATION_CHANGED=NO
+IMPLEMENTATION_VERSION_CHANGED=NO
+```
 
-The registered semantic contract is `language.match.or-alternatives` with
-TOOL002 as the primary owner.
+## Historical record provenance
 
-`ProtosMatchBytecodeExecutionTest` remains under JUnit as explicit
-`HOST_RUNTIME` secondary evidence. It tests Bytecode-backend parity,
-continuation/suspension behavior and runtime-transfer invariants; retaining it
-does not create a second semantic-policy owner.
-
-D1 does not change OR-pattern semantics, grammar, runtime implementation,
-TOOL002 behavior, expectation kinds or implementation version.
-
-#### TEST001-D1 focal validation profile
-
-Retained executable evidence and validation dependency closure:
-
-1. before retirement, `ProtosOrMatchExecutionTest` proves all seven fixture
-   outcomes against the publication baseline;
-2. after retirement, the ownership guard proves one registered primary owner;
-3. manifest checks prove all seven fixtures are selected exactly once by the
-   TOOL002 main plan, including the newly retained error case;
-4. `ProtosTestToolManifestPlanTest` validates the retained manifest-plan
-   machinery;
-5. `ProtosMatchBytecodeExecutionTest` validates the retained host/runtime
-   secondary owner;
-6. `scripts/source_style_guard.py` validates the candidate delta;
-7. the owning TEST001-D closure retains responsibility for broader integrated
-   validation before D closes.
-
-No full Maven suite or full TOOL002 corpus run is required for this bounded
-ownership-retirement child.
-
-### TEST001-D2 — Array-pattern semantic ownership
-
-Status: CLOSED
-
-D2 reconciles the Array-pattern conformance family without deleting legitimate
-host/runtime representation coverage.
-
-Before D2, `ProtosArrayMatchExecutionTest` was a mixed owner:
-
-- one method directly re-executed seven ordinary `.protos` fixtures whose exact
-  boolean expectations are already present in the TOOL002 main manifest;
-- one method inspected host-visible materialization details of remainder Arrays:
-  represented frozen state, standard Array prototype, fresh container identity
-  and retained element identity.
-
-D2 removes only the duplicate semantic-wrapper method. The Java class remains,
-now explicitly host/runtime-only.
-
-The registered semantic contract is `language.match.array-patterns` with TOOL002
-as primary owner for the seven observable Array-pattern cases.
-
-`ProtosArrayMatchExecutionTest` and `ProtosMatchBytecodeExecutionTest` remain as
-`HOST_RUNTIME` secondary evidence. They cover implementation representation and
-Bytecode backend parity/continuation behavior, not a second primary semantic
+The detailed pre-scope-correction TEST001 migration record remains recoverable
+exactly from Git history and is deliberately not duplicated here as current
 policy.
 
-D2 does not change Array-pattern semantics, grammar, fixtures, manifest contents,
-runtime implementation, TOOL002 behavior or implementation version.
-
-#### TEST001-D2 focal validation profile
-
-1. baseline `ProtosArrayMatchExecutionTest` proves both portions of the mixed
-   owner before editing;
-2. structural guards prove the seven TOOL002 manifest rows remain present exactly
-   once and that the semantic wrapper method is absent after editing;
-3. `scripts/test_ownership_guard.py` validates the reconciled ownership record;
-4. post-edit `ProtosArrayMatchExecutionTest` validates the retained host
-   representation contract;
-5. `ProtosMatchBytecodeExecutionTest` validates the retained Bytecode host/runtime
-   evidence over the same fixture family;
-6. `scripts/source_style_guard.py` validates the candidate delta;
-7. TEST001-D top-level closure retains responsibility for broader integrated
-   validation.
-
-No full Maven suite or full TOOL002 corpus run is required for this bounded
-mixed-owner reduction.
-
-### TEST001-D3 — Map-pattern semantic ownership
-
-Status: CLOSED
-
-D3 reconciles the Map-pattern family using the same mixed-owner split established
-by D2.
-
-Before D3, `ProtosMapMatchExecutionTest` contained:
-
-- one semantic wrapper that directly re-executed eight ordinary `.protos`
-  Map-pattern fixtures already present in the TOOL002 main manifest;
-- one host/runtime representation test for materialized remainder Maps, including
-  represented frozen state, standard Map prototype, fresh container identity,
-  retained key/value identity and recorded-hash preservation.
-
-D3 removes only the duplicate semantic-wrapper method. The Java class remains as
-explicit host/runtime evidence.
-
-The registered semantic contract is `language.match.map-patterns` with TOOL002 as
-the primary owner for the eight observable Map-pattern cases.
-
-`ProtosMapMatchExecutionTest` and `ProtosMatchBytecodeExecutionTest` remain as
-`HOST_RUNTIME` secondary evidence for representation details and Bytecode
-backend/continuation invariants.
-
-D3 changes no Map-pattern semantics, grammar, fixtures, manifest rows, runtime
-implementation, TOOL002 behavior or implementation version.
-
-#### TEST001-D3 focal validation profile
-
-1. baseline `ProtosMapMatchExecutionTest` proves both portions of the mixed owner;
-2. structural guards prove all eight TOOL002 manifest rows remain present exactly
-   once and the semantic wrapper method is absent after editing;
-3. `scripts/test_ownership_guard.py` validates the reconciled ownership record;
-4. post-edit `ProtosMapMatchExecutionTest` validates retained host representation;
-5. `ProtosMatchBytecodeExecutionTest` validates retained Bytecode host/runtime
-   evidence;
-6. `scripts/source_style_guard.py` validates the candidate delta;
-7. TEST001-D top-level closure retains responsibility for broader integrated
-   validation.
-
-No full Maven suite or full TOOL002 corpus run is required for this bounded
-mixed-owner reduction.
-
-### TEST001-D4 — Guard-pattern semantic ownership
-
-Status: CLOSED
-
-D4 reconciles Guard-pattern semantics while retaining the Java checks that
-observe host/runtime properties stronger than the ordinary TOOL002 result
-carrier.
-
-Before D4, `ProtosGuardMatchExecutionTest` contained:
-
-- one wrapper that directly re-executed seven ordinary successful Guard-pattern
-  fixtures already present in the TOOL002 main manifest;
-- an invalid-guard test that observes both the Error family and activation state
-  to prove that a later arm was not retried;
-- a terminal-no-match test that executes twice and proves fresh Error object
-  identity in addition to the public Error outcome.
-
-The TOOL002 main manifest already owns all nine public outcomes: seven successful
-boolean cases and the two Error cases. D4 therefore removes only the seven-case
-semantic wrapper and its private execution helper.
-
-The registered semantic contract is `language.match.guard-patterns` with TOOL002
-as primary owner for all nine observable results.
-
-`ProtosGuardMatchExecutionTest` remains as `HOST_RUNTIME` secondary evidence for
-exact Error parent/freshness and activation-state no-retry inspection.
-`ProtosMatchBytecodeExecutionTest` remains separately as host/runtime evidence
-for Bytecode backend and continuation behavior, but D4 does not rerun it because
-D4 does not modify that owner.
-
-D4 changes no Guard-pattern semantics, grammar, fixture, manifest row, runtime
-implementation, TOOL002 behavior or implementation version.
-
-#### TEST001-D4 focal validation profile
-
-1. baseline `ProtosGuardMatchExecutionTest` proves the mixed owner before editing;
-2. structural guards prove all nine TOOL002 manifest rows remain present exactly
-   once and the seven-case semantic wrapper is absent after editing;
-3. `scripts/test_ownership_guard.py` validates the reconciled ownership record;
-4. post-edit `ProtosGuardMatchExecutionTest` alone validates the modified retained
-   host/runtime owner;
-5. `scripts/source_style_guard.py` validates the candidate delta;
-6. unmodified secondary owners are not mechanically rerun merely because they
-   are recorded as evidence;
-7. TEST001-D top-level closure retains responsibility for broader integrated
-   validation.
-
-No full Maven suite, full TOOL002 corpus, Bytecode suite, Tool suite or CLI suite
-is required for this bounded mixed-owner reduction.
-
-### TEST001-D5 — fundamental Match semantic ownership
-
-Status: CLOSED
-
-D5 reconciles the successful fundamental Match contracts that were still
-duplicated in `ProtosMatchExecutionTest`.
-
-The three retired Java methods only re-executed ordinary `.protos` fixtures and
-asserted their final `true` result:
-
-- subject/arm order, matcher/body exactly-once and laziness;
-- binder/wildcard zero/one-capture ABI;
-- opaque matcher fixed/rest capture ABI.
-
-Each fixture already self-checks the detailed behavior internally and each is
-already selected exactly once by the TOOL002 main manifest. D5 therefore removes
-those three Java wrapper methods and their now-unused execution helper.
-
-The registered semantic contract is `language.match.fundamentals` with TOOL002 as
-primary owner.
-
-`ProtosMatchBytecodeExecutionTest` remains `HOST_RUNTIME` secondary evidence for
-Bytecode backend parity/runtime behavior over the same fixtures. It is not
-rerun by D5 because D5 does not modify it.
-
-D5 deliberately does NOT reconcile the remaining Match error tests yet.
-`noMatchSignalsFreshGenericErrors`,
-`invalidAndEmptyMatcherOutcomesSignalGenericError`, and
-`selectedArmArityFailureDoesNotRetryLaterArm` retain stronger Java-observed
-properties such as Error parent/freshness and activation-state no-retry. Those
-remain for a separate bounded audit rather than being weakened to the manifest's
-plain `error` carrier.
-
-D5 changes no Match semantics, grammar, fixture, manifest row, runtime
-implementation, TOOL002 behavior or implementation version.
-
-#### TEST001-D5 focal validation profile
-
-1. baseline `ProtosMatchExecutionTest` proves the mixed owner before editing;
-2. structural guards prove all three TOOL002 manifest rows remain present exactly
-   once and the three semantic wrapper methods are absent after editing;
-3. `scripts/test_ownership_guard.py` validates the reconciled ownership record;
-4. post-edit `ProtosMatchExecutionTest` alone validates the modified retained
-   Match error host/runtime checks;
-5. `scripts/source_style_guard.py` validates the candidate delta;
-6. unmodified Bytecode, Tool and CLI tests are not rerun;
-7. TEST001-D top-level closure retains responsibility for broader integrated
-   validation.
-
-No full Maven suite or full TOOL002 corpus run is required for this bounded
-mixed-owner reduction.
-
-## Migration order established by A
-
-The dependency/order for remaining slices is:
-
-1. `TEST001-D` — reconcile Core/language semantic Java owners against existing or
-   newly required TOOL002 fixtures;
-2. `TEST001-E` — Process/Task/Future/Actor/Group/cancellation public semantics;
-3. `TEST001-F` — Standard Library public behavior;
-4. `TEST001-G` — package/module/I/O higher-level integration;
-5. `TEST001-H` — extracted portable-distribution Test Tool validation;
-6. `TEST001-I` — final duplicate-owner retirement, bootstrap-floor audit,
-   reporting/documentation reconciliation and closure.
-
-B now precedes broad owner retirement in the published history: the repository
-proves that TOOL002 can fail CI directly and the former full-corpus JUnit wrapper
-has been narrowed to an independent pre-corpus bootstrap floor.
-
-## Per-test retirement rule
-
-No Java test is deleted solely because this inventory labels its family a
-migration candidate. Before retiring an individual Java owner, its slice must
-record all of the following:
-
-1. the exact observable contract asserted by the Java test;
-2. the TOOL002 fixture/plan that proves an equivalent or stronger contract;
-3. whether any remaining Java assertion proves a distinct host invariant;
-4. focal validation of the new/retained TOOL002 coverage;
-5. the required broader repository validation for that slice.
-
-If one Java class mixes public semantics and host mechanics, split ownership or
-retain the host portion rather than deleting the whole class mechanically.
-
-## Duplicate ownership definition
-
-Duplicate ownership means two test paths independently encode the same public
-semantic policy as primary authority. It does **not** mean that one public
-conformance test and one host/runtime implementation test happen to exercise the
-same feature.
-
-During a bounded migration slice, temporary overlap is permitted until the new
-TOOL002 path is green. The slice closes only after the obsolete semantic owner is
-removed or an explicit distinct-host-invariant reason for retention is recorded.
-
-## Decision boundary
-
-TEST001-A found no missing Protos semantic or durable platform architecture
-choice. It therefore opens no Dxxx or PLATxxx.
-
-If a later migration needs new observable test semantics, assertion APIs,
-resource behavior, scheduler guarantees, timeout/retry policy or other product
-behavior, the affected slice stops and routes that question through the normal
-Dxxx/LIBxxx/TOOLxxx/PLATxxx approval gate.
-
-## Slice status
-
-| Slice | Status | Meaning |
-|---|---|---|
-| TEST001-A | CLOSED | Current suite classified at durable ownership-family level; per-test retirement rule fixed. |
-| TEST001-B | CLOSED | CI invokes packaged checkout `bin/protos test --jobs 2` directly; JUnit retains only a pre-corpus bundled-tool bootstrap floor. |
-| TEST001-C | CLOSED | Machine-readable semantic ownership ledger and fail-closed no-duplicate-primary-owner guard are active in publication validation. |
-| TEST001-D | IN_PROGRESS | Core/language semantic migration under the C ownership guard; D1 OR-pattern, D2 Array-pattern, D3 Map-pattern, D4 Guard-pattern and D5 Match-fundamentals ownership closed. |
-| TEST001-E | BLOCKED_BY_D | Concurrency/execution-model semantic migration. |
-| TEST001-F | BLOCKED_BY_E | Standard Library migration. |
-| TEST001-G | BLOCKED_BY_F | Package/modules/I/O integration migration. |
-| TEST001-H | BLOCKED_BY_G | Portable-distribution Test Tool validation. |
-| TEST001-I | BLOCKED_BY_H | Final retirement/reconciliation/closure. |
-
-## TEST001-A publication classification
-
-`VALIDATION_CLASS=GOVERNANCE_DOCUMENTATION_ONLY`
-
-No specification, executable implementation, Test Tool behavior, CI behavior,
-implementation version or public compatibility contract changes in A.
-
-## TEST001-B publication classification
-
-`VALIDATION_CLASS=TEST_IMPACT`
-
-CI configuration and Java bootstrap/architecture-test behavior change. Protos
-specification, runtime implementation, Test Tool semantics, public compatibility
-and Maven implementation version do not change.
-
-
-## TEST001-C publication classification
-
-`VALIDATION_CLASS=TEST_IMPACT`
-
-Repository validation machinery, validation tests and ownership governance
-change. Protos specification, executable runtime implementation, Standard
-Library/Test Tool public behavior and Maven implementation version do not change.
-
-
-## TEST001-D1 publication classification
-
-`VALIDATION_CLASS=TEST_IMPACT`
-`VALIDATION_IMPACT=FOCAL_BOUNDED`
-
-D1 changes test ownership, one TOOL002 manifest row, the ownership registry and
-the TEST001 migration record. It removes one duplicate Java semantic-policy
-owner. It does not change specification, public behavior, runtime implementation,
-CI configuration or implementation version.
-
-
-## TEST001-D2 publication classification
-
-`VALIDATION_CLASS=TEST_IMPACT`
-`VALIDATION_IMPACT=FOCAL_BOUNDED`
-
-D2 narrows one mixed Java test to host/runtime ownership and registers the
-existing TOOL002 Array-pattern semantic owner. It changes no fixture, manifest
-row, specification, public behavior, runtime implementation, CI configuration or
-implementation version.
-
-
-## TEST001-D3 publication classification
-
-`VALIDATION_CLASS=TEST_IMPACT`
-`VALIDATION_IMPACT=FOCAL_BOUNDED`
-
-D3 narrows one mixed Java test to host/runtime ownership and registers the
-existing TOOL002 Map-pattern semantic owner. It changes no fixture, manifest row,
-specification, public behavior, runtime implementation, CI configuration or
-implementation version.
-
-
-## TEST001-D4 publication classification
-
-`VALIDATION_CLASS=TEST_IMPACT`
-`VALIDATION_IMPACT=FOCAL_BOUNDED`
-
-D4 narrows one mixed Java test to host/runtime ownership and registers the
-existing TOOL002 Guard-pattern semantic owner. It changes no fixture, manifest
-row, specification, public behavior, runtime implementation, CI configuration or
-implementation version.
-
-
-## TEST001-D5 publication classification
-
-`VALIDATION_CLASS=TEST_IMPACT`
-`VALIDATION_IMPACT=FOCAL_BOUNDED`
-
-D5 removes three Java semantic wrappers already owned by TOOL002 while retaining
-the stronger Java Match-error tests unchanged. It changes no fixture, manifest
-row, specification, public behavior, runtime implementation, CI configuration or
-implementation version.
+Immediately before this final reconciliation:
+
+```text
+PROJECT_DOCS_BASE=a6e6db8345a2805d7db71175c3d02010373d66bd
+PRE_RECONCILIATION_BLOB=1fdd93e25bb118bfb8265741a64b658da18ce0b6
+```
+
+That historical revision contains the original C/D/E/F/G decomposition,
+ownership-registry design, D1-D5 execution evidence, migration ordering, and the
+intermediate status table. Those statements are historical snapshots only and
+must not be interpreted as current scheduling, dependency, or repository policy.
+
+This replacement follows the project-documentation policy: maintain the canonical
+current record at its existing role-first path, preserve historical evidence by
+exact Git identity, and do not create a duplicate Markdown closure record merely
+for symmetry.
