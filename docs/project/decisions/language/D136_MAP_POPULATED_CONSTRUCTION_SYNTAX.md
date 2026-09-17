@@ -1,21 +1,49 @@
 # D136 — Map populated construction model and source sugar
 
-Status: **RATIFIED — Candidate E′ selected, sequence-layout amendment ratified**
+Status: **RATIFIED — Candidate F′ selected after construction-semantics reconciliation**
 
-Initial project-owner approval: **2026-09-16**
+Initial E′ approval: **2026-09-16**
 Sequence-layout amendment approval: **2026-09-16**
+F′ reconciliation approval: **2026-09-17**
 Decision issue: `guillermomolina/protos#542`
 Source audit: `AUD011` / `guillermomolina/protos#540`
-Protos baseline reviewed: `e8a74f29bcbb321c0308c932446ae3950824ed8f`
+Process correction: `GITHUB021` / `guillermomolina/protos#547`
+Protos baseline reviewed: `e757ba1f47b5bd2e9f7f556578a4330932812472`
 
-Nature: non-normative decision/rationale record for future normative grammar and
+Nature: non-normative durable decision/rationale record for normative grammar and
 Map-construction semantics under `guillermomolina/protos/spec/`.
 
-## Decision
+## Supersession and preserved owner invariant
 
-Select **Candidate E′ — sequential keyed construction**.
+This record supersedes the earlier D136 Candidate E′ semantic contract while
+preserving the already-approved source surface and layout unless explicitly stated
+otherwise below.
 
-The selected source form is:
+D136 was reopened because E′ had allowed an implementation/reasoning model to
+become the semantic definition. The owner-established invariant is:
+
+```text
+%{...} defines construction-time initial Map associations.
+
+`:` inside %{...} is association definition during construction.
+`=` / indexed assignment is the ordinary later mutation operation.
+```
+
+The semantic equation:
+
+```text
+%{...} == Map() followed by repeated post-construction atPut
+```
+
+is therefore **superseded and is no longer authoritative**.
+
+Candidate F′ preserves the construction-time-initial-state invariant while also
+preserving ordinary lexical lookup of the name `Map`, without adding a generic
+keyed-construction protocol.
+
+## Selected source surface
+
+The selected source form remains:
 
 ```protos
 %{}
@@ -32,451 +60,433 @@ On one physical line, entries use the ordinary Protos sequence separator:
 %{ key1: value1; key2: value2 }
 ```
 
-A comma is **not** an entry separator in Map construction.
+A comma is **not** an entry separator. A trailing `;` before `}` is not admitted.
+Continuation after `:` follows the ordinary continuation-newline rules.
 
-The form is a Map-producing primary expression. It is semantic source sugar for
-constructing one fresh result through the existing ordinary `Map()` factory and
-then performing ordinary keyed insertion for each source entry from left to
-right.
+The surface is unchanged by the F′ reconciliation. The semantic correction is
+in how the fresh Map and its initial associations are established.
 
-Conceptually:
+## Candidate F′ — ratified semantic contract
 
-```protos
-%{
-    k1: v1
-    k2: v2
-}
-```
+### 1. Ordinary `Map` identifier lookup
 
-has the same observable construction behavior as:
+At the evaluation point of `%{...}`, the bare identifier `Map` is resolved by the
+ordinary lexical/unqualified lookup rules.
 
-```protos
-m: Map()
-m[k1] = v1
-m[k2] = v2
-m
-```
+The syntax does not capture, bypass, or hard-code the standard-prelude `Map`
+binding. A local or lexical binding named `Map` is therefore observable.
 
-except that the source form creates no user-visible binding `m`, no Closure, no
-hidden lexical scope, and no construction activation.
+This preserves the D136 constraint that the source form must not introduce a
+privileged unshadowable Map constructor merely for sugar.
 
-The selected design is intentionally **not** a lowering to one populated
-`Map(...)` call.
+### 2. Standard-Map-factory eligibility gate
 
-## Ratified contract
+After resolving `Map`, perform ordinary member lookup for its `call` behavior.
+The construction is eligible only when that lookup selects the canonical standard
+Map factory behavior **from the canonical standard `Map` object**, either because
+the selected binding is the standard `Map` itself or because the selected binding
+delegates to it and inherits that behavior normally.
 
-1. **Ordinary `Map` lookup.** At the evaluation point of the construction
-   expression, `Map` is resolved by ordinary identifier lookup. The syntax does
-   not capture or bypass the standard-prelude binding.
-
-2. **Exactly one factory invocation.** The selected `Map` value is invoked once
-   with zero positional arguments before any source entry key or value expression
-   is evaluated. If lookup or invocation fails, no entry expression is evaluated.
-
-3. **No hidden construction context.** Entry expressions are evaluated in the
-   same enclosing activation in which the `%{...}` expression appears. The new
-   Map does not become `this`, `context`, a lexical parent, a return home, or a
-   construction activation merely because it is being populated.
-
-4. **Entry order is source order.** Entries are processed strictly left to right.
-   For each entry, the key expression is evaluated exactly once, then the value
-   expression exactly once, then ordinary keyed insertion is performed before
-   evaluation proceeds to the next entry.
-
-5. **Insertion uses the existing protocol.** Conceptually each insertion is the
-   existing indexed-assignment operation:
-
-   ```protos
-   result[key] = value
-   ```
-
-   and therefore uses ordinary `atPut` selection/invocation. The implementation
-   must not bypass custom receiver behavior merely because the operation
-   originated from `%{...}`.
-
-6. **Per-entry dispatch remains ordinary.** Each entry performs its own ordinary
-   insertion dispatch. An implementation may optimize this only when observable
-   behavior remains equivalent, including cases where receiver behavior changes
-   between entries.
-
-7. **Failure is fail-fast and non-transactional.** Any Error, non-local control
-   transfer, lookup failure, invocation failure, `hash`/`==` failure, or insertion
-   failure stops construction immediately. Later entry expressions are not
-   evaluated. Effects and insertions already completed are not rolled back.
-
-8. **Existing Map duplicate/equality semantics are authoritative.** Equal or
-   duplicate keys have exactly the same behavior as sequential ordinary
-   `atPut` operations. D136 defines no construction-specific duplicate-key rule
-   and does not change representative-key, recorded-hash, insertion-order,
-   equality, or replacement semantics.
-
-9. **Empty construction.** `%{}` performs ordinary `Map` lookup and one zero-arg
-   invocation and returns that result without any insertion.
-
-10. **Shadowing is intentional.** A local or lexical binding named `Map` affects
-    `%{...}` exactly as it affects the corresponding explicit `Map()` plus
-    insertion sequence. There is no privileged canonical-Map constructor.
-
-11. **Custom factory results compose through ordinary protocol.** If shadowed
-    `Map()` returns an object that supports the ordinary indexed-assignment
-    protocol, entries are applied to that object normally. If it does not, the
-    construction fails at the same point the equivalent explicit operation would.
-
-12. **`:` is contextual entry punctuation inside `%{...}`.** It separates the
-    entry key expression from its value expression. It is not ordinary slot
-    creation at that location and does not alter the meaning of `:` elsewhere.
-
-13. **Key expressions are expressions, not implicit names or Strings.** For
-    example:
-
-    ```protos
-    %{
-        name: value
-    }
-    ```
-
-    uses the value of the ordinary expression `name` as the key; it does not mean
-    the String key `"name"`. A String key is written explicitly as `"name"`.
-
-14. **Entry separation follows ordinary sequence layout.** Across physical lines,
-    newline separates entries. On one physical line, `;` separates entries. The
-    grammar does not use comma as a Map-construction entry separator.
-
-15. **No trailing sequence separator.** A trailing `;` before `}` is not admitted,
-    matching the ordinary object-body/sequence treatment rather than argument-list
-    trailing-separator rules.
-
-16. **Continuation after `:` follows ordinary continuation behavior.** A value may
-    continue after the entry colon using the same continuation-newline rules that
-    apply to ordinary Protos expression syntax. The continuation newline does not
-    terminate the entry.
-
-17. **Construction and object syntax remain distinct but intentionally related.**
-    `{...}` is object construction/body syntax operating in the slot domain.
-    `%{...}` is keyed Map construction syntax. Both are sequential container
-    construction forms and therefore share newline/`;` layout, but D136 does not
-    unify object slots and Map entries or their execution-context semantics.
-
-18. **Construction and Map patterns may share surface shape without sharing
-    grammar or semantics.** Expression-position `%{ key: value }` constructs.
-    Pattern-position `%{ key: pattern }` remains owned by matching semantics.
-    Existing Map-pattern comma separation, subset/exactness/remainder, snapshot,
-    capture, and matching behavior are unchanged by D136.
-
-19. **No new lexer context is required.** `%{` is structurally parsed from the
-    existing `%` and `{` tokens in expression-start position; D136 does not require
-    contextual tokenization or a new reserved word.
-
-20. **Ordinary postfix composition applies.** Because the form is an expression,
-    existing postfix operations can follow the completed construction, subject to
-    normal grammar, for example indexed access or message/call suffixes.
-
-21. **No spread/merge form is selected.** D136 does not add `%{...otherMap}`,
-    generic iterable expansion, entry spread, merge precedence, or another
-    collection-construction protocol. Such capability may be designed later if
-    real use justifies it.
-
-22. **Normal `Map` owns the shorthand.** `%{...}` constructs through the ordinary
-    binding named `Map`. D136 does not add corresponding construction syntax for
-    `IdentityMap` or another keyed collection merely because it exposes the same
-    indexing protocol.
-
-23. **Parameterized keyed construction remains an available future extension, not
-    a current feature.** If real usage later justifies a generalized spelling such
-    as `%IdentityMap{...}` or `%Factory{...}`, that must be decided independently.
-    D136 intentionally leaves that currently-invalid surface available for future
-    compatible extension; it does not define `%{...}` as a shorthand for such a
-    generalized grammar today.
-
-## Why the construction is sequential
-
-An initially attractive alternative was to make each mapping a first-class
-`Association(key, value)` argument and lower the source form to one call:
-
-```protos
-Map(
-    Association(k1, v1),
-    Association(k2, v2)
-)
-```
-
-This fails the desired observable ordering contract. Ordinary invocation evaluates
-all argument expressions before the callee behavior begins. As a result, later
-key/value expressions would run before hashing, equality comparison, or insertion
-for earlier entries. Because Protos `hash` and `==` are ordinary observable guest
-behavior, the difference is semantically visible.
-
-It also changes fail-fast behavior: if insertion of the first association fails,
-a one-call model may already have evaluated later association arguments.
-
-Candidate E′ instead preserves the behavior programmers already get from
-`Map()` followed by ordinary insertion: each key/value pair is evaluated and
-inserted before the next source entry begins.
-
-## Why construction uses newline / `;`, not comma
-
-The initial ratification draft used comma-separated entries, influenced by
-argument-list and existing Map-pattern surface forms. Subsequent analysis exposed
-that this was inconsistent with the semantic model actually selected by E′.
-
-Map construction is not an argument vector and does not first materialize a list
-of Association values. It is a sequential container-construction form:
+Equivalently, the accepted cases are:
 
 ```text
-create Map
-entry operation
-entry operation
-...
-return Map
+Map binding is canonical standard Map
+    -> eligible
+
+Map binding is an object delegating to canonical standard Map
+and ordinary call lookup reaches canonical standard Map.call
+    -> eligible
+
+Map binding has a nearer arbitrary custom call
+    -> ineligible
+
+Map binding merely copies/aliases an equivalent-looking call locally
+rather than inheriting canonical standard Map.call
+    -> ineligible
 ```
 
-The closest existing Protos surface analogue is therefore object construction:
+Eligibility concerns the provenance of the behavior selected by ordinary lookup,
+not merely the spelling of the binding and not an object's coincidental shape.
+
+If ordinary `Map` lookup fails, `call` lookup fails, the selected `call` value is
+not invokable under the ordinary callable contract, or the selected behavior is
+not the eligible canonical standard Map factory behavior, construction signals an
+ordinary `Error` before invoking an arbitrary custom factory and before evaluating
+any source entry key or value expression.
+
+D136 introduces no new public `atCreate`, `constructEntry`, builder, keyed-literal
+interface, generic factory protocol, or public Association requirement.
+
+### 3. Exactly one standard factory activation
+
+For an eligible binding, activate the selected standard Map factory once with zero
+positional arguments and with the ordinary invocation receiver preserved.
+
+The result is one fresh open **standard normal Map** whose delegation parent is
+the actual receiver of that standard factory activation. Therefore a user object
+that genuinely delegates to standard `Map` may inherit the standard factory and
+produce fresh Maps delegating to that user object.
+
+The standard factory completes before any source entry key or value expression is
+evaluated.
+
+No arbitrary custom `Map.call` is invoked by `%{...}`.
+
+### 4. No hidden construction lexical context
+
+Entry key and value expressions execute in the same enclosing activation in which
+the `%{...}` expression appears.
+
+The nascent Map does not become `this`, `context`, a lexical parent, a return home,
+or a guest-visible temporary binding merely because its initial associations are
+being defined.
+
+D136 does not create a new Closure, guest-visible builder, or construction
+activation for `%{...}`.
+
+### 5. Source-order processing
+
+Entries are processed strictly left to right.
+
+For each source entry:
 
 ```protos
-{
-    name: value
-    age: other
-}
+keyExpression: valueExpression
 ```
 
-Object bodies already use newline across lines and `;` on one line. Applying the
-same layout family to `%{...}` makes the visual relationship reflect the selected
-semantics:
+the observable order is:
 
-```protos
-{
-    name: value
-    age: other
-}
-
-%{
-    key1: value
-    key2: other
-}
+```text
+1. evaluate keyExpression exactly once;
+2. evaluate valueExpression exactly once;
+3. compute the new key's normal Map hash exactly once;
+4. search the associations already defined by earlier source entries using the
+   normal Map lookup law;
+5. if that search selects an existing association, signal Error;
+6. otherwise define one new initial association using the evaluated key, recorded
+   hash, and value;
+7. only then proceed to the next source entry.
 ```
 
-The `%` is the domain discriminator: slot-oriented object construction versus
-keyed Map construction. The two forms still differ in what `:` means and in the
-activation/context rules described below.
+The value expression therefore executes before a duplicate/equal-key conflict can
+be discovered for that entry.
 
-The owner explicitly approved this sequence-layout amendment before specification
-or implementation work began.
+No static duplicate-literal preflight may suppress these required evaluations or
+replace the normal Map key law with host equality.
 
-## Relationship to object construction
+### 6. Normal Map hash/equality law remains authoritative
 
-The visual and layout relationship is intentional:
+Initial-association conflict detection uses the same key-search law as normal
+standard Map behavior.
 
-```protos
-{
-    name: value
-    age: other
-}
-```
+For the newly evaluated key as the query key:
 
-operates in the object-slot domain, while:
+1. its current standard `hash` is computed exactly once for that search;
+2. only already-defined associations with the same recorded hash are candidates;
+3. candidates are considered in initial/source insertion order;
+4. equality is sent in the normal Map direction:
 
-```protos
-%{
-    key: value
-    otherKey: other
-}
-```
+   ```text
+   queryKey == storedRepresentativeKey
+   ```
 
-operates in the keyed Map domain.
+5. `==` must produce canonical `true` or `false` under the existing Map/equality
+   contract; ordinary Error/control-transfer behavior otherwise propagates.
 
-Both are container-construction forms that process source material in order and
-both use ordinary Protos sequence separators. They do **not** share execution
-context semantics. Object construction evaluates its body in the existing
-object-construction activation model. Map construction must evaluate entry
-key/value expressions in the enclosing activation so that `this`, `context`,
-lexical lookup, Closures, and non-local control behave exactly as around the
-equivalent explicit `Map()` plus indexed assignments.
+There is no identity shortcut, host-language equality shortcut, symmetric
+re-check, transitive closure, or construction-specific equivalence relation.
 
-The `%` therefore acts as the domain discriminator between object/slot construction
-and keyed construction without claiming that the underlying storage models are
-the same.
+Consequently "duplicate/equal construction key" means exactly:
 
-## IdentityMap boundary
+> the new key, used as a normal Map query under the current hash/`==` rules,
+> selects an association already defined by an earlier source entry.
 
-`IdentityMap` remains a distinct Core keyed collection whose key law is identity
-rather than normal Map equality/hash semantics. D136 does not infer that every
-keyed collection exposing `atPut` deserves parallel literal syntax.
+### 7. Duplicate/equal initial definitions are an Error
 
-The ordinary use case remains:
+If the new key selects an association already defined by an earlier source entry,
+construction signals an ordinary `Error`.
 
-```protos
-m: IdentityMap()
-m[key] = value
-```
+The later entry does **not** replace the earlier value, does not replace the
+representative key, and does not become an implicit mutation.
 
-This is intentional. Repository evidence shows IdentityMap is commonly used for
-specialized implementation concerns such as visited/active object sets, cycle
-tracking, graph traversal, and identity-sensitive internal state, often beginning
-empty and populated dynamically. That does not establish present need for a
-populated-construction shorthand.
+This is the deliberate construction policy selected by F′. It is not inherited
+from `atPut`, because `atPut` is no longer the semantic authority for construction.
 
-If future real usage justifies concise populated IdentityMap construction, a
-parameterized keyed-construction surface such as `%IdentityMap{...}` can be
-considered without changing the ratified `%{...}` meaning. No such extension is
-approved by D136.
-
-## Association / Entry boundary
-
-D136 does not require a public `Association` abstraction in order to define Map
-construction.
-
-Research found that a first-class detached `Association(key, value)` may still be
-useful independently. Protos already has association-like concepts internally and
-other languages expose similar first-class values. That question is deliberately
-deferred rather than bundled into the syntax decision.
-
-The current internal `ProtosMapValue.Entry` is not reinterpreted as such a public
-Association. It represents Map-owned storage and carries Map-specific state such
-as the recorded hash and representative-key lifecycle. A future public
-Association, if independently approved, should not automatically be the backing
-entry object of a Map.
-
-## Comparative evidence
-
-The investigation covered multiple design families rather than selecting by
-surface familiarity alone.
-
-- **Self**: prototype/message-oriented collections emphasize ordinary construction
-  and mutation mechanisms rather than a dedicated dictionary literal institution.
-- **Io**: similarly uses ordinary Map cloning/insertion while providing separate
-  conveniences for sequence-like collections.
-- **Smalltalk**: basic Dictionary construction remains ordinary `new` plus
-  `at:put:`; some implementations also expose first-class Association-based
-  convenience APIs. Identity-oriented dictionaries need not receive a parallel
-  literal merely because their protocol is similar.
-- **Lua**: table constructors demonstrate the strong conceptual similarity between
-  record-like and keyed construction, though Lua deliberately unifies storage
-  roles that Protos keeps separate.
-- **Elixir**: `%{...}` provides a precedent for expression/pattern surface symmetry
-  while keeping construction and matching semantics context-dependent.
-- **Java**: `Map.Entry`/`ofEntries` demonstrates an explicit-entry approach, useful
-  as evidence for the Association alternative but not sufficient to solve the
-  Protos ordering problem caused by ordinary call argument evaluation.
-  `IdentityHashMap` also demonstrates that identity-keyed Maps can remain an
-  explicit specialized facility rather than receiving parallel literal syntax.
-- **Python**: dict displays provide direct keyed construction with deterministic
-  source-order evaluation rather than requiring an alternating positional-argument
-  factory.
-
-The relevant architectural approaches were therefore:
-
-1. ordinary empty construction plus sequential insertion;
-2. one populated call with alternating key/value arguments;
-3. one populated call consuming explicit association values;
-4. dedicated keyed construction syntax with its own sequential construction
-   semantics;
-5. generalized object/table construction that merges record and map roles;
-6. generalized `%Factory{...}` keyed construction, deferred until real need.
-
-Candidate E′ keeps Protos's existing Map protocol and adopts only the bounded
-source-construction sequencing needed for ergonomic normal-Map construction.
-
-## Alternatives rejected or deferred
-
-### Alternating populated invocation
-
-```protos
-Map(k1, v1, k2, v2)
-```
-
-Rejected. A Map element is conceptually one key/value association, not one scalar
-argument. Flattening entries into alternating positional arguments erases that
-unit, introduces an odd-arity rule, and scales poorly visually and semantically.
-
-### Association-argument lowering
-
-```protos
-Map(Association(k1, v1), Association(k2, v2))
-```
-
-Rejected as the mandatory lowering for `%{...}` because ordinary call evaluation
-moves all entry-expression evaluation ahead of insertion, changing observable
-ordering and failure behavior. It also introduces a second shadow-sensitive name
-that the keyed syntax does not need.
-
-### Comma-separated construction entries
+Example:
 
 ```protos
 %{
-    k1: v1,
-    k2: v2
+    "a": first()
+    "a": second()
 }
 ```
 
-Superseded by the owner-approved sequence-layout amendment. Comma separation
-models an argument/list-like structure that E′ explicitly does not use. Newline
-and `;` better expose the sequential container-construction model and align with
-ordinary object-body layout.
+performs `first()`, defines the first association, performs `second()`, then
+encounters the second construction definition conflict and signals `Error`.
 
-### Keep only explicit `Map()` plus insertion
+### 8. Representative key, recorded hash, and insertion order
 
-Still semantically sufficient, but rejected as the final ergonomics outcome
-because `%{...}` can provide concise construction without adding a new keyed
-storage model, generic literal protocol, new keyword, or privileged constructor.
+For each successfully defined initial association:
 
-### IdentityMap construction sugar
+- the source key object becomes that association's stored representative key;
+- the hash computed for that source key at definition time becomes its recorded
+  hash;
+- the evaluated value becomes its mapped value;
+- successful initial associations are ordered by their source definition order.
 
-Deferred. `IdentityMap` is a specialized identity-keyed collection and does not
-automatically inherit every syntax convenience of normal `Map`. Future evidence
-may justify `%IdentityMap{...}` or a generalized `%Factory{...}` mechanism, but
-D136 does not pay for that surface now.
+A failed conflicting entry does not replace any earlier representative key or
+value.
 
-### Public `Association`
+Later mutation and later key mutation continue to follow the existing standard
+Map rules. In particular, mutating a key or state used by its `hash`/`==` behavior
+does not retroactively repair or rehash already-recorded associations.
 
-Deferred, not rejected. It may be useful for APIs, transformations, iteration, or
-other collection work, but D136 does not need it and therefore does not charge the
-current language with that additional abstraction.
+### 9. Construction is not `atPut`
 
-### Spread / merge / comprehensions
+Defining an initial association during `%{...}` does **not** send `atPut`, does
+not perform ordinary indexed assignment, and does not dispatch through a custom
+`atPut` inherited by the fresh Map.
 
-Deferred. No current requirement justifies specifying merge precedence, generic
-entry iteration, comprehensions, or spread semantics as part of the initial Map
-construction surface.
+The implementation may share internal storage machinery with ordinary Map
+operations only when that sharing is observationally equivalent to this contract.
+Internal reuse must not turn `atPut` dispatch, replacement semantics, mutation
+hooks, or custom receiver behavior into construction semantics.
 
-## Incremental-design gate
+After successful construction, ordinary later mutation is unchanged:
 
-**Smallest sufficient solution:** `%{ key: value }` with newline/`;` entry
-separation, ordinary `Map()` lookup/invocation, and ordinary sequential insertion.
-No new public entry type, generic keyed-construction protocol, or IdentityMap
-surface is necessary.
+```protos
+map[key] = value
+```
 
-**Pay for what is needed:** current users pay only for one bounded keyed
-construction form and its precise sequencing semantics. They do not inherit tuple,
-pair, iterable, merge, literal-conversion, generalized `%Factory{...}`, or
-identity-keyed literal institutions.
+continues to use ordinary indexed assignment and ordinary `atPut` selection and
+invocation, including any applicable custom behavior on that Map object.
 
-**Grow as needed:** a future `Association`, merge API, spread form, or parameterized
-`%Factory{...}` construction can be added independently without changing the
-selected fundamental model that a keyed result is created first and populated
-through ordinary keyed semantics.
+### 10. Failure, effects, control transfer, and suspension
 
-**Cost of deferral:** deferring Association/spread/merge/IdentityMap sugar requires
-adding new APIs or grammar later but does not require changing normal Map identity,
-equality, hashing, ordering, or authority. Currently invalid `%IdentityMap{...}`
-syntax remains available for a compatible future decision.
+Construction is fail-fast.
 
-**Anti-overengineering result:** no speculative capability is required for the
-motivating use case. The candidate preserves future options without
-preimplementing them.
+An Error, non-local control transfer, or other ordinary control transfer during:
+
+- `Map` lookup;
+- `call` lookup/eligibility;
+- standard factory activation;
+- a key expression;
+- a value expression;
+- `hash`;
+- `==`;
+- or initial-association definition
+
+stops the construction immediately. Later entry expressions are not evaluated.
+
+Already-completed external effects are not rolled back.
+
+The nascent Map is not returned when construction fails. F′ does not require a
+particular failed partial backing representation to survive when it is otherwise
+unobservable.
+
+Existing standard Map comparison-scope, Error, control-transfer, and suspension
+rules remain authoritative. F′ introduces no hidden transaction, rollback,
+atomic block, or new suspension point.
+
+### 11. Empty construction
+
+`%{}` follows the same ordinary `Map` lookup and standard-factory eligibility
+rules as a non-empty construction.
+
+On success, it activates the eligible standard Map factory once with zero
+arguments and returns the resulting fresh open standard normal Map with zero
+initial associations.
+
+There is no separate empty-form semantic family.
+
+### 12. Shadowing consequences
+
+Shadowing remains observable, but the old E′ custom-factory participation rule is
+superseded.
+
+```text
+canonical standard Map binding
+    -> works
+
+binding delegating to canonical standard Map and inheriting canonical Map.call
+    -> works
+
+binding with a nearer arbitrary custom call
+    -> Error before that custom call executes and before entry evaluation
+
+unrelated object merely supporting atPut
+    -> not a Map-construction factory
+```
+
+This is a material narrowing from E′ and was explicitly surfaced before F′ owner
+approval.
+
+The narrowing is deliberate: being invokable, being index-assignable, or merely
+having Map-like slots does not establish authority to create the standard normal
+Map whose construction-time initial state `%{...}` defines.
+
+### 13. `:` remains contextual construction punctuation
+
+Inside expression-position `%{...}`, `:` separates the entry key expression from
+the entry value expression and denotes one construction-time initial association
+definition.
+
+It is not ordinary object-slot creation at that location and does not change the
+meaning of `:` elsewhere.
+
+Key expressions are ordinary expressions, not implicit names or Strings:
+
+```protos
+%{
+    name: value
+}
+```
+
+uses the value produced by the expression `name` as the Map key. A String key is
+written explicitly as `"name"`.
+
+### 14. Layout and grammar remain as previously approved
+
+Across physical lines, newline separates entries. On one physical line, `;`
+separates entries. Comma does not separate Map-construction entries. A trailing
+`;` before `}` is not admitted. Continuation after `:` follows ordinary
+continuation-newline behavior.
+
+`%{...}` remains an expression-position Map construction form. Existing
+pattern-position `%{...}` remains owned by matching and retains its independent
+pattern grammar and semantics.
+
+D136 changes no Map-pattern subset/exactness/remainder, snapshot, capture,
+separator, or matching behavior.
+
+### 15. Ordinary postfix composition remains available
+
+Because `%{...}` is an expression, existing postfix operations may follow the
+completed successful construction subject to the normal grammar and invocation
+rules.
+
+No postfix operation observes a result from a failed construction.
+
+## Explicit F′ delta from superseded E′
+
+The following changes were surfaced and explicitly approved before F′
+ratification:
+
+```text
+E′ repeated post-construction atPut semantics
+    -> F′ construction-time initial association definition
+
+E′ duplicate/equal key: ordinary atPut replacement / later value wins
+    -> F′ duplicate/equal initial definition: Error
+
+E′ arbitrary shadowed custom Map.call may participate
+    -> F′ only canonical standard Map.call selected directly or by inheritance
+
+E′ arbitrary atPut-capable custom factory result may be populated
+    -> F′ result is always a fresh standard normal Map from the eligible factory
+
+E′ custom atPut dispatch occurs for every construction entry
+    -> F′ construction performs no atPut dispatch
+```
+
+These are semantic corrections, not parser/layout changes.
+
+## GITHUB021 invariant/delta consistency check
+
+The final Candidate F′ was compared against the recorded owner-approved D136
+invariants before approval and ratification.
+
+```text
+PRESERVE  %{...} defines construction-time initial Map associations       PASS
+PRESERVE  `:` construction definition distinct from later `=` mutation     PASS
+PRESERVE  ordinary lexical lookup of the name Map                          PASS
+PRESERVE  no privileged unshadowable Map constructor                       PASS
+PRESERVE  normal standard Map hash/== key law                              PASS
+PRESERVE  representative-key / recorded-hash model                         PASS
+PRESERVE  source-order initial association order                            PASS
+PRESERVE  enclosing-activation evaluation / no hidden lexical context       PASS
+PRESERVE  selected %{...}, `:`, newline/`;` surface                         PASS
+PRESERVE  IdentityMap and matching remain separate                          PASS
+PRESERVE  no generic iterable/pair/keyed-construction institution           PASS
+
+CHANGE    duplicate/equal initial key: replacement -> Error                 EXPLICITLY APPROVED
+CHANGE    arbitrary custom Map.call participation -> rejected                EXPLICITLY APPROVED
+CHANGE    arbitrary atPut-capable factory result -> rejected                 EXPLICITLY APPROVED
+CHANGE    atPut dispatch during construction -> none                         EXPLICITLY APPROVED
+
+DECISION_APPROVAL_PROVENANCE=PASS
+DECISION_INVARIANT_CONSISTENCY=PASS
+```
+
+No hidden contradictory consequence remains bundled into the selected candidate.
+If a future decision wants arbitrary custom factories or a generalized keyed
+construction protocol, that capability must be designed and approved explicitly
+rather than inferred from F′.
+
+## Boundaries and deferred work
+
+D136 does **not** add or change:
+
+- `IdentityMap` construction sugar;
+- generalized `%Factory{...}` syntax;
+- a public `Association`, Pair, Tuple, or KeyValue type;
+- generic iterable/spread/merge construction;
+- comprehensions;
+- matching semantics;
+- object-slot / Map-entry unification;
+- immutable/frozen Map-literal mode;
+- a new Error subtype merely for duplicate construction definitions.
+
+Those remain independent future decisions if evidence establishes need.
+
+## Implementation requirements for follow-up I040
+
+The reopened implementation work must reconcile the already-delivered E′ path
+against this F′ contract. At minimum it must prove:
+
+- ordinary lexical `Map` lookup still occurs;
+- only canonical standard Map factory behavior selected directly or by inheritance
+  is eligible;
+- arbitrary custom `Map.call` is not invoked;
+- one fresh standard normal Map is produced by the eligible standard factory;
+- construction entries do not dispatch `atPut`;
+- key then value evaluation occurs exactly once per reached entry;
+- normal Map `hash` / directed `==` search law is reused;
+- duplicate/equal initial definitions signal Error after the reached value
+  expression has evaluated;
+- representative key, recorded hash, and source order follow this record;
+- failure/control-transfer effects and later-entry suppression follow this record;
+- the already-approved surface and pattern boundary are preserved.
+
+The implementation may optimize internal allocation or storage only when all
+observable behavior above remains identical.
 
 ## Publication boundary
 
-This record captures the approved D136 architectural contract only.
+This F′ ratification publication changes only the non-normative durable decision
+record in `guillermomolina/protos-project-docs`.
 
-At amended-ratification publication time:
+At durable-ratification publication time:
 
-- Protos specification changed: **NO**;
-- Protos implementation changed: **NO**;
-- Protos implementation version changed: **NO**;
-- matching semantics changed: **NO**;
-- `IdentityMap` construction syntax introduced: **NO**;
-- generalized `%Factory{...}` introduced: **NO**;
-- public `Association` introduced: **NO**.
+```text
+SPECIFICATION_CHANGED=NO
+IMPLEMENTATION_CHANGED=NO
+IMPLEMENTATION_VERSION_CHANGED=NO
+MATCHING_SEMANTICS_CHANGED=NO
+IDENTITY_MAP_SURFACE_CHANGED=NO
+GENERALIZED_FACTORY_SURFACE_CHANGED=NO
+PUBLIC_ASSOCIATION_INTRODUCED=NO
+VALIDATION_CLASS=GOVERNANCE_DOCUMENTATION_ONLY
+DECISION_APPROVAL_PROVENANCE=PASS
+DECISION_INVARIANT_CONSISTENCY=PASS
+REQUIRED_DURABLE_PUBLICATION=THIS_FILE
+```
 
-A subsequent specification/implementation work item must implement and test the
-selected source form before D136 can be treated as delivered language surface.
+`PROJECT_RECORD_REVISION` is the exact `protos-project-docs` commit that publishes
+this replacement record. It is recorded in the final D136 GitHub Issue ratification
+and closure comment after publication and re-read.
+
+D136 is not formally closed merely by preparing this file. Closure occurs only
+after the exact published project-record revision is re-read and the live Issue /
+Project postconditions required by the canonical `guillermomolina/protos/AGENTS.md`
+flow are verified.
