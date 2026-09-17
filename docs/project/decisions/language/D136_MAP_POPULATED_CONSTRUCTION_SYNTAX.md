@@ -409,10 +409,10 @@ PRESERVE  selected %{...}, `:`, newline/`;` surface                         PASS
 PRESERVE  IdentityMap and matching remain separate                          PASS
 PRESERVE  no generic iterable/pair/keyed-construction institution           PASS
 
-CHANGE    duplicate/equal initial key: replacement -> Error                 EXPLICITLY APPROVED
-CHANGE    arbitrary custom Map.call participation -> rejected                EXPLICITLY APPROVED
-CHANGE    arbitrary atPut-capable factory result -> rejected                 EXPLICITLY APPROVED
-CHANGE    atPut dispatch during construction -> none                         EXPLICITLY APPROVED
+CHANGE    duplicate/equal initial key: replacement -> Error                 EXPLICITLY_APPROVED
+CHANGE    arbitrary custom Map.call participation -> rejected                EXPLICITLY_APPROVED
+CHANGE    arbitrary atPut-capable factory result -> rejected                 EXPLICITLY_APPROVED
+CHANGE    atPut dispatch during construction -> none                         EXPLICITLY_APPROVED
 
 DECISION_APPROVAL_PROVENANCE=PASS
 DECISION_INVARIANT_CONSISTENCY=PASS
