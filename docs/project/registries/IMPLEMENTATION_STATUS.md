@@ -576,6 +576,7 @@ work may proceed without waiting for an earlier-numbered roadmap item.
 | LIB006 | Deterministic hashing | CLOSED | `SAME_COMMIT` | LIB006-A design + LIB006-B pure-Protos SHA-256 implementation complete the bounded initial one-shot hashing surface. |
 | LIB006-A | SHA-256 API/security/boundary design | CLOSED | `SAME_COMMIT` | Freeze one-shot Bytes->fresh 32-byte SHA-256, pure-Protos initial implementation, no entropy/keyed crypto/native bridge, and conformance boundary. |
 | LIB006-B | pure-Protos SHA-256 implementation | CLOSED | `SAME_COMMIT` | `std:crypto/SHA256.digest(Bytes)` implements standard SHA-256 in ordinary Protos with fixed known-answer conformance and no native/host crypto boundary. |
+| LIB017 | Integer ranges and progression iteration | CLOSED | `d1bbab2c1c1023e980b43ca01e7b2adafcac05f8` | `0.3.44-SNAPSHOT`; owner-approved G-prime publishes `std:collections/Range.each` / `reverseEach` over half-open ordinary-unbounded-Integer bounds with no Range value, arbitrary step, syntax, slicing, or generic Iterable layer; focused Range conformance 10 cases, Protos corpus 1313/1313, unrestricted Maven PASS, publication validation PASS, exact push CI #1894 (`35354672105`) SUCCESS; GitHub #570. |
 
 
 ### LIB001 — Collections
