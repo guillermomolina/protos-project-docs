@@ -447,3 +447,28 @@ DOC MODEL   VERSIONED / NEUTRAL / PROTOS-OWNED
 This ratification changes no Protos specification, implementation, implementation version,
 runtime behavior, public Standard Library semantics, module/export semantics, source files,
 package format, website repository, or deployment configuration.
+
+## Subsequent scope refinement — D138
+
+D138 Candidate A′, ratified on 2026-09-18, preserves D061's separation of
+mechanically observable facts, authored documentation and downstream
+presentation, and preserves `guillermomolina/protos` as canonical source
+authority.
+
+D138 narrows one part of D061 Candidate F: the versioned neutral documentation
+model is a durable **API/publication projection**, not a mandatory universal
+internal representation for every source-local documentation consumer.
+
+A current-source editor or other source-local tool may consume the authoritative
+Surface AST plus deterministic documentation-comment association directly. It
+does not need D064 durable identity merely to represent documentation for a
+nested/local slot occurrence. Consumers that require durable cross-release API
+identity, exact artifact coexistence or serialized publication may continue to
+project the applicable source/API surface into the D064 model.
+
+```text
+D061_MECHANICAL_VS_AUTHORED_VS_PRESENTATION=RETAINED
+D061_CANONICAL_REPOSITORY_AUTHORITY=RETAINED
+D061_NEUTRAL_MODEL_AS_UNIVERSAL_INTERNAL_REPRESENTATION=NARROWED_BY_D138
+D061_NEUTRAL_MODEL_AS_DURABLE_API_PUBLICATION_PROJECTION=RETAINED
+```

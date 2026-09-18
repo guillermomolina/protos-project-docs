@@ -607,3 +607,27 @@ presentation policy.
 This ratification changes only durable tooling/documentation governance records and navigation. It
 changes no Protos specification, executable implementation/runtime, Maven implementation version,
 public Standard Library semantics, package format, website implementation or deployment state.
+
+## Subsequent scope clarification — D138
+
+D138 Candidate A′, ratified on 2026-09-18, leaves D064's durable API/publication
+identity contract intact and clarifies that it is not the fundamental ownership
+model for every source-documentation occurrence.
+
+`SymbolIdentity = (ModuleLineageIdentity, top-level-slot-name)` remains the
+durable lineage identity for the API/publication domain selected by D064.
+Nested/local D138 documentation owners need only deterministic identity inside
+the current source snapshot unless a concrete downstream consumer independently
+requires a durable projection.
+
+D138 also clarifies that D064 `Callable` data records mechanically observable
+source shape when present. It does not by itself promise that a mutable Protos
+slot eternally holds a Closure with that shape, and it is not a nominal
+Function/Method/type contract.
+
+```text
+D064_DURABLE_API_IDENTITY=RETAINED
+D064_UNIVERSAL_SOURCE_DOC_IDENTITY=NO
+D064_CALLABLE_MECHANICAL_SOURCE_FACT=YES
+D064_CALLABLE_DURABLE_TYPE_CONTRACT=NO
+```

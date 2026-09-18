@@ -393,3 +393,39 @@ WEBSITE_AUTHORITY       NO
 This ratification changes no Protos specification, runtime/implementation, implementation version,
 observable language behavior, Standard Library semantics, export/private rules, package format,
 website repository or deployment configuration.
+
+## Subsequent supersession — D138
+
+D138 Candidate A′, ratified on 2026-09-18, preserves the core D062 authoring
+convention while superseding its Standard-Library-API-specific top-level
+restriction.
+
+Retained from D062:
+
+- `//!` identifies module source documentation;
+- `///` identifies source documentation for a following documentable owner;
+- ordinary `//` and `/* ... */` comments remain non-documentation comments;
+- the markers remain tooling-only conventions over ordinary Protos comments and
+  have no runtime/execution semantics;
+- documentation precedes its owner and association is deterministic/fail-closed;
+- authored prose does not need to duplicate mechanically derivable structure;
+  and
+- no mandatory Javadoc-style structural tag vocabulary is introduced.
+
+Superseded by D138:
+
+- `///` is no longer restricted to top-level bindings; and
+- nested `///` is no longer invalid merely because the documented slot creation
+  is nested.
+
+The D138 source owner is any explicit named `SurfaceSlotCreation` occurrence,
+including bare/member targets and top-level/nested occurrences. This expansion
+does not change D067 Standard Library API publication policy: documentable does
+not imply published API.
+
+```text
+D062_MARKERS=RETAINED
+D062_TOOLING_ONLY_SEMANTICS=RETAINED
+D062_TOP_LEVEL_ONLY=SUPERSEDED_BY_D138
+D062_NESTED_DOCS_INVALID=SUPERSEDED_BY_D138
+```
