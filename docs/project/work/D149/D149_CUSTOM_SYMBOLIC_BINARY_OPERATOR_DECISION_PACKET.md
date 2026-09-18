@@ -706,3 +706,327 @@ The reconsideration trigger remains:
 At that point, redesign from the then-current language rather than restoring the
 old broad alphabet, one-level precedence model, custom/standard mixing ban, or
 alias-based declaration route by default.
+
+## AGENTS.md explicit-compliance addendum
+
+This addendum makes the mandatory incremental-design and future-scenario gates
+explicit rather than relying on implications distributed across the packet.
+
+### Per-candidate incremental-design gate
+
+#### Candidate A — remove arbitrary custom symbolic operators
+
+**Pay for what you need**
+
+YES. Current users and maintainers pay only for the retained fixed standard
+operator surface and ordinary named-message extension. They no longer pay lexer,
+parser, specification, testing, formatter/highlighter/LSP, documentation, and
+cognitive cost for an arbitrary infix facility with no demonstrated production
+use.
+
+**Grow as you need**
+
+YES. Future infix capability can be added from then-current evidence without
+changing the object/message runtime model, because current custom operators
+already lower to ordinary sends. A future addition may therefore choose a
+different source model without requiring dormant runtime scaffolding now.
+
+**Cost of deferral / reversibility**
+
+Deferral removes accepted source spellings today. Reintroducing infix syntax
+later would require:
+
+- allocating lexical spellings then available;
+- defining declaration/publication authority;
+- defining precedence/associativity/mixing;
+- updating lexer/parser/spec/tooling/tests;
+- providing source migration if later grammar has claimed conflicting spellings.
+
+It does **not** require replacing the prototype/object model, ordinary message
+dispatch, Closure semantics, runtime identity, persistence, scheduling,
+concurrency, or distributed architecture.
+
+**Smallest sufficient solution**
+
+Candidate A is the smallest design satisfying current requirements: retain the
+fixed standard operators already justified by real use and retain ordinary named
+message/call syntax as the general extension mechanism. No current requirement
+justifies arbitrary additional symbolic selectors.
+
+#### Candidate B — retain current model unchanged
+
+**Pay for what you need**
+
+NO. Every parser/tooling/specification consumer continues to pay for a broad
+custom-symbolic facility even though current Standard Library and Tool code use
+none of it.
+
+**Grow as you need**
+
+PARTIAL. The current model can add more selector spellings inside its alphabet,
+but richer composition immediately runs into the single custom precedence level
+and the custom/standard mixing prohibition. Growth toward stronger operator
+composition would require redesign rather than straightforward extension.
+
+**Cost of deferral / reversibility**
+
+Keeping B defers removal, not capability. The concrete cost is that external
+source may start depending on arbitrary custom operators, raising later source
+compatibility and migration cost. The implementation/runtime architecture does
+not gain a foundational boundary that would be expensive to recreate.
+
+**Smallest sufficient solution**
+
+B is larger than the smallest sufficient current language because the unique
+capability it preserves has no demonstrated production requirement.
+
+#### Candidate C — retain custom operators and add direct declaration syntax
+
+**Pay for what you need**
+
+NO. It adds declaration grammar, parser rules, diagnostics, tooling and
+documentation to repair the symmetry of a feature with no current production
+use.
+
+**Grow as you need**
+
+PARTIAL. It improves declaration/send symmetry, but future composition still
+inherits the one custom precedence domain and custom/standard mixing ban.
+Reaching Self/Smalltalk-style uniformity or declared fixity would still require a
+larger redesign.
+
+**Cost of deferral / reversibility**
+
+Deferring C costs only the future addition of symbolic declaration syntax if a
+real API later needs it. No current state representation, object identity,
+runtime ownership, scheduling, persistence or ABI contract depends on it.
+
+**Smallest sufficient solution**
+
+C is not smallest-sufficient because Candidate A serves every demonstrated
+current use while C adds syntax solely for a hypothetical future operator API.
+
+#### Candidate D — fixed spare operator set
+
+**Pay for what you need**
+
+NO. Core would permanently reserve concrete parser spellings and precedence
+slots without a current API selecting which spellings or precedence positions
+are valuable.
+
+**Grow as you need**
+
+PARTIAL. A finite set keeps parser complexity bounded, but any later requirement
+outside the preselected set forces another grammar change; preselection therefore
+risks guessing wrong today.
+
+**Cost of deferral / reversibility**
+
+Deferring D means that a future proven operator must allocate one exact spelling
+and precedence position then. This is bounded frontend work. Reserving the wrong
+spellings now is harder to reverse because other future syntax is prevented from
+using them.
+
+**Smallest sufficient solution**
+
+D is not smallest-sufficient because no current requirement needs any spare
+operator token.
+
+### Mandatory adversarial incremental-design questions
+
+**What is the smallest solution that satisfies the requirements we have today,
+and what concrete evidence justifies every capability beyond it?**
+
+Candidate A. The evidence is direct repository usage: standard operators are used
+throughout production code, while arbitrary custom symbolic operators have no
+Standard Library or Tool production use. No capability beyond fixed standard
+operators plus ordinary named messages is currently justified.
+
+**If we omit this capability today, can it be added later without breaking the
+model?**
+
+YES at the object/runtime-model level. Future infix syntax can still lower to
+ordinary message sends. The only potentially breaking constraint is source
+syntax allocation: later grammar may legitimately consume spellings that the
+current broad custom alphabet owns today. That is a deliberate consequence of
+REMOVE_NOW_RECONSIDER_LATER, not a hidden runtime lock-in.
+
+**If we do not build this capability now, what exactly must be rewritten later
+to add it?**
+
+Potential future work is confined primarily to the language frontend and related
+public tooling:
+
+- lexical spelling recognition;
+- parser grammar;
+- precedence/associativity/mixing rules;
+- declaration/publication syntax or authority if required;
+- formatter/highlighter/LSP support;
+- normative specification;
+- conformance and parser/lexer tests;
+- source migration if conflicting future syntax exists.
+
+The prototype/object runtime model and ordinary message dispatch need not be
+rewritten merely to add infix sugar later.
+
+**What current complexity would make us regret implementing the future
+requirement before we actually need it?**
+
+We would commit today to an arbitrary symbolic alphabet, precedence policy,
+declaration mechanism, and tooling contract before a real API tells us which of
+those choices is useful. That would constrain future syntax and force all
+frontends/tools/users to understand a feature that current production code does
+not use.
+
+## Failure modes, counterexamples, and disqualifying conditions
+
+### Candidate A
+
+Primary failure mode: a near-term real DSL/API may emerge where repeated named
+calls are materially less readable/composable than an infix relationship.
+
+Counterexample that would weaken A: production code repeatedly introduces
+conceptual binary relations whose named-message spelling obscures structure, and
+one stable infix form substantially improves the API.
+
+Disqualifying condition for A: evidence before ratification that a current or
+imminent Standard Library/Tool contract already depends on arbitrary symbolic
+infix syntax and cannot be adequately served by a fixed standard operator or
+ordinary named call.
+
+No such evidence was found.
+
+### Candidate B
+
+Primary failure mode: the unused surface becomes de facto compatibility debt as
+external code adopts it, while the one-level precedence/mixing restriction later
+proves too weak for real DSL composition.
+
+Disqualifying condition: present need remains absent while maintenance and public
+surface continue.
+
+That condition currently holds.
+
+### Candidate C
+
+Primary failure mode: Protos spends more grammar on direct declarations but still
+inherits the same two-domain precedence model and mixing restriction.
+
+Disqualifying condition: no current API requires symbolic declaration.
+
+That condition currently holds.
+
+### Candidate D
+
+Primary failure mode: the project reserves the wrong finite spellings/precedence
+positions, blocking future syntax without delivering present value.
+
+Disqualifying condition: there is no evidence selecting the finite spare set.
+
+That condition currently holds.
+
+## Future-scenario stress test
+
+The following scenarios were tested against Candidate A.
+
+### Large codebases and many modules
+
+Removing arbitrary operators reduces cross-module symbolic vocabulary and parser
+coordination. Ordinary named selectors remain locally discoverable. No scaling
+boundary is lost.
+
+### Alternative Standard Libraries and DSL-heavy libraries
+
+This is the strongest plausible future pressure. A future library may demonstrate
+that infix relationships materially improve readability. Candidate A keeps the
+runtime/message model compatible with reintroducing an evidence-driven source
+surface.
+
+### Tooling / formatter / LSP evolution
+
+A removes one open-ended symbolic token class and a separate precedence domain,
+reducing syntax classification burden. A future operator design would need new
+tooling support when and if adopted.
+
+### Alternative runtimes / migration away from Truffle
+
+No runtime-specific semantic dependency exists: both current custom operators and
+future alternatives can lower to ordinary sends. Removing the source feature
+therefore does not constrain host/runtime migration.
+
+### Concurrency, Actors, Tasks, Processes, distribution, cancellation
+
+No custom-operator-specific ownership, scheduling, cancellation, unwind or
+distribution semantics exist after lowering. Candidate A is neutral to these
+scenarios.
+
+### Future named arguments, pattern/matching evolution, package/module imports
+
+A avoids prematurely coupling future module/import semantics to operator/fixity
+declarations. If a future operator model needs import-scoped fixity or selector
+availability, it can be designed alongside the then-current module system.
+
+### Required explicit future-regret question
+
+**What plausible future requirement would make us regret selecting Candidate A?**
+
+A mature Protos DSL ecosystem may emerge where repeated binary relations are
+substantially clearer and more composable in infix form than through ordinary
+named sends, and where requiring each such relation to become a globally fixed
+standard operator would be too restrictive.
+
+**If that happens, what escape path remains?**
+
+Reopen a new design decision using real DSL examples and the then-current
+grammar. Candidate families still available include:
+
+- exact fixed operators for demonstrated domains;
+- named infix messages;
+- finite parser-recognized operator slots;
+- directly declarable binary selectors;
+- explicit fixity/precedence declarations if justified.
+
+The ordinary message-dispatch runtime already provides the semantic target, so
+the escape path is primarily frontend/spec/tooling design, not a replacement of
+the fundamental object model.
+
+## Intentionally deferred questions
+
+The following are intentionally not decided by D149 Candidate A:
+
+- whether Protos should ever regain generic infix extension;
+- whether a future infix facility should use symbols or named selectors;
+- whether symbolic selectors should ever be directly declarable;
+- whether future operator precedence should be uniform, name-derived, fixed,
+  imported, or explicitly declared;
+- whether one concrete future domain deserves a new fixed standard operator;
+- whether future grammar may reuse characters currently accepted only through
+  the custom-operator alphabet.
+
+Deferral is safe because none of these choices is required by current production
+source, and the runtime already supports ordinary one-argument message behavior
+without preserving dormant parser hooks.
+
+## Required packet checklist
+
+```text
+1_EXACT_DECISION_AND_NEED=PASS
+2_CURRENT_CONSTRAINTS_AND_RATIFIED_DECISIONS=PASS
+3_PRIOR_ART_SURVEY_AND_CONTRIBUTION=PASS
+4_COMPLETE_MEANINGFUL_CANDIDATE_SET=PASS
+5_COMPARATIVE_1_TO_5_SCORING_WITH_CONFIDENCE=PASS
+6_FAILURE_MODES_COUNTEREXAMPLES_DISQUALIFIERS=PASS
+7_FUTURE_SCENARIO_AND_SCALABILITY_STRESS=PASS
+8_INCREMENTAL_DESIGN_ANALYSIS=PASS
+9_IMPLEMENTATION_RUNTIME_RESOURCE_CONSEQUENCES=PASS
+10_PORTABILITY_MIGRATION_COMPATIBILITY_REVERSIBILITY=PASS
+11_INTENTIONALLY_DEFERRED_QUESTIONS=PASS
+12_RECOMMENDED_OPTION_AND_PROTOS_ALIGNMENT=PASS
+13_STRONGEST_ARGUMENT_AGAINST_RECOMMENDATION=PASS
+
+RESEARCH_SYSTEM_COUNT=8
+RESEARCH_APPROACH_COUNT>=3
+OWNER_INVARIANT_DELTA_CHECK=PASS
+READY_FOR_EXACT_OWNER_DECISION=YES
+```
+
