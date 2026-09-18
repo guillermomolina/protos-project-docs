@@ -81,3 +81,6 @@ Current role-first work records:
 
 Live status, priority, assignment, and execution discussion remain in GitHub
 Issues and the Protos Development Project.
+
+- [`TOOL007/TOOL007_SOURCE_DOCUMENTATION_EXTRACTION.md`](TOOL007/TOOL007_SOURCE_DOCUMENTATION_EXTRACTION.md)
+  — D138 source-local documentation extraction, Standard Library reconciliation, and closure record.
