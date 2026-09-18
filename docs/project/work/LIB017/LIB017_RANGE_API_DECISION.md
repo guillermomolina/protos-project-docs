@@ -207,10 +207,31 @@ step model is selected.
 
 ## Implementation state
 
-The design decision is complete, but LIB017 remains open until the selected
-Standard Library surface is implemented, documented, tested, versioned, and
-validated under the current repository rules.
+LIB017 is closed.
 
-Closing LIB017 requires the exact implementation candidate to pass the
-repository-required unrestricted full Maven test suite in addition to its focal
-validation.
+The owner-approved G-prime surface was published to `guillermomolina/protos` as
+commit `d1bbab2c1c1023e980b43ca01e7b2adafcac05f8` with implementation version
+`0.3.44-SNAPSHOT`.
+
+Closure evidence for that exact candidate:
+
+```text
+PUBLICATION_BASE=578f693b19c7daf739bef69bfbc3d3e1f9abb1b5
+PUBLISHED_SHA=d1bbab2c1c1023e980b43ca01e7b2adafcac05f8
+PROTOS_TEST_TOOL=1313 passed, 0 failed
+FULL_UNRESTRICTED_MAVEN_TEST=PASS
+PUBLICATION_VALIDATION=PASS
+CI_RUN=35354672105
+CI_RUN_NUMBER=1894
+CI_HEAD_SHA=d1bbab2c1c1023e980b43ca01e7b2adafcac05f8
+CI_CONCLUSION=success
+LIB017_STATUS=CLOSED
+```
+
+The published implementation adds only
+`std:collections/Range.each(start, stop, block)` and
+`std:collections/Range.reverseEach(start, stop, block)` under the selected
+G-prime semantics. The explicitly deferred Range-value, arbitrary-step,
+membership, indexing, slicing, generic Iterable/Iterator, inclusive-range, and
+range-syntax questions remain deferred and are not implicitly reopened by this
+closure.
