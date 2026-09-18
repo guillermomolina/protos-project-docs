@@ -1,8 +1,10 @@
 # TOOL007 — Source documentation extraction
 
-Status: **IN PROGRESS**
+Status: **CLOSED**
 
 Allocated: **2026-09-18**
+
+Closed: **2026-09-18**
 
 Live Issue: `guillermomolina/protos#556`
 
@@ -88,18 +90,61 @@ If implementation exposes a materially new semantic or durable architecture
 choice not fixed by D138, stop the affected slice and route the exact question
 through the normal Dxxx/PLATxxx gate.
 
-## Current evidence
+## Final closure evidence
 
-TOOL007 was allocated after D138 was durably ratified. The initial TOOL007-A
-candidate has been authored against current parser/lexer APIs and syntax-compiled
-against API-faithful stubs; repository Maven validation remains the publication
-launcher's responsibility before any `guillermomolina/protos` commit/push.
+TOOL007 completed the D138 Candidate A′ implementation in bounded publication
+slices and then reconciled the existing Standard Library documentation path.
+
+Published implementation:
+
+- TOOL007-A1 — source-local owner inventory:
+  `guillermomolina/protos@9ce0ff09b05daedcb880a9d5f33ad1e760bf5ee2`
+  (`0.3.30-SNAPSHOT`);
+- TOOL007-A2 — module `//!` association:
+  `guillermomolina/protos@bb715ba9d8cdf6caed7d3f76591ba34951c3e1b6`
+  (`0.3.31-SNAPSHOT`);
+- TOOL007-A3 — named slot `///` association:
+  `guillermomolina/protos@3a05a807ae67c2ed6da60f648bb4713fa7016eb9`
+  (`0.3.33-SNAPSHOT`);
+- TOOL007-B — Standard Library extractor reconciliation:
+  `guillermomolina/protos@6c2ffc8412889bb9d26d08714f2ce56307239d95`
+  (`0.3.34-SNAPSHOT`).
+
+The final state establishes `ProtosSourceDocumentation` as the source-local
+D138 authority for module and named slot documentation association. The
+Standard Library extractor delegates authored documentation ownership and
+validation to that layer while retaining D064/D067 top-level publication and
+coverage behavior.
+
+D062-era duplicate association machinery was removed from
+`ProtosStandardLibraryDocumentationExtractor`. The obsolete test assumption
+that nested `///` documentation must be rejected was reconciled: nested D138
+documentation is valid source documentation, while D064 publication remains
+limited to the top-level Standard Library surface.
+
+Validation evidence:
+
+- focused source-documentation tests: PASS;
+- Standard Library extractor regression tests: PASS;
+- complete unrestricted repository validation via `make test`: PASS on the
+  exact final TOOL007-B publication candidate;
+- final published closure candidate:
+  `6c2ffc8412889bb9d26d08714f2ce56307239d95`;
+- earlier A1/A2 bounded-validation debt is discharged by later unrestricted
+  validation on A3 and the final B/closure candidate;
+- specification changed: NO;
+- observable Protos runtime semantics changed: NO;
+- unresolved D138 implementation/design choice: NO.
 
 ```text
-TOOL007_STATUS=IN_PROGRESS
+TOOL007_STATUS=CLOSED
 D138_AUTHORITY=RATIFIED_A_PRIME
-TOOL007_A=AUTHORED_PENDING_PUBLICATION
-TOOL007_B=BLOCKED_BY_A
-TOOL007_C=BLOCKED_BY_A_B
+TOOL007_A1=PUBLISHED
+TOOL007_A2=PUBLISHED
+TOOL007_A3=PUBLISHED_FULL_VALIDATION
+TOOL007_B=PUBLISHED_FULL_VALIDATION
+TOOL007_C=COMPLETE
+FULL_VALIDATION=PASS
+CLOSURE_REVISION=6c2ffc8412889bb9d26d08714f2ce56307239d95
 SPECIFICATION_CHANGE_REQUIRED=NO
 ```
