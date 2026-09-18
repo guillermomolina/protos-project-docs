@@ -15,6 +15,9 @@ Current role-first work records:
 - [`TOOL002/TOOL002_TEST_TOOL.md`](TOOL002/TOOL002_TEST_TOOL.md)
   — canonical non-normative TOOL002 Test Tool lifecycle and implementation record.
 
+- [`LIB018/LIB018_TEST_AUTHORING_MODEL.md`](LIB018/LIB018_TEST_AUTHORING_MODEL.md)
+  — ratified minimal suite-native authoring model: module-as-suite plus canonical `std:test/Test` values.
+
 - [`TOOL001/TOOL001_PACKAGE_TOOL.md`](TOOL001/TOOL001_PACKAGE_TOOL.md)
   — canonical non-normative TOOL001 Package Tool lifecycle record.
   - [`TOOL001-F2D workspace execution preflight`](TOOL001/TOOL001_F2D_EXECUTION_PREFLIGHT.md)
