@@ -517,7 +517,7 @@ GENERAL_STDLIB_RUNTIME_SEAM_REUSE_OR_REVIEW_REQUIRED=YES
 IMPLEMENTATION_OWNER_REQUIRED=YES
 ```
 
-A dedicated Ixxx owns the migration.
+I066 / `guillermomolina/protos#669` owns the migration.
 
 ## Ratified result
 
