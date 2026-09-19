@@ -209,7 +209,7 @@ D172 does not reinterpret the original D3 owner-approved KEEP of the numeric
 capability as removal. It narrows only public placement. The retained runtime
 substrate must not become an IP-specific second module/transfer system.
 
-Implementation migration is owned by I066.
+Implementation migration is owned by I066 / `guillermomolina/protos#669`.
 
 Durable decision record:
 
@@ -287,7 +287,7 @@ These are future questions only when concrete requirements justify them.
 FEATURE=retained numeric IP value placement/layering
 CURRENT_OUTCOME=STDLIB_PUBLIC_OWNERSHIP_WITH_PRIVATE_CANONICAL_SUBSTRATE
 SEMANTIC_DESIGN_OWNER=D172 / guillermomolina/protos#644 RATIFIED
-IMPLEMENTATION_OWNER=I066
+IMPLEMENTATION_OWNER=I066 / guillermomolina/protos#669
 
 FEATURE=retained Network/TCP exposure and stdlib integration
 PROPOSED_OUTCOME=KEEP
