@@ -1,6 +1,6 @@
 # AUD009-E2 — Standard Library text codecs and data formats complexity review
 
-Status: **OWNER-APPROVED CLASSIFICATION — ROUTING PENDING NATIVE CHILD LINK**
+Status: **COMPLETE — OWNER-APPROVED CLASSIFICATION**
 
 Nature: non-normative AUD009 evidence/classification ledger
 
@@ -26,9 +26,8 @@ Derived implementation route:
 - `LIB019 / guillermomolina/protos#648` — remove redundant `std:text/*`
   codec facade modules while preserving Core Encoding/TextReader/TextWriter.
 
-Native parent linkage for LIB019 to #647 remains pending because the current
-connector exposes no sub-issue mutation action. The textual Parent line in #648
-is explanatory only and is not treated as a substitute for the native relation.
+Native parent linkage is verified: GitHub reports LIB019 / #648 as a native
+sub-issue of AUD009-E2 / #647.
 
 ## Purpose
 
@@ -296,7 +295,7 @@ FEATURE=std:text codec facade modules
 OUTCOME=REMOVE_NOW_RECONSIDER_LATER
 IMPLEMENTATION_REMOVAL_OWNER=LIB019 / guillermomolina/protos#648
 NATIVE_PARENT_EXPECTED=#647
-NATIVE_PARENT_STATUS=PENDING_CONNECTOR_CAPABILITY
+NATIVE_PARENT_STATUS=VERIFIED
 
 JSON=KEEP
 CSV=KEEP
@@ -310,12 +309,11 @@ URI=KEEP
 OWNER_APPROVAL_PROVENANCE=PASS
 EVIDENCE_BASELINE=1b4065f0f79a5c2837b4462f00b3b8e481d11b98
 LIB019_IDENTIFIER_ALLOCATION=CONFIRMED_AS_#648
-LIB019_NATIVE_PARENT=#647 PENDING
+LIB019_NATIVE_PARENT=#647 PASS
 SPECIFICATION_CHANGED_BY_AUDIT=NO
 IMPLEMENTATION_CHANGED_BY_AUDIT=NO
 AUD009_E2_CLASSIFICATION=COMPLETE
-AUD009_E2_COORDINATION_CLOSURE=PENDING_NATIVE_CHILD_LINK
+AUD009_E2_COORDINATION_CLOSURE=PASS
 ```
 
-Once the native GitHub parent/sub-issue relation attaches #648 under #647 and is
-verified, E2 may be closed without reopening its approved classification.
+AUD009-E2 is complete.
