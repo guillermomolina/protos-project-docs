@@ -2,11 +2,11 @@
 
 Status: **RATIFIED — Candidate C′**
 
-Approval date: **2026-09-19**  
-Decision issue: `guillermomolina/protos#673`  
-Parent work: TOOL009 / `guillermomolina/protos#600`  
-Protos revision at ratification: `9473ee45566c6f75aa95165917ab38159fd5459b`  
-TOOL009 runner evidence baseline: `ca7f4e6633c356edf5423e6691eeeda869532be6`  
+Approval date: **2026-09-19**
+Decision issue: `guillermomolina/protos#673`
+Parent work: TOOL009 / `guillermomolina/protos#600`
+Protos revision at ratification: `9473ee45566c6f75aa95165917ab38159fd5459b`
+TOOL009 runner evidence baseline: `ca7f4e6633c356edf5423e6691eeeda869532be6`
 Project-record base: `08b351e83f9eb7c66f386a55b5237d97dd313e21`
 
 This is a durable non-normative tooling decision record. It does not define
