@@ -1,6 +1,6 @@
 # AUD009-G1 — Surface AST, Canonical AST, Bytecode DSL and C-prime runtime architecture review
 
-Status: **OWNER-APPROVED CLASSIFICATION — COORDINATION CLOSURE PENDING NATIVE CHILD LINK**
+Status: **COMPLETE — OWNER-APPROVED CLASSIFICATION**
 
 Nature: non-normative AUD009 evidence/classification ledger
 
@@ -31,15 +31,14 @@ Native hierarchy reconciliation state:
 
 ```text
 I056_TEXTUAL_PARENT=#657
-I056_NATIVE_PARENT=PENDING
-CURRENT_CONNECTOR_SUBISSUE_MUTATION=UNAVAILABLE
-AUD009_G1_HIERARCHY_RECONCILED=NO
+I056_NATIVE_PARENT=#657
+NATIVE_PARENT_VERIFICATION=PASS
+AUD009_G1_HIERARCHY_RECONCILED=YES
 ```
 
-Per current root `AGENTS.md`, textual `Parent: #657` is not a substitute for
-GitHub's native parent/sub-issue relationship. The technical classification is
-complete and owner-approved, but G1 must not be reported closed/completed until
-the native link is established and reverified.
+The repository Issue-intake workflow reconciled the explicit `Parent: #657`
+declaration into GitHub's native parent/sub-issue relation and the native parent
+endpoint was reverified before G1 closure.
 
 ## Scope
 
@@ -350,8 +349,7 @@ LEGACY_BACKEND_REGRESSION_REVIEW=COMPLETE
 AUD009_G_CLASSIFICATION=COMPLETE
 ```
 
-Coordination closure remains pending only because the current environment cannot
-create the native #657 -> #658 sub-issue relation.
+The #657 -> #658 native sub-issue relation is reconciled and verified.
 
 ## Closure checklist
 
@@ -369,12 +367,12 @@ LEGACY_BACKEND_ABSENCE=KEEP
 CLOSURE_PLAN_BACKEND_DISCRIMINATOR=REMOVE_NOW_RECONSIDER_LATER
 DERIVED_IMPLEMENTATION=I056/#658
 
-I056_NATIVE_PARENT=PENDING
-HIERARCHY_RECONCILED=NO
+I056_NATIVE_PARENT=#657
+HIERARCHY_RECONCILED=YES
 SPECIFICATION_CHANGED_BY_AUDIT=NO
 IMPLEMENTATION_CHANGED_BY_AUDIT=NO
 
 AUD009_G1_CLASSIFICATION=COMPLETE
 AUD009_G_PARTITION_CLASSIFICATION=COMPLETE
-AUD009_G1_COORDINATION_CLOSURE=PENDING_NATIVE_CHILD_LINK
+AUD009_G1_COORDINATION_CLOSURE=COMPLETE
 ```
