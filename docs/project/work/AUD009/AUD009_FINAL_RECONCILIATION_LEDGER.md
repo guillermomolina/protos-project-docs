@@ -11,8 +11,8 @@ Final reconciliation issue: `guillermomolina/protos#659` — AUD009-H
 Reconciliation evidence baseline:
 
 ```text
-PROTOS_MAIN=5ce8e039a69489a49fe446d58de7fb39bcbb278f
-PROTOS_PROJECT_DOCS_MAIN=5c61463c7f8d62b70077eed52f37380b1dd54da4
+PROTOS_MAIN=a907338589a2bceffc592e133290527b55746bdb
+PROTOS_PROJECT_DOCS_BASE=c3d203f1afd84c9d72100b9e841ce1edd7e6bb9c
 ```
 
 Specification changed by AUD009-H: **NO**
@@ -102,6 +102,10 @@ CLOSED_CHILD_STATUS_LABELS=status:completed PASS
   Issue-intake workflow reconciled the native relationship.
 - I056 / #658 initially had only textual parent prose. The same repository
   intake mechanism reconciled its native parent to G1 / #657 before G1 closure.
+- I055 / #656, I057 / #660, and I058 / #661 initially lacked native parent
+  relations. H reconciliation added explicit parent declarations and the
+  repository Issue-intake workflow attached them natively to D159 / #623,
+  D161 / #626, and D160 / #625 respectively.
 - H / #659 itself was natively attached to #522 before being treated as a
   published AUD009 phase.
 
@@ -402,37 +406,49 @@ snapshot/value transfer isolation        KEEP
 P scheduling authority boundary          KEEP
 ```
 
-Routes:
+Final routed authority:
 
 ```text
 parallel collection algorithm family
-    REMOVE_NOW_RECONSIDER_LATER
-    D160/#625 NEEDS_DECISION
+    Core privileged Array.parallel* policy
+        REMOVE / REHOME
+    std:collections/Array parallel algorithms
+        ADD
+    D160/#625 COMPLETE / Candidate B
+    I058/#661 READY
 
 ByteRegion / writable parallel-range reservation institution
     REMOVE_NOW_RECONSIDER_LATER
-    D161/#626 COMPLETE
+    D161/#626 COMPLETE / Candidate B
     I057/#660 READY
 ```
 
-Generic writable graph partitioning remains absent.
+Generic writable graph partitioning remains absent. D160 and D161 both retain
+the foundational isolated-P/Future substrate.
 
 ### C3 — Actors
 
 Actor identity, messaging, lifecycle, monitoring and isolation/authority
 boundaries remain **KEEP**.
 
-Open routed decisions:
+The two provisional removal routes were re-evaluated and retained:
 
 ```text
 semantic fatal-failure authority
-    REMOVE_NOW_RECONSIDER_LATER
-    D162/#630 NEEDS_DECISION
+    KEEP
+    D162/#630 COMPLETE / Candidate A
+    implementation follow-up: NONE
 
-Core runtime-health/watchdog institution
-    REMOVE_NOW_RECONSIDER_LATER
-    D163/#631 NEEDS_DECISION
+Core runtime-health/watchdog scalability guardrail
+    KEEP
+    O(1), non-blocking, no-global-coordination fast path KEEP
+    fixed public health API NOT REQUIRED
+    D163/#631 COMPLETE / Candidate A
+    implementation follow-up: NONE
 ```
+
+D162 and D163 therefore supersede the corresponding C3 provisional removal
+classifications without creating implementation work.
 
 ### C4 — distributed runtime
 
@@ -443,24 +459,32 @@ Process model
 minimal Actor remote boundary
 ```
 
-Owner-routed removal proposals:
+Final routed authority:
 
 ```text
 ActorGroup / GroupRef institution
-    REMOVE_NOW_RECONSIDER_LATER
-    D164/#633 NEEDS_DECISION
+    KEEP
+    D164/#633 COMPLETE / Candidate A
+    implementation follow-up: NONE
 
 distributed topology/membership/Authority ontology
-    REMOVE_NOW_RECONSIDER_LATER
-    D165/#634 NEEDS_DECISION
+    KEEP as architectural ontology/guardrails
+    public Node/Cluster/Authority APIs remain absent
+    D165/#634 COMPLETE / Candidate A
+    implementation follow-up: NONE
 
-placement/capacity-demand/HA institution
-    REMOVE_NOW_RECONSIDER_LATER
-    D166/#635 NEEDS_DECISION
+placement/capacity-demand/HA architecture
+    retain identity/admission/feasibility/failure-domain/HA invariants
+    remove mandatory filter+score/scoring taxonomy policy
+    remove mandatory CapacityDemand institution
+    remove mandatory Infrastructure Controller institution
+    D166/#635 COMPLETE / Candidate C
+    I059/#662 READY
 ```
 
-Public Node/Cluster/Authority/controller/topology/scheduler-control breadth remains
-absent unless independently justified.
+D164 and D165 supersede the provisional C4 removal direction. D166 narrows the
+portable policy surface while preserving the distributed correctness and
+scalability boundaries whose later reintroduction would be foundational.
 
 ## 6. Partition D — I/O
 
@@ -468,17 +492,28 @@ Status: **COMPLETE**
 
 ### D1 — byte/text/Process I/O
 
-The simple explicit I/O/capability model remains. Proposed removals are routed:
+The simple explicit I/O/capability model remains. Final routed authority:
 
 ```text
-Core buffered byte wrapper institution
-    REMOVE_NOW_RECONSIDER_LATER
-    D167/#637 NEEDS_DECISION
+Core BufferedReader / BufferedWriter bindings
+    REMOVE / REHOME
+standard buffered byte capability + strong contract
+    KEEP
+std:io/BufferedReader + std:io/BufferedWriter
+    ADD
+D167/#637 COMPLETE / Candidate D
+I060/#663 READY
 
-Process bootstrap canonical identity
-Process arguments special family
-    REMOVE_NOW_RECONSIDER_LATER
-    D168/#638 NEEDS_DECISION
+canonical Process args/environment accessor identity
+    REMOVE
+ProcessArguments special semantic/runtime family
+    REMOVE
+process.args()
+    KEEP, result becomes frozen ordinary Array<String>
+Environment special family/native-name semantics
+    KEEP
+D168/#638 COMPLETE / Candidate C
+I061/#664 READY
 ```
 
 Broader universal Stream, ambient Process, implicit Process->Filesystem/Network,
@@ -486,24 +521,35 @@ and OS-process-control institutions remain absent.
 
 ### D2 — Filesystem / File / Path / captured tree
 
-Routed proposals:
+Final routed authority:
 
 ```text
-Path rooted-parent traversal + file-URL bridge
+Path rootedness / Parent component / Core file-URL bridge
     REMOVE_NOW_RECONSIDER_LATER
-    D169/#640 NEEDS_DECISION
+relative downward Path + child + structural equality
+    KEEP
+D169/#640 COMPLETE / Candidate B
+I062/#665 READY
 
-advanced File append/seek/size/truncate/sync surface
+File seek/size/truncate/sync primitive capabilities
+    KEEP
+append mode + append-specific cross-File coordination
     REMOVE_NOW_RECONSIDER_LATER
-    D170/#641 NEEDS_DECISION
+D170/#641 COMPLETE / Candidate C
+I063/#666 READY
 
 public Filesystem.captureTree
     REMOVE_NOW_RECONSIDER_LATER
-    D171/#642 NEEDS_DECISION
+PLAT012 immutable verified package custody
+    KEEP
+secure internal capture engine/backing
+    KEEP
+D171/#642 COMPLETE / Candidate B
+I064/#667 READY
 ```
 
-PLAT012 immutable verified package custody remains **KEEP** and is not dependent
-on retaining a public captureTree surface.
+PLAT012 immutable verified package custody remains **KEEP** and is explicitly
+independent of the removed public captureTree surface.
 
 ### D3 — Network
 
@@ -531,9 +577,14 @@ KEEP while public ownership moves from unqualified Prelude bindings to
 `std:network`, backed by the retained canonical private substrate. I066 / #669
 owns that migration.
 
-D173 / #645 remains the open architecture/evolution question for Network/TCP
-provisioning and higher-level Standard Library integration. Neither D172 nor
-D173 weakens the D3 KEEP result.
+D173 / #645 is ratified as Candidate A: the retained Core Network/TCP foundation
+is used directly with an **explicitly provisioned Network capability**. No
+ambient/default Network, Process.network(), thin std:network/Tcp forwarding
+facade, or implicit library authority is added. The existing host bootstrap
+grant remains opt-in; I065 / #668 owns threading that explicit grant through
+ordinary application hosting entry paths.
+
+Neither D172 nor D173 weakens the D3 KEEP result.
 
 DNS, Resolver, Happy Eyeballs, UDP, TLS, HTTP/WebSocket, QUIC, raw/Unix sockets,
 generic socket options/deadlines and service-discovery breadth remain absent.
@@ -778,6 +829,28 @@ E2 std:text codec facade REMOVE proposal
     LIB019 closed not_planned with zero implementation
 ```
 
+Additional D160-D173 reconciliation completed after the first H publication:
+
+```text
+D160   parallel Array policy -> std:collections/Array       RATIFIED B / I058 READY
+D161   ByteRegion writable reservations                     RATIFIED B / I057 READY
+D162   semantic fatal-failure authority                     RATIFIED A KEEP / no Ixxx
+D163   runtime-health/watchdog scalability guardrail        RATIFIED A KEEP / no Ixxx
+D164   ActorGroup / GroupRef                                RATIFIED A KEEP / no Ixxx
+D165   Node/Cluster/Authority ontology                      RATIFIED A KEEP / no Ixxx
+D166   placement/capacity/HA policy                         RATIFIED C NARROW / I059 READY
+D167   buffered byte wrappers                               RATIFIED D REHOME / I060 READY
+D168   Process args snapshot representation                 RATIFIED C / I061 READY
+D169   rooted/parent Path + file URL bridge                 RATIFIED B / I062 READY
+D170   advanced File surface                                RATIFIED C PARTIAL KEEP / I063 READY
+D171   public captureTree                                   RATIFIED B / I064 READY
+D172   numeric IP public ownership                          RATIFIED C / I066 READY
+D173   Network/TCP exposure/provisioning                    RATIFIED A / I065 READY
+```
+
+These decisions are now the current authority over their provisional AUD009
+classification text. None remains at a `NEEDS_DECISION` gate.
+
 These corrections also establish the general audit lesson:
 
 > Current implementation thinness or low current consumer count is not sufficient
@@ -788,11 +861,11 @@ That rule does not justify speculative implementation of adjacent breadth.
 
 ## 11. Routed follow-up state
 
-AUD009 closure does not require every routed Dxxx/Ixxx to finish. AUD009's
-responsibility is to classify and route rather than silently decide or
-deimplement.
+AUD009 closure does not require every routed implementation Ixxx to finish.
+AUD009's responsibility is to classify, obtain the required owner decisions, and
+route implementation rather than silently deimplement.
 
-### Already resolved/implemented follow-ups
+### Closed decision authority and completed earlier implementations
 
 ```text
 D131/#503 -> I041/#550    COMPLETE
@@ -805,45 +878,48 @@ D154/#613 -> I051/#621    COMPLETE
 D156/#616 -> I052/#628    COMPLETE
 D157/#618 -> I053/#629    COMPLETE
 D158/#619                 COMPLETE / KEEP / no implementation
-D159/#623                 COMPLETE, implementation I055 still READY
-D161/#626                 COMPLETE, implementation I057 still READY
+D159/#623                 COMPLETE -> I055 READY
+D160/#625                 COMPLETE -> I058 READY
+D161/#626                 COMPLETE -> I057 READY
+D162/#630                 COMPLETE / KEEP / no implementation
+D163/#631                 COMPLETE / KEEP / no implementation
+D164/#633                 COMPLETE / KEEP / no implementation
+D165/#634                 COMPLETE / KEEP / no implementation
+D166/#635                 COMPLETE -> I059 READY
+D167/#637                 COMPLETE -> I060 READY
+D168/#638                 COMPLETE -> I061 READY
+D169/#640                 COMPLETE -> I062 READY
+D170/#641                 COMPLETE -> I063 READY
+D171/#642                 COMPLETE -> I064 READY
+D172/#644                 COMPLETE -> I066 READY
+D173/#645                 COMPLETE -> I065 READY
 
 LIB019/#648               CLOSED NOT_PLANNED after E2 reversal
 ```
 
-### Open decision routes
+### Remaining open implementation routes
 
-These remain independent owner gates. AUD009 does not preselect their final
-candidate merely because the audit recommended removal/reconsideration:
-
-```text
-D160/#625   parallel collection algorithm placement                NEEDS_DECISION
-D162/#630   Actor fatal-failure policy authority                   NEEDS_DECISION
-D163/#631   Actor runtime-health/watchdog boundary                 NEEDS_DECISION
-D164/#633   ActorGroup/GroupRef necessity/placement                NEEDS_DECISION
-D165/#634   distributed topology/membership/Authority ontology     NEEDS_DECISION
-D166/#635   Actor placement/capacity/HA boundary                   NEEDS_DECISION
-D167/#637   Core buffered byte wrapper placement                   NEEDS_DECISION
-D168/#638   Process bootstrap identity/argument representation     NEEDS_DECISION
-D169/#640   Path rooted/parent/file-URL bridge                     NEEDS_DECISION
-D170/#641   advanced File surface                                  NEEDS_DECISION
-D171/#642   public captureTree vs immutable custody                NEEDS_DECISION
-```
-
-D172/#644 and D173/#645 are also open, but they consume D3's **KEEP** result as
-placement/integration evolution questions rather than removal authorization.
-
-### Open implementation routes with already-closed authority
+All substantive Dxxx owner gates derived from AUD009 are now closed.
 
 ```text
-I054/#654   retire obsolete generic Graal dynamic-LSP smoke        READY
-I055/#656   remove Future.detach                                   READY
-I056/#658   remove tautological Closure-plan backend discriminator READY
-I057/#660   remove ByteRegion / writable parallel-range mechanism  READY
+I054/#654   retire obsolete generic Graal dynamic-LSP smoke         READY
+I055/#656   remove Future.detach                                    READY
+I056/#658   remove tautological Closure-plan backend discriminator  READY
+I057/#660   remove ByteRegion / writable parallel-range mechanism   READY
+I058/#661   move parallel Array algorithms to std:collections/Array READY
+I059/#662   reconcile D166 placement/capacity/HA semantics          READY
+I060/#663   move buffered byte wrappers to std:io                   READY
+I061/#664   replace ProcessArguments with frozen Array snapshots    READY
+I062/#665   simplify Path to relative downward components           READY
+I063/#666   remove append-mode File semantics                       READY
+I064/#667   remove public captureTree, retain runtime custody       READY
+I065/#668   thread explicit Network grants through hosting paths    READY
+I066/#669   move canonical numeric IP families to std:network       READY
 ```
 
-Their open state does not make the corresponding AUD009 classification
-unresolved.
+Each open Ixxx has already-closed semantic/design authority. Their implementation
+state does not make the corresponding AUD009 classification unresolved and does
+not block AUD009 closure.
 
 ## 12. No-silent-change verification
 
@@ -912,13 +988,14 @@ Approval of this H packet means:
 
 1. the consolidated ledger accurately represents the final AUD009 result;
 2. A-G classifications and explicit supersessions/reconciliations are accepted;
-3. currently open derived Dxxx/Ixxx items remain independently governed by their
-   own owner gates/status and do not block AUD009 closure;
+3. all derived Dxxx owner gates are complete; currently open implementation
+   Ixxx items remain independently governed by their own status and do not block
+   AUD009 closure;
 4. the Test Tool exclusion under F is accepted as an intentional audit boundary;
 5. AUD009-H / #659 may close completed; and
 6. after native child completion is reverified, parent AUD009 / #522 may close
    completed.
 
-Approval does **not** ratify any currently unresolved D160/D162-D173 candidate,
-does not implement I054-I057, and does not extend AUD009 into the excluded Test
+Approval does **not** implement I054-I066, does not reopen or alter the already
+ratified D160-D173 decisions, and does not extend AUD009 into the excluded Test
 Tool rework.
