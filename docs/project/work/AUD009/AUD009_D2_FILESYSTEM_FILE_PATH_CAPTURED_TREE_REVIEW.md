@@ -161,10 +161,10 @@ Path.relative                                         KEEP
 Path.child                                            KEEP
 Path structural equality                             KEEP
 no implicit String -> Path coercion                  KEEP
-Path.rooted                                           REMOVE_NOW_RECONSIDER_LATER
-Path.parentComponent                                  REMOVE_NOW_RECONSIDER_LATER
+Path.rooted                                           REMOVE (D169 ratified)
+Path.parentComponent                                  REMOVE (D169 ratified)
 
-file-URL -> Path Core bridge                         REMOVE_NOW_RECONSIDER_LATER
+file-URL -> Path Core bridge                         REMOVE (D169 ratified)
 
 Filesystem.open                                      KEEP
 ordinary-object open options                         KEEP
@@ -267,6 +267,42 @@ relative downward Paths.
 ### Route
 
 D169 / #640 owns the exact decision.
+
+### D169 ratification reconciliation
+
+D169 / #640 subsequently selected **Candidate B — minimal relative/downward
+Core Path**.
+
+The D2 removal classification is therefore ratified for the public Core surface:
+
+```text
+Path.rooted()                         REMOVE
+rooted/relative Path flag             REMOVE
+Path.parentComponent()                REMOVE
+Parent component kind                 REMOVE
+Core file-URL -> Path semantics       REMOVE
+conceptual filesystem.pathFromURL     REMOVE
+
+Path.relative()                       KEEP
+Path.child(name)                      KEEP
+Path structural equality/hash         KEEP
+Filesystem explicit authority         KEEP
+Filesystem confinement                KEEP
+```
+
+D037's structural/filesystem-independent equality principle remains authority,
+but D169 explicitly narrows the surviving Path structure to the ordered sequence
+of normal component Strings. Rootedness and Parent component kind no longer
+participate because those semantic dimensions are removed.
+
+The historical D2 classification remains useful evidence but is superseded as
+current authority by D169.
+
+Implementation migration is owned by I062.
+
+Durable decision record:
+
+`docs/project/decisions/language/D169_PATH_ROOTED_PARENT_AND_FILE_URL_NECESSITY.md`
 
 ## File-URL conversion is deferred
 
@@ -454,9 +490,9 @@ remove immutable verified package custody itself
 
 ```text
 FEATURE=Path rooted/parent traversal + file-URL bridge
-PROPOSED_OUTCOME=REMOVE_NOW_RECONSIDER_LATER
-SEMANTIC_DECISION_OWNER=D169 / guillermomolina/protos#640
-IMPLEMENTATION_OWNER=TBD_AFTER_D169_RATIFICATION
+CURRENT_OUTCOME=REMOVE
+SEMANTIC_DECISION_OWNER=D169 / guillermomolina/protos#640 RATIFIED
+IMPLEMENTATION_OWNER=I062
 
 FEATURE=advanced File append/seek/size/truncate/sync surface
 PROPOSED_OUTCOME=REMOVE_NOW_RECONSIDER_LATER
@@ -489,8 +525,8 @@ CHECKPOINT_COMMENT=5739671499
 APPROVAL_COMMENT=5739718132
 DATE=2026-09-19
 
-PATH_ROOTED_PARENT_AND_FILE_URL=REMOVE_NOW_RECONSIDER_LATER
-PATH_DECISION=D169 / guillermomolina/protos#640
+PATH_ROOTED_PARENT_AND_FILE_URL=REMOVE
+PATH_DECISION=D169 / guillermomolina/protos#640 RATIFIED
 
 ADVANCED_FILE_SURFACE=REMOVE_NOW_RECONSIDER_LATER
 FILE_DECISION=D170 / guillermomolina/protos#641
