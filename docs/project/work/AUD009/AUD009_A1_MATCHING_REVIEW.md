@@ -1,6 +1,6 @@
 # AUD009-A1 — Matching surface complexity and necessity review
 
-Status: **NEEDS_USER_DECISION**
+Status: **COMPLETE — RECONCILED WITH RATIFIED D131 CANDIDATE C**
 
 Nature: non-normative retrospective audit evidence and recommendation packet
 
@@ -335,3 +335,79 @@ The bare Map discard removal should leave ordinary open Map patterns and capture
 This packet stops here.
 
 The project owner must explicitly approve or alter the proposed classifications before D131 is changed, before the specification is edited, or before implementation removal is allocated/executed.
+
+
+## AUD009-H final reconciliation
+
+The earlier A1 packets are historical evidence and recommendation stages. They
+are **not** the final authority for the matching surface.
+
+D131 / `guillermomolina/protos#503` subsequently completed the full
+implementation-independent decision process and the project owner explicitly
+ratified **Candidate C — protocol-first bonfire**.
+
+Durable authority:
+
+`docs/project/decisions/language/D131_PROTOCOL_FIRST_MATCHING_MODEL.md`
+
+D131 implementation/reconciliation is complete under I041 / #550.
+
+For AUD009 closure, A1 is therefore reconciled to the ratified/implemented D131
+outcome:
+
+```text
+PATTERN_MATCH_PROTOCOL=KEEP
+OBJECT_MATCH_DEFAULT=KEEP
+MATCH_RESULT_FALSE_TRUE_NONEMPTY_ARRAY=KEEP
+
+FIXED_ARRAY_STRUCTURAL_RECOGNITION=KEEP
+OPEN_SUBSET_MAP_STRUCTURAL_RECOGNITION=KEEP
+STANDARD_ARRAY_MAP_ELIGIBILITY_AND_SNAPSHOT_RULES=KEEP
+FIRST_SUCCESS_SELECTION_SEMANTICS=KEEP_REHOMED_IN_CASEOF
+NO_SELECTION_FRESH_ERROR=KEEP_REHOMED_IN_CASEOF
+ORDINARY_CALLABLE_CAPTURE_CONSUMPTION=KEEP
+
+DEDICATED_MATCH_CASE_GRAMMAR=REMOVE_NOW_RECONSIDER_LATER
+DEDICATED_WHEN_GUARD_SURFACE=REMOVE_NOW_RECONSIDER_LATER
+BINDER_WILDCARD_SYNTAX=REMOVE_NOW_RECONSIDER_LATER
+ARRAY_REMAINDER_INSTITUTION=REMOVE_NOW_RECONSIDER_LATER
+EXACT_MAP_MATCH_MODE=REMOVE_NOW_RECONSIDER_LATER
+MAP_REMAINDER_CAPTURE=REMOVE_NOW_RECONSIDER_LATER
+ALIAS_PATTERN_SYNTAX=REMOVE_NOW_RECONSIDER_LATER
+OR_PATTERN_CAPABILITY_AND_SYNTAX=REMOVE_NOW_RECONSIDER_LATER
+FIXED_DYNAMIC_CAPTURES_SOURCE_FORMS=REMOVE_NOW_RECONSIDER_LATER
+DEDICATED_STATIC_COVERAGE_FRAMEWORK=REMOVE_NOW_RECONSIDER_LATER
+
+BARE_MAP_REMAINDER_DISCARD=REMOVE_PERMANENTLY
+MATCHING_SPECIFIC_SELECTED_ARM_BINDING_ABI=REMOVE_PERMANENTLY
+OR_BINDING_NAME_INTERFACE_EQUIVALENCE=REMOVE_PERMANENTLY
+D103_DYNAMIC_REST_TERMINALITY=REMOVE_PERMANENTLY
+```
+
+The permanent classifications above apply to the **matching-specific duplicate
+institutions**, not to the underlying capabilities. Ordinary callable binding,
+Closure rest parameters, open Map matching and future ordinary matcher
+composition remain available. A future ergonomic syntax decision may add new
+sugar over the protocol without resurrecting the retired ABI machinery.
+
+D131 also selected the ordinary replacement surface:
+
+```text
+Any
+Capture
+value.caseOf(cases)
+```
+
+These are ratified D131 additions/replacements, not retroactive AUD009
+classifications of previously existing mechanisms.
+
+Reconsideration of removed matching capabilities remains evidence-driven and must
+start from the then-current protocol-first model rather than restoring the old
+pattern-language implementation by inertia.
+
+```text
+D131_DECISION_APPROVAL_PROVENANCE=PASS
+D131_IMPLEMENTATION=I041/#550 COMPLETE
+AUD009_A1_SUPERSEDED_INTERMEDIATE_RECOMMENDATIONS=RECONCILED
+AUD009_A1_CLASSIFICATION=COMPLETE
+```
