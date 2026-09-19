@@ -983,7 +983,8 @@ FINAL_OWNER_APPROVAL=PASS
 FINAL_OWNER_APPROVAL_PROVENANCE=2026-09-19 owner response "aprobado"
 AUD009_H_STATUS=COMPLETED
 NATIVE_CHILD_REVERIFICATION=28_OF_28_COMPLETED
-AUD009_PARENT_CLOSURE=AUTHORIZED
+AUD009_PARENT_STATUS=COMPLETED
+AUD009_PARENT_CLOSURE=PASS
 ```
 
 ## 14. Final owner approval
@@ -1009,3 +1010,28 @@ Approval of this H packet means:
 Approval does **not** implement I054-I066, does not reopen or alter the already
 ratified D160-D173 decisions, and does not extend AUD009 into the excluded Test
 Tool rework.
+
+
+## 15. Final closure result
+
+After final owner approval, AUD009-H / #659 was closed `completed`.
+The native AUD009 child set was then reverified:
+
+```text
+NATIVE_AUD009_CHILDREN=28
+CLOSED_COMPLETED_CHILDREN=28
+OPEN_CHILDREN=0
+SUB_ISSUES_PROGRESS=100_PERCENT
+```
+
+AUD009 / #522 was subsequently closed `completed`.
+
+Open implementation Issues I054-I066 remain independently governed and do not
+alter the completed audit classification.
+
+```text
+AUD009_H_STATUS=COMPLETED
+AUD009_PARENT_STATUS=COMPLETED
+FINAL_OWNER_APPROVAL=PASS
+FINAL_AUD009_CLOSURE=PASS
+```
