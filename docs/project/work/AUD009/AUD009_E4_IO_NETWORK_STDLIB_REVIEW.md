@@ -24,7 +24,7 @@ Corrected ProcessStreams proposal: `guillermomolina/protos#650`, issue comment
 Owner approval provenance: `guillermomolina/protos#650`, issue comment
 `5739931586`, 2026-09-19.
 
-Derived implementation routes: **NONE**
+Derived implementation routes: **I066 via ratified D172 / #644**
 
 ## Final classification
 
@@ -121,6 +121,33 @@ E4 preserves the Standard Library representation layer while leaving:
   Standard Library integration.
 
 Classification: **KEEP**.
+
+## D172 ratification reconciliation
+
+D172 / #644 subsequently selected **Candidate C**.
+
+E4's KEEP classification for the two numeric networking modules remains
+unchanged and becomes the public ownership boundary for the canonical numeric
+families:
+
+```text
+std:network/IpAddresses               KEEP
+    IpAddress                         ADD / canonical family exposure
+    v4/v6/parse/format                KEEP
+
+std:network/IpEndpoints               KEEP
+    IpEndpoint                        ADD / canonical family exposure
+    parse/format                      KEEP
+
+Prelude IpAddress / IpEndpoint        REMOVE
+private canonical runtime substrate   KEEP
+```
+
+The module instances themselves do not become Actor-local canonical family
+identities. They expose the canonical frozen standard family objects backed by
+the smallest general runtime/Standard-Library support seam.
+
+Implementation migration is owned by I066.
 
 ## Deliberate absences remain absent
 
