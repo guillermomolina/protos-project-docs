@@ -130,13 +130,13 @@ remote Process/Node failure-knowledge framework      REMOVE_NOW_RECONSIDER_LATER
 Cluster membership framework                         REMOVE_NOW_RECONSIDER_LATER
 split-brain/partition Authority framework            REMOVE_NOW_RECONSIDER_LATER
 
-Actor.group(...)                                     REMOVE_NOW_RECONSIDER_LATER
-ActorGroup semantic identity                         REMOVE_NOW_RECONSIDER_LATER
-GroupRef semantic capability family                  REMOVE_NOW_RECONSIDER_LATER
-GroupRef send/request routing                        REMOVE_NOW_RECONSIDER_LATER
-Group membership/routing runtime                     REMOVE_NOW_RECONSIDER_LATER
-pre-acceptance Group rerouting                       REMOVE_NOW_RECONSIDER_LATER
-stable Group identity across membership replacement REMOVE_NOW_RECONSIDER_LATER
+Actor.group(...)                                     KEEP (D164 supersedes C4)
+ActorGroup semantic identity                         KEEP (D164 supersedes C4)
+GroupRef semantic capability family                  KEEP (D164 supersedes C4)
+GroupRef send/request routing                        KEEP (D164 supersedes C4)
+Group membership/routing runtime                     KEEP (D164 supersedes C4)
+pre-acceptance Group rerouting                       KEEP (D164 supersedes C4)
+stable Group identity across membership replacement KEEP (D164 supersedes C4)
 
 Actor creation identity cutover                      KEEP
 INITIALIZING != READY                                KEEP
@@ -272,6 +272,61 @@ kernel.
 
 D164 / #633 owns the exact decision.
 
+### D164 ratification reconciliation
+
+D164 / #633 subsequently completed the required semantic decision and selected
+**Candidate A — KEEP current Core ActorGroup/GroupRef**.
+
+The C4 `REMOVE_NOW_RECONSIDER_LATER` classification above remains preserved as
+the owner-approved historical audit finding that triggered D164. It is
+**superseded as current authority** by the later D164 decision and must not be
+used by AUD009-H or implementation work as authorization to remove Group.
+
+D164 found that the decisive additional evidence is the removal/reintroduction
+balance:
+
+- the current Group machinery has real continuing maintenance cost;
+- however, Protos deliberately keeps ActorRef bound to one exact incarnation;
+- scalable/distributed Protos systems are therefore likely to need a distinct
+  stable logical routing/service identity when concrete Actor incarnations are
+  replaceable;
+- an ordinary router Actor does not eliminate that need because the router's own
+  ActorRef is still incarnation-specific;
+- the current Group implementation already solves identity, capability transfer,
+  routing, snapshot, acceptance, uncertainty and pre-acceptance rerouting
+  boundaries that would likely recur if the facility were removed and later
+  reconstructed; and
+- the missing membership/discovery/cardinality/controller/placement facilities
+  can remain absent until concrete requirements justify them.
+
+The owner also explicitly accepted the reversibility boundary: retaining the
+current abstraction does not make it immutable. If real future scalable use shows
+that the model is wrong, a later evidence-backed decision may redesign or rewrite
+it rather than preserving it merely because it already exists.
+
+Current classification after D164:
+
+```text
+Actor.group(...)                                     KEEP
+ActorGroup semantic identity                         KEEP
+GroupRef semantic capability family                  KEEP
+GroupRef send/request routing                        KEEP
+Group membership/routing runtime                     KEEP
+pre-acceptance Group rerouting                       KEEP
+stable Group identity across membership replacement KEEP
+
+public post-creation membership API                  ABSENT / RETAIN ABSENCE
+public desired-cardinality API                       ABSENT / RETAIN ABSENCE
+public Group Controller API                          ABSENT / RETAIN ABSENCE
+Core service discovery                               ABSENT / RETAIN ABSENCE
+```
+
+Durable decision record:
+
+`docs/project/decisions/language/D164_ACTORGROUP_AND_GROUPREF_NECESSITY_AND_PLACEMENT.md`
+
+No normative, runtime, public-API or test change is required by D164.
+
 ## Placement, capacity and HA architecture is deferred
 
 C4 retains only the Actor-creation invariants that are already observable:
@@ -390,9 +445,9 @@ expose topology/transport/discovery controls now
 
 ```text
 FEATURE=ActorGroup / GroupRef institution
-PROPOSED_OUTCOME=REMOVE_NOW_RECONSIDER_LATER
-SEMANTIC_DECISION_OWNER=D164 / guillermomolina/protos#633
-IMPLEMENTATION_OWNER=TBD_AFTER_D164_RATIFICATION
+CURRENT_OUTCOME=KEEP
+SEMANTIC_DECISION_OWNER=D164 / guillermomolina/protos#633 RATIFIED
+IMPLEMENTATION_OWNER=NOT_REQUIRED
 
 FEATURE=Node / Cluster / distributed membership / Authority ontology
 PROPOSED_OUTCOME=REMOVE_NOW_RECONSIDER_LATER
@@ -425,8 +480,8 @@ DATE=2026-09-19
 PROCESS_MODEL=KEEP
 MINIMAL_ACTOR_REMOTE_BOUNDARY=KEEP
 
-ACTOR_GROUP=REMOVE_NOW_RECONSIDER_LATER
-ACTOR_GROUP_DECISION=D164 / guillermomolina/protos#633
+ACTOR_GROUP=KEEP
+ACTOR_GROUP_DECISION=D164 / guillermomolina/protos#633 RATIFIED
 
 DISTRIBUTED_TOPOLOGY_AUTHORITY=REMOVE_NOW_RECONSIDER_LATER
 DISTRIBUTED_TOPOLOGY_DECISION=D165 / guillermomolina/protos#634
