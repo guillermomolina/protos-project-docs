@@ -1,6 +1,6 @@
 # AUD009-E2 — Standard Library text codecs and data formats complexity review
 
-Status: **REOPENED — std:text/* CLASSIFICATION UNDER OWNER RECONSIDERATION**
+Status: **COMPLETE — OWNER-APPROVED RECONCILED CLASSIFICATION**
 
 Nature: non-normative AUD009 evidence/classification ledger
 
@@ -368,3 +368,85 @@ AUD009_E2_COORDINATION_CLOSURE=REOPENED
 ```
 
 No implementation change has been made by this reconsideration.
+
+
+## Final superseding E2 outcome
+
+The project owner explicitly approved the reopened E2 reconsideration in
+`guillermomolina/protos#647`, issue comment `5739941806`.
+
+This approval **supersedes** the earlier E2 removal classification for the four
+portable codec convenience modules.
+
+Final authoritative E2 classification:
+
+```text
+STDLIB_TEXT_UTF8=KEEP
+STDLIB_TEXT_UTF16LE=KEEP
+STDLIB_TEXT_UTF16BE=KEEP
+STDLIB_TEXT_LATIN1=KEEP
+
+TEXT_CODEC_ENCODE=KEEP
+TEXT_CODEC_DECODE=KEEP
+TEXT_CODEC_READER=KEEP
+TEXT_CODEC_OWNING_READER=KEEP
+TEXT_CODEC_WRITER=KEEP
+TEXT_CODEC_OWNING_WRITER=KEEP
+
+CORE_ENCODING_FAMILIES=KEEP
+CORE_TEXT_READER_WRITER=KEEP
+
+STDLIB_JSON=KEEP
+JSON_TREE_MODEL=KEEP
+JSON_PARSE_ENCODE=KEEP
+JSON_EVENT_STREAMING=KEEP
+JSON_TEXT_IO_ADAPTERS=KEEP
+
+STDLIB_CSV=KEEP
+CSV_PARSE_ENCODE=KEEP
+CSV_ROW_STREAMING=KEEP
+CSV_TEXT_IO_ADAPTERS=KEEP
+
+STDLIB_TOML=KEEP
+TOML_SEMANTIC_MODEL=KEEP
+TOML_PARSE_ENCODE=KEEP
+D087_PRIVATE_BOOTSTRAP_BOUNDARY=KEEP
+
+STDLIB_URI=KEEP
+URI_PARSE_FORMAT_RESOLVE=KEEP
+```
+
+The reason for correcting `std:text/*` is architectural rather than speculative:
+LIB002 deliberately selected one module per mandatory portable Encoding as the
+codec-specific Standard Library growth seam, after rejecting both an aggregate
+`std:text/Text` owner and a generic `Codec(encoding)` wrapper.
+
+The current six-operation implementation is small, but that implementation
+thinness does not erase the selected module ownership boundary.
+
+The seam remains intentionally narrow. It does not absorb unrelated future text
+algorithms or resource abstractions such as:
+
+```text
+readAll / readLines / writeAll
+case conversion / case folding
+Unicode normalization
+collation / locale
+encoding registry/discovery
+automatic encoding detection
+default/current Encoding
+incremental public encoder/decoder API
+```
+
+Those remain independent future concerns.
+
+LIB019 / #648 is superseded by this corrected KEEP outcome and is closed
+not-planned without implementation.
+
+```text
+LIB019_IMPLEMENTATION=NONE
+SPECIFICATION_CHANGED_BY_RECONSIDERATION=NO
+IMPLEMENTATION_CHANGED_BY_RECONSIDERATION=NO
+AUD009_E2_RECONSIDERATION=COMPLETE
+AUD009_E2_FINAL_CLASSIFICATION=COMPLETE
+```
