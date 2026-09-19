@@ -460,7 +460,7 @@ because the public selector disappears.
 The historical D2 classification remains useful evidence but is superseded as
 current authority by D171.
 
-Implementation migration is owned by I064.
+Implementation migration is owned by I064 / `guillermomolina/protos#667`.
 
 Durable decision record:
 
@@ -534,7 +534,7 @@ IMPLEMENTATION_OWNER=TBD_AFTER_D170_RATIFICATION
 FEATURE=public Filesystem.captureTree
 CURRENT_OUTCOME=REMOVE
 SEMANTIC_DECISION_OWNER=D171 / guillermomolina/protos#642 RATIFIED
-IMPLEMENTATION_OWNER=I064
+IMPLEMENTATION_OWNER=I064 / guillermomolina/protos#667
 
 FEATURE=PLAT012 verified immutable package custody
 PROPOSED_OUTCOME=KEEP
