@@ -1,6 +1,6 @@
 # AUD009-B8 — String, Bytes, and text/binary boundary complexity review
 
-Status: **COMPLETE — OWNER-APPROVED CLASSIFICATION**
+Status: **COMPLETE — OWNER-APPROVED / D157-D158 RECONCILED CLASSIFICATION**
 
 Nature: non-normative AUD009 evidence/classification ledger
 
@@ -444,3 +444,59 @@ AUD009_B8_CLASSIFICATION=COMPLETE
 
 AUD009-B8 is complete once this durable record and the required live GitHub
 closure postconditions are verified.
+
+
+## AUD009-H D157/D158 reconciliation
+
+B8's owner-approved audit packet correctly routed two independent semantic
+questions to D157 and D158. Those Dxxx decisions are the final authority where
+their results differ from the original audit recommendation.
+
+### D157 — String indexing/grapheme placement
+
+D157 ratified scalar-value Core indexing while preserving grapheme capability
+outside Core.
+
+The B8 removal classification therefore remains valid:
+
+```text
+CORE_GRAPHEME_INDEX_UNIT=REMOVE_NOW_RECONSIDER_LATER
+CORE_STRING_INDEX_UNIT=UNICODE_SCALAR KEEP
+GRAPHEME_CAPABILITY=PRESERVE_OUTSIDE_CORE
+```
+
+Implementation is complete under I053 / #629.
+
+### D158 — multiline String literal
+
+D158 explicitly **falsified** B8's original removal proposal and ratified
+Candidate A, retaining the current multiline institution unchanged.
+
+Therefore the earlier B8 entries:
+
+```text
+CURRENT_TRIPLE_DOUBLE_MULTILINE_LITERAL=REMOVE_NOW_RECONSIDER_LATER
+CURRENT_STRUCTURAL_INDENT_NORMALIZATION=REMOVE_NOW_RECONSIDER_LATER
+```
+
+are superseded for final AUD009 authority by:
+
+```text
+CURRENT_TRIPLE_DOUBLE_MULTILINE_LITERAL=KEEP
+CURRENT_STRUCTURAL_INDENT_NORMALIZATION=KEEP
+OPENING_TRAILING_NEWLINE_RULES=KEEP
+SPACE_TAB_EXACT_PREFIX_SEMANTICS=KEEP
+BLANK_LINE_HANDLING=KEEP
+CR_LF_CRLF_SEMANTICS=KEEP
+ESCAPE_INTERACTION=KEEP
+CURRENT_MULTILINE_LEXER_PARSER_CONFORMANCE=KEEP
+```
+
+D158 requires no implementation follow-up.
+
+```text
+D157_DECISION_APPROVAL_PROVENANCE=PASS
+D158_DECISION_APPROVAL_PROVENANCE=PASS
+AUD009_B8_MULTILINE_PROPOSAL_SUPERSEDED=YES
+AUD009_B8_FINAL_RECONCILIATION=COMPLETE
+```
