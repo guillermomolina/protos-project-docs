@@ -515,8 +515,10 @@ Final authority:
 ```text
 numeric IPv4/IPv6 + endpoint capability        KEEP
 explicit/non-ambient Network authority         KEEP
-Core IpAddress / IpEndpoint families           KEEP
-native recognition/equality                    KEEP
+canonical IpAddress / IpEndpoint families      KEEP
+native recognition/equality/transfer substrate KEEP
+Prelude IpAddress / IpEndpoint bindings        REMOVE BY D172
+std:network canonical family exposure          ADD BY D172
 Core Network capability                        KEEP
 Network.connectTcp                             KEEP
 Network.listenTcp                              KEEP
@@ -524,9 +526,14 @@ TcpConnection / TcpListener                    KEEP
 TCP half-close                                 KEEP
 ```
 
-D172 / #644 and D173 / #645 remain open architecture/evolution questions for
-placement/exposure/integration. They are **not removal routes** and do not weaken
-the D3 KEEP result.
+D172 / #644 is ratified as Candidate C: numeric IP/endpoint capability remains
+KEEP while public ownership moves from unqualified Prelude bindings to
+`std:network`, backed by the retained canonical private substrate. I066 / #669
+owns that migration.
+
+D173 / #645 remains the open architecture/evolution question for Network/TCP
+provisioning and higher-level Standard Library integration. Neither D172 nor
+D173 weakens the D3 KEEP result.
 
 DNS, Resolver, Happy Eyeballs, UDP, TLS, HTTP/WebSocket, QUIC, raw/Unix sockets,
 generic socket options/deadlines and service-discovery breadth remain absent.
