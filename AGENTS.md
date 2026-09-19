@@ -26,6 +26,22 @@ In particular:
 - when a substantive decision is required, coordinate and obtain approval
   through the authoritative workflow in `guillermomolina/protos`.
 
+## Direct repository publication
+
+This repository is the sole Protos repository with standing authorization for
+agent-direct repository-content publication.
+
+When the active task requires a bounded change here, an authorized agent SHOULD
+perform the repository edit and its normal commit/push directly through the
+available repository publication mechanism. Do not hand the maintainer shell
+commands or Markdown ZIPs merely so the maintainer can apply, commit, or push
+this repository's documentation change.
+
+This standing authorization changes the execution/handoff boundary only. It does
+not authorize unrelated edits, semantic decisions, formal-work allocation,
+approval claims, destructive history rewrites, force-pushes, or bypassing the
+authority and validation rules delegated from `guillermomolina/protos`.
+
 ## Local documentation rules
 
 The canonical durable corpus is under `docs/project/**`.
