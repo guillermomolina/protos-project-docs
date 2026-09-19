@@ -353,7 +353,7 @@ generic Core I/O mechanisms.
 The D1 historical classification remains useful evidence for why Core placement
 was challenged, but it is superseded as current authority by D167.
 
-Implementation migration is owned by I060.
+Implementation migration is owned by I060 / `guillermomolina/protos#663`.
 
 Durable decision record:
 
@@ -511,7 +511,7 @@ special Environment host-backed semantics
 FEATURE=Core BufferedReader / BufferedWriter placement
 CURRENT_OUTCOME=MOVE_TO_STDLIB
 SEMANTIC_DECISION_OWNER=D167 / guillermomolina/protos#637 RATIFIED
-IMPLEMENTATION_OWNER=I060
+IMPLEMENTATION_OWNER=I060 / guillermomolina/protos#663
 
 FEATURE=Process bootstrap canonical snapshot identity
 PROPOSED_OUTCOME=REMOVE_NOW_RECONSIDER_LATER
