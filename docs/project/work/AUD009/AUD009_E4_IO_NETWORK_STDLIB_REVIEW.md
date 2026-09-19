@@ -24,7 +24,7 @@ Corrected ProcessStreams proposal: `guillermomolina/protos#650`, issue comment
 Owner approval provenance: `guillermomolina/protos#650`, issue comment
 `5739931586`, 2026-09-19.
 
-Derived implementation routes: **I066 via ratified D172 / #644**
+Derived implementation routes: **I066 / guillermomolina/protos#669 via ratified D172 / #644**
 
 ## Final classification
 
@@ -147,7 +147,7 @@ The module instances themselves do not become Actor-local canonical family
 identities. They expose the canonical frozen standard family objects backed by
 the smallest general runtime/Standard-Library support seam.
 
-Implementation migration is owned by I066.
+Implementation migration is owned by I066 / `guillermomolina/protos#669`.
 
 ## Deliberate absences remain absent
 
