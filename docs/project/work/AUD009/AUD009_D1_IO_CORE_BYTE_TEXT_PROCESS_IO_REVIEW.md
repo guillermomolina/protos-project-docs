@@ -141,9 +141,9 @@ TextWriter.writeText                                  KEEP
 TextWriter.writeLine                                  KEEP
 TextWriter.flush                                      KEEP
 
-Core BufferedReader                                   REMOVE_NOW_RECONSIDER_LATER
-Core BufferedWriter                                   REMOVE_NOW_RECONSIDER_LATER
-standard Core byte-buffer wrapper family              REMOVE_NOW_RECONSIDER_LATER
+Core BufferedReader prelude binding                   REMOVE (D167 ratified)
+Core BufferedWriter prelude binding                   REMOVE (D167 ratified)
+standard buffered byte capability                     KEEP IN std:io (D167)
 
 Process capability                                    KEEP
 bootstrap-local Process authority                     KEEP
@@ -326,6 +326,39 @@ not by itself simplification.
 
 D167 / #637 owns the exact decision.
 
+### D167 ratification reconciliation
+
+D167 / #637 subsequently selected **Candidate D**.
+
+The approved result preserves the standard buffered byte capability but changes
+its public placement:
+
+```text
+Core/prelude BufferedReader     REMOVE
+Core/prelude BufferedWriter     REMOVE
+
+std:io/BufferedReader           ADD / KEEP capability
+std:io/BufferedWriter           ADD / KEEP capability
+
+D117 strong delegated-effect semantics     KEEP
+PLAT031 one-operation/lifecycle model       KEEP
+private runtime support                     ALLOWED WHERE REQUIRED
+```
+
+Therefore the D1 `REMOVE_NOW_RECONSIDER_LATER` classification is only partially
+realized: the **Core institution is removed**, but the capability itself is not
+discarded or deferred. It becomes a Standard Library institution over retained
+generic Core I/O mechanisms.
+
+The D1 historical classification remains useful evidence for why Core placement
+was challenged, but it is superseded as current authority by D167.
+
+Implementation migration is owned by I060.
+
+Durable decision record:
+
+`docs/project/decisions/language/D167_CORE_BUFFERED_BYTE_WRAPPER_PLACEMENT_AND_CONTRACT.md`
+
 ## Process and Process I/O remain
 
 Process is already retained as an execution/failure/bootstrap domain and current
@@ -475,10 +508,10 @@ special Environment host-backed semantics
 ## Required AUD009 routing
 
 ```text
-FEATURE=Core BufferedReader / BufferedWriter
-PROPOSED_OUTCOME=REMOVE_NOW_RECONSIDER_LATER
-SEMANTIC_DECISION_OWNER=D167 / guillermomolina/protos#637
-IMPLEMENTATION_OWNER=TBD_AFTER_D167_RATIFICATION
+FEATURE=Core BufferedReader / BufferedWriter placement
+CURRENT_OUTCOME=MOVE_TO_STDLIB
+SEMANTIC_DECISION_OWNER=D167 / guillermomolina/protos#637 RATIFIED
+IMPLEMENTATION_OWNER=I060
 
 FEATURE=Process bootstrap canonical snapshot identity
 PROPOSED_OUTCOME=REMOVE_NOW_RECONSIDER_LATER
@@ -511,8 +544,9 @@ CHECKPOINT_COMMENT=5739573610
 APPROVAL_COMMENT=5739586169
 DATE=2026-09-19
 
-CORE_BUFFERED_WRAPPERS=REMOVE_NOW_RECONSIDER_LATER
-BUFFERED_WRAPPER_DECISION=D167 / guillermomolina/protos#637
+CORE_BUFFERED_WRAPPERS=MOVE_TO_STDLIB
+STANDARD_BUFFERED_BYTE_CAPABILITY=KEEP
+BUFFERED_WRAPPER_DECISION=D167 / guillermomolina/protos#637 RATIFIED
 
 PROCESS_BOOTSTRAP_CANONICAL_IDENTITY=REMOVE_NOW_RECONSIDER_LATER
 PROCESS_ARGUMENTS_SPECIAL_FAMILY=REMOVE_NOW_RECONSIDER_LATER
