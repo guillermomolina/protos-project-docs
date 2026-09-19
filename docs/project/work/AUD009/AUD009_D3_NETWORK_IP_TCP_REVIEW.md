@@ -135,8 +135,9 @@ concrete and the project expects near-term use.
 numeric IPv4/IPv6 + endpoint capability    KEEP
 explicit/non-ambient network authority     KEEP
 
-Core IpAddress / IpEndpoint families       KEEP
-Core native recognizes/equality machinery  KEEP
+canonical IpAddress / IpEndpoint families  KEEP (D172: public ownership moves to std:network)
+Prelude IpAddress / IpEndpoint bindings     REMOVE (D172)
+native recognizes/equality machinery        KEEP
 
 Core Network capability                    KEEP
 Network.connectTcp                         KEEP
@@ -177,13 +178,42 @@ no implicit IPv4-mapped-IPv6 normalization
 no DNS hidden in numeric parsing
 ```
 
-Current Core recognition/equality/hash/transfer machinery remains in place.
+The recognition/equality/hash/transfer machinery remains retained.
 
-D172 may investigate whether long-term public ownership belongs in Core,
-Standard Library, or a smaller privileged-support boundary, but it may not
-silently delete or weaken the retained functionality.
+D172 / #644 subsequently selected Candidate C: the canonical frozen
+IpAddress/IpEndpoint family objects and required private runtime support remain,
+while their unqualified Prelude bindings move to the retained
+`std:network/IpAddresses` and `std:network/IpEndpoints` public domain.
+
+This changes placement, not the D3 KEEP classification of the numeric capability.
 
 Classification: **KEEP**.
+
+## D172 ratification reconciliation
+
+D172 / #644 selected **Candidate C**.
+
+```text
+numeric IpAddress/IpEndpoint capability       KEEP
+canonical frozen family prototypes            KEEP
+recognizes/equality/hash/transfer support      KEEP
+
+Prelude.IpAddress                             REMOVE
+Prelude.IpEndpoint                            REMOVE
+
+std:network/IpAddresses.IpAddress             ADD / canonical exposure
+std:network/IpEndpoints.IpEndpoint            ADD / canonical exposure
+```
+
+D172 does not reinterpret the original D3 owner-approved KEEP of the numeric
+capability as removal. It narrows only public placement. The retained runtime
+substrate must not become an IP-specific second module/transfer system.
+
+Implementation migration is owned by I066.
+
+Durable decision record:
+
+`docs/project/decisions/language/D172_NUMERIC_IP_VALUE_PLACEMENT_AND_OWNERSHIP.md`
 
 ## Network authority remains
 
@@ -255,9 +285,9 @@ These are future questions only when concrete requirements justify them.
 
 ```text
 FEATURE=retained numeric IP value placement/layering
-PROPOSED_OUTCOME=KEEP
-SEMANTIC_DESIGN_OWNER=D172 / guillermomolina/protos#644
-IMPLEMENTATION_OWNER=TBD_AFTER_D172_IF_ANY_CHANGE_IS_APPROVED
+CURRENT_OUTCOME=STDLIB_PUBLIC_OWNERSHIP_WITH_PRIVATE_CANONICAL_SUBSTRATE
+SEMANTIC_DESIGN_OWNER=D172 / guillermomolina/protos#644 RATIFIED
+IMPLEMENTATION_OWNER=I066
 
 FEATURE=retained Network/TCP exposure and stdlib integration
 PROPOSED_OUTCOME=KEEP
@@ -286,8 +316,10 @@ CORRECTED_APPROVAL_COMMENT=5739793039
 DATE=2026-09-19
 
 NUMERIC_IP_ENDPOINT_CAPABILITY=KEEP
-CORE_IP_FAMILIES=KEEP
-CORE_IP_NATIVE_RECOGNITION_EQUALITY=KEEP
+NUMERIC_IP_FAMILIES=KEEP
+PRELUDE_IP_FAMILY_BINDINGS=REMOVE_BY_D172
+PRIVATE_CANONICAL_IP_SUBSTRATE=KEEP
+IP_NATIVE_RECOGNITION_EQUALITY=KEEP
 
 EXPLICIT_NETWORK_AUTHORITY=KEEP
 CORE_NETWORK_CAPABILITY=KEEP
