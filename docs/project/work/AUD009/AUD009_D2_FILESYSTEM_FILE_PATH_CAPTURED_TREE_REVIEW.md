@@ -298,7 +298,7 @@ participate because those semantic dimensions are removed.
 The historical D2 classification remains useful evidence but is superseded as
 current authority by D169.
 
-Implementation migration is owned by I062.
+Implementation migration is owned by I062 / `guillermomolina/protos#665`.
 
 Durable decision record:
 
@@ -492,7 +492,7 @@ remove immutable verified package custody itself
 FEATURE=Path rooted/parent traversal + file-URL bridge
 CURRENT_OUTCOME=REMOVE
 SEMANTIC_DECISION_OWNER=D169 / guillermomolina/protos#640 RATIFIED
-IMPLEMENTATION_OWNER=I062
+IMPLEMENTATION_OWNER=I062 / guillermomolina/protos#665
 
 FEATURE=advanced File append/seek/size/truncate/sync surface
 PROPOSED_OUTCOME=REMOVE_NOW_RECONSIDER_LATER
