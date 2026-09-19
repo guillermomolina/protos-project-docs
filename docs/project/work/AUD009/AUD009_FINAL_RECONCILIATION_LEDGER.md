@@ -1,6 +1,6 @@
 # AUD009 — Final reconciliation and repository-wide classification ledger
 
-Status: **READY FOR FINAL OWNER APPROVAL**
+Status: **FINAL OWNER APPROVED — CLOSURE AUTHORIZED**
 
 Nature: non-normative final audit/reconciliation ledger
 
@@ -19,7 +19,7 @@ Specification changed by AUD009-H: **NO**
 
 Implementation changed by AUD009-H: **NO**
 
-Final owner approval: **PENDING**
+Final owner approval: **APPROVED — 2026-09-19**
 
 ## 1. Purpose
 
@@ -979,12 +979,19 @@ FORMAL_IDENTIFIER_COLLISION_AUD009_A1_DUPLICATE=RECONCILED
 CLOSED_AUDIT_CHILD_STATUS_LABELS=PASS
 FINAL_AUD009_LEDGER=PUBLISHED_BY_THIS_RECORD
 
-FINAL_OWNER_APPROVAL=PENDING
-AUD009_H_STATUS=READY_FOR_FINAL_OWNER_APPROVAL
-AUD009_PARENT_CLOSURE=PENDING_FINAL_OWNER_APPROVAL
+FINAL_OWNER_APPROVAL=PASS
+FINAL_OWNER_APPROVAL_PROVENANCE=2026-09-19 owner response "aprobado"
+AUD009_H_STATUS=CLOSURE_AUTHORIZED
+AUD009_PARENT_CLOSURE=AUTHORIZED_AFTER_NATIVE_CHILD_REVERIFICATION
 ```
 
-## 14. Final owner gate
+## 14. Final owner approval
+
+The project owner explicitly approved this exact final H packet on 2026-09-19:
+
+```text
+aprobado
+```
 
 Approval of this H packet means:
 
