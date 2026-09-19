@@ -1,6 +1,6 @@
 # AUD009 — Final reconciliation and repository-wide classification ledger
 
-Status: **FINAL OWNER APPROVED — CLOSURE AUTHORIZED**
+Status: **COMPLETE — FINAL OWNER APPROVED**
 
 Nature: non-normative final audit/reconciliation ledger
 
@@ -82,16 +82,16 @@ F3  #655   COMPLETE
 
 G1  #657   COMPLETE
 
-H   #659   IN_PROGRESS / FINAL OWNER GATE
+H   #659   COMPLETE
 ```
 
 At publication of this ledger:
 
 ```text
 NATIVE_AUD009_CHILDREN=28
-CLOSED_COMPLETED_CHILDREN=27
-OPEN_CHILDREN=1
-OPEN_CHILD=#659
+CLOSED_COMPLETED_CHILDREN=28
+OPEN_CHILDREN=0
+SUB_ISSUES_PROGRESS=100_PERCENT
 CLOSED_CHILD_STATUS_LABELS=status:completed PASS
 ```
 
@@ -981,8 +981,9 @@ FINAL_AUD009_LEDGER=PUBLISHED_BY_THIS_RECORD
 
 FINAL_OWNER_APPROVAL=PASS
 FINAL_OWNER_APPROVAL_PROVENANCE=2026-09-19 owner response "aprobado"
-AUD009_H_STATUS=CLOSURE_AUTHORIZED
-AUD009_PARENT_CLOSURE=AUTHORIZED_AFTER_NATIVE_CHILD_REVERIFICATION
+AUD009_H_STATUS=COMPLETED
+NATIVE_CHILD_REVERIFICATION=28_OF_28_COMPLETED
+AUD009_PARENT_CLOSURE=AUTHORIZED
 ```
 
 ## 14. Final owner approval
@@ -1001,9 +1002,9 @@ Approval of this H packet means:
    Ixxx items remain independently governed by their own status and do not block
    AUD009 closure;
 4. the Test Tool exclusion under F is accepted as an intentional audit boundary;
-5. AUD009-H / #659 may close completed; and
-6. after native child completion is reverified, parent AUD009 / #522 may close
-   completed.
+5. AUD009-H / #659 is closed completed; and
+6. native child completion has been reverified at 28/28, so parent AUD009 / #522
+   may close completed.
 
 Approval does **not** implement I054-I066, does not reopen or alter the already
 ratified D160-D173 decisions, and does not extend AUD009 into the excluded Test
