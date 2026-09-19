@@ -586,7 +586,7 @@ TEST_MIGRATION_REQUIRED=YES
 IMPLEMENTATION_OWNER_REQUIRED=YES
 ```
 
-A dedicated Ixxx owns the bounded migration.
+I062 / `guillermomolina/protos#665` owns the bounded migration.
 
 ## Ratified result
 
