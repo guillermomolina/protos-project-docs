@@ -35,6 +35,29 @@ mutable state or coincidental shape under another parent are rejected.
 calling candidate behavior or performing host/network work. Equality/hash remain
 D047 structural laws and `===` remains ordinary identity.
 
+## D172 placement supersession note
+
+D172 / `guillermomolina/protos#644`, ratified on 2026-09-19, preserves this
+decision's construction, recognition, ordinary-object representation, exact
+canonical-parent rule and structural equality/hash semantics.
+
+D172 supersedes only this record's **public Prelude placement** consequence:
+
+```text
+Prelude.IpAddress     removed
+Prelude.IpEndpoint    removed
+
+std:network/IpAddresses.IpAddress   canonical public exposure
+std:network/IpEndpoints.IpEndpoint  canonical public exposure
+```
+
+The canonical frozen family objects and required private recognition/transfer
+substrate remain standard implementation/runtime state. The Standard Library
+module instances do not become Actor-local replacement family identities.
+
+Current implementation migration owner: I066 /
+`guillermomolina/protos#669`.
+
 ## Why this option
 
 The review compared hidden native branding, shape-only duck typing, transitive
