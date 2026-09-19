@@ -1,6 +1,6 @@
 # AUD009-E2 — Standard Library text codecs and data formats complexity review
 
-Status: **COMPLETE — OWNER-APPROVED CLASSIFICATION**
+Status: **REOPENED — std:text/* CLASSIFICATION UNDER OWNER RECONSIDERATION**
 
 Nature: non-normative AUD009 evidence/classification ledger
 
@@ -317,3 +317,54 @@ AUD009_E2_COORDINATION_CLOSURE=PASS
 ```
 
 AUD009-E2 is complete.
+
+
+## 2026-09-19 E2 reconsideration
+
+AUD009-E4 exposed a cross-slice audit error mode: a currently thin module must
+not be removed solely because its implementation is simple when its module
+identity was deliberately selected as a coherent future library growth seam.
+
+Re-reading LIB002 established that the four codec modules were an explicit
+researched architecture selection:
+
+```text
+std:text/UTF8
+std:text/UTF16LE
+std:text/UTF16BE
+std:text/Latin1
+```
+
+They were selected over an aggregate `std:text/Text` namespace and a generic
+`Codec(encoding)` wrapper. LIB002 explicitly records that future additional
+standard codec helpers can grow behind these module identities without changing
+the Core Encoding contract.
+
+This does not absorb unrelated Unicode/text algorithms: LIB002 separately
+defers read-all, case mapping, normalization, collation, locale, registry,
+autodetection and incremental public encoder/decoder APIs.
+
+The previous removal classification is therefore suspended pending renewed
+owner approval.
+
+Current reconsideration proposal: `guillermomolina/protos#647`, issue comment
+`5739936272`.
+
+```text
+PROPOSED_STDLIB_TEXT_UTF8=KEEP
+PROPOSED_STDLIB_TEXT_UTF16LE=KEEP
+PROPOSED_STDLIB_TEXT_UTF16BE=KEEP
+PROPOSED_STDLIB_TEXT_LATIN1=KEEP
+
+LIB019=#648
+LIB019_STATUS=BLOCKED_PENDING_E2_RECONSIDERATION
+
+JSON=KEEP_UNCHANGED
+CSV=KEEP_UNCHANGED
+TOML=KEEP_UNCHANGED
+URI=KEEP_UNCHANGED
+
+AUD009_E2_COORDINATION_CLOSURE=REOPENED
+```
+
+No implementation change has been made by this reconsideration.
