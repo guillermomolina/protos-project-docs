@@ -196,7 +196,7 @@ regular/directory/link/other kinds                   KEEP
 entries ordering unspecified                        KEEP
 incremental directory cursor/stream                  ABSENT / RETAIN ABSENCE
 
-public Filesystem.captureTree                        REMOVE_NOW_RECONSIDER_LATER
+public Filesystem.captureTree                        REMOVE (D171 ratified)
 PLAT012 verified immutable package custody           KEEP
 
 Directory prototype                                  ABSENT / RETAIN ABSENCE
@@ -434,6 +434,38 @@ ContentIdentity verifies the exact custody later used for source reads
 
 D171 / #642 owns the exact decision.
 
+### D171 ratification reconciliation
+
+D171 / #642 subsequently selected **Candidate B — remove public captureTree;
+retain PLAT012 host/runtime immutable custody**.
+
+The D2 classification is therefore ratified for the public language surface:
+
+```text
+Filesystem.captureTree(path)                    REMOVE
+
+Filesystem.entries                              KEEP
+PLAT012 exact immutable package custody          KEEP
+secure recursive capture engine                 KEEP
+immutable captured backing                      KEEP
+read-only captured Filesystem materialization   KEEP
+verify/use same custody                         KEEP
+no source/store Path reopen                     KEEP
+```
+
+D171 supersedes only D046's public `captureTree` authority. It does not
+authorize deletion of shared capture machinery required by PLAT012 merely
+because the public selector disappears.
+
+The historical D2 classification remains useful evidence but is superseded as
+current authority by D171.
+
+Implementation migration is owned by I064.
+
+Durable decision record:
+
+`docs/project/decisions/language/D171_PUBLIC_FILESYSTEM_CAPTURETREE_VS_RUNTIME_CUSTODY.md`
+
 ## Strongest attempted removals
 
 ```text
@@ -500,9 +532,9 @@ SEMANTIC_DECISION_OWNER=D170 / guillermomolina/protos#641
 IMPLEMENTATION_OWNER=TBD_AFTER_D170_RATIFICATION
 
 FEATURE=public Filesystem.captureTree
-PROPOSED_OUTCOME=REMOVE_NOW_RECONSIDER_LATER
-SEMANTIC_DECISION_OWNER=D171 / guillermomolina/protos#642
-IMPLEMENTATION_OWNER=TBD_AFTER_D171_RATIFICATION
+CURRENT_OUTCOME=REMOVE
+SEMANTIC_DECISION_OWNER=D171 / guillermomolina/protos#642 RATIFIED
+IMPLEMENTATION_OWNER=I064
 
 FEATURE=PLAT012 verified immutable package custody
 PROPOSED_OUTCOME=KEEP
@@ -531,8 +563,8 @@ PATH_DECISION=D169 / guillermomolina/protos#640 RATIFIED
 ADVANCED_FILE_SURFACE=REMOVE_NOW_RECONSIDER_LATER
 FILE_DECISION=D170 / guillermomolina/protos#641
 
-PUBLIC_CAPTURE_TREE=REMOVE_NOW_RECONSIDER_LATER
-CAPTURE_TREE_DECISION=D171 / guillermomolina/protos#642
+PUBLIC_CAPTURE_TREE=REMOVE
+CAPTURE_TREE_DECISION=D171 / guillermomolina/protos#642 RATIFIED
 
 PLAT012_VERIFIED_IMMUTABLE_PACKAGE_CUSTODY=KEEP
 
