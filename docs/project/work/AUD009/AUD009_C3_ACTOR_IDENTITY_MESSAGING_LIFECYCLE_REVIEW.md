@@ -131,7 +131,7 @@ no transparent message replay after failure            KEEP
 fixed non-root fatal-failure policy                    KEEP
 RootActor fatal failure -> Process termination         KEEP
 public configurable supervisor/policy object           ABSENT / RETAIN ABSENCE
-semantic failure-authority relationship                REMOVE_NOW_RECONSIDER_LATER
+semantic failure-authority relationship                KEEP (D162 supersedes C3 removal classification)
 
 ActorRef explicit communication capability             KEEP
 no ambient creator reverse capability                  KEEP
@@ -305,6 +305,34 @@ RECONSIDERATION_SCOPE=
 
 CONFIDENCE=HIGH
 ```
+
+### D162 ratification reconciliation
+
+D162 / #630 subsequently tested the C3 removal classification against the
+current `AGENTS.md` retrospective-removal rule, including the concrete cost of
+removing an already integrated mechanism versus the continuing cost of leaving
+it in place.
+
+The project owner ratified D162 Candidate A on 2026-09-19:
+
+```text
+semantic Actor failure-authority relationship    KEEP
+public configurable supervision API              REMAINS ABSENT
+fixed Core fatal-failure policy                  UNCHANGED
+```
+
+The decisive additional evidence was that the retained semantic relationship
+does not require a distinct Actor, value, capability, mailbox, policy object,
+allocation, supervision tree, or extra runtime work, while removing it would
+require normative/documentation reconciliation without removing the fatal-failure
+routing already required by the fixed root/non-root policy.
+
+Therefore the C3 `REMOVE_NOW_RECONSIDER_LATER` classification above remains
+historical audit evidence but is **superseded by D162** and must not be treated as
+current removal authority.
+
+Durable decision record:
+`docs/project/decisions/language/D162_ACTOR_FATAL_FAILURE_POLICY_AUTHORITY_MODEL.md`.
 
 ## Runtime Health/Watchdog mandatory Core contract is a removal candidate
 
