@@ -64,21 +64,27 @@ No test result is inferred here; these PASS results are the Human Executor's rep
 
 The published diff preserves D108, D152, D153, D178, `CaseAuthority`, Process, Actor, Group, legacy Package execution, Package inspection, Package resource execution, and Package resource inspection. `pom.xml` advances to `0.3.72-SNAPSHOT`, with a matching `CHANGELOG.md` entry.
 
-## Publication hygiene finding
+## Publication hygiene reconciliation
 
-The published commit also contains one unexpected zero-byte file outside the intended implementation scope:
+The accidental zero-byte temporary test artifact:
 
 ```text
 protos/tests/library/tool008-unplanned-13881163000710449719.protos
 ```
 
-`ProtosTestToolFileSelectionPublicIntegrationTest.authorizedExistingFileWithoutCaseSpecFailsBeforeScheduling()` creates files matching `protos/tests/library/tool008-unplanned-*.protos` with `Files.createTempFile(...)` and deletes them in `finally`. The tracked file therefore matches the test's temporary-file pattern and is not part of the Package Tool Logical Case implementation.
+was removed in Protos revision:
 
-This evidence does not classify that file as intentional product content. The implementation is functionally validated, but issue closure should wait until publication hygiene is reconciled by removing or otherwise explicitly accounting for the tracked temporary artifact.
+```text
+f8cfb52afb2dd77693595fcb2099a21a9a6cc8e0
+```
+
+The file is absent from current `main`. No product behavior changed in this hygiene commit.
+
+The facility slice is therefore fully published and publication-clean.
 
 ## Next intended work
 
-After publication hygiene is reconciled, the infrastructure is ready for separate Package corpus migration slices:
+The infrastructure is ready for separate Package corpus migration slices:
 
 ```text
 TomlSyntax        27
