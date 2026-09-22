@@ -2,24 +2,21 @@
 
 Status: VALID CAUSAL ABLATION — COMMON CONTRIBUTION NOT ESTABLISHED
 
-This durable, non-normative record captures the reported PERF010-A Ablation 4
-reference result for the duplicate `ProtosClosureValue.nativeBody()` Optional
-projection inside `ProtosBytecodeRootNode.finishPreparingComposedCall`.
+This durable, non-normative record captures the PERF010-A Ablation 4 reference
+result for the duplicate `ProtosClosureValue.nativeBody()` Optional projection
+inside `ProtosBytecodeRootNode.finishPreparingComposedCall`.
 
 ## Identity and retention state
 
 ```text
 PROTOS_REVISION=4c4aa95a5852119bd280ceb40483871d5d2cbb82
 BENCHMARK_IMPLEMENTATION_REVISION=9cb377cec8f25cf6ed3db459d69dfa85c21f3f88
-BENCHMARK_REFERENCE_RETENTION_REVISION=PENDING_PUBLICATION
+BENCHMARK_REFERENCE_RETENTION_REVISION=b829ba00a22dd06e06aaf91faf3411c8e65f4511
 ```
 
-At publication time, the benchmark repository's published head contains the
-Ablation 4 harness implementation but no separately published commit with the
-requested `PERF010-A: retain fourth causal ablation evidence (#691)` identity.
-The reference values below are therefore retained here from the completed
-reference output reported by the maintainer. Once the benchmark result files are
-published, their exact revision should be cross-referenced rather than inferred.
+The benchmark reference evidence is published under the exact retention revision
+above with commit message
+`PERF010-A: retain fourth causal ablation evidence (#691)`.
 
 ## Structural and run result
 
@@ -54,8 +51,6 @@ above passed. No cost conclusion is derived from that sampled marker.
 
 ## Paired-control reconciliation
 
-As in the prior PERF010-A reconciliation:
-
 ```text
 canonical improvement = baseline canonical - ablation canonical
 control movement       = baseline control - ablation control
@@ -72,8 +67,8 @@ paired-control fraction = paired-control effect / baseline canonical
 
 The signs and magnitudes are strongly non-uniform. The exact-scope diagnostic is
 valid, but these retained medians do not establish a positive common-path
-contribution or dominance for the duplicate projection. In particular, raw
-canonical movement alone must not be interpreted causally.
+contribution or dominance for the duplicate projection. Raw canonical movement
+alone is not interpreted causally.
 
 The descriptive paired-control calculation is not a confidence interval and is
 not an attributable fraction of cross-language excess cost.
@@ -103,6 +98,3 @@ the existing Ablation 1 and corrected Ablation 3 paired-control evidence, then
 return to investigation of the remaining common execution path. A future
 candidate still has to pass the static causal-ablation admission gate before any
 new benchmark is implemented.
-
-The published benchmark retention revision remains a pending cross-reference
-until the result files are actually visible in `guillermomolina/protos-benchmarks`.
