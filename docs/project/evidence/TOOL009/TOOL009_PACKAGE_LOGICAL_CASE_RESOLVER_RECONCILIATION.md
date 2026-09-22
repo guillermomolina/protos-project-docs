@@ -7,6 +7,9 @@
 - Prior readiness investigation: `guillermomolina/protos#692`
 - Prior Package Logical Case facility publication: `a32acf925383a2b1748bede12586ff3d320b7bf7`
 - Publication-hygiene revision visible before this follow-up: `f8cfb52afb2dd77693595fcb2099a21a9a6cc8e0`
+- Resolver-completion Protos revision: `2a5412bd60115d5c0ef928499668dada5cd61094`
+- Published version: `0.3.73-SNAPSHOT`
+- Product commit: `TOOL009: complete Package Logical Case resolver coverage for TOML module graph`
 
 ## Result reported by the Human Executor
 
@@ -113,30 +116,29 @@ No file under `protos/tests/package-tool/` was reported changed, so the 102-case
 
 ## Publication verification state
 
-At durable-record reconciliation time, the connected GitHub repository state still reports:
+The product publication is now directly visible and revision-bound:
 
 ```text
-GITHUB_MAIN=f8cfb52afb2dd77693595fcb2099a21a9a6cc8e0
-GITHUB_VERSION=0.3.72-SNAPSHOT
-PRODUCT_PUBLICATION_VERIFICATION=PENDING
+PROTOS_REVISION=2a5412bd60115d5c0ef928499668dada5cd61094
+PARENT_PROTOS_REVISION=f8cfb52afb2dd77693595fcb2099a21a9a6cc8e0
+VERSION=0.3.73-SNAPSHOT
+PRODUCT_PUBLICATION_VERIFICATION=PASS
 ```
 
-Direct inspection of `ProtosCli.java` at that visible `main` still shows the prior single `package-runtime-names` exact overlay.
+Direct inspection at that exact revision confirms:
 
-Therefore this record intentionally distinguishes:
+- the five real Package TOML exact overlays are present in `ProtosCli.java`;
+- the shared Toml10 overlays preserve the existing `bundled-tool-shared:` canonical keys;
+- the generic bundled-tool closure guards remain unchanged;
+- the dedicated focal tests exercise the real Package modules and their transitive imports;
+- the changelog records this as a resolver-completion prerequisite only;
+- no Package corpus fixture is migrated by this commit.
 
-```text
-IMPLEMENTATION_AND_VALIDATION = HUMAN_REPORTED_COMPLETE
-REMOTE_PRODUCT_PUBLICATION = NOT_YET_VISIBLE_TO_CONNECTED_GITHUB_STATE
-```
-
-No product revision newer than `f8cfb52a...` is fabricated here. When the new product commit becomes visible, publication reconciliation must bind this implementation to its exact `PROTOS_REVISION` before treating the prerequisite as durably published.
+The Human Executor's reported green validation is therefore now bound to a concrete published product revision.
 
 ## Current migration consequence
 
-Until the product publication is revision-bound, no claim is made that `main` is ready for the 102-case migration.
-
-Once the resolver-completion commit is visible and verified, the next implementation remains the already-selected single slice:
+The resolver prerequisite is durably published and `main` is ready for the already-selected 102-case migration as one implementation slice:
 
 ```text
 102 Package Tool TOML cases
