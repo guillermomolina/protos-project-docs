@@ -23,6 +23,9 @@ Current role-first work records:
   - [`TOOL001-F2D workspace execution preflight`](TOOL001/TOOL001_F2D_EXECUTION_PREFLIGHT.md)
   - [`TOOL001-F2E external immutable-package execution`](TOOL001/TOOL001_F2E_EXTERNAL_MATERIALIZATION.md)
 
+- [`PERF010-A/PERF010-A_THIRD_CAUSAL_ABLATION_READINESS.md`](PERF010-A/PERF010-A_THIRD_CAUSAL_ABLATION_READINESS.md)
+  — PERF010-A third causal-ablation readiness evidence: activation lexical single-probe diagnostic is established, with no production optimization selected.
+
 - [`PERF004/PERF004_RUNTIME_PERFORMANCE_CHARACTERIZATION.md`](PERF004/PERF004_RUNTIME_PERFORMANCE_CHARACTERIZATION.md)
   — canonical non-normative PERF004 cross-language runtime-performance characterization record.
 
