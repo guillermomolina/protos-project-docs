@@ -120,9 +120,19 @@ PRODUCT_PUBLICATION_VERIFICATION=PASS
 PACKAGE_SUITE_NATIVE_STATIC_RECONCILIATION=PASS
 ```
 
-At the time this record was first written, the GitHub Actions CI run for this exact SHA was still `in_progress`. No CI PASS is inferred before GitHub reports a conclusion.
+The Human Executor has explicitly reported the complete migration, requested validation, tests, commit and push as successful:
 
-The maintainer reported this migration as uploaded after the Human Executor workflow; this record distinguishes that publication fact from CI state visible through GitHub.
+```text
+HUMAN_EXECUTOR_VALIDATION=PASS
+HUMAN_EXECUTOR_TESTS=PASS
+PRODUCT_COMMIT_PUSH=PASS
+```
+
+These are maintainer-reported execution results and are recorded as such; they are not inferred from source inspection.
+
+At the latest reconciliation, the GitHub Actions `CI` run for this exact SHA (`35738182859`) is still `in_progress`. No remote CI PASS is inferred before GitHub reports a conclusion. Repository coordination workflows for the same SHA have otherwise converged successfully.
+
+This record therefore distinguishes the completed Human Executor validation/publication from the still-running remote CI observation.
 
 ## Consequence for TOOL009-B
 
