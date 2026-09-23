@@ -632,3 +632,134 @@ selector × authority matrix.
 
 Phase D was investigation-only. No Protos repository files were modified and no
 builds, tests, or programs were run.
+
+
+## Phase-E baseline contradiction and Phase-A inventory correction
+
+Phase E (`TOOL009-F-E / #699`) rechecked the already-recorded discovery model
+against the Phase-A case-count checkpoint before constructing the exact target
+map. That reconciliation found a concrete inconsistency in the Phase-A
+inventory, at the same unchanged Protos revision:
+
+```text
+PROTOS_REVISION=2b3a88389da7228caed231a90b14091cf2841115
+VERSION=0.3.77-SNAPSHOT
+```
+
+The authoritative discovery path is:
+
+```text
+Discovery.declarationSignatureFromModule(module)
+    -> module.slotValue("tests")
+    -> Discovery.declarationSignature(tests)
+
+LogicalCasePlan.build(sourceAssociation, signature)
+    -> one Logical Case per selector in that source-local tests Array
+```
+
+Therefore a `Test(...)` value created inside the body Closure of another Test
+is ordinary runtime data for that outer Test. It is not part of the module's
+source-local `tests` declaration Array and is not independently discoverable as
+a Logical Case.
+
+Phase A had mechanically counted textual/nested `Test(...)` constructions as
+additional Logical Cases in six ordinary sources:
+
+```text
+protos/tests/conformance/library/test/test-value-fresh-frozen.protos
+    recorded 3 -> actual 1   delta -2
+
+protos/tests/conformance/library/test/test-invalid-name.protos
+    recorded 3 -> actual 1   delta -2
+
+protos/tests/conformance/library/test/test-value-surface.protos
+    recorded 2 -> actual 1   delta -1
+
+protos/tests/conformance/library/test/test-invocation-exact-result.protos
+    recorded 2 -> actual 1   delta -1
+
+protos/tests/conformance/library/test/test-invocation-exact-error.protos
+    recorded 2 -> actual 1   delta -1
+
+protos/tests/conformance/library/test/test-body-validation-deferred.protos
+    recorded 2 -> actual 1   delta -1
+```
+
+The combined overcount is exactly eight Logical Cases.
+
+Two genuine multi-Case sources remain:
+
+1. `protos/tests/conformance/control/future-detach-removed-semantics.protos`
+   declares seven entries directly in its module `tests` Array.
+2. `protos/tests/package-tool/execution-plan/fixtures/f2e3b-build-v2-error.protos`
+   declares one Test selector but is referenced by 15 distinct project-tree
+   authorities, producing 15 independently scheduled Logical Cases.
+
+The corrected current baseline is therefore:
+
+```text
+CURRENT_TEST_SOURCE_FILES=1230
+CURRENT_LOGICAL_CASES=1250
+
+SINGLE_CASE_SOURCE_FILES=1228
+MULTI_CASE_SOURCE_FILES=2
+
+ORDINARY_TEST_SOURCES=895
+ORDINARY_LOGICAL_CASES=901
+
+SPECIAL_EXECUTION_TEST_SOURCES=335
+SPECIAL_EXECUTION_LOGICAL_CASES=349
+```
+
+Execution-requirement reconciliation:
+
+```text
+ordinary          895 sources / 901 cases
+process-snapshot   15 sources /  15 cases
+actor              11 sources /  11 cases
+group              10 sources /  10 cases
+package           299 sources / 313 cases
+                               -----------
+                                  1250 cases
+```
+
+This correction supersedes the earlier Phase-A numeric claims:
+
+```text
+IN_SCOPE_LOGICAL_CASES=1258
+SINGLE_CASE_SOURCE_FILES=1222
+MULTI_CASE_SOURCE_FILES=8
+ORDINARY_LOGICAL_CASES=909
+```
+
+wherever those values are repeated in this checkpoint or inherited by later
+phase summaries.
+
+The qualitative conclusions of Phases B-D are not reopened by this correction:
+
+- semantic grouping remains based on coherent behavioral contracts;
+- specialized execution families remain groupable under the established constraints;
+- project-tree consolidation still requires exact selector × authority matrix preservation;
+- physical-path rewrites remain implementation obligations rather than Logical Case identity blockers; and
+- no new Test Tool architecture or language/library decision is introduced by this correction.
+
+However, any Phase-E target map and any later before/after reconciliation must
+use the corrected 1,250-case baseline. Phase E cannot truthfully establish
+`CURRENT_LOGICAL_CASES=1258` or `PROPOSED_LOGICAL_CASES=1258`.
+
+Coordination consequence:
+
+```text
+TOOL009F_PHASE_A=REOPENED_FOR_BOUNDED_INVENTORY_CORRECTION
+TOOL009F_PHASE_E=BLOCKED_ON_CORRECTED_PHASE_A_CHECKPOINT
+TOOL009F_PHASE_F=BLOCKED
+```
+
+The next bounded work is investigation-only: repair the Phase-A inventory using
+the actual discovery declaration boundary, reconcile the exact per-source
+inventory/counts, and republish the corrected Phase-A checkpoint. It must not
+redo Phase-B semantic grouping, Phase-C execution-family analysis, or Phase-D
+path-coupling analysis.
+
+No Protos repository files were modified and no builds, tests, benchmarks, or
+programs were run as part of this correction.
