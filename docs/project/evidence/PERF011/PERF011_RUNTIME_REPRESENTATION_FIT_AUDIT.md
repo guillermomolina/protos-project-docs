@@ -236,3 +236,166 @@ The next bounded experiment should be owned by PERF010-A / #691 because it is al
 - live GitHub Issues #680, #691 and #693.
 
 All repository coordinates above intentionally use `guillermomolina` with the canonical double-`mo` spelling.
+
+
+## Semantic-to-compiler polymorphism fidelity scope expansion — 2026-09-23
+
+PERF011 now explicitly incorporates a cross-language diagnostic lens derived
+from the current PERF010-A evidence and Smalltalk-on-Truffle precedent.
+
+This does **not** allocate a new PERF item. The question remains the one already
+owned by PERF011:
+
+> Does the Protos runtime representation expose stable semantic facts to
+> Truffle/Graal in a form that permits effective specialization?
+
+The additional discriminator is:
+
+> Does the polymorphism and dynamism observed by Truffle/Graal faithfully
+> reflect the semantic polymorphism and dynamism of the Protos program, or does
+> the runtime representation manufacture accidental polymorphism/megamorphism?
+
+### First established Protos mismatch
+
+PERF010-A has established the first concrete case.
+
+At:
+
+```text
+PROTOS_REVISION=3a4afc27a96ae4efd6f3f0c71bc0990d5d102e30
+```
+
+the relevant `micro/method-call` send is semantically monomorphic, while
+`PrepareSendArguments.fastOrdinarySend` consumes distinct DSL cache entries
+because fresh `Closure` and `methodHome` object identities participate in
+the specialization identity.
+
+```text
+SEMANTIC_SELECTOR_COUNT=1
+SEMANTIC_EXECUTABLE_BEHAVIOR=STABLE
+SEMANTIC_CALL_SITE=MONOMORPHIC
+
+CLOSURE_OBJECT_IDENTITY=CHANGES
+METHOD_HOME_OBJECT_IDENTITY=CHANGES
+
+TRUFFLE_FAST_SPECIALIZATION_INSTANCES=1 -> 2 -> 3
+CACHE_LIMIT=3
+NEXT_STATE=GENERIC_REPLACING_SPECIALIZATION
+
+POLYMORPHISM_FIDELITY=MISMATCH
+ACCIDENTAL_MEGAMORPHISM=ESTABLISHED_FOR_THIS_CALL_SITE
+```
+
+The causal record is:
+
+`docs/project/evidence/PERF010-A/PERF010-A_STABLE_SPECIALIZATION_IDENTITY_CHURN_ROOT_CAUSE.md`
+
+This establishes implementation-induced polymorphism without requiring any
+change to Protos semantics.
+
+### Smalltalk/Truffle precedent
+
+The audit now retains the following architectural and published precedent:
+
+- current TruffleSOM and TruffleSqueak ordinary dispatch caches classify by
+  stable receiver class/object-layout and resolved method/target state rather
+  than each fresh receiver object's identity;
+- *Cross-Language Compiler Benchmarking: Are We Fast Yet?* reports a
+  TruffleSOM performance outlier involving a hot access becoming megamorphic
+  because of runtime/object representation;
+- *Optimizing Communicating Event-Loop Languages with Truffle* describes
+  avoiding an effectively megamorphic shared dispatch funnel by retaining
+  send-site-specific PIC context.
+
+References:
+
+- https://stefan-marr.de/papers/dls-marr-et-al-cross-language-compiler-benchmarking-are-we-fast-yet/
+- https://stefan-marr.de/papers/agere-marr-moessenboeck-optimizing-communicating-event-loop-languages-with-truffle/
+
+These results do not imply that Protos should adopt Smalltalk class semantics.
+They justify making accidental compiler-visible polymorphism a first-class
+PERF011 audit dimension.
+
+### Expanded audit matrix
+
+PERF011 should apply this matrix to at least:
+
+1. ordinary method send;
+2. Closure call;
+3. ordinary slot read;
+4. ordinary slot write;
+5. delegated lookup where distinct;
+6. object construction;
+7. integer/arithmetic primitive dispatch;
+8. Array/indexed access;
+9. activation/lexical access where hot.
+
+For each applicable surface classify:
+
+```text
+ABSTRACTION=...
+
+SEMANTIC_POLYMORPHISM=...
+SEMANTIC_STABILITY_FACTS=...
+
+TRUFFLE_SPECIALIZATION_POLYMORPHISM=...
+CACHE_KEY=...
+CACHE_LIMIT=...
+INVALIDATION_MODEL=...
+GENERIC_FALLBACK_TRIGGER=...
+
+HOST_IMPLEMENTATION_VISIBLE_AFTER_PE=
+  YES | NO | INCONCLUSIVE
+
+POLYMORPHISM_FIDELITY=
+  MATCH | MISMATCH | INCONCLUSIVE
+
+ACCIDENTAL_MEGAMORPHISM=
+  ESTABLISHED | NOT_ESTABLISHED | INCONCLUSIVE
+
+SEMANTIC_CHANGE_REQUIRED_TO_FIX=
+  YES | NO | INCONCLUSIVE
+
+NEXT_BOUNDED_EXPERIMENT=
+  ... | NONE
+```
+
+Source-level apparent stability is insufficient when a conclusion depends on
+compiler behavior. Where material, dynamic evidence is required: generated DSL
+specialization state, compiler lifecycle/invalidation, compiler graph/trace, or
+an equivalent direct compiler-visible discriminator.
+
+### Steady-state validity
+
+PERF011 also distinguishes timing stability from compiler-state stability:
+
+```text
+TIMING_STABLE=YES | NO | INCONCLUSIVE
+COMPILER_LIFECYCLE_STABLE=YES | NO | INCONCLUSIVE
+STEADY_STATE_VALID=...
+```
+
+The PERF010-A lifecycle demonstrates why: a helper can compile successfully,
+later consume additional PIC entries, invalidate, activate a replacing generic
+specialization, recompile, and finally receive a permanent bailout.
+
+### Work-item boundary
+
+```text
+PERF010-A / #691
+  -> fix and causally measure the concrete prepared-target/PIC pathology
+
+PERF011 / #693
+  -> generalize the diagnostic method
+  -> audit remaining runtime abstractions
+  -> identify independent representation mismatches
+  -> define bounded experiments
+
+future PERFxxx
+  -> independently valuable interventions discovered by PERF011 when they
+     require their own closure/blockage/scheduling identity
+```
+
+No broad Shape/DynamicObject/Frame migration is authorized by this scope
+expansion. PERF011 must not fork a competing implementation experiment while
+#691 owns the current method-send discriminator.
