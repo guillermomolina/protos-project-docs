@@ -210,12 +210,93 @@ This was investigation-only work at exact Protos revision `2b3a88389da7228caed23
 - No Protos repository files were modified.
 - No implementation readiness conclusion for TOOL009-F as a whole is claimed.
 
+## TOOL009-F-A completed inventory
+
+A subsequent mechanical Phase-A inventory at the same Protos revision
+`2b3a88389da7228caed231a90b14091cf2841115` completed the repository-wide
+source/Logical Case accounting required by #695.
+
+The authoritative scope is the 20 leaves declared by
+`protos/tools/test/RepositorySuite.protos`, reconciled through their registered
+corpora and plan-loader inputs.
+
+```text
+IN_SCOPE_SOURCE_FILES=1230
+IN_SCOPE_LOGICAL_CASES=1258
+
+ZERO_CASE_SOURCE_FILES=0
+SINGLE_CASE_SOURCE_FILES=1222
+MULTI_CASE_SOURCE_FILES=8
+
+ORDINARY_TEST_SOURCES=895
+SPECIAL_EXECUTION_TEST_SOURCES=335
+  ACTOR_TEST_SOURCES=11
+  GROUP_TEST_SOURCES=10
+  PROCESS_SNAPSHOT_TEST_SOURCES=15
+  PACKAGE_TEST_SOURCES=299
+
+AUXILIARY_NON_TEST_PROTOS_SOURCES=206
+
+CASES_PER_SOURCE_MIN=1
+CASES_PER_SOURCE_MAX=15
+CASES_PER_SOURCE_MEDIAN=1
+```
+
+The earlier `817/817` observation remains correct for the main
+`conformance/manifest.tsv`, but it is not the complete TOOL009-F scope. The
+complete inventory contains 413 additional Test sources and 427 additional
+Logical Cases across scoped Actor/Group/Process Snapshot corpora, the seven
+repository-explicit library corpora, package TOML, and the Package Tool corpora.
+
+Eight registered sources already own more than one Logical Case. Seven do so
+through multiple Test declarations. A second, orthogonal source/Case separation
+was also confirmed in `package-tool/execution-plan`:
+`fixtures/f2e3b-build-v2-error.protos` declares one Test but is referenced by
+15 project-tree manifest rows with distinct project identities, producing 15
+independently scheduled/reported Logical Cases. Phase B and later phases must
+therefore not infer Case cardinality from Test-declaration count alone for
+project-tree corpora.
+
+The inventory also classified 206 `.protos` files under `protos/tests/` as
+auxiliary non-Test sources. They include Actor/Group bootstrap modules,
+JUnit-owned integration/component/resource/parser/CLI/package fixtures, and
+project-tree data. They are outside the consolidation source inventory. Two
+resolution-input files were found with no repository reference and five
+content-identity files were outside the registered manifest but referenced by a
+JUnit owner; these were flagged for owner attention, not resolved by Phase A.
+
+Mechanical verification corrected two earlier exploration hazards:
+
+- four manifests have no comment/header row, so unconditional first-row skipping
+  silently loses a real Case;
+- Package Tool contains additional `lock-file/`, `metadata-publication/`, and
+  top-level fixture sources that must be accounted for when reconciling all
+  `.protos` files, even though they are not registered Test sources.
+
+Phase A did not propose thematic consolidation, audit physical-path coupling, or
+reinvestigate the already-established multi-Test architecture. Those remain
+follow-up work under TOOL009-F.
+
 ## Current coordination consequence
 
 ```text
 TOOL009F_ARCHITECTURAL_FEASIBILITY=ESTABLISHED
-TOOL009F_PHASE_A=NOT_COMPLETE
+TOOL009F_PHASE_A=COMPLETE
+PROTOS_REVISION=2b3a88389da7228caed231a90b14091cf2841115
+
+IN_SCOPE_SOURCE_FILES=1230
+IN_SCOPE_LOGICAL_CASES=1258
+ZERO_CASE_SOURCE_FILES=0
+SINGLE_CASE_SOURCE_FILES=1222
+MULTI_CASE_SOURCE_FILES=8
+ORDINARY_TEST_SOURCES=895
+SPECIAL_EXECUTION_TEST_SOURCES=335
+AUXILIARY_NON_TEST_PROTOS_SOURCES=206
+
+PHASE_B_INPUT=ESTABLISHED
 TOOL009F_IMPLEMENTATION_READY=NOT_YET_ESTABLISHED
 ```
 
-The next bounded work remains TOOL009-F-A / #695: produce the complete mechanical source/Logical Case inventory without repeating the architecture investigation recorded here.
+TOOL009-F-A / #695 may close as complete. The next bounded work is Phase B:
+derive the semantic/thematic grouping classification from this inventory without
+repeating Phase A or the architectural feasibility investigation.
