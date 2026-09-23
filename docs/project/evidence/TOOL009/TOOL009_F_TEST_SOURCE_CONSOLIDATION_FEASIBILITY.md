@@ -447,3 +447,188 @@ The deferred exact family/source-reduction counts are not evidence of an
 implementation-ready map. They should be calculated only after Phase C and Phase
 D have eliminated or constrained semantic candidates, avoiding a second
 repository-wide enumeration whose result would immediately need reconciliation.
+
+
+## TOOL009-F-C specialized execution-family checkpoint
+
+Phase C / #697 audited the seven specialized execution/bootstrap families at the
+unchanged Protos revision
+`2b3a88389da7228caed231a90b14091cf2841115`.
+
+The investigation consumed the Phase-A inventory and Phase-B semantic boundaries
+without reopening them. It established that multiple independent Tests may share
+one physical source under the current suite-native architecture while preserving
+discovery, selector rematerialization, fresh Process per Logical Case,
+ExecutionRequirement routing, and the existing bootstrap/resolver facilities.
+
+Established family classification:
+
+```text
+PROCESS_SNAPSHOT=SAFE_TO_GROUP
+ACTOR=SAFE_TO_GROUP
+GROUP=SAFE_TO_GROUP
+PACKAGE_TOML=SAFE_TO_GROUP
+PACKAGE_CASE_OUTCOMES=SAFE_TO_GROUP
+PACKAGE_PROJECT_TREE=GROUP_WITH_CONSTRAINTS
+OVERLAY_BOOTSTRAP=SAFE_TO_GROUP
+```
+
+The only specialized execution constraint is Package Tool project-tree
+authority. Its CaseAuthority granularity is the source CaseSpec/project
+projection rather than the Test selector. A physical source can therefore be
+consolidated only when the resulting:
+
+```text
+Test selectors × project-authority CaseSpecs
+```
+
+matrix is exactly the intended Logical Case matrix. Distinct project identities
+that reuse one fixture path must remain distinct source associations. No
+architecture redesign is required.
+
+Actor and Group retain their existing exact `workers` bootstrap overlays; this
+does not require their Test sources to remain one-Test-per-file.
+
+Phase-C result:
+
+```text
+TOOL009F_PHASE_C=COMPLETE
+PROTOS_REVISION=2b3a88389da7228caed231a90b14091cf2841115
+
+SPECIAL_EXECUTION_FAMILIES=7
+SAFE_TO_GROUP=6
+GROUP_WITH_CONSTRAINTS=1
+RETAIN_PHYSICAL_SEPARATION=0
+ARCHITECTURAL_BLOCKERS=0
+
+CASE_IDENTITY_PRESERVED_BY_ALLOWED_GROUPING=YES
+FRESH_PROCESS_PER_CASE_PRESERVED=YES
+PROJECT_TREE_MULTI_IDENTITY_RECONCILED=YES
+
+NEW_TEST_TOOL_ARCHITECTURE_REQUIRED=NO
+SEMANTIC_GROUPING_REOPENED=NO
+PHYSICAL_PATH_AUDIT_PERFORMED=NO
+IMPLEMENTATION_PERFORMED=NO
+
+PHASE_D_INPUT=ESTABLISHED
+TOOL009F_IMPLEMENTATION_READY=NO
+```
+
+Phase C was investigation-only. No Protos files were modified and no builds,
+tests, or programs were run.
+
+
+## TOOL009-F-D physical-path coupling checkpoint
+
+Phase D / #698 completed the static physical-source coupling audit at the same
+unchanged Protos revision
+`2b3a88389da7228caed231a90b14091cf2841115`,
+version `0.3.77-SNAPSHOT`. `origin/main` had not advanced from the Phase-C
+baseline.
+
+The audit confirmed that physical source identity is normally locator/plan data,
+not Logical Case identity. Consolidation therefore generally requires bounded
+manifest/plan/reference rewrites rather than Test Tool architecture changes.
+
+The material coupling mechanisms are:
+
+- manifest/TestPlan source paths carried through `CaseSpec`,
+  `sourceAssociation`, discovery, and rematerialization;
+- corpus-root confinement in
+  `ProtosTestToolFileSelectionFacility.resolveAuthorizedSource()`;
+- exact repository-explicit library membership in
+  `protos/tools/test/RepositoryCorpusPlans.protos`;
+- direct-file relative-import semantics, which are potentially path-sensitive
+  but were not found to block the established consolidation candidates;
+- Actor/Group exact `workers` overlays at
+  `protos/tests/conformance/actor/modules/workers.protos` and
+  `protos/tests/conformance/group/modules/workers.protos`;
+- Package Tool project-tree fixture authority, where `fixtures/<fixture>` and
+  the separate project identity are both semantically consumed; and
+- bounded Java/Protos/tooling assertions that name current fixture/source paths.
+
+Per-family physical classification:
+
+```text
+PROCESS_SNAPSHOT=SAFE_WITH_REWRITE
+ACTOR=GROUP_WITH_PATH_CONSTRAINTS
+GROUP=GROUP_WITH_PATH_CONSTRAINTS
+PACKAGE_TOML=SAFE_WITH_REWRITE
+PACKAGE_CASE_OUTCOMES=SAFE_WITH_REWRITE
+PACKAGE_PROJECT_TREE=GROUP_WITH_PATH_CONSTRAINTS
+OVERLAY_BOOTSTRAP=GROUP_WITH_PATH_CONSTRAINTS
+```
+
+No Test candidate was found whose current filename itself is semantically
+required, and no candidate requires permanent one-Test-per-file separation.
+
+The project-tree constraint remains the decisive special case. For example,
+`protos/tests/package-tool/execution-plan/manifest.tsv` references
+`f2e3b-build-v2-error.protos` through 15 distinct project identities. Its
+current matrix is:
+
+```text
+15 project-authority CaseSpecs × 1 Test selector = 15 Logical Cases
+```
+
+Any future consolidated project-tree source containing N selectors and attached
+to M project-authority CaseSpecs is valid only when all intended M × N
+combinations are exactly the desired Test Plan. Manifest rows must not be
+collapsed merely because they share a source fixture.
+
+Implementation-boundary obligations established by Phase D include:
+
+- rewrite affected manifest/source rows rather than retaining obsolete source
+  aliases;
+- update repository-explicit library plans and their exact-membership tests;
+- update bounded Java/Protos/tooling references to renamed or merged sources;
+- keep resulting sources inside their registered corpus roots;
+- retain Actor/Group workers overlays unless the host overlay wiring is
+  deliberately and separately rewritten;
+- preserve Package project-tree authority/cases trees and CaseSpec
+  multiplicity; and
+- never merge across incompatible corpus, ExecutionRequirement, namespace, or
+  project-authority boundaries.
+
+Phase-D result, mapped to #698's coordination vocabulary:
+
+```text
+TOOL009F_PHASE_D=COMPLETE
+PROTOS_REVISION=2b3a88389da7228caed231a90b14091cf2841115
+
+SEMANTIC_GROUPS_AUDITED=7
+
+SAFE_TO_MOVE_FAMILIES=0
+MOVE_WITH_REFERENCE_UPDATES_FAMILIES=3
+PATH_SENSITIVE_FAMILIES=4
+BLOCKED_FAMILIES=0
+LOGICAL_CASE_IDENTITY_BLOCKERS=0
+
+MANIFEST_COUPLINGS=6
+FILENAME_COUPLINGS=5
+DIRECTORY_COUPLINGS=7
+IMPORT_MODULE_COUPLINGS=1
+FIXTURE_COUPLINGS=1
+OBSERVABLE_PATH_COUPLINGS=1
+TOOLING_COUPLINGS=7
+
+PROJECT_TREE_AUTHORITY_CONSTRAINT_PRESERVED=YES
+ALL_ALLOWED_GROUPS_PRESERVE_LOGICAL_CASE_MATRIX=YES
+NEW_TEST_TOOL_ARCHITECTURE_REQUIRED=NO
+
+SEMANTIC_GROUPING_REOPENED=NO
+IMPLEMENTATION_PERFORMED=NO
+
+PHASE_E_INPUT=ESTABLISHED
+TOOL009F_IMPLEMENTATION_READY=NO
+```
+
+The remaining work is intentionally Phase E rather than another physical-path
+investigation. Phase B deliberately deferred the exact repository-wide target
+source map; Phase E must now assign every established semantic family to exact
+target source path(s), applying the Phase-C execution constraints and Phase-D
+path constraints, and explicitly prove every proposed project-tree
+selector × authority matrix.
+
+Phase D was investigation-only. No Protos repository files were modified and no
+builds, tests, or programs were run.
