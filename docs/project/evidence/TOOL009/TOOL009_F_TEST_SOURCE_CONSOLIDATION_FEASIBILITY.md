@@ -763,3 +763,146 @@ path-coupling analysis.
 
 No Protos repository files were modified and no builds, tests, benchmarks, or
 programs were run as part of this correction.
+
+
+## Phase-A corrected inventory — final verification
+
+The bounded Phase-A correction required by TOOL009-F-A / #695 was mechanically
+reverified against the unchanged Protos revision
+`2b3a88389da7228caed231a90b14091cf2841115`, version
+`0.3.77-SNAPSHOT`.
+
+The authoritative declaration boundary remains:
+
+```text
+Discovery.declarationSignatureFromModule(module)
+    -> module.slotValue("tests")
+    -> Discovery.declarationSignature(tests)
+
+LogicalCasePlan.build(sourceAssociation, signature)
+    -> one Logical Case per selector directly contained in module.tests
+```
+
+A `Test(...)` constructed inside an outer Test body is runtime data and does
+not create another discoverable selector. The six false multi-Case
+classifications identified by Phase E therefore contribute exactly eight
+spurious Cases to the earlier Phase-A total:
+
+```text
+test-value-fresh-frozen.protos       3 -> 1   delta -2
+test-invalid-name.protos             3 -> 1   delta -2
+test-value-surface.protos            2 -> 1   delta -1
+test-invocation-exact-result.protos  2 -> 1   delta -1
+test-invocation-exact-error.protos   2 -> 1   delta -1
+test-body-validation-deferred.protos 2 -> 1   delta -1
+
+LOGICAL_CASE_DELTA=-8
+```
+
+The genuine ordinary multi-Test source remains
+`protos/tests/conformance/control/future-detach-removed-semantics.protos`,
+whose module-local `tests` Array contains seven selectors.
+
+The five Package Tool project-tree manifests were also reconciled for physical
+source multiplicity. Only
+`protos/tests/package-tool/execution-plan/fixtures/f2e3b-build-v2-error.protos`
+is referenced by more than one project authority. It declares one Test selector
+and is referenced by 15 distinct project identities, therefore yielding 15
+Logical Cases. No additional project-tree source path has authority
+multiplicity greater than one.
+
+The corrected Cases-per-source distribution is:
+
+```text
+1 Case/source   = 1228
+7 Cases/source  =    1
+15 Cases/source =    1
+
+1228 + 1 + 1 = 1230 sources
+1228 + 7 + 15 = 1250 Logical Cases
+```
+
+The corrected execution-requirement distribution is:
+
+```text
+ordinary          895 sources / 901 cases
+process-snapshot   15 sources /  15 cases
+actor              11 sources /  11 cases
+group              10 sources /  10 cases
+package           299 sources / 313 cases
+                  -----------------------
+                 1230 sources /1250 cases
+```
+
+The source-membership findings remain unchanged. In particular:
+
+```text
+MAIN_PRODUCTION_MANIFEST_SOURCES=817
+MAIN_PRODUCTION_MANIFEST_SUITE_NATIVE=817
+AUXILIARY_NON_TEST_PROTOS_SOURCES=206
+```
+
+The completed corrected checkpoint is:
+
+```text
+TOOL009F_PHASE_A_CORRECTION=COMPLETE
+
+PROTOS_REVISION=2b3a88389da7228caed231a90b14091cf2841115
+
+IN_SCOPE_SOURCE_FILES=1230
+IN_SCOPE_LOGICAL_CASES=1250
+
+ZERO_CASE_SOURCE_FILES=0
+SINGLE_CASE_SOURCE_FILES=1228
+MULTI_CASE_SOURCE_FILES=2
+
+ORDINARY_TEST_SOURCES=895
+ORDINARY_LOGICAL_CASES=901
+
+SPECIAL_EXECUTION_TEST_SOURCES=335
+SPECIAL_EXECUTION_LOGICAL_CASES=349
+
+CASES_PER_SOURCE_MIN=1
+CASES_PER_SOURCE_MAX=15
+CASES_PER_SOURCE_MEDIAN=1
+
+GENUINE_MULTI_CASE_SOURCES=2
+PROJECT_TREE_MULTI_AUTHORITY_SOURCES=1
+
+PREVIOUS_LOGICAL_CASES=1258
+CORRECTED_LOGICAL_CASES=1250
+LOGICAL_CASE_DELTA=-8
+
+MAIN_PRODUCTION_MANIFEST_SOURCES=817
+MAIN_PRODUCTION_MANIFEST_SUITE_NATIVE=817
+AUXILIARY_NON_TEST_PROTOS_SOURCES=206
+
+PHASE_B_SEMANTIC_BOUNDARIES=UNCHANGED
+PHASE_C_EXECUTION_CONSTRAINTS=UNCHANGED
+PHASE_D_PATH_CONSTRAINTS=UNCHANGED
+
+PHASE_B_INHERITED_COUNTS=SUPERSEDED
+PHASE_C_INHERITED_COUNTS=SUPERSEDED
+PHASE_D_INHERITED_COUNTS=SUPERSEDED
+
+NEW_TEST_TOOL_ARCHITECTURE_REQUIRED=NO
+NEW_LANGUAGE_OR_LIBRARY_DECISION_REQUIRED=NO
+
+IMPLEMENTATION_PERFORMED=NO
+
+PHASE_E_INPUT=RESTORED
+NEXT_PHASE=TOOL009-F-E/#699
+```
+
+This final verification supersedes the earlier Phase-A numeric claims of 1,258
+Logical Cases, 1,222 single-Case sources, eight multi-Case sources, and any
+inherited 1,258-Case counts in Phases B-D. Their qualitative semantic,
+specialized-execution, and physical-path conclusions remain unchanged.
+
+Phase E / #699 may therefore resume from the corrected 1,230-source /
+1,250-Logical-Case baseline. Phase F / #700 remains blocked on completion of
+Phase E.
+
+This correction remained investigation-only. No Protos product files were
+modified and no build, test, benchmark, Protos program, generated validation, or
+publication script was executed.
