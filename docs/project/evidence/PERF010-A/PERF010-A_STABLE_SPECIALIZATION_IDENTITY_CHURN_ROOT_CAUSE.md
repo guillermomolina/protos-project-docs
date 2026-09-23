@@ -264,6 +264,42 @@ This is particularly close to the Protos failure mechanism: both use a bounded
 Truffle PIC and a generic replacing specialization. The key difference is what
 counts as a distinct cache entry.
 
+### Published Smalltalk/Graal performance pathologies
+
+Two published results make the recollection stronger than source-code analogy alone.
+
+1. **Cross-Language Compiler Benchmarking: Are We Fast Yet?** reports a
+   TruffleSOM outlier in the CD benchmark. The slow red-black-tree element
+   access was optimized by Truffle's object model for different observed types,
+   which caused a **megamorphic access that was not yet correctly optimized in
+   TruffleSOM**. This is not the same mechanism as Protos' Closure/home identity
+   churn, but it is the same general failure class: runtime representation makes
+   a hot operation appear more polymorphic to Truffle/Graal than the programmer
+   would expect from the logical operation.
+
+   Source:
+   https://stefan-marr.de/papers/dls-marr-et-al-cross-language-compiler-benchmarking-are-we-fast-yet/
+
+2. **Optimizing Communicating Event-Loop Languages with Truffle** explains that
+   funneling all asynchronous messages and receiver types through one event-loop
+   dispatch point would make a PIC effectively megamorphic. SOMns avoids that by
+   constructing a **send-site-specific RootNode** containing the normal
+   synchronous send PIC. The paper states that the ideal send is monomorphic and
+   then needs only a simple identity check of the receiver's **class** before
+   executing the cached method.
+
+   Source:
+   https://stefan-marr.de/papers/agere-marr-moessenboeck-optimizing-communicating-event-loop-languages-with-truffle/
+
+These papers do not establish that Protos should adopt Smalltalk's class model.
+They do establish two relevant engineering lessons:
+
+- avoid accidental megamorphism introduced by the runtime representation or by
+  funneling unrelated dynamic states through one cache identity;
+- contextualize caches at the semantic call/send site and guard them with the
+  most stable dispatch-relevant facts available, rather than ephemeral object
+  allocation identity.
+
 ### Relevance to Protos
 
 ```text
