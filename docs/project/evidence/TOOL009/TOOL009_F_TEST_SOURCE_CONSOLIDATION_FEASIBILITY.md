@@ -300,3 +300,150 @@ TOOL009F_IMPLEMENTATION_READY=NOT_YET_ESTABLISHED
 TOOL009-F-A / #695 may close as complete. The next bounded work is Phase B:
 derive the semantic/thematic grouping classification from this inventory without
 repeating Phase A or the architectural feasibility investigation.
+
+
+## TOOL009-F-B bounded semantic grouping checkpoint
+
+Phase B / #696 was completed as a bounded semantic-classification investigation
+against the unchanged Protos revision
+`2b3a88389da7228caed231a90b14091cf2841115`.
+
+The Phase-A inventory remained authoritative because current `main` was still
+identical to that revision when Phase B was performed:
+
+```text
+CURRENT_SOURCE_FILES=1230
+CURRENT_LOGICAL_CASES=1258
+SINGLE_CASE_SOURCE_FILES=1222
+EXISTING_MULTI_CASE_SOURCE_FILES=8
+```
+
+The investigation deliberately stopped short of a second exhaustive per-source
+scan. Phase A already established the mechanical universe; Phase B's useful
+question was the semantic boundary for consolidation. A repository-wide exact
+count of every proposed target source was judged unnecessary for the next
+specialized-execution audit and is deferred to the final grouping/reconciliation
+phases after specialized and physical-path constraints are known.
+
+### Established grouping policy
+
+Physical Test sources should be consolidated by coherent behavioral contract,
+not by an arbitrary Test-count target, directory minimization, or one-file-per-
+subsystem rules.
+
+Positive grouping signals include:
+
+- the same operation family or prototype behavior;
+- the same acceptance/error boundary;
+- the same parser or surface construct;
+- the same Standard Library API surface;
+- the same lifecycle/state-transition family; and
+- the same Package Tool operation family.
+
+Anti-grouping signals include materially different contracts, different
+ExecutionRequirements, distinct fixture/bootstrap models, unusually large Test
+bodies, project-tree authority differences, or a result that would create a
+human-unmaintainable mega-file.
+
+Logical Cases remain independent. Consolidation means moving multiple existing
+named Tests into fewer physical sources; it does not mean combining Test bodies
+or weakening Case identity.
+
+### Ordinary semantic families established
+
+Representative ordinary boundaries established from the current corpus include:
+
+- Integer: basic arithmetic, integer division/mod/remainder, floating-result
+  division, and receiver/prototype behavior rather than one `integer.protos`;
+- Float: arithmetic, special values/overflow/underflow, and domain/receiver
+  rejection;
+- Boolean: conditional selection, lazy and/or, unary not, and
+  `ifTrueIfFalse` behavior;
+- Collections: Array, Map, IdentityMap, Set, IdentitySet, and Range grouped by
+  operation/contract rather than one collections mega-file;
+- Control: `ensure` normal transfer, suspension, and cancellation families;
+  `while` ordinary behavior, validation/error transfer, suspension, and
+  cancellation;
+- Reflection: parent, has-slot, slot-names, remove-slot, close, freeze, and
+  slot-value families;
+- Text/encoding: Bytes operations, Encoding families, TextReader readText versus
+  readLine/lifecycle, and TextWriter lifecycle/encoding/argument behavior;
+- JSON: constructors, parser, encoder, event parser, event writer, text adapters,
+  and large/deep final stress families; and
+- Network: IpAddress and IpEndpoint behavioral surfaces remain distinct.
+
+The explicit library corpora show the same pattern: URI naturally divides into
+parse/format/resolve, CSV into parse/encode/row-parser/text-adapter families, CLI
+into specification/parse/help/closure families, Integer Math into gcd-lcm,
+factorial and power families, and SHA-256 into vector/boundary/ownership-error
+families.
+
+These boundaries are semantic candidates, not implementation-ready path moves.
+Phase D still owns physical-path coupling.
+
+### Specialized families handed to Phase C
+
+Actor, Group, Process Snapshot, Package Tool, and project-tree-backed corpora
+show coherent semantic groupings, but Phase B does not claim physical
+consolidation safety for them.
+
+Representative semantic families include:
+
+- Actor: current/identity, spawn, request/message ordering, state/lifecycle, and
+  transfer validation;
+- Group: acquisition/identity, routing/request behavior, transfer, and stopped
+  member behavior;
+- Process Snapshot: args, environment, iteration, and snapshot identity;
+- Package Tool version: ReleaseVersion parsing/precedence, constraints, fresh
+  selection, and retained selection;
+- Package Tool lock: primitives, header, quoted strings/tokenization, node refs,
+  body records/errors, and canonical writer/order behavior; and
+- other Package Tool corpora according to their existing operation/fixture
+  vocabulary.
+
+Those groups are classified conceptually as
+`SEMANTIC_GROUPING_CANDIDATE` / `SPECIAL_CONSTRAINT_PENDING` until #697 audits
+the specialized execution and authority contracts.
+
+The project-tree multiplicity finding from Phase A remains a hard warning:
+`package-tool/execution-plan/fixtures/f2e3b-build-v2-error.protos` declares one
+Test but backs 15 independently scheduled Logical Cases through distinct project
+identities. No specialized grouping decision may infer Logical Case cardinality
+from raw `Test(...)` declaration count.
+
+### Phase-B result and intentional deferral
+
+```text
+TOOL009F_PHASE_B=COMPLETE_BOUNDED
+PROTOS_REVISION=2b3a88389da7228caed231a90b14091cf2841115
+
+CURRENT_SOURCE_FILES=1230
+CURRENT_LOGICAL_CASES=1258
+EXISTING_MULTI_CASE_SOURCE_FILES=8
+
+SEMANTIC_GROUPING_CRITERIA=ESTABLISHED
+ORDINARY_GROUPING_BOUNDARIES=ESTABLISHED
+MEGA_FILE_POLICY=ESTABLISHED
+
+ACTOR_SEMANTIC_GROUPING=ESTABLISHED_PENDING_SPECIAL_AUDIT
+GROUP_SEMANTIC_GROUPING=ESTABLISHED_PENDING_SPECIAL_AUDIT
+PROCESS_SNAPSHOT_SEMANTIC_GROUPING=ESTABLISHED_PENDING_SPECIAL_AUDIT
+PACKAGE_SEMANTIC_GROUPING=ESTABLISHED_PENDING_SPECIAL_AUDIT
+
+LOGICAL_CASES_PRESERVED_BY_PROPOSAL=YES
+CROSS_EXECUTION_REQUIREMENT_GROUPS=0
+
+EXACT_REPOSITORY_WIDE_FAMILY_COUNTS=DEFERRED_TO_FINAL_GROUPING_RECONCILIATION
+SPECIALIZED_EXECUTION_AUDIT_REQUIRED=YES
+PHYSICAL_PATH_AUDIT_REQUIRED=YES
+
+IMPLEMENTATION_PERFORMED=NO
+TOOL009F_IMPLEMENTATION_READY=NO
+PHASE_C_INPUT=ESTABLISHED
+NEXT_PHASE=TOOL009-F-C/#697-specialized-execution-constraints
+```
+
+The deferred exact family/source-reduction counts are not evidence of an
+implementation-ready map. They should be calculated only after Phase C and Phase
+D have eliminated or constrained semantic candidates, avoiding a second
+repository-wide enumeration whose result would immediately need reconciliation.
