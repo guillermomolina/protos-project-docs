@@ -399,3 +399,61 @@ future PERFxxx
 No broad Shape/DynamicObject/Frame migration is authorized by this scope
 expansion. PERF011 must not fork a competing implementation experiment while
 #691 owns the current method-send discriminator.
+
+
+## First polymorphism-fidelity intervention published — 2026-09-23
+
+PERF010-A has now published the first bounded intervention derived from this
+audit's semantic-vs-compiler polymorphism lens.
+
+```text
+PROTOS_REVISION=3e8e6b565c95eb5098c2168d241536ba13ad19e9
+PROTOS_VERSION=0.3.79-SNAPSHOT
+
+PREVIOUS_FAST_CACHE_KEY=
+  selector
+  + selected ProtosClosureValue object identity
+  + selected methodHome object identity
+  + entered ProtosLanguageContext
+
+PUBLISHED_FAST_CACHE_KEY=
+  selector
+  + selected CanonicalClosure definition identity
+  + entered ProtosLanguageContext
+```
+
+This change preserves the dynamic semantic state that must vary per invocation:
+authoritative D013 lookup, the currently selected Closure, the exact current
+`methodHome`, and the fresh invocation activation. It changes only the
+persistent specialization identity used to represent executable stability to
+Truffle.
+
+Durable PERF010-A publication record:
+
+`docs/project/evidence/PERF010-A/PERF010-A_STABLE_SPECIALIZATION_IDENTITY_CHURN_ROOT_CAUSE.md`
+
+with publication checkpoint at:
+
+```text
+PROJECT_RECORD_REVISION=9ed981e708abfe6e6b4c6b3b407e6a7644d10293
+```
+
+The focal regression battery was reported PASS, including ten fresh
+receiver/Closure/home materializations sharing one canonical executable
+definition. That is correctness evidence; the generated DSL/compiler lifecycle
+after the change remains to be observed directly.
+
+Therefore the first PERF011 polymorphism-fidelity case now has:
+
+```text
+POLYMORPHISM_FIDELITY_MISMATCH=ESTABLISHED
+BOUNDED_REPRESENTATION_FIX=PUBLISHED
+SEMANTIC_CHANGE_REQUIRED=NO
+
+POST_FIX_COMPILER_LIFECYCLE=NOT_MEASURED
+POST_FIX_PERMANENT_BAILOUT=NOT_MEASURED
+MATERIAL_PERFORMANCE_EFFECT=NOT_ESTABLISHED
+```
+
+PERF011 remains an audit track and should not fork a competing implementation.
+The next discriminating evidence stays with PERF010-A / #691.
