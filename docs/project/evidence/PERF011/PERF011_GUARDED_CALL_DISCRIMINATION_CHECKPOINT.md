@@ -33,3 +33,21 @@ BGV dumps exist for baseline and guarded images, but their graph content was not
 The negative timing result is sufficient to avoid selecting this guarded bypass as a production optimization. It is not necessary to complete the compiler-graph comparison before PERF010-A continues to its next causal candidate. PERF011 remains an independent open investigation; a future bounded graph comparison is useful only if the runtime-fit question is resumed and the result would affect a concrete next decision.
 
 No Shape/DynamicObject/Frame migration, Closure representation redesign, lookup invalidation redesign, or other broad runtime change is justified by this checkpoint.
+
+## Pause and reactivation contract
+
+PERF011 is deliberately paused while PERF010-A continues dominant common-overhead attribution. This is a scheduling relationship, not a native blocker relationship: PERF011 does not block PERF010/#680 or PERF010-A/#691, and PERF010 does not need PERF011 to complete before continuing.
+
+```text
+PERF011_STATUS=PAUSED
+PERF011_PAUSE_REASON=NO_MATERIAL_RUNTIME_FIT_MISMATCH_ESTABLISHED; CONTINUE_PERF010_DOMINANT_OVERHEAD_ATTRIBUTION_FIRST
+PERF011_BLOCKS_PERF010=NO
+PERF010_BLOCKS_PERF011=NO
+
+PERF011_REACTIVATION_TRIGGER=
+  PERF010_EVIDENCE_IDENTIFIES_MATERIAL_COMMON_PATH_COST_PLAUSIBLY_CAUSED_BY_RUNTIME_REPRESENTATION_OR_COMPILER_VISIBILITY
+  OR
+  CONCRETE_OPTIMIZATION_DECISION_REQUIRES_RESOLVING_REMAINING_COMPILER_VISIBILITY_QUESTION
+```
+
+Absent either trigger, do not resume broad PERF011 runtime-fit work merely to eliminate the current `INCONCLUSIVE` classification. In particular, the pending BGV graph comparison is not independently sufficient reason to reactivate PERF011; it should be performed when its result can discriminate a concrete PERF010-derived candidate or optimization decision.
