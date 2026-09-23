@@ -357,3 +357,118 @@ ACCEPTANCE_GATE=
 TIMING=
   DEFER UNTIL COMPILER LIFECYCLE GATE PASSES
 ```
+
+
+## Stable executable-identity implementation publication — 2026-09-23
+
+The bounded implementation experiment derived above is now published in
+`guillermomolina/protos`.
+
+Exact product identity:
+
+```text
+PROTOS_REVISION=3e8e6b565c95eb5098c2168d241536ba13ad19e9
+PROTOS_VERSION=0.3.79-SNAPSHOT
+COMMIT_MESSAGE=PERF010-A: key fastOrdinarySend cache on stable Closure definition identity
+```
+
+Published implementation change:
+
+```text
+OLD_FAST_CACHE_IDENTITY=
+  selector equality
+  + selected ProtosClosureValue object identity
+  + selected methodHome object identity
+  + entered ProtosLanguageContext identity
+
+NEW_FAST_CACHE_IDENTITY=
+  selector equality
+  + selected Closure CanonicalClosure definition identity
+  + entered ProtosLanguageContext identity
+```
+
+The currently selected `ProtosClosureValue` and `methodHome` are still
+obtained from authoritative D013 lookup on every invocation and are passed into
+a fresh `ProtosActivation`. Only the persistent DSL specialization identity
+changed.
+
+The cached Context-owned `RootCallTarget` remains materialized once when the
+specialization entry is populated. The cache limit remains `3`; the change
+does not raise or remove the limit and does not alter the generic replacing
+fallback.
+
+Published focal regression coverage adds:
+
+`freshClosureAndReceiverMaterializationsOfTheSameDefinitionRemainCorrectPastTheCacheLimit`
+
+which executes ten invocations through the same lowered send site while
+recreating the receiver, selected `ProtosClosureValue`, and method home around
+one shared `CanonicalClosure` definition / execution-plan template. The human
+executor reported all seven tests in
+`ProtosPerf010APreparedTargetSpecializationTest` PASS.
+
+This focal regression establishes semantic correctness across more fresh
+materializations than the previous PIC limit. It does **not**, by itself,
+replace compiler-lifecycle evidence for the generated Truffle specialization
+state. The next discriminator remains the exact caller-helper lifecycle trace.
+
+Current classification:
+
+```text
+PERF010A_STABLE_EXECUTABLE_IDENTITY_IMPLEMENTATION=PUBLISHED
+
+EPHEMERAL_CLOSURE_IDENTITY_IN_PIC_KEY=NO
+EPHEMERAL_METHOD_HOME_IDENTITY_IN_PIC_KEY=NO
+STABLE_CANONICAL_DEFINITION_IDENTITY_IN_PIC_KEY=YES
+ENTERED_CONTEXT_IDENTITY_IN_PIC_KEY=YES
+AUTHORITATIVE_D013_LOOKUP_PER_INVOCATION=PRESERVED
+CURRENT_CLOSURE_FOR_ACTIVATION=PRESERVED
+CURRENT_METHOD_HOME_FOR_ACTIVATION=PRESERVED
+FRESH_ACTIVATION=PRESERVED
+CACHE_LIMIT_CHANGED=NO
+GENERIC_FALLBACK_PRESERVED=YES
+
+FOCAL_CORRECTNESS=PASS
+GENERATED_SPECIALIZATION_LIFECYCLE_AFTER_CHANGE=NOT_MEASURED
+CALLER_HELPER_PERMANENT_BAILOUT_AFTER_CHANGE=NOT_MEASURED
+
+TIMING_READY=NO
+```
+
+## Next discriminator after publication
+
+Run the existing caller-helper lifecycle/source-identity investigation against
+exactly:
+
+```text
+PROTOS_REVISION=3e8e6b565c95eb5098c2168d241536ba13ad19e9
+WORKLOAD=micro/method-call
+SOURCE=method-call.protos
+LINE=29
+TEXT=sink = receiver.identity(42)
+```
+
+using the retained `guillermomolina/protos-benchmarks` harness and the same
+process/Context/Source reuse conditions that exposed the previous
+`1 -> 2 -> 3 -> generic` transition.
+
+Classify:
+
+```text
+FAST_SPECIALIZATION_CACHE_CHURN=
+  REMOVED | MATERIALLY_CHANGED | UNCHANGED | INCONCLUSIVE
+
+GENERIC_REPLACING_SPECIALIZATION_ACTIVATED=
+  YES | NO | INCONCLUSIVE
+
+CALLER_HELPER_PERMANENT_BAILOUT=
+  REMOVED | MATERIALLY_CHANGED | UNCHANGED | INCONCLUSIVE
+
+COMPILER_LIFECYCLE_STABLE=
+  YES | NO | INCONCLUSIVE
+
+TIMING_READY=
+  YES only if the lifecycle evidence is stable enough to interpret timing
+```
+
+Do not interpret timing before this lifecycle discriminator is known.
