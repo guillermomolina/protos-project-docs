@@ -6,6 +6,7 @@
 - Cleanup issue: `guillermomolina/protos#685`.
 - Parent Protos revision: `cd32d7d3228f88c6ebda65f357787a692b89c666`.
 - Cleanup Protos revision: `f92489d357d863c33b62c1ca4356651b16568573`.
+- Current Protos main after publication: `2b3a88389da7228caed231a90b14091cf2841115`.
 - Version: `0.3.77-SNAPSHOT`.
 - Commit: `TOOL009: remove legacy Test Tool migration scaffolding`.
 - Cleanup authority: `docs/project/evidence/TOOL009/TOOL009B_POST_MIGRATION_GLOBAL_RECONCILIATION.md` at `32f2fe2df8dada991400290a07e77c0183e3a957`.
@@ -168,7 +169,7 @@ This publication removes migration scaffolding, not these lower-level APIs.
 
 ## Published diff
 
-The product commit changes 34 files:
+The product cleanup commit changes 34 files:
 
 ```text
 ADDED=1
@@ -191,6 +192,24 @@ MANIFEST_TSV_CHANGED=0
 ```
 
 The implementation version advances from `0.3.76-SNAPSHOT` to `0.3.77-SNAPSHOT`.
+
+## Post-publication main advance
+
+After the cleanup commit was published, `main` advanced once more:
+
+```text
+CURRENT_MAIN=2b3a88389da7228caed231a90b14091cf2841115
+PARENT=f92489d357d863c33b62c1ca4356651b16568573
+COMMIT=Clarify multi-agent implementation finalization
+```
+
+That subsequent commit modifies only:
+
+`AGENTS.work/IMPLEMENTATION.md`
+
+and therefore does not alter the cleanup implementation, corpus ownership, Test Tool execution topology, or version.
+
+The final closure reconciliation should use current `main` (`2b3a88389da7228caed231a90b14091cf2841115`) as its baseline while treating `f92489d357d863c33b62c1ca4356651b16568573` as the exact cleanup publication commit.
 
 ## Human Executor validation
 
@@ -216,7 +235,7 @@ Next gate:
 TOOL009-B FINAL ZERO-REFERENCE / NO-MIGRATION-SCARS CLOSURE RECONCILIATION
 ```
 
-That reconciliation should verify against `f92489d357d863c33b62c1ca4356651b16568573`:
+That reconciliation should verify current `main` while attributing product cleanup to `f92489d357d863c33b62c1ca4356651b16568573`:
 
 - deleted migration symbols have no authoritative current references;
 - RepositorySuite remains 1,244/1,244 suite-native;
