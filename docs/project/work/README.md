@@ -39,6 +39,9 @@ Current role-first work records:
   - [`LM008-C`](LM008/LM008_C_OBJECT_STRUCTURAL_REFLECTION_MUTATION_AUDIT.md)
   - [`LM008-D`](LM008/LM008_D_VALUES_CORE_COLLECTIONS_AUDIT.md)
 
+- [`AUD016/AUD016_TRUFFLE_BYTECODE_DSL_CAPABILITY_ADOPTION_AUDIT.md`](AUD016/AUD016_TRUFFLE_BYTECODE_DSL_CAPABILITY_ADOPTION_AUDIT.md)
+  — completed Truffle Bytecode DSL capability-adoption audit, lexical-frame migration backlog, negative findings, and lazy-context decision packet.
+
 - [`AUD003/AUD003_PROTOS_SOURCE_STYLE_CONFORMANCE_AUDIT.md`](AUD003/AUD003_PROTOS_SOURCE_STYLE_CONFORMANCE_AUDIT.md)
   — canonical non-normative AUD003 source-style conformance audit record.
 
