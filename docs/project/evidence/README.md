@@ -18,8 +18,8 @@ its references, retention role, and compatibility implications.
 - [`PERF006/`](PERF006/README.md) — immutable PERF006 C3/C4 runtime validation plus D1-D4 controlled performance, structural-diagnostic, and final closure evidence.
 - [`PERF009/`](PERF009/README.md) — immutable PERF009-A IGV/JFR diagnostic checkpoint and exact analyzer/tooling publication identities; PERF009-A remains open.
 - [`PERF011/`](PERF011/PERF011_RUNTIME_REPRESENTATION_FIT_AUDIT.md) — retained PERF011 runtime-representation fit audit checkpoint, compiler-visibility limitation, and bounded causal-experiment handoff to PERF010-A.
-- [`TOOL009/`](TOOL009/TOOL009_PACKAGE_CORPUS_READINESS.md) — retained TOOL009 Package Tool corpus suite-native migration-readiness investigation at exact Protos revision `6e7d89194925ba9fa2cd9c5c45aefa72d9939621`.
-- [`UPSTREAM001/`](UPSTREAM001/README.md) — retained Oracle/Graal PR #14434 configurable Bytecode DSL unwind experiment, semantic validation, IGV evidence, optimizer findings, and explicit non-conclusions.
+- [`TOOL009/`](TOOL009/TOOL009_PACKAGE_CORPUS_READINESS.md) — retained TOOL009 Package Tool corpus suite-native migration-readiness investigation at exact Protos revision `6e7d89194925ba9fa2cd9c5c45aefa72d9939621`, plus [`TOOL009-F` test-source consolidation feasibility](TOOL009/TOOL009_F_TEST_SOURCE_CONSOLIDATION_FEASIBILITY.md) at exact Protos revision `2b3a88389da7228caed231a90b14091cf2841115`.
+- [`UPSTREAM001/`](UPSTREAM001/README.md) — retained Oracle/Graal PR #14434 configurable Bytecode DSL unwind experiment, semantic validation, optimizer findings, and explicit non-conclusions.
 - [`UPSTREAM002/`](UPSTREAM002/README.md) — retained OL10 container environment snapshot and validation evidence for the GraalVM Community base-image migration (OL8 → OL10).
 
 - `PERF006/README.md` — immutable PERF006 C3/C4 runtime-validation and D1-D4 performance/diagnostic/closure evidence.
