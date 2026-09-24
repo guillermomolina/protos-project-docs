@@ -7,7 +7,7 @@ DECISION_KIND=LANGUAGE / OBJECT-MODEL SEMANTICS
 TRIGGER=PLAT036 / #702  
 PROTOS_REVISION=3e8e6b565c95eb5098c2168d241536ba13ad19e9  
 OPENING_PROJECT_RECORD_REVISION=17d0a4629212f51d19bd557e465ae8e2da69e3c0  
-CANDIDATE_RECOMMENDED=NONE_PENDING_D179_A_B_C
+CANDIDATE_RECOMMENDED=NONE_PENDING_D179_C
 CANDIDATE_RATIFIED=NO  
 PREVIOUS_E1_STATUS=PARTIAL_HYPOTHESIS_SUPERSEDED_AS_RECOMMENDATION_NOT_REJECTED
 PLAT036_STATE=BLOCKED  
@@ -893,3 +893,67 @@ Parent D179 is not ready for a new recommendation yet:
 The native GitHub hierarchy was re-read after the D179-A investigation and the
 D179-A/B/C children are now attached natively to #703, satisfying the previously
 pending hierarchy postcondition.
+
+## VI. D179-B completion checkpoint
+
+D179-B / #705 completed the first-class execution-context reflection and escape
+boundary audit against the same product baseline.
+
+Exact durable evidence:
+
+    D179_B_PROJECT_RECORD_REVISION=88f87f5d368ef0ccba1202b02def6f98ee60cc03
+    D179_B_RESULT=COMPLETE
+
+The central result is that the current language semantics require a stable
+identity-bearing first-class context object/value and exact Object/reflection
+behavior, but do not require every ordinary lexical value to remain physically
+stored in `ProtosObjectValue.localSlots`.
+
+D179-B establishes:
+
+    CONTEXT_SEMANTIC_IDENTITY_REQUIRED=YES
+    EAGER_PHYSICAL_CONTEXT_OBJECT_REQUIRED=NO
+    ESCAPE_REQUIRES_OBJECT_BACKED_VALUES=NO
+    REFLECTION_CAN_PROJECT_FRAME_LOCALS=YES
+    ONE_SEMANTIC_VALUE_AUTHORITY_REQUIRED=YES
+    EXTERNAL_STRUCTURAL_MUTATION_REQUIRES_INVALIDATION=YES
+    CAPTURE_REQUIRES_SHARED_OR_MATERIALIZED_BINDING_AUTHORITY=YES
+    DEBUGGER_REQUIRES_MATERIALIZATION=NO
+    EXPLICIT_SEMANTIC_PRESENCE_REQUIRED=YES
+    PRESENT_NULL_DISTINCT_FROM_ABSENT=YES
+
+It also identifies persistent/special cases that cannot be collapsed into one
+ordinary ephemeral-activation representation:
+
+    MODULE_CONTEXT_PERSISTENT_AUTHORITY_REQUIRED=YES
+    OBJECT_CONSTRUCTION_CONTEXT_REQUIRES_SEPARATE_CLASSIFICATION=YES
+    FROZEN_PRELUDE_REQUIRES_SEPARATE_CLASSIFICATION=YES
+
+No current context capability was proven to require restriction merely to make
+a frame/local representation semantically possible. Reflection, explicit
+context member access/mutation, structural add/remove, close/freeze,
+`without`/`alias`, debugger projection and escaped structural mutation all
+retain plausible semantics-preserving slow/projection paths.
+
+This does not ratify a D179 candidate or select PLAT036 architecture. D179-C
+must now classify the exact static/indexed admission boundary and dynamic
+fallback set using both D179-A and D179-B evidence.
+
+Current expanded state:
+
+    D179_STATE=OPEN / RESEARCH EXPANDED
+    D179_A=#704 COMPLETE
+    D179_B=#705 COMPLETE
+    D179_C=#706 OPEN / READY
+
+    CANDIDATE_RECOMMENDED=NO
+    CANDIDATE_RATIFIED=NO
+    NEXT_REQUIRED_RESEARCH=D179_C
+
+    PLAT036_STATE=BLOCKED
+    PLAT036_BLOCKED_BY=D179
+
+    SPECIFICATION_CHANGED=NO
+    RUNTIME_CHANGED=NO
+    TESTS_CHANGED=NO
+    BENCHMARKS_CHANGED=NO
