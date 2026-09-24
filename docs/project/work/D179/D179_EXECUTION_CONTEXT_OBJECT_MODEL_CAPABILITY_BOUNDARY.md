@@ -845,3 +845,51 @@ Current expanded state:
     RUNTIME_CHANGED=NO
     TESTS_CHANGED=NO
     BENCHMARKS_CHANGED=NO
+
+
+## V. D179-A completion checkpoint
+
+D179-A / #704 completed the structural-mutation capability audit against the
+same product baseline:
+
+    PROTOS_REVISION=3e8e6b565c95eb5098c2168d241536ba13ad19e9
+
+The central result materially refines the historical E1 hypothesis:
+
+    REMOVE_SLOT_UNIQUELY_PROBLEMATIC=NO
+
+`removeSlot` is uniquely the audited operation that permits
+`PRESENT -> ABSENT`, but arbitrary late creation in a nearer escaped or
+captured context can perform `ABSENT -> PRESENT` and also retarget later bare
+lookup from an outer/receiver binding to the newly-created nearer binding.
+
+Consequently:
+
+    E1_REMOVES_REMOVAL_DRIVEN_RETARGETING=YES
+    E1_REMOVES_ALL_STATIC_IDENTITY_CONSTRAINTS=NO
+
+D179-A also separates:
+- existing-value mutation, which preserves binding identity/topology;
+- structural add/remove, which can invalidate presence, identity, depth and
+  fallback decisions; and
+- close/freeze authority transitions, which can be preserved with mutation-path
+  state guards/invalidation and do not force generic ordinary reads.
+
+D179-A found a plausible no-change preservation model using fixed/indexed locals
+for statically admitted bindings, explicit presence state, materialized captured
+locals, dynamic overflow for runtime-introduced names, structural invalidation,
+and a coherent semantic context/tooling adapter. This is evidence only and does
+not select PLAT036 architecture.
+
+Parent D179 is not ready for a new recommendation yet:
+
+    D179_A=COMPLETE
+    D179_B=REQUIRED
+    D179_C=REQUIRED
+    CANDIDATE_RECOMMENDED=NO
+    PREVIOUS_E1_STATUS=PARTIAL_HYPOTHESIS_SUPERSEDED_AS_RECOMMENDATION_NOT_REJECTED
+    PLAT036_STATE=BLOCKED
+
+The native GitHub hierarchy was re-read after the D179-A investigation and the
+D179-A/B/C children are now attached natively to #703, satisfying the previously
+pending hierarchy postcondition.
