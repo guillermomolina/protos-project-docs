@@ -1,6 +1,6 @@
 # I068 — PLAT036 frame-backed lexical-state implementation
 
-Status: **OPEN / READY — SLICE 1 COMPLETE; SLICE 2 NEXT**
+Status: **OPEN / READY — SLICES 1–2 PUBLISHED; SLICE 3 NEXT**
 
 Issue: `guillermomolina/protos#708`
 
@@ -129,3 +129,39 @@ checkpoint.
 Retained evidence:
 
 `docs/project/evidence/I068/I068_SLICE1_CANONICAL_BINDING_IDENTITY_AND_PRESENCE_METADATA.md`
+
+
+## Slice 2 publication checkpoint — 2026-09-24
+
+~~~text
+I068_SLICE_2=FRAME_CONTEXT_SINGLE_AUTHORITY_SEAM
+PROTOS_REVISION=1ccbb717fa824acd7aef71bd89c876e3bf8f6fe7
+PROTOS_VERSION=0.3.82-SNAPSHOT
+COMMIT_MESSAGE=I068: establish frame-context single-authority seam
+
+AUTHORITY_SEAM_IMPLEMENTED=YES
+AUTHORITY_SEAM_ACTUALLY_USED=YES
+EXECUTION_CONTEXT_SINGLE_AUTHORITY=YES
+DUAL_AUTHORITATIVE_COPIES=NO
+D179_C3_PRESERVED=YES
+PRESENT_NULL_DISTINCT_FROM_ABSENT=YES
+
+RUNTIME_AUTHORITY_CUTOVER=NO
+BYTECODELOCAL_GUEST_AUTHORITY=NO
+MATERIALIZED_LOCAL_MIGRATION=NO
+LAZY_CONTEXT_MATERIALIZATION=NO
+
+SLICE_2_PUBLICATION=PUBLISHED
+GITHUB_ACTIONS_RUN=35992940177
+GITHUB_ACTIONS_STATUS_AT_RECORD_TIME=IN_PROGRESS
+NEXT_SLICE=I068_SLICE_3_DEFINITELY_CURRENT_LOCAL_LOWERING
+~~~
+
+The product publication routes local-slot operations through one installed
+`ProtosLexicalBindingAuthority`. The active authorities remain map-backed, so
+the seam is established without a second binding-value store and without moving
+guest lexical values into Bytecode locals.
+
+Retained evidence:
+
+`docs/project/evidence/I068/I068_SLICE2_FRAME_CONTEXT_SINGLE_AUTHORITY_SEAM.md`
