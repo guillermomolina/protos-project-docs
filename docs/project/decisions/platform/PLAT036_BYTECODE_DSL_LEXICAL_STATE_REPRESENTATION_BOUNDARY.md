@@ -331,37 +331,51 @@ NEW_OBSERVABLE_SEMANTIC_DELTA=NONE
 DECISION_INVARIANT_CONSISTENCY=PASS
 ~~~
 
-## Implementation migration contract
+## Implementation ownership and migration contract
 
-The architecture is intended to be implemented incrementally. The following are
-implementation slices of one architecture workstream unless a slice later crosses
-an independent Issue-promotion trigger:
+PLAT036 is a decision record. It does not itself own implementation execution.
+
+Implementation is tracked by:
+
+~~~text
+IMPLEMENTATION_OWNER=I068
+IMPLEMENTATION_ISSUE=guillermomolina/protos#708
+IMPLEMENTATION_REPOSITORY=guillermomolina/protos
+~~~
+
+I068 consumes this ratified decision under `AGENTS.work/IMPLEMENTATION.md`.
+
+The architecture is intended to be implemented incrementally inside I068. The
+following are bounded implementation/publication slices unless one later crosses
+an independent Issue-promotion trigger from `AGENTS.work/COORDINATION.md`:
 
 | Slice | Boundary | Classification |
 | --- | --- | --- |
-| 1 | canonical binding identity / presence analysis and backend-private layout metadata | `SAME_PLAT_IMPLEMENTATION_SLICE` |
-| 2 | frame/context single-authority seam | `SAME_PLAT_IMPLEMENTATION_SLICE` |
-| 3 | definitely-current local lowering | `SAME_PLAT_IMPLEMENTATION_SLICE` |
-| 4 | sequential/default parameter lowering | `SAME_PLAT_IMPLEMENTATION_SLICE` |
-| 5 | captured/materialized lexical lowering | `SAME_PLAT_IMPLEMENTATION_SLICE` |
-| 6 | debugger/reflection projection | `SAME_PLAT_IMPLEMENTATION_SLICE` |
-| 7 | ProtosActivation lexical decomposition and final generic-fallback cleanup | `SAME_PLAT_IMPLEMENTATION_SLICE` |
+| 1 | canonical binding identity / presence analysis and backend-private layout metadata | `I068_SLICE` |
+| 2 | frame/context single-authority seam | `I068_SLICE` |
+| 3 | definitely-current local lowering | `I068_SLICE` |
+| 4 | sequential/default parameter lowering | `I068_SLICE` |
+| 5 | captured/materialized lexical lowering | `I068_SLICE` |
+| 6 | debugger/reflection projection | `I068_SLICE` |
+| 7 | ProtosActivation lexical decomposition and final generic-fallback cleanup | `I068_SLICE` |
 
 No slice above requires another semantic/platform decision merely because it
 implements Candidate D. If implementation exposes a genuinely new observable or
 durable architecture choice, that point must stop at the normal Dxxx/PLATxxx
 approval gate.
 
-Issue granularity should follow GITHUB003: keep bounded mechanically dependent
-steps as slices; promote only independently schedulable/risky/blocking units.
+Issue granularity follows the repository Issue/slice boundary: the slices remain
+inside I068 unless one gains independent closure, blockage, scheduling,
+dependency, decision-checkpoint, or multi-publication identity that requires a
+formal child Issue.
 
-## First implementation slice
+## First I068 implementation slice
 
-The first implementation slice should establish compiler-visible canonical
-binding identity without yet cutting over runtime lexical value authority:
+The first I068 slice establishes compiler-visible canonical binding identity
+without yet cutting over runtime lexical value authority:
 
 ~~~text
-SLICE_1=
+I068_SLICE_1=
   CANONICAL_BINDING_IDENTITY_AND_PRESENCE_METADATA
 
 GOAL=
@@ -372,8 +386,6 @@ GOAL=
 RUNTIME_AUTHORITY_CUTOVER=NO
 SEMANTIC_CHANGE=NO
 ~~~
-
-This is implementation work in `guillermomolina/protos`.
 
 ## Superseded alternative
 
