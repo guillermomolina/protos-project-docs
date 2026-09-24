@@ -1092,3 +1092,428 @@ Current state:
     RUNTIME_CHANGED=NO
     TESTS_CHANGED=NO
     BENCHMARKS_CHANGED=NO
+
+
+
+## VIII. Parent synthesis — recommendation pending owner approval
+
+This section records the completed parent synthesis after D179-A / #704,
+D179-B / #705 and D179-C / #706 all reached COMPLETE. It is durable
+**recommendation evidence only**. It does not ratify a candidate, change
+normative semantics, close D179, release PLAT036, or authorize implementation.
+
+Exact evidence baseline:
+
+    PROTOS_REVISION=3e8e6b565c95eb5098c2168d241536ba13ad19e9
+    D179_PARENT_PRE_SYNTHESIS_REVISION=88df0db22261fb56aac3e84d4f9de6116daf28d1
+    D179_C_PROJECT_RECORD_REVISION=5bf11ca33d152cb944067a7e4d39b30d58900ee4
+
+    D179_A=#704 COMPLETE
+    D179_B=#705 COMPLETE
+    D179_C=#706 COMPLETE
+
+### Combined child findings
+
+D179-A established that structural removal is not the unique source of lexical
+retargeting:
+
+    REMOVE_SLOT_UNIQUELY_PROBLEMATIC=NO
+
+    PRESENT -> ABSENT
+      may expose a farther lexical or receiver binding
+
+    ABSENT -> PRESENT in a nearer escaped/captured context
+      may hide a previously selected farther binding
+
+Existing-value mutation does not change binding identity. Structural transitions
+can require guards/invalidation/fallback for affected accesses.
+
+D179-B established that first-class context semantics do not require one
+particular physical lexical representation:
+
+    CONTEXT_SEMANTIC_IDENTITY_REQUIRED=YES
+    CONTEXT_IDENTITY_REQUIRES_EAGER_OBJECT=NO
+    ESCAPE_REQUIRES_OBJECT_BACKED_VALUES=NO
+    REFLECTION_CAN_PROJECT_FRAME_LOCALS=YES
+    ONE_SEMANTIC_VALUE_AUTHORITY_REQUIRED=YES
+    EXTERNAL_VALUE_MUTATION_REQUIRES_SHARED_AUTHORITY=YES
+    EXTERNAL_STRUCTURAL_MUTATION_REQUIRES_INVALIDATION=YES
+    CAPTURE_REQUIRES_GUEST_CONTEXT_MATERIALIZATION=NO
+    CAPTURE_REQUIRES_SHARED_OR_MATERIALIZED_BINDING_AUTHORITY=YES
+    EXPLICIT_SEMANTIC_PRESENCE_REQUIRED=YES
+    PRESENT_NULL_DISTINCT_FROM_ABSENT=YES
+    DYNAMIC_OVERFLOW_REQUIRED=YES_FOR_NONSTATIC_NAMES
+
+No current context capability was proven to require restriction merely to make
+an indexed/frame/materialized representation semantically possible.
+
+D179-C established the decisive static-identity boundary:
+
+    CURRENT_PROTOS_SEMANTICS_PERMIT_A_USEFUL_STATIC_INDEXED_LEXICAL_ADMISSION_SET=YES
+    D179_LANGUAGE_RESTRICTION_REQUIRED_FOR_USEFUL_STATIC_ADMISSION_SET=NO
+    STATIC_INFORMATION_LOST_BEFORE_DSL=YES
+    BYTECODE_DSL_PREVENTS_STATIC_LEXICAL_IDENTITY=NO
+    ARBITRARY_STRUCTURAL_MUTATION_FORCES_ALL_LEXICAL_ACCESSES_DYNAMIC=NO
+    STRUCTURAL_MUTATION_REQUIRES_INVALIDATION=YES
+    GENERIC_DYNAMIC_FALLBACK_REQUIRED=YES
+    GENERIC_DYNAMIC_FALLBACK_REQUIRED_FOR_ALL_LEXICAL_ACCESSES=NO
+    SOURCE_KNOWN_LATE_CREATION_CAN_USE_PREALLOCATED_SLOT_PLUS_PRESENCE=YES
+    EXISTING_VALUE_MUTATION_INVALIDATES_BINDING_IDENTITY=NO
+    REMOVE_SLOT_RESTRICTION_ALONE_SUFFICIENT_FOR_UNIVERSAL_STATIC_IDENTITY=NO
+
+Therefore the original implication:
+
+    context is an ordinary dynamic object
+      -> every lexical access must remain generic String-key lookup
+
+is false.
+
+### Reconstructed candidate set
+
+The parent synthesis reconstructed the complete meaningful semantic candidate
+set rather than restoring the historical E1 recommendation automatically.
+
+    C0 KEEP_CURRENT_EXECUTION_CONTEXT_SEMANTICS
+
+       Preserve current ordinary-context structural growth/removal, reflection,
+       capture, escape, close/freeze and absence-driven outward lookup.
+       Runtime representation may use indexed identity plus
+       guards/invalidation/fallback where required.
+
+    C1 REMOVAL_TO_UNBOUND_FIXED_IDENTITY
+
+       removeSlot can remove visible presence while a hidden lexical identity
+       remains and prevents outer same-name fallback.
+
+    C2 PROVENANCE_SENSITIVE_STRUCTURE
+
+       Declared lexical bindings and genuinely dynamic context slots acquire
+       different structural mutation capabilities.
+
+    C3 MONOTONIC_CONTEXT_MEMBERSHIP
+
+       Historical E1 family. Context-local slots may be added while OPEN and
+       values may be updated while writable, but PRESENT -> ABSENT removal is
+       rejected for all execution-context local slots.
+
+    C4 FIXED_LEXICAL_LAYOUT_PLUS_DYNAMIC_EXTENSION
+
+       A declaration-derived indexed plane plus dynamic overflow.
+
+    C5 RESTRICTED_FIXED_CONTEXT_NAMESPACE
+
+       Strong fixed lexical structure with substantial restriction of dynamic
+       context structure.
+
+    C6 DEFER_WITHOUT_DECIDING
+
+       Leave D179 unresolved and force PLAT036 to continue waiting or to hedge
+       against a future semantic change.
+
+Two candidates are eliminated before final recommendation:
+
+    C4 ELIMINATED_AS_INDEPENDENT_SEMANTIC_CANDIDATE
+
+       If lexical layout plus overflow preserves exactly today's observable
+       context semantics, it is a PLAT036 implementation architecture and is
+       semantically C0.
+
+       If the distinction changes structural capabilities, it becomes C2.
+
+    C5 ELIMINATED
+
+       It changes late creation, structural reflection and other current
+       behavior to obtain stronger universal staticity that D179-C proves is
+       not required for a useful indexed fast path.
+
+Surviving candidates for final GITHUB010 scoring:
+
+    C0
+    C1
+    C2
+    C3
+    C6
+
+### Comparative result
+
+The comparison covered the required materially different families, including:
+
+- Self activation mirrors and highly reflective activation-object behavior;
+- Smalltalk/Squeak and TruffleSqueak context/frame models;
+- Python/GraalPy lexical identity, unbound locals and frame reflection;
+- ECMAScript/GraalJS declarative environment records versus object environments;
+- Ruby/TruffleRuby source locals plus first-class Binding reflection;
+- SOM/TruffleSOM indexed local identity and lexical depth;
+- Lua indexed locals/upvalues and debug reflection;
+- Apple Pkl lexical static-resolution evidence where materially comparable.
+
+The transferable result is not majority practice:
+
+    FIRST_CLASS_REFLECTION_DOES_NOT_REQUIRE_GENERIC_SOURCE_LOOKUP=YES
+
+and, independently:
+
+    MAXIMALLY_REFLECTIVE_ACTIVATION_OBJECTS_ARE_A_CREDIBLE_LANGUAGE_DESIGN=YES
+
+Prior art therefore does not force Protos to narrow context semantics merely
+because indexed execution is desirable.
+
+### Adversarial trace result
+
+All candidates were stressed against:
+
+- removal revealing an outer binding;
+- removal after Closure capture;
+- nearer late creation after capture;
+- escaped-context structural mutation;
+- sequential/default parameters;
+- physical preallocation with semantic ABSENT;
+- PRESENT(null);
+- assignment target pinning before RHS;
+- partially initialized cyclic modules;
+- close/freeze;
+- debugger/reflection;
+- suspension/resumption;
+- multiple Truffle Contexts;
+- a hypothetical non-Truffle backend.
+
+The decisive falsification of the historical E1 motivation is:
+
+    BAN_REMOVAL
+      !=
+    ELIMINATE_STRUCTURAL_RETARGETING
+
+because nearer late creation remains legal and can still retarget later lexical
+lookup even when removal is prohibited.
+
+### GITHUB010 scoring
+
+Scores are 1-5 decision evidence and are not used as an arithmetic winner rule.
+
+Dimensions:
+
+    D1  semantic correctness / invariant fit
+    D2  conceptual coherence / language-model fit
+    D3  compatibility / migration
+    D4  implementation freedom / backend portability
+    D5  runtime / optimization consequences
+    D6  reflection / tooling / debugger coherence
+    D7  composition / locality / metaprogramming value
+    D8  scalability / future resilience
+    D9  pay-for-what-you-need / unnecessary cost
+    D10 failure / operability
+    D11 deferral / reversibility / migration
+    D12 evidence maturity / implementation risk
+
+Final score vectors:
+
+    C0 = [5,5,5,5,4,5,5,4,4,4,5,5]
+         CONFIDENCE=HIGH overall
+         RED_FLAGS=NONE_NONCOMPENSATING
+         PERFORMANCE_COST_MAGNITUDE=UNMEASURED
+
+    C1 = [3,2,2,4,3,2,2,3,2,2,2,2]
+         RED_FLAGS=
+           OVERENGINEERING
+           SEMANTIC_MODEL
+           COMPATIBILITY
+
+    C2 = [3,1,2,3,3,2,2,3,1,2,2,2]
+         RED_FLAGS=
+           OVERENGINEERING
+           SEMANTIC_MODEL
+           COMPATIBILITY
+           PORTABILITY_RISK
+
+    C3 = [4,3,3,4,3,4,3,3,2,4,3,4]
+         RED_FLAGS=
+           COMPATIBILITY
+           UNPROVEN_BENEFIT
+
+    C6 = [4,4,5,3,2,4,4,3,2,2,1,5]
+         RED_FLAGS=
+           UNDERENGINEERING
+           ACTIVE_BLOCKER_COST
+
+No arithmetic total selects the recommendation. Non-compensating semantic and
+complexity red flags remain decisive.
+
+### Capability-value result
+
+Repository inspection found no guest/product use of:
+
+    context.removeSlot(...)
+
+General removeSlot use remains normative/runtime/conformance evidence.
+
+Therefore lexical structural removal has low demonstrated present application
+usage, but this does not make its semantic value zero: it participates in the
+uniform current rule that an execution context is an ordinary object and its
+locals are context slots.
+
+The key post-child result is that preserving this capability no longer implies
+that every ordinary lexical read must pay generic String-key lookup.
+
+The remaining runtime obligations can be partitioned:
+
+    PROVEN_STATIC_ACCESS
+      -> fixed binding identity/index/depth
+
+    GUARDED_INVALIDATABLE_STATIC_ACCESS
+      -> fixed fast identity while relevant presence/topology assumptions hold
+      -> invalidate/fallback on affected structural transitions
+
+    GENUINELY_DYNAMIC_ACCESS
+      -> unresolved/nonstatic name
+      -> dynamic overflow
+      -> invalidated nearest-binding proof
+      -> receiver/delegation fallback
+      -> runtime-name reflection
+      -> special construction/module cases
+
+### Owner-invariant / delta check
+
+The synthesis rechecked the applicable historical invariants:
+
+    Object.removeSlot remains ordinary Object capability
+    execution contexts are ordinary Protos objects
+    execution contexts delegate Context -> Object
+    parameters/locals/module bindings are context slots
+    lexical parent is distinct from ordinary delegation
+    lexical traversal inspects local context slots
+    context is stable first-class identity
+    Closures capture lexical contexts by reference
+    later context-local creation is ordinary structural growth while OPEN
+
+D179 explicitly reopened the combined consequence of ordinary Object removal
+plus ordinary execution contexts/locals-as-slots.
+
+Candidate C0 preserves every one of these invariants and introduces:
+
+    OBSERVABLE_SEMANTIC_DELTA=NONE
+
+Therefore:
+
+    DECISION_INVARIANT_CONSISTENCY=PASS_FOR_RECOMMENDED_C0
+
+This is still not owner approval.
+
+### RECOMMENDATION — PENDING OWNER APPROVAL
+
+The completed parent synthesis recommends:
+
+    CANDIDATE_ID=C0
+    CANDIDATE_NAME=KEEP_CURRENT_EXECUTION_CONTEXT_SEMANTICS
+
+Exact recommended semantic boundary:
+
+    KEEP stable first-class context identity
+    KEEP Context -> Object delegation
+    KEEP local reflection
+    KEEP explicit context member read/write
+    KEEP late context structural growth while OPEN
+    KEEP context-local structural removal while OPEN
+    KEEP close/freeze
+    KEEP context escape
+    KEEP capture by reference
+    KEEP absence exposing farther lexical/receiver lookup
+    KEEP nearer late creation retargeting lookup where current semantics allow it
+
+Do not introduce:
+
+    lexical-vs-dynamic semantic slot provenance
+    hidden lexical UNBOUND/tombstone state
+    execution-context-specific removeSlot prohibition
+    stronger declaration-derived semantic namespace
+
+Instead PLAT036, after D179 is actually approved and ratified, should consume:
+
+    STATIC_INDEXED_BINDING_IDENTITY_WHERE_PROVEN=YES
+    EXPLICIT_SEMANTIC_PRESENCE=YES
+    PRESENT_NULL_DISTINCT_FROM_ABSENT=YES
+    STRUCTURAL_GUARDS_OR_INVALIDATION=YES
+    DYNAMIC_OVERFLOW_WHERE_REQUIRED=YES
+    EXACT_DYNAMIC_FALLBACK_WHERE_REQUIRED=YES
+    ONE_SEMANTIC_BINDING_VALUE_AUTHORITY=YES
+
+D179 does not choose BytecodeLocal, LocalAccessor, MaterializedLocalAccessor,
+frame layout, cells, presence-bit layout, materialization policy, or invalidation
+granularity. Those remain PLAT036 architecture.
+
+### Strongest argument for C0
+
+D179-C removed the implementation necessity that motivated restricting the
+language. Current semantics can retain the Protos uniformity:
+
+    context is an object
+    locals are its slots
+    ordinary structural operations remain ordinary
+
+while the common lexical execution path can still use compiler-visible indexed
+identity with guarded/dynamic fallback only where needed.
+
+Changing the language now would therefore sacrifice semantic uniformity for a
+runtime property that current evidence says can already be obtained without that
+semantic sacrifice.
+
+### Strongest argument against C0
+
+Execution-context structural mutation remains a powerful non-local capability.
+An escaped context alias can add or remove a binding and thereby change which
+binding later code observes. This increases invalidation, deoptimization,
+debugging and implementation-correctness surface.
+
+No current product/library guest use proves that structural removal itself is
+important in ordinary applications.
+
+However, after D179-A/C this is now a language-simplicity / authority trade-off,
+not proof that Bytecode DSL indexed lexical representation requires removal to
+be prohibited.
+
+### Deliberately deferred
+
+D179 does not decide:
+
+- exact Bytecode DSL local/materialized-local architecture;
+- semantic binding store versus frame authority;
+- presence representation;
+- invalidation granularity;
+- dynamic overflow representation;
+- lazy semantic-context materialization;
+- capture cell/frame adapter layout;
+- special physical representation for modules/prelude/construction;
+- debugger write-back implementation;
+- causal performance magnitude;
+- a future explicit lexical-unbind capability.
+
+The informative ABSTRACT_RUNTIME.md assignment pseudocode also remains a
+separate documentation correction: normative semantics already require exact
+assignment destination selection before RHS evaluation.
+
+### Final parent state
+
+    D179_PARENT_SYNTHESIS_RESULT=COMPLETE
+    COMPLETE_CANDIDATE_SET_REBUILT=YES
+    GITHUB010_COMPLETE=YES
+    DECISION_INVARIANT_CONSISTENCY=PASS_FOR_RECOMMENDED_C0
+
+    CANDIDATE_RECOMMENDED=YES
+    CANDIDATE_RECOMMENDED_ID=C0
+    CANDIDATE_RECOMMENDED_NAME=KEEP_CURRENT_EXECUTION_CONTEXT_SEMANTICS
+    RECOMMENDATION_STATUS=PENDING_OWNER_APPROVAL
+    CANDIDATE_RATIFIED=NO
+
+    OBSERVABLE_SEMANTIC_DELTA=NONE
+
+    SPECIFICATION_CHANGED=NO
+    RUNTIME_CHANGED=NO
+    TESTS_CHANGED=NO
+    BENCHMARKS_CHANGED=NO
+
+    D179_CLOSED=NO
+    PLAT036_UNBLOCKED=NO
+    PLAT036_STATE=BLOCKED_PENDING_D179_OWNER_DECISION
+
+    MEASURED_PERFORMANCE_CLAIM=NONE
+
+    NEXT_GATE=EXPLICIT_PROJECT_OWNER_APPROVAL_OR_REJECTION_OF_C0
