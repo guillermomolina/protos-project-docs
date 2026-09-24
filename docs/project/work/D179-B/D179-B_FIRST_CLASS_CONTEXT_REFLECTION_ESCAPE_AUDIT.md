@@ -8,7 +8,7 @@ WORK_KIND=INVESTIGATION / DESIGN EVIDENCE ONLY
 PROTOS_REVISION=3e8e6b565c95eb5098c2168d241536ba13ad19e9
 FORMAL_IDENTIFIER_UNIQUE=PASS
 NATIVE_PARENT_DECLARED=#703
-NATIVE_PARENT_RELATION=COORDINATION_PENDING
+NATIVE_PARENT_RELATION=PASS
 IMPLEMENTATION_AUTHORIZED=NO
 
 This is the durable opening record for D179-B. It records an investigation
@@ -84,10 +84,13 @@ D179-B feeds parent D179's semantic capability decision and may expose
 requirements for a later lazy-context-materialization PLAT. It does not select
 that architecture itself.
 
-## Opening coordination state
+## Coordination state
 
-The live Issue body declares `Parent: #703` as bootstrap coordination input.
-The available GitHub connector in this session does not expose native
-Parent/Sub-issue mutation. Under GITHUB006/GITHUB015, the native relationship
-remains a visible coordination postcondition until established and verified by
-a supported path.
+The native GitHub Parent/Sub-issue relation has subsequently converged and was
+re-read successfully:
+
+    NATIVE_PARENT_RELATION=PASS
+    NATIVE_PARENT=#703
+
+The original textual `Parent: #703` declaration remains useful historical
+bootstrap prose, but live hierarchy authority is the native relation.
