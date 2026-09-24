@@ -957,3 +957,138 @@ Current expanded state:
     RUNTIME_CHANGED=NO
     TESTS_CHANGED=NO
     BENCHMARKS_CHANGED=NO
+
+
+## VII. D179-C completion checkpoint
+
+D179-C / #706 completed the lexical-dynamism and Bytecode DSL static-identity
+audit against the same product baseline:
+
+    PROTOS_REVISION=3e8e6b565c95eb5098c2168d241536ba13ad19e9
+
+Exact durable child evidence:
+
+    D179_C_PROJECT_RECORD_REVISION=5bf11ca33d152cb944067a7e4d39b30d58900ee4
+    D179_C_RESULT=COMPLETE
+
+D179-C confirms and sharpens the combined D179-A/B result.
+
+The current implementation loses useful source-known lexical facts before the
+Bytecode DSL:
+
+    SurfaceName
+      -> CanonicalLookup(String)
+      -> Lookup(ProtosActivation, String)
+      -> dynamic context traversal
+
+while existing repository static-analysis machinery can already prove exact
+binding origins for a bounded set and deliberately invalidates those facts at
+opaque effect barriers.
+
+Central result:
+
+    STATIC_INFORMATION_LOST_BEFORE_DSL=YES
+    BYTECODE_DSL_PREVENTS_STATIC_LEXICAL_IDENTITY=NO
+
+D179-C establishes a useful static/indexed admission set without requiring a
+language restriction:
+
+    CURRENT_PROTOS_SEMANTICS_PERMIT_A_USEFUL_STATIC_INDEXED_LEXICAL_ADMISSION_SET=YES
+    D179_LANGUAGE_RESTRICTION_REQUIRED_FOR_USEFUL_STATIC_ADMISSION_SET=NO
+
+Definitely-established current parameters/locals and fixed-membership existing
+bindings can use stable current-frame/indexed identity. Definitely-established
+captured bindings can use fixed lexical depth/binding identity when the target is
+PRESENT and all nearer same-name candidates are proven ABSENT.
+
+The audit also preserves the sibling correction that membership is the material
+dynamic fact:
+
+    PRESENT -> ABSENT
+      can retarget lookup
+
+    ABSENT -> PRESENT in a nearer context
+      can also retarget lookup
+
+Those cases require invalidation/guards/fallback for affected accesses, not
+universal String-key lexical resolution:
+
+    ARBITRARY_STRUCTURAL_MUTATION_FORCES_ALL_LEXICAL_ACCESSES_DYNAMIC=NO
+    STRUCTURAL_MUTATION_REQUIRES_INVALIDATION=YES
+    GENERIC_DYNAMIC_FALLBACK_REQUIRED_FOR_ALL_LEXICAL_ACCESSES=NO
+
+Source-known future bindings may have preallocated physical slots provided
+semantic presence remains explicit:
+
+    SOURCE_KNOWN_LATE_CREATION_CAN_USE_PREALLOCATED_SLOT_PLUS_PRESENCE=YES
+    EXPLICIT_PRESENCE_STATE_REQUIRED=YES
+    PRESENT_NULL_DISTINCT_FROM_ABSENT=YES
+
+This preserves sequential/default parameter semantics and module partial
+initialization. A physical slot is not itself evidence that a semantic binding is
+PRESENT.
+
+D179-C additionally confirms:
+
+    CONTEXT_IDENTITY_REQUIRES_GENERIC_LEXICAL_LOOKUP=NO
+    REFLECTION_REQUIRES_GENERIC_LEXICAL_LOOKUP=NO
+    ESCAPE_REQUIRES_GENERIC_LEXICAL_LOOKUP=NO
+    CAPTURE_BY_REFERENCE_REQUIRES_GENERIC_LEXICAL_LOOKUP=NO
+    EXISTING_VALUE_MUTATION_INVALIDATES_BINDING_IDENTITY=NO
+
+The assignment rule remains especially important: the writable destination is
+selected before RHS evaluation and must remain pinned even if the RHS changes
+same-name context structure. Direct binding identity is therefore compatible
+with, and naturally represents, the current semantic rule.
+
+The genuinely dynamic fallback set still includes unresolved names, semantic
+absence during sequential establishment, invalidated nearest-binding topology,
+runtime/nonstatic structural names, receiver/delegation fallback, runtime-name
+reflection and construction-specific dynamic structure.
+
+D179-C separately classifies:
+
+    MODULE_CONTEXT
+    FROZEN_PRELUDE
+    OBJECT_CONSTRUCTION_CONTEXT
+    DEBUGGER_SEMANTIC_SCOPE_PROJECTION
+
+so PLAT036 must not collapse them blindly into one ephemeral invocation-local
+frame model.
+
+The child does not select a BytecodeLocal/cell/materialized-local/context-adapter
+architecture. It only establishes the semantic admission and fallback boundary.
+
+### Combined expanded-research state
+
+All three expanded children are now complete:
+
+    D179_A=#704 COMPLETE
+    D179_B=#705 COMPLETE
+    D179_C=#706 COMPLETE
+
+Therefore the parent can now perform the step that was intentionally deferred
+when the original E1 recommendation was withdrawn:
+
+    rebuild the complete meaningful D179 candidate set
+    re-score surviving candidates under GITHUB010
+    re-run adversarial/invariant-delta checks
+    publish one RECOMMENDATION — PENDING OWNER APPROVAL
+
+This does not itself approve any candidate.
+
+Current state:
+
+    D179_STATE=OPEN / DECISION PACKET REBUILD READY
+    D179_PARENT_DECISION_READY=YES
+    CANDIDATE_RECOMMENDED=NO
+    CANDIDATE_RATIFIED=NO
+    NEXT_REQUIRED_RESEARCH=D179_PARENT_SYNTHESIS
+
+    PLAT036_STATE=BLOCKED
+    PLAT036_BLOCKED_BY=D179
+
+    SPECIFICATION_CHANGED=NO
+    RUNTIME_CHANGED=NO
+    TESTS_CHANGED=NO
+    BENCHMARKS_CHANGED=NO
