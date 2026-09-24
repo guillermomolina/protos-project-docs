@@ -2,13 +2,14 @@
 
 FORMAL_IDENTIFIER=D179  
 GITHUB_ISSUE=https://github.com/guillermomolina/protos/issues/703  
-DECISION_STATE=OPEN / NEEDS OWNER DECISION  
+DECISION_STATE=OPEN / RESEARCH EXPANDED  
 DECISION_KIND=LANGUAGE / OBJECT-MODEL SEMANTICS  
 TRIGGER=PLAT036 / #702  
 PROTOS_REVISION=3e8e6b565c95eb5098c2168d241536ba13ad19e9  
 OPENING_PROJECT_RECORD_REVISION=17d0a4629212f51d19bd557e465ae8e2da69e3c0  
-CANDIDATE_RECOMMENDED=E1_MONOTONIC_EXECUTION_CONTEXT_MEMBERSHIP  
+CANDIDATE_RECOMMENDED=NONE_PENDING_D179_A_B_C  
 CANDIDATE_RATIFIED=NO  
+PREVIOUS_E1_STATUS=PARTIAL_HYPOTHESIS_SUPERSEDED_AS_RECOMMENDATION_NOT_REJECTED  
 PLAT036_STATE=BLOCKED  
 PLAT036_BLOCKED_BY=D179
 
@@ -644,7 +645,7 @@ Self demonstrates serious prior art for activation state that is object-like and
 
 If maximal reflective uniformity outranks representation freedom, A is coherent and defensible.
 
-## Q. Strongest argument AGAINST the recommended model
+## Q. Strongest argument against the historical E1 partial hypothesis
 
 E1 weakens the strongest possible meaning of "context is an Object."
 
@@ -652,9 +653,11 @@ Two otherwise ordinary OPEN objects may reject the same removeSlot solely becaus
 
 Absence of current lexical-deletion consumers is not proof that live programming, debugging or metaprogramming will never need it. Self-style activation reflection is unusually close to Protos' philosophy, so abandoning full structural uniformity could be premature.
 
-## R. RECOMMENDATION — PENDING OWNER APPROVAL
+## R. Historical partial recommendation — superseded pending expanded audit
 
-Recommend Candidate E1 — MONOTONIC EXECUTION-CONTEXT MEMBERSHIP.
+The original investigation recommended Candidate E1 — MONOTONIC EXECUTION-CONTEXT MEMBERSHIP. After owner review exposed that the packet had over-focused on `removeSlot`, E1 is retained only as a partial hypothesis and evidence artifact. It is **not** the current D179 recommendation and is not ready for owner approval. Parent D179 will reconstruct the candidate set after D179-A, D179-B and D179-C complete.
+
+Historical E1 candidate:
 
 Exact candidate:
 
@@ -752,9 +755,87 @@ D179 does not ratify a frame-first implementation, Bytecode DSL local model, cel
 
 Final investigation state:
 
-    D179_STATE=OPEN / NEEDS OWNER DECISION
-    CANDIDATE_RECOMMENDED=YES
-    CANDIDATE_RECOMMENDED_ID=E1_MONOTONIC_EXECUTION_CONTEXT_MEMBERSHIP
+    D179_STATE=OPEN / RESEARCH EXPANDED
+    CANDIDATE_RECOMMENDED=NO
+    CANDIDATE_RECOMMENDED_ID=NONE_PENDING_D179_A_B_C
+    PREVIOUS_E1_STATUS=PARTIAL_HYPOTHESIS_SUPERSEDED_AS_RECOMMENDATION_NOT_REJECTED
+    CANDIDATE_RATIFIED=NO
+
+    PLAT036_STATE=BLOCKED
+    PLAT036_BLOCKED_BY=D179
+
+    SPECIFICATION_CHANGED=NO
+    RUNTIME_CHANGED=NO
+    TESTS_CHANGED=NO
+    BENCHMARKS_CHANGED=NO
+
+
+## U. Expanded capability audit after owner review
+
+The project owner clarified that D179 must answer the broader question originally
+intended by AUD016/PLAT036: whether **any** current execution-context semantic
+capability, not only `removeSlot`, materially constrains or penalizes faithful
+adoption of Truffle Bytecode DSL mechanisms.
+
+The first packet is therefore classified as **partial**. It remains useful
+research, especially for structural removal and lexical membership, but its E1
+recommendation is withdrawn as premature rather than rejected on the merits.
+No exact candidate is currently pending owner approval.
+
+Three independently meaningful investigation children now own the missing
+surfaces:
+
+- D179-A / #704 — execution-context structural mutation capability audit;
+- D179-B / #705 — first-class execution-context reflection and escape boundary
+  audit;
+- D179-C / #706 — lexical dynamism and Bytecode DSL static-identity audit.
+
+Their division is intentional:
+
+    D179-A
+      asks which structural mutations/authority changes invalidate static facts,
+      including remove, late add, escaped/captured mutation, close and freeze.
+
+    D179-B
+      asks what first-class Object identity/reflection/escape actually requires
+      semantically versus what is merely current physical storage.
+
+    D179-C
+      asks which lexical identities/presence/depth can genuinely be static and
+      where dynamic fallback remains semantically necessary.
+
+D179-C consumes material findings from A/B before final classification. Parent
+D179 then rebuilds the complete candidate set, GITHUB010 scoring and owner
+recommendation from the combined evidence.
+
+The intended final question is now explicitly:
+
+> For every observable execution-context capability, what useful Protos behavior
+> does it provide, what Bytecode DSL/native-runtime fact does its mere possibility
+> invalidate or complicate, can it be preserved on a slow/materialized path, and
+> is any restriction justified as a language decision?
+
+The children do not independently ratify semantics. PLAT036 / #702 remains
+blocked by D179 as a whole.
+
+### Coordination caveat
+
+Each child Issue was created with an explicit `Parent: #703` declaration. The
+GitHub connector available during allocation did not expose native Parent/Sub-
+issue mutation. Under GITHUB006/GITHUB015, textual parent prose does not satisfy
+the native-parent postcondition; native hierarchy reconciliation therefore
+remains visibly pending until repository intake automation or another supported
+interface establishes and verifies the relation.
+
+Current expanded state:
+
+    D179_STATE=OPEN / RESEARCH EXPANDED
+    D179_A=#704 OPEN / READY
+    D179_B=#705 OPEN / READY
+    D179_C=#706 OPEN / READY
+
+    CANDIDATE_RECOMMENDED=NO
+    PREVIOUS_E1_STATUS=PARTIAL_HYPOTHESIS_SUPERSEDED_AS_RECOMMENDATION_NOT_REJECTED
     CANDIDATE_RATIFIED=NO
 
     PLAT036_STATE=BLOCKED
