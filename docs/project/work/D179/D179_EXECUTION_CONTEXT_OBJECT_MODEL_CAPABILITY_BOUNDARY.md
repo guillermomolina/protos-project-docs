@@ -1517,3 +1517,191 @@ assignment destination selection before RHS evaluation.
     MEASURED_PERFORMANCE_CLAIM=NONE
 
     NEXT_GATE=EXPLICIT_PROJECT_OWNER_APPROVAL_OR_REJECTION_OF_C0
+
+
+
+## IX. Owner decision and durable ratification — C3 selected, C0 deferred
+
+On 2026-09-24 the project owner explicitly selected the following exact D179
+outcome in the active decision interaction:
+
+    C3 NOW
+    C0 DEFERRED
+
+This approval supersedes the parent synthesis recommendation of C0 recorded in
+section VIII for **selection purposes only**. Section VIII remains historical
+decision evidence and is intentionally not rewritten.
+
+Approval provenance:
+
+    DECISION_APPROVAL_PROVENANCE=PASS
+    APPROVED_CANDIDATE_ID=C3
+    APPROVED_CANDIDATE_NAME=MONOTONIC_CONTEXT_MEMBERSHIP
+    C0_STATUS=DEFER_RECONSIDER_LATER
+    OWNER_APPROVAL_DATE=2026-09-24
+
+### Ratified semantic boundary
+
+Execution contexts remain ordinary first-class Protos objects with the existing
+identity, reflection, capture, escape, delegation and mutation model except for
+one execution-context-specific structural restriction:
+
+    ABSENT  -> PRESENT   ALLOWED while OPEN
+    PRESENT -> PRESENT   ALLOWED while writable
+    PRESENT -> ABSENT    REJECTED for execution-context local slots
+
+Therefore a slot that has become PRESENT in an execution context cannot be
+structurally removed from that execution context.
+
+This applies uniformly to execution-context local slots. D179 does not introduce
+a semantic provenance split between "declared lexical" and "dynamic context"
+slots.
+
+The selected rule does **not** remove or redefine ordinary Object.removeSlot.
+Ordinary non-execution-context objects retain their existing structural-removal
+capability.
+
+The selected rule also does not prohibit late structural growth of an OPEN
+execution context:
+
+    ABSENT -> PRESENT
+
+remains valid. Consequently, a nearer late-created binding may still retarget a
+later lexical lookup. PLAT036 must therefore continue to model semantic
+presence, structural invalidation where late creation can affect a proven access,
+and exact dynamic fallback where proof is unavailable.
+
+### Consequence for removeSlot on execution contexts
+
+Under C3, an attempt to remove a PRESENT local slot from an execution context is
+a rejected structural mutation. The exact public error spelling/classification
+is an implementation/specification follow-up unless already determined by the
+ordinary structural-mutation failure rules; D179 does not create a new optional
+implementation capability, profile system or backend-specific semantic variant.
+
+In particular, D179 does not adopt a model where GraalVM, Rust, LLVM, IoT or
+other implementations silently expose different execution-context semantics.
+
+The project explicitly considered such a capability/profile dimension and did
+not introduce it here. Creating the first optional implementation/profile
+capability would be a substantially larger language/platform abstraction than
+this one operation warrants today.
+
+### C0 is deferred, not rejected
+
+C0 remains a valid possible future semantic extension:
+
+    C0=DEFER_RECONSIDER_LATER
+
+A future decision may reconsider:
+
+    PRESENT -> ABSENT
+
+after PLAT036 has produced a stable indexed lexical-state architecture and the
+incremental cost of structural removal can be evaluated against concrete
+implementation evidence.
+
+The intended future question is bounded:
+
+    what additional state, assumptions, invalidation edges, fallback behavior,
+    reflection/debugger handling and capture semantics are required to extend
+    the ratified C3 implementation to C0?
+
+The future decision must not assume that C0 is prohibited in principle, nor that
+C3 was selected because Bytecode DSL makes C0 impossible.
+
+Conversely, C0 is not part of the current Protos semantic contract until such a
+future decision explicitly selects it.
+
+### GITHUB021 invariant/delta consistency
+
+Applicable owner-approved invariants remain:
+
+    execution contexts are first-class Protos objects
+    execution contexts delegate Context -> Object
+    parameters/locals/module bindings remain context slots
+    lexical parent remains distinct from ordinary delegation
+    lexical traversal inspects local context slots
+    context retains stable semantic identity
+    Closures capture lexical contexts by reference
+    later context-local creation remains valid while OPEN
+    ordinary Object.removeSlot remains available on ordinary objects
+
+D179 explicitly reopened the execution-context structural-removal consequence of
+combining ordinary Object structural capabilities with context-local lexical
+slots.
+
+The approved C3 delta is therefore explicit rather than hidden:
+
+    EXECUTION_CONTEXT_PRESENT_TO_ABSENT_REMOVAL=REJECT
+    ORDINARY_OBJECT_PRESENT_TO_ABSENT_REMOVAL=KEEP
+    EXECUTION_CONTEXT_ABSENT_TO_PRESENT_CREATION=KEEP
+
+No other observable semantic capability audited by D179 is narrowed.
+
+Thus:
+
+    DECISION_INVARIANT_CONSISTENCY=PASS
+    OBSERVABLE_SEMANTIC_DELTA=EXECUTION_CONTEXT_MEMBERSHIP_MONOTONIC_AFTER_PRESENT
+    REOPENED_INVARIANT_APPROVAL_PROVENANCE=PASS
+
+### Consequence for PLAT036
+
+D179 now gives PLAT036 the following ratified semantic input:
+
+    EXECUTION_CONTEXT_MEMBERSHIP_MONOTONIC_AFTER_PRESENT=YES
+    LATE_CONTEXT_STRUCTURAL_GROWTH_WHILE_OPEN=YES
+    PRESENT_TO_ABSENT_CONTEXT_REMOVAL=NO
+    NEARER_LATE_CREATION_MAY_RETARGET_LOOKUP=YES
+    STATIC_INDEXED_BINDING_IDENTITY_WHERE_PROVEN=YES
+    EXPLICIT_SEMANTIC_PRESENCE_REQUIRED=YES
+    PRESENT_NULL_DISTINCT_FROM_ABSENT=YES
+    STRUCTURAL_INVALIDATION_FOR_AFFECTED_LATE_CREATION=YES
+    GENERIC_DYNAMIC_FALLBACK_REQUIRED=YES
+    GENERIC_DYNAMIC_FALLBACK_REQUIRED_FOR_ALL_LEXICAL_ACCESSES=NO
+    ONE_SEMANTIC_BINDING_VALUE_AUTHORITY_REQUIRED=YES
+
+PLAT036 remains responsible for choosing the physical architecture. D179 does
+not select BytecodeLocal, LocalAccessor, MaterializedLocalAccessor, cells,
+materialized frames, presence-bit layout, overflow representation, lazy context
+materialization or invalidation granularity.
+
+The former PLAT036 recommendation remains evidence only and must be rebuilt or
+revalidated against ratified C3 rather than automatically restored.
+
+### Ratification state
+
+    D179_DECISION=RATIFIED
+    D179_SELECTED_CANDIDATE=C3
+    D179_SELECTED_CANDIDATE_NAME=MONOTONIC_CONTEXT_MEMBERSHIP
+
+    C0_SELECTED=NO
+    C0_REJECTED=NO
+    C0_STATUS=DEFER_RECONSIDER_LATER
+
+    EXECUTION_CONTEXT_IS_FIRST_CLASS_OBJECT=KEEP
+    CONTEXT_TO_OBJECT_DELEGATION=KEEP
+    EXECUTION_CONTEXT_STRUCTURAL_GROWTH=KEEP_WHILE_OPEN
+    EXECUTION_CONTEXT_VALUE_MUTATION=KEEP_WHILE_WRITABLE
+    EXECUTION_CONTEXT_STRUCTURAL_REMOVAL=REJECT_AFTER_PRESENT
+    LATE_NEARER_CREATION_RETARGETING=KEEP
+    CAPTURE_BY_REFERENCE=KEEP
+    CONTEXT_ESCAPE=KEEP
+    REFLECTION=KEEP
+    CLOSE_FREEZE=KEEP
+
+    OPTIONAL_BACKEND_CAPABILITY_MODEL_INTRODUCED=NO
+    IMPLEMENTATION_SPECIFIC_CONTEXT_SEMANTICS_INTRODUCED=NO
+
+    SPECIFICATION_CHANGED=NO
+    RUNTIME_CHANGED=NO
+    TESTS_CHANGED=NO
+    BENCHMARKS_CHANGED=NO
+
+    D179_OWNER_APPROVAL=PASS
+    DECISION_INVARIANT_CONSISTENCY=PASS
+    REQUIRED_DURABLE_PUBLICATION=PUBLISHED_BY_THIS_SECTION
+
+    D179_READY_TO_CLOSE=YES
+    PLAT036_SEMANTIC_BLOCKER_RESOLVED=YES
+    PLAT036_NEXT_STATE=READY_FOR_REEVALUATION_UNDER_C3
