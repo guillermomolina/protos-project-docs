@@ -1,6 +1,6 @@
 # I068 — PLAT036 frame-backed lexical-state implementation
 
-Status: **OPEN / READY — SLICES 1–3 PUBLISHED; SLICE 4 NEXT**
+Status: **OPEN / READY — SLICES 1–4 PUBLISHED; SLICE 5 NEXT**
 
 Issue: `guillermomolina/protos#708`
 
@@ -234,3 +234,65 @@ Retained evidence:
 
 I068 remains open. Slice 4 owns sequential/default parameter lowering and must
 preserve semantic absence until each parameter binding point.
+
+## Slice 4 publication checkpoint — 2026-09-24
+
+~~~text
+I068_SLICE_4=SEQUENTIAL_DEFAULT_PARAMETER_LOWERING
+PROTOS_REVISION=d6587c535ee83653c417d2bf780a9d7b83d7ac24
+PROTOS_VERSION=0.3.84-SNAPSHOT
+COMMIT_MESSAGE=I068: lower closure parameters to frame-backed locals
+
+SLICE_4_EVIDENCE_REVISION=c5d83176ebace12fddfc715aea22efd01ddf4dd9
+
+RUNTIME_AUTHORITY_CUTOVER=CURRENT_RESOLVED_PLUS_PARAMETERS
+PARAMETER_FRAME_LOCAL_MIGRATION=YES
+SEQUENTIAL_DEFAULT_PARAMETER_SEMANTICS=PASS
+PARAMETER_SEMANTIC_ABSENCE_UNTIL_BINDING_POINT=PASS
+DIRECT_CURRENT_RESOLVED_PARAMETER_READ=YES
+PARAMETER_CONTEXT_PROJECTION_SAME_AUTHORITY=YES
+DUAL_AUTHORITATIVE_COPIES=NO
+
+CANDIDATE_DYNAMIC_FALLBACK_PRESERVED=YES
+PRESENT_NULL_DISTINCT_FROM_ABSENT=YES
+ESCAPED_CONTEXT_OBSERVES_FRAME_BACKED_PARAMETER=YES
+BYTECODE_REPARSE_STATE_PRESERVED=YES
+
+GIT_DIFF_CHECK=PASS
+MAKE_COMPILE=PASS
+I068_SLICE4_FOCAL_TESTS=PASS
+PARAMETER_ARITY_DEFAULT_REST_REGRESSIONS=PASS
+SLICE3_AUTHORITY_REGRESSIONS=PASS
+MAKE_TEST_JAVA=PASS
+MAKE_TEST_PROTOS=PASS
+PUBLICATION_VALIDATION_IMPACT=FULL
+PUBLICATION_VALIDATION=PASS
+FULL_TEST_SUITE=PASS
+
+CAPTURED_MATERIALIZED_LEXICAL_LOWERING=NOT_YET_IMPLEMENTED
+LAZY_CONTEXT_MATERIALIZATION=NO
+
+SLICE_4_STATUS=COMPLETE
+NEXT_SLICE=I068_SLICE_5_CAPTURED_MATERIALIZED_LEXICAL_LOWERING
+~~~
+
+Slice 4 extends the stable Bytecode-local layout to Closure parameters without
+making physical allocation imply semantic presence. Parameter locals remain
+cleared until the existing sequential binding point writes through the same
+frame-backed lexical authority used by the first-class invocation context.
+Current-own and future-parameter defaults therefore retain ordinary fallback
+while the corresponding physical local is still semantically ABSENT.
+
+Once established, current-root parameter reads may use the same direct
+frame-local path introduced by Slice 3. Supplied-argument suppression of
+defaults, earlier-parameter visibility, rest suffix/freshness/frozen behavior,
+Protos-null presence, escaped-context observation, invocation homes and
+suspension/control behavior remain preserved.
+
+Retained evidence:
+
+`docs/project/evidence/I068/I068_SLICE4_SEQUENTIAL_DEFAULT_PARAMETER_LOWERING.md@c5d83176ebace12fddfc715aea22efd01ddf4dd9`
+
+I068 remains open. Slice 5 owns captured/materialized lexical lowering and must
+preserve capture by reference, later mutation visibility, legal nearer
+`ABSENT -> PRESENT` creation/retargeting and exact dynamic fallback.
