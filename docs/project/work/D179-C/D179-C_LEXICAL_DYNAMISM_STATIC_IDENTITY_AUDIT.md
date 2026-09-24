@@ -3,7 +3,7 @@
 FORMAL_IDENTIFIER=D179-C
 GITHUB_ISSUE=https://github.com/guillermomolina/protos/issues/706
 PARENT=D179 / https://github.com/guillermomolina/protos/issues/703
-WORK_STATE=OPEN / RESEARCH REQUIRED
+WORK_STATE=BLOCKED / WAITING FOR D179-B
 WORK_KIND=INVESTIGATION / DESIGN EVIDENCE ONLY
 PROTOS_REVISION=3e8e6b565c95eb5098c2168d241536ba13ad19e9
 FORMAL_IDENTIFIER_UNIQUE=PASS
@@ -90,3 +90,25 @@ re-read successfully:
 
 The original textual `Parent: #703` declaration remains useful historical
 bootstrap prose, but live hierarchy authority is the native relation.
+
+
+## Current sibling dependency state
+
+D179-A / #704 is complete and its durable result establishes that both
+`PRESENT -> ABSENT` removal and `ABSENT -> PRESENT` growth in a nearer
+escaped/captured context can retarget later bare lexical resolution.
+
+D179-C still requires D179-B / #705 before final classification because D179-B
+owns the unresolved question of which first-class context identity, reflection,
+escape, aliasing, and materialization requirements must remain observable.
+
+Current coordination therefore is:
+
+    D179_A=#704 COMPLETE
+    D179_B=#705 OPEN / READY
+    D179_C=#706 BLOCKED_BY_D179_B
+    NATIVE_DEPENDENCY_EDGE_706_BLOCKED_BY_705=PENDING_CONNECTOR_SUPPORT
+
+The missing native dependency edge is a live-coordination postcondition only.
+It does not change the semantic dependency itself and does not authorize D179-C
+to finalize before D179-B evidence exists.
