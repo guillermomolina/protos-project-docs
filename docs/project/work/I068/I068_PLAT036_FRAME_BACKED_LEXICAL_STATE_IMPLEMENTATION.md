@@ -1,6 +1,6 @@
 # I068 — PLAT036 frame-backed lexical-state implementation
 
-Status: **OPEN / READY — SLICES 1–4 PUBLISHED; SLICE 5 NEXT**
+Status: **OPEN / READY — SLICES 1–5 PUBLISHED; SLICE 6 NEXT**
 
 Issue: `guillermomolina/protos#708`
 
@@ -296,3 +296,80 @@ Retained evidence:
 I068 remains open. Slice 5 owns captured/materialized lexical lowering and must
 preserve capture by reference, later mutation visibility, legal nearer
 `ABSENT -> PRESENT` creation/retargeting and exact dynamic fallback.
+
+
+## Slice 5 publication checkpoint — 2026-09-24
+
+~~~text
+I068_SLICE_5=CAPTURED_MATERIALIZED_LEXICAL_LOWERING
+PROTOS_REVISION=783c4039b68a9962be4ba6e3db1e6c559305671d
+PROTOS_VERSION=0.3.85-SNAPSHOT
+COMMIT_MESSAGE=I068: lower captured lexical bindings to frame-backed authority
+
+SLICE_5_EVIDENCE_REVISION=34ba218e61b7707f7d8f55b2f9460196a583d1e6
+
+IMMEDIATE_PREDECESSOR_REVISION=231a943135e4fc3d970e7e91249cccc8fdaf456b
+SLICE_4_PRODUCT_REVISION=d6587c535ee83653c417d2bf780a9d7b83d7ac24
+
+RUNTIME_AUTHORITY_CUTOVER=CURRENT_RESOLVED_PLUS_PARAMETERS_PLUS_PROVEN_CAPTURED
+CAPTURED_MATERIALIZED_LEXICAL_LOWERING=PASS
+PROVEN_CAPTURED_READ_USES_FRAME_NATIVE_PATH=PASS
+PROVEN_CAPTURED_WRITE_USES_SINGLE_AUTHORITY=PASS
+CAPTURE_BY_REFERENCE=PASS
+LATER_MUTATION_VISIBLE=PASS
+ESCAPED_CAPTURE_AFTER_OUTER_RETURN=PASS
+MULTI_DEPTH_CAPTURE=PASS
+
+LATE_NEARER_CREATION_RETARGETING=PASS
+CANDIDATE_FALLBACK_PRESERVED=PASS
+DYNAMIC_FALLBACK_PRESERVED=PASS
+ASSIGNMENT_DESTINATION_BEFORE_RHS=PASS
+PRESENT_NULL_DISTINCT_FROM_ABSENT=PASS
+D179_C3_PRESERVED=PASS
+OBJECT_BODY_BOUNDARY_PRESERVED=PASS
+
+BYTECODE_REPARSE_CAPTURE_METADATA_PRESERVED=PASS
+CONTEXT_LOCAL_PLAN_REMATERIALIZATION_PRESERVED=PASS
+DUAL_AUTHORITATIVE_COPIES=NO
+LAZY_CONTEXT_MATERIALIZATION=NO
+SEMANTIC_CHANGE=NO
+
+GIT_DIFF_CHECK=PASS
+CLEAN_COMPILE=PASS
+I068_SLICE5_FOCAL_TESTS=PASS
+AFFECTED_REGRESSION_SET=PASS
+MAVEN_TEST_SUITE=PASS
+PUBLICATION_VALIDATION_IMPACT=FULL
+PUBLICATION_VALIDATION=PASS
+FULL_TEST_SUITE=PASS
+
+REMOTE_CI_PASS=NOT_CLAIMED
+SLICE_5_STATUS=COMPLETE
+NEXT_SLICE=I068_SLICE_6_DEBUGGER_REFLECTION_PROJECTION
+~~~
+
+Slice 5 moves statically proven captured lexical reads and writes onto the same
+retained frame-backed authority already projected by the escaped first-class
+execution context. Reads use a dedicated captured frame-native operation;
+writes resolve and retain their exact destination before RHS evaluation and
+then mutate that same authority. Runtime guards preserve legal late nearer
+creation/retargeting, while `Candidate` and `Dynamic` references retain the
+existing fallback behavior.
+
+The implementation also preserves fresh-parser/Context-local plan rebuilding by
+remapping proven captured-site metadata onto fresh canonical AST identities
+without carrying Truffle execution objects in semantic Closure state.
+
+The exact Slice 5 product commit is one commit ahead of immediate predecessor
+`231a943135e4fc3d970e7e91249cccc8fdaf456b`. That predecessor is an unrelated
+maintenance commit published after Slice 4, so the Slice 5 evidence deliberately
+does not claim direct one-commit adjacency to the Slice 4 product revision.
+
+Retained evidence:
+
+`docs/project/evidence/I068/I068_SLICE5_CAPTURED_MATERIALIZED_LEXICAL_LOWERING.md@34ba218e61b7707f7d8f55b2f9460196a583d1e6`
+
+I068 remains open. Slice 6 owns debugger/reflection projection over the
+frame-backed static binding authority plus dynamic overflow while hiding
+backend-only temporaries. Slice 7 remains responsible for final
+`ProtosActivation` lexical decomposition and fallback cleanup.
