@@ -1,6 +1,6 @@
 # I068 — PLAT036 frame-backed lexical-state implementation
 
-Status: **OPEN / READY**
+Status: **OPEN / READY — SLICE 1 COMPLETE; SLICE 2 NEXT**
 
 Issue: `guillermomolina/protos#708`
 
@@ -89,3 +89,43 @@ ratified Candidate D architecture is implemented, validated and published.
 Any newly discovered observable semantic choice or new durable architecture
 choice leaves I068 implementation scope and returns to the normal Dxxx/PLATxxx
 approval gate.
+
+
+## Slice 1 publication checkpoint — 2026-09-24
+
+The first I068 implementation slice is published in the product repository:
+
+~~~text
+I068_SLICE_1=CANONICAL_BINDING_IDENTITY_AND_PRESENCE_METADATA
+
+PROTOS_REVISION=04a243c863cf50feb1ab541e3a49dd4dcd317039
+PROTOS_VERSION=0.3.81-SNAPSHOT
+COMMIT_MESSAGE=I068: retain canonical binding identity and presence metadata
+
+STATIC_BINDING_IDENTITY_RETAINED=YES
+LEXICAL_OWNER_METADATA_RETAINED=YES
+LEXICAL_DEPTH_METADATA_RETAINED=YES
+PRESENCE_CLASSIFICATION_RETAINED=YES
+DYNAMIC_FALLBACK_PRESERVED=YES
+ASSIGNMENT_DESTINATION_ORDER_PRESERVED=YES
+
+RUNTIME_AUTHORITY_CUTOVER=NO
+BYTECODELOCAL_GUEST_AUTHORITY=NO
+MATERIALIZED_LOCAL_MIGRATION=NO
+CONTEXT_ADAPTER_IMPLEMENTED=NO
+LAZY_CONTEXT_MATERIALIZATION=NO
+
+MAINTAINER_REPORTED_TESTS=ALL_GREEN
+SLICE_1_STATUS=COMPLETE
+NEXT_SLICE=I068_SLICE_2_FRAME_CONTEXT_SINGLE_AUTHORITY_SEAM
+~~~
+
+The product delta introduces backend-private canonical binding analysis and
+wires it into Bytecode lowering without consuming the result in generated
+execution yet. The existing String-keyed `ProtosActivation` lexical
+lookup/write path therefore remains the sole runtime authority in this
+checkpoint.
+
+Retained evidence:
+
+`docs/project/evidence/I068/I068_SLICE1_CANONICAL_BINDING_IDENTITY_AND_PRESENCE_METADATA.md`
