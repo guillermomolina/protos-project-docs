@@ -12,6 +12,9 @@ migrate it explicitly rather than duplicating or moving it opportunistically.
 
 Current role-first work records:
 
+- [`D179/D179_EXECUTION_CONTEXT_OBJECT_MODEL_CAPABILITY_BOUNDARY.md`](D179/D179_EXECUTION_CONTEXT_OBJECT_MODEL_CAPABILITY_BOUNDARY.md)
+  — open D179 execution-context/object-model capability-boundary decision trigger, PLAT036 blocking dependency, and comparative-runtime evidence checkpoint.
+
 - [`TOOL002/TOOL002_TEST_TOOL.md`](TOOL002/TOOL002_TEST_TOOL.md)
   — canonical non-normative TOOL002 Test Tool lifecycle and implementation record.
 
