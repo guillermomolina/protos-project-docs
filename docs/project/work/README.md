@@ -15,6 +15,13 @@ Current role-first work records:
 - [`D179/D179_EXECUTION_CONTEXT_OBJECT_MODEL_CAPABILITY_BOUNDARY.md`](D179/D179_EXECUTION_CONTEXT_OBJECT_MODEL_CAPABILITY_BOUNDARY.md)
   — open D179 execution-context/object-model capability-boundary decision trigger, PLAT036 blocking dependency, and comparative-runtime evidence checkpoint.
 
+- [`D179-A/D179-A_STRUCTURAL_MUTATION_CAPABILITY_AUDIT.md`](D179-A/D179-A_STRUCTURAL_MUTATION_CAPABILITY_AUDIT.md)
+  — open structural-mutation audit for execution-context removal, late growth, escaped/captured mutation, close, freeze, and Bytecode DSL constraints.
+- [`D179-B/D179-B_FIRST_CLASS_CONTEXT_REFLECTION_ESCAPE_AUDIT.md`](D179-B/D179-B_FIRST_CLASS_CONTEXT_REFLECTION_ESCAPE_AUDIT.md)
+  — open first-class context identity/reflection/escape audit separating semantic object behavior from physical lexical storage assumptions.
+- [`D179-C/D179-C_LEXICAL_DYNAMISM_STATIC_IDENTITY_AUDIT.md`](D179-C/D179-C_LEXICAL_DYNAMISM_STATIC_IDENTITY_AUDIT.md)
+  — open lexical-dynamism audit classifying static binding identity/presence/depth versus genuinely required dynamic fallback.
+
 - [`TOOL002/TOOL002_TEST_TOOL.md`](TOOL002/TOOL002_TEST_TOOL.md)
   — canonical non-normative TOOL002 Test Tool lifecycle and implementation record.
 
