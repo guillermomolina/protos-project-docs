@@ -1,6 +1,6 @@
 # I068 — PLAT036 frame-backed lexical-state implementation
 
-Status: **OPEN / READY — SLICES 1–2 PUBLISHED; SLICE 3 NEXT**
+Status: **OPEN / READY — SLICES 1–3 PUBLISHED; SLICE 4 NEXT**
 
 Issue: `guillermomolina/protos#708`
 
@@ -165,3 +165,72 @@ guest lexical values into Bytecode locals.
 Retained evidence:
 
 `docs/project/evidence/I068/I068_SLICE2_FRAME_CONTEXT_SINGLE_AUTHORITY_SEAM.md`
+
+
+## Slice 3 publication checkpoint — 2026-09-24
+
+~~~text
+I068_SLICE_3=DEFINITELY_CURRENT_LOCAL_LOWERING
+PROTOS_REVISION=1756b3d3100d54ef1627bc618cae6b7ef8da3445
+PROTOS_VERSION=0.3.83-SNAPSHOT
+COMMIT_MESSAGE=I068: lower definitely-current lexicals to frame-backed locals
+
+SLICE_3_EVIDENCE_REVISION=abc6fa288d177b9a3e8781b32f7aa0e1aeedfd6f
+
+RUNTIME_AUTHORITY_CUTOVER=CURRENT_RESOLVED_ONLY
+FRAME_BACKED_CURRENT_BINDING_AUTHORITY=YES
+DIRECT_CURRENT_RESOLVED_READ_PATH=YES
+CURRENT_BINDING_WRITES_SHARE_FRAME_AUTHORITY=YES
+DUAL_AUTHORITATIVE_COPIES=NO
+PREEXISTING_CONTEXT_BINDINGS_PRESERVED=YES
+
+CANDIDATE_DYNAMIC_FALLBACK_PRESERVED=YES
+OBJECT_BODY_REMAINS_ORDINARY_STATE=YES
+PRESENT_NULL_DISTINCT_FROM_ABSENT=YES
+D179_C3_PRESERVED=YES
+ESCAPED_CONTEXT_OBSERVES_FRAME_AUTHORITY=YES
+BYTECODE_REPARSE_STATE_PRESERVED=YES
+
+PARAMETER_FRAME_LOCAL_MIGRATION=NOT_YET_IMPLEMENTED
+CAPTURED_MATERIALIZED_LEXICAL_LOWERING=NOT_YET_IMPLEMENTED
+LAZY_CONTEXT_MATERIALIZATION=NO
+
+GIT_DIFF_CHECK=PASS
+MAKE_COMPILE=PASS
+I068_SLICE3_FOCAL_TESTS=PASS
+MAKE_TEST_JAVA=PASS
+MAKE_TEST_PROTOS=PASS
+PROTOS_TESTS_PASSED=1250
+PROTOS_TESTS_FAILED=0
+PROTOS_TESTS_TOTAL_TIME_SECONDS=113
+
+SLICE_3_STATUS=COMPLETE
+NEXT_SLICE=I068_SLICE_4_SEQUENTIAL_DEFAULT_PARAMETER_LOWERING
+~~~
+
+Slice 3 is the first runtime lexical-authority cutover under Candidate D.
+Statically `Resolved` bindings owned by the genuine current execution-context
+scope receive stable Bytecode DSL local storage. Eligible bare reads use the
+generated local-accessor path, while context-based writes and reflection reach
+the same frame-backed authority rather than a second map-backed value store.
+
+The final integrated implementation also preserves contexts that were populated
+before root execution by migrating those bindings during a single-authority
+handoff, and it re-establishes root-specific lowering state whenever Truffle's
+retained Bytecode parser is re-invoked for lazy source/instrumentation metadata.
+
+`Candidate`, `Dynamic`, object-body, parameter and captured/materialized outer
+lexical paths remain outside the Slice 3 direct-current admission boundary.
+
+Maintainer-reported validation on the published product revision includes the
+ordinary Java suite and the full native Protos suite. The latter completed with
+1250 passed, 0 failed in 113 seconds. No remote CI PASS is claimed by this
+checkpoint because no combined status or associated pull-request workflow run
+was observed for the product SHA at record time.
+
+Retained evidence:
+
+`docs/project/evidence/I068/I068_SLICE3_DEFINITELY_CURRENT_LOCAL_LOWERING.md@abc6fa288d177b9a3e8781b32f7aa0e1aeedfd6f`
+
+I068 remains open. Slice 4 owns sequential/default parameter lowering and must
+preserve semantic absence until each parameter binding point.
