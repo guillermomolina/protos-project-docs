@@ -3,7 +3,7 @@
 FORMAL_IDENTIFIER=D179-C
 GITHUB_ISSUE=https://github.com/guillermomolina/protos/issues/706
 PARENT=D179 / https://github.com/guillermomolina/protos/issues/703
-WORK_STATE=BLOCKED / WAITING FOR D179-B
+WORK_STATE=OPEN / READY
 WORK_KIND=INVESTIGATION / DESIGN EVIDENCE ONLY
 PROTOS_REVISION=3e8e6b565c95eb5098c2168d241536ba13ad19e9
 FORMAL_IDENTIFIER_UNIQUE=PASS
@@ -112,3 +112,47 @@ Current coordination therefore is:
 The missing native dependency edge is a live-coordination postcondition only.
 It does not change the semantic dependency itself and does not authorize D179-C
 to finalize before D179-B evidence exists.
+
+## D179-B completion input
+
+D179-B / #705 has completed and its exact durable evidence is:
+
+    D179_B_PROJECT_RECORD_REVISION=88f87f5d368ef0ccba1202b02def6f98ee60cc03
+    D179_B_RESULT=COMPLETE
+
+The previous `BLOCKED_BY_D179_B` coordination state above is historical and is
+superseded by this section.
+
+D179-C must consume these established D179-B facts directly:
+
+    CONTEXT_IDENTITY_REQUIRES_EAGER_OBJECT=NO
+    ESCAPE_REQUIRES_OBJECT_BACKED_VALUES=NO
+    REFLECTION_CAN_PROJECT_FRAME_LOCALS=YES
+    EXTERNAL_VALUE_MUTATION_REQUIRES_SHARED_AUTHORITY=YES
+    EXTERNAL_STRUCTURAL_MUTATION_REQUIRES_INVALIDATION=YES
+    LATE_ADD_CAN_RETARGET_STATIC_BINDING_IDENTITY=YES
+    REMOVE_CAN_RETARGET_STATIC_BINDING_IDENTITY=YES
+    DEBUGGER_REQUIRES_MATERIALIZATION=NO
+    CAPTURE_REQUIRES_GUEST_CONTEXT_MATERIALIZATION=NO
+    CAPTURE_REQUIRES_SHARED_OR_MATERIALIZED_BINDING_AUTHORITY=YES
+    DYNAMIC_OVERFLOW_REQUIRED=YES_FOR_NONSTATIC_NAMES
+    EXPLICIT_SEMANTIC_PRESENCE_REQUIRED=YES
+    PRESENT_NULL_DISTINCT_FROM_ABSENT=YES
+    MODULE_CONTEXT_PERSISTENT_AUTHORITY_REQUIRED=YES
+    OBJECT_CONSTRUCTION_CONTEXT_REQUIRES_SEPARATE_CLASSIFICATION=YES
+    FROZEN_PRELUDE_REQUIRES_SEPARATE_CLASSIFICATION=YES
+
+Combined with D179-A, D179-C must not use the historical assumption that
+`removeSlot` is the only source of lexical retargeting. Both
+`PRESENT -> ABSENT` removal and `ABSENT -> PRESENT` growth in a nearer
+escaped/captured context can invalidate static nearest-binding identity.
+
+The child is now actionable research:
+
+    D179_A=#704 COMPLETE
+    D179_B=#705 COMPLETE
+    D179_C=#706 OPEN / READY
+    D179_C_BLOCKED_BY_D179_B=NO
+    IMPLEMENTATION_AUTHORIZED=NO
+
+PLAT036 remains blocked by parent D179, not released by this sibling transition.
