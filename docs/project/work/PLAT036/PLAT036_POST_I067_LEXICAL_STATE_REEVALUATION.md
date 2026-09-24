@@ -1,6 +1,6 @@
 # PLAT036 — post-I067 lexical-state architecture re-evaluation
 
-Status: **INVESTIGATION COMPLETE / RECOMMENDATION PENDING PROJECT-OWNER APPROVAL**
+Status: **INVESTIGATION COMPLETE / HISTORICAL E1 RECOMMENDATION SUPERSEDED BY RATIFIED CANDIDATE D**
 
 This is durable, non-normative investigation evidence for
 `guillermomolina/protos#702`. It is **not** a ratified platform decision and
@@ -704,3 +704,49 @@ CANDIDATE_RATIFIED=NO
 IMPLEMENTATION_AUTHORIZED=NO
 NEXT_GATE=EXPLICIT_PROJECT_OWNER_APPROVAL_OR_REJECTION
 ~~~
+
+
+## Owner approval and supersession — 2026-09-24
+
+The project owner explicitly approved the post-investigation replacement
+recommendation in the active PLAT036 decision interaction:
+
+~~~text
+OWNER_APPROVAL=
+  "Apruebo Candidate D para PLAT036; la recomendación anterior E1 queda superseded."
+
+DECISION_APPROVAL_PROVENANCE=PASS
+SELECTED_CANDIDATE=D
+SELECTED_CANDIDATE_NAME=FRAME_BACKED_SEMANTIC_CONTEXT_ADAPTER
+PRIOR_E1_RECOMMENDATION=SUPERSEDED
+CANDIDATE_RATIFIED=YES
+~~~
+
+This approval selects Candidate D exactly as reevaluated after I067/C3. It does
+not reopen D179 or approve any semantic change beyond the already-ratified C3
+execution-context capability boundary.
+
+The GITHUB021 invariant/delta review passes:
+
+~~~text
+D179_C3_MONOTONIC_MEMBERSHIP=PRESERVED
+ABSENT_TO_PRESENT_LATE_CREATION=PRESERVED
+PRESENT_TO_PRESENT_MUTATION=PRESERVED
+PRESENT_TO_ABSENT_REMOVAL=REJECTED_AS_ALREADY_RATIFIED
+CONTEXT_FIRST_CLASS_IDENTITY=PRESERVED
+CONTEXT_REFLECTION_AND_ESCAPE=PRESERVED
+CAPTURE_BY_REFERENCE=PRESERVED
+PRESENT_NULL_DISTINCT_FROM_ABSENT=PRESERVED
+ASSIGNMENT_DESTINATION_BEFORE_RHS=PRESERVED
+EXACT_DYNAMIC_FALLBACK=PRESERVED
+LAZY_CONTEXT_OBJECT_MATERIALIZATION_SELECTED=NO
+NEW_SEMANTIC_DELTA=NONE
+DECISION_INVARIANT_CONSISTENCY=PASS
+~~~
+
+The earlier E1 recommendation in this investigation remains historical evidence
+showing the path by which the decision was reached. It is not current authority.
+
+Canonical ratified authority is now:
+
+`docs/project/decisions/platform/PLAT036_BYTECODE_DSL_LEXICAL_STATE_REPRESENTATION_BOUNDARY.md`
