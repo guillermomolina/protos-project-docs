@@ -75,6 +75,7 @@ process remains authoritative first.
 | PLAT037 | Lazy execution-context physical materialization | RATIFIED | Explicit project-owner approval, 2026-09-25 selecting Candidate D — defer / retain eager physical context pending evidence | PERF010-A / PERF011 evidence before any lazy implementation |
 | PLAT038 | Native Image bootstrap, runtime and release boundary | RATIFIED | Explicit project-owner approval, 2026-09-25 selecting Candidate B — dual-runtime build with native consumption and JVM development authority | I069 Native Image bootstrap and validation; later native DIST work after implementation evidence |
 | PLAT039 | Truffle runtime-compilation boundary for Native Image | RATIFIED | Explicit project-owner approval, 2026-09-25 selecting Candidate C — evidence-gated PE-visible guest kernel with narrow host gateways | I069 Native Image runtime-boundary implementation; PERF010 causal representation/PE measurement |
+| PLAT040 | Truffle hot-path dispatch and invocation architecture | RATIFIED | Explicit project-owner approval, 2026-09-25 selecting Candidate F′ — guarded hot call with frame-argument invocation and conditional guest-state materialization after expanded cross-Truffle evidence including Apple Pkl, GraalPy, GraalJS, TruffleRuby, TruffleSqueak, Espresso, Sulong, FastR, Enso and GraalWasm | Dedicated Ixxx implementation work allocated after ratification; PERF010-A / PERF011 causal performance and representation evidence |
 See `docs/project/decisions/platform/PLAT001_TRUFFLE_RUNTIME_HOSTING.md` for the selected topology,
 its non-semantic boundary, alternatives, scaling rationale, invariants, and
 explicitly deferred choices.
@@ -143,6 +144,8 @@ See `docs/project/decisions/platform/PLAT034_TRUFFLE_GENERIC_TOOL_TAG_COMPATIBIL
 
 
 See docs/project/decisions/platform/PLAT035_SINGLE_EXECUTION_BACKEND_LEGACY_AST_RETIREMENT.md for the selected single executable backend and bounded legacy-AST retirement boundary.
+
+See `docs/project/decisions/platform/PLAT040_TRUFFLE_HOT_PATH_INVOCATION_ARCHITECTURE.md` for the selected guarded stable-send, compact frame-argument invocation ABI, conditional guest-state materialization, optional-state separation, PLAT037 evidence-gate result and exact PLAT036/PLAT039 composition. Final comparative evidence is retained under `docs/project/evidence/PLAT040/PLAT040_CROSS_TRUFFLE_HOT_CALL_DECISION_EVIDENCE.md`.
 
 See docs/project/decisions/platform/PLAT036_BYTECODE_DSL_LEXICAL_STATE_REPRESENTATION_BOUNDARY.md for the selected frame-backed semantic-context adapter and one-authority lexical-state architecture.
 
