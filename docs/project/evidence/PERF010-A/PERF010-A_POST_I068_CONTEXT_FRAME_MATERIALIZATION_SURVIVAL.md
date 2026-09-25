@@ -334,3 +334,48 @@ PLAT039 is ratified:
   resume decomposition from this checkpoint.
 
 No further production optimization is selected here.
+
+## Maintained harness publication
+
+The reusable subset of this investigation is now maintained in
+`guillermomolina/protos-benchmarks` at exact revision:
+
+```text
+CONTEXT_MATERIALIZATION_HARNESS_REVISION=
+  454e3abe764dcb47b3da4cdb1d332cc7c6e7fd9e
+```
+
+Published files/entry points:
+
+```text
+docker/protos-perf010a/Perf010aContextMaterializationProbe.java
+runner/perf010a_context_materialization.py
+
+make perf010a-context-materialization-validate
+make perf010a-context-materialization-smoke
+make perf010a-context-materialization-measure
+```
+
+The maintained runner deliberately preserves the current evidence boundary:
+allocation decomposition uses `ThreadMXBean` with normal TLAB behavior and
+guest timing uses the JFR-free `Perf010aTimingDriver`. It does not encode or
+select a PLAT037/PLAT039 production optimization.
+
+Human-executed publication validation reported:
+
+```text
+PERF010A_CONTEXT_MATERIALIZATION_VALIDATE=PASS
+SMOKE=PASS
+GIT_DIFF_CHECK=PASS
+```
+
+The smoke allocation output reproduced the expected shape:
+
+```text
+execution-context = 104.0272 B/op
+ordinary-object   = 104.0 B/op
+return-home       = 16.0072 B/op
+```
+
+The smoke timing is not retained as reference performance evidence because the
+smoke contract intentionally uses only one fork and five steady samples.
