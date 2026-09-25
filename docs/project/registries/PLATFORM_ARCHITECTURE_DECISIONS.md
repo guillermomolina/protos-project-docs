@@ -74,6 +74,7 @@ process remains authoritative first.
 | PLAT036 | Bytecode DSL lexical-state representation boundary | RATIFIED | Explicit project-owner approval, 2026-09-24 selecting Candidate D and superseding prior E1 recommendation | I068 frame-backed lexical-state implementation |
 | PLAT037 | Lazy execution-context physical materialization | RATIFIED | Explicit project-owner approval, 2026-09-25 selecting Candidate D — defer / retain eager physical context pending evidence | PERF010-A / PERF011 evidence before any lazy implementation |
 | PLAT038 | Native Image bootstrap, runtime and release boundary | RATIFIED | Explicit project-owner approval, 2026-09-25 selecting Candidate B — dual-runtime build with native consumption and JVM development authority | I069 Native Image bootstrap and validation; later native DIST work after implementation evidence |
+| PLAT039 | Truffle runtime-compilation boundary for Native Image | OPEN | Research in progress; preliminary evidence published, no owner approval yet | I069 Native Image runtime-boundary implementation; PERF010 representation/PE interaction |
 See `docs/project/decisions/platform/PLAT001_TRUFFLE_RUNTIME_HOSTING.md` for the selected topology,
 its non-semantic boundary, alternatives, scaling rationale, invariants, and
 explicitly deferred choices.
@@ -148,3 +149,5 @@ See docs/project/decisions/platform/PLAT036_BYTECODE_DSL_LEXICAL_STATE_REPRESENT
 See docs/project/decisions/platform/PLAT037_LAZY_EXECUTION_CONTEXT_PHYSICAL_MATERIALIZATION.md for the ratified defer/keep-eager physical context boundary and the evidence gate before any later lazy materialization.
 
 See docs/project/decisions/platform/PLAT038_NATIVE_IMAGE_BOOTSTRAP_RUNTIME_RELEASE_BOUNDARY.md for the selected dual-runtime JVM/native architecture, operational stage0/stage1 model, native guest-JIT requirement, and strict build/native/dist/release separation.
+
+See `docs/project/evidence/PLAT039/PLAT039_TRUFFLE_RUNTIME_COMPILATION_BOUNDARY_PRELIMINARY_EVIDENCE.md` for the open preliminary gateway classification, GraalVM 25.3.4.1 blocklist evidence, I068/PERF010 interaction, and the remaining GITHUB010 research gates before any candidate may be approved.
