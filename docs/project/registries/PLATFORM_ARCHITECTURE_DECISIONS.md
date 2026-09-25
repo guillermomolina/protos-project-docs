@@ -70,6 +70,10 @@ process remains authoritative first.
 | PLAT032 | Non-canonical standard-wrapper C-prime orchestration boundary | RATIFIED | Explicit project-owner approval, 2026-09-13 after focused Truffle audit including Apple Pkl, TruffleSqueak, TruffleRuby, GraalPy, GraalJS, SOMns, Espresso, Sulong/GraalWasm and historical concurrent Truffle systems; future/scalability/Protos-philosophy scoring selected Candidate A | PERF006-B6B-F2 replay retirement and future copied/aliased/non-canonical standard wrappers that compose suspendible guest work |
 | PLAT033 | Optimizing Truffle runtime dependency and packaging authority | RATIFIED | Explicit project-owner approval, 2026-09-13 after exhaustive current/historical Truffle packaging audit including GraalJS, GraalPy, GraalWasm, Espresso, Sulong, Enso, TruffleRuby, TruffleSqueak, TRegex, SimpleLanguage, FastR, grCUDA, SOMns, TruffleSOM, Yona and Apple Pkl; future/scalability/Protos-philosophy scoring selected Candidate A′ | PERF006-C optimizer runtime closure across Maven/Surefire, checkout execution, portable distribution and CI |
 | PLAT034 | Truffle generic-tool tag compatibility envelope | RATIFIED | Explicit project-owner approval, 2026-09-13 after exhaustive principal Truffle implementation audit including Apple Pkl plus generic Graal DAP/LSP tag-request evidence; future/scalability/Protos-philosophy scoring selected Candidate C′ | PERF006-C3 and later production Bytecode debugger/LSP generic-tool compatibility |
+| PLAT035 | Single execution backend and legacy Truffle AST retirement | RATIFIED | Explicit project-owner approval, 2026-09-17 after comparative decision packet and invariant/delta review selecting Candidate C | I067 and later single-backend execution work |
+| PLAT036 | Bytecode DSL lexical-state representation boundary | RATIFIED | Explicit project-owner approval, 2026-09-24 selecting Candidate D and superseding prior E1 recommendation | I068 frame-backed lexical-state implementation |
+| PLAT037 | Lazy execution-context physical materialization | RATIFIED | Explicit project-owner approval, 2026-09-25 selecting Candidate D — defer / retain eager physical context pending evidence | PERF010-A / PERF011 evidence before any lazy implementation |
+| PLAT038 | Native Image bootstrap, runtime and release boundary | RATIFIED | Explicit project-owner approval, 2026-09-25 selecting Candidate B — dual-runtime build with native consumption and JVM development authority | I069 Native Image bootstrap and validation; later native DIST work after implementation evidence |
 See `docs/project/decisions/platform/PLAT001_TRUFFLE_RUNTIME_HOSTING.md` for the selected topology,
 its non-semantic boundary, alternatives, scaling rationale, invariants, and
 explicitly deferred choices.
@@ -135,3 +139,12 @@ See `docs/project/decisions/platform/PLAT028_C_PRIME_CALLBACK_ORCHESTRATION_NATI
 See `docs/project/decisions/platform/PLAT032_NONCANONICAL_STANDARD_WRAPPER_C_PRIME_ORCHESTRATION.md` for the selected ordinary-wrapper identity preservation rule, behavior-specific C-prime orchestration boundary, PLAT017/019/028 composition, rejected generic host-continuation ABI, scalability invariants and replay-retirement consequence.
 
 See `docs/project/decisions/platform/PLAT034_TRUFFLE_GENERIC_TOOL_TAG_COMPATIBILITY_ENVELOPE.md` for the selected Candidate C′ semantic-minimum generic-tool tag envelope: `ExpressionTag` reuses exactly the PLAT005 statement boundary, `AlwaysHalt` is provided with zero guest locations, variable/root-body/try tags remain deferred, and any later undeclared generic-tool tag requirement must return through explicit governance.
+
+
+See docs/project/decisions/platform/PLAT035_SINGLE_EXECUTION_BACKEND_LEGACY_AST_RETIREMENT.md for the selected single executable backend and bounded legacy-AST retirement boundary.
+
+See docs/project/decisions/platform/PLAT036_BYTECODE_DSL_LEXICAL_STATE_REPRESENTATION_BOUNDARY.md for the selected frame-backed semantic-context adapter and one-authority lexical-state architecture.
+
+See docs/project/decisions/platform/PLAT037_LAZY_EXECUTION_CONTEXT_PHYSICAL_MATERIALIZATION.md for the ratified defer/keep-eager physical context boundary and the evidence gate before any later lazy materialization.
+
+See docs/project/decisions/platform/PLAT038_NATIVE_IMAGE_BOOTSTRAP_RUNTIME_RELEASE_BOUNDARY.md for the selected dual-runtime JVM/native architecture, operational stage0/stage1 model, native guest-JIT requirement, and strict build/native/dist/release separation.
