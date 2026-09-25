@@ -15,6 +15,7 @@ its references, retention role, and compatibility implications.
   evidence for DIST001.
 - [`D098/`](D098/README.md) — immutable ratification publication, safe-abort, and GitHub closure evidence for D098.
 - [`D099/`](D099/README.md) — immutable ratification publication, safe-abort, and GitHub closure evidence for D099.
+- [`I071/`](I071/I071_D179_C0_FRAME_NATIVE_PRESENCE_IMPLEMENTATION.md) — retained D179 C0 / I071 frame-native presence implementation, conformance, normative-convergence, and publication-validation evidence.
 - [`PERF006/`](PERF006/README.md) — immutable PERF006 C3/C4 runtime validation plus D1-D4 controlled performance, structural-diagnostic, and final closure evidence.
 - [`PERF009/`](PERF009/README.md) — immutable PERF009-A IGV/JFR diagnostic checkpoint and exact analyzer/tooling publication identities; PERF009-A remains open.
 - [`PERF010-A/`](PERF010-A/) — retained PERF010-A causal-ablation, guarded-call, compiler-visibility, caller/helper-boundary, cross-runtime, compiler-lifecycle, post-I068 context/frame-materialization, and restart-playbook evidence; PERF010-A remains open.

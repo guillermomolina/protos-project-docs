@@ -14,9 +14,12 @@ PLAT036_STATE=CLOSED / CANDIDATE_D RETAINED
 PLAT036_BLOCKED_BY=NONE
 CURRENT_RECONSIDERATION_PROTOS_REVISION=d4ac1c7be600c00c785dc9742dc7aeaeab17eaec
 CURRENT_IMPLEMENTATION_OWNER=I071/#717
-CURRENT_PRODUCT_IMPLEMENTATION=C3_PENDING_I071
+CURRENT_PRODUCT_IMPLEMENTATION=C0_COMPLETE_AT_0c9307240796260882ddca27611c91b7ffa4ce3b
+CURRENT_PRODUCT_VERSION=0.3.88-SNAPSHOT
+CURRENT_SPEC_REVISION=0.1.434
+IMPLEMENTATION_STATE=CLOSED / COMPLETE
 
-This document preserves D179 investigation history and the current owner-approved ratification. It is non-normative project evidence: observable Protos semantics remain defined by the normative specification, whose physical C0 convergence is owned by I071.
+This document preserves D179 investigation history and the current owner-approved ratification. It is non-normative project evidence: observable Protos semantics remain defined by the normative specification. I071 completed physical C0 convergence at Protos revision `0c9307240796260882ddca27611c91b7ffa4ce3b`.
 
 ## A. Baseline revisions and authorities
 
@@ -1858,21 +1861,43 @@ PLAT039_REOPEN_REQUIRED=NO
 
 ### Implementation convergence
 
-The current product/specification baseline still physically implements the
-previous C3 rule. Approval of C0/E does not fabricate implementation completion.
+I071 completed and published the bounded semantic/runtime/specification
+convergence selected by D179 C0/E.
 
 ```text
-CURRENT_PRODUCT_BEHAVIOR=C3_UNTIL_I071_PUBLICATION
-CURRENT_NORMATIVE_SPEC=C3_UNTIL_I071_PUBLICATION
+PROTOS_REVISION=0c9307240796260882ddca27611c91b7ffa4ce3b
+PROTOS_VERSION=0.3.88-SNAPSHOT
+SPEC_REVISION=0.1.434
+
+CURRENT_PRODUCT_BEHAVIOR=C0
+CURRENT_NORMATIVE_SPEC=C0
 IMPLEMENTATION_OWNER=I071/#717
-IMPLEMENTATION_STATE=OPEN / READY
+IMPLEMENTATION_STATE=CLOSED / COMPLETE
+
+FRAME_NATIVE_CLEARED_PRESENCE=PASS
+CURRENT_RESOLVED_READ_PRESENCE_GUARD=PASS
+FRAME_BACKED_SINGLE_AUTHORITY=PASS
+NO_DUAL_BINDING_AUTHORITY=PASS
+PLAT036_REOPEN_REQUIRED=NO
+I068_ARCHITECTURE_REOPEN_REQUIRED=NO
+PLAT039_REOPEN_REQUIRED=NO
 ```
+
+The published implementation removes the C3-specific execution-context
+`removeLocalSlot` rejection, uses the existing frame-local cleared state as
+semantic absence, adds the required current-`Resolved` presence guard, and
+retains captured presence/topology checks. Removal/recreation reuses stable
+frame identity/layout; no sentinel, second authority, dynamic-map migration or
+broad Truffle boundary was introduced.
 
 I067 remains closed as historically correct implementation evidence for the
 then-ratified C3 decision. I068 remains closed as the completed implementation
-of PLAT036 Candidate D. I071 owns the bounded semantic/runtime/specification
-convergence to this newly ratified D179 result.
+of PLAT036 Candidate D.
 
 Canonical reconsideration evidence:
 
 `docs/project/evidence/D179/D179_C0_FRAME_NATIVE_PRESENCE_RECONSIDERATION.md`
+
+Canonical implementation evidence:
+
+`docs/project/evidence/I071/I071_D179_C0_FRAME_NATIVE_PRESENCE_IMPLEMENTATION.md`
