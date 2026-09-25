@@ -19,7 +19,60 @@ POST_I068_BASELINE_HARNESS_REVISION=
 
 POST_I068_BASELINE_RESULT_REVISION=
   bdb69e2e5135f95a0b41fd258f8afd8d8ca3d7df
+
+MAINTAINED_CONTEXT_MATERIALIZATION_HARNESS_REVISION=
+  454e3abe764dcb47b3da4cdb1d332cc7c6e7fd9e
 ```
+
+## Maintained restart harness
+
+The ad-hoc host/allocation and guest timing probes that proved reusable have
+been converted into maintained benchmark-repository tooling at exact revision
+`454e3abe764dcb47b3da4cdb1d332cc7c6e7fd9e`.
+
+Published surfaces:
+
+```text
+docker/protos-perf010a/Perf010aContextMaterializationProbe.java
+runner/perf010a_context_materialization.py
+Makefile targets:
+  perf010a-context-materialization-validate
+  perf010a-context-materialization-smoke
+  perf010a-context-materialization-measure
+```
+
+The runner pins the existing post-I068 image and exact product revision,
+compiles the Java allocation probe against the pinned JDK/runtime, selects one
+allowed CPU, disables networking, uses normal TLAB behavior for
+`ThreadMXBean` allocation measurement, and reuses the JFR-free
+`Perf010aTimingDriver` for the no-binding versus unused-local guest
+discriminator.
+
+Publication validation reported:
+
+```text
+PYTHON_COMPILE=PASS
+PERF010A_CONTEXT_MATERIALIZATION_VALIDATE=PASS
+SMOKE=PASS
+GIT_DIFF_CHECK=PASS
+```
+
+The smoke reproduced the expected allocation shape:
+
+```text
+execution-context ~= 104.0272 B/op
+ordinary-object   = 104.0 B/op
+return-home       ~= 16.0072 B/op
+```
+
+Smoke timing is intentionally not retained as performance evidence: it uses one
+fork with five warmup and five steady samples and exists only as a correctness
+and execution admission gate.
+
+When this investigation resumes, start from these maintained targets rather
+than recreating temporary Java/Python probes. Extend the maintained harness only
+after checking whether the post-PLAT039 product shape still makes the additional
+probe relevant.
 
 Before reusing any numeric result against a later product revision, compare that
 revision to the pinned product revision and identify whether the activation,
