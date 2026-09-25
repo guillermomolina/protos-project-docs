@@ -2,16 +2,16 @@
 
 FORMAL_IDENTIFIER=D179  
 GITHUB_ISSUE=https://github.com/guillermomolina/protos/issues/703  
-DECISION_STATE=OPEN / RESEARCH EXPANDED
+DECISION_STATE=RATIFIED / C0 RESTORED AFTER POST-I068 RECONSIDERATION
 DECISION_KIND=LANGUAGE / OBJECT-MODEL SEMANTICS  
 TRIGGER=PLAT036 / #702  
 PROTOS_REVISION=3e8e6b565c95eb5098c2168d241536ba13ad19e9  
 OPENING_PROJECT_RECORD_REVISION=17d0a4629212f51d19bd557e465ae8e2da69e3c0  
-CANDIDATE_RECOMMENDED=NONE_PENDING_D179_C
-CANDIDATE_RATIFIED=NO  
+CANDIDATE_RECOMMENDED=C0_KEEP_CURRENT_EXECUTION_CONTEXT_SEMANTICS
+CANDIDATE_RATIFIED=YES  
 PREVIOUS_E1_STATUS=PARTIAL_HYPOTHESIS_SUPERSEDED_AS_RECOMMENDATION_NOT_REJECTED
-PLAT036_STATE=BLOCKED  
-PLAT036_BLOCKED_BY=D179
+PLAT036_STATE=CLOSED / CANDIDATE_D RETAINED  
+PLAT036_BLOCKED_BY=NONE
 
 This document is investigation evidence and a decision packet. It is not a ratification record. No normative specification, product implementation, test, or benchmark change is authorized by this report.
 
@@ -1705,3 +1705,171 @@ revalidated against ratified C3 rather than automatically restored.
     D179_READY_TO_CLOSE=YES
     PLAT036_SEMANTIC_BLOCKER_RESOLVED=YES
     PLAT036_NEXT_STATE=READY_FOR_REEVALUATION_UNDER_C3
+
+
+## Post-I068 reconsideration ratification — C0 restored with frame-native presence
+
+Date: 2026-09-25
+
+This section supersedes the earlier D179 C3 selection while preserving the
+historical investigation and ratification evidence above. The project owner
+explicitly reopened the deferred C0 point after PLAT036 Candidate D and I068 had
+been fully implemented, reviewed the resulting concrete representation and
+approved:
+
+```text
+apruebo C0/E
+```
+
+The reconsideration baseline is:
+
+```text
+PROTOS_REVISION=d4ac1c7be600c00c785dc9742dc7aeaeab17eaec
+PROTOS_VERSION=0.3.87-SNAPSHOT
+I068_FINAL_PRODUCT_REVISION=f1cee2d85858804ad3775adf43a9fab97664da2a
+PLAT036_PROJECT_RECORD_REVISION=96e093ab0e4a625c8d768a5a11c36d97d921b2c8
+I068_PROJECT_RECORD_REVISION=8f462172c4a84cc9099fde1737a2957ccbfdc66e
+PLAT039_PROJECT_RECORD_REVISION=485bec973b63bc3c8dd28f4bb184295ab472bbd5
+GRAALVM_TRUFFLE_VERSION=25.3.4.1
+GRAALVM_SOURCE_REVISION=7b025988a922a73286d1326e1eddc1ca39d3f569
+```
+
+The decisive post-I068 finding is that the selected PLAT036/I068 architecture
+already separates stable lexical identity from semantic presence without a
+second guest-value authority. A statically admitted binding has a stable
+Bytecode DSL local/layout identity while `LocalAccessor` /
+`LocalRangeAccessor` cleared state already represents whether that binding is
+semantically PRESENT. The frame-backed authority already implements
+`removeBinding` through `clear()`; the C3 restriction is imposed at the
+execution-context semantic boundary and by an unguarded current-`Resolved`
+read optimization that assumes PRESENT can never return to ABSENT.
+
+The selected semantic candidate is therefore:
+
+```text
+D179_SELECTED_CANDIDATE=C0_KEEP_CURRENT_EXECUTION_CONTEXT_SEMANTICS
+D179_PREVIOUS_C3_STATUS=SUPERSEDED
+
+EXECUTION_CONTEXT_ABSENT_TO_PRESENT_CREATION=KEEP_WHILE_OPEN
+EXECUTION_CONTEXT_PRESENT_TO_PRESENT_MUTATION=KEEP_WHILE_WRITABLE
+EXECUTION_CONTEXT_PRESENT_TO_ABSENT_REMOVAL=ALLOW_WHILE_OPEN
+
+ORDINARY_OBJECT_REMOVE_SLOT=KEEP
+CLOSED_STRUCTURAL_REMOVAL=REJECT
+FROZEN_STRUCTURAL_REMOVAL=REJECT
+
+REMOVAL_MAY_REVEAL_OUTER_LEXICAL_BINDING=YES
+REMOVAL_MAY_REVEAL_RECEIVER_FALLBACK=YES
+CAPTURE_BY_REFERENCE=KEEP
+CONTEXT_ESCAPE=KEEP
+PRESENT_NULL_DISTINCT_FROM_ABSENT=KEEP
+ASSIGNMENT_DESTINATION_BEFORE_RHS=KEEP
+```
+
+The owner also approved the bounded implementation strategy identified as
+Candidate E:
+
+```text
+IMPLEMENTATION_CANDIDATE=E_FRAME_NATIVE_CLEARED_PRESENCE
+
+STATIC_BINDING_IDENTITY_STABLE=YES
+FRAME_BACKED_VALUE_AUTHORITY_PRESERVED=YES
+PRESENCE_REPRESENTATION=EXISTING_FRAME_LOCAL_CLEARED_STATE
+NO_DUAL_BINDING_AUTHORITY=YES
+NO_UNBOUND_SENTINEL=YES
+NO_SEPARATE_PRESENCE_BITMAP_REQUIRED=YES
+NO_STATIC_BINDING_MAP_MIGRATION=YES
+NO_BROAD_TRUFFLE_BOUNDARY=YES
+```
+
+For a statically admitted binding, the intended implementation relation is:
+
+```text
+PRESENT -> ABSENT
+    frame local clear()
+
+ABSENT -> PRESENT
+    frame local setObject()/existing authority putBinding()
+
+identity / owner / lexical depth / frame ordinal
+    unchanged
+```
+
+The current C3-dependent direct current-local read must regain a semantic
+presence guard. A cleared current static local takes the exact normal
+lexical/receiver fallback path. Captured frame-backed reads already perform
+nearer-presence and owner-presence checks and therefore provide direct evidence
+that the architecture can preserve C0 without abandoning frame-backed authority.
+
+### GITHUB021 invariant/delta consistency
+
+The reconsideration intentionally changes exactly one previously approved D179
+invariant:
+
+```text
+OLD:
+  EXECUTION_CONTEXT_PRESENT_TO_ABSENT_REMOVAL=REJECT
+
+NEW:
+  EXECUTION_CONTEXT_PRESENT_TO_ABSENT_REMOVAL=ALLOW_WHILE_OPEN
+```
+
+That point was explicitly deferred for reconsideration in the original C3
+ratification and was explicitly reopened and replaced by the owner's
+`apruebo C0/E` approval.
+
+All other applicable D179 invariants are preserved:
+
+```text
+EXECUTION_CONTEXT_IS_FIRST_CLASS_OBJECT=KEEP
+CONTEXT_TO_OBJECT_DELEGATION=KEEP
+EXECUTION_CONTEXT_STRUCTURAL_GROWTH=KEEP_WHILE_OPEN
+EXECUTION_CONTEXT_VALUE_MUTATION=KEEP_WHILE_WRITABLE
+LATE_NEARER_CREATION_RETARGETING=KEEP
+CAPTURE_BY_REFERENCE=KEEP
+CONTEXT_ESCAPE=KEEP
+REFLECTION=KEEP
+CLOSE_FREEZE=KEEP
+PRESENT_NULL_DISTINCT_FROM_ABSENT=KEEP
+OPTIONAL_BACKEND_CAPABILITY_MODEL_INTRODUCED=NO
+IMPLEMENTATION_SPECIFIC_CONTEXT_SEMANTICS_INTRODUCED=NO
+```
+
+PLAT036 Candidate D is preserved. I068 is not reopened as an architecture
+decision: its frame-backed semantic-context adapter, stable static identity,
+dynamic overflow, captured materialized authority, debugger/reflection
+projection and single-authority invariant remain selected. The implementation
+must only remove the C3 semantic restriction and restore presence-aware current
+reads where the old monotonic guarantee had allowed the guard to be omitted.
+
+PLAT039 Candidate C is also preserved. The frame-local presence check belongs in
+the PE-visible guest kernel and requires no broad host/runtime boundary.
+
+```text
+DECISION_APPROVAL_PROVENANCE=PASS
+DECISION_INVARIANT_CONSISTENCY=PASS
+PLAT036_REOPEN_REQUIRED=NO
+I068_ARCHITECTURE_REOPEN_REQUIRED=NO
+PLAT039_REOPEN_REQUIRED=NO
+```
+
+### Implementation convergence
+
+The current product/specification baseline still physically implements the
+previous C3 rule. Approval of C0/E does not fabricate implementation completion.
+
+```text
+CURRENT_PRODUCT_BEHAVIOR=C3_UNTIL_I071_PUBLICATION
+CURRENT_NORMATIVE_SPEC=C3_UNTIL_I071_PUBLICATION
+IMPLEMENTATION_OWNER=I071/#717
+IMPLEMENTATION_STATE=OPEN / READY
+```
+
+I067 remains closed as historically correct implementation evidence for the
+then-ratified C3 decision. I068 remains closed as the completed implementation
+of PLAT036 Candidate D. I071 owns the bounded semantic/runtime/specification
+convergence to this newly ratified D179 result.
+
+Canonical reconsideration evidence:
+
+`docs/project/evidence/D179/D179_C0_FRAME_NATIVE_PRESENCE_RECONSIDERATION.md`
