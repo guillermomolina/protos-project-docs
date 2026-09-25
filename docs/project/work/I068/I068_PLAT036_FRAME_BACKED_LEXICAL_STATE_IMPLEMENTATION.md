@@ -1,6 +1,6 @@
 # I068 — PLAT036 frame-backed lexical-state implementation
 
-Status: **OPEN / READY — SLICES 1–5 PUBLISHED; SLICE 6 NEXT**
+Status: **OPEN / READY — SLICES 1–6 PUBLISHED; SLICE 7 NEXT**
 
 Issue: `guillermomolina/protos#708`
 
@@ -373,3 +373,60 @@ I068 remains open. Slice 6 owns debugger/reflection projection over the
 frame-backed static binding authority plus dynamic overflow while hiding
 backend-only temporaries. Slice 7 remains responsible for final
 `ProtosActivation` lexical decomposition and fallback cleanup.
+
+
+## Slice 6 publication checkpoint — 2026-09-25
+
+~~~text
+I068_SLICE_6=DEBUGGER_REFLECTION_PROJECTION
+PROTOS_REVISION=f5f94fdf95b45ba7fa77221069381014589095b2
+PROTOS_VERSION=0.3.86-SNAPSHOT
+COMMIT_MESSAGE=I068: project debugger reflection from frame-backed bindings
+
+SLICE_6_EVIDENCE_REVISION=ed7911ae7e16972191d6fd8bf1bd17d008b19845
+IMMEDIATE_PREDECESSOR_REVISION=ceba64b3412a1b61de5d1d74568d42d9b6128d8a
+
+CONTEXT_REFLECTION_PROJECTION=PASS
+DEBUGGER_SCOPE_PROJECTION=PASS
+FRAME_BACKED_STATIC_BINDINGS_VISIBLE=PASS
+DYNAMIC_OVERFLOW_VISIBLE=PASS
+UNESTABLISHED_STATIC_BINDINGS_HIDDEN=PASS
+BACKEND_TEMPORARIES_HIDDEN=PASS
+READ_ONLY_TOOLING_BASELINE_PRESERVED=PASS
+DEBUGGER_LOOKUP_PRECEDENCE_PRESERVED=PASS
+OBJECT_BODY_BOUNDARY_PRESERVED=PASS
+NO_DUAL_BINDING_AUTHORITY=PASS
+
+PRODUCTION_JAVA_CHANGE=NO
+LAZY_CONTEXT_MATERIALIZATION=NO
+SEMANTIC_CHANGE=NO
+
+GIT_DIFF_CHECK=PASS
+I068_SLICE6_FOCAL_TESTS=PASS
+AFFECTED_REGRESSION_SET=PASS
+MAVEN_TEST_SUITE=PASS
+FULL_TEST_SUITE=PASS
+REMOTE_CI_PASS=NOT_CLAIMED
+
+SLICE_6_STATUS=COMPLETE
+NEXT_SLICE=I068_SLICE_7_PROTOS_ACTIVATION_LEXICAL_DECOMPOSITION_FALLBACK_CLEANUP
+~~~
+
+Slice 6 establishes focused evidence that the existing semantic projection seam
+already produced by Slices 2–5 is correct for real frame-backed execution. Core
+reflection projects PRESENT frame-backed bindings plus dynamic overflow through
+the execution context's single lexical authority; physical-but-unestablished
+static locals remain hidden. The synthetic debugger scope continues to route
+reads through `ProtosActivation`, sees live captured frame-backed mutation, and
+does not expose Bytecode DSL implementation temporaries.
+
+No production Java repair was required. Direct Interop member projection on
+`ProtosExecutionContextValue` remains deliberately unchanged under PLAT013.
+
+Retained evidence:
+
+`docs/project/evidence/I068/I068_SLICE6_DEBUGGER_REFLECTION_PROJECTION.md@ed7911ae7e16972191d6fd8bf1bd17d008b19845`
+
+I068 remains open. Slice 7 owns final `ProtosActivation` lexical decomposition
+and obsolete generic String-based fallback cleanup only after the authoritative
+paths established by Slices 1–6.
