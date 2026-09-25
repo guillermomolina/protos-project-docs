@@ -8,12 +8,15 @@ TRIGGER=PLAT036 / #702
 PROTOS_REVISION=3e8e6b565c95eb5098c2168d241536ba13ad19e9  
 OPENING_PROJECT_RECORD_REVISION=17d0a4629212f51d19bd557e465ae8e2da69e3c0  
 CANDIDATE_RECOMMENDED=C0_KEEP_CURRENT_EXECUTION_CONTEXT_SEMANTICS
-CANDIDATE_RATIFIED=YES  
+CANDIDATE_RATIFIED=YES
 PREVIOUS_E1_STATUS=PARTIAL_HYPOTHESIS_SUPERSEDED_AS_RECOMMENDATION_NOT_REJECTED
-PLAT036_STATE=CLOSED / CANDIDATE_D RETAINED  
+PLAT036_STATE=CLOSED / CANDIDATE_D RETAINED
 PLAT036_BLOCKED_BY=NONE
+CURRENT_RECONSIDERATION_PROTOS_REVISION=d4ac1c7be600c00c785dc9742dc7aeaeab17eaec
+CURRENT_IMPLEMENTATION_OWNER=I071/#717
+CURRENT_PRODUCT_IMPLEMENTATION=C3_PENDING_I071
 
-This document is investigation evidence and a decision packet. It is not a ratification record. No normative specification, product implementation, test, or benchmark change is authorized by this report.
+This document preserves D179 investigation history and the current owner-approved ratification. It is non-normative project evidence: observable Protos semantics remain defined by the normative specification, whose physical C0 convergence is owned by I071.
 
 ## A. Baseline revisions and authorities
 
