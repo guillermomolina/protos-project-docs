@@ -833,3 +833,52 @@ NEXT_GATE=
 ~~~
 
 STOP.
+
+
+## Owner approval and ratification — 2026-09-25
+
+The project owner explicitly approved the investigation recommendation in the
+active PLAT037 decision interaction:
+
+~~~text
+OWNER_APPROVAL=
+  "aprobado"
+~~~
+
+The approval applies to the immediately preceding PLAT037 recommendation:
+
+~~~text
+SELECTED_CANDIDATE=D
+SELECTED_CANDIDATE_NAME=DEFER_KEEP_CURRENT_PENDING_EVIDENCE
+~~~
+
+Therefore:
+
+~~~text
+PLAT037_SELECTED_CANDIDATE=D
+PLAT037_STATUS=RATIFIED
+CURRENT_EAGER_CONTEXT_ARCHITECTURE=KEEP_FOR_NOW
+EAGER_PHYSICAL_ALLOCATION_SEMANTICALLY_REQUIRED=NO
+
+LAZY_CONTEXT_MATERIALIZATION_ARCHITECTURALLY_VALID=CONDITIONAL
+CANDIDATE_B_CONTEXTCORE_LAZY_WRAPPER=VALID_FUTURE_OPTION
+CANDIDATE_B_IMPLEMENTATION_AUTHORIZED=NO
+
+MEASUREMENT_REQUIRED_BEFORE_LAZY_IMPLEMENTATION=YES
+IMPLEMENTATION_OWNER_ALLOCATED=NO
+NORMATIVE_SPEC_CHANGE_REQUIRED=NO
+~~~
+
+Ratification does not establish that eager physical context allocation is cheap,
+expensive, dominant, or negligible. It settles only the current architecture
+choice: do not introduce the new per-invocation ContextCore/lazy-wrapper
+substrate until current product evidence demonstrates enough surviving cost to
+justify it.
+
+The next performance step is therefore evidence work, not an Ixxx
+implementation. PERF010-A / #691 remains responsible for dominant-cost causal
+attribution; PERF011 / #693 remains the systemic representation-fit auditor.
+
+Canonical ratified authority is published under:
+
+`docs/project/decisions/platform/PLAT037_LAZY_EXECUTION_CONTEXT_PHYSICAL_MATERIALIZATION.md`
