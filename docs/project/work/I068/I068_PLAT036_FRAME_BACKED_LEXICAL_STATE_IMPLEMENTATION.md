@@ -1,6 +1,6 @@
 # I068 — PLAT036 frame-backed lexical-state implementation
 
-Status: **OPEN / READY — SLICES 1–6 PUBLISHED; SLICE 7 NEXT**
+Status: **COMPLETE — SLICES 1–7 PUBLISHED**
 
 Issue: `guillermomolina/protos#708`
 
@@ -430,3 +430,66 @@ Retained evidence:
 I068 remains open. Slice 7 owns final `ProtosActivation` lexical decomposition
 and obsolete generic String-based fallback cleanup only after the authoritative
 paths established by Slices 1–6.
+
+## Slice 7 publication checkpoint — 2026-09-25
+
+~~~text
+I068_SLICE_7=PROTOS_ACTIVATION_LEXICAL_DECOMPOSITION_FALLBACK_CLEANUP
+PROTOS_REVISION=f1cee2d85858804ad3775adf43a9fab97664da2a
+PROTOS_VERSION=0.3.87-SNAPSHOT
+COMMIT_MESSAGE=I068: decompose activation lexical fallback machinery
+
+IMMEDIATE_PREDECESSOR_REVISION=fa487e51882c402149699f9024b2ec5aa11dfd76
+
+PROTOS_ACTIVATION_LEXICAL_DECOMPOSITION=PASS
+STATIC_CURRENT_FALLBACK_BYPASS=PASS
+STATIC_CAPTURED_FALLBACK_BYPASS=PASS
+CANDIDATE_DYNAMIC_FALLBACK_PRESERVED=PASS
+CAPTURE_TOPOLOGY_RETAINED=PASS
+ASSIGNMENT_DESTINATION_BEFORE_RHS=PASS
+WRITES_NEVER_DELEGATE=PASS
+DEBUGGER_SEMANTIC_LOOKUP_PRESERVED=PASS
+RECEIVER_FALLBACK_PRESERVED=PASS
+NO_DUAL_BINDING_AUTHORITY=PASS
+LAZY_CONTEXT_MATERIALIZATION=NO
+SEMANTIC_CHANGE=NO
+
+PRODUCTION_COMPILE=PASS
+I068_SLICE7_FOCAL_TESTS=PASS
+MIGRATED_PERF006_REGRESSION_SET=PASS
+I068_SLICES_3_6_SEMANTIC_REGRESSION=PASS
+MAVEN_TEST_SUITE=PASS
+FULL_TEST_SUITE=PASS
+GIT_DIFF_CHECK=PASS
+REMOTE_CI_PASS=NOT_CLAIMED
+
+SLICE_7_STATUS=COMPLETE
+I068_STATUS=COMPLETE
+NEXT_SLICE=NONE
+~~~
+
+Slice 7 removes generic name-based lexical resolution from
+`ProtosActivation` itself. Exact residual name-based semantics are retained
+in `ProtosLexicalFallback`: reads preserve current-context, captured-context
+and receiver/member precedence, while bare-assignment destination resolution
+preserves current/captured/receiver-own-local selection without delegation.
+
+The statically proven frame-backed paths established by earlier slices remain
+separate: current `Resolved` reads use `ReadFrameLocal`, and proven
+`CapturedResolved` access retains the captured frame-backed operations.
+Candidate/Dynamic, compatibility, late-presence/retargeting and debugger
+semantic reads retain the exact residual fallback where static proof is not
+sufficient.
+
+`capturedLexicalContexts` and `lexicalContextsForClosureCapture` remain
+activation responsibilities because they describe invocation/capture topology,
+not obsolete generic lexical resolution.
+
+Retained evidence:
+
+`docs/project/evidence/I068/I068_SLICE7_ACTIVATION_LEXICAL_DECOMPOSITION_FALLBACK_CLEANUP.md`
+
+All seven implementation slices defined by I068 are now published and validated.
+The completion conditions for the ratified PLAT036 Candidate D implementation
+are satisfied. No Slice 8 is allocated under I068.
+
