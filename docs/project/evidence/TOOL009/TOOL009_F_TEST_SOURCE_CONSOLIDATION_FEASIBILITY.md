@@ -906,3 +906,723 @@ Phase E.
 This correction remained investigation-only. No Protos product files were
 modified and no build, test, benchmark, Protos program, generated validation, or
 publication script was executed.
+
+## TOOL009-F-E/F current-HEAD target map and implementation readiness
+
+### Investigation identity
+
+- Owning work item: [TOOL009-F / #694](https://github.com/guillermomolina/protos/issues/694)
+- Phase E: [TOOL009-F-E / #699](https://github.com/guillermomolina/protos/issues/699)
+- Phase F: [TOOL009-F-F / #700](https://github.com/guillermomolina/protos/issues/700)
+- Investigated Protos revision: `cf9b39b25dc9a3c4cd1c538749c3a363760ae45b`
+- Investigation type: read-only target-map and implementation-slicing reconciliation
+- Builds/tests/benchmarks/Protos programs executed: none
+- Protos repository mutations performed: none
+
+This checkpoint consumes the corrected Phase-A inventory plus the established
+Phase-B semantic boundaries, Phase-C specialized-execution constraints, and
+Phase-D physical-path constraints. It supersedes only inherited numeric state
+where current Protos HEAD has advanced; it does not reopen those architectural
+conclusions.
+
+### Current-HEAD reconciliation
+
+The corrected A-D baseline was:
+
+```text
+PROTOS_REVISION=2b3a88389da7228caed231a90b14091cf2841115
+TEST_SOURCE_FILES=1230
+LOGICAL_CASES=1250
+ORDINARY_TEST_SOURCES=895
+ORDINARY_LOGICAL_CASES=901
+SPECIAL_EXECUTION_TEST_SOURCES=335
+SPECIAL_EXECUTION_LOGICAL_CASES=349
+```
+
+Between that revision and current HEAD, four suite-native sources were added
+under `protos/tests/conformance/execution-context/`. They already use the
+intended multi-Test source model and contribute 13 directly declared Tests:
+3 + 4 + 2 + 4.
+
+Therefore the current authoritative baseline is:
+
+```text
+PROTOS_REVISION=cf9b39b25dc9a3c4cd1c538749c3a363760ae45b
+
+CURRENT_TEST_SOURCE_FILES=1234
+CURRENT_LOGICAL_CASES=1263
+
+SINGLE_CASE_SOURCE_FILES=1228
+MULTI_CASE_SOURCE_FILES=6
+
+ORDINARY_TEST_SOURCES=899
+ORDINARY_LOGICAL_CASES=914
+
+SPECIAL_EXECUTION_TEST_SOURCES=335
+SPECIAL_EXECUTION_LOGICAL_CASES=349
+```
+
+The six genuine current multi-Case sources are:
+
+```text
+control/future-detach-removed-semantics.protos                         7 Cases
+package-tool/execution-plan/fixtures/f2e3b-build-v2-error.protos      15 Cases
+execution-context/capture-by-reference-and-late-nearer-creation-retargeting.protos
+                                                                      3 Cases
+execution-context/escape-close-freeze-and-present-null-preserved.protos
+                                                                      4 Cases
+execution-context/open-creation-and-value-mutation-preserved.protos    2 Cases
+execution-context/remove-slot-restored-ordinary-object-unaffected.protos
+                                                                      4 Cases
+```
+
+The Phase-A correction still applies: nested runtime `Test(...)` values inside
+another Test body are not discoverable Logical Cases.
+
+### Durable source-granularity policy
+
+Suite-native Test sources are grouped by coherent behavioral contract, not by an
+arbitrary numeric quota and not by subsystem-wide minimization.
+
+A physical source may own multiple independent named Tests when they share the
+same semantic theme and the same corpus, ExecutionRequirement, namespace,
+bootstrap and execution authority.
+
+Physical separation is retained when one of those boundaries changes, when a
+source/fixture path participates in a distinct project authority, when
+consolidation would change the exact selector × authority matrix, or when a
+standalone integration/stress/public-surface source is materially clearer.
+
+Consolidation does not combine Test bodies or weaken Logical Case identity.
+Every selector remains independently discovered, scheduled, rematerialized and
+executed in its fresh semantic Process.
+
+### Exact repository-wide target count
+
+The complete target-map reconciliation is:
+
+| Corpus/family | Current sources | Target sources | Logical Cases |
+| --- | ---: | ---: | ---: |
+| ordinary conformance manifest | 821 | 171 | 836 |
+| repository-explicit libraries | 78 | 23 | 78 |
+| Process Snapshot | 15 | 3 | 15 |
+| Actor | 11 | 4 | 11 |
+| Group | 10 | 3 | 10 |
+| Package TOML | 102 | 14 | 102 |
+| Package case-outcomes | 157 | 22 | 157 |
+| Package project-tree | 40 | 30 | 54 |
+| **Total** | **1234** | **270** | **1263** |
+
+Thus:
+
+```text
+CURRENT_TEST_SOURCE_FILES=1234
+PROPOSED_TEST_SOURCE_FILES=270
+
+CURRENT_LOGICAL_CASES=1263
+PROPOSED_LOGICAL_CASES=1263
+
+LOGICAL_CASE_COVERAGE_CHANGE=NONE
+TEST_TOOL_SEMANTICS_CHANGE=NONE
+```
+
+### Ordinary conformance target families
+
+The main conformance manifest is reduced from 821 physical sources to 171
+semantic sources while preserving 836 Logical Cases.
+
+The target paths by top-level family are:
+
+```text
+boolean: 24 -> 4
+  conditional-single-branch.protos
+  lazy-binary.protos
+  negation-and-receiver.protos
+  if-true-if-false.protos
+
+bytes: 25 -> 5
+  mutation-and-growth.protos
+  indexed-read-and-size.protos
+  indexed-write.protos
+  iteration.protos
+  identity-and-encoding.protos
+
+call: 17 -> 5
+  closure-call-and-return.protos
+  object-call-and-init.protos
+  call-resolution-and-method-extraction.protos
+  argument-vector-and-spread.protos
+  polymorphic-call-rejection.protos
+
+collections: 79 -> 14
+  array-construction-and-identity.protos
+  array-indexed-read-and-size.protos
+  array-indexed-update.protos
+  array-iteration.protos
+  array-construction-syntax.protos
+  map-core.protos
+  map-key-semantics.protos
+  map-iteration.protos
+  map-at-if-absent.protos
+  map-mutability-state.protos
+  map-construction-syntax.protos
+  identity-map-core.protos
+  identity-map-iteration-and-lookup.protos
+  identity-map-mutability-state.protos
+
+control: 71 sources / 77 Cases -> 13 sources
+  ensure-normal-and-validation.protos
+  ensure-control-transfer.protos
+  ensure-suspension.protos
+  ensure-cancellation-structure.protos
+  ensure-cancellation-outcomes.protos
+  future-detach-removed-semantics.protos
+  while-basic-and-validation.protos
+  while-binding-and-transfer.protos
+  while-future-ownership.protos
+  while-suspension-and-cancellation.protos
+  assignment-and-slot-creation.protos
+  null-aware-control.protos
+  control-spelling-is-ordinary.protos
+
+core-surface: 33 -> 6
+  required-core-bindings.protos
+  removed-fixed-width-bindings.protos
+  grammar-and-lexical-surface.protos
+  evaluation-order.protos
+  closure-and-argument-surface.protos
+  spread-and-super-validation.protos
+
+encoding: 13 -> 4
+  utf8.protos
+  utf16.protos
+  latin1.protos
+  api-boundaries.protos
+
+equality: 18 -> 3
+  identity-and-default-equality.protos
+  derived-inequality-and-custom-equality.protos
+  numeric-equality.protos
+
+error: 27 -> 4
+  handle.protos
+  signal.protos
+  fail.protos
+  construction-and-receiver.protos
+
+execution-context: 4 sources / 13 Cases -> retain the four current cohesive sources
+
+float: 23 -> 4
+  arithmetic.protos
+  special-values.protos
+  domain-and-receiver-errors.protos
+  prototype-and-extraction.protos
+
+future: 16 -> 5
+  construction-and-identity.protos
+  then.protos
+  all.protos
+  cancellation-and-terminal-errors.protos
+  suspension-root-activation.protos
+
+integer: 50 -> 6
+  arithmetic-and-unary.protos
+  integer-division-and-remainder.protos
+  integer-division-errors.protos
+  floating-division-results.protos
+  floating-division-errors.protos
+  prototype-and-receiver.protos
+
+matching: 7 -> 3
+  primitives.protos
+  structural-matches.protos
+  case-of.protos
+
+maturity: 21 -> 4
+  bytes-encoding/workflows.protos
+  object-model/receiver-extraction-and-lexical-workflows.protos
+  object-model/error-handler-workflows.protos
+  object-model/identity-registry-workflows.protos
+
+network: 9 -> 3
+  ip-address.protos
+  ip-endpoint.protos
+  network-prototype.protos
+
+number: 9 -> 2
+  ordering.protos
+  prototype-and-hash.protos
+
+numeric-conversion: 21 -> 3
+  integer.protos
+  float.protos
+  integer-factory-receiver.protos
+
+numeric-equality: 10 -> 2
+  finite-and-domain.protos
+  special-values.protos
+
+object: 6 -> 3
+  frozen-standard-roots.protos
+  local-slot-mutation.protos
+  composition.protos
+
+object-structural: 4 -> 2
+  alias.protos
+  without.protos
+
+path: 13 -> 3
+  equality-structure-and-hash.protos
+  child-validation.protos
+  receiver-and-factory.protos
+
+reflection: 45 -> 7
+  parent.protos
+  has-slot.protos
+  slot-names.protos
+  remove-slot.protos
+  close.protos
+  freeze.protos
+  slot-value.protos
+
+regression: 33 -> 5
+  closure-capture-and-parameters.protos
+  receiver-delegation-and-lookup.protos
+  super-dispatch.protos
+  nonlocal-and-escaped-return.protos
+  deep-recursive-closure-call-stack-capacity.protos
+
+string: 23 -> 5
+  indexing-and-scalar-size.protos
+  concat.protos
+  aggregate-concat.protos
+  prototype-identity-and-size-receiver.protos
+  hash.protos
+
+surface-sugar: 15 -> 4
+  lazy-boolean.protos
+  ordinary-dispatch.protos
+  expression-closure.protos
+  trailing-closure.protos
+
+text-reader: 26 -> 4
+  factory-and-lifecycle.protos
+  readtext.protos
+  readline-framing.protos
+  readline-limits-and-errors.protos
+
+text-writer: 9 -> 3
+  write-and-encoding.protos
+  lifecycle.protos
+  argument-validation.protos
+```
+
+The conformance Standard Library subfamilies are:
+
+```text
+library/collections: 56 -> 14
+  array-filter.protos
+  array-find-index.protos
+  array-map.protos
+  array-reduce.protos
+  array-sort.protos
+  array-common-contracts.protos
+  set-core.protos
+  set-algebra-and-predicates.protos
+  set-iteration.protos
+  identity-set-core.protos
+  identity-set-iteration.protos
+  module-surface-and-imports.protos
+  range-core.protos
+  range-callbacks-and-control.protos
+
+library/test: 13 -> 5
+  assertions-require.protos
+  assertions-signals.protos
+  test-value.protos
+  test-invocation.protos
+  public-surface.protos
+
+library/text: 12 -> 4
+  one-shot-and-wrappers.protos
+  encoding-errors.protos
+  reader-authority.protos
+  writer-authority.protos
+
+library/json: 89 -> 18
+  constructors.protos
+  constructor-errors.protos
+  import-surface.protos
+  parser-positive.protos
+  parser-structural-errors.protos
+  parser-number-errors.protos
+  parser-unicode-errors.protos
+  encoder-positive.protos
+  encoder-errors.protos
+  event-parser-positive.protos
+  event-parser-errors.protos
+  event-writer-positive.protos
+  event-writer-errors.protos
+  text-adapter-reader.protos
+  text-adapter-writer.protos
+  final-deep-stress.protos
+  final-large-materialization.protos
+  final-streaming-roundtrip.protos
+```
+
+### Repository-explicit library target map
+
+The seven explicit library corpora move from 78 sources to 23 while preserving
+78 Logical Cases:
+
+```text
+URI 11 -> 3
+  uri/parse.protos
+  uri/format.protos
+  uri/resolve.protos
+
+CSV 17 -> 5
+  csv/parse.protos
+  csv/encode.protos
+  csv/row-parser.protos
+  csv/text-adapter.protos
+  csv/integration-and-scale.protos
+
+CLI 19 -> 5
+  cli/specification-and-result.protos
+  cli/parse.protos
+  cli/subcommands.protos
+  cli/help.protos
+  cli/closure.protos
+
+Math/Integer 11 -> 4
+  math/integer/gcd-lcm.protos
+  math/integer/factorial.protos
+  math/integer/power.protos
+  math/integer/integrated-closure.protos
+
+SHA-256 10 -> 2
+  crypto/sha256/vectors-and-boundaries.protos
+  crypto/sha256/ownership-and-domain.protos
+
+IpAddresses 8 -> 3
+  network/ip-addresses/surface.protos
+  network/ip-addresses/parse-format.protos
+  network/ip-addresses/validation.protos
+
+IpEndpoints 2 -> 1
+  network/ip-endpoints/parse-format-and-validation.protos
+```
+
+`RepositoryCorpusPlans.protos` and its exact-membership tests must be rewritten
+to the new paths rather than retaining obsolete aliases.
+
+### Specialized execution families
+
+Process Snapshot:
+
+```text
+15 sources -> 3 sources / 15 Cases
+process/args.protos
+process/environment.protos
+process/snapshot-and-process-surface.protos
+```
+
+Actor:
+
+```text
+11 sources -> 4 sources / 11 Cases
+actor/current-and-identity.protos
+actor/spawn.protos
+actor/request-order-and-state.protos
+actor/lifecycle-and-transfer.protos
+```
+
+Group:
+
+```text
+10 sources -> 3 sources / 10 Cases
+group/acquisition-identity-and-transfer.protos
+group/request-routing.protos
+group/stopped-and-surface.protos
+```
+
+Actor and Group retain their exact existing `modules/workers.protos` bootstrap
+overlays. No host/bootstrap redesign is part of consolidation.
+
+Package TOML:
+
+```text
+102 sources -> 14 sources / 102 Cases
+key-and-scalars.protos
+string-singleline.protos
+string-multiline-basic.protos
+string-multiline-literal.protos
+arrays-and-inline-tables.protos
+document-statements-and-stack.protos
+document-tables.protos
+document-table-conflicts.protos
+array-of-tables.protos
+manifest-schema-base.protos
+manifest-schema-sections.protos
+manifest-schema-workspace.protos
+manifest-schema-dependencies.protos
+manifest-schema-dependency-errors.protos
+```
+
+Package case-outcomes:
+
+```text
+version: 74 -> 9
+  release-version-parse.protos
+  release-version-precedence.protos
+  release-version-errors.protos
+  constraint-exact.protos
+  constraint-caret.protos
+  constraint-interval.protos
+  constraint-prerelease-policy.protos
+  selection-fresh.protos
+  selection-retained.protos
+
+lock: 71 -> 10
+  primitives.protos
+  header-core-and-fields.protos
+  header-roundtrip.protos
+  header-errors.protos
+  qstring-and-tokenization.protos
+  node-refs.protos
+  body-model.protos
+  body-errors.protos
+  canonical-writer.protos
+  canonical-order-errors.protos
+
+resolution-input: 12 -> 3
+  canonical-and-identity.protos
+  uniqueness-errors.protos
+  authority-validation-errors.protos
+```
+
+### Package project-tree selector × authority reconciliation
+
+Project-tree consolidation is deliberately partial. Sources may be merged only
+inside one identical project authority so that the exact selector × authority
+matrix is preserved.
+
+Content identity changes from 12 sources to 6. For each authority, the current
+`digest-*` and `verify-*` sources become two selectors in one source:
+
+```text
+minimal              -> fixtures/minimal.protos              2 selectors × 1 authority
+ordering             -> fixtures/ordering.protos             2 selectors × 1 authority
+binary               -> fixtures/binary.protos               2 selectors × 1 authority
+varuint-boundaries   -> fixtures/varuint-boundaries.protos   2 selectors × 1 authority
+exact-case-upper     -> fixtures/exact-case-upper.protos     2 selectors × 1 authority
+exact-case-lower     -> fixtures/exact-case-lower.protos     2 selectors × 1 authority
+```
+
+Resolution-input-lock remains 2 sources / 2 Cases because `fresh` and `stale`
+have distinct authorities.
+
+Resolution-root remains 8 sources / 8 Cases because every source has a distinct
+authority.
+
+Execution-plan changes from 14 physical sources / 28 Cases to 11 / 28:
+
+```text
+registry-leaf-v2-cases.protos
+  <- registry-leaf-v2.protos
+  <- registry-leaf-v2-content-mismatch-error.protos
+  matrix = 2 selectors × 1 authority = 2 Cases
+
+f2e3b-transitive-cases.protos
+  <- f2e3b-transitive-v2.protos
+  <- f2e3b-missing-descriptor-error.protos
+  <- f2e3b-nonlocked-descriptor-error.protos
+  matrix = 3 selectors × 1 authority = 3 Cases
+```
+
+`f2e3b-build-v2-error.protos` remains physically independent and its 15
+manifest authority rows remain distinct:
+
+```text
+matrix = 1 selector × 15 authorities = 15 Cases
+```
+
+Project-projection changes from 4 sources / 4 Cases to 3 / 4 by merging the two
+`root-only` fixtures into one two-selector `fixtures/root-only.protos`.
+The `member-bytes` and `stale` sources remain separate.
+
+The complete project-tree result is:
+
+```text
+CURRENT_PROJECT_TREE_SOURCES=40
+TARGET_PROJECT_TREE_SOURCES=30
+CURRENT_PROJECT_TREE_CASES=54
+TARGET_PROJECT_TREE_CASES=54
+```
+
+### Retained single-Case exceptions
+
+Exactly 24 current one-Case sources are intentionally retained as independent
+physical sources.
+
+Four are ordinary/integration boundaries:
+
+```text
+network/network-prototype.protos
+regression/deep-recursive-closure-call-stack-capacity.protos
+library/test/public-surface.protos
+library/math/integer/integrated-closure.protos
+```
+
+Twenty are project-tree sources whose distinct authority would produce unwanted
+cross-product Cases if merged:
+
+```text
+resolution-input-lock:
+  fresh.protos
+  stale.protos
+
+resolution-root:
+  root-only.protos
+  workspace.protos
+  dependencies.protos
+  invalid-member-path-error.protos
+  duplicate-package-id-error.protos
+  missing-member-error.protos
+  undeclared-path-target-error.protos
+  escape-path-error.protos
+
+execution-plan:
+  root-only.protos
+  workspace.protos
+  stale-error.protos
+  invalid-export-error.protos
+  member-mismatch-error.protos
+  external-node-error.protos
+  missing-edge-error.protos
+  registry-dependency-error.protos
+
+project-projection:
+  metadata-members.protos
+  stale-semantic-error.protos
+```
+
+The four new execution-context sources and the existing seven-Case
+`future-detach-removed-semantics.protos` are also intentionally retained as
+already-correct cohesive multi-Test sources. The 15-authority
+`f2e3b-build-v2-error.protos` is retained for its authority matrix rather than
+as a single-Case exception.
+
+### Physical-path/reference reconciliation
+
+Implementation must rewrite obsolete source references, not preserve migration
+aliases.
+
+Known bounded updates include:
+
+- `protos/tests/conformance/manifest.tsv`;
+- Process/Actor/Group manifests;
+- all Package Tool manifests affected by consolidation;
+- `protos/tools/test/RepositoryCorpusPlans.protos`;
+- `ProtosTestToolRepositoryCorpusPlansTest`;
+- bounded Manifest/tooling fixtures and Java assertions that name current
+  concrete paths;
+- `docs/guide/tools/test-tool.md` where it names the retained
+  `integer/add-small.protos` source.
+
+The registered corpus roots, ExecutionRequirement identities, namespaces and
+Actor/Group workers overlays do not change.
+
+### Ordered implementation slices
+
+The implementation is intentionally decomposed inside #694. Under the
+`ISSUE-SLICE-BOUNDARY` rule these are publication slices, not new formal
+Issues: they have one common owner/outcome and do not independently require a
+new decision/dependency/scheduling unit.
+
+| Slice | Scope | Current -> target sources | Cases | Removed | Created | Reused | Full suite |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| F-I1 | core values and surface | 282 -> 58 | 282 | 281 | 57 | 1 | no |
+| F-I2 | runtime/control/reflection/IO | 288 -> 59 | 303 | 283 | 54 | 5 | no |
+| F-I3 | errors/regressions + non-JSON libraries | 240 -> 59 | 240 | 234 | 53 | 6 | no |
+| F-I4 | JSON | 89 -> 18 | 89 | 89 | 18 | 0 | no |
+| F-I5 | Process + Actor + Group | 36 -> 10 | 36 | 36 | 10 | 0 | no |
+| F-I6 | Package TOML | 102 -> 14 | 102 | 102 | 14 | 0 | no |
+| F-I7 | Package version/lock/resolution-input | 157 -> 22 | 157 | 157 | 22 | 0 | no |
+| F-I8 | Package project-tree + closure | 40 -> 30 | 54 | 19 | 9 | 21 | yes |
+
+The first implementation slice is therefore:
+
+```text
+FIRST_IMPLEMENTATION_SLICE=TOOL009-F-I1
+TYPE=IMPLEMENTATION
+REPOSITORY=guillermomolina/protos
+
+CURRENT_SOURCE_FILES=282
+TARGET_SOURCE_FILES=58
+LOGICAL_CASES=282
+```
+
+F-I1 owns:
+
+```text
+boolean
+float
+integer
+number
+numeric-conversion
+numeric-equality
+equality
+string
+object
+object-structural
+path
+call
+core-surface
+matching
+network
+surface-sugar
+```
+
+Each intermediate slice must prove exact selector preservation and its complete
+affected regression set. The final F-I8 closure candidate requires the
+integrated `make test` gate after cheaper/static/focal gates have passed,
+because it closes the top-level executable/test-corpus item.
+
+### Final Phase-E/F result
+
+```text
+TOOL009F_PHASE_E=COMPLETE
+TOOL009F_PHASE_F=COMPLETE
+PROTOS_TEST_SOURCE_GRANULARITY_INVESTIGATION=COMPLETE
+
+PROTOS_REVISION=cf9b39b25dc9a3c4cd1c538749c3a363760ae45b
+
+CURRENT_TEST_SOURCE_FILES=1234
+PROPOSED_TEST_SOURCE_FILES=270
+
+CURRENT_LOGICAL_CASES=1263
+PROPOSED_LOGICAL_CASES=1263
+
+RETAIN_SINGLE_CASE_FILES=24
+
+LOGICAL_CASE_COVERAGE_CHANGE=NONE
+TEST_TOOL_SEMANTICS_CHANGE=NONE
+
+TARGET_GROUPING_MAP=ESTABLISHED
+SOURCE_GRANULARITY_POLICY=ESTABLISHED
+ALL_SOURCE_DISPOSITIONS_ACCOUNTED_FOR=YES
+
+NEW_TEST_TOOL_ARCHITECTURE_REQUIRED=NO
+NEW_LANGUAGE_OR_LIBRARY_DECISION_REQUIRED=NO
+
+IMPLEMENTATION_SLICES=8
+FIRST_IMPLEMENTATION_SLICE=TOOL009-F-I1
+
+TOOL009F_IMPLEMENTATION_READY=YES
+```
+
+No implementation was performed by Phases E/F. This checkpoint only establishes
+the implementation-ready target map and bounded migration sequence.
+
