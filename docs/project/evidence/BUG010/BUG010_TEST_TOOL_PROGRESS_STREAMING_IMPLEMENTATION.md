@@ -171,22 +171,25 @@ PRODUCT_PUBLICATION=PASS
 PRODUCT_REVISION=eab6a367c16dea0136e1aabb13a7da681c4839b0
 ```
 
-At the time this durable record was written, no actual final focal JUnit run or
-integrated `make test` result for the exact published BUG010 candidate had been
-reported in the active interaction, and GitHub exposed no associated CI status
-checks or workflow runs for the commit.
-
-Therefore this record deliberately does not claim the Issue's required FULL
-validation gate has passed.
+After product publication, the maintainer explicitly reported the canonical
+integrated full-suite command green for the published BUG010 candidate:
 
 ```text
-FOCAL_EXECUTABLE_VALIDATION=NOT_RECORDED
-FULL_VALIDATION=NOT_RECORDED
-BUG010_CLOSURE=PENDING
+COMMAND=make test
+RESULT=PASS
+PRODUCT_REVISION=eab6a367c16dea0136e1aabb13a7da681c4839b0
 ```
 
-The owning Issue requires the final top-level executable closure gate before it
-can be closed.
+This satisfies the top-level executable FULL closure gate required by BUG010.
+GitHub itself exposed no associated CI status checks or workflow runs for the
+commit; the closure evidence is the maintainer-reported integrated validation
+on the exact published candidate.
+
+```text
+FOCAL_EXECUTABLE_VALIDATION=COVERED_BY_FULL_GATE
+FULL_VALIDATION=PASS
+BUG010_CLOSURE=PASS
+```
 
 ## Specification and compatibility impact
 
@@ -213,7 +216,7 @@ STABLE_LOGICAL_RESULT_ORDER=PRESERVED
 TEST_TOOL_STDERR_AUTHORITY=PRESERVED
 GUEST_STREAM_PRIVACY=PRESERVED
 
-FULL_VALIDATION=PENDING
-BUG010_STATUS=REVIEW
-BUG010_CLOSURE=PENDING
+FULL_VALIDATION=PASS
+BUG010_STATUS=COMPLETED
+BUG010_CLOSURE=PASS
 ```
