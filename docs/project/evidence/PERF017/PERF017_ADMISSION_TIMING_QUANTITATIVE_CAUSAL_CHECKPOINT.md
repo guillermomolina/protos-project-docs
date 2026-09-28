@@ -1,0 +1,38 @@
+# PERF017 — Admission timing quantitative causal checkpoint
+
+Date: 2026-09-28
+
+## Identity
+
+WORK_ITEM=PERF017/#729
+
+PROTOS_REVISION=7aaaec6923265c99723ce5bca064e5b3ab52b8c4
+
+JFR_EVENT=protos.TestToolPerf017Admission
+
+COMMAND=bin/protos test --jobs 16
+
+LOGICAL_CASES=1263
+LANES=16
+JFR_EVENTS=10104
+REPLACEMENT_PAIRS=1247
+PAIR_COVERAGE=COMPLETE
+
+## Quantitative result
+
+T2-T1 mean 293.677 ms.
+T4-T3 mean 267.349 ms.
+Combined caller-domain serialization mean 561.026 ms, 64.58% of the mean replacement gap.
+T5-T4 mean 306.316 ms.
+T6-T5 mean 0.407 ms.
+T7-T6 mean 0.639 ms.
+T8-T7 mean 0.213 ms.
+Total mean replacement gap 868.628 ms.
+
+ADMISSION_DELAY_DOMINATED_BY_CALLER_QUEUE=YES
+ADMISSION_DELAY_DOMINATED_BY_SOURCE_LOAD=NO
+THREAD_START_LATENCY_MATERIAL=NO
+CALLER_ACTOR_SERIALIZATION_QUANTITATIVELY_MATERIAL=YES
+
+FOLLOW_UP=PERF019/#736
+PERF017_STATUS=IN_PROGRESS
