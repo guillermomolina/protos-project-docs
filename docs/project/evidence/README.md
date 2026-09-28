@@ -13,6 +13,7 @@ its references, retention role, and compatibility implications.
 - [`DIST001/`](DIST001/README.md) — immutable first-pre-release selection,
   candidate, validation, claims, release-envelope, and observed-publication
   evidence for DIST001.
+- [`DIST006/`](DIST006/DIST006_A_GRAALVM_25_4_TOOLCHAIN_MIGRATION.md) — retained DIST006-A canonical GraalVM/Truffle 25.4.4.1.1 toolchain-migration publication, devcontainer Java-selection correction, and zero-drift/full-suite validation evidence.
 - [`D098/`](D098/README.md) — immutable ratification publication, safe-abort, and GitHub closure evidence for D098.
 - [`D099/`](D099/README.md) — immutable ratification publication, safe-abort, and GitHub closure evidence for D099.
 - [`I069/`](I069/I069_NATIVE_IMAGE_GUEST_RUNTIME_COMPILATION_IMPLEMENTATION.md) — retained I069 Native Image bootstrap, initialization-policy, guest runtime-compilation, forced-JIT, validation, and publication evidence.
