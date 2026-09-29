@@ -217,6 +217,90 @@ Test Tool semantics.
 Do not create another queue-priority or handoff experiment until this complete
 T1-to-T6 causal map identifies the end-to-end serialization boundary.
 
+## Source-load ablation — causal result
+
+A controlled ablation then removed only the per-Case execution-time source
+re-read from the Actor-local replacement path. It temporarily reused the
+discovery-time source text and therefore deliberately violated the normal D153
+fresh rematerialization boundary. The edit was measurement-only, was restored
+immediately after the run, and is not a candidate implementation.
+
+The workload remained complete:
+
+```text
+JFR_EVENTS=10104
+HOST_CASE_DONE_COUNT=1263
+COMPLETION_TASK_BEGIN_COUNT=1263
+FUTURE_TERMINAL_COUNT=1263
+LIFECYCLE_TERMINAL_COUNT=1263
+LIFECYCLE_STARTED_COUNT=1263
+SUBMIT_ENTER_COUNT=1263
+SUBMIT_RETURN_COUNT=1263
+CARRIER_RUN_BEGIN_COUNT=1263
+
+COMPLETE_CORRELATED_OPERATIONS=1263
+LANES=16
+REPLACEMENT_PAIRS=1247
+PAIR_COVERAGE=COMPLETE
+```
+
+Host-level result:
+
+```text
+WALL_SECONDS=77.44
+USER_SECONDS=859.05
+SYSTEM_SECONDS=14.11
+PROCESS_CPU=1127%
+MAX_RSS_KIB=12159152
+```
+
+Mean replacement decomposition:
+
+```text
+T2_T1_MEAN_MS=65.536
+T3_T2_MEAN_MS=0.057
+T4_T3_MEAN_MS=8.164
+T5_T4_MEAN_MS=60.558
+T6_T5_MEAN_MS=1.514
+T7_T6_MEAN_MS=1.687
+T8_T7_MEAN_MS=0.296
+
+CALLER_SERIALIZATION_MEAN_MS=73.700
+TOTAL_REPLACEMENT_GAP_MEAN_MS=137.812
+```
+
+Compared with the retained baseline, the ablation reduces the mean total
+replacement gap from 868.628 ms to 137.812 ms and reduces wall time from
+approximately 116 s to 77.44 s while raising effective process CPU utilization
+from about 692% to 1127%.
+
+The important causal observation is not merely the T5-T4 reduction. Removing the
+Actor-local execution-time source read also collapses T2-T1 from 262.338 ms in
+v3 to 65.536 ms. This is consistent with reducing aggregate demand on one
+shared serialized Actor execution domain: once repeated source-I/O
+suspension/resumption visits are removed, queueing pressure falls throughout the
+same domain rather than merely moving to another interval.
+
+```text
+SOURCE_LOAD_ABLATION_WORKLOAD_COMPLETE=YES
+SOURCE_LOAD_ABLATION_D153_CONFORMING=NO
+SOURCE_LOAD_ABLATION_PRODUCT_CANDIDATE=NO
+ACTOR_LOCAL_SOURCE_RELOAD_CAUSALLY_MATERIAL=YES
+END_TO_END_QUEUE_PRESSURE_COLLAPSED=YES
+CPU_PARALLELISM_RECOVERED_MATERIALLY=YES
+```
+
+The ablation therefore identifies the next implementation boundary:
+
+- preserve D153 fresh per-Case source reconstruction and fresh semantic Process;
+- do not cache discovery source as product behavior;
+- move the fresh source acquisition out of the serialized caller-Actor lane
+  path, or otherwise perform it without repeated caller-Actor suspension/resume
+  visits;
+- retain the existing work-conserving logical scheduler and jobs bound;
+- re-measure with the same PERF017 JFR phases to prove that the conforming
+  implementation preserves the ablation's scaling direction.
+
 ## State
 
 ```text
@@ -229,5 +313,5 @@ PAIR_COVERAGE=COMPLETE
 PUBLIC_TEST_TOOL_RESULT=1263_PASS_0_FAIL
 PRODUCT_PUBLICATION=NONE
 PERF019_STATUS=IN_PROGRESS
-NEXT_ACTION=T1_TO_T6_END_TO_END_CAUSAL_MAP
+NEXT_ACTION=PRESERVE_D153_FRESH_READ_OUTSIDE_CALLER_ACTOR_SERIAL_PATH
 ```
