@@ -10,6 +10,7 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`BUG011/`](BUG011/BUG011_NATIVE_IMAGE_TEST_TOOL_JFR_COMPATIBILITY.md) — retained BUG011 Native Image Test Tool/JFR compatibility diagnosis, repair, canonical native Test Tool regression gate, and final validation evidence at exact Protos revision `754de7a2a2d73dd4b39109bb842522ed9cc8153a`.
 - [`DIST001/`](DIST001/README.md) — immutable first-pre-release selection,
   candidate, validation, claims, release-envelope, and observed-publication
   evidence for DIST001.
