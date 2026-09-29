@@ -412,6 +412,115 @@ SCHEDULER_REPLACEMENT_REQUIRED=NO
 JOBS_SEMANTICS_CHANGE_REQUIRED=NO
 ```
 
+## Published conforming implementation and closure evidence
+
+The conforming two-part implementation was published in Protos as:
+
+```text
+PROTOS_REVISION=c7be048bab19409a139b1a1f6ad74d23f17b78d7
+PROTOS_VERSION=0.3.115-SNAPSHOT
+COMMIT=PERF019: recover Test Tool parallel admission scaling
+```
+
+The product implementation combines the two mechanisms identified by the
+controlled experiments:
+
+1. exact runtime-only targeted Future/lane continuation handoff for the waiting
+   lane Task, while preserving unrelated Actor-local FIFO ordering and
+   cancellation behavior;
+2. fresh per-Case UTF-8 source acquisition on the authorized host execution
+   carrier immediately before D153 fresh-Process declaration rematerialization,
+   instead of transporting source text through the caller Actor.
+
+The discovery-source cache used by the earlier ablation was not retained in the
+product.
+
+The canonical conforming measurement completed successfully:
+
+```text
+COMMAND=bin/protos test --jobs 16
+LOGICAL_CASES=1263
+PASSED=1263
+FAILED=0
+
+WALL_SECONDS=70.84
+USER_SECONDS=763.34
+SYSTEM_SECONDS=13.30
+PROCESS_CPU=1096%
+MAX_RSS_KIB=11303928
+```
+
+PERF017 JFR correlation remained complete:
+
+```text
+JFR_EVENTS=10104
+COMPLETE_CORRELATED_OPERATIONS=1263
+LANES=16
+REPLACEMENT_PAIRS=1247
+PAIR_COVERAGE=COMPLETE
+
+T2_T1_MEAN_MS=53.878
+T3_T2_MEAN_MS=0.069
+T4_T3_MEAN_MS=6.914
+T5_T4_MEAN_MS=40.380
+T6_T5_MEAN_MS=1.367
+T7_T6_MEAN_MS=1.812
+T8_T7_MEAN_MS=0.222
+
+CALLER_SERIALIZATION_MEAN_MS=60.792
+TOTAL_REPLACEMENT_GAP_MEAN_MS=104.643
+```
+
+Relative to the retained PERF017 baseline, the final conforming candidate
+reduces the mean replacement gap from 868.628 ms to 104.643 ms and the selected
+caller-serialization intervals from 561.026 ms to 60.792 ms. Unlike the v1/v2/v3
+isolated experiments, the large waits collapse together instead of relocating
+to another interval.
+
+The source-load result also reconciles the earlier baseline-only classification
+`ADMISSION_DELAY_DOMINATED_BY_SOURCE_LOAD=NO`. That statement meant the
+original aggregate T5-T4 interval could not be attributed to source loading
+from the baseline trace alone. The later controlled interaction experiment
+establishes a stronger causal result: Actor-local source acquisition is an
+independent material serialized demand, but removing it alone is insufficient;
+it must be reduced together with the Future/lane handoff demand.
+
+Validation retained for the published delta:
+
+```text
+PRODUCTION_COMPILE=PASS
+TEST_COMPILE=PASS
+PERF019_FOCAL_JUNIT=PASS
+D153_HOST_CARRIER_FRESHNESS_REGRESSION=PASS
+H2B1_PHYSICAL_COMPLETION_ORDER_FOCAL=PASS
+FULL_REPOSITORY_MAKE_TEST=PASS
+GIT_DIFF_CHECK=PASS
+```
+
+The H2B1 scheduling fixture required only synchronization of its host-side
+physical-completion observation: targeted handoff can finish the logical Future
+before the submission wrapper's `finally` records physical completion. The
+test still requires the exact physical completion order `[1, 0, 2]`; no
+scheduler or result-order contract was weakened.
+
+```text
+CALLER_SERIALIZATION_PATH_REDUCED=PASS
+T2_T1_MATERIAL_REDUCTION=PASS
+T4_T3_MATERIAL_REDUCTION=PASS
+PAIR_COVERAGE=COMPLETE
+PUBLIC_LOGICAL_CASE_SCHEDULER_WORK_CONSERVING=YES
+GLOBAL_JOBS_BOUND=PASS
+RESULT_ORDER=PASS
+FRESH_PROCESS_ISOLATION=PASS
+D153_FRESH_PER_CASE_SOURCE=PASS
+ACTOR_TASK_FUTURE_SEMANTICS=PASS
+PUBLIC_TEST_TOOL_OUTPUT_CHANGE=NO
+PERF018_SCOPE_MIXED=NO
+BEFORE_AFTER_JFR_EVIDENCE=RETAINED
+FULL_REQUIRED_VALIDATION=PASS
+OBSERVABLE_PROTOS_SEMANTIC_CHANGE=NO
+```
+
 ## State
 
 ```text
@@ -419,10 +528,12 @@ V1_ISOLATED_FIRST_BOUNDARY_STRATEGY=INSUFFICIENT
 V2_COMBINED_ATTEMPT=REJECTED
 V3_EXACT_HANDOFF_MECHANISM=LOCALLY_EFFECTIVE
 V3_END_TO_END_RECOVERY=INSUFFICIENT
-DELAY_RELOCATION_OBSERVED=YES
+DELAY_RELOCATION_OBSERVED_IN_ISOLATED_EXPERIMENTS=YES
+FINAL_CONFORMING_IMPLEMENTATION=PUBLISHED
+PROTOS_REVISION=c7be048bab19409a139b1a1f6ad74d23f17b78d7
+PROTOS_VERSION=0.3.115-SNAPSHOT
 PAIR_COVERAGE=COMPLETE
 PUBLIC_TEST_TOOL_RESULT=1263_PASS_0_FAIL
-PRODUCT_PUBLICATION=NONE
-PERF019_STATUS=IN_PROGRESS
-NEXT_ACTION=IMPLEMENT_V3_PLUS_HOST_CARRIER_FRESH_SOURCE_READ
+PERF019_STATUS=CLOSED_COMPLETE
+NEXT_ACTION=NONE
 ```
