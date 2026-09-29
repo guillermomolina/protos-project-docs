@@ -98,6 +98,11 @@ Current role-first work records:
 - [`DIST004/DIST004_OL10_CONTAINER_TOOLING_MIGRATION.md`](DIST004/DIST004_OL10_CONTAINER_TOOLING_MIGRATION.md)
   — owning record for the development-container OL10 base-OS and OS-tooling migration.
 
+- [`DIST008/DIST008_MAVEN_COMPATIBILITY_AND_LEAN_PROVISIONING.md`](DIST008/DIST008_MAVEN_COMPATIBILITY_AND_LEAN_PROVISIONING.md)
+  — Maven compatibility-floor and lean-provisioning record: DIST008-A PASS,
+  owner-approved OL10 `maven-unbound` binding, and staged Protos/benchmark
+  consumer reconciliation.
+
 Live status, priority, assignment, and execution discussion remain in GitHub
 Issues and the Protos Development Project.
 
