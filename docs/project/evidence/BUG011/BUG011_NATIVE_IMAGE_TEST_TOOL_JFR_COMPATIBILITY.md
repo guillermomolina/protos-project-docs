@@ -1,7 +1,7 @@
 # BUG011 — Native Image Test Tool JFR compatibility closure
 
-Status: PUBLISHED  
-Owning Issue: `guillermomolina/protos#738` (`BUG011`)  
+Status: PUBLISHED
+Owning Issue: `guillermomolina/protos#738` (`BUG011`)
 Related work: `guillermomolina/protos#733` (`DIST006`)
 
 ## Publication identity
