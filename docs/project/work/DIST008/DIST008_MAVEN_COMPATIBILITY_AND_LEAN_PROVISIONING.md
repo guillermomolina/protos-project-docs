@@ -3,8 +3,10 @@
 Status: READY
 Live coordination: GitHub Issue #739
 Investigation slice: DIST008-A CLOSED
-Next implementation slice: DIST008-B1 READY
+Protos implementation slice: DIST008-B1 CLOSED
+Next implementation slice: DIST008-B2 READY
 Protos investigation revision: `754de7a2a2d73dd4b39109bb842522ed9cc8153a`
+Protos implementation revision: `6411d39bf33014c958ba4dad60a6e3fe44760ebf`
 Benchmark inventory revision: `a2a8eafe74a45cce987a0918d1023be061ed17f3`
 
 ## Purpose
@@ -176,26 +178,80 @@ they independently contain GraalVM/Maven Dockerfiles.
 
 ## Implementation decomposition
 
-### DIST008-B1 — Protos toolchain/provisioning implementation — READY
+### DIST008-B1 — Protos toolchain/provisioning implementation — CLOSED
 
 Repository: `guillermomolina/protos`.
 
-Implement the selected Maven compatibility contract and the OL10
-`maven-unbound` provisioning in both GraalVM container surfaces, update the
-verifier/tests coherently, and validate the resulting product/build/distribution
-surfaces.
+Published at Protos revision
+`6411d39bf33014c958ba4dad60a6e3fe44760ebf`.
 
-### DIST008-B2 — benchmark consumer reconciliation — PENDING B1
+B1 replaced the exact Maven patch contract with
+`minimum_version=3.9.9` plus `supported_major=3`, provisioned
+`maven+maven-unbound` from the already-defined `ol10_codeready_builder`
+repository in both GraalVM OL10 container surfaces, and extended the repository
+verifier/tests to distinguish compatibility, provisioning, repository scope,
+canonical Java authority and runtime Maven/JDK/RPM evidence.
+
+### DIST008-B2 — benchmark consumer reconciliation — READY
 
 Repository: `guillermomolina/protos-benchmarks`.
 
-After B1 publishes the authoritative toolchain schema/contract, update only the
-benchmark repository's live current-contract consumers. Preserve historical
+B1 has published the authoritative `protos-toolchain-v2` schema/contract.
+Update only the benchmark repository's live current-contract consumers. Preserve historical
 Dockerfiles and retained measurements exactly where their old Maven/JDK identity
 is part of reproducibility evidence.
 
 This two-repository sequence remains slices under DIST008: B2 consumes the B1
 contract and is not independently schedulable before B1.
+
+## DIST008-B1 implementation result
+
+DIST008-B1 is **CLOSED / PASS** at Protos revision
+`6411d39bf33014c958ba4dad60a6e3fe44760ebf`.
+
+The published delta is exactly:
+
+```text
+.devcontainer/Dockerfile
+build/native/Dockerfile
+toolchain.json
+tools/test_verify_toolchain.py
+tools/verify_toolchain.py
+```
+
+The resulting contract is:
+
+```text
+TOOLCHAIN_SCHEMA=protos-toolchain-v2
+MAVEN_MINIMUM_VERSION=3.9.9
+MAVEN_SUPPORTED_MAJOR=3
+EXACT_MAVEN_REQUIRED=NO
+```
+
+Owner-executed validation established:
+
+- verifier focal tests PASS;
+- static development and all-surface bindings PASS with zero drift;
+- rebuilt development container uses `maven-3.9.9` plus
+  `maven-unbound-3.9.9`, runs Maven on the canonical GraalVM
+  `JAVA_HOME`, and installs no redundant OpenJDK RPM;
+- rebuilt Native Image builder has the same Maven/unbound result and canonical
+  GraalVM Java authority, with no redundant OpenJDK RPM;
+- integrated `make test` PASS after the development-container rebuild;
+- portable POSIX/JVM distribution build and cross-slice validation PASS,
+  including the bundled repository corpus at `1263 passed, 0 failed`.
+
+B1 validates the Native **builder/provisioning** impact. It does not claim a
+fresh DIST005 Native executable admission because B1 changes neither the Native
+executable semantics nor its distribution/admission machinery.
+
+Durable B1 evidence was first published at project-docs revision
+`b741ae42cfadfc4ac9790e765a7ca5438e7090a6`:
+
+- `docs/project/evidence/DIST008/DIST008_B1_PROTOS_MAVEN_COMPATIBILITY_IMPLEMENTATION.md`
+
+The next unit is DIST008-B2 in
+`guillermomolina/protos-benchmarks`.
 
 ## Historical evidence
 
