@@ -301,6 +301,117 @@ The ablation therefore identifies the next implementation boundary:
 - re-measure with the same PERF017 JFR phases to prove that the conforming
   implementation preserves the ablation's scaling direction.
 
+## Source-load ablation without v3 — interaction result
+
+A second controlled ablation repeated the same discovery-source reuse experiment
+with all v3 targeted continuation/handoff source changes temporarily removed and
+the tracked implementation materialized from repository HEAD.
+
+The temporary Maven-built launcher initially failed before Test Tool startup
+because the experimental JAR lacked the already-versioned
+`unicode17.bin` resource. The resource was restored into that temporary JAR
+from repository HEAD without changing source, and the experiment was rerun.
+
+The complete workload then passed:
+
+```text
+LOGICAL_CASES=1263
+PASSED=1263
+FAILED=0
+
+WALL_SECONDS=115.54
+USER_SECONDS=800.29
+SYSTEM_SECONDS=14.63
+PROCESS_CPU=705%
+MAX_RSS_KIB=10704908
+```
+
+JFR correlation was complete:
+
+```text
+JFR_EVENTS=10104
+COMPLETE_CORRELATED_OPERATIONS=1263
+LANES=16
+REPLACEMENT_PAIRS=1247
+PAIR_COVERAGE=COMPLETE
+```
+
+Mean replacement decomposition:
+
+```text
+T2_T1_MEAN_MS=321.012
+T3_T2_MEAN_MS=0.028
+T4_T3_MEAN_MS=290.655
+T5_T4_MEAN_MS=253.867
+T6_T5_MEAN_MS=0.413
+T7_T6_MEAN_MS=0.756
+T8_T7_MEAN_MS=0.158
+
+CALLER_SERIALIZATION_MEAN_MS=611.667
+TOTAL_REPLACEMENT_GAP_MEAN_MS=866.889
+```
+
+This falsifies the hypothesis that moving/removing only the Actor-local source
+reload is sufficient.
+
+The four retained variants now show an interaction:
+
+| Variant | T2-T1 ms | T4-T3 ms | T5-T4 ms | T1-T8 ms | wall s | CPU |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| retained baseline | 293.677 | 267.349 | 306.316 | 868.628 | ~116 | ~7 cores |
+| v3 only | 262.338 | 0.908 | 574.449 | 839.012 | 116.17 | 692% |
+| source ablation only | 321.012 | 290.655 | 253.867 | 866.889 | 115.54 | 705% |
+| v3 + source ablation | 65.536 | 8.164 | 60.558 | 137.812 | 77.44 | 1127% |
+
+Neither intervention alone materially recovers end-to-end throughput. Together
+they materially reduce all major serialized replacement intervals and recover
+parallel CPU utilization.
+
+The supported causal interpretation is therefore:
+
+```text
+TARGETED_CONTINUATION_HANDOFF_NEEDED=YES
+ACTOR_LOCAL_SOURCE_RELOAD_REMOVAL_NEEDED=YES
+EITHER_CHANGE_ALONE_SUFFICIENT=NO
+COMBINED_CHANGE_RECOVERS_SCALING=YES
+```
+
+This is consistent with a shared caller-Actor execution domain carrying more
+than one independent serialized demand. Removing only one demand leaves the
+remaining demand sufficient to saturate the same serial resource, so waiting
+moves between intervals rather than disappearing.
+
+Maintainer observation during the canonical runs additionally reported that CPU
+utilization remained poor through most of the run but rose to full-host usage
+during approximately the final ten seconds. This observation is not itself the
+quantitative admission proof, but it is consistent with the causal model: once
+there are no further logical Cases to admit, the serial replacement control
+plane stops feeding new work and the already-running physical Case carriers can
+consume the available CPUs without further admission pressure.
+
+The conforming implementation target is now two-part:
+
+1. retain the v3 exact targeted continuation/handoff behavior that removes the
+   Future-terminal-to-lane resumption queue boundary while preserving Actor,
+   Task and Future semantics;
+2. preserve a fresh D153 source read for every Case, but perform that source
+   acquisition on the host execution carrier after authorized physical source
+   resolution rather than through `Runner.readSource(...).value()` in the
+   caller Actor lane.
+
+The discovery-source cache used by the ablations remains measurement-only and
+must not enter production.
+
+```text
+PERF019_CAUSAL_INVESTIGATION_COMPLETE=YES
+PERF019_IMPLEMENTATION_TARGET=
+    TARGETED_HANDOFF_PLUS_HOST_CARRIER_FRESH_SOURCE_READ
+D153_FRESH_PER_CASE_SOURCE=REQUIRED
+DISCOVERY_SOURCE_CACHE=REJECTED_FOR_PRODUCT
+SCHEDULER_REPLACEMENT_REQUIRED=NO
+JOBS_SEMANTICS_CHANGE_REQUIRED=NO
+```
+
 ## State
 
 ```text
@@ -313,5 +424,5 @@ PAIR_COVERAGE=COMPLETE
 PUBLIC_TEST_TOOL_RESULT=1263_PASS_0_FAIL
 PRODUCT_PUBLICATION=NONE
 PERF019_STATUS=IN_PROGRESS
-NEXT_ACTION=PRESERVE_D153_FRESH_READ_OUTSIDE_CALLER_ACTOR_SERIAL_PATH
+NEXT_ACTION=IMPLEMENT_V3_PLUS_HOST_CARRIER_FRESH_SOURCE_READ
 ```
