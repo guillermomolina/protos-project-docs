@@ -192,17 +192,58 @@ repository in both GraalVM OL10 container surfaces, and extended the repository
 verifier/tests to distinguish compatibility, provisioning, repository scope,
 canonical Java authority and runtime Maven/JDK/RPM evidence.
 
-### DIST008-B2 — benchmark consumer reconciliation — READY
+### DIST008-B2 — benchmark consumer reconciliation — CLOSED
 
 Repository: `guillermomolina/protos-benchmarks`.
 
-B1 has published the authoritative `protos-toolchain-v2` schema/contract.
-Update only the benchmark repository's live current-contract consumers. Preserve historical
-Dockerfiles and retained measurements exactly where their old Maven/JDK identity
-is part of reproducibility evidence.
+Published at benchmark revision
+`e8a1f1735e0c2751de99459aeeb689a8d46e5f0d`
+(`DIST008-B2: reconcile benchmark Maven compatibility`).
 
-This two-repository sequence remains slices under DIST008: B2 consumes the B1
-contract and is not independently schedulable before B1.
+B2 consumed the authoritative `protos-toolchain-v2` contract published by B1,
+migrated the live DIST006-D benchmark consumer to the Maven compatibility
+contract, retained explicit support for replaying historical
+`protos-toolchain-v1` evidence in PERF009-A, and changed no retained benchmark
+measurement evidence.
+
+The published B2 delta is exactly:
+
+```text
+config/dist006d-baseline.json
+docker/protos-dist006d/Dockerfile
+runner/dist006d_baseline.py
+runner/perf009a.py
+runner/toolchain.py
+tests/test_dist006d_baseline.py
+tests/test_toolchain.py
+```
+
+Final owner-executed admission established:
+
+```text
+TOOLCHAIN_SCHEMA=protos-toolchain-v2
+MAVEN_MINIMUM_VERSION=3.9.9
+MAVEN_SUPPORTED_MAJOR=3
+EXACT_MAVEN_REQUIRED=NO
+DIST006D_STATIC_VALIDATION=PASS
+DIST006D_SMOKE_CORRECTNESS=PASS
+REDUNDANT_OPENJDK=NO
+MAVEN_GRAALVM_JAVA_AUTHORITY=PASS
+RETAINED_PERFORMANCE_EVIDENCE=NO
+TIMING_EVIDENCE=NO
+REFERENCE_EVIDENCE=NO
+```
+
+The full benchmark `make test` / `make validate` gate remains red because of
+one pre-existing unrelated PERF010-A help-surface assertion already present at
+the exact B2 baseline
+`a2a8eafe74a45cce987a0918d1023be061ed17f3`. DIST008-B2 modifies no PERF010-A
+path. Focal B2 tests, static DIST006-D validation, whitespace checks, and the
+non-retained DIST006-D Docker smoke against exact Protos B1 revision
+`6411d39bf33014c958ba4dad60a6e3fe44760ebf` all passed.
+
+This two-repository sequence remains slices under DIST008: B2 consumed the B1
+contract and required no independently schedulable child Issue.
 
 ## DIST008-B1 implementation result
 
@@ -250,8 +291,42 @@ Durable B1 evidence was first published at project-docs revision
 
 - `docs/project/evidence/DIST008/DIST008_B1_PROTOS_MAVEN_COMPATIBILITY_IMPLEMENTATION.md`
 
-The next unit is DIST008-B2 in
-`guillermomolina/protos-benchmarks`.
+DIST008-B2 is now closed at benchmark revision
+`e8a1f1735e0c2751de99459aeeb689a8d46e5f0d`.
+
+## DIST008 closure result
+
+DIST008 is **CLOSED / PASS**.
+
+Exact closure coordinates:
+
+```text
+PROTOS_REVISION=6411d39bf33014c958ba4dad60a6e3fe44760ebf
+BENCHMARK_REVISION=e8a1f1735e0c2751de99459aeeb689a8d46e5f0d
+TOOLCHAIN_SCHEMA=protos-toolchain-v2
+MAVEN_MINIMUM_VERSION=3.9.9
+MAVEN_SUPPORTED_MAJOR=3
+EXACT_MAVEN_REQUIRED=NO
+PROVISIONING_MODEL=OL10 maven + maven-unbound
+REDUNDANT_JDK_PROVISIONING=ELIMINATED
+GRAALVM_JDK_TRUFFLE_COORDINATES_UNCHANGED=YES
+```
+
+DIST008-A established and retained the compatibility/provisioning evidence.
+DIST008-B1 published the canonical Protos contract and both live GraalVM OL10
+provisioning surfaces. DIST008-B2 reconciled the live benchmark consumer while
+preserving historical v1 benchmark evidence.
+
+The top-level acceptance criteria are satisfied by the combined A/B1/B2
+evidence. The unrelated pre-existing PERF010-A help assertion in
+`protos-benchmarks` is not a DIST008 regression and is not part of this work's
+published path set.
+
+Durable B2/closure evidence:
+
+- `docs/project/evidence/DIST008/DIST008_B2_BENCHMARK_CONSUMER_RECONCILIATION_AND_CLOSURE.md`
+
+No new Dxxx/PLATxxx decision was required.
 
 ## Historical evidence
 
