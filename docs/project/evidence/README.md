@@ -12,6 +12,7 @@ its references, retention role, and compatibility implications.
 
 - [`BUG011/`](BUG011/BUG011_NATIVE_IMAGE_TEST_TOOL_JFR_COMPATIBILITY.md) — retained BUG011 Native Image Test Tool/JFR compatibility diagnosis, repair, canonical native Test Tool regression gate, and final validation evidence at exact Protos revision `754de7a2a2d73dd4b39109bb842522ed9cc8153a`.
 - [`BUG012/`](BUG012/BUG012_NATIVE_IMAGE_DAP_STACKTRACE_DIVERGENCE.md) — retained BUG012 Native DAP divergence, primary-cause, repair, and validation evidence: the published `v0.3.116` Native failure was traced to split Truffle library-export initialization, repaired in Protos revision `417e44a8c60eaba1db7859d78bbb1e61c5dace64`, and closed with Native DAP plus integrated validation PASS; publication of a current repaired Native release is routed to DIST009.
+- [`BUG013/`](BUG013/BUG013_A_FRAMEWITHOUTBOXING_LIFETIME_INVESTIGATION.md) — retained BUG013-A Native guest Tier-2 `FrameWithoutBoxing` lifetime investigation at exact Protos revision `4b354722906055b969c67bf02a91a6d9ccd5764e`, establishing a Protos-owned raw `VirtualFrame` escape before materialization, ruling out I074/I075/continuation as primary causes, and routing the bounded repair to BUG013-B in `guillermomolina/protos` while DIST009 remains blocked.
 - [`DIST001/`](DIST001/README.md) — immutable first-pre-release selection,
   candidate, validation, claims, release-envelope, and observed-publication
   evidence for DIST001.
