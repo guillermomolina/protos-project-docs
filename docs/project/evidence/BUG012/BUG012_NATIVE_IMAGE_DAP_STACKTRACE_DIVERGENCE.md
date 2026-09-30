@@ -275,6 +275,70 @@ The next discriminator is now precise: expose the preserved
 `IOException.getCause()` for one diagnostic Native `protos debug` run and record
 its exact type/message/stack before selecting the repair owner.
 
+## Primary cause identified
+
+The diagnostic Native rebuild exposed the previously preserved
+`IOException.getCause()` and established the primary failure:
+
+```text
+com.oracle.truffle.api.debug.DebugException
+Caused by: java.lang.ExceptionInInitializerError
+Caused by: java.lang.IllegalStateException:
+    Receiver class com.guillermomolina.protos.execution.ProtosBytecodeTagTreeNodeExports
+    is already registered.
+    at com.oracle.truffle.api.library.LibraryFactory$ResolvedDispatch.register(...)
+    at com.oracle.truffle.api.library.LibraryExport.register(...)
+    at com.guillermomolina.protos.execution.ProtosBytecodeTagTreeNodeExportsGen.<clinit>(...)
+```
+
+The failure occurs while Graal's debugger constructs the top
+`DebugStackFrame` and dispatches `NodeLibrary.hasRootInstance`. It therefore
+precedes DAP caller-frame stack walking, `scopes`, variables, and Protos
+debugger-scope member projection. The prior SVM stack-introspection hypothesis is
+falsified as the primary cause for this BUG012 reproducer.
+
+Truffle's 25.4 annotation processor generates the outer
+`ProtosBytecodeTagTreeNodeExportsGen` class with a static initializer that
+executes `LibraryExport.register(...)`. Native Image's
+`TruffleBaseFeature` independently resolves explicit-receiver
+`@ExportLibrary` owners during analysis through
+`LibraryFactory$ResolvedDispatch.lookup(receiverClass)`, populating the
+Truffle library receiver registration in the image.
+
+Protos' Native initialization generator currently forces:
+
+- all generated nested `*Gen$*LibraryExports*.class` classes; and
+- the source owner `ProtosBytecodeTagTreeNodeExports`
+
+to build-time initialization, but it does not include the generated outer
+`ProtosBytecodeTagTreeNodeExportsGen` class that owns the registration
+`<clinit>`.
+
+The resulting split lifecycle is the defect: the receiver registration already
+exists in the Native image, while the generated outer registration class is
+still runtime-initialized. The first debugger `NodeLibrary` uncached dispatch
+then initializes `ProtosBytecodeTagTreeNodeExportsGen` at runtime and executes
+`LibraryExport.register(...)` a second time, which fails closed with
+`Receiver class ... is already registered`.
+
+Classification:
+
+```text
+PRIMARY_CAUSE=PROTOS_NATIVE_TRUFFLE_LIBRARY_CLASS_INITIALIZATION_SPLIT
+OWNER=PROTOS_NATIVE_INTEGRATION
+UPSTREAM_GRAAL_PRIMARY_DEFECT=NO
+VSCODE_PRIMARY_DEFECT=NO
+SVM_STACK_INTROSPECTION_PRIMARY_DEFECT=NO
+```
+
+The intended repair boundary is narrow: make build-time initialization of the
+special external-receiver export cover the generated outer registration owner
+coherently, while preserving DIST006-C1's requirement that the export entry
+points remain visible during hosted parsing and preserving I069 runtime guest
+compilation. The exact candidate still requires a Native build, the BUG012
+breakpoint/`stackTrace` probe, and the retained C1 forced-Tier-2/native
+regression gates before publication.
+
 ## What is not established
 
 This checkpoint does **not** establish any of the following:
