@@ -202,6 +202,79 @@ REQUIRED_NATIVE_DEPENDENCY=#734 blocked by #742
 NATIVE_DEPENDENCY_RECONCILIATION=PENDING_TOOL_CAPABILITY
 ```
 
+## Static causal narrowing after the initial A/B
+
+Subsequent source-level investigation narrowed the failing boundary without
+changing either product artifact.
+
+Graal 25.4 DAP processes `stackTrace` by enqueueing work into the suspended
+thread. `ThreadsHandler.SuspendedThreadInfo.runExecutables()` invokes the queued
+function directly and catches only `InterruptedException`; an unchecked
+exception from the stack-trace task therefore escapes on the guest execution
+thread. `DebugProtocolServerImpl.stackTrace(...)` first calls
+`StackFramesHandler.getStackTrace(info)`, and that call must complete before the
+DAP response future is completed.
+
+This matches the observed Protos failure shape. The unchecked failure escapes
+the DAP callback into guest execution, and
+`ProtosCanonicalInitialModuleExecution.execute(...)` catches a
+`RuntimeException` and preserves it as the cause of:
+
+```text
+IOException: canonical initial module execution failed
+```
+
+The direct-file CLI path currently prints only that outer IOException message
+for an internal runtime failure, so the exact primary `RuntimeException` remains
+present as `IOException.getCause()` but is hidden from the published Native
+probe output.
+
+The first Native-specific machinery introduced by DAP `stackTrace` is Truffle
+stack-frame reconstruction. `SuspendedEvent.getStackFrames()` lazily walks
+caller frames through `Truffle.getRuntime().iterateFrames(...)`; under Native
+Image this resolves to SVM's `SubstrateStackIntrospection`. The walk reconstructs
+Truffle call targets/call nodes from inspected-frame locals and may therefore
+read physical-frame deoptimization metadata even before DAP requests scopes or
+variables.
+
+No Protos-specific root-instance or instrumentable-call-node hook was found on
+this path. Protos uses the standard Bytecode DSL roots/call targets, and its
+Native build adds no option that disables SVM frame information. The existing
+Protos `NodeLibrary` bridge owns debugger scope projection, but DAP
+`stackTrace` fails before `scopes`/variables are requested, so that projection
+is not part of the current failing boundary.
+
+The upstream SVM implementation was materially changed immediately before the
+25.4 release:
+
+```text
+043cb6751a2e3f6416662f479697eda38599501f  Add SVM inspected frame support
+                                                    2026-06-22
+d8803e2460f73c291babb950eecb967888db756d  Fix materialization of already deoptimized frames
+                                                    2026-07-15
+818330b321cabe96d8f9845cc67847306d762906  [GR-74398] Add SVM primitive frame accessors and stack trace coverage
+                                                    2026-08-21
+```
+
+The first of those commits added a SVM test, but that test exercises a synthetic
+`ValueInfo[]` helper rather than a Native Truffle stack walk or DAP session. The
+GR-74398 commit substantially changes `SubstrateInspectedFrame` but does not add
+an end-to-end Native DAP `stackTrace` test. Oracle/Graal does have DAP tests that
+exercise `stackTrace` (for example `SimpleLanguageDAPTest` and
+`ITLDAPTest`), but repository search did not identify a corresponding
+SubstrateVM/Native Image DAP test.
+
+GraalVM documentation has historically exposed Native Image DAP inclusion
+through `--tool:dap`, so a Truffle-language DAP session inside a Native Image is
+not being treated here as a JVM-only unsupported usage. The current evidence
+therefore makes the SVM inspected-frame path the strongest causal candidate,
+but it still does not prove upstream ownership: a Protos-specific Native build
+interaction could in principle trigger a valid SVM failure condition.
+
+The next discriminator is now precise: expose the preserved
+`IOException.getCause()` for one diagnostic Native `protos debug` run and record
+its exact type/message/stack before selecting the repair owner.
+
 ## What is not established
 
 This checkpoint does **not** establish any of the following:
