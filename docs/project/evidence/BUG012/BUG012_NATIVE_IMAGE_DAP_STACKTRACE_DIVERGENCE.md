@@ -434,8 +434,17 @@ PERFORMANCE_SCOPE_EXPANSION=NO
 SHUTDOWN_INVARIANT_SUPPRESSION=NO
 ```
 
-BUG012 no longer blocks DIST006-B / #734. The next executable boundary is the
-DIST006-B2 real VS Code Debug acceptance retry in
-`guillermomolina/protos-vscode-extension`, using an exact published Protos
-runtime containing repair revision
-`417e44a8c60eaba1db7859d78bbb1e61c5dace64`.
+BUG012 itself no longer blocks DIST006-B / #734. The repaired product revision
+is not yet present in a public Native release asset, so the artifact prerequisite
+is routed to DIST009 / #743.
+
+```text
+NEXT_OWNER=DIST009/#743
+NEXT_SLICE=DIST009-A
+NEXT_SLICE_TYPE=INVESTIGATION
+PURPOSE=publish a JVM_PLUS_NATIVE prerelease containing BUG012 before B2 retry
+```
+
+After DIST009 publishes and verifies an exact Native artifact containing repair
+revision `417e44a8c60eaba1db7859d78bbb1e61c5dace64`, DIST006-B2 may resume real VS
+Code Run/Debug acceptance in `guillermomolina/protos-vscode-extension`.
