@@ -1,6 +1,6 @@
 # DOC001 — Protos Programming Documentation
 
-Status: IN_PROGRESS
+Status: CLOSED
 
 This is the canonical project record for the first independently tracked
 documentation initiative in Protos.
@@ -81,6 +81,14 @@ Closure evidence:
 - DOC001-L:
   `SAME_COMMIT`
   (`Publish Process I/O and filesystem authority programming guide`).
+- DOC001-M:
+  `5727bd37edd34aca955a84945e32a8cab0968eec`
+  (scope reconciliation: Bundled Tools/Test Tool documentation remains owned by
+  DOC005; comprehensive Package Tool documentation is independent future
+  documentation work once TOOL001 has a stable published surface).
+- DOC001-N:
+  `5727bd37edd34aca955a84945e32a8cab0968eec`
+  (final Programming Guide navigation and consistency closure).
 
 ## Slice ledger
 
@@ -98,8 +106,8 @@ Closure evidence:
 | DOC001-J | CLOSED | Isolated parallel execution | Published in `SAME_COMMIT`: chapter 09, guide navigation, current I010/runtime evidence, and DOC001 project reconciliation. |
 | DOC001-K | CLOSED | Actors and Actor Groups | Published in `SAME_COMMIT`: chapter 10, guide navigation, current I011/LM005/tutorial evidence, and DOC001 project reconciliation. |
 | DOC001-L | CLOSED | Process, I/O, Filesystem/File capabilities, and authority | Published in `SAME_COMMIT`: chapter 11, guide navigation, current I013-I017/I021 implementation evidence, explicit D046/I024 status boundary, and DOC001 project reconciliation. |
-| DOC001-M | BLOCKED_BY_DEPENDENCIES | Packages, testing, and bundled toolchain | Final chapter closure requires TOOL001 and TOOL002 CLOSED. |
-| DOC001-N | BLOCKED_BY_DEPENDENCIES | Final navigation and consistency closure | Requires DOC001-E through DOC001-M complete. |
+| DOC001-M | CLOSED / SCOPE_RECONCILED | Packages, testing, and bundled toolchain | Broad toolchain ownership removed from DOC001 at `5727bd37edd34aca955a84945e32a8cab0968eec`; DOC005 owns Bundled Tools/Test Tool documentation, while comprehensive Package Tool documentation is independent future work after TOOL001 stabilizes. |
+| DOC001-N | CLOSED | Final navigation and consistency closure | Published at `5727bd37edd34aca955a84945e32a8cab0968eec`; final guide navigation and scope consistency reconciled without claiming TOOL001 or DOC005 complete. |
 
 ## B007 / I023 relationship
 
@@ -126,14 +134,39 @@ argument-expression / selected-only callback boundary. This maintenance does
 not reopen DOC001-E and introduces no new documentation slice or normative
 authority.
 
-B007/I023 no longer gate DOC001. DOC001-L is now CLOSED after its own
-current-main audit and publication. DOC001-M remains toolchain-gated and
-DOC001-N remains the final consistency closure.
+B007/I023 no longer gate DOC001. DOC001-L is CLOSED after its own
+current-main audit and publication. DOC001-M was later scope-reconciled out of
+the language-focused Programming Guide, and DOC001-N closed the final guide
+navigation/consistency pass at Protos revision
+`5727bd37edd34aca955a84945e32a8cab0968eec`.
+
+## Final closure
+
+DOC001 is complete.
+
+The final closure deliberately narrows the initiative back to the maintained
+language-focused Programming Guide rather than keeping that guide indefinitely
+blocked on the Package Tool lifecycle.
+
+The published reconciliation at Protos revision
+`5727bd37edd34aca955a84945e32a8cab0968eec` establishes:
+
+- the language-focused guide sequence through DOC001-L is complete;
+- DOC001-M's former broad toolchain gate is retired;
+- Bundled Tools and detailed Test Tool documentation remain independently owned
+  by DOC005;
+- comprehensive Package Tool user documentation remains independent future
+  documentation work once TOOL001 has a stable published surface;
+- DOC001-N's final navigation/consistency responsibility is satisfied; and
+- closing DOC001 does not claim TOOL001 or DOC005 complete.
+
+No language, Standard Library, Tool, runtime, or specification semantics are
+changed by this closure.
 
 ## Completion rule
 
-DOC001 remains IN_PROGRESS until every required slice is published and DOC001-N
-completes the final cross-document audit.
+SATISFIED. DOC001-M is scope-reconciled, DOC001-N is complete, and the maintained
+Programming Guide closure is published.
 
 ## Publication and validation
 
