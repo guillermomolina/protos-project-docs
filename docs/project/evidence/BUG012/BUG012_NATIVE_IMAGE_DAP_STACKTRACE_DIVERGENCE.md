@@ -185,15 +185,21 @@ The failure reproduces without VS Code, so
 DIST006-B / #734 is blocked for its Native-backed real Debug acceptance while
 BUG012 remains unresolved.
 
-At this checkpoint the available GitHub connector actions did not expose native
-sub-issue or issue-dependency mutation. The required live coordination relations
-therefore remain explicit pending postconditions rather than being represented
-by misleading textual substitutes:
+Post-publication live-state verification shows that GitHub reconciled the native
+parent relation successfully:
 
 ```text
-REQUIRED_NATIVE_PARENT=#742 -> #734
+NATIVE_PARENT=#742 -> #734
+NATIVE_PARENT_RECONCILIATION=PASS
+```
+
+The available GitHub connector actions still do not expose issue-dependency
+mutation. The remaining required live dependency is therefore an explicit
+pending postcondition rather than a misleading textual substitute:
+
+```text
 REQUIRED_NATIVE_DEPENDENCY=#734 blocked by #742
-NATIVE_RELATION_RECONCILIATION=PENDING_TOOL_CAPABILITY
+NATIVE_DEPENDENCY_RECONCILIATION=PENDING_TOOL_CAPABILITY
 ```
 
 ## What is not established
