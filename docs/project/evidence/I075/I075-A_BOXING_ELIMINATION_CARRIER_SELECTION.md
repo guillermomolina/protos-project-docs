@@ -302,3 +302,43 @@ BOXING_ELIMINATION_TYPES_INITIAL_SET={int.class}
 IMPLEMENTATION_READY=YES
 ARCHITECTURE_DECISION_REQUIRED=NO
 ```
+
+
+## Post-investigation implementation evidence
+
+I075-B later established a runtime local-access incompatibility that I075-A did
+not anticipate.
+
+The one-line `boxingEliminationTypes = {int.class}` attempt passed annotation
+processing and build, but integrated validation failed through the existing
+accessor-based lexical-local machinery. The attempt was stopped before commit
+or publication.
+
+This does **not** invalidate the I075-A finding that the selected `int` carrier
+is implementation-internal and guest-semantically invisible. It **does**
+supersede the following I075-A routing conclusion:
+
+```text
+IMPLEMENTATION_READY=YES
+```
+
+Current authority after I075-B is:
+
+```text
+CURRENT_LOCAL_ACCESS_ARCHITECTURE_COMPATIBLE_WITH_BE=NO
+IMPLEMENTATION_READY=NO
+ARCHITECTURE_DECISION_REQUIRED=INCONCLUSIVE
+NEXT_SLICE=I075-C
+NEXT_SLICE_TYPE=INVESTIGATION_ONLY
+```
+
+Durable stop-gate evidence:
+
+`docs/project/evidence/I075/I075-B_BOXING_ELIMINATION_LOCAL_ACCESS_STOP_GATE.md`
+
+```text
+I075_B_STOP_GATE_RECORD_REVISION=0b0de32529d24df0b4b294d835cc9f2170525f9f
+```
+
+The original I075-A result above is retained as historical evidence rather than
+rewritten.
