@@ -6,8 +6,9 @@ This record retains the diagnostic checkpoint that promoted the Native-backed
 DIST006-B2 debugger failure into independently tracked BUG012 / #742.
 
 It is non-normative project evidence. It does not define Protos language,
-debugger-protocol, Process, Task, or runtime-host semantics, and it does not yet
-select an implementation fix or assert that the root cause is upstream Graal.
+debugger-protocol, Process, Task, or runtime-host semantics. It retains the
+diagnostic progression, final ownership decision, published repair, and
+validation identity for BUG012.
 
 ## Exact published identity
 
@@ -331,46 +332,110 @@ VSCODE_PRIMARY_DEFECT=NO
 SVM_STACK_INTROSPECTION_PRIMARY_DEFECT=NO
 ```
 
-The intended repair boundary is narrow: make build-time initialization of the
-special external-receiver export cover the generated outer registration owner
-coherently, while preserving DIST006-C1's requirement that the export entry
-points remain visible during hosted parsing and preserving I069 runtime guest
-compilation. The exact candidate still requires a Native build, the BUG012
-breakpoint/`stackTrace` probe, and the retained C1 forced-Tier-2/native
-regression gates before publication.
+The repair boundary was kept narrow: build-time initialization of the special
+external-receiver export now covers both the source export owner and the
+generated outer registration owner coherently. This preserves DIST006-C1's
+hosted-parsing visibility requirement and I069 guest runtime compilation while
+preventing duplicate runtime registration.
 
-## What is not established
+## Published repair and validation
 
-This checkpoint does **not** establish any of the following:
-
-- that the defect is caused by missing Native Image reachability metadata;
-- that the defect is necessarily in Oracle/Graal rather than Protos Native Image
-  configuration or integration;
-- that `ProtosPolyglotRuntimeHost.close()` is incorrect;
-- that Protos language, debugger public protocol, Process, Task, or Actor
-  semantics should change; or
-- that DIST006-B1's JVM/core debugger evidence was invalid.
-
-## Next investigation boundary
-
-The next BUG012 slice is investigation only. It must use current repository HEAD
-and public upstream/source evidence to identify the primary Native-only failure
-triggered while Graal DAP services `stackTrace`.
-
-The investigation should determine one of:
+The repair was published in `guillermomolina/protos` as:
 
 ```text
-OWNER=PROTOS_NATIVE_INTEGRATION
-  CAUSE=<evidence-backed mechanism>
-  NEXT_SLICE=<smallest implementation repair>
-
-OWNER=UPSTREAM_GRAAL
-  CAUSE=<evidence-backed upstream mechanism>
-  MINIMAL_REPRODUCER=<bounded reproducer>
-  NEXT_SLICE=<UPSTREAM coordination owner>
-
-OWNER=INCONCLUSIVE
-  NEXT_DISCRIMINATOR=<specific evidence needed>
+PROTOS_REVISION=417e44a8c60eaba1db7859d78bbb1e61c5dace64
+PROTOS_VERSION=0.3.121-SNAPSHOT
+COMMIT=BUG012: repair Native DAP stack traces
+GRAALVM_GRAAL_TRUFFLE=25.4.4.1.1
+JDK_VERSION=25.0.4.1.1
 ```
 
-No implementation should be started until that ownership boundary is established.
+The Native initialization generator now includes both:
+
+```text
+com.guillermomolina.protos.execution.ProtosBytecodeTagTreeNodeExports
+com.guillermomolina.protos.execution.ProtosBytecodeTagTreeNodeExportsGen
+```
+
+The first owner remains build-time initialized so
+`ProtosBytecodeTagTreeNodeExports.hasScope%%D(...)` is visible during hosted
+Bytecode parsing for runtime compilation. The generated outer owner is also
+build-time initialized so its generated `LibraryExport.register(...)`
+initializer cannot first run at debugger runtime and attempt a duplicate receiver
+registration.
+
+A failed intermediate candidate that replaced the source owner with only the
+generated outer owner was rejected because Native Image then failed compilation
+with:
+
+```text
+The following method is reachable during compilation, but was not seen during
+Bytecode parsing:
+com.guillermomolina.protos.execution.ProtosBytecodeTagTreeNodeExports.hasScope%%D(TagTreeNode, Frame)
+```
+
+Keeping both owners is therefore required by the retained evidence.
+
+The final rebuilt Native Image passed the maintained Native regression gate:
+
+```text
+NATIVE_VERSION_STATUS=0
+NATIVE_HELP_STATUS=0
+NATIVE_GUEST_SMOKE_STATUS=0
+NATIVE_TEST_TOOL_STATUS=0
+NATIVE_TEST_TOOL_OUTPUT_OK=1
+NATIVE_TEST_TOOL_CONTEXT_TEARDOWN_FAILURES=0
+
+NATIVE_DAP_BREAKPOINT=PASS
+NATIVE_DAP_STACKTRACE_FRAMES=1
+NATIVE_DAP_STACKTRACE=PASS
+NATIVE_DAP_CONTINUE=PASS
+NATIVE_DAP_PROCESS_STATUS=0
+NATIVE_DAP_REGRESSION=PASS
+NATIVE_DAP_STACKTRACE_STATUS=0
+
+NATIVE_FORCED_JIT_STATUS=0
+OPT_DONE=2
+OPT_FAILED=0
+FRAME_WITHOUT_BOXING_FAILURES=0
+COMPILATION_FAILURES=0
+HELPER_BYTECODE_ROOT_TIER2=1
+SEMANTIC_BYTECODE_ROOT_TIER2=1
+
+NATIVE_DAP_STACKTRACE_REGRESSION=PASS
+NATIVE_FORCED_GUEST_JIT=PASS
+HELPER_BYTECODE_ROOT_TIER2=PASS
+SEMANTIC_BYTECODE_ROOT_TIER2=PASS
+FRAME_WITHOUT_BOXING_REGRESSION=PASS
+NATIVE_REGRESSION_SUITE=PASS
+```
+
+The repository-integrated `make test` gate also passed after the repair and
+after rebasing onto the then-current product baseline.
+
+No fallback compilation was enabled. No shutdown invariant was weakened. No
+Protos language, Standard Library, Process, Task, Actor, debugger protocol, or
+performance semantics were changed.
+
+## Final classification
+
+```text
+BUG012_STATUS=CLOSED
+PRIMARY_CAUSE=PROTOS_NATIVE_TRUFFLE_LIBRARY_CLASS_INITIALIZATION_SPLIT
+OWNER=PROTOS_NATIVE_INTEGRATION
+UPSTREAM_GRAAL_PRIMARY_DEFECT=NO
+VSCODE_PRIMARY_DEFECT=NO
+SVM_STACK_INTROSPECTION_PRIMARY_DEFECT=NO
+REPAIR_REVISION=417e44a8c60eaba1db7859d78bbb1e61c5dace64
+NATIVE_REGRESSION=PASS
+INTEGRATED_TESTS=PASS
+SEMANTIC_SCOPE_EXPANSION=NO
+PERFORMANCE_SCOPE_EXPANSION=NO
+SHUTDOWN_INVARIANT_SUPPRESSION=NO
+```
+
+BUG012 no longer blocks DIST006-B / #734. The next executable boundary is the
+DIST006-B2 real VS Code Debug acceptance retry in
+`guillermomolina/protos-vscode-extension`, using an exact published Protos
+runtime containing repair revision
+`417e44a8c60eaba1db7859d78bbb1e61c5dace64`.
