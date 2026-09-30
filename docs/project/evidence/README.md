@@ -11,6 +11,7 @@ its references, retention role, and compatibility implications.
 ## Evidence groups
 
 - [`BUG011/`](BUG011/BUG011_NATIVE_IMAGE_TEST_TOOL_JFR_COMPATIBILITY.md) — retained BUG011 Native Image Test Tool/JFR compatibility diagnosis, repair, canonical native Test Tool regression gate, and final validation evidence at exact Protos revision `754de7a2a2d73dd4b39109bb842522ed9cc8153a`.
+- [`BUG012/`](BUG012/BUG012_NATIVE_IMAGE_DAP_STACKTRACE_DIVERGENCE.md) — retained BUG012 direct-DAP Native-vs-JVM divergence checkpoint for published Protos `0.3.116` / GraalVM 25.4.4.1.1, proving Native breakpoint suspension followed by `stackTrace` termination while the exact JVM control returns a valid frame; root-cause ownership remains under investigation and DIST006-B2 real Debug is blocked.
 - [`DIST001/`](DIST001/README.md) — immutable first-pre-release selection,
   candidate, validation, claims, release-envelope, and observed-publication
   evidence for DIST001.
