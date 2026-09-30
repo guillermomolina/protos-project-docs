@@ -1,6 +1,6 @@
 # I073 — Bytecode DSL tail-call-handler adoption publication checkpoint
 
-Status: **SUBSTANTIVE IMPLEMENTATION PUBLISHED — PUBLICATION METADATA REPAIR REQUIRED**
+Status: **COMPLETE**
 
 This durable, non-normative evidence record preserves the exact state after the
 first I073 product publication.
@@ -101,13 +101,50 @@ invalidates that evidence.
 ## Routing
 
 ```text
-I073_STATUS=IN_PROGRESS
-I074_STATUS=PAUSED
+I073_STATUS=COMPLETE
+I074_STATUS=READY
 
-NEXT_SLICE=I073 publication-metadata repair
-NEXT_SLICE_TYPE=IMPLEMENTATION_FINALIZATION_REPAIR
+NEXT_SLICE=I074
+NEXT_SLICE_TYPE=IMPLEMENTATION
 NEXT_REPOSITORY=guillermomolina/protos
 ```
 
-I074 must not be advanced until the forward repair is published, the exact
-result is re-read, and I073 satisfies its closure gate.
+## Repair publication and closure
+
+The forward-only metadata repair was subsequently published:
+
+```text
+REPAIR_REVISION=41a7a6e0bc08ef3d29f8f591c48af5e45821900e
+REPAIR_PARENT=f206eddf91fade472acb0f058a4729c9a4dca27d
+REPAIR_FILES=CHANGELOG.md,pom.xml
+REPAIR_SOURCE_CHANGE=NO
+MAVEN_VERSION=0.3.123-SNAPSHOT
+CHANGELOG_I073_ENTRY=PASS
+```
+
+The repair commit changes no executable source. It increments the Maven
+implementation version from `0.3.122-SNAPSHOT` to `0.3.123-SNAPSHOT` and
+adds the required I073 entry to the root `CHANGELOG.md`.
+
+The I073 implementation is therefore represented by the two consecutive
+published revisions:
+
+```text
+SUBSTANTIVE_REVISION=f206eddf91fade472acb0f058a4729c9a4dca27d
+FINALIZATION_REVISION=41a7a6e0bc08ef3d29f8f591c48af5e45821900e
+```
+
+Together with the project-owner-reported `make test=PASS`, this satisfies the
+I073 closure evidence.
+
+```text
+TAIL_CALL_HANDLER_GENERATION=ENABLED
+OBSERVABLE_PROTOS_SEMANTICS=UNCHANGED
+MAKE_TEST=PASS
+CLEAR_PERFORMANCE_REGRESSION=NOT_REPORTED
+PUBLICATION=PASS
+PUBLICATION_METADATA=PASS
+I073_CLOSURE=PASS
+```
+
+I074 may now advance to READY.
