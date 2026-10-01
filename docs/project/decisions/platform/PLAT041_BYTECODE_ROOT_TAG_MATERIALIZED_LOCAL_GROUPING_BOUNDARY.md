@@ -405,3 +405,49 @@ No language/specification change is authorized by this decision.
 - `guillermomolina/protos#681` — historical BUG008; remains closed.
 - PLAT004, PLAT005, PLAT008, PLAT014, PLAT026, PLAT034, PLAT036 and PLAT040.
 - `docs/project/evidence/PLAT041/PLAT041_ROOT_TAG_MATERIALIZED_LOCAL_DECISION_EVIDENCE.md`.
+
+## Post-ratification implementation discovery — PLAT042 gate
+
+PERF025-C1a+C1b were published on 2026-10-01 at:
+
+~~~text
+PROTOS_REVISION=595d547b2e9714a185a3cfceadf74565229f43e7
+PROTOS_VERSION=0.3.132-SNAPSHOT
+~~~
+
+Those slices implement and preserve the approved C′ facts for current-activation
+lowering and inline Object-body execution.
+
+C1c then stopped before implementation because the ratification's
+"compact untagged infrastructure interpreter" estimate counted only operations
+emitted directly by the six C-prime builder classes. The Task C-prime entry also
+calls `CanonicalToBytecodeLowerer.emitPreparedInvocationForRuntime(...)`, whose
+transitive structured-dispatch lowering materially changes the footprint.
+
+Revision-bound static inspection at the published product checkpoint gives:
+
+~~~text
+SOURCE_LOWERER_BUILDER_OPERATION_NAMES=203
+SIX_CPRIME_DIRECT_BUILDER_OPERATION_NAMES=53
+PREPARED_STRUCTURED_DISPATCH_TRANSITIVE_OPERATION_NAMES=144
+ACTUAL_HELPER_UNION_OPERATION_NAMES=183
+HELPER_UNION_VS_SOURCE_LOWERER=90.1%
+PROTOS_BYTECODE_ROOT_NODE_OPERATION_ANNOTATIONS=223
+~~~
+
+Therefore the PLAT041 C1c phrase "compact untagged infrastructure interpreter"
+is **superseded as implementation authorization**. It is not evidence that C′'s
+already-implemented Object-body or lexical/tooling invariants were wrong.
+
+The remaining structured-dispatch ownership question is promoted to:
+
+~~~text
+PLAT042=guillermomolina/protos#760
+PERF025_C1C=BLOCKED_BY_PLAT042
+BUG008=#681 CLOSED_DO_NOT_REOPEN
+~~~
+
+Until PLAT042 is explicitly selected and durably ratified, PLAT041 does not
+authorize choosing between a near-full duplicate interpreter, an out-of-line
+structured dispatcher, or another topology for C1c.
+
