@@ -666,6 +666,51 @@ No additional generated-source, frame, annotation, inlining-option,
 reachability, or runtime-variant experiments are authorized by default after
 this diagnostic.
 
+## Final stop-gate result
+
+The final `afterAnalysis()` diagnostic identified the concrete failed gate for
+the cached helper `continueAt` runtime variant.
+
+```text
+DECLARING_CLASS_INSTANTIATED=true
+
+ORIGINAL:
+  DIRECT_ROOT=true
+  INVOKED=true
+  IMPLEMENTATION_INVOKED=true
+  REACHABLE=true
+  ANALYZED_GRAPH=true
+
+RUNTIME_VARIANT:
+  EXISTS=true
+  DIRECT_ROOT=false
+  INVOKED=false
+  IMPLEMENTATION_INVOKED=true
+  REACHABLE=true
+  ANALYZED_GRAPH=false
+```
+
+The runtime-compilation inventory remains:
+
+```text
+CACHED_CONTINUE_AT=NO
+UNCACHED_CONTINUE_AT=YES
+SEMANTIC_CONTINUATION_EXECUTE=NO
+```
+
+Thus the cached `RUNTIME_COMPILED_METHOD` variant is not missing because of
+type reachability, variant creation, or implementation-invoked state. It is
+present and reachable, but it has no analyzed graph.
+
+This is the failed gate that explains its omission from `CallTreeInfo` and
+`PrintRuntimeCompileMethods`, and why later Truffle PE cannot reopen/inline
+the exact cached callee.
+
+Per the investigation stop gate, BUG013-E investigation ends here. The next
+work is implementation in Graal/SVM runtime-compilation graph production or
+retention. No further reachability/generated-code/inlining diagnostics are
+authorized by default.
+
 ## Current status
 
 ```text
