@@ -196,23 +196,41 @@ stack trace, and file SHA-256 values.
 The capture must preserve the exact files that produced the already-observed
 results rather than regenerating them from memory.
 
-## Required next checkpoint
+## Container capture checkpoint
 
-Do not draft the final external issue until the capture is durable.
+The live container evidence was captured into:
 
 ```text
-EPHEMERAL_REPRODUCER_PRESERVED=NO
-REPRODUCER_FILE_HASHES_RETAINED=NO
-ENVIRONMENT_IDENTITY_RETAINED=PARTIAL
+/tmp/upstream004-container-evidence.tar.gz
+SHA256=ef610d44838774a54a2dc8ba9b2a379a9427cafd7640e0e0ad103e7194cce6b0
+```
+
+The exact file manifest and capture result are retained in:
+
+```text
+docs/project/evidence/UPSTREAM004/UPSTREAM004_A_CONTAINER_EVIDENCE_CAPTURE.md
+```
+
+The archive itself still requires external retention and content review before
+the final upstream-facing reproducer package or issue draft is authoritative.
+
+## Required next checkpoint
+
+```text
+EPHEMERAL_REPRODUCER_PRESERVED=YES_IN_CONTAINER_CAPTURE
+REPRODUCER_FILE_HASHES_RETAINED=YES
+ENVIRONMENT_IDENTITY_RETAINED=YES
 LATEST_SNAPSHOT_NATIVE_FAILURE_RETAINED=YES
 SAME_SNAPSHOT_JVM_CONTROL_RETAINED=YES
 MINIMAL_PLAIN_ROOT_REPRODUCES=YES
 FULL_REPRO_COMMANDS_VERIFIED=PARTIAL
+ARCHIVE_EXTERNAL_RETENTION=PENDING
+ARCHIVE_CONTENT_REVIEW=PENDING
 UPSTREAM_TEMPLATE_SELECTED=NO
 DRAFT_REVIEWED_BY_HUMAN=NO
 EXTERNAL_ISSUE_OPENED=NO
 ```
 
-The next slice is evidence preservation only. It should not modify Protos,
-change GraalVM versions, attempt another product repair, or open the upstream
-issue.
+The next slice is archived-content review and upstream-package preparation. It
+should not modify Protos, change GraalVM versions, attempt another product
+repair, or open the upstream issue.
