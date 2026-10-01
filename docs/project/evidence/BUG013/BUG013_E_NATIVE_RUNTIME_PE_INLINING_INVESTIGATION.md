@@ -592,6 +592,40 @@ A transition from absent to present `continueAt%%R` would directly establish
 missing hosted type instantiation / callee resolution as the helper-side root
 cause.
 
+## Cached class in-heap discriminator
+
+The temporary Native Image Feature was corrected and bytecode-verified to call
+`BeforeAnalysisAccess.registerAsInHeap(CachedBytecodeNodeTailCall.class)`
+before calling
+`RuntimeCompilationFeature.prepareMethodForRuntimeCompilation(...)` for the
+cached helper `continueAt`.
+
+The Native build succeeded, but the inventory remained:
+
+```text
+CACHED_CLASS_RUNTIME_METHOD_COUNT=0
+CACHED_CONTINUE_AT_RUNTIME_METHOD=NO
+UNCACHED_CONTINUE_AT_CONTROL=YES
+SEMANTIC_UNFORCED_CONTROL=NO
+```
+
+No runtime parsing/validation failure was emitted.
+
+This rejects the simple claim that hosted type-instantiation registration alone
+is sufficient to link the cached runtime variant.
+
+The relevant SVM invariants are now explicit:
+
+- `AnalysisMethod.registerAsDirectRootMethod()` documents that an
+  `invokespecial` root is not necessarily implementation-invoked;
+- `AnalysisMethod.isReachable()` is true only when the method is
+  implementation-invoked or inlined;
+- `CallTreeInfo` requires the runtime variant to be reachable, not invalid,
+  and to have a non-null analyzed graph.
+
+The next discriminator is therefore direct state inspection of the original
+cached `continueAt` and its `RUNTIME_COMPILED_METHOD` variant after analysis.
+
 ## Current status
 
 ```text
