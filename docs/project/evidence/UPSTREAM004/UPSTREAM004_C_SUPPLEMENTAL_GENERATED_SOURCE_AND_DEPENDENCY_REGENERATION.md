@@ -145,6 +145,27 @@ fd80fa49c6b1b1c1b321ad29cce00fad332f45bde2fb46e39c0cf74659e2a156  upstream004-su
 2fb012bac8dfa60820bcf9171d3d2749be027ca11c33e66240c222ab3cbdf581  MiniRootGen.java
 ```
 
+## External retention verification
+
+The supplemental archive was copied out of the development container and
+uploaded for independent verification:
+
+```text
+ARCHIVE=upstream004-supplement-evidence.tar.gz
+ARCHIVE_SIZE_BYTES=120172
+ARCHIVE_SHA256=835426a9bae5fdc0d85f31cb1eaf0ee29b77097ed2d66034e8c031490c5a7b97
+```
+
+The archive manifest was recomputed from the uploaded bytes. All four retained
+payload hashes match the values produced in the container exactly:
+
+```text
+5544924da1ee6604e276264f1e96892e2496cc8d68dccf182acd0866c851f78a  MiniPlainRootGen.java
+2fb012bac8dfa60820bcf9171d3d2749be027ca11c33e66240c222ab3cbdf581  MiniRootGen.java
+d95eff480af1117862f4b05ce38fc61e6d9cecf18fde268d992f2dbb06f7a79e  compile.log
+fd80fa49c6b1b1c1b321ad29cce00fad332f45bde2fb46e39c0cf74659e2a156  dependency-tree.txt
+```
+
 ## Result
 
 ```text
@@ -153,11 +174,12 @@ GENERATED_SOURCE_CAPTURE=PASS_SUPPLEMENT
 GENERATED_PLAIN_FRAMEWITHOUTBOXING_BOUNDARY=CONFIRMED
 
 ORIGINAL_ARCHIVE_UNCHANGED=YES
-SUPPLEMENT_MUST_BE_RETAINED_SEPARATELY=YES
+SUPPLEMENT_EXTERNAL_RETENTION=PASS
+SUPPLEMENT_ARCHIVE_INTEGRITY=PASS
+UPSTREAM_REPORT_EVIDENCE_COMPLETE=YES
 EXTERNAL_ISSUE_OPENED=NO
 ```
 
-After the supplemental files are archived and externally retained, UPSTREAM004
-has enough exact source, environment, dependency-plane, generated-code, JVM
-control and Native failure evidence to prepare the final upstream-facing
-reproducer package and issue draft.
+UPSTREAM004 now has enough exact source, environment, dependency-plane,
+generated-code, JVM control and Native failure evidence to prepare the final
+upstream-facing reproducer package and issue draft.
