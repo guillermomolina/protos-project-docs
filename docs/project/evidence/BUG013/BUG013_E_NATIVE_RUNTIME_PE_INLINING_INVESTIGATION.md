@@ -626,6 +626,46 @@ The relevant SVM invariants are now explicit:
 The next discriminator is therefore direct state inspection of the original
 cached `continueAt` and its `RUNTIME_COMPILED_METHOD` variant after analysis.
 
+## Investigation stop gate
+
+BUG013-E now has an explicit investigation boundary.
+
+The next and final diagnostic is the prepared Native Image
+`afterAnalysis()` state inspection for the exact cached helper
+`continueAt` runtime variant. It will measure:
+
+```text
+RUNTIME_VARIANT_EXISTS
+DIRECT_ROOT
+IMPLEMENTATION_INVOKED
+REACHABLE
+ANALYZED_GRAPH
+DECLARING_TYPE_INSTANTIATED
+```
+
+After that result:
+
+```text
+FAILED_GATE_IDENTIFIED:
+  end investigation
+  next slice = IMPLEMENTATION
+
+NO_CONCRETE_FAILED_GATE:
+  end investigation
+  no further BUG013-E diagnostics
+  consolidate upstream evidence
+  choose patched Graal under Protos control or keep Native blocked
+
+CURRENT_CAUSAL_MODEL_INVALIDATED:
+  STOP
+  no automatic new diagnostic branch
+  require explicit decision before continuing investigation
+```
+
+No additional generated-source, frame, annotation, inlining-option,
+reachability, or runtime-variant experiments are authorized by default after
+this diagnostic.
+
 ## Current status
 
 ```text
