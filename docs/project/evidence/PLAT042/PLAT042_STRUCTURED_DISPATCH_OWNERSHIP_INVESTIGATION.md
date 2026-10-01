@@ -1,6 +1,6 @@
 # PLAT042 — structured-dispatch interpreter ownership investigation
 
-Status: PROPOSED / awaiting project-owner decision
+Status: **RATIFIED — Candidate B′ selected**
 
 Date: 2026-10-01
 
@@ -517,3 +517,26 @@ No candidate is ratified by this record.
 
 Exact project-owner approval of B′ (or another exact candidate) is required
 before C1c implementation may resume.
+
+## Ratification
+
+The project owner explicitly approved the exact recommended candidate on
+2026-10-01:
+
+~~~text
+Apruebo B′ para PLAT042
+~~~
+
+~~~text
+DECISION_APPROVAL_PROVENANCE=PASS
+APPROVED_CANDIDATE=B_PRIME
+DECISION_INVARIANT_CONSISTENCY=PASS
+PERF025_C1C=IMPLEMENTATION_AUTHORIZED
+~~~
+
+The durable normative-for-project architecture statement is:
+
+`docs/project/decisions/platform/PLAT042_STRUCTURED_DISPATCH_INTERPRETER_OWNERSHIP_BOUNDARY.md`
+
+The investigation's numerical inventory remains revision-bound evidence at
+`595d547b2e9714a185a3cfceadf74565229f43e7`.

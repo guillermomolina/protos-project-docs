@@ -451,3 +451,33 @@ Until PLAT042 is explicitly selected and durably ratified, PLAT041 does not
 authorize choosing between a near-full duplicate interpreter, an out-of-line
 structured dispatcher, or another topology for C1c.
 
+## PLAT042 ratified amendment to the C1c helper-ownership clause
+
+PLAT042 / `guillermomolina/protos#760` was explicitly approved on 2026-10-01
+after implementation falsified this decision's original assumption that the
+remaining C-prime interpreter could be a compact bounded helper.
+
+PLAT041 remains authoritative for C1a/C1b and the semantic invariants selected
+here. The following C1c implementation phrase is superseded:
+
+~~~text
+OLD:
+  semantic source interpreter
+  + compact untagged infrastructure interpreter
+~~~
+
+The later authority is PLAT042 Candidate B′:
+
+~~~text
+CURRENT:
+  tagged semantic source interpreter
+  + one untagged structured-dispatch/C-prime owner
+  + structured-only helper CallTarget boundary
+~~~
+
+This amendment changes no PLAT026, PLAT014 or PERF013 invariant and introduces
+no Protos semantic/specification change.
+
+See
+`docs/project/decisions/platform/PLAT042_STRUCTURED_DISPATCH_INTERPRETER_OWNERSHIP_BOUNDARY.md`.
+

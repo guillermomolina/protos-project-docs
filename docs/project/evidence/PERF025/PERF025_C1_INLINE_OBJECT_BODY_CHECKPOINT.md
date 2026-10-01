@@ -193,3 +193,22 @@ the C1c RootTag cutover.
 - BUG008: `guillermomolina/protos#681`
 - PLAT041 durable decision:
   `docs/project/decisions/platform/PLAT041_BYTECODE_ROOT_TAG_MATERIALIZED_LOCAL_GROUPING_BOUNDARY.md`
+
+## PLAT042 resolution of the C1c gate
+
+The decision gate recorded above was resolved on 2026-10-01 by explicit
+project-owner approval of PLAT042 Candidate B′.
+
+~~~text
+PLAT042_STATUS=RATIFIED
+APPROVED_CANDIDATE=B_PRIME
+PERF025_C1C=IMPLEMENTATION_AUTHORIZED
+~~~
+
+The ratified topology is a tagged semantic source interpreter plus one untagged
+structured-dispatch/C-prime owner, with a helper CallTarget crossed only by
+prepared invocations classified as structured.
+
+The C1a+C1b checkpoint remains unchanged product history at
+`595d547b2e9714a185a3cfceadf74565229f43e7`.
+
