@@ -553,6 +553,45 @@ The SVM API
 direct causal discriminator: force-register one missing callee at a time and
 observe whether its runtime graph appears and the Native Tier-2 bailout changes.
 
+## Instance-method runtime registration correction
+
+A direct call to
+`RuntimeCompilationFeature.prepareMethodForRuntimeCompilation(...)` was tested
+for the helper-side cached `continueAt`. The Feature executed successfully,
+but the clean runtime-compilation inventory still contained zero methods from
+`CachedBytecodeNodeTailCall`.
+
+This does **not** show that explicit runtime registration is ineffective.
+`PointsToAnalysis.addRootMethod(...)` treats instance methods specially:
+`otherRoots` such as `RUNTIME_COMPILED_METHOD` are not directly rooted.
+Instead, their linking is deferred to callee resolution of the context-
+insensitive invoke flow.
+
+For `invokeSpecial=true`, resolution requires the declaring class to be
+instantiated in points-to analysis. Thus:
+
+```text
+prepareMethodForRuntimeCompilation(instance method)
+  -> nominal runtime variant exists
+  -> original special invoke is rooted
+  -> runtime variant waits for declaring-class instantiation
+  -> no instantiation => no linked/reachable %%R
+```
+
+This matches the cached Bytecode DSL case: the actual
+`CachedBytecodeNodeTailCall` allocation occurs only after
+`transferToInterpreterAndInvalidate()`, behind a deoptimization control sink,
+so hosted analysis does not observe the class instantiation.
+
+The corrected next discriminator is to mark
+`CachedBytecodeNodeTailCall` as instantiated with
+`BeforeAnalysisAccess.registerAsInHeap(...)` and then call
+`prepareMethodForRuntimeCompilation(...)` for its `continueAt`.
+
+A transition from absent to present `continueAt%%R` would directly establish
+missing hosted type instantiation / callee resolution as the helper-side root
+cause.
+
 ## Current status
 
 ```text
