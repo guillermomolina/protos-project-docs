@@ -230,30 +230,44 @@ The existing Native Image hosted option:
 -H:+PrintRuntimeCompileMethods
 ```
 
-prints methods available for runtime compilation and is the first bounded
-runtime-image discriminator. The runtime-compilation call-tree option can be
-used only if the inventory alone is insufficient.
+is the first bounded runtime-image discriminator, but its result is
+**asymmetric**.
+
+`PrintRuntimeCompileMethods` is built from `CallTreeInfo`, whose inclusion
+criteria are a reachable runtime variant, no runtime-compilation invalidation,
+and a non-null analyzed graph. The later encoder input is narrower:
+`onCompileQueueCreation(...)` additionally requires
+`method.getWrapped().isImplementationInvoked()`.
+
+Therefore presence in the printed inventory does not by itself prove that the
+method enters `methodsToCompile` or receives an `encodedGraphStartOffset`.
 
 Decision table:
 
 ```text
 CALLEE_ABSENT_FROM_RUNTIME_COMPILE_METHODS:
-  encoded graph absence becomes the leading causal path
-  -> SubstrateMethod.hasNeverInlineDirective() is true at runtime
-  -> PE cannot reopen the boundary
-  -> FrameWithoutBoxing escape bailout follows
+  no eligible analyzed runtime variant is present
+  -> encoded runtime graph absence is established for this path
+  -> PE cannot reopen the boundary from an encoded graph
 
 CALLEE_PRESENT_IN_RUNTIME_COMPILE_METHODS:
-  graph absence is rejected
-  -> inspect runtime method directness / InlineControl / PE refusal reason
-  -> do not patch frame materialization semantics
+  reachable analyzed runtime variant is established
+  -> encodedGraphStartOffset is still NOT proven
+  -> next discriminate is isImplementationInvoked / actual methodsToCompile
+  -> only after encoded-graph presence is proven inspect directness / InlineControl
 ```
+
+`PEGraphDecoder.tryInline()` does not emit a TraceInliningDetails message for
+its early returns on non-direct invokes, `hasNeverInlineDirective()`, or
+non-normal `InlineControl`. The already-collected runtime trace therefore
+cannot distinguish those gates without an additional image-build discriminator.
 
 ## Current status
 
 ```text
 BUG013_E_SOURCE_LOCALIZATION=COMPLETE_FOR_FIRST_STAGE
-ENCODED_GRAPH_AVAILABILITY_FOR_SURVIVING_CALLEES=TO_BE_MEASURED
+RUNTIME_VARIANT_INVENTORY_FOR_SURVIVING_CALLEES=TO_BE_MEASURED
+ENCODED_GRAPH_AVAILABILITY_FOR_SURVIVING_CALLEES=NOT_YET_PROVEN
 GRAAL_PATCH_SELECTED=NO
 PROTOS_PATCH_SELECTED=NO
 NATIVE_GATE_WEAKENING=NO
