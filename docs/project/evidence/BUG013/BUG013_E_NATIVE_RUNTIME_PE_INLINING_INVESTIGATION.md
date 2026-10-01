@@ -502,6 +502,57 @@ FORCED_TYPES_DO_NOT_GAIN_RUNTIME_VARIANTS:
 This control changes only image-build reachability assumptions and does not
 relax frame virtualization or Native admission.
 
+## Semantic continuation-root refinement
+
+Current generated-source evidence shows that
+`ProtosSemanticBytecodeRootNodeGen$ContinuationRootNodeImpl` is constructed
+while the bytecode builder finishes a newly created root and is written into
+the generated constant pool.
+
+This differs from the helper cached interpreter tier: the continuation root
+object itself is **not** first created behind `transitionToCached()` or its
+deoptimization control sink.
+
+Its generated `execute(VirtualFrame)` is an ordinary `RootNode.execute`
+override and no `TruffleBoundary`, `TruffleCallBoundary`, or other explicit
+runtime-compilation exclusion has been identified.
+
+The failing runtime IGV resolves the surviving call to the exact method:
+
+```text
+ProtosSemanticBytecodeRootNodeGen$ContinuationRootNodeImpl.execute(VirtualFrame)
+```
+
+while the clean runtime-compilation inventory contains no corresponding
+`execute%%R`.
+
+SVM source narrows the omission further. From a `RUNTIME_COMPILED_METHOD`
+caller, `RuntimeCompilationAnalysisPolicy.determineCallees(...)` creates a
+full runtime variant only when the concrete implementation appears in that
+runtime caller's `InvokeTypeFlow` and passes the runtime-compilation
+predicate. No continuation-specific rejection was found in
+`TruffleFeature.allowRuntimeCompilation()`.
+
+A previous working hypothesis that lazy `RootNode.getCallTarget()` alone hides
+the continuation type is not established. Truffle explicitly registers the
+concrete `createOptimizedCallTarget(..., RootNode)` path as an analysis root,
+and PointsToAnalysis initializes object parameter flows from their declared
+types. The precise semantic-side loss point is therefore the runtime-variant
+receiver/callee flow or registration, not proven object reachability failure.
+
+```text
+CONTINUATION_OBJECT_CREATED_DURING_BYTECODE_BUILD=YES
+CONTINUATION_EXECUTE_EXPLICITLY_BLOCKLISTED=NO_EVIDENCE
+CONTINUATION_EXECUTE_RUNTIME_VARIANT=ABSENT
+SEMANTIC_LOSS_POINT=RUNTIME_VARIANT_INVOKE_TYPEFLOW_OR_REGISTRATION
+LAZY_CALL_TARGET_AS_SOLE_CAUSE=NOT_PROVEN
+```
+
+The SVM API
+`RuntimeCompilationFeature.prepareMethodForRuntimeCompilation(...)` provides a
+direct causal discriminator: force-register one missing callee at a time and
+observe whether its runtime graph appears and the Native Tier-2 bailout changes.
+
 ## Current status
 
 ```text
