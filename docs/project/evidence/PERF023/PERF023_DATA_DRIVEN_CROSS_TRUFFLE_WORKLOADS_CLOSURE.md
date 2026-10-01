@@ -8,20 +8,31 @@ This record preserves the closure evidence for PERF023. It is non-normative:
 live lifecycle state remains owned by the Protos Issue, and this record does not
 define Protos language semantics.
 
-## Published benchmark implementation
+## Published benchmark implementation and retained evidence
 
-PERF023 was published in:
+The measurement-producing PERF023 implementation was published in:
 
 ```text
 repository=guillermomolina/protos-benchmarks
 benchmark_base_revision=952a4b1f02cc2ef0315cf3c1eeebfd4654ae8f86
-benchmark_revision=0d6a772
+measurement_producer_revision=0d6a7727f507c3e3a164e5ef4cda84b4bccfa303
 commit=PERF023: data-drive cross-Truffle workloads
 semantic_change=NO
 ```
 
+The raw-result retention repair was then published in:
+
+```text
+retention_revision=5cd9e0a492e9d00affc582012aeb95fed527ab4f
+commit=PERF023: retain cross-Truffle raw results
+retained_path=results/perf023/
+```
+
 The implementation keeps the PERF021 runner architecture and makes workload
-discovery data-driven rather than adding a new benchmark runner.
+discovery data-driven rather than adding a new benchmark runner. The later
+retention commit does not rerun or replace the measurements: it promotes the
+already-observed raw cache payloads byte-for-byte into versioned evidence and
+records their original measurement-producing revision.
 
 ## Canonical workload catalog
 
@@ -213,9 +224,9 @@ integer-loop/python=PASS
 Thus optional JVM diagnostics can select the new workloads without another
 diagnostic-runner edit.
 
-## Incremental result cache
+## Incremental cache and retained raw evidence
 
-Primary timing and A/B observations remain in the existing local cache:
+Routine incremental execution still uses the ignored local cache:
 
 ```text
 results/local/truffle-cache/<identity-sha256>.json
@@ -227,10 +238,44 @@ JFR/IGV diagnostics remain separate under:
 results/local/truffle-diagnostics/
 ```
 
-`results/local/` is intentionally ignored by Git. The owner-observed PERF023
-run ended with 28 local timing-cache files.
+`results/local/` remains intentionally disposable and ignored by Git. PERF023
+now additionally promotes the exact closure observations into versioned raw
+evidence:
 
-Repeated benchmark queries demonstrated cache reuse:
+```text
+results/perf023/manifest.json
+results/perf023/raw/<identity-sha256>.json
+```
+
+The retained manifest published at
+`guillermomolina/protos-benchmarks@5cd9e0a492e9d00affc582012aeb95fed527ab4f`
+records:
+
+```text
+schema=1
+work_item=PERF023
+producer_revision=0d6a7727f507c3e3a164e5ef4cda84b4bccfa303
+retention_policy=raw-cache-payloads-byte-for-byte
+retained_observation_count=28
+
+measurement classes:
+  jvm-ab-reference=4
+  jvm-reference=6
+  jvm-smoke=6
+  native-reference=6
+  native-smoke=6
+```
+
+Every manifest entry records the cache key, raw path, raw SHA-256, measurement
+class, mode, language, workload, source path/SHA-256, and observable result.
+A/B entries also retain the exact Protos revision and version.
+
+The owner-executed retention gate verified that all 28 retained files are
+byte-for-byte identical to their original local cache payloads and that a fresh
+clone can verify the versioned retained corpus without requiring
+`results/local/`.
+
+Repeated benchmark queries before retention demonstrated cache reuse:
 
 ```text
 JVM method-call: cache hits, real about 0.396 s
@@ -239,9 +284,8 @@ Native method-call: cache hits, real about 0.042 s
 Native integer-loop: cache hits, real about 0.042 s
 ```
 
-This closure record preserves the published summary and exact benchmark
-revision; the per-observation raw cache remains local benchmark output rather
-than versioned project documentation.
+The local cache remains an execution convenience; `results/perf023/` is the
+durable benchmark-repository evidence corpus for the PERF023 closure.
 
 ## Acceptance reconciliation
 
@@ -266,6 +310,19 @@ than versioned project documentation.
 9. **PASS** — no Protos product/specification semantic change was introduced.
 10. **PASS** — historical PERF020/PERF021 evidence was not rewritten.
 
+### Reopened raw-evidence retention reconciliation
+
+11. **PASS** — the exact already-observed PERF023 raw cache entries were
+    promoted without rerunning benchmarks.
+12. **PASS** — the retained manifest pins producer revision
+    `0d6a7727f507c3e3a164e5ef4cda84b4bccfa303` and stores raw payload hashes.
+13. **PASS** — a fresh clone can verify the retained PERF023 evidence from
+    `results/perf023/` without `results/local/`.
+14. **PASS** — `results/local/` remains disposable/ignored while retained
+    closure evidence is versioned.
+15. **PASS** — durable project evidence references retention revision
+    `5cd9e0a492e9d00affc582012aeb95fed527ab4f`.
+
 ## Publication and validation
 
 Owner-executed validation reported:
@@ -286,21 +343,30 @@ new-workload diagnostic selection: PASS
 existing Fibonacci correctness: PASS
 existing Factorial correctness: PASS
 cache reuse: PASS
+raw retention count: 28
+raw byte-for-byte promotion: PASS
+fresh-clone retained verification path: PASS
 benchmark repository final working tree: clean
-benchmark push: PASS
+benchmark implementation push: PASS
+benchmark raw-retention push: PASS
 ```
 
-Published benchmark revision:
+Published benchmark revisions:
 
 ```text
-0d6a772
+measurement producer:
+  0d6a7727f507c3e3a164e5ef4cda84b4bccfa303
+
+closure / retained raw evidence:
+  5cd9e0a492e9d00affc582012aeb95fed527ab4f
 ```
 
 ## References
 
 - `guillermomolina/protos#754` — PERF023
 - `guillermomolina/protos#748` — PERF021
-- `guillermomolina/protos-benchmarks@0d6a772`
+- `guillermomolina/protos-benchmarks@0d6a7727f507c3e3a164e5ef4cda84b4bccfa303` — measurement producer
+- `guillermomolina/protos-benchmarks@5cd9e0a492e9d00affc582012aeb95fed527ab4f` — retained raw closure evidence
 - PERF021 benchmark base
   `952a4b1f02cc2ef0315cf3c1eeebfd4654ae8f86`
 - Protos I077 baseline
