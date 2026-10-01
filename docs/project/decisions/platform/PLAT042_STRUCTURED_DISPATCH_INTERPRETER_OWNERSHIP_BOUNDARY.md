@@ -467,3 +467,105 @@ No language/specification change is authorized.
 - `guillermomolina/protos#681` — historical BUG008; remains closed.
 - `docs/project/evidence/PLAT042/PLAT042_STRUCTURED_DISPATCH_OWNERSHIP_INVESTIGATION.md`.
 - `docs/project/evidence/PERF025/PERF025_C1_INLINE_OBJECT_BODY_CHECKPOINT.md`.
+
+## Published implementation evidence
+
+PLAT042 Candidate B′ was implemented and published in
+`guillermomolina/protos` at:
+
+~~~text
+PROTOS_REVISION=0a5115caddba8ebb7bb4275ce32441ab90938d3d
+PROTOS_VERSION=0.3.133-SNAPSHOT
+COMMIT_SUBJECT=PERF025-C: PLAT042 B′ semantic/structured interpreter cutover
+~~~
+
+The published implementation establishes:
+
+~~~text
+SEMANTIC_SOURCE_INTERPRETER=YES
+SEMANTIC_AUTOMATIC_ROOT_TAG=YES
+
+UNIVERSAL_SEMANTIC_WRAPPER=REMOVED
+ORDINARY_SOURCE_CLOSURE_CALLTARGET_COUNT=1
+
+STRUCTURED_CPRIME_OWNER=UNTAGGED
+STRUCTURED_ONLY_HELPER_BOUNDARY=YES
+STRUCTURED_DIRECT_CALL_SPECIALIZATION=YES
+
+OBJECT_BODY_INLINE=YES
+OBJECT_BODY_SEMANTIC_ROOT=NO
+OBJECT_BODY_LEXICAL_CONTEXT=NO
+
+PERF013_MATERIALIZED_FAST_PATH=PRESERVED
+PLAT014_CONTINUATION_MODEL=PRESERVED
+SEMANTIC_CHANGE=NO
+SPECIFICATION_CHANGE=NO
+~~~
+
+The source/structured split was implemented by evolving
+`ProtosSemanticBytecodeRootNode` into the real semantic source interpreter and
+moving the large structured dispatcher into
+`ProtosStructuredDispatchLowerer`, which continues to target the untagged
+`ProtosBytecodeRootNode` interpreter.
+
+The old semantic wrapper topology is gone for ordinary source roots.
+
+The implementation also retains source-root operation semantics by delegating
+the semantic interpreter's source-surface operation wrappers to the existing
+single implementations in `ProtosBytecodeRootNode`, rather than duplicating
+semantic logic.
+
+Bounded JVM before/after evidence recorded in the product CHANGELOG against
+`595d547b2e9714a185a3cfceadf74565229f43e7`:
+
+~~~text
+ORDINARY_WORKLOAD_DELTA=-46%
+STRUCTURED_BOUNDARY_WORKLOAD_DELTA=-36%
+RETAINED_CLOSURE_CALL_WORKLOAD_DELTA=-43%
+~~~
+
+The maintainer-reported Protos test-tool corpus at publication was:
+
+~~~text
+1271 passed, 0 failed
+Protos tests total time: 34 s
+~~~
+
+This outcome confirms that PLAT042 B′ was not merely a tooling/topology
+correction; it removed material runtime overhead.
+
+### Residual BUG008 carrier evidence
+
+Carrier retirement did not accompany this implementation.
+
+The published product still has:
+
+~~~text
+GUEST_CALL_STACK_SIZE_BYTES=64 MiB
+DEDICATED_GUEST_CARRIER=STILL_PRESENT
+~~~
+
+The first post-C1c stack gate established a different remaining source of stack
+pressure: the retained 10,000-deep benchmark recursion shape invokes a
+structured `ifTrue` at every recursion level. Under B′ each such structured
+invocation owns the intentional untagged dispatcher boundary plus its callback
+call.
+
+Observed evidence recorded in the 0.3.133 CHANGELOG states that those retained
+drivers still require a large fixed stack, approximately 32 MiB in interpreter
+execution.
+
+This does **not** invalidate PLAT042. It means the old universal source-wrapper
+stack amplification was removed, while one structured-recursion amplification
+remains intentionally visible for PERF025-C2 classification.
+
+~~~text
+PLAT042_IMPLEMENTATION=COMPLETE
+PERF025_C1C=COMPLETE
+PERF025_C2=CARRIER_RETIREMENT_PENDING
+BUG008=#681 CLOSED_DO_NOT_REOPEN
+~~~
+
+Detailed implementation evidence is retained under
+`docs/project/evidence/PERF025/PERF025_C1C_PLAT042_B_PRIME_CUTOVER.md`.
+
