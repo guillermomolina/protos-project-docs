@@ -2,10 +2,10 @@
 
 Status: **RATIFIED — Candidate B**
 
-Approval date: **2026-10-01**  
-Decision issue: `guillermomolina/protos#762`  
-Research evidence revision: `0a5115caddba8ebb7bb4275ce32441ab90938d3d`  
-Closure Protos revision: `d8dcc95d34088e942e737b98c7ad42a81a977293`  
+Approval date: **2026-10-01**
+Decision issue: `guillermomolina/protos#762`
+Research evidence revision: `0a5115caddba8ebb7bb4275ce32441ab90938d3d`
+Closure Protos revision: `d8dcc95d34088e942e737b98c7ad42a81a977293`
 Project-record base: `e11a676a61a4655f5d0d2774d6665b6b00daaa7a`
 
 This is a durable non-normative decision record. Observable Protos semantics
