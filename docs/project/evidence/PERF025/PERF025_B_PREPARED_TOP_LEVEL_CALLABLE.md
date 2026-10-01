@@ -162,8 +162,24 @@ PERF025-C — reduce/retire the BUG008 carrier tax caused by nested Bytecode
 CallTarget host-stack amplification
 ```
 
-Per owner direction, PERF025-C proceeds directly as implementation work before
-another benchmark/JFR campaign.
+After PERF025-B publication, current live coordination re-established that the
+remaining C objective crosses the still-open PLAT026 follow-up / #690, whose
+exact question is whether the semantic/helper two-Bytecode-root topology can be
+folded or reduced while preserving truthful RootTag/tooling, continuation and
+source/debugger identity.
+
+Therefore the next action is not a new profiling campaign. It is a bounded
+static closure of #690 from current HEAD and retained evidence only:
+
+```text
+NEW_JFR=NO
+NEW_BENCHMARK_CAMPAIGN=NO
+NEXT_GATE=PLAT026_FOLLOWUP/#690
+PERF025_C=BLOCKED_PENDING_ARCHITECTURE_CLASSIFICATION
+```
+
+If #690 returns `LOCAL_OPTIMIZATION_POSSIBLE`, PERF025-C resumes immediately
+as implementation.
 
 ## References
 
