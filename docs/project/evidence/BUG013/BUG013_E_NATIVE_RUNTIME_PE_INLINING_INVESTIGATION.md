@@ -262,12 +262,106 @@ its early returns on non-direct invokes, `hasNeverInlineDirective()`, or
 non-normal `InlineControl`. The already-collected runtime trace therefore
 cannot distinguish those gates without an additional image-build discriminator.
 
+## Clean Native runtime-compilation inventory result
+
+A clean current Protos Native build was produced with the hosted diagnostic:
+
+```text
+-H:+PrintRuntimeCompileMethods
+```
+
+The image build itself succeeded:
+
+```text
+NATIVE_BUILD_STATUS=0
+RUNTIME_COMPILE_METHOD_SECTION=FOUND
+```
+
+The two exact callees retained by the failing runtime IGV graphs were absent:
+
+```text
+HELPER_CONTINUE_AT_RUNTIME_METHOD=NO
+SEMANTIC_CONTINUATION_EXECUTE_RUNTIME_METHOD=NO
+```
+
+The same inventory nevertheless contains adjacent generated runtime variants,
+including:
+
+```text
+ProtosBytecodeRootNodeGen$UncachedBytecodeNodeTailCall.continueAt%%R(...)
+ProtosBytecodeRootNodeGen.continueAt%%R(...)
+ProtosBytecodeRootNodeGen.execute%%R(VirtualFrame)
+
+ProtosSemanticBytecodeRootNodeGen$UninitializedBytecodeNode.continueAt%%R(...)
+ProtosSemanticBytecodeRootNodeGen.continueAt%%R(...)
+ProtosSemanticBytecodeRootNodeGen.execute%%R(VirtualFrame)
+```
+
+The repository was clean after the measurement.
+
+This resolves the first BUG013-E discriminator:
+
+```text
+HELPER_SURVIVING_CALLEE_ANALYZED_RUNTIME_VARIANT=ABSENT
+SEMANTIC_SURVIVING_CALLEE_ANALYZED_RUNTIME_VARIANT=ABSENT
+ENCODED_RUNTIME_GRAPH_FOR_EXACT_SURVIVING_CALLEES=ABSENT
+```
+
+Because `SubstrateMethod.hasNeverInlineDirective()` treats
+`encodedGraphStartOffset < 0` as non-inlineable, the measured absence gives a
+direct SVM explanation for the runtime PE symptom: the exact call boundaries
+which survive in the failing Native graph have no encoded runtime graph that PE
+can reopen. The protected `FrameWithoutBoxing` then reaches an invoke that
+cannot be inlined and `EnsureVirtualizedNode` reports the materialization
+bailout.
+
+The result also rejects a generic `@ExplodeLoop` exclusion as a complete
+explanation. An uncached generated `continueAt` runtime variant is present,
+while the cached implementation required after the bytecode node transitions
+to its cached tier is absent.
+
+## New narrowed causal question
+
+Graal Bytecode DSL generation shows that the root transition to cached bytecode
+is explicitly interpreter-only:
+
+```text
+transitionToCached()
+  -> transferToInterpreterAndInvalidate()
+  -> oldBytecode.toCached(...)
+```
+
+When tail-call handlers are enabled under `TruffleOptions.AOT`,
+`toCached(...)` constructs `CachedBytecodeNodeTailCall`.
+
+The next causal question is therefore no longer whether runtime graphs are
+missing; that is established. It is why SVM runtime-variant reachability fails
+to connect the cached implementation and generated continuation root even
+though those objects/methods can participate in Native execution.
+
+The next discriminator should inspect the runtime-compilation call tree /
+receiver implementation set around the generated root `continueAt` dispatch.
+A useful result would distinguish:
+
+```text
+RUNTIME_DISPATCH_SET_CONTAINS_ONLY_UNCACHED:
+  points-to/runtime-variant reachability mismatch is localized
+
+RUNTIME_DISPATCH_SET_CONTAINS_CACHED_BUT_NO_RUNTIME_VARIANT:
+  candidate registration/variant creation is the next defect boundary
+```
+
+No frame-materialization relaxation is justified by this result.
+
 ## Current status
 
 ```text
 BUG013_E_SOURCE_LOCALIZATION=COMPLETE_FOR_FIRST_STAGE
-RUNTIME_VARIANT_INVENTORY_FOR_SURVIVING_CALLEES=TO_BE_MEASURED
-ENCODED_GRAPH_AVAILABILITY_FOR_SURVIVING_CALLEES=NOT_YET_PROVEN
+RUNTIME_VARIANT_INVENTORY_FOR_SURVIVING_CALLEES=MEASURED
+HELPER_SURVIVING_CALLEE_RUNTIME_VARIANT=ABSENT
+SEMANTIC_SURVIVING_CALLEE_RUNTIME_VARIANT=ABSENT
+ENCODED_GRAPH_AVAILABILITY_FOR_SURVIVING_CALLEES=ABSENT
+NEXT_DISCRIMINATOR=RUNTIME_DISPATCH_RECEIVER_IMPLEMENTATION_SET
 GRAAL_PATCH_SELECTED=NO
 PROTOS_PATCH_SELECTED=NO
 NATIVE_GATE_WEAKENING=NO
