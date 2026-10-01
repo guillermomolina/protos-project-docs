@@ -418,3 +418,109 @@ IMPLEMENTATION_REPOSITORY=guillermomolina/protos
 - `docs/project/evidence/PLAT043/PLAT043_STANDARD_BOOLEAN_CONTROL_OWNERSHIP_INVESTIGATION.md`.
 - `docs/project/decisions/platform/PLAT042_STRUCTURED_DISPATCH_INTERPRETER_OWNERSHIP_BOUNDARY.md`.
 - `docs/project/evidence/PERF025/PERF025_C1C_PLAT042_B_PRIME_CUTOVER.md`.
+
+
+## Published implementation checkpoint
+
+PERF025-C2B was published in `guillermomolina/protos` at:
+
+~~~text
+SLICE_BASE_REVISION=d8dcc95d34088e942e737b98c7ad42a81a977293
+PROTOS_REVISION=57d8cf4ec195aca3cb5b7c33d37755d965e9f3df
+PROTOS_VERSION=0.3.134-SNAPSHOT
+COMMIT_SUBJECT=PERF025-C2B: PLAT043 standard Boolean semantic-interpreter ownership
+~~~
+
+The published product implements the PLAT043 physical-owner exception:
+
+~~~text
+STANDARD_BOOLEAN_PREPARED_OWNER=TAGGED_SEMANTIC_BYTECODE_INTERPRETER
+
+BOOLEAN_KINDS=
+  IF_TRUE
+  IF_FALSE
+  IF_TRUE_IF_FALSE
+  AND
+  OR
+
+OTHER_STRUCTURED_PREPARED_OWNER=
+  UNTAGGED_STRUCTURED_CPRIME_INTERPRETER
+
+BOOLEAN_HELPER_CALLTARGET_REMOVED=YES
+NON_BOOLEAN_PLAT042_HELPER_PRESERVED=YES
+
+SEMANTIC_CHANGE=NO
+SPECIFICATION_CHANGE=NO
+CARRIER_CHANGED=NO
+~~~
+
+`CanonicalToBytecodeLowerer` now detects the already-prepared standard Boolean
+capability before the general structured-dispatch test and lowers that bounded
+state machine inside the semantic source root. The semantic interpreter exposes
+operation wrappers that delegate to the existing
+`ProtosBytecodeRootNode.PreparedBooleanCall` implementation authority rather
+than defining a second Boolean semantics.
+
+The local Boolean lowering retains the outer prepared-call completion in a
+Bytecode `TryFinally` and preserves child continuation composition. A child
+callback that itself requires structured dispatch still enters the PLAT042
+untagged root; an ordinary callback is entered directly from the semantic root.
+
+Published topology regression evidence changes the prior C1c expectation:
+
+~~~text
+STANDARD_BOOLEAN_CALLBACK_STACK=
+  semantic callback root
+  -> semantic caller root
+
+UNTAGGED_BOOLEAN_HELPER_BETWEEN_THEM=NO
+~~~
+
+and separately preserves:
+
+~~~text
+NON_BOOLEAN_STRUCTURED_EXAMPLE=Closure.while
+UNTAGGED_PLAT042_HELPER=YES
+HELPER_ROOT_TAG=NO
+~~~
+
+The product also adds Boolean callback dispatch/control conformance coverage for
+ordinary non-Closure invokable callbacks, reached invalid-call behavior,
+non-local return, Error propagation, custom same-name selectors, and copied
+standard `ifTrue` behavior.
+
+### Carrier gate remains open
+
+The published C2B commit intentionally leaves:
+
+~~~text
+GUEST_CALL_STACK_SIZE_BYTES=64 MiB
+DEDICATED_GUEST_CARRIER=STILL_PRESENT
+~~~
+
+PLAT043 required an unchanged-workload post-implementation measurement of the
+retained 10,000-deep recursive driver before any carrier or fixed-stack
+decision.
+
+No such post-C2B measurement is retained in the published product commit,
+CHANGELOG, current PERF025/PLAT043 Issue evidence, or commit CI/status metadata
+available at this checkpoint.
+
+Therefore durable project state is:
+
+~~~text
+PERF025_C2B_CODE=COMPLETE
+PERF025_C2B_PUBLICATION=COMPLETE
+PERF025_C2B_STACK_GATE=PENDING
+
+CARRIER_RETIREMENT_AUTHORIZED=NO
+CARRIER_STACK_REDUCTION_AUTHORIZED=NO
+
+BUG008=#681 CLOSED_DO_NOT_REOPEN
+~~~
+
+This checkpoint does not infer unreported validation or benchmark success from
+the existence of the commit.
+
+Detailed implementation evidence is retained under
+`docs/project/evidence/PERF025/PERF025_C2B_PLAT043_BOOLEAN_OWNERSHIP_CUTOVER.md`.
