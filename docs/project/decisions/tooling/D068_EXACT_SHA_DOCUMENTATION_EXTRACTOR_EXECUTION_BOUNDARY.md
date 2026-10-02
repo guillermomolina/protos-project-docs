@@ -366,3 +366,44 @@ WEB001_J7B               READY
 SPECIFICATION_CHANGED    NO
 PROTOS_SEMANTICS_CHANGED NO
 ```
+
+
+## D181 amendment — producer-side exact-revision publication selected
+
+D181 / `guillermomolina/protos#770` was explicitly approved by the project
+owner on 2026-10-02 and supersedes only D068's A-prime producer-execution and
+artifact-retention choices.
+
+D181 selects producer-side exact-revision D064 publication and the following
+owner-approved construction boundary:
+
+~~~text
+Protos revision X
+  -> one canonical artifact-build entry point
+       -> JVM artifact(s)
+       -> Native Image artifact(s)
+       -> D064 documentation JSON
+       -> manifest/checksums/provenance for X
+
+public release publication
+  -> separate later operation
+~~~
+
+Therefore the D068 statements that the website executes the producer and that
+D064 is only ephemeral consumer-side input are no longer current authority.
+
+These D068 invariants remain unchanged:
+
+~~~text
+EXACT_SHA_SOURCE_AUTHORITY=KEEP
+SOURCE_AND_PRODUCER_SEMANTICS_SAME_REVISION=KEEP
+PROTOS_OWNS_EXTRACTION=KEEP
+D064_JSON_CROSS_REPOSITORY_MODEL=KEEP
+WEBSITE_VALIDATES_AND_RENDERS=KEEP
+WEBSITE_INDEPENDENT_PROTOS_PARSER=FORBIDDEN
+D064_SCHEMA_CHANGE=NO
+PROTOS_SEMANTIC_CHANGE=NO
+~~~
+
+Current authority for the amended boundary is
+`docs/project/decisions/tooling/D181_EXACT_REVISION_D064_PUBLICATION_AND_DISTRIBUTION_BUILD_BOUNDARY.md`.
