@@ -1,10 +1,10 @@
 # DIST009-B1/B2 — exact candidate validation checkpoint
 
-Status: **B1 PASS / B2 BLOCKED ON PACKAGED VS CODE VALIDATION ENVIRONMENT**
+Status: **B1 PASS / B2 PASS / DIST009-C READY**
 
 This durable, non-normative record captures the exact DIST009 candidate identity
-established by B1 and the bounded B2 packaged VS Code validation result observed
-on 2026-10-02.
+established by B1 and the completed B2 packaged VS Code Run/Debug validation
+observed on 2026-10-02.
 
 ## Ownership
 
@@ -52,10 +52,9 @@ RUNTIME_VERSION=Protos 0.3.139
 
 B1 did not publish a tag, GitHub Release, or assets.
 
-## B2 packaged extension preparation
+## B2 packaged extension authority
 
-B2 operated from the current packaged extension repository state and used one
-canonical VSIX for all attempted acceptance work:
+B2 retained one canonical packaged VSIX for Run and Debug:
 
 ```text
 EXTENSION_REVISION=bef23f2b204dc784aaddf1ee327a6f36e52bebc7
@@ -63,95 +62,204 @@ PACKAGED_VSIX_SHA256=d60a43d17d32020c791e6bec4ce4917dadf3efea49b5e4ddfd6063976b1
 PROTOS_SOURCE_LOCK_SHA256=0c8814f6b969be8ccd4f535efe2d05ecdb3e5ff41f1d4316dd4158d5b8dcc939
 ```
 
-The human executor reported all requested package-preparation gates PASS,
-including dependency installation, the repository test gate, raw VSIX
-packaging, VSIX validation, canonicalization, and reproducibility verification.
-
-The same packaged VSIX remained byte-identical across the real-Run diagnostic
-attempts, and the public Protos source lock remained byte-identical.
-
-## B2 environment diagnosis
-
-The first real desktop launch could not run because the development container
-did not initially contain the desktop VS Code/Xvfb prerequisites. Those tools
-were then installed only in the live container for diagnosis; this did not
-change repository content.
-
-Once desktop VS Code was available, Chromium initially aborted before the
-workbench because the container did not permit the required namespace creation:
+The package-preparation gates had already passed:
 
 ```text
-Failed to move to new namespace: PID namespaces supported, Network namespace supported, but failed: errno = Operation not permitted
-FATAL:content/browser/zygote_host/zygote_host_impl_linux.cc:207
+NPM_CI=PASS
+PACKAGE_TEST_SUITE=PASS
+RAW_VSIX_PACKAGING=PASS
+VSIX_VALIDATION=PASS
+VSIX_CANONICALIZATION=PASS
+VSIX_REPRODUCIBILITY=PASS
 ```
 
-A diagnostic launch with the Chromium sandbox disabled progressed far enough to
-start the VS Code workbench and Extension Host. The harness package and packaged
-Protos extension were installed, the candidate runtime remained accessible, and
-no `--extensionDevelopmentPath` route was used.
+No product source change, Protos rebuild, public lock update, tag, Release, or
+asset publication occurred during B2.
 
-However, the real-Run harness never produced its required `result.json`.
-Additional ad-hoc launch variants did not establish a reliable canonical
-packaged desktop acceptance path. Real Debug was therefore not run.
+## B2E packaged VS Code environment
 
-The resulting B2 classification is:
+The earlier desktop-in-container path was not retained. Running a second full
+Electron/VS Code Desktop instance inside the devcontainer required extra desktop
+packages/Xvfb and encountered Chromium namespace/sandbox constraints.
+
+The maintained B2E route instead used the ordinary VS Code Dev Containers
+architecture already active for development:
 
 ```text
-DIST009_B2_STATUS=BLOCKED
-BLOCKER=PACKAGED_VSCODE_DESKTOP_VALIDATION_ENVIRONMENT
-PRODUCT_FAILURE_ESTABLISHED=NO
+HOST_VSCODE_DESKTOP
+  -> DEV_CONTAINER_VSCODE_SERVER
+  -> REMOTE_EXTENSION_HOST
+  -> PACKAGED_EXTENSION_VSIX
+```
 
-REAL_RUN=NOT_ADMITTED
-REAL_RUN_RESULT=NOT_PRODUCED
-REAL_DEBUG=NOT_EXECUTED
-REAL_DEBUG=NOT_ADMITTED
+The active Remote Extension Host was addressed through the VS Code Server
+remote CLI and its live `/tmp/vscode-ipc-*.sock` IPC endpoint. No
+`--extensionDevelopmentPath` route was used.
+
+The acceptance harnesses were made safe for this interactive route:
+
+- descriptor-file configuration is supported when CI environment variables are
+  absent;
+- interactive descriptor mode explicitly sets `quitWhenFinished=false`, so the
+  harness cannot execute `workbench.action.quit`;
+- the Debug harness treats a `vscode-remote://...` frame source as the same
+  workspace-host path when the URI path equals the exact fixture path;
+- the line-2 source breakpoint is removed before `next`;
+- the harness observes and waits for the DAP acknowledgement of
+  `setBreakpoints([])` before sending `next`;
+- the harness then waits for a subsequent DAP `stopped` event before reading the
+  post-step stack frame.
+
+That breakpoint-removal ordering matches the already retained prepublication
+acceptance finding in `DIST009_PREPUBLICATION_VSCODE_ACCEPTANCE.md`: leaving
+the line-2 breakpoint installed makes `next` resume and immediately stop on
+the same breakpoint.
+
+A direct DAP discriminator against the exact 0.3.139 Native candidate reproduced
+that expected harness effect while the breakpoint remained installed:
+
+```text
+FIRST_STOP_REASON=breakpoint
+FIRST_STOP_LINE=2
+SECOND_STOP_REASON=breakpoint
+SECOND_STOP_LINE=2
+DIRECT_DAP_NEXT_2_TO_3=FAIL
+```
+
+This was not classified as a Protos product defect because it exactly matches
+the pre-existing debugger/harness interaction already documented before
+DIST009. Removing the breakpoint before `next` restores the intended step
+surface.
+
+## B2 exact-candidate Real Run
+
+The exact packaged VSIX and exact Native 0.3.139 candidate passed real packaged
+Run through the Dev Containers Remote Extension Host:
+
+```text
+REAL_RUN=PASS
+PACKAGED_EXTENSION_FOUND=YES
+PACKAGED_EXTENSION_ACTIVATED=YES
+PACKAGED_RUN_COMMAND=PASS
+REAL_PROTOS_RUNTIME_INVOKED=YES
+RUN_TASK_EXIT_CODE=0
+EXTENSION_DEVELOPMENT_PATH_USED=NO
+```
+
+The Run fixture was:
+
+```protos
+print("VS_CODE_RUN")
+```
+
+The product VSIX remained byte-identical at
+`d60a43d17d32020c791e6bec4ce4917dadf3efea49b5e4ddfd6063976b152cf7`.
+
+## B2 exact-candidate Real Debug
+
+The final exact-candidate packaged Real Debug result was:
+
+```text
+LM009_I3C_REAL_DEBUG=PASS
+PACKAGED_EXTENSION_FOUND=YES
+PACKAGED_EXTENSION_ACTIVATED=YES
+SOURCE_BREAKPOINT=PASS
+STOP_LOCATION=PASS
+STACK_FRAMES=PASS
+ACTIVATION_LOCAL_SCOPE=PASS
+REPRESENTATIVE_SCALAR_VALUE=PASS
+STEP_NEXT=PASS
+CONTINUE=PASS
+CLEAN_TERMINATION=PASS
+EXTENSION_DEVELOPMENT_PATH_USED=NO
+REAL_DEBUG_VALIDATE_RC=0
+```
+
+Observed debugger state:
+
+```text
+STATUS=pass
+BREAKPOINT_LINE=2
+STACK_FRAMES_OBSERVED=1
+OBSERVED_TOP_FRAME_LINE=2
+SCOPES_OBSERVED=1
+LOCALS_OBSERVED=YES
+X_VALUE=41
+OBSERVED_NEXT_FRAME_LINE=3
+NEXT_COMPLETED=YES
+CONTINUE_COMPLETED=YES
+TERMINATED_CLEANLY=YES
+REMOTE_SESSION_SOCKET=AVAILABLE
+```
+
+The Debug fixture was:
+
+```protos
+x: 41
+print(x)
+print("done")
+```
+
+The same canonical product VSIX remained unchanged after Debug:
+
+```text
+PACKAGED_VSIX_SHA256=d60a43d17d32020c791e6bec4ce4917dadf3efea49b5e4ddfd6063976b152cf7
+RUNTIME_VERSION=Protos 0.3.139
+```
+
+## Final B2 classification
+
+```text
+DIST009_B2_STATUS=PASS
+REAL_RUN=PASS
+REAL_DEBUG=PASS
+
+SOURCE_BREAKPOINT=PASS
+STOP_LOCATION=PASS
+STACK_FRAMES=PASS
+ACTIVATION_LOCAL_SCOPE=PASS
+REPRESENTATIVE_SCALAR_VALUE=PASS
+STEP_NEXT=PASS
+CONTINUE=PASS
+CLEAN_TERMINATION=PASS
 
 EXTENSION_DEVELOPMENT_PATH_USED=NO
 VSIX_UNCHANGED=YES
 PUBLIC_LOCK_UNCHANGED=YES
-WORKTREE_CLEAN=YES
-
 PROTOS_REBUILT=NO
 PUBLICATION_PERFORMED=NO
 TAG_CREATED=NO
 ```
 
-This checkpoint does not convert the missing B2 acceptance into a product
-failure. The exact candidate and exact VSIX remain eligible for a later B2 retry
-after the packaged desktop acceptance environment is made reproducible.
+The earlier `PACKAGED_VSCODE_DESKTOP_VALIDATION_ENVIRONMENT` blocker is
+resolved. No Protos or packaged-extension functional failure remains in the B2
+gate.
 
 ## Release routing
 
-DIST009-C is not authorized while B2 remains unadmitted:
+Both candidate-validation slices are now green:
 
 ```text
-DIST009_STATUS=BLOCKED
-DIST009_C_READY=NO
-DIST006_B2_PUBLISHED_NATIVE_PREREQUISITE=NOT_READY
+DIST009_B1_STATUS=PASS
+DIST009_B2_STATUS=PASS
+DIST009_STATUS=READY_FOR_C
+DIST009_C_READY=YES
+DIST006_B2_PUBLISHED_NATIVE_PREREQUISITE=NOT_READY_UNTIL_C_PUBLISHES
 ```
 
-The next bounded slice remains inside DIST009-B2 and owns only the validation
-environment:
+The next bounded slice is DIST009-C in `guillermomolina/protos`:
 
 ```text
-NEXT_SLICE=DIST009-B2E
+NEXT_SLICE=DIST009-C
 TYPE=IMPLEMENTATION
-IMPLEMENTATION_REPOSITORY=guillermomolina/protos-vscode-extension
-
-GOAL=make the packaged VS Code desktop Run/Debug acceptance path reproducible
-REUSE_EXACT_CANDIDATE=YES
-REUSE_EXACT_VSIX=YES
+IMPLEMENTATION_REPOSITORY=guillermomolina/protos
+REUSE_FROZEN_CANDIDATE=YES
 REBUILD_PROTOS=NO
-PUBLISH_RELEASE=NO
+PUBLISH_RELEASE=YES
 UPDATE_PUBLIC_EXTENSION_LOCK=NO
 ```
 
-B2E must first establish one maintained, deterministic desktop-launch route for
-the existing packaged harnesses. It may change only extension-repository
-validation/environment machinery required for that route. It must not weaken
-the Run/Debug assertions, substitute Extension Development Host execution, or
-change Protos runtime semantics.
-
-After B2E validation is green, DIST009-B2 reruns only the exact-candidate real
-Run and real Debug gates needed to admit the frozen candidate. DIST009-C remains
-a separate later publication slice.
+DIST009-C owns publication and verification of the already validated frozen
+candidate. Only after that publication is verified does DIST006-B2 resume in
+`guillermomolina/protos-vscode-extension` to update the exact public runtime
+lock and perform final installed/public Run/Debug acceptance.
