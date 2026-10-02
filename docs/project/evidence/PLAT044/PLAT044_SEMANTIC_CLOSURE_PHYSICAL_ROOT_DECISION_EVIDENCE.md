@@ -1,6 +1,6 @@
 # PLAT044 — Semantic Closure activation versus physical RootTag decision evidence
 
-Status: **PROPOSED — NEEDS PROJECT-OWNER DECISION**
+Status: **FINAL DECISION EVIDENCE — B′ RATIFIED**
 
 Date: 2026-10-02
 
@@ -15,15 +15,16 @@ PROTOS_VERSION=0.3.134-SNAPSHOT
 GRAALVM_TRUFFLE_VERSION=25.4.4.1.1
 
 RECOMMENDED_CANDIDATE=B_PRIME
-RECOMMENDATION_STATUS=PENDING_PROJECT_OWNER_APPROVAL
+RECOMMENDATION_STATUS=APPROVED_AND_RATIFIED
 PRODUCT_CHANGES=NONE
 SPECIFICATION_CHANGES=NONE
 ~~~
 
 This record retains the comparative evidence for the PLAT044 decision packet.
-It is evidence, not ratification. No candidate is selected until the project
-owner explicitly approves the exact candidate and the durable decision record is
-subsequently published.
+The project owner subsequently approved exact Candidate B′ on 2026-10-02, and
+that approval includes the explicit PLAT026 tooling/frame delta defined by B′.
+The durable selected architecture is published separately under
+`docs/project/decisions/platform/PLAT044_SEMANTIC_CLOSURE_PHYSICAL_ROOT_BOUNDARY.md`.
 
 ## Exact problem
 
@@ -791,7 +792,7 @@ tooling consequence is insufficient.
 PLAT044_STATUS=PROPOSED
 
 RECOMMENDED_CANDIDATE=B_PRIME
-RECOMMENDATION_STATUS=PENDING_PROJECT_OWNER_APPROVAL
+RECOMMENDATION_STATUS=APPROVED_AND_RATIFIED
 
 B_PRIME=
   GUARDED_STANDARD_CONTROL_SELECTION
@@ -868,24 +869,33 @@ If implementation discovers that inline callback lexical capture, DAP projection
 or continuation behavior requires another durable architecture choice not stated
 above, it stops at a new PLAT gate.
 
-## Approval gate
+## Approval and ratification provenance
 
-No owner approval is recorded in this evidence.
-
-Exact approval must explicitly accept both Candidate B-prime and its PLAT026
-tooling-frame delta, for example:
+The project owner approved exact Candidate B′ in the active interaction on
+2026-10-02:
 
 ~~~text
-Apruebo B′ para PLAT044, incluido el delta de tooling/stack frame descrito.
+ok apruebo b'
 ~~~
 
-Until then:
+At the point of approval, B′ was already defined by this packet as including the
+explicit PLAT026 tooling/frame delta:
 
 ~~~text
-DECISION_APPROVAL_PROVENANCE=PENDING
-IMPLEMENTATION_AUTHORIZED=NO
-RATIFICATION_AUTHORIZED=NO
-DEPENDENT_PERF_RELEASED=NO
+DISTINCT_CALLBACK_DEBUGSTACKFRAME=NO
+DISTINCT_CALLBACK_TRUFFLE_STACKTRACE_ELEMENT=NO
+~~~
+
+The approval therefore selects the complete B′ candidate rather than a reduced
+variant that preserves old frame cardinality.
+
+~~~text
+DECISION_APPROVAL_PROVENANCE=PASS
+APPROVED_CANDIDATE=B_PRIME
+PLAT026_INVARIANT_DELTA=EXPLICIT_AND_APPROVED
+DECISION_INVARIANT_CONSISTENCY=PASS
+IMPLEMENTATION_AUTHORIZED=YES_AFTER_DURABLE_PUBLICATION
+DEPENDENT_PERF_RELEASED=PERF026_B_FIRST
 ~~~
 
 ## Materially inspected sources

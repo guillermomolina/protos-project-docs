@@ -247,3 +247,75 @@ This approval resolves PLAT005's deferred RootTag boundary only. RootBodyTag and
 - Apple Pkl instrumentation in `apple/pkl`.
 
 Repository-local PLAT004/005/008/013/014/015/018 and current PERF006 Bytecode lowering remain the authoritative Protos-side constraints.
+
+
+## PLAT044 amendment — eligible standard-control literal callback regions
+
+PLAT044 / `guillermomolina/protos#766` explicitly narrows the PLAT026
+Closure-root invariant for one guarded standard-control case.
+
+Project-owner approval on 2026-10-02 selected PLAT044 Candidate B′:
+
+~~~text
+ok apruebo b'
+~~~
+
+The approved delta is:
+
+~~~text
+GENERAL_CLOSURE_INVOCATION=
+  distinct semantic Closure Bytecode root
+  + automatic RootTag
+  + distinct RootCallTarget / FrameInstance
+
+ELIGIBLE_STANDARD_CONTROL_LITERAL_CALLBACK=
+  ordinary authoritative lookup/selection first
+  + exact standard behavior guard
+  + eligible immediate literal Closure provenance
+  + fresh semantic Closure activation preserved
+  + callback body parser-inlined as lexical/resumable region
+  + custom truthful RootTag on the inline callback region
+  + TagTreeNode scope/root-instance projection
+  + no distinct callback RootCallTarget / FrameInstance
+
+ALL_OTHER_CALLBACKS=
+  existing ordinary physical Closure-root path
+~~~
+
+PLAT026's semantic/tooling principle remains that every exposed RootTag is
+truthful. The amendment changes only the previously one-to-one physical mapping
+between every semantic Closure activation and a distinct RootCallTarget.
+
+The approved generic-Truffle debugger consequence is explicit:
+
+~~~text
+BREAKPOINT_SOURCE_STEPPING=PRESERVED
+CURRENT_CALLBACK_SCOPE=PRESERVED
+CURRENT_CALLBACK_ROOT_INSTANCE_NAME=PRESERVED
+
+DISTINCT_CALLBACK_DEBUGSTACKFRAME=NOT_PRESERVED_FOR_ELIGIBLE_INLINE_PATH
+DISTINCT_CALLBACK_TRUFFLE_STACKTRACE_ELEMENT=NOT_PRESERVED_FOR_ELIGIBLE_INLINE_PATH
+~~~
+
+No custom DAP, virtual-frame stack, global activation registry or new guest
+semantic stack model is selected.
+
+If an implementation cannot preserve the callback's semantic activation,
+capture-by-reference, `this`, `context`, `methodHome`, ReturnHome/NLR,
+Error, suspension/resumption, cancellation, source stepping and scope projection
+within the approved inline form, that shape falls back to the ordinary physical
+Closure invocation rather than silently broadening this amendment.
+
+~~~text
+PLAT044_SELECTED=B_PRIME
+PLAT026_INVARIANT_DELTA=EXPLICIT_AND_APPROVED
+NEW_PROTOS_LANGUAGE_SEMANTICS=NO
+CUSTOM_DAP=NO
+VIRTUAL_DEBUGGER_STACK=NO
+~~~
+
+See
+`docs/project/decisions/platform/PLAT044_SEMANTIC_CLOSURE_PHYSICAL_ROOT_BOUNDARY.md`
+for the complete selected boundary and
+`docs/project/evidence/PLAT044/PLAT044_SEMANTIC_CLOSURE_PHYSICAL_ROOT_DECISION_EVIDENCE.md`
+for the comparative evidence.
