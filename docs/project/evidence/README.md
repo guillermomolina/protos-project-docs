@@ -56,3 +56,4 @@ its references, retention role, and compatibility implications.
 
 - `PERF006/README.md` — immutable PERF006 C3/C4 runtime-validation and D1-D4 performance/diagnostic/closure evidence.
 - [`D181/`](D181/D181_OWNER_SELECTION_AND_RATIFICATION.md) — retained D181 Candidate D owner selection, D068 invariant/delta result, unified JVM/Native/D064 exact-revision artifact-build refinement, and DIST010 implementation routing.
+- [`D182/`](D182/D182_OWNER_SELECTION_AND_RATIFICATION.md) — retained D182 Candidate A owner selection, GHCR/OCI `X/H/M` identity model, revision-tag discovery-only rule, indefinite no-cleanup retention policy, GITHUB021 preservation result, and DIST010-B implementation routing.
