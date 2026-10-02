@@ -1,6 +1,6 @@
 # DIST010-B — Exact-revision D064 GHCR/OCI publication implementation
 
-Status: **PUBLISHED IMPLEMENTATION — REMOTE PUBLICATION PENDING**
+Status: **PUBLISHED IMPLEMENTATION — OBSERVED REMOTE PUBLICATION PASS**
 
 Date: 2026-10-02
 
@@ -19,7 +19,8 @@ The human executor reported that the DIST010-B implementation was pushed and all
 requested tests were green.
 
 This record distinguishes source implementation from the first real GHCR
-publication. No remote X/H/M publication is claimed here.
+publication. The observed exact X/H/M publication and anonymous acquisition are
+now recorded below.
 
 ## Published product delta
 
@@ -276,3 +277,137 @@ a new Issue.
 - docs/project/evidence/DIST010/DIST010_A_CANONICAL_EXACT_REVISION_ARTIFACT_SET.md.
 - docs/project/decisions/tooling/D182_EXACT_REVISION_D064_GHCR_OCI_PUBLICATION_RETENTION_AND_DISCOVERY_BOUNDARY.md.
 - docs/project/evidence/D182/D182_OWNER_SELECTION_AND_RATIFICATION.md.
+
+
+## Observed remote publication closure — 2026-10-02
+
+The human executor completed the real DIST010-B publication against a clean
+exact Protos checkout and reported every required gate PASS.
+
+### Exact published identity
+
+~~~text
+PRODUCT_HEAD=14558fd9ea6758698ae4a8d4d38a273438212176
+WORKTREE_CLEAN=YES
+
+PACKAGE_REFERENCE=ghcr.io/guillermomolina/protos-stdlib-documentation
+
+SOURCE_REVISION=14558fd9ea6758698ae4a8d4d38a273438212176
+D064_CONTENT_SHA256=236597164f28f3d735ea329a9b20fbe348f7628347cc1e3e498d1650a12e80e9
+OCI_MANIFEST_DIGEST=sha256:19b27bb39e2321333ec570631a821e8d43c2d4c4c98c6cfd9c8150879418bc4e
+DISCOVERY_ALIAS=rev-14558fd9ea6758698ae4a8d4d38a273438212176
+DISCOVERY_ALIAS_IS_AUTHORITY=NO
+~~~
+
+The published product revision is one unrelated PERF026-D2 commit after the
+DIST010-B implementation revision. The human explicitly inspected history and
+confirmed that the DIST010-B implementation surfaces were unchanged at that
+HEAD. No DIST010 source edits were required for observed publication.
+
+### Canonical build and verification
+
+~~~text
+CANONICAL_ARTIFACT_SET_BUILD=PASS
+CANONICAL_ARTIFACT_SET_VERIFY=PASS
+~~~
+
+The exact D064 bytes admitted by the canonical artifact set therefore define H,
+and the OCI publication for that exact source revision defines M.
+
+### First publication
+
+~~~text
+FIRST_PUBLICATION_EXISTING=NO
+FIRST_PUBLICATION_IDEMPOTENT=NO
+FIRST_AUTHENTICATED_VERIFICATION=PASS
+FIRST_ANONYMOUS_VERIFICATION=FAIL_PACKAGE_NOT_PUBLIC
+FIRST_PUBLICATION_STATE=AWAITING_PUBLIC_VISIBILITY
+~~~
+
+The anonymous failure was the expected one-time first-package visibility state.
+The package was made Public manually in the GitHub package UI. No source change
+or second package was required.
+
+An earlier attempt had failed with HTTP 403 before uploading anything because
+the current GitHub CLI OAuth token did not include the required
+`write:packages` scope. The human refreshed that credential scope. This was a
+credential/configuration failure, not a publisher defect and not a partial
+publication.
+
+### Idempotent retry and anonymous acquisition
+
+After public visibility was established, the canonical publisher was rerun
+idempotently. The human reported the complete retry result:
+
+~~~text
+RETRY_SOURCE_REVISION=14558fd9ea6758698ae4a8d4d38a273438212176
+RETRY_D064_CONTENT_SHA256=236597164f28f3d735ea329a9b20fbe348f7628347cc1e3e498d1650a12e80e9
+RETRY_OCI_MANIFEST_DIGEST=sha256:19b27bb39e2321333ec570631a821e8d43c2d4c4c98c6cfd9c8150879418bc4e
+
+RETRY_EXISTING_PUBLICATION=YES
+RETRY_IDEMPOTENT=YES
+RETRY_AUTHENTICATED_VERIFICATION=PASS
+RETRY_ANONYMOUS_VERIFICATION=PASS
+RETRY_PROVENANCE_VERIFICATION=PASS
+
+X_STABLE_ACROSS_RETRY=YES
+H_STABLE_ACROSS_RETRY=YES
+M_STABLE_ACROSS_RETRY=YES
+~~~
+
+The publisher was then run idempotently again after public visibility; the
+reported complete retry output matched exactly. Thus the observed remote state
+satisfies D182's same-X/same-H retry contract and public anonymous-read
+requirement.
+
+### Closure result
+
+~~~text
+DIST010_B_OBSERVED_PUBLICATION_STATUS=PASS
+
+PUBLIC_RELEASE_CREATED=NO
+D064_SCHEMA_CHANGE=NO
+PROTOS_SEMANTIC_CHANGE=NO
+
+SOURCE_CHANGES_REQUIRED=NO
+FILES_CHANGED=none
+
+DIST010_A=PASS
+DIST010_B_IMPLEMENTATION=PASS
+DIST010_B_REMOTE_PUBLICATION=PASS
+DIST010_B_ANONYMOUS_ACQUISITION=PASS
+DIST010_B_IDEMPOTENT_RETRY=PASS
+
+DIST010_PRODUCER_SIDE_SCOPE=COMPLETE
+DIST010_READY_TO_CLOSE=YES
+~~~
+
+Package visibility remains a one-time provider configuration requirement when an
+equivalent package is created from scratch. The selected Protos package is now
+public. D064 retention remains indefinite project policy; provider permanence is
+not claimed.
+
+The credential used by the human now has `write:packages` scope. Credential
+lifecycle is an operator concern and does not alter the published X/H/M
+identity.
+
+## Downstream routing after DIST010
+
+DIST010 completes the producer-side D181/D182 path. The downstream website
+consumer remains owned by:
+
+~~~text
+guillermomolina/protos-website#5
+WEB009
+~~~
+
+That issue still has an independent source-coherence blocker:
+
+~~~text
+guillermomolina/protos#764
+I078
+~~~
+
+Therefore completion of DIST010 removes the producer/publication blocker but
+does not itself authorize the website refresh until I078's publication
+reconciliation is closed.
