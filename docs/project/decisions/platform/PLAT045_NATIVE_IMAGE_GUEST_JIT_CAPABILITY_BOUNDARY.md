@@ -372,3 +372,59 @@ decision.
 - `oracle/graal#14579` — minimal upstream Native Tier-2 failure.
 - `docs/project/decisions/platform/PLAT038_NATIVE_IMAGE_BOOTSTRAP_RUNTIME_RELEASE_BOUNDARY.md`.
 - `docs/project/evidence/PLAT045/PLAT045_NATIVE_IMAGE_GUEST_JIT_CAPABILITY_DECISION_EVIDENCE.md`.
+
+## Published implementation checkpoint — BUG013-F
+
+The first product implementation of this ratified capability boundary was published
+in `guillermomolina/protos` at:
+
+~~~text
+PROTOS_REVISION=7c16cec611c3cf5e504d9271c6964a32656ba32f
+PROTOS_VERSION=0.3.137-SNAPSHOT
+COMMIT_SUBJECT=BUG013-F: Native fallback runtime per PLAT045
+~~~
+
+The published slice:
+
+~~~text
+NATIVE_PROFILE_USE_FALLBACK_RUNTIME=YES
+NATIVE_BUILD_ARG=-Dtruffle.UseFallbackRuntime=true
+
+JVM_OPTIMIZING_RUNTIME_POLICY=PRESERVED
+JVM_LAUNCHER_FALLBACK_RUNTIME=NO
+
+NATIVE_FORCED_GUEST_JIT_SUCCESS_CLAIM=REMOVED
+NATIVE_INTERPRETER_ONLY_POLICY=EXPLICIT
+NATIVE_GUEST_JIT=UNSUPPORTED_UPSTREAM_ORACLE_GRAAL_14579
+
+UNKNOWN_OPT_FAILURES_FAIL_CLOSED=YES
+FRAME_WITHOUT_BOXING_FAILURES_FAIL_CLOSED=YES
+COMPILATION_FAILURES_FAIL_CLOSED=YES
+
+NATIVE_TEST_TOOL_GATE=PRESERVED
+NATIVE_DAP_GATE=PRESERVED
+~~~
+
+Current-facing README/Native Makefile text was updated to reflect the selected
+capability matrix. Historical evidence was not broadly rewritten.
+
+At publication time no workflow run, commit-status context, or live-Issue
+human-reported exact-revision validation was observed for this SHA. Therefore the
+implementation checkpoint is revision-bound but **not yet admission-complete**:
+
+~~~text
+BUG013_F_CODE_PUBLICATION=COMPLETE
+BUG013_F_EXACT_REVISION_VALIDATION=PENDING
+
+BUG013=#749 REMAINS_OPEN
+TEST006=#755 REMAINS_OPEN
+DIST009=#743 REMAINS_BLOCKED
+
+NEXT_SLICE=TEST006-C
+NEXT_SLICE_TYPE=IMPLEMENTATION_VALIDATION
+NEXT_SLICE_REPOSITORY=guillermomolina/protos
+~~~
+
+Detailed evidence:
+`docs/project/evidence/BUG013/BUG013_F_PLAT045_NATIVE_FALLBACK_RUNTIME_IMPLEMENTATION.md`.
+
