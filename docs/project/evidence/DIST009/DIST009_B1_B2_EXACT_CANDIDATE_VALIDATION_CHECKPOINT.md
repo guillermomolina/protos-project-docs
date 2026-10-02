@@ -60,6 +60,7 @@ B2 retained one canonical packaged VSIX for Run and Debug:
 EXTENSION_REVISION=bef23f2b204dc784aaddf1ee327a6f36e52bebc7
 PACKAGED_VSIX_SHA256=d60a43d17d32020c791e6bec4ce4917dadf3efea49b5e4ddfd6063976b152cf7
 PROTOS_SOURCE_LOCK_SHA256=0c8814f6b969be8ccd4f535efe2d05ecdb3e5ff41f1d4316dd4158d5b8dcc939
+B2E_HARNESS_IMPLEMENTATION_REVISION=4b0659b4061a5d0e9a7de46cf30920e7b2004af9
 ```
 
 The package-preparation gates had already passed:
@@ -95,6 +96,10 @@ HOST_VSCODE_DESKTOP
 The active Remote Extension Host was addressed through the VS Code Server
 remote CLI and its live `/tmp/vscode-ipc-*.sock` IPC endpoint. No
 `--extensionDevelopmentPath` route was used.
+
+The acceptance harness changes were published in
+`guillermomolina/protos-vscode-extension` at exact revision
+`4b0659b4061a5d0e9a7de46cf30920e7b2004af9`.
 
 The acceptance harnesses were made safe for this interactive route:
 
