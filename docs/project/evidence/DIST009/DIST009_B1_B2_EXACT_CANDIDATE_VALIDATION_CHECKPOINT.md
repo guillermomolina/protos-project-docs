@@ -1,6 +1,6 @@
 # DIST009-B1/B2 — exact candidate validation checkpoint
 
-Status: **B1 PASS / B2 PASS / DIST009-C READY**
+Status: **B1 PASS / B2 PASS / DIST009-C PASS / DIST009 COMPLETE**
 
 This durable, non-normative record captures the exact DIST009 candidate identity
 established by B1 and the completed B2 packaged VS Code Run/Debug validation
@@ -242,29 +242,34 @@ gate.
 
 ## Release routing
 
-Both candidate-validation slices are now green:
+DIST009-C has published and independently verified the frozen candidate:
 
 ```text
 DIST009_B1_STATUS=PASS
 DIST009_B2_STATUS=PASS
-DIST009_STATUS=READY_FOR_C
-DIST009_C_READY=YES
-DIST006_B2_PUBLISHED_NATIVE_PREREQUISITE=NOT_READY_UNTIL_C_PUBLISHES
+DIST009_C_STATUS=PASS
+DIST009_STATUS=COMPLETE
+
+RELEASE_TAG=v0.3.139
+PUBLIC_TAG_TARGET=3895206897ddac795dfebd49709ca97f8d0908b1
+RELEASE_MANIFEST_SHA256=aeee10ec0abb8d9064068d67a1a6c000f03b7bce47ef04bd0d9e6e94c0d5fdc6
+
+PUBLIC_TAG_IDENTITY=PASS
+GITHUB_PRERELEASE_METADATA=PASS
+PUBLISHED_ASSET_SET=PASS
+PUBLISHED_ASSET_DIGESTS=PASS
+POST_PUBLICATION_VERIFICATION=PASS
+
+DIST006_B2_PUBLISHED_NATIVE_PREREQUISITE=READY
 ```
 
-The next bounded slice is DIST009-C in `guillermomolina/protos`:
+Durable publication/closure evidence:
 
 ```text
-NEXT_SLICE=DIST009-C
-TYPE=IMPLEMENTATION
-IMPLEMENTATION_REPOSITORY=guillermomolina/protos
-REUSE_FROZEN_CANDIDATE=YES
-REBUILD_PROTOS=NO
-PUBLISH_RELEASE=YES
-UPDATE_PUBLIC_EXTENSION_LOCK=NO
+DIST009_C_RECORD=docs/project/evidence/DIST009/DIST009_C_RELEASE_PUBLICATION_AND_CLOSURE.md
+DIST009_C_RECORD_INITIAL_REVISION=de79ab3f683fb5f64316a44b7a8f12f82ab7ee18
 ```
 
-DIST009-C owns publication and verification of the already validated frozen
-candidate. Only after that publication is verified does DIST006-B2 resume in
-`guillermomolina/protos-vscode-extension` to update the exact public runtime
-lock and perform final installed/public Run/Debug acceptance.
+The next executable unit is DIST006-B2 in
+`guillermomolina/protos-vscode-extension`: update the exact public runtime lock
+to v0.3.139 and perform final installed/public Run/Debug acceptance.
