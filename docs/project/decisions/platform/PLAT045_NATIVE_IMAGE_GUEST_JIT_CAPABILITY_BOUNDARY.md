@@ -428,3 +428,34 @@ NEXT_SLICE_REPOSITORY=guillermomolina/protos
 Detailed evidence:
 `docs/project/evidence/BUG013/BUG013_F_PLAT045_NATIVE_FALLBACK_RUNTIME_IMPLEMENTATION.md`.
 
+## Exact-revision validation closure
+
+The published BUG013-F candidate was subsequently validated by the human executor
+with all requested focal, Native and integrated tests passing on the unchanged
+product revision:
+
+~~~text
+PROTOS_REVISION=7c16cec611c3cf5e504d9271c6964a32656ba32f
+
+FOCAL_PLAT045_JVM_POLICY_TEST=PASS
+NATIVE_PLAT045_ADMISSION=PASS
+INTEGRATED_REPOSITORY_TESTS=PASS
+
+PLAT045_IMPLEMENTATION_STATUS=VALIDATED
+BUG013_PRODUCT_BLOCKER=CLOSED
+TEST006_ADMISSION_WORK=CLOSED
+DIST009_CAN_RESUME=YES
+~~~
+
+The upstream defect remains external and unresolved for optimizing Native guest
+JIT:
+
+~~~text
+UPSTREAM_REENABLE_TRIGGER=oracle/graal#14579
+NATIVE_GUEST_JIT=UNAVAILABLE
+FALLBACK_NATIVE_SUPPORT=VALIDATED
+~~~
+
+Detailed validation/implementation evidence remains in
+`docs/project/evidence/BUG013/BUG013_F_PLAT045_NATIVE_FALLBACK_RUNTIME_IMPLEMENTATION.md`.
+
