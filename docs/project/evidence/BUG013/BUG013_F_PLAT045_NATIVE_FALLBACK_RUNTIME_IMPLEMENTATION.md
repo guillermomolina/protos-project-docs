@@ -244,3 +244,88 @@ admission gates.
 - oracle/graal#14579.
 - docs/project/decisions/platform/PLAT045_NATIVE_IMAGE_GUEST_JIT_CAPABILITY_BOUNDARY.md.
 - docs/project/evidence/PLAT045/PLAT045_NATIVE_IMAGE_GUEST_JIT_CAPABILITY_DECISION_EVIDENCE.md.
+
+## Human-reported exact-revision validation
+
+The human executor subsequently reported that **all validation/tests requested for
+this exact published candidate passed**, with product HEAD still equal to the
+published BUG013-F revision:
+
+~~~text
+PROTOS_REVISION=7c16cec611c3cf5e504d9271c6964a32656ba32f
+HEAD_MATCHES_PUBLISHED_CANDIDATE=YES
+
+FOCAL_PLAT045_JVM_POLICY_TEST=PASS
+NATIVE_PLAT045_ADMISSION=PASS
+INTEGRATED_REPOSITORY_TESTS=PASS
+~~~
+
+The requested focal/runtime validation sequence included:
+
+~~~text
+ProtosPerf006C1OptimizingRuntimeClosureTest
+make -C build/native test
+make test
+~~~
+
+Because `make -C build/native test` is fail-closed on the maintained
+`build/native/test-native.sh` assertions, its reported PASS establishes the
+selected PLAT045 Native admission for this exact candidate:
+
+~~~text
+NATIVE_VERSION_SMOKE=PASS
+NATIVE_HELP_SMOKE=PASS
+NATIVE_GUEST_SMOKE=PASS
+NATIVE_TEST_TOOL_SMOKE=PASS
+NATIVE_DAP_STACKTRACE_REGRESSION=PASS
+
+NATIVE_INTERPRETER_ONLY=PASS
+NATIVE_FALLBACK_RUNTIME_MARKERS>=1
+NATIVE_GUEST_JIT=UNSUPPORTED_UPSTREAM_ORACLE_GRAAL_14579
+
+OPT_DONE=0
+OPT_FAILED=0
+FRAME_WITHOUT_BOXING_FAILURES=0
+COMPILATION_FAILURES=0
+
+FRAME_WITHOUT_BOXING_REGRESSION=PASS
+NATIVE_REGRESSION_SUITE=PASS
+~~~
+
+No raw stdout transcript was supplied in the coordination message, so this record
+intentionally classifies these as **human-reported PASS results** rather than
+reproducing unobserved line-by-line output.
+
+The integrated `make test` PASS additionally establishes that the JVM optimizing
+runtime and repository-wide regression suite remained green after the Native
+fallback cutover.
+
+## Closure consequence
+
+~~~text
+BUG013_F_CODE_PUBLICATION=COMPLETE
+BUG013_F_EXACT_REVISION_VALIDATION=PASS
+
+TEST006_C_STATUS=PASS
+PLAT045_NATIVE_ADMISSION=PASS
+
+BUG013_READY_TO_CLOSE=YES
+TEST006_READY_TO_CLOSE=YES
+DIST009_CAN_RESUME=YES
+
+UPSTREAM_DEFECT_STATUS=REMAINS_OPEN_EXTERNALLY
+UPSTREAM_REENABLE_TRIGGER=oracle/graal#14579
+NATIVE_GUEST_JIT_RESTORED=NO
+~~~
+
+BUG013 closes as a Protos product blocker because PLAT045 ratified and BUG013-F
+implemented a supported Native fallback capability; it does **not** claim the
+upstream Graal defect is fixed.
+
+TEST006 closes because the maintained Native admission now matches the ratified
+capability and passes on the exact published candidate.
+
+DIST009 may resume from its existing B1 release-candidate workflow, using the
+PLAT045 Native admission rather than the superseded PLAT038 forced-Tier-2
+requirement.
+
