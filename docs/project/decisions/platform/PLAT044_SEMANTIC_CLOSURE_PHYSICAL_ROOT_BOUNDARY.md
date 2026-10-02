@@ -295,3 +295,60 @@ callback-root topology has been implemented and measured.
 - `guillermomolina/protos#759` — PLAT041 inline Object-body precedent.
 - `guillermomolina/protos#763` — PLAT043 Boolean interpreter ownership.
 - `docs/project/evidence/PLAT044/PLAT044_SEMANTIC_CLOSURE_PHYSICAL_ROOT_DECISION_EVIDENCE.md`.
+
+
+## Published implementation checkpoint — PERF026-B1
+
+The first PLAT044 B-prime implementation slice was published in
+guillermomolina/protos at:
+
+~~~text
+PROTOS_REVISION=5b5dedd7a36b4aba0684a072a4f1a86a52ec9923
+PROTOS_VERSION=0.3.135-SNAPSHOT
+COMMIT_SUBJECT=PERF026-B1: inline standard ifTrue literal callback
+~~~
+
+B1 consumes B-prime only for an already-selected standard IF_TRUE whose reached
+callback is an eligible immediate zero-argument Closure literal.
+
+~~~text
+ELIGIBLE_IF_TRUE_LITERAL_CALLBACK=
+  fresh semantic callback activation preserved
+  + callback body inline in containing semantic source root
+  + custom inline RootTag
+  + callback scope projection
+  - distinct callback RootCallTarget / FrameInstance
+
+DYNAMIC_OR_NON_ELIGIBLE_CALLBACK=
+  ordinary physical Closure invocation preserved
+~~~
+
+Fallback remains for module-top-level literals owning their return home,
+literal callbacks with nested Closure literals, literal callbacks declaring
+parameters, dynamic callbacks, non-Closure invokables, custom same-name
+selectors, and every other unsupported shape.
+
+The guest carrier and its fixed 64 MiB stack remain unchanged.
+
+Human-reported validation of the exact published candidate:
+
+~~~text
+FOCAL_SIX_TEST_CLASSES=PASS
+B1_MARKERS=PASS
+MAKE_TEST=PASS
+GIT_DIFF_CHECK=CLEAN
+SEPARATE_COMPILE_ONLY_STATIC_CHECK=NOT_RUN
+COMPILE_COVERED_BY_TEST_GATES=YES
+~~~
+
+Known follow-up observations are retained as evidence:
+
+- inline-body lexical lookups currently use the general runtime path instead of
+  the captured-local fast path;
+- the compile-time candidate detector emits an inline copy for every single
+  zero-parameter literal send argument with no nested Closure even when the
+  selected operation cannot consume B-prime; and
+- the performance effect of both points is unmeasured.
+
+Detailed evidence:
+docs/project/evidence/PERF026/PERF026_B1_PLAT044_IFTRUE_INLINE_CALLBACK.md.
