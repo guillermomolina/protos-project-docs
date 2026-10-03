@@ -2,7 +2,7 @@
 
 Date: 2026-10-03
 
-Status: **CLOSED**
+Status: **OPEN — CI baseline reconciliation required**
 
 Owning Issue: `guillermomolina/protos#761`
 
@@ -128,9 +128,46 @@ No exact local test counts or complete command transcript were supplied, so this
 record does not invent them.
 
 The push also started GitHub Actions CI run `2110`
-(`37140303155`) for the exact same product revision. At the time this durable
-record was prepared, that remote run was still `in_progress`; its eventual
-conclusion is therefore not used as closure evidence here.
+(`37140303155`) for the exact same product revision. That run completed
+`failure` after both Maven Java phases were semantically green:
+
+```text
+PARALLEL_JAVA_TESTS=2403
+PARALLEL_JAVA_FAILURES=0
+PARALLEL_JAVA_ERRORS=0
+PARALLEL_JAVA_SKIPPED=1
+SERIAL_JAVA_TESTS=7
+SERIAL_JAVA_FAILURES=0
+SERIAL_JAVA_ERRORS=0
+SERIAL_JAVA_SKIPPED=0
+JAVA_SLOW_TEST_GUARD=FAIL
+ALLOWLISTED_SLOW_TESTS=7
+UNALLOWLISTED_SLOW_TESTS=2
+OVER_BUDGET_SLOW_TESTS=5
+```
+
+The seven guard offenders were:
+
+```text
+ProtosFilesystemLibraryConformanceTest                 22.99 s  budget 20 s
+ProtosExternalPackagePlanningPreflightTest             56.98 s  budget 27 s
+ProtosPackageExecutionPlanAdapterTest                  24.99 s  budget 15 s
+ProtosTestToolSuiteGraphTest                           15.39 s  not allowlisted
+ProtosTomlEncoderModuleTest                            10.12 s  not allowlisted
+ProtosWorkspacePackageAuthorityIsolationIntegrationTest 18.48 s budget 14 s
+ProtosWorkspacePackagePreflightTest                    21.61 s  budget 16 s
+```
+
+This was not a one-off observation. Earlier push CI run `2108`
+(`37138406665`) reported the same two unallowlisted classes and the same five
+over-budget allowlisted classes, with closely similar timings. The repeated
+shape demonstrates that the current TEST008-A local baseline/budgets are not
+portable to the current CI execution environment.
+
+The guard is therefore functioning fail-closed as implemented, but TEST008
+cannot close while ordinary repository CI predictably rejects the maintained
+baseline. The failure must not be hidden by automatically widening budgets or
+adding the two newly slow classes to the allowlist.
 
 ## Acceptance reconciliation
 
@@ -150,9 +187,18 @@ STALE_REPORT_EXCLUSION=PASS
 NO_PROTOS_SEMANTIC_CHANGE=PASS
 FOCUSED_GUARD_REGRESSION_COVERAGE=PASS
 MAINTAINER_REPORTED_FULL_VALIDATION=PASS
-SECOND_TEST008_PRODUCT_SLICE_IDENTIFIED=NO
+REMOTE_CI_JAVA_ASSERTIONS=PASS
+REMOTE_CI_SLOW_TEST_GUARD=FAIL
+REMOTE_CI_REPEATED_FAILURE_SHAPE=YES
+TEST008_CLOSURE=BLOCKED
+SECOND_TEST008_PRODUCT_SLICE_IDENTIFIED=YES
 ```
 
-TEST008 is therefore complete at the product revision above. Future performance
-work may reduce or remove explicit slow-test exceptions without changing the
-TEST008 guard semantics.
+The next TEST008 slice is an investigation into a CI-stable class-level
+current-run timing/admission policy that preserves the strict regression guard
+without automatically authorizing new exceptions. It must explain why the
+current local baseline diverges from repeated CI observations and select a
+deterministic reconciliation before another implementation patch is made.
+
+Until that reconciliation is implemented and validated, `guillermomolina/protos#761`
+remains open.
