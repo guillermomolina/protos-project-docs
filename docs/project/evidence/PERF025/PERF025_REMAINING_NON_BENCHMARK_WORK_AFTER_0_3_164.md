@@ -508,3 +508,77 @@ CURRENT_PRODUCT_REVISION=ffc351dca7363bcded452dd4d19d30e787cac391
 CURRENT_PRODUCT_VERSION=0.3.166-SNAPSHOT
 FINAL_BENCHMARK_PENDING=YES
 ```
+
+
+## Current reconciliation after frame-native callbacks and IdentityMap snapshots
+
+Product `main` subsequently advanced through:
+
+```text
+INLINE_CALLBACK_FRAME_NATIVE_REVISION=4fa64c3821e9e6566fd9a1f0b38fdfcba875fd78
+INLINE_CALLBACK_FRAME_NATIVE_VERSION=0.3.166-SNAPSHOT
+INLINE_CALLBACK_FRAME_NATIVE_SUBJECT=PERF025: frame-native inline callback bindings
+
+IDENTITYMAP_SNAPSHOT_REVISION=85bd050e8706c02205db4ede8824681a1180d075
+IDENTITYMAP_SNAPSHOT_PARENT=4fa64c3821e9e6566fd9a1f0b38fdfcba875fd78
+IDENTITYMAP_SNAPSHOT_VERSION=0.3.167-SNAPSHOT
+IDENTITYMAP_SNAPSHOT_SUBJECT=PERF025: make IdentityMap snapshots generation-backed
+```
+
+The inline-callback publication completes static frame-local authority for
+admitted PLAT044 B-prime callbacks while deliberately leaving semantic callback
+`ProtosActivation` eager. The next callback slice is therefore the bounded
+lazy semantic callback Activation work. A further Activation-consumer
+specialization remains conditional and must be reconsidered only after that
+slice; it is not independently justified in advance.
+
+The IdentityMap publication removes unconditional O(n) snapshot publication
+copies with a generation-backed copy-on-write representation and removes the
+redundant second structured-`each` copy. Exact semantic identity, recorded
+identity hash buckets, insertion order, snapshot stability, state rules, Actor
+transfer and isolated-P transfer are preserved.
+
+The bounded follow-up investigations for the other residual lines have now also
+been reconciled:
+
+```text
+RESIDUAL_LINE_1_INLINE_CALLBACK:
+  STATIC_FRAME_LOCAL_AUTHORITY=COMPLETE
+  LAZY_SEMANTIC_ACTIVATION=NEXT
+  RESIDUAL_ACTIVATION_CONSUMER_SPECIALIZATION=OPTIONAL_AFTER_LAZY_ACTIVATION_IF_JUSTIFIED
+
+RESIDUAL_LINE_2_D179:
+  CURRENT_RESOLVED_READ_MEMBERSHIP=COMPLETE
+  CAPTURED_MEMBERSHIP_SPECIALIZATION=NOT_JUSTIFIED
+  FURTHER_PRODUCT_SLICE=NO
+
+RESIDUAL_LINE_3_COLLECTION_SNAPSHOTS:
+  ARRAY=COMPLETE
+  MAP_ADDITIONAL_SNAPSHOT_REPRESENTATION=NOT_JUSTIFIED
+  IDENTITYMAP=COMPLETE
+  BYTES_ADDITIONAL_SNAPSHOT_REPRESENTATION=NOT_JUSTIFIED
+  FURTHER_PRODUCT_SLICE_OUTSIDE_CALLBACK_LINE=NO
+
+RESIDUAL_LINE_4_SHARED_SHAPE:
+  H3A=COMPLETE
+  GENERAL_SHAPE_REQUIRED_FOR_PERF025=NO
+
+ROOT_TASK_TASK_ACTOR_LINE=COMPLETE
+FINAL_BENCHMARK_PENDING=YES
+PERF025_STATUS=OPEN
+```
+
+Accordingly, at this checkpoint the only remaining PERF025 technical sequence is:
+
+```text
+1. LAZY_SEMANTIC_INLINE_CALLBACK_ACTIVATION
+2. OPTIONAL_RESIDUAL_ACTIVATION_CONSUMER_SPECIALIZATION
+   - execute only if post-slice evidence justifies it
+3. FINAL_BENCHMARK
+```
+
+No additional Map, Bytes, D179, Shape, Actor/Task or collection-snapshot
+implementation slice remains before the final benchmark.
+
+Durable family-specific evidence for the IdentityMap publication is:
+`PERF025_IDENTITYMAP_GENERATION_BACKED_SNAPSHOTS.md`.
