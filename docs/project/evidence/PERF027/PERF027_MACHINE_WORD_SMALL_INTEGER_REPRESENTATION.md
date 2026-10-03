@@ -1,7 +1,8 @@
 # PERF027 — Machine-word representation for small Integers
 
-Status: **PUBLISHED / VALIDATED**  
-Date: 2026-10-03  
+Status: **PUBLISHED / VALIDATED**
+
+Date: 2026-10-03
 Formal owner: `PERF027 / guillermomolina/protos#779`
 
 This durable, non-normative record retains the published small-Integer
