@@ -119,39 +119,43 @@ GitHub code-search results observed while preparing this record still contained
 stale pre-publication append fragments. Exact file reads at the immutable
 `PROTOS_REVISION` above were used instead as publication authority.
 
-## Validation status
+## Validation and closure status
 
 The maintainer supplied successful commit and push evidence for the exact
-product revision.
+product revision and subsequently reported that **all tests pass** for the
+published candidate.
+
+Repository policy requires one FULL validation for closure of a top-level
+executable item. The maintainer's summarized PASS is accepted by the
+human-executor contract; the exact command output and test count were not
+supplied and are therefore not invented here.
+
+This was a maintainer-direct publication to `main`, not a Pull Request.
+Repository policy assigns remote PR CI to the PR contribution path; GitHub
+reported no commit-status/workflow identity for this direct-main SHA.
+Accordingly there is no separate PR-CI gate to wait for on this publication.
+
+Read-only inspection of every modified Protos-owned production source file at
+the exact revision confirms that the existing APL-1.0 notice remains present.
+No new source file was introduced.
 
 ~~~text
 PRODUCT_COMMIT=PASS
 PRODUCT_PUSH=PASS
-~~~
-
-The active interaction did not supply the I063 focused/full validation result,
-test count, source-license check result, or CI run identity. GitHub commit
-status/workflow lookup for the exact revision returned no additional run
-identity at preparation time.
-
-Therefore this record deliberately does not manufacture validation success:
-
-~~~text
-FOCUSED_VALIDATION=NOT_EVIDENCED_HERE
-FULL_VALIDATION=NOT_EVIDENCED_HERE
-CI_GREEN=NOT_EVIDENCED_HERE
-LICENSE_COMPLIANCE=NOT_EVIDENCED_HERE
-I063_CLOSURE_AUTHORIZED=NO
+FULL_VALIDATION=PASS
+VALIDATION_PROVENANCE=MAINTAINER_REPORTED_ALL_TESTS_PASS
+EXACT_TEST_COUNT=NOT_REPORTED
+PR_CI_GATE=NOT_APPLICABLE_DIRECT_MAIN
+LICENSE_COMPLIANCE=PASS
+I063_CLOSURE_AUTHORIZED=YES
 ~~~
 
 No further product implementation slice is identified by the published D170
-delta. The remaining I063 closure work is evidence/validation reconciliation
-only: #666 may close once the required validation/CI gates are durably
-established.
+delta.
 
 ~~~text
 I063_PRODUCT_IMPLEMENTATION=COMPLETE
 I063_TECHNICAL_SLICE_PENDING=NO
-I063_STATUS=REVIEW_PENDING_VALIDATION_EVIDENCE
+I063_STATUS=CLOSED_COMPLETED
 FINAL_PRODUCT_REVISION=15a0440d578a672759f6d982e73dabecfe61e1ab
 ~~~
