@@ -162,14 +162,21 @@ REMOTE_JAVA_ASSERTIONS=PASS
 REMOTE_CI_GREEN=NO
 REMOTE_CI_FAILURE_CLASS=JAVA_SLOW_TEST_GUARD
 DURABLE_EVIDENCE_PUBLISHED=YES
+NATIVE_PARENT_DECLARED=guillermomolina/protos#626
+NATIVE_PARENT_RELATION=ABSENT
 SECOND_I057_PRODUCT_SLICE_IDENTIFIED=NO
 I057_CLOSURE_AUTHORIZED=NO
-I057_STATUS=OPEN_PENDING_REQUIRED_CI_GREEN
+I057_STATUS=OPEN_PENDING_CI_AND_NATIVE_PARENT_RECONCILIATION
 ~~~
 
-Issue #660 explicitly requires required CI green before closure. Therefore this
-record intentionally does not claim final closure. Once the exact published
-candidate has a qualifying green CI result under current repository policy, the
-live Issue can receive its final closure comment and close completed without a
-new I057 product implementation slice unless new evidence exposes an actual
-product defect.
+Issue #660 explicitly requires required CI green before closure. Live GitHub
+inspection also shows that its textual parent declaration points to #626 while
+the native parent/sub-issue relation is absent. Current coordination policy
+requires that native relation for formal closures created after the hierarchy
+enforcement instant.
+
+Therefore this record intentionally does not claim final closure. Once the exact
+published candidate has a qualifying green CI result and the native parent
+relation to #626 is reconciled, the live Issue can receive its final closure
+comment and close completed without a new I057 product implementation slice
+unless new evidence exposes an actual product defect.
