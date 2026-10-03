@@ -1,9 +1,9 @@
 # CLI008-C guest stack diagnostics readiness checkpoint
 
-**Work item:** CLI008-C / guillermomolina/protos#416  
-**Parent:** CLI008 / guillermomolina/protos#312  
-**Governing decision:** D063 / guillermomolina/protos#314 — Candidate B + S3  
-**Protos revision inspected:** `12a42ff718144162ee72bb321b3eca7d70ce3cc9`  
+**Work item:** CLI008-C / guillermomolina/protos#416
+**Parent:** CLI008 / guillermomolina/protos#312
+**Governing decision:** D063 / guillermomolina/protos#314 — Candidate B + S3
+**Protos revision inspected:** `12a42ff718144162ee72bb321b3eca7d70ce3cc9`
 **Checkpoint date:** 2026-10-03
 
 ## Status
