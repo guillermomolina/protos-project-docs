@@ -313,5 +313,40 @@ This assessment inspected:
 - Map/IdentityMap physical-index evidence; and
 - current collection snapshot surfaces.
 
+## Current-head revalidation after PERF025-G2
+
+While this record was being published, product `main` advanced by one commit:
+
+```text
+CURRENT_PRODUCT_REVISION=32603c6896262e1a731714986d92da81c0d56aca
+CURRENT_PRODUCT_VERSION=0.3.165-SNAPSHOT
+CURRENT_PRODUCT_SUBJECT=PERF025: compact RootTask fixed-cost bookkeeping
+PREVIOUS_ASSESSMENT_BASE=52e43ff074aafd163240241762029159e8a043bc
+COMMITS_ADVANCED=1
+```
+
+The G2 delta is confined to:
+
+```text
+CHANGELOG.md
+pom.xml
+src/main/java/com/guillermomolina/protos/runtime/ProtosActorExecutionDomain.java
+src/main/java/com/guillermomolina/protos/runtime/ProtosTask.java
+src/test/java/com/guillermomolina/protos/runtime/ProtosPerf025G2RootTaskBookkeepingTest.java
+```
+
+It does not touch the inline-callback lowering/activation, lexical membership,
+collection snapshot, or ordinary member-read surfaces that own residual lines
+1–4.
+
+Therefore the four-line residual sequence remains applicable at
+`32603c6896262e1a731714986d92da81c0d56aca`.
+
+```text
+ROOT_TASK_LINE_ADVANCED=YES
+RESIDUAL_LINES_1_TO_4_SOURCE_OVERLAP=NO
+RESIDUAL_SEQUENCE_REVALIDATED_AT_0_3_165=YES
+```
+
 This record is planning/evidence only and does not replace live GitHub Issue
 coordination.
