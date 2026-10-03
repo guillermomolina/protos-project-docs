@@ -202,9 +202,28 @@ unless investigation proves one shared minimal mechanism is actually correct.
 
 ```text
 RESIDUAL_LINE_3=COLLECTION_SNAPSHOT_PHYSICAL_REPRESENTATION
-STATUS=INVESTIGATION_REQUIRED
+STATUS=PARTIALLY_IMPLEMENTED
+ARRAY_FAMILY_SLICE=COMPLETE
+ARRAY_PRODUCT_REVISION=f48f67a94553b8929bb3830005850d55ccc53cf3
+OTHER_COLLECTION_FAMILIES=REMAINING_AS_APPLICABLE
 SEMANTIC_SNAPSHOT_WEAKENING=FORBIDDEN
 ```
+
+### Array-family publication
+
+The first family-specific implementation is now published at exact product
+revision `f48f67a94553b8929bb3830005850d55ccc53cf3`
+(`0.3.166-SNAPSHOT`, `PERF025: make Array snapshots generation-backed`).
+
+`ProtosArrayValue.indexedSnapshot()` now publishes a read-only view of the
+current indexed generation without eagerly copying the complete element-reference
+sequence. The first later indexed replacement detaches the live Array to a fresh
+generation, so already-published shallow snapshots keep their exact references
+and order.
+
+This closes the Array sub-slice only. It does not establish that Map,
+IdentityMap, Bytes, or any other snapshot-bearing family should use the same
+physical representation without its own bounded validation.
 
 ## Remaining line 4 — Shared-shape member lookup beyond exact-receiver PIC
 
@@ -257,9 +276,43 @@ embedding it in PERF025.
 
 ```text
 RESIDUAL_LINE_4=SHARED_SHAPE_MEMBER_LOOKUP
-STATUS=INVESTIGATION_REQUIRED
-ARCHITECTURAL_PROMOTION_POSSIBLE=YES
+STATUS=BOUNDED_H3A_IMPLEMENTED
+PRODUCT_REVISION=7d507be8940528b045aa96426c7433ba040dfc83
+GENERAL_SHAPE_REQUIRED_FOR_PERF025=NO
+ARCHITECTURAL_PROMOTION_REQUIRED=NO
 ```
+
+### Bounded implementation result — PERF025-H3A
+
+The line-4 investigation selected a narrower implementation than a general
+Shape migration.
+
+At exact product revision
+`7d507be8940528b045aa96426c7433ba040dfc83`,
+distinct exact ordinary sibling receivers with the same exact direct parent can
+share an inherited selector selection. Lookup dependency registration begins at
+the parent, while each actual receiver dynamically guards that it still lacks
+the selector locally.
+
+The existing exact-receiver PIC remains for own-local and other admitted cases,
+and generic lookup remains authoritative outside the bounded specializations.
+
+Parent/ancestor mutation of the selected selector invalidates through the
+existing selector-specific D013 Assumption. A local shadow on one sibling makes
+that sibling fail the local-absence guard without invalidating the shared
+parent-chain selection for other siblings. Removing the shadow makes the shared
+descriptor eligible again if its parent-chain Assumption is still valid.
+
+Closure extraction still calls
+`materializeMemberRead(actualReceiver, selected)`, preserving fresh extraction
+identity, the actual sibling as captured receiver, and the selected owner as
+method home.
+
+No general Protos Shape, Graal `DynamicObject`, ordinal own-slot storage, or
+new platform decision was introduced.
+
+Durable implementation evidence:
+`PERF025_H3A_SHARED_INHERITED_MEMBER_LOOKUP.md`.
 
 ## Recommended order before final benchmark
 
@@ -269,17 +322,20 @@ Excluding the separate RootTask/Task/Actor line:
 1. INLINE_CALLBACK_COMPACT_FRAME_NATIVE_EXECUTION
 2. D179_LEXICAL_MEMBERSHIP_STABILITY_ASSUMPTION
 3. COLLECTION_SNAPSHOT_PHYSICAL_REPRESENTATION
-4. SHARED_SHAPE_MEMBER_LOOKUP
-5. FINAL_BENCHMARK
+   - Array family: COMPLETE at f48f67a94553b8929bb3830005850d55ccc53cf3
+   - other families: continue only where separately justified
+4. FINAL_BENCHMARK
 ```
 
-Lines 1 and 2 are the strongest remaining candidates for costs that may repeat
-inside recursive/control-heavy guest execution. Line 3 is a real remaining
-pay-as-you-grow representation cost but is workload-family dependent. Line 4 is
-the broadest and may legitimately terminate in a separate architecture work
-item rather than an implementation inside PERF025.
+PERF025-H3A closes the bounded shared-inherited member-lookup line at
+`7d507be8940528b045aa96426c7433ba040dfc83`; a general Shape migration is not
+required by PERF025 on this evidence.
 
-This order is an investigation sequence, not a measured performance ranking.
+Lines 1 and 2 remain candidates for costs that may repeat inside
+recursive/control-heavy guest execution. Line 3 remains family-dependent after
+the completed Array slice.
+
+This order is a work sequence, not a measured performance ranking.
 
 ## Issue-granularity conclusion
 
@@ -294,6 +350,9 @@ governance.
 ```text
 NEW_FORMAL_ISSUES_ALLOCATED=NO
 PERF025_STATUS=OPEN
+RESIDUAL_LINE_3_ARRAY_SLICE=COMPLETE
+RESIDUAL_LINE_4_H3A=COMPLETE
+GENERAL_SHAPE_PROMOTION_REQUIRED=NO
 FINAL_BENCHMARK_PENDING=YES
 PERFORMANCE_EFFECT_MEASURED=NO
 BENCHMARK_RESULT_CLAIMED=NO
@@ -350,3 +409,38 @@ RESIDUAL_SEQUENCE_REVALIDATED_AT_0_3_165=YES
 
 This record is planning/evidence only and does not replace live GitHub Issue
 coordination.
+
+
+## Current-head revalidation after Array snapshot and PERF025-H3A
+
+Product `main` subsequently advanced through:
+
+```text
+ARRAY_SNAPSHOT_REVISION=f48f67a94553b8929bb3830005850d55ccc53cf3
+ARRAY_SNAPSHOT_VERSION=0.3.166-SNAPSHOT
+ARRAY_SNAPSHOT_SUBJECT=PERF025: make Array snapshots generation-backed
+
+H3A_REVISION=7d507be8940528b045aa96426c7433ba040dfc83
+H3A_PARENT=f48f67a94553b8929bb3830005850d55ccc53cf3
+H3A_VERSION=0.3.166-SNAPSHOT
+H3A_SUBJECT=PERF025: share inherited member lookup across siblings
+```
+
+The H3A publication changes only the two Bytecode roots, ordinary-object/value
+lookup support, and focused tests. It does not overlap the Array generation
+representation introduced by its exact parent.
+
+Owner-executed H3A validation reported Maven compile PASS, 28 focused tests with
+0 failures / 0 errors / 1 skipped, full `make test` PASS, and
+`git diff --check` PASS. No exact full-suite test count was supplied for that
+final run and none is inferred here.
+
+```text
+RESIDUAL_LINE_3_ARRAY_ADVANCED=YES
+RESIDUAL_LINE_3_ALL_FAMILIES_CLOSED=NO
+RESIDUAL_LINE_4_H3A_COMPLETE=YES
+GENERAL_SHAPE_MIGRATION_REQUIRED=NO
+CURRENT_PRODUCT_REVISION=7d507be8940528b045aa96426c7433ba040dfc83
+CURRENT_PRODUCT_VERSION=0.3.166-SNAPSHOT
+FINAL_BENCHMARK_PENDING=YES
+```
