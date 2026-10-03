@@ -119,44 +119,57 @@ MULTIPLICATIVE_GUEST_COST=POSSIBLE
 
 ## Remaining line 2 — D179 lexical-membership fast-path assumption
 
-### Why it remains
+### Current state
 
-PERF028-A specialized statically resolved current-scope lexical writes, and the
-frame-native PERF025 work specialized several current-scope binding operations.
-Those changes deliberately preserve D179 dynamic membership semantics.
+The investigation has now produced and published a bounded first implementation
+at exact product revision
+`ffc351dca7363bcded452dd4d19d30e787cac391`
+(`0.3.166-SNAPSHOT`, `PERF025: specialize stable current lexical reads`).
 
-Current resolved reads still use presence machinery such as
-`LocalAccessor.isCleared(...)`, and captured reads must still preserve nearer
-binding retargeting, removal and recreation semantics.
+For statically `Resolved` bindings owned by the current genuine lexical root,
+the lowered frame layout now carries a one-way Truffle `Assumption` per
+root/name. While valid, ordinary current-scope reads avoid
+`LocalAccessor.isCleared(...)`; the first successful static
+`PRESENT -> ABSENT` removal invalidates that exact token before clearing the
+local, and legal recreation does not renew it.
 
-The original audit explicitly left open whether ordinary unobserved lexical
-contexts could avoid those checks behind an invalidatable stability assumption.
+The compact unmaterialized current-root read is narrower still and reads the
+proven local directly because that activation's guest Context has not yet become
+observable.
 
-### Investigation target
+The published implementation also keeps the exact layout/token identity stable
+across Bytecode DSL retained-parser reparses, preventing an escaped pre-reparse
+authority from invalidating an obsolete token while reparsed instructions trust
+a fresh one.
 
-Investigate a representation such as:
+Durable implementation evidence:
+`PERF025_D179_A_STABLE_CURRENT_LEXICAL_READS.md`.
 
-```text
-LEXICAL_MEMBERSHIP_STABLE assumption
+### What remains in this line
 
-valid:
-    proven current/captured access may take a narrower direct path
+This slice deliberately does not specialize captured lexical membership.
 
-invalidated by the first operation that can make dynamic membership observable:
-    remove
-    dynamic creation
-    relevant nearer-binding establishment
-    reflection/context mutation
-    other D179 membership-changing operations
-```
+Captured reads must still preserve:
 
-The investigation must not weaken D179 C0/C3 semantics and must account for all
-ways membership stability can become observable before proposing an
-implementation.
+- owner binding removal/recreation;
+- nearer lexical binding introduction/removal;
+- late nearer-binding retargeting;
+- capture-by-reference semantics; and
+- exact generic fallback.
+
+A later bounded slice may use owner-presence continuity and/or a separate
+"no nearer binding introduced" assumption if implementation evidence still
+justifies it. Current/captured write selection and post-RHS validation were also
+left unchanged; post-RHS selected-destination validation remains semantically
+required.
 
 ```text
 RESIDUAL_LINE_2=D179_LEXICAL_MEMBERSHIP_STABILITY_ASSUMPTION
-STATUS=INVESTIGATION_REQUIRED
+STATUS=PARTIALLY_IMPLEMENTED
+CURRENT_RESOLVED_READ_SLICE=COMPLETE
+CURRENT_RESOLVED_READ_PRODUCT_REVISION=ffc351dca7363bcded452dd4d19d30e787cac391
+CAPTURED_MEMBERSHIP_SPECIALIZATION=REMAINING_IF_JUSTIFIED
+WRITE_SPECIALIZATION=NOT_PART_OF_D179_A
 D179_SEMANTICS_MUST_REMAIN_EXACT=YES
 ```
 
@@ -321,6 +334,8 @@ Excluding the separate RootTask/Task/Actor line:
 ```text
 1. INLINE_CALLBACK_COMPACT_FRAME_NATIVE_EXECUTION
 2. D179_LEXICAL_MEMBERSHIP_STABILITY_ASSUMPTION
+   - current Resolved reads: COMPLETE at ffc351dca7363bcded452dd4d19d30e787cac391
+   - captured membership specialization: continue only if separately justified
 3. COLLECTION_SNAPSHOT_PHYSICAL_REPRESENTATION
    - Array family: COMPLETE at f48f67a94553b8929bb3830005850d55ccc53cf3
    - other families: continue only where separately justified
@@ -331,9 +346,11 @@ PERF025-H3A closes the bounded shared-inherited member-lookup line at
 `7d507be8940528b045aa96426c7433ba040dfc83`; a general Shape migration is not
 required by PERF025 on this evidence.
 
-Lines 1 and 2 remain candidates for costs that may repeat inside
-recursive/control-heavy guest execution. Line 3 remains family-dependent after
-the completed Array slice.
+Line 1 remains a candidate for costs that may repeat inside
+recursive/control-heavy guest execution. Line 2 is partially advanced: current
+Resolved reads are complete, while captured-membership specialization remains a
+bounded follow-up only if separately justified. Line 3 remains family-dependent
+after the completed Array slice.
 
 This order is a work sequence, not a measured performance ranking.
 
@@ -350,6 +367,8 @@ governance.
 ```text
 NEW_FORMAL_ISSUES_ALLOCATED=NO
 PERF025_STATUS=OPEN
+RESIDUAL_LINE_2_CURRENT_RESOLVED_READ_SLICE=COMPLETE
+RESIDUAL_LINE_2_CAPTURED_MEMBERSHIP=REMAINING_IF_JUSTIFIED
 RESIDUAL_LINE_3_ARRAY_SLICE=COMPLETE
 RESIDUAL_LINE_4_H3A=COMPLETE
 GENERAL_SHAPE_PROMOTION_REQUIRED=NO
@@ -441,6 +460,51 @@ RESIDUAL_LINE_3_ALL_FAMILIES_CLOSED=NO
 RESIDUAL_LINE_4_H3A_COMPLETE=YES
 GENERAL_SHAPE_MIGRATION_REQUIRED=NO
 CURRENT_PRODUCT_REVISION=7d507be8940528b045aa96426c7433ba040dfc83
+CURRENT_PRODUCT_VERSION=0.3.166-SNAPSHOT
+FINAL_BENCHMARK_PENDING=YES
+```
+
+
+## Current-head revalidation after PERF025-D179-A
+
+Product `main` subsequently advanced by one exact commit:
+
+```text
+D179_A_REVISION=ffc351dca7363bcded452dd4d19d30e787cac391
+D179_A_PARENT=7d507be8940528b045aa96426c7433ba040dfc83
+D179_A_VERSION=0.3.166-SNAPSHOT
+D179_A_SUBJECT=PERF025: specialize stable current lexical reads
+```
+
+The publication specializes only current-scope statically `Resolved` lexical
+reads. It introduces one-way root/name membership assumptions, invalidates the
+exact token before static removal clears the local, and preserves token identity
+across Bytecode DSL reparses by reusing the exact frame layout for a retained
+`CanonicalLexicalScope`.
+
+The publication deliberately leaves captured paths, write selection, creation,
+`Candidate`, and `Dynamic` behavior unchanged.
+
+Owner-executed validation reported:
+
+```text
+MAVEN_COMPILE=PASS
+FOCAL_TESTS_AFTER_REPARSE_FIX=4_PASSED_0_FAILED
+RELATED_D179_LEXICAL_TESTS=79_PASSED_0_FAILED
+FINAL_MAKE_TEST=PASS
+FINAL_PROTOS_TESTS=1284_PASSED_0_FAILED
+FINAL_GIT_DIFF_CHECK=PASS
+```
+
+No benchmark, timing comparison, JFR, IGV, or allocation measurement was
+performed for this slice.
+
+```text
+RESIDUAL_LINE_2_CURRENT_RESOLVED_READS_ADVANCED=YES
+RESIDUAL_LINE_2_CURRENT_RESOLVED_READS_COMPLETE=YES
+RESIDUAL_LINE_2_CAPTURED_MEMBERSHIP_CLOSED=NO
+D179_SEMANTICS_CHANGED=NO
+CURRENT_PRODUCT_REVISION=ffc351dca7363bcded452dd4d19d30e787cac391
 CURRENT_PRODUCT_VERSION=0.3.166-SNAPSHOT
 FINAL_BENCHMARK_PENDING=YES
 ```
