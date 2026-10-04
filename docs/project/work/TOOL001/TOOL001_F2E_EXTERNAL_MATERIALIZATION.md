@@ -1,6 +1,6 @@
 # TOOL001-F2E — External Immutable-Package Execution
 
-Status: **IN_PROGRESS — F2E1/F2E2/F2E3/F2E4 CLOSED; F2E5 IN_PROGRESS after exact-requirements publication**
+Status: **IN_PROGRESS — F2E1/F2E2/F2E3/F2E4 CLOSED; F2E5 IN_PROGRESS after provider-backed mixed-run composition publication**
 Nature: non-normative Package Tool / host-integration project record
 Allocated after: `TOOL001-F2D` workspace-only execution closure
 
@@ -104,7 +104,7 @@ F2E2B  exact selected-root capture + verified-capture host custody CLOSED
 F2E2C same-capture integration + F2E2 closure                      CLOSED
 F2E3  external-node execution-plan construction                    CLOSED — F2E3A/B/C; D053/D056/D057 RATIFIED
 F2E4  external canonical ModuleKey + source resolver               CLOSED — PLAT012 RATIFIED
-F2E5  public run integration + F2 external-execution closure       IN_PROGRESS — exact requirements published; provider/run composition remains
+F2E5  public run integration + F2 external-execution closure       IN_PROGRESS — provider-backed mixed-run composition published; default local backend + public CLI cutover remain
 ```
 
 ### F2E1 — canonical logical package tree
@@ -969,3 +969,65 @@ The immutable activation evidence is retained at:
 The maintainer reports all local tests PASS for the audited current product
 state. No new product implementation or normative semantics are claimed by this
 investigation record.
+
+## F2E5 provider-backed mixed-run composition checkpoint
+
+Published product revision:
+
+~~~text
+PROTOS_REVISION=a38470bc6e2f68e770ddc8054053995bb2477b19
+SUBJECT=TOOL001-F2E5: add provider-backed mixed package run composition
+VERSION=0.3.185-SNAPSHOT
+LOCAL_TESTS=PASS
+VALIDATION_PROVENANCE=MAINTAINER_REPORTED
+~~~
+
+This publication adds the CLI-neutral `ProtosPackageRunDriver` and the
+run-scoped `ProtosExactPackageMaterializationProvider` seam selected by
+PLAT048 Candidate B′.
+
+The provider key is the complete exact external identity and each external
+requirement receives exactly one provider selection before unchanged F2E2
+capture plus ContentIdentity verification. The composed external path is:
+
+~~~text
+exact external requirements
+    -> exact host provider selection
+    -> F2E2 capture + verification
+    -> F2E3 raw V2 planning
+    -> F2E4 defensive detach
+    -> F2E4 exact resource-scope reconciliation
+    -> mixed V2 application Process
+    -> application Process TERMINATED
+    -> resource scope close
+~~~
+
+Workspace-only graphs preserve the generation-1 `ProtosWorkspaceRunDriver`
+route and do not consult the provider.
+
+Before successful reconciliation the driver owns all verified custodies.
+Provider miss, Nth verification failure, planning failure, detach failure or
+reconciliation failure closes every previously verified custody and starts no
+application Process. After successful reconciliation the resource scope owns
+the complete custody set and remains live until application Process
+termination.
+
+Published tests cover the workspace fast path, exact lookup multiplicity and
+identity separation, real mixed registry/Git execution, provider miss, wrong
+materialization / Nth verification failure, planning failure, reconciliation
+failure, and successful termination-before-scope-close lifecycle ordering.
+
+This checkpoint intentionally does **not** add:
+
+- a default physical materialization backend;
+- public `ProtosCli` mixed-run wiring;
+- a new CLI flag, environment variable or public configuration surface;
+- a canonical public package-store/cache layout;
+- solving, fetch, network, credentials, store writes, GC or lock mutation.
+
+F2E5 therefore remains **IN_PROGRESS**. The remaining bounded closure is the
+public-run bootstrap constructing one implementation-private read-only local
+materialization backend, invoking the provider-backed driver, cutting public
+`protos run` over transparently, and reconciling final F2E5/F2 closure
+evidence without reopening PLAT048.
+
