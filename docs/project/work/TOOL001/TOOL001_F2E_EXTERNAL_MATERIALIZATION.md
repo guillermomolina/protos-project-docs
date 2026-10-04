@@ -1,6 +1,6 @@
 # TOOL001-F2E — External Immutable-Package Execution
 
-Status: **IN_PROGRESS — F2E1/F2E2/F2E3/F2E4 CLOSED; F2E5 READY after PLAT048 ratification**
+Status: **IN_PROGRESS — F2E1/F2E2/F2E3/F2E4 CLOSED; F2E5 IN_PROGRESS after exact-requirements publication**
 Nature: non-normative Package Tool / host-integration project record
 Allocated after: `TOOL001-F2D` workspace-only execution closure
 
@@ -104,7 +104,7 @@ F2E2B  exact selected-root capture + verified-capture host custody CLOSED
 F2E2C same-capture integration + F2E2 closure                      CLOSED
 F2E3  external-node execution-plan construction                    CLOSED — F2E3A/B/C; D053/D056/D057 RATIFIED
 F2E4  external canonical ModuleKey + source resolver               CLOSED — PLAT012 RATIFIED
-F2E5  public run integration + F2 external-execution closure       READY — PLAT048 RATIFIED
+F2E5  public run integration + F2 external-execution closure       IN_PROGRESS — exact requirements published; provider/run composition remains
 ```
 
 ### F2E1 — canonical logical package tree
@@ -201,6 +201,35 @@ The ratified decision is
 `docs/project/decisions/platform/PLAT048_PUBLIC_RUN_EXTERNAL_MATERIALIZATION_AUTHORITY_BOUNDARY.md`;
 its investigation/approval evidence is
 `docs/project/evidence/PLAT048/PLAT048_PUBLIC_RUN_EXTERNAL_MATERIALIZATION_DECISION_EVIDENCE.md`.
+
+#### F2E5 exact-requirements publication checkpoint
+
+The first bounded F2E5 implementation is published at
+`guillermomolina/protos@eff751f7cde2009feb9b91bc5d2cd31509f3ef9e`
+(`0.3.183-SNAPSHOT`), with maintainer-reported local tests PASS.
+
+It closes the requirements-first half of PLAT048 B′:
+
+~~~text
+project/lock
+    ->
+bundled Package Tool exactExternalRequirements(...)
+    ->
+detached List<ProtosExactExternalPackageIdentity>
+~~~
+
+The result is complete exact identity only and retains no Path, locator,
+Filesystem, custody, guest object, store/cache location or host handle. The
+Package Tool Process terminates before the call returns.
+
+This publication deliberately does not yet add the materialization provider,
+store backend, public-run mixed orchestration or CLI behavior change. F2E5
+therefore remains IN_PROGRESS. The retained evidence is
+`docs/project/evidence/TOOL001/TOOL001_F2E5_EXACT_EXTERNAL_REQUIREMENTS_PREFLIGHT.md`.
+
+The next boundary is the ratified host-owned exact materialization provider plus
+public-run composition through unchanged F2E2/F2E3/F2E4 ownership/lifecycle
+rules.
 
 ## Explicit exclusions
 
