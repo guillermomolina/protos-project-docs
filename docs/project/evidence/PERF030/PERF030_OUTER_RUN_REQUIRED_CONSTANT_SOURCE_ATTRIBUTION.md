@@ -279,7 +279,7 @@ assertion that produces the outer-root bailout.
 NEXT_SLICE=PERF030-Q
 WORK_TYPE=INVESTIGATION
 IMPLEMENTATION=NO
-PURPOSE=FAILing_OUTER_ROOT_PE_ASSERTION_SOURCE_ATTRIBUTION
+PURPOSE=FAILING_OUTER_ROOT_PE_ASSERTION_SOURCE_ATTRIBUTION
 ```
 
 The cheapest useful evidence is a Graal graph/bailout capture that preserves
