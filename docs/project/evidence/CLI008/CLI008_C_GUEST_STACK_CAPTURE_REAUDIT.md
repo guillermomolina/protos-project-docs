@@ -235,11 +235,24 @@ COMMAND_EXECUTION=NONE
 IMPLEMENTATION_AUTHORIZED=NO
 ```
 
-## Coordination limitation
+## Coordination state
 
-Project policy requires native Parent/Sub-issue and native blocked-by edges for
-formal relationships. The available GitHub connector can create and update
-Issues but does not expose those relationship mutations. PLAT049 therefore
-records textual `Parent: #416` / `Blocking: #416` bootstrap evidence, but
-this record does not claim that the native hierarchy/dependency graph has been
-reconciled.
+Repository automation has reconciled PLAT049/#790 as a native sub-issue of
+CLI008-C/#416:
+
+```text
+NATIVE_PARENT=PASS
+PLAT049_PARENT=#416
+```
+
+The available connector still does not expose native Issue dependency mutation,
+and the current live dependency endpoint reports no `blocked by` edge on
+CLI008-C. Therefore:
+
+```text
+NATIVE_BLOCKED_BY=#416 <- #790
+NATIVE_BLOCKED_BY_STATUS=PENDING
+```
+
+The Issue bodies/comments retain explicit textual blocking evidence, but that
+text is not claimed as a substitute for the missing native dependency edge.
