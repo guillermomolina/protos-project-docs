@@ -83,6 +83,7 @@ process remains authoritative first.
 | PLAT045 | Native Image guest-JIT capability boundary under upstream Bytecode DSL limitation | RATIFIED | Explicit project-owner approval, 2026-10-02 selecting Candidate B — Native Image supported with interpreter-only fallback while guest JIT is unavailable due to oracle/graal#14579; optimizing Native guest JIT restored only after objective upstream/revalidation gates pass | BUG013/#749 fallback-runtime cutover; TEST006/#755 Native admission update; DIST009/#743 after implementation validation |
 | PLAT046 | Ordinary hosted single-Actor caller execution boundary | RATIFIED | Explicit project-owner approval, 2026-10-02 selecting Candidate B — direct caller-thread ordinary execution with an explicit local session serialization gate; child-Actor carriers remain lazy/RuntimeHost-owned and no strong-stack mechanism is prebuilt without a concrete requirement | PERF025/#758 direct hosted-session cutover and unchanged prepared-call remeasurement |
 | PLAT047 | Portable Java slow-test admission architecture | RATIFIED | Explicit project-owner approval, 2026-10-03 selecting Candidate H — workload appropriateness + bounded Protos-independent machine controls + one bounded per-class confirmation + independent normalized global Java-phase signal + secondary pathological absolute ceiling | TEST008-B under TEST008/#761; PERF031/#787 remains independent and non-blocking |
+| PLAT048 | Public-run exact external materialization authority boundary | OPEN | Allocated 2026-10-04 by TOOL001-F2E5 activation audit; explicit project-owner selection and durable ratification required | TOOL001-F2E5/#93 public-run external execution |
 See `docs/project/decisions/platform/PLAT001_TRUFFLE_RUNTIME_HOSTING.md` for the selected topology,
 its non-semantic boundary, alternatives, scaling rationale, invariants, and
 explicitly deferred choices.
@@ -175,3 +176,12 @@ See `docs/project/decisions/platform/PLAT046_ORDINARY_HOSTED_SINGLE_ACTOR_CALLER
 See `docs/project/decisions/platform/PLAT047_PORTABLE_JAVA_SLOW_TEST_ADMISSION_ARCHITECTURE.md` for the ratified Candidate H validation architecture: workload appropriateness is separated from performance regression; raw parallel Surefire class wall time is suspicion evidence; bounded Protos-independent controls qualify normalization; one bounded confirmation owns per-class regression decisions; an independently normalized Java-phase makespan protects global regressions; absolute time remains only a secondary pathological ceiling. Ratification evidence is retained under `docs/project/evidence/PLAT047/PLAT047_A_PORTABLE_JAVA_SLOW_TEST_ADMISSION_RATIFICATION.md`.
 
 PLAT046 is OPEN and has no selected decision record. Intake/trigger evidence is retained under `docs/project/evidence/PLAT046/PLAT046_INTAKE_AND_TRIGGER_EVIDENCE.md`; live decision authority remains `guillermomolina/protos#778` until explicit project-owner ratification.
+
+PLAT048 is OPEN and owns the production authority/configuration boundary that
+maps each exact locked external package identity to one already-present local
+materialized root before F2E2 same-capture verification. The triggering
+TOOL001-F2E5 audit is retained at
+`docs/project/evidence/TOOL001/TOOL001_F2E5_PUBLIC_RUN_MATERIALIZATION_LIFECYCLE_AUDIT.md`;
+live decision authority is `guillermomolina/protos#789`. No candidate is
+selected and no implementation is authorized until explicit project-owner
+approval and the required durable ratification.
