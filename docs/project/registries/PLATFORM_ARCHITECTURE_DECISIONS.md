@@ -83,7 +83,7 @@ process remains authoritative first.
 | PLAT045 | Native Image guest-JIT capability boundary under upstream Bytecode DSL limitation | RATIFIED | Explicit project-owner approval, 2026-10-02 selecting Candidate B — Native Image supported with interpreter-only fallback while guest JIT is unavailable due to oracle/graal#14579; optimizing Native guest JIT restored only after objective upstream/revalidation gates pass | BUG013/#749 fallback-runtime cutover; TEST006/#755 Native admission update; DIST009/#743 after implementation validation |
 | PLAT046 | Ordinary hosted single-Actor caller execution boundary | RATIFIED | Explicit project-owner approval, 2026-10-02 selecting Candidate B — direct caller-thread ordinary execution with an explicit local session serialization gate; child-Actor carriers remain lazy/RuntimeHost-owned and no strong-stack mechanism is prebuilt without a concrete requirement | PERF025/#758 direct hosted-session cutover and unchanged prepared-call remeasurement |
 | PLAT047 | Portable Java slow-test admission architecture | RATIFIED + OWNER AMENDMENT | Candidate H ratified 2026-10-03; explicit project-owner amendment 2026-10-04 approves the deployed enforcement boundary `local=authoritative fail-closed`, `CI=advisory`, plus the exact TEST008-B calibration constants 0.5 / 4 / 1.5 / 2.5 / 1.35 / 25 / 180 | TEST008-B/#788 and TEST008/#761 closed at `e7b2ae2c`; PERF031/#787 remains independent and non-blocking |
-| PLAT048 | Public-run exact external materialization authority boundary | OPEN | Allocated 2026-10-04 by TOOL001-F2E5 activation audit; explicit project-owner selection and durable ratification required | TOOL001-F2E5/#93 public-run external execution |
+| PLAT048 | Public-run exact external materialization authority boundary | RATIFIED | Explicit project-owner approval, 2026-10-04 selecting Candidate B′ — requirements-first Package Tool exact requirements plus public-run-bootstrap-owned exact materialization provider | TOOL001-F2E5/#93 public-run external execution |
 See `docs/project/decisions/platform/PLAT001_TRUFFLE_RUNTIME_HOSTING.md` for the selected topology,
 its non-semantic boundary, alternatives, scaling rationale, invariants, and
 explicitly deferred choices.
@@ -177,11 +177,13 @@ See `docs/project/decisions/platform/PLAT047_PORTABLE_JAVA_SLOW_TEST_ADMISSION_A
 
 PLAT046 is OPEN and has no selected decision record. Intake/trigger evidence is retained under `docs/project/evidence/PLAT046/PLAT046_INTAKE_AND_TRIGGER_EVIDENCE.md`; live decision authority remains `guillermomolina/protos#778` until explicit project-owner ratification.
 
-PLAT048 is OPEN and owns the production authority/configuration boundary that
-maps each exact locked external package identity to one already-present local
-materialized root before F2E2 same-capture verification. The triggering
-TOOL001-F2E5 audit is retained at
-`docs/project/evidence/TOOL001/TOOL001_F2E5_PUBLIC_RUN_MATERIALIZATION_LIFECYCLE_AUDIT.md`;
-live decision authority is `guillermomolina/protos#789`. No candidate is
-selected and no implementation is authorized until explicit project-owner
-approval and the required durable ratification.
+See `docs/project/decisions/platform/PLAT048_PUBLIC_RUN_EXTERNAL_MATERIALIZATION_AUTHORITY_BOUNDARY.md`
+for the ratified Candidate B′ boundary: bundled Package Tool derives inert exact
+external requirements, while the public-run host owns a run-scoped exact
+materialization provider that maps only complete locked external identities to
+already-present local roots before unchanged F2E2 verification. Decision evidence
+is retained under
+`docs/project/evidence/PLAT048/PLAT048_PUBLIC_RUN_EXTERNAL_MATERIALIZATION_DECISION_EVIDENCE.md`.
+The decision releases TOOL001-F2E5/#93 implementation without selecting fetch,
+store writes, GC, ambient lookup, a public store layout or a new CLI/config
+surface.

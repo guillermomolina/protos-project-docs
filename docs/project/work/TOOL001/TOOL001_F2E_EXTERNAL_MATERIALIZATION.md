@@ -1,6 +1,6 @@
 # TOOL001-F2E — External Immutable-Package Execution
 
-Status: **IN_PROGRESS — F2E1/F2E2/F2E3 CLOSED; F2E4 READY; F2E5 dependency-gated**
+Status: **IN_PROGRESS — F2E1/F2E2/F2E3/F2E4 CLOSED; F2E5 READY after PLAT048 ratification**
 Nature: non-normative Package Tool / host-integration project record
 Allocated after: `TOOL001-F2D` workspace-only execution closure
 
@@ -103,8 +103,8 @@ F2E2A  captured-Filesystem ContentIdentity canonicalizer/verifier  CLOSED
 F2E2B  exact selected-root capture + verified-capture host custody CLOSED
 F2E2C same-capture integration + F2E2 closure                      CLOSED
 F2E3  external-node execution-plan construction                    CLOSED — F2E3A/B/C; D053/D056/D057 RATIFIED
-F2E4  external canonical ModuleKey + source resolver               READY — PLAT012 RATIFIED
-F2E5  public run integration + F2 external-execution closure       BLOCKED_BY_DEPENDENCIES
+F2E4  external canonical ModuleKey + source resolver               CLOSED — PLAT012 RATIFIED
+F2E5  public run integration + F2 external-execution closure       READY — PLAT048 RATIFIED
 ```
 
 ### F2E1 — canonical logical package tree
@@ -171,6 +171,36 @@ F2E5 may close F2 only when missing/corrupt/mismatched external material fails
 before application authority begins, normal execution performs no solving/fetch
 or lock mutation, and store verification authority does not leak into the
 application Process.
+
+PLAT048 is now RATIFIED as Candidate B′. F2E5 is implementation-ready with the
+following fixed host/package boundary:
+
+~~~text
+Package Tool
+    -> derive inert complete exact external requirements
+
+public-run host bootstrap
+    -> own a run-scoped exact materialization provider
+    -> lookup only by
+       (kind, PackageId, exact version/revision, ContentIdentity)
+    -> obtain one already-present local root
+
+selected root
+    -> unchanged F2E2 capture/verify
+    -> unchanged F2E3 V2 planning
+    -> unchanged F2E4 detach/reconcile/resolution
+~~~
+
+Workspace-only graphs remain on the existing generation-1 public-run path.
+External graphs use generation 2. The implementation must not add a CLI flag,
+Protos-specific environment variable, public configuration surface, ambient
+store scan, canonical public store layout, fetch, store writes, network,
+credentials, GC, vendor policy, solving or lock mutation.
+
+The ratified decision is
+`docs/project/decisions/platform/PLAT048_PUBLIC_RUN_EXTERNAL_MATERIALIZATION_AUTHORITY_BOUNDARY.md`;
+its investigation/approval evidence is
+`docs/project/evidence/PLAT048/PLAT048_PUBLIC_RUN_EXTERNAL_MATERIALIZATION_DECISION_EVIDENCE.md`.
 
 ## Explicit exclusions
 
