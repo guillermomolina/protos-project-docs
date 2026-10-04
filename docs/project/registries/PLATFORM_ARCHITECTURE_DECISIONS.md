@@ -84,6 +84,8 @@ process remains authoritative first.
 | PLAT046 | Ordinary hosted single-Actor caller execution boundary | RATIFIED | Explicit project-owner approval, 2026-10-02 selecting Candidate B — direct caller-thread ordinary execution with an explicit local session serialization gate; child-Actor carriers remain lazy/RuntimeHost-owned and no strong-stack mechanism is prebuilt without a concrete requirement | PERF025/#758 direct hosted-session cutover and unchanged prepared-call remeasurement |
 | PLAT047 | Portable Java slow-test admission architecture | RATIFIED + OWNER AMENDMENT | Candidate H ratified 2026-10-03; explicit project-owner amendment 2026-10-04 approves the deployed enforcement boundary `local=authoritative fail-closed`, `CI=advisory`, plus the exact TEST008-B calibration constants 0.5 / 4 / 1.5 / 2.5 / 1.35 / 25 / 180 | TEST008-B/#788 and TEST008/#761 closed at `e7b2ae2c`; PERF031/#787 remains independent and non-blocking |
 | PLAT048 | Public-run exact external materialization authority boundary | RATIFIED | Explicit project-owner approval, 2026-10-04 selecting Candidate B′ — requirements-first Package Tool exact requirements plus public-run-bootstrap-owned exact materialization provider | TOOL001-F2E5/#93 public-run external execution |
+| PLAT050 | Canonical formatter source/trivia authority and tooling bridge | RATIFIED | Explicit project-owner approval, 2026-10-04 selecting Candidate F — on-demand hybrid source-layout view + exact bundled Protos formatter policy over a tool-neutral host source mechanism | LM011-B/#670 canonical formatter implementation and later CLI/LSP/editor integration |
+
 See `docs/project/decisions/platform/PLAT001_TRUFFLE_RUNTIME_HOSTING.md` for the selected topology,
 its non-semantic boundary, alternatives, scaling rationale, invariants, and
 explicitly deferred choices.
@@ -199,3 +201,15 @@ stack, Actor/Process causal concatenation or guest-visible Error mutation is
 introduced. Ratification evidence is retained under
 `docs/project/evidence/PLAT049/PLAT049_CANDIDATE_C_RATIFICATION_EVIDENCE.md`;
 CLI008-C/#416 is released for the bounded CLI008-C1 implementation.
+
+
+See `docs/project/decisions/platform/PLAT050_CANONICAL_FORMATTER_SOURCE_TRIVIA_AUTHORITY.md`
+for the ratified Candidate F formatter architecture: exact immutable source,
+existing TokenOccurrence/SourceSpan and Surface AST remain the base; formatter-only
+trivia, parser source facts and comment attachment are built on demand; no
+lossless CST is required for the D183 baseline; higher-level fixed-style policy
+is an exact bundled Protos formatter over a tool-neutral host source mechanism.
+Ratification releases LM011-B1/#670 without changing Protos semantics, PLAT024,
+or the deferred range/check/recovery/refactoring surface. Evidence is retained
+under
+`docs/project/evidence/PLAT050/PLAT050_CANDIDATE_F_RATIFICATION_EVIDENCE.md`.
