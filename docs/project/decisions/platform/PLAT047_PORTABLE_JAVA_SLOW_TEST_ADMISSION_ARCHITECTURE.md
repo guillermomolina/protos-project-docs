@@ -353,6 +353,107 @@ If later requirements demand reliable small-regression measurement, the project
 must move toward same-host A/B or dedicated performance CI rather than
 accumulating correction factors in TEST008.
 
+## 2026-10-04 owner amendment — local authoritative gate, CI advisory
+
+After TEST008-B was implemented and published at
+`guillermomolina/protos@e7b2ae2cc6688d4ec647306ab3fec270a5687976`,
+the project owner explicitly approved the exact deployed enforcement policy and
+the seven concrete calibration constants:
+
+~~~text
+acepto exactamente eso
+~~~
+
+The approval referred to the explicitly presented policy:
+
+~~~text
+LOCAL_TEST008_GUARD=AUTHORITATIVE_FAIL_CLOSED
+CI_TEST008_GUARD=ADVISORY
+
+CONTROL_FACTOR_MIN=0.5
+CONTROL_FACTOR_MAX=4
+CONTROL_COHERENCE_LIMIT=1.5
+CLASS_REGRESSION_FACTOR=2.5
+GLOBAL_REGRESSION_FACTOR=1.35
+PARALLEL_INTERACTION_LIMIT=25
+PATHOLOGICAL_CEILING_SECONDS=180
+~~~
+
+This is a deliberate amendment to the original PLAT047 enforcement invariant,
+not evidence that the original 2026-10-03 approval already contained this
+exception.
+
+Candidate H's measurement and classification architecture remains unchanged:
+
+- Protos-independent CPU/JVM and filesystem/process controls;
+- bounded/coherent machine normalization;
+- one reduced-contention confirmation for per-class suspects;
+- preserved parallel-interaction classification;
+- independently normalized Java-phase makespan;
+- secondary post-execution pathological ceiling;
+- exact version-controlled canonical expectations;
+- no automatic allowlist/baseline growth.
+
+The amendment changes only where the resulting verdict is authoritative:
+
+~~~text
+LOCAL_DEVELOPER_GATE=
+  FAIL_CLOSED_AND_AUTHORITATIVE
+
+CI_GATE=
+  ADVISORY_DIAGNOSTIC_ONLY
+  SAME_CLASSIFICATION_LOGIC
+  NONZERO_POLICY_VERDICT_NOT_ENFORCED_AS_JOB_FAILURE
+~~~
+
+Rationale accepted by the owner: the local pre-push validation is the
+authoritative performance-admission gate, while hosted CI remains useful as a
+different-machine observation surface without allowing runner variance to block
+otherwise-correct publication.
+
+Therefore the fixed invariant is amended from:
+
+~~~text
+TEST008_REMAINS_FAIL_CLOSED_REGRESSION_GUARD=YES_EVERYWHERE
+~~~
+
+to:
+
+~~~text
+TEST008_LOCAL_ADMISSION_REMAINS_FAIL_CLOSED=YES
+TEST008_CI_ADMISSION_IS_ADVISORY=YES
+LOCAL_PRE_PUSH_VALIDATION_IS_AUTHORITATIVE=YES
+~~~
+
+This amendment does not authorize:
+
+- automatic baseline growth;
+- automatic acceptance of new expensive local tests;
+- timeouts, skips, allow-failure of Java assertions, or coverage reduction;
+- CI-specific absolute budget tables;
+- environment-specific replacement semantics;
+- weakening Maven/Make failure propagation for the underlying test execution.
+
+The `--advisory` behavior applies only to the slow-test admission verdict after
+the ordinary CI test phases themselves have completed. Ordinary build/test
+failures remain failures.
+
+Exact implementation evidence:
+
+~~~text
+PROTOS_REVISION=e7b2ae2cc6688d4ec647306ab3fec270a5687976
+LOCAL_FULL_VALIDATION=PASS
+VALIDATION_PROVENANCE=MAINTAINER_REPORTED
+CI_RUN_NUMBER=2121
+CI_RUN_ID=37176553510
+CI_JOB_ID=111360243076
+CI_CONCLUSION=SUCCESS
+CI_RUN_REPOSITORY_TESTS_STEP=SUCCESS
+~~~
+
+The exact published baseline already contains the approved values, so this owner
+amendment requires no further product-code change.
+
 ## GITHUB021 invariant/delta consistency
 
 The owner approved the exact Candidate H recommendation after the PLAT047-A
@@ -380,8 +481,7 @@ Ratification releases a bounded TEST008-B implementation in
 TEST008-B is authorized to implement Candidate H but not to invent policy
 silently.
 
-Before final publication, concrete values for the following implementation
-constants must be evidence-backed and explicitly approved by the project owner:
+The concrete values for the following implementation constants were subsequently evidence-backed by TEST008-B and explicitly approved by the project owner on 2026-10-04:
 
 ~~~text
 CONTROL_FACTOR_MIN
@@ -432,6 +532,17 @@ NEW_LANGUAGE_DECISION_REQUIRED=NO
 IMPLEMENTATION_AUTHORIZED=YES
 IMPLEMENTATION_SLICE=TEST008-B
 IMPLEMENTATION_REPOSITORY=guillermomolina/protos
+
+LOCAL_TEST008_GUARD=AUTHORITATIVE_FAIL_CLOSED
+CI_TEST008_GUARD=ADVISORY
+
+CONTROL_FACTOR_MIN=0.5
+CONTROL_FACTOR_MAX=4
+CONTROL_COHERENCE_LIMIT=1.5
+CLASS_REGRESSION_FACTOR=2.5
+GLOBAL_REGRESSION_FACTOR=1.35
+PARALLEL_INTERACTION_LIMIT=25
+PATHOLOGICAL_CEILING_SECONDS=180
 ~~~
 
 ## Evidence and references
