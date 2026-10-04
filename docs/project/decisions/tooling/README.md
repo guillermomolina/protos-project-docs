@@ -47,6 +47,7 @@ Language/specification decision rationale belongs under
 
 DOC002-F0 ratified this role by explicit project-owner approval on 2026-09-10.\n- [`D129_TEST_TOOL_PER_CASE_PROJECT_TREE.md`](D129_TEST_TOOL_PER_CASE_PROJECT_TREE.md)\n
 
+
 - [`D132_PLAIN_TWO_COLUMN_MANIFEST_SEMANTICS.md`](D132_PLAIN_TWO_COLUMN_MANIFEST_SEMANTICS.md)
 - [`D133_TEST_TOOL_PER_CASE_CASE_AUTHORITY_SCHEDULING.md`](D133_TEST_TOOL_PER_CASE_CASE_AUTHORITY_SCHEDULING.md)
 
@@ -62,3 +63,4 @@ DOC002-F0 ratified this role by explicit project-owner approval on 2026-09-10.\n
 - [`D176_TEST_TOOL_STALLED_IN_FLIGHT_CASE_PRESENTATION.md`](D176_TEST_TOOL_STALLED_IN_FLIGHT_CASE_PRESENTATION.md)
 - [`D181_EXACT_REVISION_D064_PUBLICATION_AND_DISTRIBUTION_BUILD_BOUNDARY.md`](D181_EXACT_REVISION_D064_PUBLICATION_AND_DISTRIBUTION_BUILD_BOUNDARY.md) — producer-side exact-revision D064 publication, unified JVM/Native/D064 artifact construction, and explicit separation between artifact build and public release publication.
 - [`D182_EXACT_REVISION_D064_GHCR_OCI_PUBLICATION_RETENTION_AND_DISCOVERY_BOUNDARY.md`](D182_EXACT_REVISION_D064_GHCR_OCI_PUBLICATION_RETENTION_AND_DISCOVERY_BOUNDARY.md) — public GHCR/OCI exact-revision D064 publication using source revision `X`, D064 content SHA-256 `H`, immutable OCI manifest digest `M`, revision-derived discovery only, indefinite project retention, and release-independent consumption.
+- [`D183_CANONICAL_SOURCE_FORMATTING_POLICY_AND_PRESERVATION_CONTRACT.md`](D183_CANONICAL_SOURCE_FORMATTING_POLICY_AND_PRESERVATION_CONTRACT.md) — fixed canonical Protos structural formatting with conservative lexical/source-form preservation, fail-closed invalid-source behavior, deterministic/idempotent output, and editor-independent style authority.
