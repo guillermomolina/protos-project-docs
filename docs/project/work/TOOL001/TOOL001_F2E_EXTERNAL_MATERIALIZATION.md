@@ -844,3 +844,69 @@ identity. Cache policy remains tuning. F2E5 retains public run lifecycle and
 final teardown integration.
 
 F2E4 remains **READY** and is no longer architecture-blocked.
+
+## F2E5 activation audit — PLAT048 materialization-authority gate
+
+F2E4 closed at product revision
+`0ce6a30635cc1db8fa27b6834bb04aab47769ac2` and released F2E5 for a
+public-run integration audit.
+
+That audit found that the already-published F2E2/F2E3/F2E4 machinery is
+mechanically composable after one exact external package root has already been
+selected:
+
+```text
+selected root
+    -> same-capture ContentIdentity verification
+    -> borrowed verified custody planning
+    -> generation-2 defensive detach
+    -> exact 1:1 resource-scope reconciliation
+    -> mixed V2 module resolution
+    -> application execution
+    -> application Process termination
+    -> resource-scope close
+```
+
+Current public `protos run <entry> [args...]` nevertheless remains
+workspace-only because current HEAD has no production authority that maps every
+exact locked external identity to an already-present local materialized package
+root before F2E2 capture.
+
+The missing boundary is:
+
+```text
+exact locked registry/Git identity
+    ->
+explicit production materialization-selection authority
+    ->
+already-selected exact local root
+```
+
+The lock/Package Tool can already derive the complete exact external identity
+set from the public-run project input. It cannot select physical roots without
+new host authority/configuration policy. Tests that pass temporary roots
+directly are fixtures and do not close this production boundary.
+
+This is a durable platform/host-authority choice rather than helper placement.
+`PLAT048 — Public-run external materialization authority boundary` is allocated
+as `guillermomolina/protos#789`.
+
+Until PLAT048 is explicitly selected and durably ratified:
+
+```text
+TOOL001-F2E5   BLOCKED_BY_DECISION: PLAT048/#789
+TOOL001-F2E    IN_PROGRESS
+TOOL001       IN_PROGRESS
+```
+
+F2E5 must not bypass the gate by inventing a canonical store directory, ambient
+cache scan, environment variable, new CLI/config input, hidden global, fetch,
+solve or lock mutation.
+
+The immutable activation evidence is retained at:
+
+`docs/project/evidence/TOOL001/TOOL001_F2E5_PUBLIC_RUN_MATERIALIZATION_LIFECYCLE_AUDIT.md`.
+
+The maintainer reports all local tests PASS for the audited current product
+state. No new product implementation or normative semantics are claimed by this
+investigation record.
