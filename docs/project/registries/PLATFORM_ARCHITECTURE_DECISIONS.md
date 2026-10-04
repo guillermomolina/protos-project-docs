@@ -187,3 +187,15 @@ is retained under
 The decision releases TOOL001-F2E5/#93 implementation without selecting fetch,
 store writes, GC, ambient lookup, a public store layout or a new CLI/config
 surface.
+
+See `docs/project/decisions/platform/PLAT049_GUEST_DIAGNOSTIC_STACK_CAPTURE_AUTHORITY.md`
+for the ratified Candidate C guest diagnostic-stack capture authority: terminal
+Error occurrences pay for a failure-only Truffle physical stack/current-frame
+acquisition, generated continuation roots are normalized to semantic
+Bytecode/source locations, PLAT044 inline callbacks are recovered from active
+nested semantic RootTags, and only a bounded immutable Protos diagnostic trace is
+retained. No success-path caller provenance, live frame graph, Future producer
+stack, Actor/Process causal concatenation or guest-visible Error mutation is
+introduced. Ratification evidence is retained under
+`docs/project/evidence/PLAT049/PLAT049_CANDIDATE_C_RATIFICATION_EVIDENCE.md`;
+CLI008-C/#416 is released for the bounded CLI008-C1 implementation.
