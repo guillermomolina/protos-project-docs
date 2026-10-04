@@ -1,6 +1,6 @@
 # TOOL001-F2E — External Immutable-Package Execution
 
-Status: **IN_PROGRESS — F2E1/F2E2/F2E3/F2E4 CLOSED; F2E5 IN_PROGRESS after provider-backed mixed-run composition publication**
+Status: **CLOSED — F2E1/F2E2/F2E3/F2E4/F2E5 complete; public exact external run closure published**
 Nature: non-normative Package Tool / host-integration project record
 Allocated after: `TOOL001-F2D` workspace-only execution closure
 
@@ -92,7 +92,7 @@ designed store-write/network authority.
 ## Cost-aware decomposition
 
 ```text
-F2E   external immutable-package execution                         IN_PROGRESS
+F2E   external immutable-package execution                         CLOSED
 F2E0  prerequisite audit + decomposition                           CLOSED
 F2E1  protos-package-tree-v1 ContentIdentity contract              CLOSED
 F2E1A logical-tree domain + portable path/entry-kind contract       CLOSED
@@ -104,7 +104,7 @@ F2E2B  exact selected-root capture + verified-capture host custody CLOSED
 F2E2C same-capture integration + F2E2 closure                      CLOSED
 F2E3  external-node execution-plan construction                    CLOSED — F2E3A/B/C; D053/D056/D057 RATIFIED
 F2E4  external canonical ModuleKey + source resolver               CLOSED — PLAT012 RATIFIED
-F2E5  public run integration + F2 external-execution closure       IN_PROGRESS — provider-backed mixed-run composition published; default local backend + public CLI cutover remain
+F2E5  public run integration + F2 external-execution closure       CLOSED — private exact local backend + public CLI cutover published
 ```
 
 ### F2E1 — canonical logical package tree
@@ -1025,9 +1025,34 @@ This checkpoint intentionally does **not** add:
 - a canonical public package-store/cache layout;
 - solving, fetch, network, credentials, store writes, GC or lock mutation.
 
-F2E5 therefore remains **IN_PROGRESS**. The remaining bounded closure is the
-public-run bootstrap constructing one implementation-private read-only local
-materialization backend, invoking the provider-backed driver, cutting public
-`protos run` over transparently, and reconciling final F2E5/F2 closure
-evidence without reopening PLAT048.
+F2E5 is **CLOSED** by product revision
+`cd710a0cff2768691c6b654b1ab85fbb96d9d6ec` / `0.3.187-SNAPSHOT`.
+
+The public-run bootstrap now constructs the implementation-private read-only
+local exact materialization backend and routes public
+`protos run <entry> [args...]` through the existing provider-backed
+`ProtosPackageRunDriver`. The private backend computes one deterministic opaque
+location from the complete typed exact identity; it performs no directory
+enumeration, partial lookup, fallback, solve, fetch, network access, lock
+mutation, store write, repair or GC. A missing exact already-present root fails
+closed before application execution.
+
+The selected root still crosses unchanged F2E2 capture + ContentIdentity
+verification, F2E3 V2 planning and F2E4 detach/reconciliation/resolution.
+Workspace-only public runs remain on generation 1 and do not consult the
+materialization provider. Focused public-run coverage proves an imported external
+module executes through that complete path; missing materialization fails with
+the existing host-failure family and does not create or mutate the store/lock.
+
+Maintainer-reported local validation is PASS, including the focused F2E5/CLI
+tests and the integrated `make test` suite. This project-docs repository did
+not independently execute that validation.
+
+F2E, F2 and F are therefore closed for the current bounded Package Tool scope.
+Remote acquisition/fetch, credentials, store-write/repair/GC, publication,
+vendor/system stores and multi-store composition remain separately scoped future
+capabilities rather than residual F2E work.
+
+Final retained evidence:
+`docs/project/evidence/TOOL001/TOOL001_F2E5_FINAL_PUBLIC_RUN_CLOSURE.md`.
 

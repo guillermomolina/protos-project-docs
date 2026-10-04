@@ -1106,10 +1106,17 @@ record distributable Standard Library functionality.
 
 | Item | Description | Status | Closure evidence | Dependencies / notes |
 |---|---|---|---|---|
-| TOOL001 | Package Tool | IN_PROGRESS | `docs/project/work/TOOL001/TOOL001_PACKAGE_TOOL.md` | D/E/F1 and F2D are CLOSED; F2E2 is CLOSED and F2E3 is READY for the active external immutable-package execution continuation. |
+| TOOL001 | Package Tool | CLOSED | `docs/project/work/TOOL001/TOOL001_PACKAGE_TOOL.md`; `docs/project/evidence/TOOL001/TOOL001_F2E5_FINAL_PUBLIC_RUN_CLOSURE.md` | Bounded Package Tool implementation through exact verified already-materialized external public-run execution is complete at `cd710a0cff2768691c6b654b1ab85fbb96d9d6ec`; remote acquisition/store/publication capabilities require separate future allocation. |
 | TOOL002 | Test Tool | IN_PROGRESS | `docs/project/work/TOOL002/TOOL002_TEST_TOOL.md` | A/B/C/D/E/F/G CLOSED; H1 concurrent fresh-Process substrate proof is CLOSED; D055 async exact-execution contract is RATIFIED; TOOL002-H2 READY; I-J remain dependency-ordered. |
 
 ### TOOL001 — Package Tool
+
+Closure reconciliation (2026-10-04): TOOL001 is **CLOSED** for its current
+repository-defined bounded scope at `cd710a0cff2768691c6b654b1ab85fbb96d9d6ec`. The final F2E5 publication
+completes public execution of exact verified already-present external packages.
+Remote acquisition, credentials, mutable store management, publication and
+multi-store/vendor policy are future separately allocated capabilities, not
+unfinished TOOL001-F2E5 work.
 
 Status: IN_PROGRESS
 
@@ -1147,14 +1154,14 @@ forward.
 | TOOL001-E | local/offline version selection policy | CLOSED | `SAME_COMMIT` | E1 fresh highest-satisfying selection and E2 retained exact-version preference complete pure selection over already-known ReleaseVersion candidates. |
 | TOOL001-E1 | fresh highest-satisfying ReleaseVersion selection | CLOSED | `SAME_COMMIT` | Pure bundled-Protos selection over already-known candidates using closed D2 satisfaction and D1 precedence; no-match fails closed. |
 | TOOL001-E2 | retained exact-version preference | CLOSED | `SAME_COMMIT` | Preserve an available exact retained version while it satisfies D2; otherwise fall back to E1. No physical lockfile/identity/discovery behavior. |
-| TOOL001-F | canonical physical lockfile v1 | IN_PROGRESS | TOOL001-F1 CLOSED; F2D CLOSED; F2E0 `SAME_COMMIT` | Canonical lockfile + workspace execution are published; F2E external immutable-package execution is the active continuation. |
+| TOOL001-F | canonical physical lockfile v1 | CLOSED | `cd710a0cff2768691c6b654b1ab85fbb96d9d6ec` final F2E5 closure | F1 and F2 are complete, including workspace and exact already-materialized immutable external execution. |
 | TOOL001-F1A | canonical lock header grammar | CLOSED | `SAME_COMMIT` | Design/governance-only freeze of exact header keywords, separators, canonical decimals/tokens/digest spelling and one blank line before body records. |
 | TOOL001-F1B | canonical lock body node/edge grammar | CLOSED | `SAME_COMMIT` | F1B1/F1B2/F1B3 freeze scalar/reference, root/workspace, external node, dependency and total canonical body grammar. |
 | TOOL001-F1B1 | canonical scalar strings + typed node references | CLOSED | `SAME_COMMIT` | Deterministic quoted UTF-8 body scalars and typed registry/git/workspace identity tuples; does not freeze PackageId's public textual encoding. |
 | TOOL001-F1B2 | root/workspace representation | CLOSED | `SAME_COMMIT` | One root workspace-ref plus canonically ordered mappings from explicit workspace.members strings to member workspace refs; no virtual root or path semantics. |
 | TOOL001-F1B3 | external node blocks + dependency edges + F1B closure | CLOSED | `SAME_COMMIT` | Registry/git external records, ContentIdentity/provenance, dependency edges and final ordering/separation close F1B. |
 | TOOL001-F1C | canonical lock parser/writer + round-trip conformance | CLOSED | `SAME_COMMIT` | F1C1/F1C2/F1C3 complete lexical, structural and canonical writer/round-trip behavior. |
-| TOOL001-F2 | physical lock integration | IN_PROGRESS | TOOL001-F2A/F2B/F2C/F2D CLOSED; F2E0 `SAME_COMMIT` | Workspace-only normal execution and F2E1/F2E2 are CLOSED; F2E3 external-node execution-plan construction is READY. |
+| TOOL001-F2 | physical lock integration | CLOSED | `cd710a0cff2768691c6b654b1ab85fbb96d9d6ec` | F2A/B/C/D and F2E are complete for the bounded read/execute path; no solve/fetch/store-write behavior is implied. |
 | TOOL001-F2A | confined `protos.lock` read/publish substrate | CLOSED | `SAME_COMMIT` | Canonical load plus validation-before-staging atomic lock publication through existing confined Filesystem authority. |
 | TOOL001-F2B | semantic resolution-input + stale detection | CLOSED | `SAME_COMMIT` | F2B1 projection + F2B2 semantic root assembly + F2B3 canonical bytes/SHA-256/header stale comparison complete the bounded stale-input layer. |
 | TOOL001-F2C | physical resolution-root assembly | CLOSED | `SAME_COMMIT` | `self:ResolutionRoot.assemble(projectTreeFilesystem)` loads root + explicit member manifests, projects D1/D2 dependencies and normalizes in-root path targets into F2B ResolutionRootV1 using existing confined read-only tree authority. |
@@ -1186,7 +1193,7 @@ forward.
 | TOOL001-F2D3C3 | public workspace-run wiring + F2D3/F2D closure | CLOSED | `SAME_COMMIT` | C3A CLI-neutral driver plus C3B explicit public `protos run <entry> [args...]` wiring complete the workspace-run boundary. |
 | TOOL001-F2D3C3A | TOOL001 F2D3 public-run integration: CLI-neutral workspace-run driver | CLOSED | `8769e106dceeb7b7d6bf2c888a24a74f18b08e6e` | CLI-neutral C1->C2 workspace-run driver with explicit project root and logical entry. |
 | TOOL001-F2D3C3B | TOOL001 F2D3 public-run integration: public `protos run` wiring + final F2D3/F2D closure | CLOSED | `SAME_COMMIT` | Public CLI selects the current directory as project root and requires an explicit root-package logical entry; application args start after the entry, diagnostics translate the closed driver outcome, and no default application Filesystem is granted. |
-| TOOL001-F2E | external immutable-package execution continuation | IN_PROGRESS | F2E0/F2E1 CLOSED; I024/B009 CLOSED; F2E2A CLOSED | ContentIdentity policy and same-capture verification/custody are CLOSED through F2E2; F2E3 external-node execution-plan construction is READY. |
+| TOOL001-F2E | external immutable-package execution continuation | CLOSED | `cd710a0cff2768691c6b654b1ab85fbb96d9d6ec`; final evidence `docs/project/evidence/TOOL001/TOOL001_F2E5_FINAL_PUBLIC_RUN_CLOSURE.md` | Exact verified already-materialized registry/Git nodes now execute through public `protos run`; future remote acquisition/store mutation is outside this phase. |
 | TOOL001-F2E0 | external materialization prerequisite audit + decomposition | CLOSED | `SAME_COMMIT` | Fresh post-F2D audit preserves fail-closed external execution and allocates E1-E5 without an executable shortcut. |
 | TOOL001-F2E1 | `protos-package-tree-v1` ContentIdentity canonical tree contract | CLOSED | `SAME_COMMIT` | E1A logical tree/path domain, E1B canonical stream + sha256 relation, and E1C independent fixed vectors are published; protos-package-tree-v1 is frozen. |
 | TOOL001-F2E1A | ContentIdentity logical-tree domain + portable path/entry-kind contract | CLOSED | `SAME_COMMIT` | Define ContentIdentity over the already-materialized payload, include every valid regular-file path+bytes, require root `protos.toml`, make directories structural/empty directories non-semantic, reject symlink/special entries, ignore host metadata and freeze conservative portable ASCII artifact paths/collision rules. |
@@ -1197,8 +1204,8 @@ forward.
 | TOOL001-F2E2B | exact selected-root capture + verified-capture host custody | CLOSED | `0.2.262-SNAPSHOT` | Explicitly owner-approved run-scoped host custody captures one exact already-selected root once, retains the same immutable captured backend independently of the Package Tool Process, rematerializes fresh read-only Filesystem views per Actor domain over that same capture, and deterministically releases host custody at run end. No PackageExecutionPlan authority, global registry, PackageId binding, CAS requirement or source-path reopen is introduced. |
 | TOOL001-F2E2C | same-capture integration + F2E2 closure | CLOSED | `0.2.264-SNAPSHOT` | `ProtosPackageContentVerification` captures once through B custody, invokes bundled-Protos `ContentIdentity.verify` on a fresh tool-domain view, requires exact same-view return, terminates that Process before returning custody, and closes custody on every failed verification path. |
 | TOOL001-F2E3 | external-node execution-plan construction | CLOSED | `0.2.310-SNAPSHOT`; F2E3A/F2E3B/F2E3C CLOSED; D053/D056/D057 RATIFIED | Generation-2 exact mixed-graph planning now consumes the same F2E2-verified external captured custodies through one bounded Package Tool composition boundary, derives external manifests/edges in Protos and returns only raw inert V2 data. Borrowed custody remains outside the plan and alive for F2E4. |
-| TOOL001-F2E4 | external canonical ModuleKey + source resolver | READY | `TOOL001-F2E3` CLOSED @ `0.2.310-SNAPSHOT`; PLAT012 RATIFIED | Ready under PLAT012-A+: defensive V2 detach, exact package-resource scope, 1:1 verified-custody reconciliation, canonical external ModuleKey and lazy host-neutral immutable-resource source loading. F2E5 still owns public run lifecycle integration. |
-| TOOL001-F2E5 | public run integration + F2 external-execution closure | BLOCKED_BY_DEPENDENCIES | — | Depends on F2E4. Extend normal run without version solving, implicit fetch, package-store authority leakage or lock mutation. |
+| TOOL001-F2E4 | external canonical ModuleKey + source resolver | CLOSED | `0ce6a30635cc1db8fa27b6834bb04aab47769ac2`; PLAT012 RATIFIED | Exact external identity, resource-scope reconciliation, canonical ModuleKey and lazy verified-custody source loading are published. |
+| TOOL001-F2E5 | public run integration + F2 external-execution closure | CLOSED | `cd710a0cff2768691c6b654b1ab85fbb96d9d6ec` / `0.3.187-SNAPSHOT`; maintainer-reported local validation PASS | Private read-only exact local materialization bootstrap plus transparent public-run cutover completes the bounded external execution lifecycle without solve/fetch/network/store-write/lock mutation. |
 
 
 | TOOL001-F2B1 | per-manifest semantic resolution-input projection design | CLOSED | `SAME_COMMIT` | Resolver-affecting field matrix, semantic normalization ownership, deterministic ordering and fail-closed unresolved-owner rule frozen. |
