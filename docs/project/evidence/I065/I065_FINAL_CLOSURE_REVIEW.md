@@ -134,35 +134,33 @@ I065_PRODUCT_CI_STATUS=completed
 I065_PRODUCT_CI_CONCLUSION=success
 ```
 
-At publication time of this evidence, the current product HEAD has a newer CI
-run that is still pending:
+The current product HEAD also has successful required remote CI:
 
 ```text
 CURRENT_HEAD_CI_RUN=37303356200
 CURRENT_HEAD_CI_RUN_NUMBER=2156
 CURRENT_HEAD_CI_HEAD=a85d9ca846d7408f869916a59b72f02ee12b9222
-CURRENT_HEAD_CI_STATUS=in_progress
-CURRENT_HEAD_CI_CONCLUSION=NONE
-CI_GATE=PENDING
+CURRENT_HEAD_CI_STATUS=completed
+CURRENT_HEAD_CI_CONCLUSION=success
+CI_GATE=PASS
 ```
 
 Accordingly, the closure verdict at this evidence snapshot is:
 
 ```text
-VERDICT=WAIT_FOR_CI
-ISSUE_CLOSURE_COMMENT=NOT_READY
+VERDICT=READY_TO_CLOSE
+ISSUE_CLOSURE_COMMENT=READY
 CLOSURE_EVIDENCE_IDENTIFIED=PASS
 DURABLE_RECORD_DECISION=REQUIRED
 REQUIRED_DURABLE_PUBLICATION=THIS_RECORD
 LOCAL_VALIDATION=PASS
-REMOTE_CI=PENDING
+REMOTE_CI=PASS
 ```
 
 The durable record is required for this publication because the project owner
 explicitly requested final I065 evidence to be added to
 `guillermomolina/protos-project-docs`.
 
-Once CI run 2156 reaches `completed/success`, and provided the reviewed
-product HEAD has not changed, no additional implementation slice or design work
-is required. The coordinator may then publish the final Issue closure comment
-referencing this record and close #668 as completed.
+CI run 2156 completed successfully on the reviewed product HEAD. No additional
+implementation slice or design work is required. The coordinator may publish the
+final Issue closure comment referencing this record and close #668 as completed.
