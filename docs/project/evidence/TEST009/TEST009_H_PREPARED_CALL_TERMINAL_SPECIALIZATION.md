@@ -163,24 +163,19 @@ TEST009-H.
 
 ## Validation state
 
-The current handoff explicitly reports the focal compiler result above and that
-the product commit was pushed.
-
-It also quotes an intermediate implementation-agent state saying that integrated
-`make check` was still pending at that moment. The current handoff does **not**
-explicitly state the final result of that integrated validation.
+The maintainer subsequently explicitly confirmed that the integrated validation
+for TEST009-H passed. This reconciles the pending bookkeeping from the original
+publication handoff; it does not change the product commit or its technical
+scope.
 
 Therefore this durable evidence records:
 
 ~~~text
 PRODUCT_PUBLICATION=PASS
 FOCAL_COMPILER_EVIDENCE=PASS
-INTEGRATED_MAKE_CHECK=NOT_REPORTED_IN_CURRENT_HANDOFF
-TEST009_H_ADMINISTRATIVE_COMPLETION=PENDING_VALIDATION_CONFIRMATION
+INTEGRATED_MAKE_CHECK=PASS
+TEST009_H_ADMINISTRATIVE_COMPLETION=COMPLETE
 ~~~
-
-The product commit itself is not rolled back or reinterpreted. This field exists
-only to avoid inferring a validation PASS from publication.
 
 ## Next causal owner
 
@@ -195,8 +190,9 @@ NEXT_CAUSE=PREPARED_CLOSURE_NON_TERMINAL_INTERFACE_ERASURE
 NEXT_SCOPE=ENTER_CLOSURE_AND_STRUCTURED_CAPABILITY_DISPATCH
 ~~~
 
-Technical selection is ready. Formal release/completion wording for H remains
-conditioned only on explicit confirmation of its integrated validation result.
+Technical selection for the following slice was ready at publication time.
+TEST009-H is now administratively complete after the maintainer's explicit
+integrated-validation confirmation.
 
 AI assistance: this record was drafted with ChatGPT from the exact published
 TEST009-H commit, its exact GitHub delta, the TEST009-G durable causal record,
