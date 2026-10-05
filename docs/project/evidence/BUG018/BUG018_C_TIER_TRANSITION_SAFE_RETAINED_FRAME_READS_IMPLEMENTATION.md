@@ -151,12 +151,16 @@ FOCAL_SET=PASS                            (98 tests, 13 classes)
 LOCAL_FULL_VALIDATION=PASS                (make test)
 GIT_DIFF_CHECK=PASS
 VALIDATION_PROVENANCE=MAINTAINER_REPORTED
-EXACT_SHA_CI_RUN=37325362553 (#2161)      IN_PROGRESS at record time
+EXACT_SHA_CI_RUN=37325362553 (#2161)      SUCCESS
 ~~~
 
 Validation ran on the substantive candidate before the version and changelog
 metadata were added, which followed repository policy. The metadata-only
 finalization was not re-tested.
+
+After initial publication of this evidence, the exact-SHA GitHub Actions push
+run `37325362553` / CI `#2161` completed successfully on
+`234314b1791e5dc1c05ee2341ae46a56f8670512`.
 
 ## Remaining BUG018 acceptance
 
