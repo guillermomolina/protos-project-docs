@@ -180,3 +180,87 @@ published candidate has a qualifying green CI result and the native parent
 relation to #626 is reconciled, the live Issue can receive its final closure
 comment and close completed without a new I057 product implementation slice
 unless new evidence exposes an actual product defect.
+
+## Final closure review — 2026-10-05
+
+A final falsifying closure review was performed against the then-current product
+`main` after the two gates recorded above had changed state.
+
+The reviewed product state was:
+
+~~~text
+I057_IMPLEMENTATION_REVISION=97260be7f62cbfceb3eb173a9062226d86d00b7a
+CURRENT_MAIN_HEAD=a153b4198da1c5d74be857cb7e24a11b1f7c53c6
+IMPLEMENTATION_ANCESTRY=PASS
+AHEAD_BY=41
+BEHIND_BY=0
+MERGE_BASE=97260be7f62cbfceb3eb173a9062226d86d00b7a
+~~~
+
+GitHub's compare relation therefore confirms that the published I057
+implementation remains in the ancestry of current `main`.
+
+The required product CI gate is now green for that exact current HEAD:
+
+~~~text
+CI_WORKFLOW=CI
+CI_RUN_ID=37285625766
+CI_RUN_NUMBER=2151
+CI_EVENT=push
+CI_HEAD=a153b4198da1c5d74be857cb7e24a11b1f7c53c6
+CI_STATUS=completed
+CI_CONCLUSION=success
+CI_TEST_JOB=success
+~~~
+
+The native GitHub Issue hierarchy is also reconciled. Issue
+`guillermomolina/protos#660` has native parent
+`guillermomolina/protos#626`, and #626 reports #660 as a native sub-issue.
+
+The final repository review found no reintroduction of the removed I057
+institution. In current product/runtime code:
+
+- `ProtosByteRegionValue` remains absent;
+- Standard `Bytes` does not install `parallelRange`;
+- `ProtosBytesValue` carries no writable-range reservation state;
+- the removed reservation/publication helpers and
+  `ProtosFutureValue.resolveWithCommit` remain absent;
+- `ParallelRegionOverlap`, `ParallelRegionInUse`, and
+  `ParallelRegionOutsideP` remain absent from the active Core taxonomy; and
+- the retained negative conformance test continues to require
+  `Bytes.parallelRange`, `ByteRegion`, and the three retired error bindings
+  to be ordinary missing slots.
+
+References that remain in historical changelogs, negative tests, descriptive
+documentation, or unrelated resource/lexical reservation mechanisms are not
+product reintroductions.
+
+The retained guarantees remain represented in current code, tests, and
+specification: ordinary `Bytes`, isolated `Closure.parallel`, P input
+snapshot/result transfer isolation, Future cancellation, and Actor transfer.
+
+After that review the maintainer additionally reported the current local test
+validation green:
+
+~~~text
+LOCAL_FULL_VALIDATION=PASS
+VALIDATION_PROVENANCE=MAINTAINER_REPORTED
+MAINTAINER_REPORT="Todos los tests han pasado en local"
+~~~
+
+Final closure state:
+
+~~~text
+I057_PRODUCT_COMPLETE=YES
+I057_NATIVE_PARENT=PASS
+I057_REQUIRED_CI=PASS
+I057_REGRESSION_CHECK=PASS
+I057_RETAINED_GUARANTEES=PASS
+I057_CLOSURE_AUTHORIZED=YES
+SECOND_I057_PRODUCT_SLICE_IDENTIFIED=NO
+NEXT_IMPLEMENTATION_SLICE=NONE
+I057_STATUS=READY_TO_CLOSE
+~~~
+
+No new Buffer/Region/ownership design, optional cleanup, or future writable
+partitioning facility is made part of I057 by this closure review.
