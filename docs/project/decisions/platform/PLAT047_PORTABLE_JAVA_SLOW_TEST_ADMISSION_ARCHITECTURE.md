@@ -367,8 +367,9 @@ acepto exactamente eso
 The approval referred to the explicitly presented policy:
 
 ~~~text
-LOCAL_TEST008_GUARD=AUTHORITATIVE_FAIL_CLOSED
-CI_TEST008_GUARD=ADVISORY
+LOCAL_TEST008_SLOW_TELEMETRY=ADVISORY_DIAGNOSTIC_ONLY
+CI_TEST008_SLOW_TELEMETRY=ADVISORY_DIAGNOSTIC_ONLY
+FUNCTIONAL_TEST_EXECUTION=AUTHORITATIVE_FAIL_CLOSED
 
 CONTROL_FACTOR_MIN=0.5
 CONTROL_FACTOR_MAX=4
@@ -453,6 +454,92 @@ CI_RUN_REPOSITORY_TESTS_STEP=SUCCESS
 
 The exact published baseline already contains the approved values, so this owner
 amendment requires no further product-code change.
+
+## 2026-10-05 owner amendment — slow-test telemetry no longer owns functional validation
+
+During TEST009 compilerability work, the project owner explicitly separated the
+developer validation entry points and rejected slow-test telemetry as an
+authority over functional test success.
+
+The published product change is:
+
+~~~text
+PROTOS_REVISION=28d057d61f40be32a215b15e2ee463700709028c
+COMMIT_SUBJECT=TEST008: separate check and test validation
+VERSION=0.3.204-SNAPSHOT
+~~~
+
+The owner-selected current operational contract is:
+
+~~~text
+make check =
+  compilerability / PE / bailout validation only
+
+make test =
+  Java functional tests
+  + Protos functional tests
+
+SLOW_TEST_TELEMETRY_AUTHORITY=
+  DIAGNOSTIC_ONLY
+
+ACTUAL_JAVA_TEST_EXECUTION=
+  AUTHORITATIVE_FAIL_CLOSED
+
+ACTUAL_PROTOS_TEST_EXECUTION=
+  AUTHORITATIVE_FAIL_CLOSED
+~~~
+
+This supersedes the 2026-10-04 enforcement amendment only where it said:
+
+~~~text
+LOCAL_TEST008_GUARD=AUTHORITATIVE_FAIL_CLOSED
+~~~
+
+The current enforcement authority is:
+
+~~~text
+LOCAL_TEST008_SLOW_TELEMETRY=ADVISORY_DIAGNOSTIC_ONLY
+CI_TEST008_SLOW_TELEMETRY=ADVISORY_DIAGNOSTIC_ONLY
+FUNCTIONAL_TEST_EXECUTION=AUTHORITATIVE_FAIL_CLOSED
+~~~
+
+Candidate H's measurement and classification machinery remains retained:
+
+- same-run independent controls;
+- bounded/coherent normalization;
+- one reduced-contention confirmation;
+- per-class and global regression classification;
+- parallel-interaction classification;
+- pathological-cost detection;
+- reviewed version-controlled baselines;
+- no automatic baseline growth;
+- no timeout, skip, assertion weakening or coverage reduction.
+
+An `ENVIRONMENT_NOT_COMPARABLE`, `BASELINE_PENDING`, configuration error or
+slow-test regression remains visible in diagnostics, but no longer owns the exit
+status of `make test`.
+
+The validation surfaces are also independent:
+
+~~~text
+make check:
+  toolchain
+  static PE guards
+  generated-dispatch BCI guard
+  strict Truffle compilation gate
+  NO make test dependency
+
+make test:
+  test-java
+  test-protos
+~~~
+
+Durable publication evidence:
+
+`docs/project/evidence/TEST008/TEST008_POST_CLOSURE_VALIDATION_ENTRYPOINT_RECONCILIATION.md`
+
+This amendment changes validation enforcement only. It introduces no observable
+Protos language or Standard Library semantic change.
 
 ## GITHUB021 invariant/delta consistency
 
