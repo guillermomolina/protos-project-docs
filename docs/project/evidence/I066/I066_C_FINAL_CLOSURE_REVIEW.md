@@ -19,17 +19,36 @@ normative Protos specification or live GitHub coordination state.
 ## Exact reviewed product state
 
 ```text
-CURRENT_PROTOS_HEAD=04189acc0021ba3514e9937113efdb98b176b93e
+CURRENT_PROTOS_HEAD=3c9738f5835cc8ed2e43d50fb8edcc7eb956ddc9
 I066_B_REVISION=04189acc0021ba3514e9937113efdb98b176b93e
 I066_B_IS_ANCESTOR_OF_HEAD=YES
+POST_I066_COMMITS_REVIEWED=3c9738f5835cc8ed2e43d50fb8edcc7eb956ddc9
 POST_I066_RELEVANT_REGRESSION=NO
-IMPLEMENTATION_VERSION=0.3.212-SNAPSHOT
-SPECIFICATION_REVISION=0.1.442
+I066_B_IMPLEMENTATION_VERSION=0.3.212-SNAPSHOT
+I066_B_SPECIFICATION_REVISION=0.1.442
 ```
 
-At final review time, the I066-B publication commit is exactly the current
-`main` head. There is therefore no post-I066 commit interval in which a later
-product regression could have been introduced.
+During closure publication, `main` advanced by one commit after I066-B:
+`3c9738f5835cc8ed2e43d50fb8edcc7eb956ddc9` (`TEST009-K: cut remaining
+compiler expansion debt`). The closure review therefore re-audited that exact
+post-I066 delta instead of assuming I066-B remained HEAD.
+
+The post-I066 commit changes only:
+
+- `CHANGELOG.md`;
+- `pom.xml`;
+- `ProtosBytecodeRootNode.java`;
+- `ProtosLanguageContext.java`;
+- `ProtosLexicalFallback.java`;
+- `ProtosTextReader.java`;
+- `ProtosTextReaderLineProtocolTest.java`.
+
+The potentially relevant lexical/runtime patches add Truffle host boundaries and
+refactor residual bare-assignment destination selection; they do not change bare
+read semantics, Prelude publication, module creation/cache semantics, `std:network`
+placement, IP family identity/recognition, Actor/P transfer, or Network/TCP/NIO
+consumption. The TextReader changes are unrelated. No relevant I066 regression
+is present in current HEAD.
 
 ## Final validation evidence
 
