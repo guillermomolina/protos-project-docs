@@ -29,6 +29,8 @@ Current role-first work records:
   — ratified LIB013-0 Candidate A datetime foundation: pure civil/timeline values first, explicit future timezone/clock authorities, and LIB013-A through D implementation routing.
 - [`LIB013/LIB013_A_PURE_CIVIL_TEMPORAL_KERNEL_EVIDENCE.md`](LIB013/LIB013_A_PURE_CIVIL_TEMPORAL_KERNEL_EVIDENCE.md)
   — LIB013-A implementation evidence at Protos `b0bf563c30a612210cd67c6a0bbea01f44617c3c` / `0.3.242-SNAPSHOT`: Date, Time and LocalDateTime pure civil values published with validation, equality/hash/order and frozen-value tests; maintainer reports `git diff --check` and all local tests PASS; LIB013-B is next.
+- [`LIB013/LIB013_B_TEMPORAL_AMOUNTS_CALENDAR_ARITHMETIC_EVIDENCE.md`](LIB013/LIB013_B_TEMPORAL_AMOUNTS_CALENDAR_ARITHMETIC_EVIDENCE.md)
+  — LIB013-B implementation evidence at Protos `41a06e07d5d74053911f291ac27f911678c61ff5` / `0.3.243-SNAPSHOT`: exact Duration amounts, structural Period values, and ratified Gregorian calendar arithmetic published; maintainer reports `git diff --check` and all local tests PASS; LIB013-C is next.
 
 - [`LIB018/LIB018_TEST_AUTHORING_MODEL.md`](LIB018/LIB018_TEST_AUTHORING_MODEL.md)
   — ratified minimal suite-native authoring model: module-as-suite plus canonical `std:test/Test` values.
