@@ -32,6 +32,9 @@ Current role-first work records:
 - [`LIB013/LIB013_B_TEMPORAL_AMOUNTS_CALENDAR_ARITHMETIC_EVIDENCE.md`](LIB013/LIB013_B_TEMPORAL_AMOUNTS_CALENDAR_ARITHMETIC_EVIDENCE.md)
   — LIB013-B implementation evidence at Protos `41a06e07d5d74053911f291ac27f911678c61ff5` / `0.3.243-SNAPSHOT`: exact Duration amounts, structural Period values, and ratified Gregorian calendar arithmetic published; maintainer reports `git diff --check` and all local tests PASS; LIB013-C is next.
 
+- [`LIB015/LIB015_0_LOGGING_ARCHITECTURE_DECISION.md`](LIB015/LIB015_0_LOGGING_ARCHITECTURE_DECISION.md)
+  — ratified LIB015-0 logging architecture: immutable structured events, explicit derived Logger + Sink authority, early filtering, reuse of TextWriter/std:json/std:datetime, and reusable terminal-styling ownership outside the logging core.
+
 - [`LIB018/LIB018_TEST_AUTHORING_MODEL.md`](LIB018/LIB018_TEST_AUTHORING_MODEL.md)
   — ratified minimal suite-native authoring model: module-as-suite plus canonical `std:test/Test` values.
 
