@@ -52,6 +52,9 @@ Current role-first work records:
 - [`AUD016/AUD016_TRUFFLE_BYTECODE_DSL_CAPABILITY_ADOPTION_AUDIT.md`](AUD016/AUD016_TRUFFLE_BYTECODE_DSL_CAPABILITY_ADOPTION_AUDIT.md)
   — completed Truffle Bytecode DSL capability-adoption audit, lexical-frame migration backlog, negative findings, and lazy-context decision packet.
 
+- [`AUD013/AUD013_A_ADOPTION_BASELINE_RECONCILIATION.md`](AUD013/AUD013_A_ADOPTION_BASELINE_RECONCILIATION.md)
+  — AUD013-A adoption-baseline reconciliation: historical activation anchor retained, post-baseline owners classified, active TEST003/D142/D143/D147/D144 adoption manifest established, already-completed owner cutovers excluded from duplicate sweeps, and AUD013-B1 released as the first integrated source pass.
+
 - [`AUD005/AUD005_E2_A_TEMPORAL_FRACTION_LINEAR_ENCODING_EVIDENCE.md`](AUD005/AUD005_E2_A_TEMPORAL_FRACTION_LINEAR_ENCODING_EVIDENCE.md)
   — AUD005/LIB010-E2-A evidence at exact Protos revision `62f3f5710210f247aad8574d3d0d56d3254bfd70`: temporal fraction encoding now uses one mutable octet buffer and one final decode, structurally restoring linear cost in emitted length; a 400-digit suite-native round-trip and a source-level anti-prepend guard retain F6, while F3, F4, F5 and final closure reconciliation remain open.
 
