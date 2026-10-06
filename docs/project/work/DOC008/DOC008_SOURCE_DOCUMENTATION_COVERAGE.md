@@ -283,3 +283,127 @@ semantic changes.
 After DOC008-B is published and validated, DOC008 should need only closure
 reconciliation/evidence, not another implementation subdivision, unless the
 current HEAD exposes a new falsifying finding.
+
+
+## DOC008-B — complete safe Standard Library source documentation
+
+### Publication
+
+```text
+DOC008_B_STATUS=PUBLISHED
+PROTOS_REVISION=93ce5eb52dee9af57adb9187bdb71ceb2365a5f4
+IMPLEMENTATION_VERSION=0.3.227-SNAPSHOT
+COMMIT_SUBJECT=DOC008-B: complete safe Standard Library source documentation
+```
+
+DOC008-B implemented the complete safe correction set identified by DOC008-A
+in one publication.
+
+The exact Protos commit changed only the expected Standard Library documentation
+sources plus the required implementation-version metadata:
+
+```text
+CHANGELOG.md
+pom.xml
+protos/lib/collections/Array.protos
+protos/lib/collections/IdentitySet.protos
+protos/lib/collections/Set.protos
+protos/lib/crypto/SHA256.protos
+protos/lib/csv/CSV.protos
+protos/lib/io/BufferedReader.protos
+protos/lib/io/BufferedWriter.protos
+protos/lib/io/Files.protos
+protos/lib/io/ProcessStreams.protos
+protos/lib/json/JSON.protos
+protos/lib/network/IpAddresses.protos
+protos/lib/network/IpEndpoints.protos
+protos/lib/test/Assertions.protos
+protos/lib/text/Latin1.protos
+protos/lib/text/UTF16BE.protos
+protos/lib/text/UTF16LE.protos
+protos/lib/text/UTF8.protos
+protos/lib/toml/TOML.protos
+```
+
+No `spec/**`, documentation extractor, parser, runtime, Tool, test, or
+documentation-ownership machinery changed.
+
+### Final D067 coverage
+
+The published changelog records the intended final coverage:
+
+```text
+D067_MODULES=23
+D067_MODULES_DOCUMENTED=23
+D067_MODULES_UNDOCUMENTED=0
+
+D067_TOP_LEVEL_SYMBOLS=122
+D067_DOCUMENTED_SYMBOLS=120
+D067_UNDOCUMENTED_SYMBOLS=2
+
+MODULE_DOCS_ADDED=18
+SLOT_DOCS_ADDED=99
+```
+
+The two remaining undocumented symbols are deliberately retained as routed
+semantic gaps rather than being silently resolved by DOC008:
+
+```text
+std:toml/TOML::array
+std:toml/TOML::table
+```
+
+Their contract question remains owned by AUD005 / guillermomolina/protos#451
+and LIB010 / guillermomolina/protos#418. DOC008 therefore closes without
+selecting shallow-versus-deep composite-constructor validation semantics.
+
+The two runtime-owned I/O factory modules were handled according to D138:
+
+```text
+std:io/BufferedReader
+std:io/BufferedWriter
+```
+
+Both received module `//!` documentation only. No synthetic `///` source
+owner was invented for the runtime-installed factory.
+
+### Validation evidence
+
+After publication, the maintainer reported:
+
+```text
+LOCAL_GIT_DIFF_CHECK=PASS
+LOCAL_ALL_TESTS=PASS
+VALIDATION_PROVENANCE=MAINTAINER_REPORTED
+```
+
+The exact publication commit also carries the implementation-version and
+changelog reconciliation required for distributable `protos/lib/**` changes.
+
+### DOC008 closure
+
+DOC008 closure criteria are satisfied:
+
+- TOOL007 is closed and its final D138 implementation is the mechanical
+  baseline;
+- the production `.protos` source boundary was inventoried in DOC008-A;
+- all mechanically safe D067 module gaps were corrected;
+- all mechanically safe D067 top-level symbol gaps were corrected;
+- no invalid existing `//!` / `///` association was found;
+- no demonstrably stale safe-to-fix source documentation remained;
+- the only unresolved semantic documentation gaps are explicitly identified
+  and routed to their proper semantic owners;
+- no new documentation syntax, ownership semantics, visibility semantics,
+  Standard Library semantics, or runtime behavior was introduced.
+
+```text
+DOC008_STATUS=CLOSED
+PROTOS_REVISION=93ce5eb52dee9af57adb9187bdb71ceb2365a5f4
+TOOL007_BASELINE=6c2ffc8412889bb9d26d08714f2ce56307239d95
+D067_MODULE_COVERAGE=23/23
+D067_SYMBOL_COVERAGE=120/122
+REMAINING_ROUTED_GAPS=std:toml/TOML::array,std:toml/TOML::table
+SPECIFICATION_CHANGED=NO
+OBSERVABLE_PROTOS_SEMANTICS_CHANGED=NO
+FULL_VALIDATION=PASS
+```
