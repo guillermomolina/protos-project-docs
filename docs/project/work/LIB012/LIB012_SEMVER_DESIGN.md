@@ -677,14 +677,29 @@ precedence. Parsed Version objects also provide complete semantic `==` plus a
 coherent `hash`; equality includes build metadata while `===` remains
 ordinary object identity.
 
-### LIB012-C — TOOL001 reuse/migration audit
+### LIB012-C — converge Package Tool ReleaseVersion on std:semver/SemVer
 
-Status: **READY**
+Status: **READY — IMPLEMENTATION**
 
-Determine whether current Package Tool ReleaseVersion implementation should reuse
-LIB012 mechanism while preserving Package Tool's no-build-metadata rule and all
-existing dependency/selection behavior. This slice is an integration audit, not
-permission to change package policy.
+Project-owner direction on 2026-10-06 resolves the former reuse/migration audit
+question directly: this is the same architectural case as the earlier TOML
+convergence completed by I079. Protos should keep one general Semantic Versioning
+implementation in the Standard Library and retain only Package Tool-specific
+policy in the Package Tool layer.
+
+LIB012-C therefore implements Package Tool reuse of `std:semver/SemVer` while
+preserving all TOOL001 observable semantics. In particular, Package Tool
+ReleaseVersion continues to reject build metadata even though generic SemVer
+accepts it; exact/caret/interval syntax, prerelease admission and package
+resolution remain TOOL001-owned. The Standard Library must not depend on Package
+Tool code, and Package Tool bootstrap must consume the toolchain-installed
+`std:semver/SemVer` through bundled-tool Standard Library resolution, never
+through project package resolution.
+
+The preferred outcome is to retire duplicated ReleaseVersion parser/precedence
+mechanics rather than retain a parallel implementation behind an adapter, unless
+the current HEAD proves a small compatibility adapter is needed to preserve
+existing Package Tool representation/API contracts.
 
 ### Requirement/range layer
 
@@ -807,9 +822,27 @@ GIT_DIFF_CHECK=CLEAN
 LOCAL_TESTS=PASS
 ```
 
-This closes LIB012-B and releases LIB012-C, the bounded TOOL001
-reuse/migration audit. LIB012-C is an investigation/audit only: it does not
-authorize implementation or Package Tool policy changes.
+This closes LIB012-B and releases LIB012-C. On 2026-10-06 the project owner
+explicitly selected convergence, analogous to I079 TOML: LIB012-C is therefore a
+bounded implementation slice that makes Package Tool reuse `std:semver/SemVer`
+while preserving Package Tool policy.
+
+## LIB012-C owner direction
+
+On 2026-10-06 the project owner explicitly resolved the migration choice:
+
+> same case as TOML
+
+The controlling precedent is I079
+(`a61b2c5bfe5a8615fa269d12cf9cfc198b6d6f25`), which converged bundled-tool
+TOML parsing onto `std:toml/TOML`, retired the duplicate private parser, and
+kept tool-specific schema/policy above the Standard Library while preserving the
+bootstrap boundary. LIB012-C applies the same architecture to Semantic
+Versioning.
+
+This approval removes the need for a separate LIB012-C research/audit phase.
+Implementation may proceed directly, subject to current-HEAD compatibility and
+validation evidence.
 
 ## Ratification summary
 
@@ -830,7 +863,7 @@ RANGE_REQUIREMENT_INITIAL=DEFERRED
 TOOL001_POLICY_CHANGED=NO
 LIB012_A_STATUS=CLOSED
 LIB012_B_STATUS=CLOSED
-LIB012_C_STATUS=READY
+LIB012_C_STATUS=READY_IMPLEMENTATION
 SPECIFICATION_CHANGED=NO
 IMPLEMENTATION_CHANGED=YES
 IMPLEMENTATION_VERSION_CHANGED=YES
