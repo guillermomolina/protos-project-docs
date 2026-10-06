@@ -73,6 +73,8 @@ Current role-first work records:
   — AUD006-A2 negative evidence showing that full-parse allocation/timing scaling cannot discriminate the builder's `Theta(N log N)` term from dominant Truffle/interpreter cost, leaving isolated retained evidence blocked on the platform/runtime decision.
 - [`AUD006/AUD006_B1_COMMAND_LINE_DEPTH_REMEDIATION_ANALYSIS.md`](AUD006/AUD006_B1_COMMAND_LINE_DEPTH_REMEDIATION_ANALYSIS.md)
   — AUD006-B1 depth/recursion analysis reconciled at Protos `62f3f5710210f247aad8574d3d0d56d3254bfd70`: command canonicalization and selected-child parsing remain execution-stack-depth proportional, both admit mechanical iterative linked-frame repair entirely in Protos, no public depth limit or new platform decision is required, and B2 → B3 is the implementation order.
+- [`AUD006/AUD006_B2_AND_FINAL_CLOSURE_EVIDENCE.md`](AUD006/AUD006_B2_AND_FINAL_CLOSURE_EVIDENCE.md)
+  — final AUD006 closure at Protos `698f90c3a7785fc9f51d2685ae6024b67b6ea1a2`: B2 removes CommandLine canonicalization stack-depth dependence and retains 4096-level/cycle/reuse evidence; maintainer validation passed, while selected-child parse recursion and the unexecuted documentation pass are explicitly accepted as non-blocking residual debt under owner-directed closure, with no further AUD006 slice.
 
 - [`AUD003/AUD003_PROTOS_SOURCE_STYLE_CONFORMANCE_AUDIT.md`](AUD003/AUD003_PROTOS_SOURCE_STYLE_CONFORMANCE_AUDIT.md)
   — canonical non-normative AUD003 source-style conformance audit record.

@@ -1,6 +1,6 @@
 # AUD006 — LIB011 CommandLine post-closure scalability and hardening audit
 
-Status: **IN_PROGRESS**
+Status: **CLOSED**
 
 Owning work item: GitHub Issue `#453` — `AUD006 — LIB011 CommandLine post-closure scalability and hardening audit`
 
@@ -21,8 +21,9 @@ scalability/conformance discrepancy plus bounded hardening and documentation deb
 Current disposition:
 
 ```text
-AUD006_STATUS=IN_PROGRESS
+AUD006_STATUS=CLOSED
 TARGET=LIB011
+FINAL_PRODUCT_REVISION=698f90c3a7785fc9f51d2685ae6024b67b6ea1a2
 LIB011_ISSUE_428=KEEP_CLOSED
 LIB011_ARCHITECTURE=KEEP
 PUBLIC_API=KEEP
@@ -30,13 +31,57 @@ D111=KEEP
 D115=KEEP
 D118=KEEP
 D119=KEEP
-CORRECTIVE_FOLLOWUP_REQUIRED=YES
-NEW_SEMANTIC_DECISION_REQUIRED=NO_CURRENTLY
+CORRECTIVE_FOLLOWUP_REQUIRED=NO_AUD006
+FOLLOWUP_AUD006_SLICE=NONE
+NEW_SEMANTIC_DECISION_REQUIRED=NO
 ```
 
 If corrective work exposes a substantive semantic, API, Core-collection or
 durable runtime-architecture choice, that work must stop and cross the normal
 explicit decision gate. AUD006 is not authority to select such a choice.
+
+## Final owner-directed closure — 2026-10-06
+
+AUD006 is closed at product revision
+`698f90c3a7785fc9f51d2685ae6024b67b6ea1a2`
+(`AUD006-B2: eliminate CommandLine canonicalization execution-stack depth`).
+
+A4 resolved F1 and restored the D115 linear accumulation target. B2 removes
+canonicalization execution-stack growth with command depth and retains a
+4096-level discriminating regression plus cycle/reuse/freshness evidence.
+
+The maintainer reports the final B2 state with:
+
+```text
+LOCAL_GIT_DIFF_CHECK=PASS
+LOCAL_ALL_TESTS=PASS
+VALIDATION_PROVENANCE=MAINTAINER_REPORTED
+```
+
+The project owner explicitly directed closure after B2 and rejected further
+micro-slice decomposition. The prior B3/C/D execution plan is therefore
+superseded as a scheduling plan rather than falsely marked implemented.
+
+Known residuals at closure:
+
+```text
+PARSE_SELECTED_CHILD_RECURSION=KNOWN_ACCEPTED_RESIDUAL
+PARSE_SELECTED_CHILD_FUNCTIONAL_DEFECT_DEMONSTRATED=NO
+AUD006_C_DOCUMENTATION_PASS=NOT_EXECUTED_ACCEPTED_NON_BLOCKING_DEBT
+F6_TOOL002_PROJECTED_INDEX_RISK=FUTURE_INTEGRATION_NON_DEFECT
+PUBLIC_DEPTH_LIMIT=NONE
+FOLLOWUP_AUD006_SLICE=NONE
+```
+
+D111, D115, D118 and D119 remain unchanged. No public CommandLine API or
+specification change is introduced. LIB011/#428 stays closed.
+
+Durable final evidence:
+
+`docs/project/work/AUD006/AUD006_B2_AND_FINAL_CLOSURE_EVIDENCE.md`
+
+The lower work-decomposition sections of this record preserve the historical
+audit plan; this closure section is the final disposition.
 
 ## Audit verdict
 
