@@ -384,3 +384,96 @@ D087 does not select:
 - catalog scope vocabulary;
 - provider/capability API; or
 - scheduling/reservation semantics beyond D076/D077.
+
+
+## 2026-10-06 amendment — converge on the public TOML implementation
+
+AUD017 / `guillermomolina/protos#804` re-audited the ownership boundary after
+`std:toml/TOML` had become a mature, independently hardened Standard Library
+facility.
+
+The audit is revision-coupled to Protos
+`61c475650bf5b5d385e9482b639d310c682e2b0d`.
+
+The project owner explicitly changed the D087 ownership invariant on 2026-10-06:
+
+- Protos must not maintain two independent TOML libraries/parsers;
+- the public TOML library exists to serve Package Tool as well as ordinary
+  Standard Library consumers;
+- compiler/tool bootstrap is allowed to depend on an already-built/installed or
+  bundled prior Protos + Standard Library, just as other self-hosting toolchains
+  depend on an earlier compiler or embedded runtime assets;
+- bootstrap independence means that Package Tool must not require **project
+  package resolution** in order to parse `protos.toml`; it does not mean that
+  bundled tools must be unable to resolve `std:` modules;
+- no new neutral parser layer, private/public hybrid engine, or second TOML
+  implementation is wanted merely to avoid this ordinary bootstrap dependency.
+
+Current-source evidence from AUD017 materially changes the premises behind the
+original Candidate B selection:
+
+1. `ProtosBundledToolModuleResolver` already delegates `std:` imports to
+   `ProtosStandardLibraryModuleResolver`.
+2. That Standard Library resolution is independent of project manifest, lock,
+   package-store, CWD, and project package-resolution state.
+3. Package Tool already imports Standard Library facilities such as
+   `std:io/Files` and `std:crypto/SHA256`.
+4. `tool-shared:Toml10` and `std:toml/TOML` contain materially duplicated
+   lexical/parser/document machinery.
+5. Public TOML hardening has already diverged from the private engine, including
+   common-parser fixes that did not automatically propagate to
+   `tool-shared:Toml10`.
+
+The amended architecture is therefore:
+
+```text
+Package Tool schema ----\
+                         +--> std:toml/TOML
+Test Tool TOML schemas --/
+ordinary users ---------/
+```
+
+with **one TOML implementation**.
+
+The following D087 invariants remain in force:
+
+- Package manifest semantics remain owned by Package Tool.
+- Test Tool D077 schema semantics remain owned by Test Tool.
+- `self:` remains exactly tool-local.
+- Project package resolution remains outside the bootstrap path needed to load
+  and parse persisted tool manifests.
+- Persisted schema generations retain explicit dialect/version ownership.
+- Existing Package Manifest v1 and D077 persisted generations remain TOML 1.0
+  unless a separate schema decision changes that contract.
+- Existing public `std:toml/TOML.parse` TOML 1.1 behavior must not be silently
+  narrowed for ordinary callers.
+- A required TOML 1.0 parsing mode/version selection must live inside the same
+  public TOML implementation; it must not recreate a second parser engine.
+- No generic internal bundled-tool package graph is selected by this amendment.
+
+The exact source-level API spelling for selecting the existing TOML 1.0
+persisted dialect is an implementation detail only to the extent that it can be
+added without changing the already-published meaning of existing public
+operations. The implementation must preserve `parse`'s current TOML 1.1
+contract and use the smallest explicit version-selection surface needed by the
+tool schemas.
+
+Once all bundled-tool consumers have migrated, the private
+`tool-shared:Toml10` implementation and TOML-specific resolver ownership are
+obsolete and are to be removed rather than retained as fallback scaffolding.
+
+This amendment supersedes the original Candidate B ownership choice. The
+historical comparison and rationale above remain retained as evidence of the
+earlier decision and why it was reasonable before the public library existed.
+
+Amended result:
+
+```text
+D087_TOML_IMPLEMENTATION_COUNT=ONE
+D087_CANONICAL_TOML_IMPLEMENTATION=std:toml/TOML
+D087_PROJECT_PACKAGE_RESOLUTION_BOOTSTRAP_DEPENDENCY=FORBIDDEN
+D087_STANDARD_LIBRARY_BOOTSTRAP_DEPENDENCY=ALLOWED
+D087_PRIVATE_TOML_ENGINE=REMOVE
+D087_PACKAGE_MANIFEST_SCHEMA_OWNER=PACKAGE_TOOL
+D087_PERSISTED_DIALECT_PINNING=PRESERVED
+```

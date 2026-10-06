@@ -52,6 +52,9 @@ Current role-first work records:
 - [`AUD016/AUD016_TRUFFLE_BYTECODE_DSL_CAPABILITY_ADOPTION_AUDIT.md`](AUD016/AUD016_TRUFFLE_BYTECODE_DSL_CAPABILITY_ADOPTION_AUDIT.md)
   — completed Truffle Bytecode DSL capability-adoption audit, lexical-frame migration backlog, negative findings, and lazy-context decision packet.
 
+- [`AUD017/AUD017_TOML_IMPLEMENTATION_OWNERSHIP_AUDIT.md`](AUD017/AUD017_TOML_IMPLEMENTATION_OWNERSHIP_AUDIT.md)
+  — completed Package Tool/public TOML ownership audit at Protos `61c475650bf5b5d385e9482b639d310c682e2b0d`: current `std:` bootstrap is independent of project package resolution, dual parser maintenance is materially duplicated and already drifting, and the owner selects one public `std:toml/TOML` implementation with explicit persisted-dialect pinning; private `tool-shared:Toml10` is routed for removal.
+
 - [`AUD013/AUD013_A_ADOPTION_BASELINE_RECONCILIATION.md`](AUD013/AUD013_A_ADOPTION_BASELINE_RECONCILIATION.md)
   — AUD013-A adoption-baseline reconciliation: historical activation anchor retained, post-baseline owners classified, active TEST003/D142/D143/D147/D144 adoption manifest established, already-completed owner cutovers excluded from duplicate sweeps, and AUD013-B1 released as the first integrated source pass.
 

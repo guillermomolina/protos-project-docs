@@ -32,6 +32,7 @@ not a closed manifest for future tooling decisions.
 
 Subsequent ratified tooling decisions include:
 
+- [`D087_SHARED_BUNDLED_TOOL_TOML_BOOTSTRAP_AUTHORITY.md`](D087_SHARED_BUNDLED_TOOL_TOML_BOOTSTRAP_AUTHORITY.md) — amended 2026-10-06 after AUD017: one canonical public `std:toml/TOML` implementation serves bundled tools and users; project package-resolution bootstrap independence and explicit persisted TOML dialect pinning remain required, while the private `tool-shared:Toml10` engine is retired after migration.
 - [`D122_TEST_TOOL_COMPOSABLE_SUITE_GRAPH.md`](D122_TEST_TOOL_COMPOSABLE_SUITE_GRAPH.md)
 - [`D123_TEST_TOOL_SUITE_IDENTITY.md`](D123_TEST_TOOL_SUITE_IDENTITY.md)
 - [`D124_STATIC_REFERENCES_IDENTITY_AMBIGUITY_COMPLETENESS.md`](D124_STATIC_REFERENCES_IDENTITY_AMBIGUITY_COMPLETENESS.md)
