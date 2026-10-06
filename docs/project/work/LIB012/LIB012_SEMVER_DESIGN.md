@@ -1,6 +1,6 @@
 # LIB012 — Semantic Versioning Standard Library design
 
-Status: **IN_PROGRESS — LIB012-0 A′ RATIFIED; LIB012-A/B CLOSED; LIB012-C READY**
+Status: **COMPLETED — LIB012-0 RATIFIED; LIB012-A/B/C CLOSED**
 
 Owning work item: GitHub Issue `#429` — `LIB012 — Semantic version parsing, comparison and compatibility utilities`
 
@@ -679,7 +679,7 @@ ordinary object identity.
 
 ### LIB012-C — converge Package Tool ReleaseVersion on std:semver/SemVer
 
-Status: **READY — IMPLEMENTATION**
+Status: **CLOSED**
 
 Project-owner direction on 2026-10-06 resolves the former reuse/migration audit
 question directly: this is the same architectural case as the earlier TOML
@@ -696,10 +696,19 @@ Tool code, and Package Tool bootstrap must consume the toolchain-installed
 `std:semver/SemVer` through bundled-tool Standard Library resolution, never
 through project package resolution.
 
-The preferred outcome is to retire duplicated ReleaseVersion parser/precedence
-mechanics rather than retain a parallel implementation behind an adapter, unless
-the current HEAD proves a small compatibility adapter is needed to preserve
-existing Package Tool representation/API contracts.
+Published by `guillermomolina/protos@e1904bb01b61c6ee0da5fd279da0f7feb143229e`
+(`LIB012-C: converge Package Tool on std:semver/SemVer`).
+
+The realized implementation is the intended thin policy adapter: Package Tool
+parses through `SemVer.parse`, rejects non-empty build metadata, projects the
+generic value into the existing Package ReleaseVersion record shape, and delegates
+precedence to `SemVer.comparePrecedence`. The duplicate Package Tool SemVer
+parser and precedence comparator are removed.
+
+The Package record shape remains compatible with existing lock rendering and the
+ExecutionPlanV2 host boundary. `DependencyConstraint` remains Package Tool-owned
+and unchanged in policy. Package Tool imports `std:semver/SemVer` from the
+toolchain-installed Standard Library, never through project package resolution.
 
 ### Requirement/range layer
 
@@ -827,6 +836,65 @@ explicitly selected convergence, analogous to I079 TOML: LIB012-C is therefore a
 bounded implementation slice that makes Package Tool reuse `std:semver/SemVer`
 while preserving Package Tool policy.
 
+## LIB012-C implementation publication evidence
+
+Product revision:
+
+```text
+PROTOS_REVISION=e1904bb01b61c6ee0da5fd279da0f7feb143229e
+COMMIT=LIB012-C: converge Package Tool on std:semver/SemVer
+IMPLEMENTATION_VERSION=0.3.241-SNAPSHOT
+```
+
+Material product paths in the publication:
+
+```text
+CHANGELOG.md
+docs/design/PACKAGE_TOOL_ARCHITECTURE.md
+pom.xml
+protos/tests/package-tool/version/manifest.tsv
+protos/tests/package-tool/version/release-version-std-semver.protos
+protos/tools/package/ReleaseVersion.protos
+src/main/java/com/guillermomolina/protos/cli/ProtosCli.java
+src/main/java/com/guillermomolina/protos/execution/ProtosPackageExecutionPlanV2Adapter.java
+src/test/java/com/guillermomolina/protos/cli/ProtosCliPolyglotRoutingArchitectureTest.java
+```
+
+Published behavior/evidence:
+
+- `self:ReleaseVersion` now imports and reuses `std:semver/SemVer`;
+- `ReleaseVersion.parse(text)` delegates strict parsing to `SemVer.parse(text)`;
+- Package Tool still rejects any non-empty build metadata, so
+  `1.2.3+build` and `1.2.3-alpha+build` remain invalid Package ReleaseVersions;
+- the Package ReleaseVersion record shape is retained for existing Package Tool,
+  lock-rendering and ExecutionPlanV2 consumers;
+- `ReleaseVersion.compare` delegates to `SemVer.comparePrecedence`;
+- the duplicate Package Tool SemVer grammar/parser, ASCII prerelease comparator,
+  numeric-vs-text comparator and core/prerelease precedence implementation are
+  removed;
+- `DependencyConstraint` remains Package Tool-owned and keeps exact/caret/
+  interval/prerelease-admission semantics;
+- bundled Package Tool resolution consumes the toolchain-installed Standard
+  Library `std:` surface and does not depend on project package resolution;
+- dedicated Package Tool integration tests prove generic SemVer accepts build
+  metadata while ReleaseVersion rejects it, precedence agrees with the Standard
+  Library including large Integers, and existing internal core-bound records
+  remain comparable;
+- no Range/Requirement API was added to the Standard Library;
+- no normative Protos specification changed.
+
+Validation reported by the maintainer for the published candidate:
+
+```text
+GIT_DIFF_CHECK=CLEAN
+LOCAL_TESTS=PASS
+FULL_TEST_SET=PASS
+```
+
+LIB012-C closes the last planned implementation slice. The ratified strict
+SemVer Version kernel is complete, Package Tool now reuses that kernel through a
+thin policy adapter, and no remaining LIB012 work is required.
+
 ## LIB012-C owner direction
 
 On 2026-10-06 the project owner explicitly resolved the migration choice:
@@ -863,8 +931,9 @@ RANGE_REQUIREMENT_INITIAL=DEFERRED
 TOOL001_POLICY_CHANGED=NO
 LIB012_A_STATUS=CLOSED
 LIB012_B_STATUS=CLOSED
-LIB012_C_STATUS=READY_IMPLEMENTATION
+LIB012_C_STATUS=CLOSED
 SPECIFICATION_CHANGED=NO
 IMPLEMENTATION_CHANGED=YES
 IMPLEMENTATION_VERSION_CHANGED=YES
+LIB012_PARENT_STATUS=CLOSED
 ```
