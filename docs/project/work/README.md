@@ -40,7 +40,9 @@ Current role-first work records:
   — ratified LIB015-0 logging architecture: immutable structured events, explicit derived Logger + Sink authority, early filtering, reuse of TextWriter/std:json/std:datetime, and reusable terminal-styling ownership outside the logging core.
 
 - [`LIB015/LIB015_A_STRUCTURED_LOGGING_CORE_EVIDENCE.md`](LIB015/LIB015_A_STRUCTURED_LOGGING_CORE_EVIDENCE.md)
-  — LIB015-A implementation evidence at Protos `c5bce4ef03417cce96b99924a0ae58e7cb95e7bb` / `0.3.247-SNAPSHOT`: canonical logging levels, frozen deep-snapshot LogEvent values, explicit derived Logger context, early filtering and contained sink Error semantics published; maintainer reports all local tests PASS; focused LIB015-B0 formatter/TextWriter-sink contract research is next.
+  — LIB015-A implementation evidence at Protos `c5bce4ef03417cce96b99924a0ae58e7cb95e7bb` / `0.3.247-SNAPSHOT`: canonical logging levels, frozen deep-snapshot LogEvent values, explicit derived Logger context, early filtering and contained sink Error semantics published; maintainer reports all local tests PASS.
+- [`LIB015/LIB015_B0_PLAIN_FORMATTING_TEXTWRITER_CONTRACT_DECISION.md`](LIB015/LIB015_B0_PLAIN_FORMATTING_TEXTWRITER_CONTRACT_DECISION.md)
+  — owner-ratified LIB015-B0 formatter/sink contract: deterministic single-line plain grammar, Unicode-scalar key ordering, presence-only Error rendering, safe LogEvent recognition hardening, borrowed TextWriter sink awaiting `writeLine(...).value()`, minimal MemorySink, and LIB015-B1 released for implementation.
 
 - [`LIB018/LIB018_TEST_AUTHORING_MODEL.md`](LIB018/LIB018_TEST_AUTHORING_MODEL.md)
   — ratified minimal suite-native authoring model: module-as-suite plus canonical `std:test/Test` values.
