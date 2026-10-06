@@ -25,6 +25,9 @@ Current role-first work records:
 - [`TOOL002/TOOL002_TEST_TOOL.md`](TOOL002/TOOL002_TEST_TOOL.md)
   — canonical non-normative TOOL002 Test Tool lifecycle and implementation record.
 
+- [`LIB013/LIB013_0_DATETIME_FOUNDATIONS_DECISION.md`](LIB013/LIB013_0_DATETIME_FOUNDATIONS_DECISION.md)
+  — ratified LIB013-0 Candidate A datetime foundation: pure civil/timeline values first, explicit future timezone/clock authorities, and LIB013-A through D implementation routing.
+
 - [`LIB018/LIB018_TEST_AUTHORING_MODEL.md`](LIB018/LIB018_TEST_AUTHORING_MODEL.md)
   — ratified minimal suite-native authoring model: module-as-suite plus canonical `std:test/Test` values.
 
