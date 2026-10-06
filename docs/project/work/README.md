@@ -71,6 +71,9 @@ Current role-first work records:
 - [`AUD005/AUD005_E2_B_OFFICIAL_TOML_11_CONFORMANCE_RESEARCH.md`](AUD005/AUD005_E2_B_OFFICIAL_TOML_11_CONFORMANCE_RESEARCH.md)
   — AUD005/LIB010-E2-B research at Protos `62f3f5710210f247aad8574d3d0d56d3254bfd70`: freezes official `toml-test` v2.2.0 / TOML 1.1 provenance and case counts, classifies 11 byte-domain invalid fixtures as explicitly non-applicable to the ratified String-input API, and selects exact retained upstream fixtures plus a deterministic suite-native projection; F3 is implementation-ready but not yet resolved.
 
+- [`AUD005/AUD005_E2_C_OFFICIAL_TOML_11_CONFORMANCE_EVIDENCE.md`](AUD005/AUD005_E2_C_OFFICIAL_TOML_11_CONFORMANCE_EVIDENCE.md)
+  — AUD005/LIB010-E2-C implementation evidence at Protos `22bdcdc455cdaff3c4509e96555f28623d6254b7`: retains the pinned official TOML 1.1 corpus and deterministic 884-case suite-native projection, mechanically reconciles 11 non-UTF-8 byte-domain fixtures, and records the two parser conformance defects exposed and repaired; F3 is resolved while F4, F5, F7 and final closure validation remain open.
+
 - [`AUD006/AUD006_A1_COMMAND_LINE_ACCUMULATION_COMPLEXITY_EVIDENCE.md`](AUD006/AUD006_A1_COMMAND_LINE_ACCUMULATION_COMPLEXITY_EVIDENCE.md)
   — AUD006-A1 static proof that the current `CommandLine` balanced chunk accumulation remains `Theta(N log N)`, plus the retained-evidence plan and platform/runtime repair boundary.
 - [`AUD006/AUD006_A2_FULL_PARSE_SCALING_INSTRUMENT_LIMIT.md`](AUD006/AUD006_A2_FULL_PARSE_SCALING_INSTRUMENT_LIMIT.md)
