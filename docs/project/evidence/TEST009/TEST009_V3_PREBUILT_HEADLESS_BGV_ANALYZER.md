@@ -122,25 +122,31 @@ ghcr.io/guillermomolina/protos-benchmarks/igv-analyzer:graal-25.4.4.1.1
 ghcr.io/guillermomolina/protos-benchmarks/igv-analyzer:graal-25.4.4.1.1-<source-sha>
 ```
 
-At evidence-record time the push-triggered workflow is:
+The push-triggered publication completed successfully:
 
 ```text
 WORKFLOW_RUN_ID=37449321843
 WORKFLOW=igv-analyzer-image
 HEAD_SHA=4aae2a211e376ed965239b87854fe0bb2758cdb0
-STATUS=in_progress
-CONCLUSION=<none yet>
+STATUS=completed
+CONCLUSION=success
+JOB=publish
+JOB_CONCLUSION=success
 
-PREBUILT_IMAGE_PUBLISHED=NOT_YET_CONFIRMED
+PREBUILT_IMAGE_PUBLISHED=YES
+IMAGE_DIGEST=sha256:20575c1ef11a03cd6b892d4a431e408537b48dfcaf21cc8dbd8be4521b3fd54b
 ```
 
-This is not classified as a V3 implementation defect while the publication run
-is still active, but TEST009 must not consume the prebuilt image until the run
-completes successfully and the versioned image can be pulled.
+The workflow logs show both manifests pushed successfully:
 
-No additional implementation slice is authorized merely to wait for this
-publication result. If the workflow fails because of an implementation defect,
-that defect is repaired inside V3 rather than creating V4.
+```text
+ghcr.io/guillermomolina/protos-benchmarks/igv-analyzer:graal-25.4.4.1.1
+ghcr.io/guillermomolina/protos-benchmarks/igv-analyzer:graal-25.4.4.1.1-4aae2a211e376ed965239b87854fe0bb2758cdb0
+```
+
+Both resolve to the published manifest-list digest above. V3 therefore closes
+with an actually published prebuilt analyzer, not merely a repository-side image
+definition.
 
 ## Repository boundary
 
@@ -169,13 +175,13 @@ TEST009_STATE=OPEN_IN_PROGRESS
 TEST009_V3_IMPLEMENTATION=PUBLISHED
 TEST009_V3_LOCAL_VALIDATION=PASS
 TEST009_V3_REAL_UPSTREAM_BGV_BUILD_SMOKE=PASS
-TEST009_V3_GHCR_PUBLICATION=PENDING
+TEST009_V3_GHCR_PUBLICATION=PASS
 
 NEW_FORMAL_ISSUE_REQUIRED=NO
 NEW_SUB_ISSUE_REQUIRED=NO
 NEW_IMPLEMENTATION_SLICE_REQUIRED_FOR_PUBLICATION_WAIT=NO
 
 NEXT_DIAGNOSTIC=TEST009-W
-TEST009_W_START_GATE=PREBUILT_IMAGE_PUBLISHED_AND_PULLABLE
+TEST009_W_START_GATE=PASS
 TEST009_W_SCOPE=ONE_CURRENT_CODE_TOO_LARGE_ROOT
 ```
