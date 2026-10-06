@@ -253,18 +253,22 @@ Between LIB015-0 ratification and LIB015-A completion, LIB013-C was published.
 
 Therefore `std:datetime/Instant` is now available in Protos.
 
-This removes the implementation dependency previously expected for LIB015-D,
-but does not change the approved sequence: LIB015-B remains next, followed by
-LIB015-C and then timestamp integration unless later current-repository evidence
-requires a different dependency ordering.
+This removes the implementation dependency previously expected for LIB015-D.
+
+During post-publication reconciliation of LIB015-A, the next plain-format/sink
+slice exposed one still-unratified observable contract: standard TextWriter
+writes return Futures while LIB015-A's sink boundary is synchronous, and the
+exact deterministic human-text representation was not fixed by LIB015-0.
+Therefore a focused LIB015-B0 research gate now precedes public LIB015-B
+implementation. This does not reopen the LIB015-0 core architecture.
 
 ## Deferred surfaces
 
 LIB015-A intentionally leaves these outside the slice:
 
 ~~~text
-plain human formatter         -> LIB015-B
-TextWriter-backed sink        -> LIB015-B
+plain human formatter         -> LIB015-B after LIB015-B0 contract closure
+TextWriter-backed sink        -> LIB015-B after LIB015-B0 contract closure
 MemorySink                    -> LIB015-B
 additional sink composition   -> LIB015-B where justified by the ratified scope
 JSON formatter/projection     -> LIB015-C
@@ -299,8 +303,8 @@ ALL_LOCAL_TESTS=PASS
 VALIDATION_PROVENANCE=MAINTAINER_REPORTED
 
 PARENT_ISSUE_CLOSED=NO
-NEXT_SLICE=LIB015-B
-NEXT_SLICE_NAME=Plain formatting and explicit sinks
-NEXT_SLICE_TYPE=IMPLEMENTATION
-NEXT_SLICE_REPOSITORY=guillermomolina/protos
+NEXT_SLICE=LIB015-B0
+NEXT_SLICE_NAME=Plain formatting and TextWriter sink contract closure
+NEXT_SLICE_TYPE=INVESTIGATION
+NEXT_SLICE_REPOSITORY=
 ~~~
