@@ -31,6 +31,8 @@ Current role-first work records:
   — LIB013-A implementation evidence at Protos `b0bf563c30a612210cd67c6a0bbea01f44617c3c` / `0.3.242-SNAPSHOT`: Date, Time and LocalDateTime pure civil values published with validation, equality/hash/order and frozen-value tests; maintainer reports `git diff --check` and all local tests PASS; LIB013-B is next.
 - [`LIB013/LIB013_B_TEMPORAL_AMOUNTS_CALENDAR_ARITHMETIC_EVIDENCE.md`](LIB013/LIB013_B_TEMPORAL_AMOUNTS_CALENDAR_ARITHMETIC_EVIDENCE.md)
   — LIB013-B implementation evidence at Protos `41a06e07d5d74053911f291ac27f911678c61ff5` / `0.3.243-SNAPSHOT`: exact Duration amounts, structural Period values, and ratified Gregorian calendar arithmetic published; maintainer reports `git diff --check` and all local tests PASS; LIB013-C is next.
+- [`LIB013/LIB013_C_INSTANT_FIXED_OFFSET_DOMAIN_EVIDENCE.md`](LIB013/LIB013_C_INSTANT_FIXED_OFFSET_DOMAIN_EVIDENCE.md)
+  — LIB013-C implementation evidence at Protos `d6981daa330a2a3a767865e9cd88a6fb9f626e81` / `0.3.246-SNAPSHOT`: fixed Offset, unbounded Instant, structural OffsetDateTime, exact fixed-offset conversion, and canonical datetime family recognition published; maintainer reports `git diff --check` and all local tests PASS; LIB013-D is next.
 
 - [`LIB015/LIB015_0_LOGGING_ARCHITECTURE_DECISION.md`](LIB015/LIB015_0_LOGGING_ARCHITECTURE_DECISION.md)
   — ratified LIB015-0 logging architecture: immutable structured events, explicit derived Logger + Sink authority, early filtering, reuse of TextWriter/std:json/std:datetime, and reusable terminal-styling ownership outside the logging core.
