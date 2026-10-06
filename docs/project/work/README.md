@@ -55,6 +55,9 @@ Current role-first work records:
 - [`AUD013/AUD013_A_ADOPTION_BASELINE_RECONCILIATION.md`](AUD013/AUD013_A_ADOPTION_BASELINE_RECONCILIATION.md)
   — AUD013-A adoption-baseline reconciliation: historical activation anchor retained, post-baseline owners classified, active TEST003/D142/D143/D147/D144 adoption manifest established, already-completed owner cutovers excluded from duplicate sweeps, and AUD013-B1 released as the first integrated source pass.
 
+- [`AUD013/AUD013_B1_LIBRARY_TEST_ASSERTIONS_ADOPTION_EVIDENCE.md`](AUD013/AUD013_B1_LIBRARY_TEST_ASSERTIONS_ADOPTION_EVIDENCE.md)
+  — AUD013-B1 implementation evidence at Protos `c8f61ae87ef6a26f8525b9d24f5ad466b665a29c`: 21 maintained library-test files migrated from TEST003-proven local assertion helpers to `std:test/Assertions`; maintainer validation passed, while parent AUD013 remains open because production library, tooling, conformance, examples and other maintained Protos surfaces still require integrated classification.
+
 - [`AUD007/AUD007_PARALLEL_PATCH_LAUNCHER_ISOLATION_AUDIT.md`](AUD007/AUD007_PARALLEL_PATCH_LAUNCHER_ISOLATION_AUDIT.md)
   — AUD007-A parallel launcher isolation/publication-safety audit: retains the GITHUB003 optimistic fail-closed publication model, inventories shared Git/build/runtime resources, identifies Maven multi-process, DAP port-allocation and untracked-candidate evidence gaps, and defines AUD007-B deterministic dynamic proof without repeating the long FULL run.
 
