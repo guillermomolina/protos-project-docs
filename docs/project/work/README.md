@@ -64,6 +64,9 @@ Current role-first work records:
 - [`AUD005/AUD005_E2_A_TEMPORAL_FRACTION_LINEAR_ENCODING_EVIDENCE.md`](AUD005/AUD005_E2_A_TEMPORAL_FRACTION_LINEAR_ENCODING_EVIDENCE.md)
   — AUD005/LIB010-E2-A evidence at exact Protos revision `62f3f5710210f247aad8574d3d0d56d3254bfd70`: temporal fraction encoding now uses one mutable octet buffer and one final decode, structurally restoring linear cost in emitted length; a 400-digit suite-native round-trip and a source-level anti-prepend guard retain F6, while F3, F4, F5 and final closure reconciliation remain open.
 
+- [`AUD005/AUD005_E2_B_OFFICIAL_TOML_11_CONFORMANCE_RESEARCH.md`](AUD005/AUD005_E2_B_OFFICIAL_TOML_11_CONFORMANCE_RESEARCH.md)
+  — AUD005/LIB010-E2-B research at Protos `62f3f5710210f247aad8574d3d0d56d3254bfd70`: freezes official `toml-test` v2.2.0 / TOML 1.1 provenance and case counts, classifies 11 byte-domain invalid fixtures as explicitly non-applicable to the ratified String-input API, and selects exact retained upstream fixtures plus a deterministic suite-native projection; F3 is implementation-ready but not yet resolved.
+
 - [`AUD006/AUD006_A1_COMMAND_LINE_ACCUMULATION_COMPLEXITY_EVIDENCE.md`](AUD006/AUD006_A1_COMMAND_LINE_ACCUMULATION_COMPLEXITY_EVIDENCE.md)
   — AUD006-A1 static proof that the current `CommandLine` balanced chunk accumulation remains `Theta(N log N)`, plus the retained-evidence plan and platform/runtime repair boundary.
 - [`AUD006/AUD006_A2_FULL_PARSE_SCALING_INSTRUMENT_LIMIT.md`](AUD006/AUD006_A2_FULL_PARSE_SCALING_INSTRUMENT_LIMIT.md)
