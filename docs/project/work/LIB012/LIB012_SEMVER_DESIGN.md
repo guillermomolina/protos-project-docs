@@ -1,6 +1,6 @@
 # LIB012 — Semantic Versioning Standard Library design
 
-Status: **IN_PROGRESS — LIB012-0 A′ RATIFIED; LIB012-A CLOSED; LIB012-B READY**
+Status: **IN_PROGRESS — LIB012-0 A′ RATIFIED; LIB012-A/B CLOSED; LIB012-C READY**
 
 Owning work item: GitHub Issue `#429` — `LIB012 — Semantic version parsing, comparison and compatibility utilities`
 
@@ -664,14 +664,22 @@ corpus and integrates it into the repository suite/corpus registry. TOOL001
 
 ### LIB012-B — precedence + canonical formatting conformance
 
-Status: **READY**
+Status: **CLOSED**
 
-Implement/retain full SemVer precedence conformance, build-metadata-insensitive
-precedence equality, canonical formatting and comprehensive edge-case evidence.
+Published by `guillermomolina/protos@5e2cb6cebfeb1f918028aca098145f672c81d4b1`
+(`LIB012-B: complete SemVer precedence and formatting`).
+
+The public `std:semver/SemVer` kernel now provides
+`SemVer.format(version)` and `SemVer.comparePrecedence(a, b)`, with full
+SemVer 2.0.0 precedence, ASCII prerelease ordering, unbounded Integer numeric
+comparison, canonical round-trip formatting, and build metadata excluded from
+precedence. Parsed Version objects also provide complete semantic `==` plus a
+coherent `hash`; equality includes build metadata while `===` remains
+ordinary object identity.
 
 ### LIB012-C — TOOL001 reuse/migration audit
 
-Status: **BLOCKED_BY_B**
+Status: **READY**
 
 Determine whether current Package Tool ReleaseVersion implementation should reuse
 LIB012 mechanism while preserving Package Tool's no-build-metadata rule and all
@@ -743,6 +751,66 @@ LOCAL_TESTS=PASS
 This closes LIB012-A and releases LIB012-B. LIB012-C remains blocked until B
 publishes precedence and canonical-formatting conformance.
 
+## LIB012-B implementation publication evidence
+
+Product revision:
+
+```text
+PROTOS_REVISION=5e2cb6cebfeb1f918028aca098145f672c81d4b1
+COMMIT=LIB012-B: complete SemVer precedence and formatting
+IMPLEMENTATION_VERSION=0.3.240-SNAPSHOT
+```
+
+Material product paths in the publication:
+
+```text
+CHANGELOG.md
+pom.xml
+protos/lib/semver/SemVer.protos
+protos/tests/library/semver/equality.protos
+protos/tests/library/semver/format.protos
+protos/tests/library/semver/precedence.protos
+protos/tools/test/RepositoryCorpusPlans.protos
+src/test/java/com/guillermomolina/protos/execution/ProtosTestToolRepositoryCorpusPlansTest.java
+```
+
+Published behavior/evidence:
+
+- `SemVer.format(version)` emits canonical
+  `MAJOR.MINOR.PATCH[-PRERELEASE][+BUILD]` text directly from the structured
+  Version value;
+- `format(parse(text)) == text` is retained for strict accepted input,
+  including unbounded Integers and build identifiers such as `001`;
+- `SemVer.comparePrecedence(a, b)` returns exactly `-1`, `0`, or `1`
+  under SemVer 2.0.0 precedence;
+- core and numeric-prerelease comparison uses unbounded Integer semantics;
+- numeric prerelease identifiers rank below alphanumeric identifiers;
+- alphanumeric prerelease comparison uses ASCII octet order;
+- a longer prerelease list outranks its equal prefix;
+- build metadata is ignored for precedence and is not used as a tie-break;
+- parsed Versions define complete semantic `==` including build metadata and
+  a coherent `hash`, while `===` remains ordinary object identity;
+- independently parsed equal Versions are usable coherently as normal Map keys;
+- `format` and `comparePrecedence` reject values outside the published parse
+  representation through ordinary synchronous `Error`;
+- the SemVer corpus now retains dedicated precedence, formatting and equality
+  sources;
+- no Range/Requirement behavior was introduced;
+- no TOOL001 ReleaseVersion, dependency-constraint or package-resolution policy
+  changed;
+- no normative Protos specification changed.
+
+Validation reported by the maintainer for the published candidate:
+
+```text
+GIT_DIFF_CHECK=CLEAN
+LOCAL_TESTS=PASS
+```
+
+This closes LIB012-B and releases LIB012-C, the bounded TOOL001
+reuse/migration audit. LIB012-C is an investigation/audit only: it does not
+authorize implementation or Package Tool policy changes.
+
 ## Ratification summary
 
 ```text
@@ -761,8 +829,8 @@ PARTIAL_VERSION=NO
 RANGE_REQUIREMENT_INITIAL=DEFERRED
 TOOL001_POLICY_CHANGED=NO
 LIB012_A_STATUS=CLOSED
-LIB012_B_STATUS=READY
-LIB012_C_STATUS=BLOCKED_BY_B
+LIB012_B_STATUS=CLOSED
+LIB012_C_STATUS=READY
 SPECIFICATION_CHANGED=NO
 IMPLEMENTATION_CHANGED=YES
 IMPLEMENTATION_VERSION_CHANGED=YES
