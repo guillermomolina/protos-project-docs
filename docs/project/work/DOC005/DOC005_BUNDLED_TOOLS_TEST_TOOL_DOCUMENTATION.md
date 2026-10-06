@@ -51,9 +51,10 @@ The durable work record remains under `docs/project/work/DOC005/`.
 |---|---|---|---|
 | DOC005-A | CLOSED | Bundled Tools concept + maintained navigation | Publishes only the common Tool/Core/stdlib/host boundary, current Tool inventory and private-bootstrap explanation. No Test Tool command/result contract is newly defined. |
 | DOC005-B | CLOSED | Test Tool fundamentals | Publishes current first use, four-plan corpus/expectation model, fresh-Process isolation, private captured output, deterministic logical ordering and published `--jobs` behavior. Commands/examples are checked against current sources/fixtures without running the Test Tool suite. |
-| DOC005-C | BLOCKED_BY_TOOL006 | Resource-aware Test Tool execution | Current public `Main.protos` does not attach `resource-requirements.toml` before D108 scheduling; restore already-published wiring under TOOL006/#473 before documenting a runnable resource-backed example. |
+| DOC005-C | READY | Resource-aware Test Tool execution | TOOL006/#473 restored and published the already-ratified resource-requirements wiring; the blocker is resolved and the remaining work is the bounded user-facing resource documentation/example. |
 | DOC005-D | CLOSED | Results, diagnostics, exit status and CI recipes | Documents current D108/D114/D116 + TOOL002-J result lanes, bounded diagnostics and CI consumption without introducing a structured-report schema. |
-| DOC005-E | BLOCKED_BY_C | Consistency and closure | Wait for DOC005-C/TOOL006, then verify examples/commands/links, reconcile current `--help` and CLI behavior, reconcile DOC001-M, and absorb any published TOOL005 corpus-routing change before DOC005 closure. |
+| DOC005-F | CLOSED | Exact file-backed focal selection | Documents current `--file FILE` behavior, physical-file versus logical-Case identity, zero/one/many matches, repeatable file selection and canonical plan-order preservation at Protos `fc9aca90f479051964d8d56c11a2778386789671`. |
+| DOC005-E | BLOCKED_BY_C | Consistency and closure | Wait for DOC005-C documentation, then verify examples/commands/links and reconcile the complete current Test Tool selector/corpus/CLI surface before DOC005 closure. |
 
 ## DOC005-A publication
 
@@ -137,9 +138,22 @@ requirements reach the scheduler.
 
 This is tracked by
 [`TOOL006 / #473`](https://github.com/guillermomolina/protos/issues/473).
-DOC005-C is therefore **BLOCKED_BY_TOOL006**. Documentation must not provide the
-issue-required complete resource-backed runnable example until that wiring is
-restored and published.
+DOC005-C was therefore **BLOCKED_BY_TOOL006** at that audit checkpoint and could
+not provide the issue-required complete resource-backed runnable example while
+the wiring was absent.
+
+TOOL006 / #473 subsequently restored and published the already-ratified public
+resource-requirements wiring and is now closed/completed. The DOC005-C blocker
+is therefore resolved:
+
+~~~text
+DOC005_C_BLOCKER_TOOL006=RESOLVED
+DOC005_C=READY
+DOC005_C_DOCUMENTATION_PUBLICATION=REMAINING
+~~~
+
+This release does not itself complete DOC005-C; the user-facing resource-aware
+documentation and runnable example remain the bounded C deliverable.
 
 ## DOC005-D publication
 
@@ -172,6 +186,33 @@ remote-worker protocol or event-stream API is invented.
 Validation is source/static only. Command examples are checked against the
 current CLI/Runner/Progress sources but are not executed because `protos test`
 is itself the executable suite excluded from this documentation-only slice.
+
+## DOC005-F publication
+
+DOC005-F extends
+[`docs/guide/tools/test-tool.md`](../../../guide/tools/test-tool.md) with the
+current exact file-backed focal-selection contract.
+
+Published Protos revision:
+
+~~~text
+fc9aca90f479051964d8d56c11a2778386789671
+DOC005-F: document Test Tool exact file-backed focal selection
+~~~
+
+The guide now explains that `--file FILE` is an invocation-local locator over
+already-authoritative Test Tool plans rather than logical test identity or
+arbitrary-source discovery. It documents relative-CWD and absolute-path
+selection, zero/one/many logical Case behavior, repeatable `--file` union
+semantics, duplicate suppression and canonical plan-order preservation.
+
+DOC005-F also reconciles the historical TOOL008-era scope against the later
+published Test Tool surface: `--directory`, `--case` and `--list-cases` now
+exist as separate capabilities, so the guide no longer treats them as absent
+merely because they were deferred when #597 was allocated.
+
+The durable publication/closure evidence is retained at
+[`DOC005_F_EXACT_FILE_SELECTION_DOCUMENTATION.md`](../../evidence/DOC005/DOC005_F_EXACT_FILE_SELECTION_DOCUMENTATION.md).
 
 ## D122 / TOOL005 boundary
 
@@ -230,6 +271,7 @@ DOC005 closes only when:
    and
 7. final navigation/link consistency is green.
 
-DOC005-A, DOC005-B and DOC005-D are **CLOSED**. The parent remains
-**IN_PROGRESS**. DOC005-C is **BLOCKED_BY_TOOL006 / #473**, and final
-consistency/closure remains deferred to DOC005-E after C is released.
+DOC005-A, DOC005-B, DOC005-D and DOC005-F are **CLOSED**. The parent remains
+**IN_PROGRESS**. TOOL006/#473 is closed and the former DOC005-C blocker is
+resolved, so DOC005-C is **READY**. Final DOC005-E consistency/closure remains
+**BLOCKED_BY_C** until the resource-aware documentation is published.
