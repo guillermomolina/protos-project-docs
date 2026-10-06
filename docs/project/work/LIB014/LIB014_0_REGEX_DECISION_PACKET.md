@@ -1,6 +1,6 @@
 # LIB014-0 — Regular-expression comparative design packet
 
-Status: **RESEARCH COMPLETE — C5 + C1 APPROVED; REMAINING CONTRACT DECISIONS OPEN**
+Status: **RATIFIED — C5 + C1 AND EXACT BASELINE CONTRACT OWNER-APPROVED**
 
 Owning work item: `guillermomolina/protos#431` — `LIB014 — Regular expressions and pattern-matching library`
 
@@ -27,7 +27,15 @@ The recommended architecture is a deliberate combination of:
 - **Candidate 1** as the baseline language family: a restricted portable regular-expression language selected to preserve predictable/linear-time matching behavior rather than unrestricted Perl/PCRE-style backtracking semantics; and
 - a possible constrained Candidate 3 mechanism only as internal implementation freedom when exact Protos semantic equivalence can be demonstrated.
 
-On 2026-10-06 the project owner explicitly approved **C5 + C1**. Candidate 3 and the remaining exact public-contract choices are not yet approved.
+On 2026-10-06 the project owner explicitly approved **C5 + C1**. Later in the same active LIB014 interaction, after the exact-contract closure bundle was presented, the owner answered **"aprobado"**. D187/#809 now owns the formal ratification of that exact baseline contract.
+
+Durable ratification:
+
+```text
+D187_ISSUE=guillermomolina/protos#809
+D187_DECISION_RECORD=docs/project/decisions/language/D187_PORTABLE_REGEX_BASELINE_CONTRACT.md
+D187_APPROVAL_EVIDENCE=docs/project/evidence/D187/D187_OWNER_APPROVAL_AND_RATIFICATION.md
+```
 
 ## Current Protos constraints found in HEAD
 
@@ -231,9 +239,9 @@ Focused owner axes:
 | C4 | 4 | 3 | 5 |
 | **C5** | **5** | **5** | **5** |
 
-## Recommended exact baseline contract — PENDING OWNER APPROVAL
+## Exact baseline contract — OWNER APPROVED AS RATIFIED BY D187
 
-The completed research recommended the following contract details. They remain proposals unless separately marked approved below.
+The completed research recommended the following contract details. The project owner subsequently approved the exact closure bundle; D187/#809 and its durable ratification record are the canonical formal decision. This section is retained as the LIB014 workstream view of the selected contract.
 
 ### Matching selection
 
@@ -455,24 +463,18 @@ Approved invariants:
 2. future incompatible richer constructs belong behind a distinct explicit C5 extension/profile rather than silently weakening baseline guarantees;
 3. unrestricted PCRE/Perl-style compatibility is not the approved baseline.
 
-All exact contract details in the preceding sections remain proposals until explicitly selected.
+The exact contract details in the preceding sections were subsequently owner-approved as one bundle and formally routed through D187/#809.
 
-## Remaining owner decisions
+## Owner decision closure
 
-Before implementation, owner approval is still required for one exact bundle covering:
+The remaining exact bundle was approved in the active LIB014 interaction and ratified through D187/#809.
 
-1. matching selection: leftmost-first / ordered / greedy-lazy;
-2. Unicode/indexing/property/case-folding/newline contract;
-3. exact baseline syntax and explicit exclusions;
-4. capture numbering/naming/nonparticipation/repetition semantics;
-5. Pattern/Match immutability, ownership and public operations;
-6. exact public complexity wording for single and repeated matching;
-7. engine/fallback/host-delegation freedom;
-8. zero-width iteration/replacement/split semantics;
-9. baseline separation from Core `pattern.match(subject)`;
-10. exact initial module/API spelling.
-
-The packet recommends resolving these together, not as one-file micro-slices.
+```text
+EXACT_CONTRACT_OWNER_APPROVAL=PASS
+DECISION_INVARIANT_CONSISTENCY=PASS
+FORMAL_DXXX=D187
+NEXT_IMPLEMENTATION_SLICE=LIB014-1
+```
 
 ## Recommended implementation decomposition after full ratification
 
@@ -568,10 +570,11 @@ Escape path:
 ```text
 LIB014_0_RESEARCH=COMPLETE
 LIB014_C5_C1_SELECTION=APPROVED
-LIB014_REMAINING_CONTRACT=NEEDS_OWNER_DECISION
-FORMAL_DXXX_RATIFICATION=PENDING
-LIB014_IMPLEMENTATION_AUTHORIZED=NO
-NEXT_STEP=ONE_BOUNDED_REMAINING_CONTRACT_DECISION_PASS
+LIB014_EXACT_CONTRACT=APPROVED
+FORMAL_DXXX=D187
+FORMAL_DXXX_RATIFICATION=COMPLETE
+LIB014_IMPLEMENTATION_AUTHORIZED=YES
+NEXT_STEP=LIB014-1
 ```
 
 ## AI-assistance disclosure
