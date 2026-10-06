@@ -62,6 +62,8 @@ Current role-first work records:
   — AUD006-A1 static proof that the current `CommandLine` balanced chunk accumulation remains `Theta(N log N)`, plus the retained-evidence plan and platform/runtime repair boundary.
 - [`AUD006/AUD006_A2_FULL_PARSE_SCALING_INSTRUMENT_LIMIT.md`](AUD006/AUD006_A2_FULL_PARSE_SCALING_INSTRUMENT_LIMIT.md)
   — AUD006-A2 negative evidence showing that full-parse allocation/timing scaling cannot discriminate the builder's `Theta(N log N)` term from dominant Truffle/interpreter cost, leaving isolated retained evidence blocked on the platform/runtime decision.
+- [`AUD006/AUD006_B1_COMMAND_LINE_DEPTH_REMEDIATION_ANALYSIS.md`](AUD006/AUD006_B1_COMMAND_LINE_DEPTH_REMEDIATION_ANALYSIS.md)
+  — AUD006-B1 depth/recursion analysis reconciled at Protos `62f3f5710210f247aad8574d3d0d56d3254bfd70`: command canonicalization and selected-child parsing remain execution-stack-depth proportional, both admit mechanical iterative linked-frame repair entirely in Protos, no public depth limit or new platform decision is required, and B2 → B3 is the implementation order.
 
 - [`AUD003/AUD003_PROTOS_SOURCE_STYLE_CONFORMANCE_AUDIT.md`](AUD003/AUD003_PROTOS_SOURCE_STYLE_CONFORMANCE_AUDIT.md)
   — canonical non-normative AUD003 source-style conformance audit record.
