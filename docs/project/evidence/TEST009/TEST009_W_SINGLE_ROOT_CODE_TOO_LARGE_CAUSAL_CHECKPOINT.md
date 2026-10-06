@@ -13,7 +13,7 @@ BASE_PUBLISHED_PROTOS_VERSION=0.3.241-SNAPSHOT
 DIAGNOSTIC_WORKSPACE=/tmp/test009-w-088d2
 SELECTOR=protos-root:088d2ae81075aba8
 
-CURRENT_CHECKPOINT_PRODUCT_PATCH=PENDING
+CURRENT_CHECKPOINT_PRODUCT_PATCH=LOCAL_UNPUBLISHED
 CURRENT_CHECKPOINT_PRODUCT_COMMIT=NONE
 CURRENT_CHECKPOINT_PRODUCT_PUSH=NONE
 ```
@@ -169,10 +169,54 @@ DURABLE_FAMILY_AGGREGATES=RECORDED
 DURABLE_THROWABLE_ATTRIBUTION=RECORDED
 DURABLE_INTERPRETATION_CORRECTION=RECORDED
 
-UNPUBLISHED_PRODUCT_REPAIR=NONE
+UNPUBLISHED_PRODUCT_REPAIR=YES
+UNPUBLISHED_PRODUCT_PATCH_SCOPE=CLI_SESSION_TERMINATION_CANCELLATION_DRAIN
+UNPUBLISHED_PRODUCT_FILES=3
+PATCH_VALIDATION=NOT_YET_REPORTED
+PATCH_PUBLICATION=REQUIRED_BEFORE_TEMP_WORKTREE_DISCARD
 NEXT_REPOSITORY=guillermomolina/protos
-NEXT_ACTION=CAUSAL_REPAIR_FROM_CURRENT_HEAD
+NEXT_ACTION=REBASE_LOCAL_W_PATCH_ON_CURRENT_HEAD_VALIDATE_AND_PUBLISH
 ```
 
 TEST009 remains open. W has reached a durable causal checkpoint; product closure still requires
 the current-HEAD repair, validation, commit and push in Protos.
+
+
+## Handoff correction — local Protos patch exists
+
+A subsequent maintainer worktree inspection exposed a real tracked TEST009-W product diff that
+was present in the temporary Protos checkout and had not yet been published. The previous
+`UNPUBLISHED_PRODUCT_REPAIR=NONE` classification was therefore incorrect and is superseded by
+this section.
+
+The local patch changes exactly these product/test files:
+
+```text
+src/main/java/com/guillermomolina/protos/cli/ProtosCli.java
+src/test/java/com/guillermomolina/protos/cli/ProtosCliPolyglotRoutingArchitectureTest.java
+src/test/java/com/guillermomolina/protos/cli/ProtosCliTest.java
+```
+
+Its causal purpose is separate from the CodeTooLarge graph interpretation: `Session.terminate()`
+must request Process termination and drain cooperative cancellation work while the owning
+Polyglot Process Context is entered, before blocking on Process terminality. The regression
+creates a suspended root-domain Task, requests session termination on another thread, and fails
+if an external test-only drain is required.
+
+At reconciliation time, current Protos `main` was:
+
+```text
+RECONCILED_PROTOS_HEAD=41a06e07d5d74053911f291ac27f911678c61ff5
+RECONCILED_PROTOS_COMMIT=LIB013-B: add temporal amounts and calendar arithmetic
+```
+
+The touched source regions in those three files remained unchanged on that HEAD, so there is no
+known semantic/content conflict with the concurrent LIB013 work. This is source reconciliation
+only; the patch still requires application on the real current HEAD and full validation before
+publication.
+
+```text
+SAFE_TO_DELETE_TEMP_WORKTREE=NO
+UNTIL=PATCH_IS_REMOTELY_PRESERVED_OR_PUBLISHED
+PRODUCT_PUBLICATION_REPOSITORY=guillermomolina/protos
+```
