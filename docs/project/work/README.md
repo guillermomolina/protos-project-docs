@@ -54,6 +54,8 @@ Current role-first work records:
 
 - [`AUD006/AUD006_A1_COMMAND_LINE_ACCUMULATION_COMPLEXITY_EVIDENCE.md`](AUD006/AUD006_A1_COMMAND_LINE_ACCUMULATION_COMPLEXITY_EVIDENCE.md)
   — AUD006-A1 static proof that the current `CommandLine` balanced chunk accumulation remains `Theta(N log N)`, plus the retained-evidence plan and platform/runtime repair boundary.
+- [`AUD006/AUD006_A2_FULL_PARSE_SCALING_INSTRUMENT_LIMIT.md`](AUD006/AUD006_A2_FULL_PARSE_SCALING_INSTRUMENT_LIMIT.md)
+  — AUD006-A2 negative evidence showing that full-parse allocation/timing scaling cannot discriminate the builder's `Theta(N log N)` term from dominant Truffle/interpreter cost, leaving isolated retained evidence blocked on the platform/runtime decision.
 
 - [`AUD003/AUD003_PROTOS_SOURCE_STYLE_CONFORMANCE_AUDIT.md`](AUD003/AUD003_PROTOS_SOURCE_STYLE_CONFORMANCE_AUDIT.md)
   — canonical non-normative AUD003 source-style conformance audit record.
