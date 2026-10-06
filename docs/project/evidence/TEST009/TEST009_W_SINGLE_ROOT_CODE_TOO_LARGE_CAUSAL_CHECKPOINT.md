@@ -13,9 +13,10 @@ BASE_PUBLISHED_PROTOS_VERSION=0.3.241-SNAPSHOT
 DIAGNOSTIC_WORKSPACE=/tmp/test009-w-088d2
 SELECTOR=protos-root:088d2ae81075aba8
 
-CURRENT_CHECKPOINT_PRODUCT_PATCH=LOCAL_UNPUBLISHED
-CURRENT_CHECKPOINT_PRODUCT_COMMIT=NONE
-CURRENT_CHECKPOINT_PRODUCT_PUSH=NONE
+CURRENT_CHECKPOINT_PRODUCT_PATCH=PUBLISHED
+CURRENT_CHECKPOINT_PRODUCT_COMMIT=3c00089193bef2669b4fe9ccc36707c284920b3a
+CURRENT_CHECKPOINT_PRODUCT_VERSION=0.3.244-SNAPSHOT
+CURRENT_CHECKPOINT_PRODUCT_PUSH=YES
 ```
 
 The retained TEST009-W worktree was created from the exact published base above but contained
@@ -169,17 +170,18 @@ DURABLE_FAMILY_AGGREGATES=RECORDED
 DURABLE_THROWABLE_ATTRIBUTION=RECORDED
 DURABLE_INTERPRETATION_CORRECTION=RECORDED
 
-UNPUBLISHED_PRODUCT_REPAIR=YES
-UNPUBLISHED_PRODUCT_PATCH_SCOPE=CLI_SESSION_TERMINATION_CANCELLATION_DRAIN
-UNPUBLISHED_PRODUCT_FILES=3
-PATCH_VALIDATION=NOT_YET_REPORTED
-PATCH_PUBLICATION=REQUIRED_BEFORE_TEMP_WORKTREE_DISCARD
+SUPPORTING_PRODUCT_REPAIR=PUBLISHED
+SUPPORTING_PRODUCT_PATCH_SCOPE=CLI_SESSION_TERMINATION_CANCELLATION_DRAIN
+SUPPORTING_PRODUCT_FILES=3
+PATCH_VALIDATION=MAINTAINER_REPORTED_PASS
+PATCH_PUBLICATION=3c00089193bef2669b4fe9ccc36707c284920b3a
 NEXT_REPOSITORY=guillermomolina/protos
-NEXT_ACTION=REBASE_LOCAL_W_PATCH_ON_CURRENT_HEAD_VALIDATE_AND_PUBLISH
+NEXT_ACTION=FUTURE_CAUSAL_CODE_TOO_LARGE_REPAIR_FROM_CURRENT_HEAD
 ```
 
-TEST009 remains open. W has reached a durable causal checkpoint; product closure still requires
-the current-HEAD repair, validation, commit and push in Protos.
+TEST009 remains open because the selected root still has a real CodeTooLarge residual. W itself
+has reached a durable diagnostic and handoff checkpoint; its supporting CLI termination repair
+is now validated and published in Protos.
 
 
 ## Handoff correction — local Protos patch exists
@@ -210,13 +212,41 @@ RECONCILED_PROTOS_HEAD=41a06e07d5d74053911f291ac27f911678c61ff5
 RECONCILED_PROTOS_COMMIT=LIB013-B: add temporal amounts and calendar arithmetic
 ```
 
-The touched source regions in those three files remained unchanged on that HEAD, so there is no
-known semantic/content conflict with the concurrent LIB013 work. This is source reconciliation
-only; the patch still requires application on the real current HEAD and full validation before
-publication.
+The touched source regions in those three files remained unchanged on that HEAD, so there was no
+semantic/content conflict with the concurrent LIB013 work. The maintainer then validated the
+rebased/current-HEAD tree and published the repair.
 
 ```text
-SAFE_TO_DELETE_TEMP_WORKTREE=NO
-UNTIL=PATCH_IS_REMOTELY_PRESERVED_OR_PUBLISHED
+PUBLISHED_PROTOS_REVISION=3c00089193bef2669b4fe9ccc36707c284920b3a
+PUBLISHED_PROTOS_VERSION=0.3.244-SNAPSHOT
+COMMIT_SUBJECT=TEST009-W: drain cancellation during CLI termination
+MAINTAINER_REPORTED_FUNCTIONAL_VALIDATION=PASS
+MAINTAINER_REPORTED_GIT_DIFF_CHECK=PASS
+PUBLICATION=PUSHED
+
+SAFE_TO_DELETE_TEMP_WORKTREE=YES
 PRODUCT_PUBLICATION_REPOSITORY=guillermomolina/protos
 ```
+
+The published repair is supporting W infrastructure/lifecycle correctness. It does not claim to
+remove the selected root's CodeTooLarge residual. That causal compilerability repair remains
+future TEST009 work and must start from the real current Protos HEAD.
+
+
+## Final W publication state
+
+```text
+TEST009_W_DIAGNOSTIC_CHECKPOINT=DURABLE
+TEST009_W_SUPPORTING_PRODUCT_REPAIR=PUBLISHED
+TEST009_W_PRODUCT_REVISION=3c00089193bef2669b4fe9ccc36707c284920b3a
+TEST009_W_PRODUCT_VERSION=0.3.244-SNAPSHOT
+TEST009_W_MACHINE_HANDOFF=COMPLETE
+
+SELECTED_ROOT_CODE_TOO_LARGE=STILL_OPEN
+TEST009_STATE=OPEN_IN_PROGRESS
+NEXT_PRODUCT_WORK=CAUSALLY_JUSTIFIED_CODE_TOO_LARGE_REPAIR
+NEXT_PRODUCT_REPOSITORY=guillermomolina/protos
+```
+
+The temporary TEST009-W acquisition directory and the local checkout no longer contain unique
+unpublished project state required for continuation.
