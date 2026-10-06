@@ -1,6 +1,6 @@
 # LIB012 — Semantic Versioning Standard Library design
 
-Status: **IN_PROGRESS — LIB012-0 A′ RATIFIED; LIB012-A READY**
+Status: **IN_PROGRESS — LIB012-0 A′ RATIFIED; LIB012-A CLOSED; LIB012-B READY**
 
 Owning work item: GitHub Issue `#429` — `LIB012 — Semantic version parsing, comparison and compatibility utilities`
 
@@ -644,27 +644,34 @@ choice is substantive.
 
 ### LIB012-A — Version value + strict parser
 
-Status: **READY**
+Status: **CLOSED**
 
-Implement the canonical public `std:semver/SemVer` value construction/validation
-and strict SemVer 2.0.0 parser, including core, prerelease and build metadata with
-arbitrary-precision Integer semantics.
+Published by `guillermomolina/protos@dd121172a422545a8d447b3f7edd25c3eb5255a7`
+(`LIB012-A: add std:semver/SemVer strict SemVer 2.0.0 parser`).
 
-If implementation exposes a substantive choice about canonical envelope,
-forged-value acceptance, public constructors, equality/hash integration, parser
-error taxonomy, resource limits or another observable behavior not mechanically
-fixed by A′, stop the affected slice and cross the explicit approval gate.
+The implementation adds the public `std:semver/SemVer` module and strict
+`SemVer.parse(text)` surface selected by A′. Parsed values use ordinary Protos
+data with unbounded Integer core components, Integer numeric prerelease
+identifiers, exact String non-numeric prerelease identifiers, and exact String
+build identifiers. Build metadata is preserved, including numeric-looking build
+identifiers with leading zeroes. Strict rejection covers partial/prefixed input,
+leading-zero violations, empty identifiers, whitespace, non-ASCII grammar
+violations and non-String input.
+
+The implementation also publishes an explicit `protos/library/semver` Test Tool
+corpus and integrates it into the repository suite/corpus registry. TOOL001
+`ReleaseVersion` and dependency/resolution policy remain unchanged.
 
 ### LIB012-B — precedence + canonical formatting conformance
 
-Status: **BLOCKED_BY_A**
+Status: **READY**
 
 Implement/retain full SemVer precedence conformance, build-metadata-insensitive
 precedence equality, canonical formatting and comprehensive edge-case evidence.
 
 ### LIB012-C — TOOL001 reuse/migration audit
 
-Status: **BLOCKED_BY_A_B**
+Status: **BLOCKED_BY_B**
 
 Determine whether current Package Tool ReleaseVersion implementation should reuse
 LIB012 mechanism while preserving Package Tool's no-build-metadata rule and all
@@ -677,6 +684,64 @@ Status: **DEFERRED — independent design required**
 
 Do not create it merely because npm/Cargo/Composer provide one. A future real
 consumer must justify the exact public requirement algebra and syntax.
+
+## LIB012-A implementation publication evidence
+
+Product revision:
+
+```text
+PROTOS_REVISION=dd121172a422545a8d447b3f7edd25c3eb5255a7
+COMMIT=LIB012-A: add std:semver/SemVer strict SemVer 2.0.0 parser
+IMPLEMENTATION_VERSION=0.3.238-SNAPSHOT
+```
+
+Material product paths in the publication:
+
+```text
+CHANGELOG.md
+pom.xml
+protos/lib/semver/SemVer.protos
+protos/tests/library/semver/parse.protos
+protos/tools/test/RepositoryCorpusPlans.protos
+protos/tools/test/RepositorySuite.protos
+src/main/java/com/guillermomolina/protos/cli/ProtosCli.java
+src/main/java/com/guillermomolina/protos/cli/ProtosTestCorpusRegistry.java
+src/test/java/com/guillermomolina/protos/cli/ProtosTestToolCorpusRegistryTest.java
+src/test/java/com/guillermomolina/protos/cli/ProtosTestToolFileSelectionWiringTest.java
+src/test/java/com/guillermomolina/protos/execution/ProtosTestToolRepositoryCorpusPlansTest.java
+src/test/java/com/guillermomolina/protos/execution/ProtosTestToolSuiteGraphTest.java
+src/test/java/com/guillermomolina/protos/execution/ProtosTestToolTool011ProgressGroupingTest.java
+```
+
+Published behavior/evidence:
+
+- `SemVer.parse(text)` accepts strict SemVer 2.0.0
+  `MAJOR.MINOR.PATCH[-PRERELEASE][+BUILD]`;
+- core numeric components and numeric prerelease identifiers use unbounded
+  Protos Integer semantics;
+- non-numeric prerelease identifiers preserve exact String spelling/case;
+- build identifiers preserve exact String spelling, including leading zeroes;
+- malformed, partial, prefixed, whitespace-bearing, non-ASCII-invalid and
+  non-String inputs signal ordinary synchronous `Error`;
+- parsed values and identifier arrays are fresh;
+- large numeric components and large identifier-count parsing are retained as
+  conformance evidence;
+- the `protos/library/semver` corpus is registered in the repository Test Tool
+  suite and corpus registry;
+- no Range/Requirement behavior was introduced;
+- no TOOL001 dependency syntax, release-version policy or resolver behavior
+  changed;
+- no normative Protos specification changed.
+
+Validation reported by the maintainer for the published candidate:
+
+```text
+GIT_DIFF_CHECK=CLEAN
+LOCAL_TESTS=PASS
+```
+
+This closes LIB012-A and releases LIB012-B. LIB012-C remains blocked until B
+publishes precedence and canonical-formatting conformance.
 
 ## Ratification summary
 
@@ -695,10 +760,10 @@ V_PREFIX=NO
 PARTIAL_VERSION=NO
 RANGE_REQUIREMENT_INITIAL=DEFERRED
 TOOL001_POLICY_CHANGED=NO
-LIB012_A_STATUS=READY
-LIB012_B_STATUS=BLOCKED_BY_A
-LIB012_C_STATUS=BLOCKED_BY_A_B
+LIB012_A_STATUS=CLOSED
+LIB012_B_STATUS=READY
+LIB012_C_STATUS=BLOCKED_BY_B
 SPECIFICATION_CHANGED=NO
-IMPLEMENTATION_CHANGED=NO
-IMPLEMENTATION_VERSION_CHANGED=NO
+IMPLEMENTATION_CHANGED=YES
+IMPLEMENTATION_VERSION_CHANGED=YES
 ```
