@@ -111,6 +111,69 @@ PERMANENT_FAILURES_BYTECODE=2
 The single TooDeep record is therefore distinct from the dominant residual
 code-size family and must not be silently folded into it.
 
+## Retained TooDeep inlining trace
+
+The raw post-Q transcript contains additional causal evidence for the single
+TooDeep record, compilation id `2874`,
+`ProtosBytecodeRootNodeGen@77f9e5bd`.
+
+Immediately after the bailout, Graal prints its inlined-method frequency list.
+The dominant repeated host chain appears 33 times:
+
+~~~text
+SignatureParser.parseZeroOrMoreFormalTypeParameters
+ -> SignatureParser.parseClassSignature
+ -> ClassRepository.parse
+ -> AbstractRepository.<init>
+ -> Class.getGenericInfo
+ -> Class.getGenericInterfaces
+ -> ConcurrentHashMap.comparableClassFor
+ -> ConcurrentHashMap$TreeNode.findTreeNode
+ -> ConcurrentHashMap.replaceNode
+ -> ConcurrentHashMap.remove
+ -> ReferencedKeyMap.removeStaleReferences
+ -> ReferencedKeyMap.existingKey
+ -> BaseLocale.getInstance
+ -> Locale.getInstance
+ -> Locale.initDefault
+ -> Locale.getFormatLocale
+ -> Locale.getDefault
+ -> Formatter.<init>
+ -> Preconditions.outOfBoundsMessage
+ -> Preconditions...checkFromToIndex
+ -> String.checkBoundsBeginEnd
+ -> String.substring
+ -> SignatureParser.remainder/error/parseFormalTypeParameters
+~~~
+
+The Protos/runtime tail printed once is:
+
+~~~text
+ProtosTextReader.scanText(ProtosEncodingValue$DecodePreview)
+ -> ProtosTextReader.advanceUntilInputOrTerminal(ProtosTextReader$Request)
+ -> ProtosTextReader.pump()
+ -> ProtosTextReader.consumeLowerForCPrimeRuntime(ProtosIoOperation, ProtosFutureValue)
+ -> ProtosTextReader.observeLowerForCPrimeRuntime(ProtosIoOperation, ProtosFutureValue)
+ -> ProtosTextReaderCPrimeExecution$CallState.awaitSourceFuture(...)
+ -> ProtosBytecodeRootNode$AwaitTextReaderSourceFuture.perform(...)
+ -> ProtosBytecodeRootNodeGen$CachedBytecodeNode.handleAwaitTextReaderSourceFuture_(...)
+ -> ProtosBytecodeRootNodeGen$CachedBytecodeNode.continueAt(...)
+ -> ProtosBytecodeRootNodeGen.continueAt(...)
+ -> ProtosBytecodeRootNodeGen.execute(...)
+ -> OptimizedCallTarget.executeRootNode(...)
+ -> OptimizedCallTarget.profiledPERoot(...)
+~~~
+
+This is materially stronger localization than the aggregate TooDeep count, but
+it still does not prescribe a source edit. TEST009-R must determine why this JDK
+reflection/locale/formatter chain is reachable from the TextReader C-prime path
+and classify the correct remedy class under the systematic procedure.
+
+It must not assume that the presence of a host chain means
+`@TruffleBoundary` is automatically correct, and it must verify whether the
+relevant current source path is already covered by an independently justified
+boundary or whether the expansion enters through a different responsibility.
+
 ## Performance-warning population
 
 The transcript contains exactly 5,775 textual performance-warning records. All
