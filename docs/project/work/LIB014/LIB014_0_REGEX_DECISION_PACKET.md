@@ -531,6 +531,44 @@ Only if benchmarks justify it:
 
 No semantic changes are permitted in this optional performance slice.
 
+## Implementation progress
+
+### LIB014-1 — completed
+
+Published implementation:
+
+```text
+PUBLISHED_SHA=0abd607a3a354ecd2b6551e344661d4b727d7910
+IMPLEMENTATION_VERSION=0.3.245-SNAPSHOT
+COMMIT_MESSAGE=LIB014-1: add std:regex/Regex compilation and escaping
+```
+
+Human-executor validation reported after publication:
+
+```text
+GIT_DIFF_CHECK=PASS
+LOCAL_TESTS=PASS
+```
+
+Durable evidence:
+
+`docs/project/evidence/LIB014/LIB014_1_IMPLEMENTATION_EVIDENCE.md`
+
+LIB014-1 adds the Protos-owned parser, D187 baseline syntax validation, Unicode
+17 property/case-folding facility integration, frozen Pattern/capture metadata,
+private postfix compiled representation, Match result model preparation,
+non-expanded counted repetition, and `Regex.escape` /
+`Regex.escapeReplacement`.
+
+Matching execution remains intentionally absent.
+
+```text
+LIB014_1=COMPLETE
+NEXT_SLICE=LIB014-2
+NEXT_SLICE_TYPE=IMPLEMENTATION
+NEXT_SLICE_REPOSITORY=guillermomolina/protos
+```
+
 ## Strongest argument against the recommendation
 
 Users coming from PCRE/Python/Java/JavaScript often expect look-around and backreferences. Rejecting those constructs may require code rewrites and may make Protos regex feel less compatible with existing corpora.
@@ -574,7 +612,8 @@ LIB014_EXACT_CONTRACT=APPROVED
 FORMAL_DXXX=D187
 FORMAL_DXXX_RATIFICATION=COMPLETE
 LIB014_IMPLEMENTATION_AUTHORIZED=YES
-NEXT_STEP=LIB014-1
+LIB014_1=COMPLETE
+NEXT_STEP=LIB014-2
 ```
 
 ## AI-assistance disclosure
