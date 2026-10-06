@@ -175,3 +175,30 @@ It must:
    Library without invoking project package resolution.
 
 No further AUD017 research slice is required.
+
+
+## Implementation follow-through — I079 closed
+
+AUD017's selected consolidation is implemented by I079 / #806 at exact Protos
+revision `a61b2c5bfe5a8615fa269d12cf9cfc198b6d6f25` / `0.3.239-SNAPSHOT`.
+
+The final repository state has one TOML implementation under
+`std:toml/TOML`, explicit TOML 1.0/1.1 dialect selection in that implementation,
+Package Tool and D077 Test Tool consumers migrated to TOML 1.0 mode, and the
+private `tool-shared:Toml10` engine plus obsolete Package adapters removed.
+
+Maintainer-reported local validation:
+
+```text
+GIT_DIFF_CHECK=PASS
+ALL_LOCAL_TESTS=PASS
+```
+
+Durable closure evidence:
+`docs/project/evidence/I079/I079_SINGLE_TOML_IMPLEMENTATION_CLOSURE.md`.
+
+```text
+AUD017_RECOMMENDATION_IMPLEMENTED=YES
+AUD017_PRIVATE_TOML_REMOVAL=PASS
+AUD017_FOLLOW_UP_IMPLEMENTATION=COMPLETE
+```

@@ -477,3 +477,31 @@ D087_PRIVATE_TOML_ENGINE=REMOVE
 D087_PACKAGE_MANIFEST_SCHEMA_OWNER=PACKAGE_TOOL
 D087_PERSISTED_DIALECT_PINNING=PRESERVED
 ```
+
+
+## I079 implementation realization — 2026-10-06
+
+The amended D087 architecture is implemented and closed by I079 / #806 at exact
+Protos revision `a61b2c5bfe5a8615fa269d12cf9cfc198b6d6f25` / `0.3.239-SNAPSHOT`.
+
+The implementation provides one public TOML parser with explicit
+`parseDialect(text, "1.0"|"1.1")` selection, preserves `parse(text)` as TOML
+1.1, migrates Package Tool and D077 Test Tool consumers to TOML 1.0 mode through
+`std:toml/TOML`, and removes the private `tool-shared:Toml10` implementation
+plus the obsolete Package TOML adapters/overlays.
+
+Maintainer-reported local validation:
+
+```text
+GIT_DIFF_CHECK=PASS
+ALL_LOCAL_TESTS=PASS
+```
+
+Durable closure evidence:
+`docs/project/evidence/I079/I079_SINGLE_TOML_IMPLEMENTATION_CLOSURE.md`.
+
+```text
+D087_AMENDED_ARCHITECTURE_IMPLEMENTED=YES
+D087_PRIVATE_TOML_ENGINE_REMOVED=YES
+D087_SINGLE_PUBLIC_TOML_IMPLEMENTATION=PASS
+```
