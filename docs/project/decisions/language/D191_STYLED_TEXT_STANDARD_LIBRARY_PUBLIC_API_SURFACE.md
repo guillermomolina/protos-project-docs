@@ -18,16 +18,34 @@ The project owner explicitly approved that recommendation in the active interact
 
 The approval is for the exact candidate below. It does not reopen D190.
 
-## Revision baseline
+## Revision baseline and closure reconciliation
 
-The final current-Protos audit and owner approval were reconciled against:
+The final current-Protos audit and owner approval were completed against:
 
 ```text
-PROTOS_REVISION=e681dc3a09165e53e2a977afd9ab6b89b80b9583
-PROTOS_REVISION_MESSAGE=PLAT051-A2: two-stage Standard Library semantic-value transfer/materialization
+D191_AUDIT_BASELINE=e681dc3a09165e53e2a977afd9ab6b89b80b9583
+D191_AUDIT_BASELINE_MESSAGE=PLAT051-A2: two-stage Standard Library semantic-value transfer/materialization
 ```
 
 The D191 investigation rechecked the active Standard Library conventions at that revision, including logging, datetime, regex, JSON, collections, text encoding modules, import/module conventions, recognition/freeze patterns, and equality/hash tests.
+
+Before closure, Protos `main` advanced by one commit to:
+
+```text
+PROTOS_REVISION=6a807bb64d44e86a232803d66da9fb4e46953219
+PROTOS_REVISION_MESSAGE=TEST009-AF: keep context projection failure out of PE
+```
+
+The exact delta from the audit baseline to the closure revision changes only:
+
+```text
+CHANGELOG.md
+pom.xml
+src/main/java/com/guillermomolina/protos/execution/ProtosBytecodeRootNode.java
+src/test/java/com/guillermomolina/protos/execution/ProtosAPlusExecutionProjectionTest.java
+```
+
+That delta is a TEST009 partial-evaluation repair and version/changelog update. It does not touch `protos/lib/text/**`, logging, datetime, regex, JSON, collections, Standard Library import/module conventions, recognition/equality APIs, TextWriter, or the prospective styled-text implementation surface. Therefore the D191 evidence and approved public API remain applicable without reopening the decision.
 
 ## D190 invariant/delta consistency check
 
@@ -335,7 +353,9 @@ TERMINAL_WRITER=NO
 NEW_Dxxx_REQUIRED=NO
 NEW_PLATxxx_REQUIRED=NO
 SPECIFICATION_CHANGES_REQUIRED=NO
-PROTOS_REVISION=e681dc3a09165e53e2a977afd9ab6b89b80b9583
+D191_AUDIT_BASELINE=e681dc3a09165e53e2a977afd9ab6b89b80b9583
+PROTOS_REVISION=6a807bb64d44e86a232803d66da9fb4e46953219
+CROSS_REFERENCES=PASS
 NEXT_WORK_ITEM=LIB020/#823
 NEXT_SLICE=LIB020-A
 NEXT_SLICE_TYPE=IMPLEMENTATION
