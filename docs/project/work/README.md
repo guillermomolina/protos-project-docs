@@ -54,6 +54,9 @@ Current role-first work records:
 - [`LIB015/LIB015_D1_TIMESTAMPED_LOGEVENT_TIME_SOURCE_EVIDENCE.md`](LIB015/LIB015_D1_TIMESTAMPED_LOGEVENT_TIME_SOURCE_EVIDENCE.md)
   — LIB015-D1 implementation evidence at Protos `915fa3739e3a0a6e7f0934e3975e79d3bb24eba8` / `0.3.260-SNAPSHOT`: five-slot timestamped LogEvent, explicit pay-as-you-grow Logger time source, ISO human timestamps and exact JSON nanoseconds published; maintainer reports `git diff --check` and all local tests PASS; parent remains open pending separately owned reusable terminal styling for the ratified color adapter.
 
+- [`LIB020/LIB020_A_STYLE_STYLEDTEXT_SEMANTIC_VALUES_EVIDENCE.md`](LIB020/LIB020_A_STYLE_STYLEDTEXT_SEMANTIC_VALUES_EVIDENCE.md)
+  — LIB020-A implementation evidence at Protos `c495b31dc21f71929ae460addad60613acb3d695` / `0.3.267-SNAPSHOT`: ratified `std:text/Style` and `std:text/StyledText` semantic values published with runtime-safe exact-family recognition, opaque sealed state, Style semantic equality/hash, StyledText flat opaque runs, and explicit Actor/parallel non-portability; maintainer reports `git diff --check` and all local tests PASS; LIB020-B is next.
+
 - [`LIB018/LIB018_TEST_AUTHORING_MODEL.md`](LIB018/LIB018_TEST_AUTHORING_MODEL.md)
   — ratified minimal suite-native authoring model: module-as-suite plus canonical `std:test/Test` values.
 
