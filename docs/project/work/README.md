@@ -60,6 +60,9 @@ Current role-first work records:
 - [`LIB020/LIB020_B_PURE_ANSI_RENDERER_EVIDENCE.md`](LIB020/LIB020_B_PURE_ANSI_RENDERER_EVIDENCE.md)
   — LIB020-B implementation evidence at Protos `b10569680b1532b277ba3ce49eced2e818833d93` / `0.3.268-SNAPSHOT`: pure `std:text/ANSI.render` published with exact Boolean policy input, deterministic reset-correct basic foreground SGR rendering, separate no-ANSI plain path, arbitrary-text pass-through, and private reuse of the existing Style/StyledText sealing facilities; maintainer reports `git diff --check` and all local tests PASS; LIB020-C is next.
 
+- [`LIB020/LIB020_C_COLORMODE_AND_CLOSURE_EVIDENCE.md`](LIB020/LIB020_C_COLORMODE_AND_CLOSURE_EVIDENCE.md)
+  — LIB020-C and parent closure evidence at Protos `246a24994d74ca084dc43ceddd4c400c2af94b15` / `0.3.269-SNAPSHOT`: pure canonical-String `std:text/ColorMode` AUTO/ALWAYS/NEVER resolution published with unconditional exact-Boolean validation and no ambient environment/TTY authority; maintainer reports `git diff --check` and all local tests PASS; the complete LIB020 A/B/C reusable styled-text foundation is closed and the LIB015 colored-human-output adapter blocker is resolved.
+
 - [`LIB018/LIB018_TEST_AUTHORING_MODEL.md`](LIB018/LIB018_TEST_AUTHORING_MODEL.md)
   — ratified minimal suite-native authoring model: module-as-suite plus canonical `std:test/Test` values.
 
