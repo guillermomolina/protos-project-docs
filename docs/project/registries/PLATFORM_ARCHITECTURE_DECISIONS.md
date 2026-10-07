@@ -235,3 +235,15 @@ closed. Import and dependency presence never grant authority, and concrete
 provider/Context/process topology remains owned by PLAT053/#822. Ratification
 evidence is retained under
 `docs/project/evidence/PLAT052/PLAT052_OWNER_APPROVAL_AND_RATIFICATION.md`.
+
+See `docs/project/decisions/platform/PLAT053_FOREIGN_PROVIDER_RUNTIME_LIFECYCLE_ARCHITECTURE.md`
+for the ratified Candidate B′ foreign-provider topology: each Protos Process
+lazily owns provider compartments, while mutable foreign application/runtime
+state is isolated behind Actor-local logical provider sessions and each provider
+selects the smallest correct physical Context/realm/interpreter/classloader/
+isolate/service topology. The existing Protos Process Context is not the
+universal foreign Context; provider caches never replace the Actor-local Protos
+module cache; PLAT052 authority profiles and D189 callback rules remain hard
+gates; unused providers create no foreign runtime resources. Ratification
+evidence is retained under
+`docs/project/evidence/PLAT053/PLAT053_OWNER_APPROVAL_AND_RATIFICATION.md`.
