@@ -51,6 +51,8 @@ Current role-first work records:
   — LIB015-C1 implementation evidence at Protos `ddf59b1b3f5c97758354688088845d641f7a4e04` / `0.3.257-SNAPSHOT`: deterministic compact JsonFormatter over std:json published; maintainer reports `git diff --check` and all local tests PASS.
 - [`LIB015/LIB015_D0_TIMESTAMP_EXPLICIT_TIME_AUTHORITY_CONTRACT_DECISION.md`](LIB015/LIB015_D0_TIMESTAMP_EXPLICIT_TIME_AUTHORITY_CONTRACT_DECISION.md)
   — owner-ratified LIB015-D0 timestamp contract: one five-slot LogEvent family with always-present null-or-Instant timestamp, optional explicit Logger time-source callable after filtering, ISO8601 human prefix, exact Integer nanoseconds in JSON, and LIB015-D1 released.
+- [`LIB015/LIB015_D1_TIMESTAMPED_LOGEVENT_TIME_SOURCE_EVIDENCE.md`](LIB015/LIB015_D1_TIMESTAMPED_LOGEVENT_TIME_SOURCE_EVIDENCE.md)
+  — LIB015-D1 implementation evidence at Protos `915fa3739e3a0a6e7f0934e3975e79d3bb24eba8` / `0.3.260-SNAPSHOT`: five-slot timestamped LogEvent, explicit pay-as-you-grow Logger time source, ISO human timestamps and exact JSON nanoseconds published; maintainer reports `git diff --check` and all local tests PASS; parent remains open pending separately owned reusable terminal styling for the ratified color adapter.
 
 - [`LIB018/LIB018_TEST_AUTHORING_MODEL.md`](LIB018/LIB018_TEST_AUTHORING_MODEL.md)
   — ratified minimal suite-native authoring model: module-as-suite plus canonical `std:test/Test` values.
