@@ -1,6 +1,6 @@
 # PLAT051 — Standard Library semantic-value transfer and rematerialization boundary
 
-Status: **RATIFIED**
+Status: **RATIFIED WITH IMPLEMENTATION AMENDMENT**
 
 Selected architecture: **Candidate C — privileged constrained Standard Library semantic-value transfer/rematerialization protocol using inert portable payloads**.
 
@@ -182,6 +182,73 @@ The ordinary snapshot path may pay only a small recognition branch while visitin
 
 If implementation evidence demonstrates that correctness requires a material per-object field/tag on every `ProtosObjectValue`, repeated Standard Library scans/imports, a required global mutable registry, or another non-local fixed cost, the implementation must stop and PLAT051 must be reopened rather than silently weakening this gate.
 
+## Implementation amendment — explicit two-stage transfer
+
+PLAT051-A initially implemented both semantic extraction and reconstruction during the source-side snapshot. The first PLAT051-B implementation preflight demonstrated that this was too early for guest-implemented Standard Library families: Actor and P snapshots run in the source domain, while source-backed callable surfaces such as Regex Pattern/Match must be constructed by executing the destination domain's own Standard Library module.
+
+The project owner therefore retained Candidate C and amended its concrete runtime contract to make the source and destination phases explicit:
+
+~~~text
+SELECTED_ARCHITECTURE=
+    CANDIDATE_C
+    + EXPLICIT_TWO_STAGE_TRANSFER
+
+SOURCE_STAGE=
+    VALIDATE
+    + EXTRACT_INERT_PAYLOAD
+    + CREATE_NON_GUEST_TRANSFER_RECORD
+
+DESTINATION_STAGE=
+    MATERIALIZE_BEFORE_GUEST_OBSERVATION
+    + DESTINATION_LOCAL_STANDARD_LIBRARY_IMPLEMENTATION
+
+SOURCE_RECONSTRUCTION=NO
+OPEN_GUEST_SHELL_IN_TRANSIT=NO
+LAZY_FIRST_USE_RECONSTRUCTION=NO
+~~~
+
+The source stage remains synchronous and atomic with the existing Actor/P snapshot rules. It must reject an unauthorized family, non-transferable source or invalid payload before message acceptance / P submission. The detached graph carries only an implementation-internal semantic-transfer record plus inert payload.
+
+The destination stage runs inside the destination execution domain before guest code can observe the value. It receives destination execution/module authority, loads the exact owning Standard Library module through the established module lifecycle, and materializes a fresh FROZEN semantic value whose callable/private implementation surface belongs to that destination.
+
+The transfer representation in flight is not an OPEN guest value and has no guest slots/callability/public API. Aliasing is preserved across the two stages by source and destination identity memos:
+
+~~~text
+source identity -> one semantic-transfer record
+one semantic-transfer record -> one destination identity per destination graph
+distinct source identities -> distinct records -> distinct destination identities
+~~~
+
+For Group/fan-out, one inert logical record may be reused internally, but every receiving isolation domain materializes its own destination-local value identity.
+
+Failure timing remains unchanged for source transferability. For the initially supported same runtime/library image, a record that passed source validation is required to materialize successfully in the compatible destination; a later materialization failure is an internal implementation inconsistency, not a new lazy user-visible transfer failure mode.
+
+Pay-as-you-grow is preserved:
+
+~~~text
+ORDINARY_TRANSFER_SECOND_PASS=NO
+ORDINARY_TRANSFER_STDLIB_SCAN=NO
+ORDINARY_TRANSFER_MODULE_IMPORT=NO
+ORDINARY_TRANSFER_SOURCE_EXECUTION=NO
+SEMANTIC_DESTINATION_MATERIALIZATION_COST=ONLY_WHEN_RECORDS_EXIST
+~~~
+
+This amendment does not revise D187 or any observable Protos semantics. It rejects source-side destination execution, guest-visible OPEN shells, first-use lazy reconstruction, Java-side parallel Standard Library implementations and Regex-specific branches in generic transfer machinery.
+
+### PLAT051-A2 implementation evidence
+
+The amended contract was implemented and published as:
+
+~~~text
+PUBLISHED_SHA=e681dc3a09165e53e2a977afd9ab6b89b80b9583
+COMMIT_MESSAGE=PLAT051-A2: two-stage Standard Library semantic-value transfer/materialization
+IMPLEMENTATION_VERSION=0.3.262-SNAPSHOT
+~~~
+
+PLAT051-A2 introduces internal semantic-transfer records and destination materialization authority, integrates destination-stage materialization into Actor send/request/Group/spawn/reply and P worker/caller boundaries, and retains an O(1) ordinary-path record check rather than a mandatory second pass.
+
+A hosted production-representative test proves that a test Standard Library family can create its destination callable surface by executing guest Protos module code in the destination domain. This closes the architectural gap that blocked the first PLAT051-B attempt.
+
 ## Initial consumer: Regex Pattern
 
 D187 already requires Pattern to behave as portable semantic data.
@@ -304,28 +371,40 @@ Ratification releases two bounded mechanical slices in order:
 ~~~text
 SLICE=PLAT051-A
 TYPE=IMPLEMENTATION
+STATUS=COMPLETE
 REPOSITORY=guillermomolina/protos
 GOAL=generic privileged semantic-value transfer/rematerialization infrastructure
 REGEX_OPT_IN=NO
 
+SLICE=PLAT051-A2
+TYPE=IMPLEMENTATION
+STATUS=COMPLETE
+REPOSITORY=guillermomolina/protos
+GOAL=split source validation/extraction from destination-domain materialization
+REGEX_OPT_IN=NO
+
 SLICE=PLAT051-B
 TYPE=IMPLEMENTATION
+STATUS=READY
 REPOSITORY=guillermomolina/protos
-GOAL=opt std:regex/Regex Pattern and Match into the ratified mechanism
-BLOCKED_BY=PLAT051-A
+GOAL=opt std:regex/Regex Pattern and Match into the amended mechanism
+BLOCKED_BY=NONE
 ~~~
 
-PLAT051-A owns the generic trusted descriptor/node mechanism, Actor integration, P integration, alias/identity/fail-closed behavior and pay-as-you-grow/negative gates. It must not special-case Regex or make Pattern/Match portable yet.
+PLAT051-A established the generic trusted descriptor/value/payload mechanism. PLAT051-A2 corrected the implementation timing so source snapshots emit validated inert records and destination domains materialize them before guest observation, including support for guest-implemented Standard Library callable surfaces.
 
-PLAT051-B owns the first family opt-in, destination-local Regex reconstruction, Pattern/Match payloads, Actor/P portability proof and Native Image evidence. It may release the final LIB014 portability blocker after its gates pass.
+PLAT051-B now owns only the first production family opt-in: destination-local Regex reconstruction, Pattern/Match payloads, Actor/P portability proof and applicable Native Image evidence. It may release the final LIB014 portability blocker after its gates pass.
 
 No Process wire-format slice is authorized by this decision.
 
 ## Ratified result
 
 ~~~text
-PLAT051_STATUS=RATIFIED
+PLAT051_STATUS=RATIFIED_WITH_IMPLEMENTATION_AMENDMENT
 SELECTED_CANDIDATE=C_PRIVILEGED_STANDARD_LIBRARY_REMATERIALIZATION_PROTOCOL
+TRANSFER_STAGING=EXPLICIT_SOURCE_RECORD_PLUS_DESTINATION_MATERIALIZATION
+PLAT051_A=COMPLETE
+PLAT051_A2=COMPLETE
 PORTABLE_PAYLOAD=INERT_SEMANTIC_DATA_ONLY
 STANDARD_LIBRARY_MEMBERSHIP_ALONE_IMPLIES_PORTABILITY=NO
 EXPLICIT_SEMANTIC_PORTABILITY_CONTRACT_REQUIRED=YES
@@ -338,7 +417,7 @@ PAY_AS_YOU_GROW=MANDATORY_GATE
 D187_DELTA=NONE
 OBSERVABLE_PROTOS_SEMANTIC_CHANGE=NO
 SPECIFICATION_CHANGE=NO
-NEXT=PLAT051-A
+NEXT=PLAT051-B
 NEXT_TYPE=IMPLEMENTATION
 NEXT_REPOSITORY=guillermomolina/protos
 ~~~
