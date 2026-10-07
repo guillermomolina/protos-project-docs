@@ -81,7 +81,6 @@ Current role-first work records:
 
 - [`AUD013/AUD013_B1_LIBRARY_TEST_ASSERTIONS_ADOPTION_EVIDENCE.md`](AUD013/AUD013_B1_LIBRARY_TEST_ASSERTIONS_ADOPTION_EVIDENCE.md)
   — AUD013-B1 implementation evidence at Protos `c8f61ae87ef6a26f8525b9d24f5ad466b665a29c`: 21 maintained library-test files migrated from TEST003-proven local assertion helpers to `std:test/Assertions`; maintainer validation passed, while parent AUD013 remains open because production library, tooling, conformance, examples and other maintained Protos surfaces still require integrated classification.
-
 - [`AUD013/AUD013_B2_STANDARD_LIBRARY_ADOPTION_EVIDENCE.md`](AUD013/AUD013_B2_STANDARD_LIBRARY_ADOPTION_EVIDENCE.md)
   — AUD013-B2 implementation evidence at Protos `629161d5e2c6c6bc659a9f5b23998feda186b99e`: the complete Standard Library production-source pass produced three semantics-preserving current-Protos migrations (Integer/String recognizers and D143 multislot); maintainer validation passed, and all remaining maintained Protos surfaces are deliberately consolidated into one final large AUD013-B3 sweep and closure attempt.
 
@@ -94,7 +93,7 @@ Current role-first work records:
   — AUD005/LIB010-E2-A evidence at exact Protos revision `62f3f5710210f247aad8574d3d0d56d3254bfd70`: temporal fraction encoding now uses one mutable octet buffer and one final decode, structurally restoring linear cost in emitted length; a 400-digit suite-native round-trip and a source-level anti-prepend guard retain F6, while F3, F4, F5 and final closure reconciliation remain open.
 
 - [`AUD005/AUD005_E2_B_OFFICIAL_TOML_11_CONFORMANCE_RESEARCH.md`](AUD005/AUD005_E2_B_OFFICIAL_TOML_11_CONFORMANCE_RESEARCH.md)
-  — AUD005/LIB010-E2-B research at Protos `62f3f5710210f247aad8574d3d0d56d3254bfd70`: freezes official `toml-test` v2.2.0 / TOML 1.1 provenance and case counts, classifies 11 non-UTF-8 byte-domain fixtures as explicitly non-applicable to the ratified String-input API, and selects exact retained upstream fixtures plus a deterministic suite-native projection; F3 is implementation-ready but not yet resolved.
+  — AUD005/LIB010-E2-B research at Protos `62f3f5710210f247aad8574d3d0d56d3254bfd70`: freezes official `toml-test` v2.2.0 / TOML 1.1 provenance and case counts, classifies 11 byte-domain invalid fixtures as explicitly non-applicable to the ratified String-input API, and selects exact retained upstream fixtures plus a deterministic suite-native projection; F3 is implementation-ready but not yet resolved.
 
 - [`AUD005/AUD005_E2_C_OFFICIAL_TOML_11_CONFORMANCE_EVIDENCE.md`](AUD005/AUD005_E2_C_OFFICIAL_TOML_11_CONFORMANCE_EVIDENCE.md)
   — AUD005/LIB010-E2-C implementation evidence at Protos `22bdcdc455cdaff3c4509e96555f28623d6254b7`: retains the pinned official TOML 1.1 corpus and deterministic 884-case suite-native projection, mechanically reconciles 11 non-UTF-8 byte-domain fixtures, and records the two parser conformance defects exposed and repaired; F3 is resolved while F4, F5, F7 and final closure validation remain open.
