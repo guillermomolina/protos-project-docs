@@ -224,3 +224,14 @@ destination; Match transfers capture-result data and rebuilds without rematching
 retains Closure/capability isolation, exact bootstrap family authority and pay-as-you-grow behavior.
 Final implementation evidence is retained under
 `docs/project/evidence/PLAT051/PLAT051_B_IMPLEMENTATION_VALIDATION.md`.
+
+See `docs/project/decisions/platform/PLAT052_FOREIGN_AUTHORITY_SANDBOX_ENFORCEMENT.md`
+for the ratified Candidate B′ foreign-authority boundary: foreign execution starts
+with zero ambient host authority; Protos capabilities may be mapped only through
+scope-preserving enforcement that does not amplify authority to unrelated foreign
+code; providers/libraries that cannot preserve that contract in-process require
+explicit trusted-host policy, stronger provider-specific isolation, or fail
+closed. Import and dependency presence never grant authority, and concrete
+provider/Context/process topology remains owned by PLAT053/#822. Ratification
+evidence is retained under
+`docs/project/evidence/PLAT052/PLAT052_OWNER_APPROVAL_AND_RATIFICATION.md`.
