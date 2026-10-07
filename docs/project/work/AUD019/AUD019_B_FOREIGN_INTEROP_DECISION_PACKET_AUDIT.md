@@ -444,12 +444,33 @@ PLAT052 -> guillermomolina/protos#821
 PLAT053 -> guillermomolina/protos#822
 ```
 
-The currently available GitHub connector does not expose native Parent/Sub-issue
-or native blocked-by mutation. Each child therefore includes textual
-`Parent: #818` / prerequisite metadata, but GITHUB006/GITHUB009 require the
-native relationships before hierarchy/dependency coordination can be called
-fully reconciled. This limitation is coordination-only; it does not change the
-technical audit result.
+Repository intake automation established the required native Parent/Sub-issue
+relationship for all four decision Issues:
+
+```text
+#819 parent -> #818
+#820 parent -> #818
+#821 parent -> #818
+#822 parent -> #818
+```
+
+The currently available connector does not expose mutation of native
+`blocked-by` relationships, and intake automation did not infer them from
+prerequisite prose. The exact pending dependency edges are therefore:
+
+```text
+#820 blocked by #819
+#821 blocked by #819
+#821 blocked by #820
+#822 blocked by #819
+#822 blocked by #820
+#822 blocked by #821
+```
+
+Issue status remains fail-closed (`#819 ready`; `#820/#821/#822 blocked`)
+until those prerequisite decisions are resolved. The missing native dependency
+edges are a live-coordination limitation only; the required decision work is
+allocated, uniquely identified, and attached natively to AUD019.
 
 ## Final result
 
