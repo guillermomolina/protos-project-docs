@@ -1,6 +1,6 @@
 # PLAT051 — Standard Library semantic-value transfer and rematerialization boundary
 
-Status: **RATIFIED WITH IMPLEMENTATION AMENDMENT**
+Status: **RATIFIED WITH IMPLEMENTATION AMENDMENT — IMPLEMENTED**
 
 Selected architecture: **Candidate C — privileged constrained Standard Library semantic-value transfer/rematerialization protocol using inert portable payloads**.
 
@@ -296,6 +296,63 @@ Destination reconstruction must not rerun the regular expression. The Match payl
 
 This avoids retaining or transferring a potentially large subject string when only the immutable result semantics are required.
 
+## Final implementation — PLAT051-B
+
+The first production consumer of the amended mechanism is complete and published:
+
+~~~text
+PUBLISHED_SHA=b3d85c1deee91455c2777d0025a19ec3970530ac
+COMMIT_MESSAGE=PLAT051-B: opt std:regex/Regex Pattern and Match into semantic transfer
+IMPLEMENTATION_VERSION=0.3.264-SNAPSHOT
+~~~
+
+One exact `ProtosRegexSemanticTransferFamily`, owned by `std:regex/Regex`, serves both Pattern and Match.
+
+Pattern transports only:
+
+~~~text
+source
+canonical flags
+~~~
+
+and recompiles with the destination domain's own Regex module.
+
+Match transports only the already-computed semantic result:
+
+~~~text
+capture count
+per-group participation/text/scalar bounds
+capture-name -> group-number relation
+~~~
+
+and is rebuilt without rerunning Regex. The whole subject, Pike program, matcher state and source Closures do not cross.
+
+The exact Regex module mints its family values through a private bootstrap facility removed from public module surface. During destination-module initialization, it installs a guest factory in that Actor-local module record; materialization therefore creates the callable surface from destination-local Protos code rather than a Java-side parallel Regex implementation.
+
+Retained production tests cover Actor spawn/request/reply, isolated-P inputs/results, alias preservation, distinct equal-content identities, payload validation, forgery rejection, public-surface preservation and ordinary transfers that do not load Regex.
+
+The project owner reports:
+
+~~~text
+GIT_DIFF_CHECK=PASS
+ALL_LOCAL_TESTS=PASS
+VALIDATION_PROVENANCE=HUMAN_EXECUTOR_REPORTED
+~~~
+
+Durable implementation evidence is retained at:
+
+`docs/project/evidence/PLAT051/PLAT051_B_IMPLEMENTATION_VALIDATION.md`
+
+With B complete, the motivating D187 Actor/P portability requirement is satisfied. No further mandatory PLAT051 implementation slice remains.
+
+~~~text
+PLAT051_A=COMPLETE
+PLAT051_A2=COMPLETE
+PLAT051_B=COMPLETE
+D187_ACTOR_P_PORTABILITY=COMPLETE
+NEXT_REQUIRED_PLAT051_SLICE=NONE
+~~~
+
 ## Native Image and alternate runtimes
 
 The selected architecture is runtime-neutral at the semantic boundary.
@@ -385,15 +442,15 @@ REGEX_OPT_IN=NO
 
 SLICE=PLAT051-B
 TYPE=IMPLEMENTATION
-STATUS=READY
+STATUS=COMPLETE
 REPOSITORY=guillermomolina/protos
 GOAL=opt std:regex/Regex Pattern and Match into the amended mechanism
-BLOCKED_BY=NONE
+PUBLISHED_SHA=b3d85c1deee91455c2777d0025a19ec3970530ac
 ~~~
 
 PLAT051-A established the generic trusted descriptor/value/payload mechanism. PLAT051-A2 corrected the implementation timing so source snapshots emit validated inert records and destination domains materialize them before guest observation, including support for guest-implemented Standard Library callable surfaces.
 
-PLAT051-B now owns only the first production family opt-in: destination-local Regex reconstruction, Pattern/Match payloads, Actor/P portability proof and applicable Native Image evidence. It may release the final LIB014 portability blocker after its gates pass.
+PLAT051-B completes the first production family opt-in: destination-local Regex reconstruction, Pattern/Match payloads and Actor/P portability proof. Its passing publication resolves the final required LIB014 portability blocker.
 
 No Process wire-format slice is authorized by this decision.
 
@@ -405,6 +462,7 @@ SELECTED_CANDIDATE=C_PRIVILEGED_STANDARD_LIBRARY_REMATERIALIZATION_PROTOCOL
 TRANSFER_STAGING=EXPLICIT_SOURCE_RECORD_PLUS_DESTINATION_MATERIALIZATION
 PLAT051_A=COMPLETE
 PLAT051_A2=COMPLETE
+PLAT051_B=COMPLETE
 PORTABLE_PAYLOAD=INERT_SEMANTIC_DATA_ONLY
 STANDARD_LIBRARY_MEMBERSHIP_ALONE_IMPLIES_PORTABILITY=NO
 EXPLICIT_SEMANTIC_PORTABILITY_CONTRACT_REQUIRED=YES
@@ -417,7 +475,6 @@ PAY_AS_YOU_GROW=MANDATORY_GATE
 D187_DELTA=NONE
 OBSERVABLE_PROTOS_SEMANTIC_CHANGE=NO
 SPECIFICATION_CHANGE=NO
-NEXT=PLAT051-B
-NEXT_TYPE=IMPLEMENTATION
-NEXT_REPOSITORY=guillermomolina/protos
+NEXT_REQUIRED_PLAT051_SLICE=NONE
+LIB014_FINAL_PORTABILITY_BLOCKER=RESOLVED
 ~~~
