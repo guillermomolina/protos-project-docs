@@ -57,6 +57,9 @@ Current role-first work records:
 - [`LIB020/LIB020_A_STYLE_STYLEDTEXT_SEMANTIC_VALUES_EVIDENCE.md`](LIB020/LIB020_A_STYLE_STYLEDTEXT_SEMANTIC_VALUES_EVIDENCE.md)
   — LIB020-A implementation evidence at Protos `c495b31dc21f71929ae460addad60613acb3d695` / `0.3.267-SNAPSHOT`: ratified `std:text/Style` and `std:text/StyledText` semantic values published with runtime-safe exact-family recognition, opaque sealed state, Style semantic equality/hash, StyledText flat opaque runs, and explicit Actor/parallel non-portability; maintainer reports `git diff --check` and all local tests PASS; LIB020-B is next.
 
+- [`LIB020/LIB020_B_PURE_ANSI_RENDERER_EVIDENCE.md`](LIB020/LIB020_B_PURE_ANSI_RENDERER_EVIDENCE.md)
+  — LIB020-B implementation evidence at Protos `b10569680b1532b277ba3ce49eced2e818833d93` / `0.3.268-SNAPSHOT`: pure `std:text/ANSI.render` published with exact Boolean policy input, deterministic reset-correct basic foreground SGR rendering, separate no-ANSI plain path, arbitrary-text pass-through, and private reuse of the existing Style/StyledText sealing facilities; maintainer reports `git diff --check` and all local tests PASS; LIB020-C is next.
+
 - [`LIB018/LIB018_TEST_AUTHORING_MODEL.md`](LIB018/LIB018_TEST_AUTHORING_MODEL.md)
   — ratified minimal suite-native authoring model: module-as-suite plus canonical `std:test/Test` values.
 
