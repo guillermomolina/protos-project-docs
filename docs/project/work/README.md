@@ -45,6 +45,12 @@ Current role-first work records:
   — owner-ratified LIB015-B0 formatter/sink contract: deterministic single-line plain grammar, Unicode-scalar key ordering, presence-only Error rendering, safe LogEvent recognition hardening, borrowed TextWriter sink awaiting `writeLine(...).value()`, minimal MemorySink, and LIB015-B1 released for implementation.
 - [`LIB015/LIB015_B1_PLAIN_FORMATTER_EXPLICIT_SINKS_EVIDENCE.md`](LIB015/LIB015_B1_PLAIN_FORMATTER_EXPLICIT_SINKS_EVIDENCE.md)
   — LIB015-B1 implementation evidence at Protos `6252f3b6ddaffd2246e5f96eb2e746df8f1ff267` / `0.3.253-SNAPSHOT`: canonical LogEvent recognition hardening, deterministic plain TextFormatter, borrowed TextSink, and identity-preserving MemorySink published; maintainer reports `git diff --check` and all local tests PASS; focused LIB015-C0 JSON projection/formatter contract research is next.
+- [`LIB015/LIB015_C0_JSON_EVENT_FORMATTER_CONTRACT_DECISION.md`](LIB015/LIB015_C0_JSON_EVENT_FORMATTER_CONTRACT_DECISION.md)
+  — owner-ratified LIB015-C0 JSON contract: nested fields, exact Integer projection, strict Float policy, deterministic ordering, std:json ownership, and TextSink framing reuse.
+- [`LIB015/LIB015_C1_JSON_FORMATTER_EVIDENCE.md`](LIB015/LIB015_C1_JSON_FORMATTER_EVIDENCE.md)
+  — LIB015-C1 implementation evidence at Protos `ddf59b1b3f5c97758354688088845d641f7a4e04` / `0.3.257-SNAPSHOT`: deterministic compact JsonFormatter over std:json published; maintainer reports `git diff --check` and all local tests PASS.
+- [`LIB015/LIB015_D0_TIMESTAMP_EXPLICIT_TIME_AUTHORITY_CONTRACT_DECISION.md`](LIB015/LIB015_D0_TIMESTAMP_EXPLICIT_TIME_AUTHORITY_CONTRACT_DECISION.md)
+  — owner-ratified LIB015-D0 timestamp contract: one five-slot LogEvent family with always-present null-or-Instant timestamp, optional explicit Logger time-source callable after filtering, ISO8601 human prefix, exact Integer nanoseconds in JSON, and LIB015-D1 released.
 
 - [`LIB018/LIB018_TEST_AUTHORING_MODEL.md`](LIB018/LIB018_TEST_AUTHORING_MODEL.md)
   — ratified minimal suite-native authoring model: module-as-suite plus canonical `std:test/Test` values.
