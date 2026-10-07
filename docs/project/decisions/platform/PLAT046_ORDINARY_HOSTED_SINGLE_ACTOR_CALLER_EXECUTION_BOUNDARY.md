@@ -28,6 +28,135 @@ CURRENT_GUEST_STACK_BUDGET=16_MIB
 Nature: durable non-normative platform/runtime placement decision. Observable
 Protos language and Standard Library semantics remain unchanged.
 
+## 2026-10-07 owner-approved callable-entry amendment
+
+PERF032 exposed a narrower minimum-path mismatch after the original PLAT046
+carrier cutover. The project owner explicitly approved the revised architecture
+in the active PERF032 discussion on 2026-10-07:
+
+~~~text
+ok aprobado
+~~~
+
+Approval applies to the exact revised direction that uses GraalJS/GraalPy
+canonical Polyglot callable execution as the implementation reference and
+removes every Protos-owned minimum-path layer that is not required by the
+program, the normative semantics, or the supported Truffle host-to-guest
+contract.
+
+The amended minimum callable floor is:
+
+~~~text
+Value.execute()
+  -> framework HostToGuestRootNode
+  -> InteropLibrary.execute(Protos callable)
+  -> Protos callable execute node
+  -> compact ordinary Closure invocation
+  -> cached/direct guest call
+  -> result
+~~~
+
+For an ordinary synchronous callable that does not use stronger capabilities,
+the minimum physical path does not require universal:
+
+~~~text
+FRESH_ROOT_TASK=NO
+PROTOS_TASK_ALLOCATION=NO
+ACTOR_LIVE_TASK_REGISTRATION=NO
+TASK_START_CANCELLATION_BOOKKEEPING=NO
+ACTOR_TASK_DISPATCH=NO
+TASK_TERMINAL_POLLING_PUBLICATION=NO
+RICH_CALLEE_ACTIVATION=NO_UNLESS_OBSERVED
+PROCESS_EXECUTION_HOST_ROUTING_PER_CALL=NO
+PROTOS_EXPLICIT_CONTEXT_ENTER_LEAVE_ENVELOPE=NO
+PROTOS_HOST_THREADLOCAL_BOOKKEEPING=NO_UNLESS_USED
+PROTOS_EXECUTION_OUTCOME_WRAPPER_FOR_CANONICAL_VALUE_EXECUTE=NO
+REUSABLE_SESSION_MULTI_CALLER_GATE_ON_WEAKER_CANONICAL_SURFACE=NO
+GENERIC_INDIRECT_CALL_WHEN_STABLE_DIRECT_CALL_IS_AVAILABLE=NO
+~~~
+
+This amendment does not remove Task, Actor, Process, suspension, cancellation,
+Future, module, interop or control semantics. It changes only when their physical
+machinery is paid.
+
+The earlier PLAT046 statements:
+
+~~~text
+TASK_IDENTITY_AND_LIFECYCLE=UNCHANGED
+ROOTACTOR_TASK_SEMANTICS=UNCHANGED
+ROOT_TASK_EXECUTION=UNCHANGED
+~~~
+
+remain semantic/compatibility constraints where a Task or RootTask actually
+exists. They no longer authorize eager manufacturing of a RootTask for every
+ordinary host/foreign callable invocation. The 2026-10-02
+`ROOT_TASK_EXECUTION=UNCHANGED` line was also a bounded F1 implementation
+constraint: F1 changed the carrier topology without simultaneously redesigning
+the inner invocation path. It is not the permanent minimum callable topology.
+
+Likewise, reusable-session serialization remains required for the stronger
+`PreparedTopLevel` session contract that promises multi-caller safety and
+call-vs-close exclusion. It does not define the weaker canonical one-caller
+Polyglot callable floor.
+
+This amendment composes directly with already-ratified architecture and current
+normative semantics:
+
+- PLAT040 rejects universal rich invocation-state construction and requires
+  compact invocation plus conditional materialization;
+- PERF025 H1 proves ordinary zero-argument source Closure execution can remain
+  compact without a rich callee activation, while Task-owned execution remains
+  separately supported;
+- current `ProtosClosureInvoker` has an explicit non-Task synchronous Closure
+  path and `ProtosActivation.task()` is optional;
+- D189 requires synchronous foreign callbacks to be ordinary Closure activation
+  in the current Task and explicitly says callback invocation creates no Task,
+  Future, structured-concurrency scope or cancellation checkpoint.
+
+Therefore host-to-Protos and synchronous foreign-to-Protos callable entry should
+converge on one ordinary callable execution architecture rather than maintain
+parallel semantic engines.
+
+The original PLAT046 owner invariant is strengthened inward, not contradicted:
+
+~~~text
+SEMANTIC_CAPABILITY_EXISTS
+  !=
+PHYSICAL_MACHINERY_MUST_BE_PAID_EAGERLY_BY_THE_ORDINARY_CASE
+
+STRONGER_CAPABILITY
+  MUST_NOT_IMPOSE_ITS_PHYSICAL_COST_MODEL
+  ON_A_WEAKER_MINIMUM_PATH
+~~~
+
+Current amended result:
+
+~~~text
+PLAT046_STATUS=RATIFIED_WITH_2026_10_07_OWNER_AMENDMENT
+
+ORDINARY_PHYSICAL_CARRIER=CALLER_THREAD
+DEDICATED_SECOND_GUEST_EXECUTION_THREAD_FOR_MINIMAL_PATH=NO
+
+CANONICAL_MINIMUM_HOST_TO_GUEST_BOUNDARY=FRAMEWORK_VALUE_EXECUTE
+CANONICAL_PROTOS_CALLABLE_BOUNDARY=INTEROP_LIBRARY_EXECUTE
+ORDINARY_CLOSURE_INVOCATION=COMPACT_PAY_AS_YOU_GROW
+
+UNIVERSAL_ROOT_TASK_MATERIALIZATION=NO
+UNIVERSAL_RICH_ACTIVATION=NO
+UNIVERSAL_STRONGER_CAPABILITY_MACHINERY=NO
+
+TASK_ACTOR_PROCESS_SEMANTICS_WHEN_PRESENT=UNCHANGED
+D189_SYNCHRONOUS_CALLBACK_TASK_CREATION=NO
+REUSABLE_SESSION_STRONGER_CONTRACT=PRESERVED_SEPARATELY
+
+DEEP_RECURSION_10000_REQUIREMENT=RETAINED
+OBSERVABLE_PROTOS_SEMANTIC_CHANGE=NO
+SPECIFICATION_CHANGE=NO
+BUG008_REOPEN_REQUIRED=NO
+
+IMPLEMENTATION_OWNER=PERF033/guillermomolina/protos#832
+~~~
+
 ## Decision
 
 For the ordinary hosted synchronous case:
