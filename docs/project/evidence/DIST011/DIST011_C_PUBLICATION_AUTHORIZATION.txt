@@ -1,0 +1,9 @@
+publication_authorization_format=protos-dist005-publication-authorization-v1
+release_publication_authorized=true
+authorization_basis=explicit-user-decision
+candidate_source_revision=75418458f6f7d6dae27ad7009fe4bd57e7499c2d
+release_version=0.3.143
+release_tag=v0.3.143
+release_manifest_sha256=c1e1579feb8d42bc90bf8f3886e3b5dbcf948b0fef6c0501d1f42d81b4233591
+github_release_prerelease=true
+github_release_draft=false
