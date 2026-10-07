@@ -108,7 +108,7 @@ This publication was prepared from the live
 `guillermomolina/protos-project-docs` default-branch base:
 
 ```text
-PROJECT_RECORD_BASE_REVISION=09df9483e6ce871ca0828880df1d77fd5f66ae4b
+PROJECT_RECORD_BASE_REVISION=4340af88d9cf9eb83aa6e675d4276f34aef5ac93
 ```
 
 The final project-record revision containing this evidence and the D188 decision
