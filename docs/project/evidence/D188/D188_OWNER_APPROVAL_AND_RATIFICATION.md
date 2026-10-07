@@ -1,6 +1,6 @@
 # D188 — owner approval and ratification evidence
 
-Status: **APPROVAL PROVENANCE RECORDED — NORMATIVE SPECIFICATION RECONCILIATION PENDING**
+Status: **APPROVAL PROVENANCE RECORDED — D188 CLOSED; I080 ALLOCATED FOR SPECIFICATION RECONCILIATION**
 
 Formal decision: `guillermomolina/protos#819` — D188
 
@@ -114,31 +114,55 @@ PROJECT_RECORD_BASE_REVISION=4340af88d9cf9eb83aa6e675d4276f34aef5ac93
 The final project-record revision containing this evidence and the D188 decision
 record is recorded in the authoritative GitHub Issue after publication.
 
-## Normative specification boundary
+## Decision closure and implementation routing correction
 
-The approval is sufficient to select the D188 semantic decision, but the project
-policy makes observable Protos semantics normative only through the applicable
-`guillermomolina/protos:spec/` authority.
+The approval is sufficient to select and close the D188 design decision once its
+durable ratification is published. Observable Protos semantics still become
+normative only through the applicable `guillermomolina/protos:spec/` authority,
+but mutating that specification is implementation/reconciliation work and must
+not be kept inside the Dxxx lifecycle.
 
-The approved packet itself concluded:
+A prior coordination note in this evidence incorrectly coupled D188 closure and
+D189 release to specification reconciliation. The project owner challenged that
+classification, and live project precedent confirms the correction: D180 closed
+after ratification and its specification/implementation reconciliation was
+allocated separately as I078.
+
+The corrected routing is:
 
 ```text
-OBSERVABLE_PROTOS_SEMANTIC_CHANGE=YES
-SPECIFICATION_CHANGE_REQUIRED_IF_APPROVED=YES
+D188 / #819
+  -> decision owner
+  -> owner-approved + durably ratified
+  -> CLOSED / status:completed
+
+I080 / #828
+  -> implementation owner
+  -> normative D188 specification reconciliation
+  -> status:ready
+
+D189 / #820
+  -> next implementation-independent semantic decision
+  -> consumes ratified D188
+  -> status:ready
 ```
 
-Therefore durable project-record publication does not by itself complete D188.
-
-The next D188 slice is a bounded normative specification reconciliation in
-`guillermomolina/protos`. Product/runtime implementation remains unauthorized
-until the later AUD019 dependency chain is satisfied.
+I080 does not implement foreign runtime/providers. Foreign runtime/provider
+implementation remains gated by D189, PLAT052, PLAT053, and later implementation
+allocation.
 
 ```text
 DECISION_SELECTION=RATIFIED
 DURABLE_DECISION_PUBLICATION=PASS
-SPECIFICATION_RECONCILIATION=PENDING
-D188_CLOSE_NOW=NO
-D189_UNBLOCK_NOW=NO
+D188_CLOSE_NOW=YES
+D188_STATUS=COMPLETED
+
+SPECIFICATION_RECONCILIATION=ROUTED_TO_I080/#828
+I080_IMPLEMENTATION_SCOPE=NORMATIVE_SPECIFICATION_RECONCILIATION_ONLY
+
+D189_UNBLOCK_NOW=YES
+D189_STATUS=READY
+
 FOREIGN_RUNTIME_IMPLEMENTATION_AUTHORIZED=NO
 ```
 

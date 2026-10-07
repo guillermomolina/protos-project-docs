@@ -633,12 +633,24 @@ use std:interop for lower-level operations
 No change to `ModuleKey`, `===`, `call`, `at`/`atPut`, or the Protos Error model
 is required to take that path.
 
-## Ratification / normative publication boundary
+## Ratification / implementation routing boundary
 
-D188 changes observable Protos semantics and therefore requires normative
-reconciliation under `guillermomolina/protos:spec/` before the decision can be
-reported fully closed and before dependent implementation treats the new
-foreign-value behavior as normative language authority.
+D188 changes observable Protos semantics, so the selected contract still
+requires normative reconciliation under `guillermomolina/protos:spec/`.
+That reconciliation is implementation work; it is not part of the Dxxx decision
+lifecycle itself.
+
+The established project precedent is D180 -> I078: the Dxxx closes once the
+decision is owner-approved and durably ratified, while specification/runtime
+reconciliation is owned by a separate implementation-family work item.
+
+Accordingly, D188 is complete as the decision owner and its specification
+reconciliation is allocated separately to I080 / `guillermomolina/protos#828`.
+
+D189 / `guillermomolina/protos#820` consumes the ratified D188 semantic
+decision and does not wait for I080. I080 and D189 may therefore proceed
+independently. This does not authorize foreign runtime/provider implementation;
+that remains gated by the remaining AUD019 decision chain.
 
 This project-record publication itself does not modify specification authority.
 
@@ -649,11 +661,13 @@ AUD019_INVARIANT_DELTA=NONE_RELEVANT
 
 OBSERVABLE_PROTOS_SEMANTIC_CHANGE=YES
 SPECIFICATION_CHANGE_REQUIRED=YES
-SPECIFICATION_RECONCILIATION=PENDING
+SPECIFICATION_RECONCILIATION=I080/#828
 
-IMPLEMENTATION_AUTHORIZED=NO
-D188_CLOSURE=PENDING_SPECIFICATION_RECONCILIATION
-D189_RELEASE=PENDING_D188_NORMATIVE_RECONCILIATION
+D188_STATUS=COMPLETED
+D188_CLOSURE=PASS
+D189_RELEASE=YES
+IMPLEMENTATION_OWNER=I080/#828
+FOREIGN_RUNTIME_IMPLEMENTATION_AUTHORIZED=NO
 ```
 
 ## AI-assistance disclosure
