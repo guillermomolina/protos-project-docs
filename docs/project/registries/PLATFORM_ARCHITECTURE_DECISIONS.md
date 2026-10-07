@@ -213,3 +213,14 @@ Ratification releases LM011-B1/#670 without changing Protos semantics, PLAT024,
 or the deferred range/check/recovery/refactoring surface. Evidence is retained
 under
 `docs/project/evidence/PLAT050/PLAT050_CANDIDATE_F_RATIFICATION_EVIDENCE.md`.
+
+
+See `docs/project/decisions/platform/PLAT051_STANDARD_LIBRARY_SEMANTIC_VALUE_TRANSFER_REMATERIALIZATION.md`
+for the ratified Candidate C Standard Library semantic-value transfer boundary, including the
+A2 implementation amendment that separates source-side validated inert transfer records from
+destination-domain materialization before guest observation. The completed first production
+consumer is `std:regex/Regex`: Pattern transfers source + canonical flags and recompiles in the
+destination; Match transfers capture-result data and rebuilds without rematching. Generic transfer
+retains Closure/capability isolation, exact bootstrap family authority and pay-as-you-grow behavior.
+Final implementation evidence is retained under
+`docs/project/evidence/PLAT051/PLAT051_B_IMPLEMENTATION_VALIDATION.md`.
