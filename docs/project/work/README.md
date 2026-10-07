@@ -43,6 +43,8 @@ Current role-first work records:
   — LIB015-A implementation evidence at Protos `c5bce4ef03417cce96b99924a0ae58e7cb95e7bb` / `0.3.247-SNAPSHOT`: canonical logging levels, frozen deep-snapshot LogEvent values, explicit derived Logger context, early filtering and contained sink Error semantics published; maintainer reports all local tests PASS.
 - [`LIB015/LIB015_B0_PLAIN_FORMATTING_TEXTWRITER_CONTRACT_DECISION.md`](LIB015/LIB015_B0_PLAIN_FORMATTING_TEXTWRITER_CONTRACT_DECISION.md)
   — owner-ratified LIB015-B0 formatter/sink contract: deterministic single-line plain grammar, Unicode-scalar key ordering, presence-only Error rendering, safe LogEvent recognition hardening, borrowed TextWriter sink awaiting `writeLine(...).value()`, minimal MemorySink, and LIB015-B1 released for implementation.
+- [`LIB015/LIB015_B1_PLAIN_FORMATTER_EXPLICIT_SINKS_EVIDENCE.md`](LIB015/LIB015_B1_PLAIN_FORMATTER_EXPLICIT_SINKS_EVIDENCE.md)
+  — LIB015-B1 implementation evidence at Protos `6252f3b6ddaffd2246e5f96eb2e746df8f1ff267` / `0.3.253-SNAPSHOT`: canonical LogEvent recognition hardening, deterministic plain TextFormatter, borrowed TextSink, and identity-preserving MemorySink published; maintainer reports `git diff --check` and all local tests PASS; focused LIB015-C0 JSON projection/formatter contract research is next.
 
 - [`LIB018/LIB018_TEST_AUTHORING_MODEL.md`](LIB018/LIB018_TEST_AUTHORING_MODEL.md)
   — ratified minimal suite-native authoring model: module-as-suite plus canonical `std:test/Test` values.
@@ -94,7 +96,7 @@ Current role-first work records:
 - [`AUD005/AUD005_E2_B_OFFICIAL_TOML_11_CONFORMANCE_RESEARCH.md`](AUD005/AUD005_E2_B_OFFICIAL_TOML_11_CONFORMANCE_RESEARCH.md)
   — AUD005/LIB010-E2-B research at Protos `62f3f5710210f247aad8574d3d0d56d3254bfd70`: freezes official `toml-test` v2.2.0 / TOML 1.1 provenance and case counts, classifies 11 byte-domain invalid fixtures as explicitly non-applicable to the ratified String-input API, and selects exact retained upstream fixtures plus a deterministic suite-native projection; F3 is implementation-ready but not yet resolved.
 
-- [`AUD005/AUD005_E2_C_OFFICIAL_TOML_11_CONFORMANCE_EVIDENCE.md`](AUD005/AUD005_E2_C_OFFICIAL_TOML_11_CONFORMANCE_EVIDENCE.md)
+- [`AUD005/AUD005_E2_C_OFFICIAL_TOML_11_CONFORMANCE_EVIDENCE.md`](AUD005/LIB010-E2-C_OFFICIAL_TOML_11_CONFORMANCE_EVIDENCE.md)
   — AUD005/LIB010-E2-C implementation evidence at Protos `22bdcdc455cdaff3c4509e96555f28623d6254b7`: retains the pinned official TOML 1.1 corpus and deterministic 884-case suite-native projection, mechanically reconciles 11 non-UTF-8 byte-domain fixtures, and records the two parser conformance defects exposed and repaired; F3 is resolved while F4, F5, F7 and final closure validation remain open.
 
 - [`AUD006/AUD006_A1_COMMAND_LINE_ACCUMULATION_COMPLEXITY_EVIDENCE.md`](AUD006/AUD006_A1_COMMAND_LINE_ACCUMULATION_COMPLEXITY_EVIDENCE.md)
