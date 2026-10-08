@@ -184,3 +184,5 @@ Issues and the Protos Development Project.
 
 - [`TOOL007/TOOL007_SOURCE_DOCUMENTATION_EXTRACTION.md`](TOOL007/TOOL007_SOURCE_DOCUMENTATION_EXTRACTION.md)
   — D138 source-local documentation extraction, Standard Library reconciliation, and closure record.
+
+- [`LM012/LM012_B1_INITIAL_LINT_RULES_OWNER_APPROVAL.md`](LM012/LM012_B1_INITIAL_LINT_RULES_OWNER_APPROVAL.md) — owner-approved LM012 first two source-local correctness lint rules, default-on Warning each, no autofix; source implementation and human tests are still pending.
