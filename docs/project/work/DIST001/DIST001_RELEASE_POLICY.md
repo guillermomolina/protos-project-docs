@@ -485,3 +485,16 @@ This policy does not:
 - require a bundled JDK/GraalVM in the first portable archive;
 - create a Git tag or GitHub Release; or
 - authorize an agent to publish a release without an explicit release decision.
+
+
+## Operational simplification amendment — DIST015 (2026-10-08)
+
+**Owner-approved operational policy for subsequent releases.** The extensive DIST001-E development history records how the first release infrastructure was implemented and validated; it is not a mandatory sequence of separately tracked work items or manual human handoffs for each later release. This section supersedes contrary *operational choreography* above without changing the historic outcomes or mandatory correctness gates.
+
+A release **MUST BE EASY** for the maintainer: after selecting one exact already-tested baseline, version, tag and channel, the normal user interaction should consist of **one build-and-validate invocation and one publication invocation**, or a comparably simple fail-closed human-controlled workflow. Selection records, detached release-only candidate, version transition, manifests, checksum generation, and provenance verification are internal implementation details automated through the existing scripts; do not ask the maintainer to clone project-docs, copy scratchpad files, manually fill SHA fields, or coordinate independent preparation-of-preparation slices.
+
+Prefer **one GitHub release issue / one cohesive slice**. Do not allocate new formal Issues for routine selection records, worktree setup, metadata rendering, repeated identity checks, execution checkpoints, or post-publication bookkeeping unless a genuinely independent defect, decision, or independently schedulable deliverable emerges. Avoid multiple separate tests of the same unchanged product state. Existing accepted product-suite results can be reused when bound to the exact baseline and not invalidated; changing only the release version metadata is not a reason by itself to rerun the entire suite.
+
+**Non-negotiable safeguards remain**: exact approved baseline and release-only version/lineage; no modification to concurrent development `main`; mandatory extracted Portable/JVM and Native artifact gates, runtime/platform/glibc and PLAT045 disclosure; licenses/notices; release notes with truthful claims; manifest and checksums; independent archive/provenance validation; stop on a failed required gate; explicit approval of the exact intended release; and post-publication verification of the tag and assets. A previous code test PASS does not replace validation of new distributable bytes.
+
+The human executor runs builds, tests, Git and release publication; agents arrange the minimal commands. Publication is never automatically implied by a successful implementation commit. If the current pipeline requires needless manual mechanics, **simplify or amend DIST001 and its wrappers instead of adding administrative slices**. Preserve safety properties, not ceremony. For the approved DIST015 target, see [guillermomolina/protos#849](https://github.com/guillermomolina/protos/issues/849).
