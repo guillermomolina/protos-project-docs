@@ -2,9 +2,9 @@
 
 **Role:** durable, non-normative evidence. This record describes human-reported executions and read-only GitHub verification; it does not replace retained raw benchmark artifacts or the live GitHub Issue.
 
-**Owner:** [PERF035 / protos#846](https://github.com/guillermomolina/protos/issues/846).  
-**Published implementation:** [`guillermomolina/protos@203c0f912be52db1b1adf4e528851e7622c41d95`](https://github.com/guillermomolina/protos/commit/203c0f912be52db1b1adf4e528851e7622c41d95), version `0.3.302-SNAPSHOT`.  
-**Benchmark repository:** `guillermomolina/protos-benchmarks` (exact benchmark HEAD was not supplied; source hashes were subsequently verified).  
+**Owner:** [PERF035 / protos#846](https://github.com/guillermomolina/protos/issues/846).
+**Published implementation:** [`guillermomolina/protos@203c0f912be52db1b1adf4e528851e7622c41d95`](https://github.com/guillermomolina/protos/commit/203c0f912be52db1b1adf4e528851e7622c41d95), version `0.3.302-SNAPSHOT`.
+**Benchmark repository:** `guillermomolina/protos-benchmarks` (exact benchmark HEAD was not supplied; source hashes were subsequently verified).
 **Workload:** `primitive-object-slot-write`, result `2`, unchanged reference policy.
 
 ## Published repair and source validation
