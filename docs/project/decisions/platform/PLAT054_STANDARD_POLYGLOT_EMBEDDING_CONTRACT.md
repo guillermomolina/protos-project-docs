@@ -28,7 +28,7 @@ It must not require ProtosStandaloneHostedSession, prepareTopLevel, a benchmark-
 
 The chosen architecture has exactly one logical Protos Process and RootActor for a live embedding Context. Bootstrap is lazy at the first valid guest source execution. Creating/closing an unused Context and requesting empty pre-evaluation language bindings must not bootstrap Core, Process, RootActor, provider compartments, or scheduler machinery. Polyglot Context and Protos Process are correlated lifetimes, not identical semantic objects (PLAT001).
 
-The selected Core override option is \`protos.CoreRoot\`. Precedence is (1) explicit override, (2) distribution/language home, (3) packaged internal language resource where language home is unavailable. An invalid explicit override fails rather than silently falling back. Core resource reads cannot grant arbitrary guest filesystem access. The exact option spelling and precedence were expressly part of the PLAT054-1 approval.
+The selected Core override option is `protos.CoreRoot`. Precedence is (1) explicit override, (2) distribution/language home, (3) packaged internal language resource where language home is unavailable. An invalid explicit override fails rather than silently falling back. Core resource reads cannot grant arbitrary guest filesystem access. The exact option spelling and precedence were expressly part of the PLAT054-1 approval.
 
 Process arguments, environment snapshots and standard streams derive from the actual TruffleLanguage.Env, not ambient System.getenv, System.in/out/err or an unrestricted JVM filesystem. Program filesystem access follows explicit host authority; a default Network capability is absent unless explicitly provisioned. Core source/readability authority and ordinary program filesystem/network authority remain distinct. Unused foreign providers remain lazy (PLAT053).
 
@@ -65,14 +65,14 @@ New, *explicitly owner-approved* consequences: fatal host-entry RootActor turn c
 
 This PLAT decision is non-normative. It cannot supersede the specification. Before exposing the new Java contract as supported product behavior, publish the exact approved guest-visible additions in:
 
-- \`spec/semantics/MODULES.md\`: host entry-module/cache/identity/result and bindings-local-slot selection; preserve existing cache-before-execute, cycles, failure eviction, independent reachability and standalone distinctions.
-- \`spec/io/PROCESS_IO.md\`: lazy embedding/bootstrap, exact initial-entry authority, Truffle Env snapshot and authority restrictions, fatal Process custody/disposition.
-- \`spec/concurrency/ACTORS.md\` §24C: host-entry Actor-turn classification without requiring physical Tasks.
-- \`spec/PROTOS_SPEC_CHANGELOG.md\`: one new global normative revision identifying those owners and effects.
+- `spec/semantics/MODULES.md`: host entry-module/cache/identity/result and bindings-local-slot selection; preserve existing cache-before-execute, cycles, failure eviction, independent reachability and standalone distinctions.
+- `spec/io/PROCESS_IO.md`: lazy embedding/bootstrap, exact initial-entry authority, Truffle Env snapshot and authority restrictions, fatal Process custody/disposition.
+- `spec/concurrency/ACTORS.md` §24C: host-entry Actor-turn classification without requiring physical Tasks.
+- `spec/PROTOS_SPEC_CHANGELOG.md`: one new global normative revision identifying those owners and effects.
 
 The approved detailed draft is retained in the linked PLAT054-1 evidence. Implementation MUST NOT treat historical PERF033 tests or wrapper behavior as semantic authority. In particular, the retained test for an escaped InvalidReturn followed by successful subsequent invocation must be reconsidered against the now approved fatal RootActor turn classification, preserving behavior only for a separately valid handled/non-turn case.
 
-After the normative publication, implement product embedding in a coherent bounded group in \`guillermomolina/protos\`. Do not change \`guillermomolina/protos-benchmarks\` in that product phase. Benchmark preparation symmetry is a later independent validation; identical timed \`Value.execute()\` does not imply Graal graph-node count or latency parity.
+After the normative publication, implement product embedding in a coherent bounded group in `guillermomolina/protos`. Do not change `guillermomolina/protos-benchmarks` in that product phase. Benchmark preparation symmetry is a later independent validation; identical timed `Value.execute()` does not imply Graal graph-node count or latency parity.
 
 ~~~text
 PLAT054_PLATFORM_DECISION=RATIFIED_2026_10_08
@@ -94,6 +94,6 @@ Strongest argument against A: standard host-initiated entry exposes a subtle new
 
 ## Evidence, exact baseline and AI assistance
 
-Reviewed product snapshot: \`guillermomolina/protos@ac1e660cc37f8629852062fee41dcc33cf0758f8\`, Protos 0.3.281-SNAPSHOT, GraalVM 25.4.4.1.1, global language specification revision 0.1.448. Evidence is source/reasoning only. No commands, builds, tests, A/B runs, graph measurements, or normative/product mutations were performed in preparing this approval record. Current HEAD must be checked again before each subsequent product edit.
+Reviewed product snapshot: `guillermomolina/protos@ac1e660cc37f8629852062fee41dcc33cf0758f8`, Protos 0.3.281-SNAPSHOT, GraalVM 25.4.4.1.1, global language specification revision 0.1.448. Evidence is source/reasoning only. No commands, builds, tests, A/B runs, graph measurements, or normative/product mutations were performed in preparing this approval record. Current HEAD must be checked again before each subsequent product edit.
 
 This decision and linked evidence were drafted with AI assistance from ChatGPT and explicitly approved by the project owner in the active conversation. No independent human test/review or published specification change is implied.
