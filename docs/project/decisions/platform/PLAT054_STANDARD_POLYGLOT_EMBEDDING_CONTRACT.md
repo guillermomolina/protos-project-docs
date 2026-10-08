@@ -97,7 +97,7 @@ Strongest argument against A: standard host-initiated entry exposes a subtle new
 
 The approved contract is now normatively published as `spec/0.1.449` at [`guillermomolina/protos@ab1f2196e6736d4df01e83f685a3fc8aa3f606ac`](https://github.com/guillermomolina/protos/commit/ab1f2196e6736d4df01e83f685a3fc8aa3f606ac). Its four changed paths are `MODULES.md`, `PROCESS_IO.md`, `ACTORS.md` and the specification changelog. The owner reported all local tests passed and `git diff --check` clean; no raw test logs were independently inspected. The normative contract is now the primary authority for the next Java implementation. [Exact evidence and remaining obligations](../../evidence/PLAT054/PLAT054_2_NORMATIVE_PUBLICATION.md).
 
-This release **does not** mean `Context.eval + getBindings` is yet supported by the product runtime, or that benchmark graph/latency parity has been measured. PLAT054-3 is implementation in `guillermomolina/protos`, not benchmark modification.
+This release **does not** mean `Context.eval + getBindings` is yet supported by the product runtime, or that benchmark graph/latency parity has been measured. PLAT054-3 is implementation under [I086 / #840](https://github.com/guillermomolina/protos/issues/840) in `guillermomolina/protos`, not benchmark modification.
 
 ## Evidence, exact baseline and AI assistance
 
