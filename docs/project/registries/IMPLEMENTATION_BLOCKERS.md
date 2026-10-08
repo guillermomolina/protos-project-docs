@@ -599,7 +599,7 @@ and existing Actor/lifecycle regression work may advance separately.
 
 ## B012 — Standard Polyglot embedding default Network grant and thread authority
 
-Status: READY — normative permission/thread authority gate satisfied by spec 0.1.450; backend pending
+Status: CLOSED — spec 0.1.450 published and default embedding Network implemented at protos@f8f4ebe2
 
 Implementation area:
 I086 / PLAT054 default `network` capability provisioning in the
@@ -649,3 +649,6 @@ can continue.
 **Publication checkpoint — 2026-10-08, spec 0.1.450:** [exact commit and verification](../evidence/I086/I086_PLAT054_3E1_NORMATIVE_HOST_ENTRY_AND_AUTHORITY_PUBLICATION.md). **B012 is READY for implementation**. The current `ProtosNioHostIoPoller` still starts a raw Java thread and lacks embedded-Context-specific lifecycle integration; no positive Network grant or passing Native gate is claimed by the spec-only publication.
 
 **Coordination checkpoint — after PLAT054-3E2:** host-entry Future suspension was published at [`protos@55f06a29`](../evidence/I086/I086_PLAT054_3E2_SUSPENDIBLE_HOST_ENTRY_FUTURE_PUBLICATION.md); B012 is **READY**, but the embedded guest still receives no default Network because `ProtosEmbeddedProcess.bootstrap()` passes `null`. Next slice **PLAT054-3E4 / IMPLEMENTATION** integrates effective host socket permission, bootstrap-local Network capability, lazy Context-owned backend and correct close/thread custody with the complete affected regression tests. Do not mark B012 CLOSED until the product implementation is actually published and verified. B011 remains independent and BLOCKED.
+
+**Final B012 closure checkpoint — 2026-10-08 (PLAT054-3E4):** **CLOSED** under the blocker registry's rule: the normative authorization and thread/lifecycle choices were published in spec `0.1.450`, then corresponding embedded Network implementation was published at [`guillermomolina/protos@f8f4ebe2e2d5ad903562518a39c08d3a66c8e0c2`](https://github.com/guillermomolina/protos/commit/f8f4ebe2e2d5ad903562518a39c08d3a66c8e0c2), product `0.3.294-SNAPSHOT`. See [durable I086-3E4 evidence](../evidence/I086/I086_PLAT054_3E4_DEFAULT_NETWORK_POLYGLOT_PUBLICATION.md). `ProtosEmbeddedProcess.bootstrap()` uses `Env.isSocketIOAllowed()` and provisions `ProtosEmbeddedNetworkCustody` and the bootstrap-local `network` slot only with effective socket permission; permission does not inspect file or guest-thread policy. Custody lazily creates a host-only NIO poller on first TCP acquisition, releases and revokes all Network resources on Process termination/Context close/disposal, and prevents poller creation after close. New conformance/race tests are published. Maintainer reports all local tests PASS and clean `git diff --check`, but coordinator has not run or inspected logs. Native Image/portable final acceptance remains an I086 issue-level open gate, **not a reason to keep B012 blocked**. The earlier `READY`, `null` default and "next 3E4" statements above are historical snapshots superseded by this closure.
+
