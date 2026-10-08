@@ -23,7 +23,7 @@ The product revision was retrieved from the live GitHub commit record and re-rea
 
 ## Exact published product delta
 
-[Commit `a8027f6a78fac057f409103d8a79500faead72e2`](https://github.com/guillermomolina/protos/commit/a8027f6a78fac057f409103d8a79500faead72e2) owns nine paths:
+[Commit `a8027f6a78fac057f409103d8a79500faead72e2`](https://github.com/guillermomolina/protos/commit/a8027f6a78fac057f409103d8a79500faead72e2) owns eight paths:
 
 | Path | Observed change |
 | --- | --- |
@@ -36,7 +36,6 @@ The product revision was retrieved from the live GitHub commit record and re-rea
 | `pom.xml` | Published version `0.3.295-SNAPSHOT` |
 | `CHANGELOG.md` | `0.3.295-SNAPSHOT` LM012-B1 description, with no specification bump |
 
-**Corrected accounting:** there are eight paths in the observed diff, not nine: two newly introduced analysis files, one analysis core, one LSP service, two test files, and two version/changelog metadata files.
 
 ## Verified implementation boundaries
 
