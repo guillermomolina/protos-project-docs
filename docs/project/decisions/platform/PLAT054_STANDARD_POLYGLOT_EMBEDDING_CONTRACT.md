@@ -1,6 +1,6 @@
 # PLAT054 — Standard Polyglot embedding and language-bindings contract
 
-Status: **RATIFIED PLATFORM DIRECTION — NORMATIVE SPECIFICATION PUBLICATION PENDING**
+Status: **RATIFIED PLATFORM ARCHITECTURE — NORMATIVE SPECIFICATION PUBLISHED (0.1.449), RUNTIME IMPLEMENTATION PENDING**
 
 Selected: **Candidate A — one lazily initialized Protos Process per embedding Polyglot Context, standard Truffle scope and executable interop, ordinary Protos module semantics**.
 
@@ -9,6 +9,7 @@ Performance parent: https://github.com/guillermomolina/protos/issues/831
 Callable prerequisite: PERF033 / https://github.com/guillermomolina/protos/issues/832
 Previous evidence: [PLAT054-0](../../evidence/PLAT054/PLAT054_0_STANDARD_POLYGLOT_BINDINGS_HARNESS_RECONCILIATION.md)
 Owner approval and comparative evidence: [PLAT054-1](../../evidence/PLAT054/PLAT054_1_OWNER_APPROVAL_NORMATIVE_RECONCILIATION.md)
+Normative publication evidence: [PLAT054-2](../../evidence/PLAT054/PLAT054_2_NORMATIVE_PUBLICATION.md)
 
 Approval: explicit project-owner response on **2026-10-08**, *"ok aprobado"*, to the PLAT054-1 research packet and its exact seven-clause approval text. This approval ratifies the candidate and identified refinements; it does **not** assert that Protos normative files were already modified, that the Java implementation is available, or that tests passed.
 
@@ -63,12 +64,12 @@ New, *explicitly owner-approved* consequences: fatal host-entry RootActor turn c
 
 ## Normative authority and ordering
 
-This PLAT decision is non-normative. It cannot supersede the specification. Before exposing the new Java contract as supported product behavior, publish the exact approved guest-visible additions in:
+This PLAT decision is non-normative. It cannot supersede the specification. The approved guest-visible additions were published in `guillermomolina/protos@ab1f2196e6736d4df01e83f685a3fc8aa3f606ac` (specification revision `0.1.449`) in:
 
 - `spec/semantics/MODULES.md`: host entry-module/cache/identity/result and bindings-local-slot selection; preserve existing cache-before-execute, cycles, failure eviction, independent reachability and standalone distinctions.
 - `spec/io/PROCESS_IO.md`: lazy embedding/bootstrap, exact initial-entry authority, Truffle Env snapshot and authority restrictions, fatal Process custody/disposition.
 - `spec/concurrency/ACTORS.md` §24C: host-entry Actor-turn classification without requiring physical Tasks.
-- `spec/PROTOS_SPEC_CHANGELOG.md`: one new global normative revision identifying those owners and effects.
+- `spec/PROTOS_SPEC_CHANGELOG.md`: global normative revision `0.1.449` identifying those owners and effects.
 
 The approved detailed draft is retained in the linked PLAT054-1 evidence. Implementation MUST NOT treat historical PERF033 tests or wrapper behavior as semantic authority. In particular, the retained test for an escaped InvalidReturn followed by successful subsequent invocation must be reconsidered against the now approved fatal RootActor turn classification, preserving behavior only for a separately valid handled/non-turn case.
 
@@ -76,9 +77,9 @@ After the normative publication, implement product embedding in a coherent bound
 
 ~~~text
 PLAT054_PLATFORM_DECISION=RATIFIED_2026_10_08
-NORMATIVE_SPECIFICATION_PUBLICATION=PENDING
+NORMATIVE_SPECIFICATION_PUBLICATION=PASS_0.1.449
 PRODUCT_EMBEDDING_IMPLEMENTED=NO
-PRODUCT_IMPLEMENTATION_RELEASE_GATE=SPECIFICATION_PUBLICATION_AND_HEAD_REVALIDATION
+PRODUCT_IMPLEMENTATION_RELEASE_GATE=HEAD_REVALIDATION_AND_CONFORMANCE_TESTS
 BENCHMARK_PARITY_CLAIM=NO
 ~~~
 
@@ -91,6 +92,12 @@ C violates persistent Process/module identity; E invents a second global namespa
 Adversarial cases include multiple Contexts on one Engine; repeated importable and standalone sources; cycles and failed initialization with escaped partial objects; replacement module selection; host Values retained across eval and close; foreign/native Closure arguments and nonlocal returns; handled versus unhandled RootActor Errors; hostile Env/filesystem/network access; concurrent calls and Actor/P carriers; unopened/unused Contexts; native image and absence of language home; large Context counts. Current unneeded facilities remain deferred, not preimplemented.
 
 Strongest argument against A: standard host-initiated entry exposes a subtle new RootActor error/lifecycle boundary and a dynamic module scope requiring precise specification and tests. This is preferable to hiding those semantics in specialized sessions. A regret scenario is excessive cold-start cost for thousands of short-lived Contexts; the escape is semantically invisible sharing of frozen Core/code artifacts and bounded infrastructure caches, never shared mutable module/Actor state or Process reuse behind one Context.
+
+## PLAT054-2 normative release (2026-10-08)
+
+The approved contract is now normatively published as `spec/0.1.449` at [`guillermomolina/protos@ab1f2196e6736d4df01e83f685a3fc8aa3f606ac`](https://github.com/guillermomolina/protos/commit/ab1f2196e6736d4df01e83f685a3fc8aa3f606ac). Its four changed paths are `MODULES.md`, `PROCESS_IO.md`, `ACTORS.md` and the specification changelog. The owner reported all local tests passed and `git diff --check` clean; no raw test logs were independently inspected. The normative contract is now the primary authority for the next Java implementation. [Exact evidence and remaining obligations](../../evidence/PLAT054/PLAT054_2_NORMATIVE_PUBLICATION.md).
+
+This release **does not** mean `Context.eval + getBindings` is yet supported by the product runtime, or that benchmark graph/latency parity has been measured. PLAT054-3 is implementation in `guillermomolina/protos`, not benchmark modification.
 
 ## Evidence, exact baseline and AI assistance
 
