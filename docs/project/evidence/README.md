@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`LM010/`](LM010/LM010_A0_REACTIVATION_AND_HOVER_AUDIT_HANDOFF.md) — 2026-10-08 LM010/#493 reactivation snapshot, exact product baseline and LM010-A0 investigation-only hover authority audit handoff. No runtime implementation, test result, new design ratification, or normative change is claimed.
+
 - [`I081/`](I081/I081_D189_SPECIFICATION_RECONCILIATION_CLOSURE.md) — retained I081/#829 D189 specification-reconciliation closure at exact Protos revision `44688445543a2cef79b89c67b7145e4d382da6d0` / spec `0.1.446`: Candidate A dynamic synchronous callback semantics are now normative across Foreign Values, Actor execution, and Task/suspension/cancellation ownership; no runtime/Standard Library/test implementation was added, the maintainer reports clean `git diff --check` and all local tests PASS, I081 has no further slice, and PLAT052/#821 remains the next separate AUD019 investigation.
 
 - [`D189/`](D189/D189_OWNER_APPROVAL_AND_RATIFICATION.md) — retained D189/#820 owner approval and ratification evidence: Candidate A dynamic synchronous callbacks keep the originating Actor and current Task, create no Task, reuse D188 admission/Error boundaries, reject foreign-thread entry and actual cross-foreign suspension, expire with the originating foreign call, forbid resurrection, and route normative reconciliation to I081/#829 while retained/asynchronous callback ingress remains deliberately deferred.
