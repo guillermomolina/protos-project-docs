@@ -595,6 +595,8 @@ and existing Actor/lifecycle regression work may advance separately.
 
 **Publication checkpoint — 2026-10-08, spec 0.1.450:** [exact commit and verification](../evidence/I086/I086_PLAT054_3E1_NORMATIVE_HOST_ENTRY_AND_AUTHORITY_PUBLICATION.md). The published rule expressly leaves the two fail-closed outcomes open; **B011 remains BLOCKED only for this narrow observable choice**. Independent confined `TruffleFile` adapter investigation/planning is permitted, but do not select a guest-visible policy or publish a positive grant path depending on it. No completed Filesystem backend or Native gate is claimed.
 
+**Coordination checkpoint — after PLAT054-3E2:** host-entry `Future.value()` is implemented in [`protos@55f06a29`](../evidence/I086/I086_PLAT054_3E2_SUSPENDIBLE_HOST_ENTRY_FUTURE_PUBLICATION.md); it no longer blocks this Filesystem area. B011 is **still BLOCKED** only for the unselected unsafe-base consequence. Slice PLAT054-3E3 is deferred; independent B012 Network implementation goes next as 3E4. No positive Filesystem host grant or Native validation is implied.
+
 ## B012 — Standard Polyglot embedding default Network grant and thread authority
 
 Status: READY — normative permission/thread authority gate satisfied by spec 0.1.450; backend pending
@@ -645,3 +647,5 @@ I087 non-standard app module bootstrap and Native Image validation
 can continue.
 
 **Publication checkpoint — 2026-10-08, spec 0.1.450:** [exact commit and verification](../evidence/I086/I086_PLAT054_3E1_NORMATIVE_HOST_ENTRY_AND_AUTHORITY_PUBLICATION.md). **B012 is READY for implementation**. The current `ProtosNioHostIoPoller` still starts a raw Java thread and lacks embedded-Context-specific lifecycle integration; no positive Network grant or passing Native gate is claimed by the spec-only publication.
+
+**Coordination checkpoint — after PLAT054-3E2:** host-entry Future suspension was published at [`protos@55f06a29`](../evidence/I086/I086_PLAT054_3E2_SUSPENDIBLE_HOST_ENTRY_FUTURE_PUBLICATION.md); B012 is **READY**, but the embedded guest still receives no default Network because `ProtosEmbeddedProcess.bootstrap()` passes `null`. Next slice **PLAT054-3E4 / IMPLEMENTATION** integrates effective host socket permission, bootstrap-local Network capability, lazy Context-owned backend and correct close/thread custody with the complete affected regression tests. Do not mark B012 CLOSED until the product implementation is actually published and verified. B011 remains independent and BLOCKED.
