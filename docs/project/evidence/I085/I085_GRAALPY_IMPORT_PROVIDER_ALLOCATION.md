@@ -205,3 +205,55 @@ NUMPY_REQUIRED_FOR_I085_CLOSURE=NO
 THIRD_PARTY_LIBRARY_NAME=UNCONSTRAINED
 IMPORT_INSTALLS_DEPENDENCIES=NO
 ~~~
+
+## Owner correction — external plugin SPI, no in-product guest languages
+
+The owner explicitly rejected the earlier proposals to introduce direct
+GraalPy/GraalJS integrations, language-specific Maven dependencies, or special
+cases inside Protos. A hypothetical `graalmeinventoellenguaje` must be
+integrable through an external provider artifact without changing or rebuilding
+Protos.
+
+This latest owner direction **supersedes all previous I085-A/B
+Python/JavaScript implementation and NumPy closure requirements recorded
+above**. The historical drafts remain visible for provenance only.
+
+The newly prescribed I085-A is **IMPLEMENTATION**, not investigation.
+The work is the minimal external provider SPI and controlled opt-in loading
+from a host-supplied classloader/JAR path via Java `ServiceLoader`, bridging
+to the I082 provider-neutral substrate. The default RuntimeHost retains an
+empty provider registry and no plugin discovery; it has no guest-language
+dependency, no foreign runtime initialization, and no need to edit `pom.xml`
+for additional language ecosystems. Active registries remain immutable under
+PLAT053; authority remains host-selected and fail-closed under PLAT052.
+
+The acceptance proof is an out-of-core fixture JAR with a novel invented
+import scheme created under the repository's test scope, loaded using only
+the public SPI and no guest-language Maven dependencies. Language-specific
+providers are built/installed externally as separate artifacts later;
+Protos does not special-case their language IDs, modules or packages.
+
+The source PLAT053 decision explicitly deferred a public third-party provider
+registration API; the owner is now *explicitly* requesting that additional
+external-extension capability. Do not misrepresent PLAT053's historical
+decision as already containing a ratified public SPI design. Preserve its
+existing immutable registry, lazy compartments, Actor isolation, authority
+and lifetime invariants while following the latest owner-mandated extension.
+
+~~~text
+CURRENT_OWNER_SCOPE=EXTERNAL_PROVIDER_SPI
+NEXT_SLICE=I085-A
+NEXT_SLICE_TYPE=IMPLEMENTATION
+IMPLEMENTATION_REPOSITORY=guillermomolina/protos
+IMPLEMENTATION_AGENT_RESEARCH=FORBIDDEN
+LOAD_MECHANISM=EXPLICIT_PROVIDER_PATH_PLUS_JAVA_SERVICELOADER
+DEFAULT_RUNTIMEHOST_PROVIDERS=NONE
+FOREIGN_LANGUAGE_DEPS_IN_PROTOS_POM=NONE
+FUTURE_LANGUAGE_ADDITION_REQUIRES_PROTOS_EDIT=NO
+GRAALPY_GRAALJS_IMPLEMENTATION_IN_PRODUCT=NO
+NUMPY_REQUIRED=NO
+EXTERNAL_FIXTURE_PROOF=REQUIRED
+~~~
+
+Canonical current coordination:
+https://github.com/guillermomolina/protos/issues/839
