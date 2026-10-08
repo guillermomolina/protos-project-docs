@@ -539,7 +539,7 @@ optimizations and are not required by D049.
 
 ## B011 — Standard Polyglot embedding default Filesystem authority and base
 
-Status: BLOCKED
+Status: BLOCKED — narrow unresolved bootstrap-failure-vs-absent-slot policy (spec 0.1.450)
 
 Implementation area:
 I086 / PLAT054 standard `Context.newBuilder("protos")` embedding,
@@ -554,13 +554,12 @@ Normative dependency:
 default Core Filesystem and requires the capability to remain bounded by
 the host's Polyglot Context authority. `spec/io/FILESYSTEM.md` §20
 defines a confined Filesystem namespace rooted at an authority base, but
-the published standard embedding contract does **not** yet select the
-exact grant/projection rule and namespace base for Polyglot hosts, in
-particular whether `IOAccess.ALL`, `allowAllAccess`, an explicit host
-`FileSystem`, or a combination suffices for a *default* Protos
-Filesystem, and which base the capability denotes. Choosing an implicit
-unrestricted root, current working directory, or new public option
-without owner approval would create observable authority semantics.
+specification **0.1.450 now selects** the effective host-granted file-I/O
+mapping and the authorized Context working directory as initial Filesystem
+base. The remaining open observable choice is **which fail-closed outcome**
+applies when file access is granted but that base cannot be represented and
+confined: fail the initial bootstrap, or continue without the `filesystem`
+slot. Neither outcome has been approved as mandatory.
 
 Specification authority:
 - `spec/io/PROCESS_IO.md`, Standard Polyglot embedding bootstrap and authority
@@ -570,18 +569,18 @@ Specification authority:
 - PLAT054 ratification record for the explicit host-authority ceiling.
 
 Objective unblock condition:
-The owner-approved and, where normative guest behavior is affected,
-published host embedding contract precisely defines which Polyglot
-configuration grants the initial/default Protos Filesystem, what
-confined namespace base/authority it obtains, and which configurations
-must leave `filesystem` absent. The approved design must preserve the
+The effective permission and base are normatively published in `0.1.450`.
+The remaining objective unblock gate is an owner-approved and normatively
+published selection of the **unsafe/unrepresentable base** consequence
+(bootstrap fails vs initial `filesystem` absent), if one uniform outcome
+is required before enabling this product path. The approved design must preserve the
 configured Context filesystem restrictions without allowing the
 runtime's existing `java.nio`-backed `ProtosNio*` operations to bypass
 them. A `TruffleFile`-respecting or demonstrably equivalent confined
 backend is **implementation work after** this decision, not a substitute
 for the authority decision.
 
-**Owner-decision update — 2026-10-08 (PLAT054-3E1):** the project owner explicitly approved HOST-FS-1/FS-2, published as a non-normative decision and provenance record in [PLAT054-3E1](../evidence/PLAT054/PLAT054_3E1_HOST_SUSPENSION_AND_AUTHORITY_OWNER_APPROVAL.md). Effective Polyglot file-I/O authorization (including applicable custom provider/restrictions) is the authority source; base = the Context's effective authorized working directory; failure to prove a safe base is **fail-closed** with no unrestricted NIO fallback. The owner **did not select** whether an unprovisionable safe base aborts bootstrap or simply omits the default slot. **Status stays BLOCKED** pending exact normative specification publication and, if indispensable, this narrow clarification. After publication, move to READY for an authorized confined `TruffleFile` backend; do not claim an implemented Filesystem or tests in advance.
+**Owner-decision update — 2026-10-08 (PLAT054-3E1):** the project owner explicitly approved HOST-FS-1/FS-2, published as a non-normative decision and provenance record in [PLAT054-3E1](../evidence/PLAT054/PLAT054_3E1_HOST_SUSPENSION_AND_AUTHORITY_OWNER_APPROVAL.md). Effective Polyglot file-I/O authorization (including applicable custom provider/restrictions) is the authority source; base = the Context's effective authorized working directory; failure to prove a safe base is **fail-closed** with no unrestricted NIO fallback. The owner **did not select** whether an unprovisionable safe base aborts bootstrap or simply omits the default slot. **Historical at 0.1.449:** status BLOCKED pending normative publication. As of 0.1.450 the general permission/base contract **is** published; only the above fail-closed outcome remains unselected. Do not claim a completed backend or grant.
 
 Current consequence:
 I086-3D at `guillermomolina/protos@e0bb880584908f65cb78e66896eba334f3d5e13b`
@@ -594,9 +593,11 @@ I086 Future.value host-entry suspension attribution, Network grant
 decision (B012), I087 application-module resolution, native validation
 and existing Actor/lifecycle regression work may advance separately.
 
+**Publication checkpoint — 2026-10-08, spec 0.1.450:** [exact commit and verification](../evidence/I086/I086_PLAT054_3E1_NORMATIVE_HOST_ENTRY_AND_AUTHORITY_PUBLICATION.md). The published rule expressly leaves the two fail-closed outcomes open; **B011 remains BLOCKED only for this narrow observable choice**. Independent confined `TruffleFile` adapter investigation/planning is permitted, but do not select a guest-visible policy or publish a positive grant path depending on it. No completed Filesystem backend or Native gate is claimed.
+
 ## B012 — Standard Polyglot embedding default Network grant and thread authority
 
-Status: BLOCKED
+Status: READY — normative permission/thread authority gate satisfied by spec 0.1.450; backend pending
 
 Implementation area:
 I086 / PLAT054 default `network` capability provisioning in the
@@ -608,14 +609,11 @@ Normative dependency:
 `spec/io/PROCESS_IO.md` requires `network` only when the host
 explicitly grants Network authority, and `spec/io/NETWORK.md`
 owns capability behavior. The approved standard-embedding platform
-record establishes **deny by default**, but does not uniquely specify
-the exact mapping from the host Polyglot socket access policy to
-the Protos default Network grant, especially whether
-`Env.isSocketIOAllowed()`, host `allowHostSocketAccess(true)` or a
-broad `allowAllAccess(true)` is the sufficient explicit grant.
-An unconditional unrestricted `HOST_NETWORK` capability based solely
-on an ambiguous host flag would choose public authority semantics
-without owner approval.
+record establishes **deny by default**, but now defines the mapping in **spec 0.1.450**: the *effective* Context
+socket authorization after restrictions is an explicit grant for the initial,
+host-bounded TCP-only `network` capability. Thread creation is independent;
+no guest code may run in unauthorized hidden workers. A broad grant counts
+only insofar as effective socket access is allowed.
 
 Specification authority:
 - `spec/io/PROCESS_IO.md`, Standard Polyglot embedding bootstrap and authority
@@ -625,16 +623,14 @@ Specification authority:
 - `spec/concurrency/ACTORS.md` and PLAT054 for Context-local thread/lifetime boundaries.
 
 Objective unblock condition:
-An explicit, owner-approved host grant mapping defines exactly when
-default `network` is present, what authority it conveys, how to avoid
-confusing `allowAllAccess` with an accidental automatic guest capability,
-and which host configurations must keep Network absent. Any required
-normative reconciliation must be published before an implementation
-widens guest authority. Backend implementation must additionally keep
-its NIO poller threads within applicable Context thread and cleanup
-constraints, or establish a safe non-threaded alternative.
+**SATISFIED by product spec 0.1.450**, published at
+`guillermomolina/protos@3bb1278d91ee5cea98031462be2a5c4dd3c89019`.
+The implementation acceptance now requires an actual backend preserving
+effective socket authority, independent guest-thread policy, Process/Context
+custody, termination cleanup and zero unused Network resources. Native and
+portable acceptance remain unverified.
 
-**Owner-decision update — 2026-10-08 (PLAT054-3E1):** the project owner explicitly approved HOST-NET-1/NET-2 in [PLAT054-3E1](../evidence/PLAT054/PLAT054_3E1_HOST_SUSPENSION_AND_AUTHORITY_OWNER_APPROVAL.md). Effective Polyglot socket authorization is the default Network grant condition; scope remains host-bounded Protos TCP; thread-creation authorization is **independent** and not a prerequisite for the Network slot. The backend must satisfy the Context's effective thread policy and Process-close custody, without unapproved guest workers. **Status stays BLOCKED** because the approved grant mapping has not been published as new normative specification, and there is no new Network backend. After that gate, reclassify READY for backend work; no positive grant or Native validation is claimed.
+**Owner-decision update — 2026-10-08 (PLAT054-3E1):** the project owner explicitly approved HOST-NET-1/NET-2 in [PLAT054-3E1](../evidence/PLAT054/PLAT054_3E1_HOST_SUSPENSION_AND_AUTHORITY_OWNER_APPROVAL.md). Effective Polyglot socket authorization is the default Network grant condition; scope remains host-bounded Protos TCP; thread-creation authorization is **independent** and not a prerequisite for the Network slot. The backend must satisfy the Context's effective thread policy and Process-close custody, without unapproved guest workers. **Historical at 0.1.449:** BLOCKED awaiting normative publication. That publication is now complete in 0.1.450. **READY now means implementation authorized, not implemented or validated.**
 
 Current consequence:
 I086-3D at `guillermomolina/protos@e0bb880584908f65cb78e66896eba334f3d5e13b`
@@ -647,3 +643,5 @@ Filesystem grant decision (B011), I086 host Future.value
 classification, embedded Actor/lifecycle work already published,
 I087 non-standard app module bootstrap and Native Image validation
 can continue.
+
+**Publication checkpoint — 2026-10-08, spec 0.1.450:** [exact commit and verification](../evidence/I086/I086_PLAT054_3E1_NORMATIVE_HOST_ENTRY_AND_AUTHORITY_PUBLICATION.md). **B012 is READY for implementation**. The current `ProtosNioHostIoPoller` still starts a raw Java thread and lacks embedded-Context-specific lifecycle integration; no positive Network grant or passing Native gate is claimed by the spec-only publication.
