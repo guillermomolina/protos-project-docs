@@ -10,9 +10,9 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
-- [`LM012/`](LM012/LM012_A0_DIAGNOSTICS_LINT_AUTHORITY_AUDIT.md) — LM012-A0/#671 source-diagnostic and lint ownership audit at exact Protos revision `3bb1278d91ee5cea98031462be2a5c4dd3c89019`; existing parser-LSP authority is reusable, while new public lint rules are blocked on D194. No implementation, tests, or design ratification are claimed.
+- [`LM012/`](LM012/LM012_A0_DIAGNOSTICS_LINT_AUTHORITY_AUDIT.md) — completed [LM012-A0 source diagnostics/lint ownership audit](LM012/LM012_A0_DIAGNOSTICS_LINT_AUTHORITY_AUDIT.md) at Protos `3bb1278d91ee5cea98031462be2a5c4dd3c89019`; [LM012-B0 first-rule admission investigation](LM012/LM012_B0_FIRST_RULE_ADMISSION_RESEARCH.md) proposes a sound but limited standalone discarded literal Hint, **awaiting exact owner rule selection**. The general D194 modified-B policy is [ratified](../decisions/tooling/D194_CANONICAL_LINT_DIAGNOSTICS_RULE_AND_FIX_POLICY.md); no implementation/tests are claimed.
 
-- [`D194/`](D194/D194_LINT_POLICY_COMPARATIVE_RESEARCH.md) — D194/#842 comparative lint-policy investigation (ESLint, Clippy, Ruff, Go vet, gopls, LSP), 12-criterion GITHUB010 assessment, adversarial Protos counterexamples, and an opt-in conservative proposal **pending owner approval**, not a ratification.
+- [`D194/`](D194/D194_LINT_POLICY_COMPARATIVE_RESEARCH.md) — D194 comparative lint-policy research (ESLint, Clippy, Ruff, Go vet, gopls, LSP), original 12-criterion GITHUB010 assessment and adversarial Protos cases. Research's pending-approval status is historical; the owner subsequently [ratified modified B](../decisions/tooling/D194_CANONICAL_LINT_DIAGNOSTICS_RULE_AND_FIX_POLICY.md) on 2026-10-08, with concrete lint rules and CLI/CI deliberately deferred.
 
 - [`LM010/`](LM010/LM010_A0_REACTIVATION_AND_HOVER_AUDIT_HANDOFF.md) — LM010/#493 reactivation handoff and [`LM010-A0 hover audit / owner-approved bounded LM010-A implementation scope`](LM010/LM010_A0_HOVER_AUDIT_AND_LM010_A_IMPLEMENTATION_SCOPE.md) at exact Protos `3bb1278d91ee5cea98031462be2a5c4dd3c89019`. The audit is complete; static proof plus clearly labelled syntactic hover presentation are approved for the next *implementation* slice, not yet implemented/tested. Completion and signature help remain deferred; no language semantics change.
 
