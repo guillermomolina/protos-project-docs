@@ -1,6 +1,6 @@
 # PLAT054 — Standard Polyglot embedding and language-bindings contract
 
-Status: **RATIFIED PLATFORM ARCHITECTURE — NORMATIVE SPECIFICATION PUBLISHED (0.1.449), RUNTIME IMPLEMENTATION PENDING**
+Status: **RATIFIED PLATFORM ARCHITECTURE — NORMATIVE SPECIFICATION 0.1.451 PUBLISHED; I086 RUNTIME AND REQUIRED ACCEPTANCE COMPLETE (2026-10-08)**
 
 Selected: **Candidate A — one lazily initialized Protos Process per embedding Polyglot Context, standard Truffle scope and executable interop, ordinary Protos module semantics**.
 
@@ -162,6 +162,18 @@ Verified product publication [`guillermomolina/protos@6dab6ecc08c9a2102a388e0090
 **B011 CLOSED** after approved owner choice, spec `0.1.451` publication and this positive default Filesystem implementation. **B012 remains CLOSED**, with Network independent of guest-thread and file permission. The maintainer reports all local tests PASS and `git diff --check` clean; the product commit, tests and implementation version are independently visible in GitHub, but no agent-side test execution, Native Image or portable distribution acceptance is claimed. [Detailed publication evidence](../../evidence/I086/I086_PLAT054_3E3_DEFAULT_FILESYSTEM_POLYGLOT_PUBLICATION.md).
 
 **I086/#840 remains OPEN** for final embedding acceptance, Native Image/portable proof and canonical coordination/closure checks. Those are not dependencies of closed PERF033/#832 or active PERF032/#831 primitive-return profiling. The immediate next step is `I086-FINAL`, bounded acceptance work in `guillermomolina/protos` with human execution; do not create a new major functionality slice unless acceptance proves a concrete defect. PLAT054/#838 retains its independent previously noted issue-hierarchy/closure postconditions. Prior text describing B011 BLOCKED or READY is historic and superseded here.
+
+## PLAT054 final design/technical acceptance checkpoint (2026-10-08)
+
+PLAT054 is **ratified and technically complete**, with its owner-approved Candidate A and later HOST-FUT, Filesystem and Network decisions published in normative specification **0.1.451**. The final embedding implementation is [`guillermomolina/protos@6dab6ecc08c9a2102a388e00908c710a15cf2a4c`](https://github.com/guillermomolina/protos/commit/6dab6ecc08c9a2102a388e00908c710a15cf2a4c), version `0.3.298-SNAPSHOT`; B011 and B012 are both **CLOSED**.
+
+Downstream [I086/#840](https://github.com/guillermomolina/protos/issues/840) is **closed/completed**. The maintainer reported successful full local tests, `make -C build/native test`, `make dist-validate` and clean Git checks on that exact product revision. The portable validation includes the standard Polyglot Java-JAR embedding smoke; Native coverage includes the Native CLI and does **not** prove Native-hosted Java embedding. See [I086-FINAL accepted evidence (immutable docs revision `df5d18dc658c81dfb6284e3879839bf6cde36cb0`)](https://github.com/guillermomolina/protos-project-docs/blob/df5d18dc658c81dfb6284e3879839bf6cde36cb0/docs/project/evidence/I086/I086_FINAL_STANDARD_POLYGLOT_EMBEDDING_ACCEPTANCE_2026_10_08.md). These validation results are maintainer-reported, not tests rerun by the coordinator.
+
+The native GitHub parent of [PLAT054/#838](https://github.com/guillermomolina/protos/issues/838) has now been verified through the GitHub parent/sub-issue API as [PERF032/#831](https://github.com/guillermomolina/protos/issues/831). The previously noted **GITHUB015 native-parent structural gap is resolved**. No remaining architectural, normative, implementation or required-validation gap blocks PLAT054 closure. The final GITHUB020 Issue comment and GitHub close transition are tracked in #838 itself; the Project dashboard is an automation-owned projection, not independently certified here.
+
+PERF032/#831 remains independent performance-causality work, and I087/#841 remains independent host application-module work. PLAT054 completion does **not** claim GraalJS/GraalPy performance parity, application-module completion or Native-hosted Java embedding.
+
+This latest checkpoint supersedes prior historical stage descriptions of `0.1.449`/`0.1.450`, incomplete I086, B011/B012 blocked, or native hierarchy unverified. Those earlier snapshots remain in the chronology for provenance; they are no longer current status.
 
 ## Evidence, exact baseline and AI assistance
 
