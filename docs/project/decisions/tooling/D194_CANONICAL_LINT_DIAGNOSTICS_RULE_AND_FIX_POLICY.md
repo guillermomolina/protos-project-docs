@@ -125,3 +125,34 @@ QUICK_FIX_SELECTED=NO
 CLI_CI_PUBLIC_CONTRACT_SELECTED=NO
 SPECIFICATION_CHANGE=NO
 ```
+
+## GITHUB015/GITHUB020 formal closure reconciliation — 2026-10-08
+
+The earlier *native hierarchy pending* statements above are historical snapshots. GitHub's current native issue endpoints now independently verify both directions:
+
+- `GET /repos/guillermomolina/protos/issues/842/parent` identifies [LM012/#671](https://github.com/guillermomolina/protos/issues/671).
+- `GET /repos/guillermomolina/protos/issues/671/sub_issues` includes [D194/#842](https://github.com/guillermomolina/protos/issues/842).
+- These actual native relations satisfy GITHUB015; the previous inability to mutate the relation using a connector is no longer a closure blocker.
+
+**Decision complete:** Modified Candidate B's owner approval, GITHUB010 comparative record, GITHUB021 invariant checks and exact durable ratification have already been published. The general source-local, proof-first correctness/style/fix/snapshot/PLAT024 policy is settled. A new owner decision, normative language spec revision, or product edit is not required.
+
+**Separate downstream work:** The owner separately approved two default-on Warning rules under [LM012-B1's exact rule admission](../../work/LM012/LM012_B1_INITIAL_LINT_RULES_OWNER_APPROVAL.md), and the initial source and LSP diagnostics were published as [Protos `a8027f6a78fac057f409103d8a79500faead72e2`](https://github.com/guillermomolina/protos/commit/a8027f6a78fac057f409103d8a79500faead72e2). That publication is not the D194 policy itself. [D195/#843](https://github.com/guillermomolina/protos/issues/843) separately ratified the public CLI/CI policy and is now closed. LM012/#671 remains the open, separately validated implementation owner, including LM012-C1; **closing D194 does not declare LM012 implemented, tested or complete.**
+
+**Evidence provenance:** Existing D194 owner approval and ratification, published D194 comparison, the B1 rule selection, and the live native GitHub hierarchy were inspected. No agent-run builds, tests, benchmarks or product Git operations are asserted, nor is a new PASS inferred for B1 tests.
+
+For GITHUB020, the coordinator must reread this exact published record and the owning issue, post a compact final issue comment with this repository revision, then close D194 as `completed` while retaining its formal D-family identity and LM012 native parent. GitHub Project state is derived by automation; no independent Project synchronization proof is asserted.
+
+```text
+ISSUE=D194/#842
+OWNER_APPROVED_DECISION=MODIFIED_B_RATIFIED
+GITHUB021_INVARIANTS=PRESERVED
+GITHUB010_COMPARATIVE_RESEARCH=COMPLETE
+NATIVE_PARENT=PASS_LM012_671
+NATIVE_SUBISSUE=PASS_D194_842
+DURABLE_RECORD_DECISION=REQUIRED
+CLOSURE_EVIDENCE_IDENTIFIED=PASS
+IMPLEMENTATION_OWNER=LM012_671_INDEPENDENT
+D195_843=CLOSED_COMPLETED
+NO_NEW_PRODUCT_CHANGES=YES
+FINAL_NEXT_ACTION=GITHUB020_COMMENT_THEN_CLOSE_D194_COMPLETED
+```
