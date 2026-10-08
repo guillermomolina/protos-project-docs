@@ -147,3 +147,38 @@ ORIGINAL_ALLOCATION_SNAPSHOT=PRESERVED_ABOVE
 
 The earlier pending state is retained above as a timestamped coordination
 observation, not represented as the current hierarchy status.
+
+## Scope correction after genericity review
+
+The initial Python-only I085 scope was corrected on the live Issue while
+preserving the historically accurate intake above. AUD019's actual architectural
+promise is **not** one independent interop framework per language:
+
+~~~text
+COMMON_FOREIGN_VALUE_AND_MODULE_SUBSTRATE=I082_ALREADY_PUBLISHED
+COMMON_GUEST_TRUFFLE_PROVIDER_MECHANICS=I085-A_SHARED_WORK
+FIRST_TWO_GUEST_LANGUAGE_PROOFS=GRAALPY_AND_GRAALJS
+LANGUAGE_SPECIFIC_MODULE_ACQUISITION=THIN_ADAPTER_PER_MODULE_SYSTEM
+UNIVERSAL_TRUFFLE_PACKAGE_IMPORT_API=NO
+NUMPY_REAL_CONFORMANCE=I085-B_REQUIRED
+~~~
+
+The shared mechanics are guest-language Context/session/resource wiring under
+PLAT053 and D188's existing generic interop operations, lifecycle, identity,
+projections, errors, and authority checks. Do not duplicate them per language.
+Python's importlib and GraalJS ESM resolution are different, so only module
+acquisition/environment-specific details belong in language adapters.
+
+I085-A must prove **both** a real GraalPy module and a real GraalJS ES module
+over the same generic shared guest-language mechanics. NumPy remains required
+for final I085 acceptance. Unsupported GraalJS Node builtins/CommonJS and
+unsafe Python native-extension privileges are not silently enabled. Additional
+guest ecosystems remain future adapter integrations rather than replicas of
+the runtime substrate.
+
+This correction supersedes the original Python-only initial slice and the
+original deferral of GraalJS testing, but retains its NumPy acceptance and
+PLAT052/PLAT053 safety/lifecycle invariants.
+
+Live updated issue:
+https://github.com/guillermomolina/protos/issues/839
