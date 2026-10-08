@@ -131,3 +131,19 @@ Prepared with AI assistance using live AUD019, I082, LIB021 and I085 Issue
 evidence, current Protos sources/specification, and current GraalPy
 embedding/native-extension documentation. No independent human review or
 runtime execution is claimed.
+
+## Subsequent live hierarchy reconciliation
+
+After the publication of the allocation snapshot, a fresh read of
+`GET /repos/guillermomolina/protos/issues/839/parent` returned native parent
+`#818`. The repository intake automation therefore converged the native
+Parent/Sub-issue relationship without treating textual prose as sufficient.
+
+~~~text
+NATIVE_PARENT_AFTER_INTAKE=#818
+NATIVE_PARENT_VERIFICATION=PASS
+ORIGINAL_ALLOCATION_SNAPSHOT=PRESERVED_ABOVE
+~~~
+
+The earlier pending state is retained above as a timestamped coordination
+observation, not represented as the current hierarchy status.
