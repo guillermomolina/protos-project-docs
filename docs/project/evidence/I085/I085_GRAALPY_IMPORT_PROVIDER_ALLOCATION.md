@@ -272,3 +272,17 @@ black-box execution, not another duplicate Java fixture test, and not NumPy.
 
 Current detailed evidence and I085-B proposed acceptance:
 `docs/project/evidence/I085/I085_A_PUBLICATION_I085_B_PORTABLE_PLUGIN_PROOF.md`.
+
+## Final outcome — published and closed I085 (2026-10-08)
+
+The generic mechanism-independent external-provider SPI (I085-A) and
+the deployed Protos-language external-provider tests (I085-B) were
+published at `b1b86e46d84a07cdbd8aa405277d534fc3731fd8` and
+`4f459f2de119d956b8671ad1c1da7b9fa6bcfa17`,
+respectively. I085 closes the common optional provider infrastructure,
+**not** readiness of any arbitrary third-party language/library
+without its own external provider. The old Python/NumPy/GraalJS
+requirements above remain superseded.
+
+Full closure and proof qualifications:
+`docs/project/evidence/I085/I085_EXTERNAL_PROVIDER_SPI_CLOSURE.md`.

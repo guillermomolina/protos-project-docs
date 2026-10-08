@@ -170,3 +170,23 @@ I085_B_CURRENT_STATUS=AWAITING_IMPLEMENTATION_AND_MAINTAINER_EXECUTION
 The earlier historical I085-B note's lack of Protos-language programs is
 superseded by this explicit owner requirement. There is **no claim** that
 the Protos black-box tests or libc/native smoke have been run yet.
+
+## Final I085 closure / supersession — 2026-10-08
+
+The prior `I085_B_STATUS=NEXT_TEST_PROOF_NOT_YET_EXECUTED` and
+`I085_B_CURRENT_STATUS=AWAITING_IMPLEMENTATION_AND_MAINTAINER_EXECUTION`
+statements above were *historical allocation records* and are now
+superseded. I085-B was published at
+`4f459f2de119d956b8671ad1c1da7b9fa6bcfa17`; the maintainer reports
+all local tests PASS and a clean `git diff --check`.
+
+The commit contains real runnable Protos-language test cases for opaque
+foreign values, JDK Math/LocalDate methods and Linux/JDK25 FFM libc,
+executed through a portable-distribution fresh-process smoke harness.
+It did change `pom.xml` (version only) and `CHANGELOG.md` despite the
+test-only edit prohibition; this discrepancy is not concealed.
+Aggregate test success cannot distinguish native FFM PASS from
+platform-unsupported unless the runner's named results are supplied.
+
+The authoritative detailed closure evidence is now:
+`docs/project/evidence/I085/I085_EXTERNAL_PROVIDER_SPI_CLOSURE.md`.
