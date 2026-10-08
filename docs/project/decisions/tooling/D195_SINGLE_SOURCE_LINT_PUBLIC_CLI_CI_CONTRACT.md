@@ -121,3 +121,27 @@ NEXT=LM012-C1_IMPLEMENTATION_IN_guillermomolina/protos
 ```
 
 Native D195-to-LM012/#671 parent/sub-issue linkage cannot be established with the current available GitHub connector. Its **textual parent is not proof** of the native edge. Although owner-approved and durably ratified here, keep D195 **open** and report `NATIVE_PARENT=PENDING` until that structural postcondition is verified under GITHUB015. A separate native exact issue dependency edge may be needed; do not falsely claim it exists.
+## GITHUB015/GITHUB020 final formal closure reconciliation — 2026-10-08
+
+The earlier native-link limitation in the historical publication section above has been resolved **without changing the owner-ratified D195 decision**. The current GitHub native endpoints establish both directions:
+
+- `GET /repos/guillermomolina/protos/issues/843/parent` returns [LM012 / #671](https://github.com/guillermomolina/protos/issues/671).
+- `GET /repos/guillermomolina/protos/issues/671/sub_issues` includes [D195 / #843](https://github.com/guillermomolina/protos/issues/843).
+- D195 is a formally ratified Dxxx child decision, **not** the LM012-C1 implementation. Its CLI/CI public contract is owner-approved, fully documented above and independent of any remaining implementation work in LM012.
+- D194's canonical proof-first rules and formatter/PLAT024 separation remain invariant. No D195 normative spec revision or product implementation is required to complete the design issue.
+- The [LM012-C0 investigation/owner-approval evidence](../../evidence/LM012/LM012_C0_PUBLIC_LINT_CLI_CI_RESEARCH_AND_APPROVAL.md) is already published. The present exact canonical D195 record, already ratified, requires no reapproval, no new research, and no test/build rerun merely for GitHub administrative closure.
+- GITHUB020 requires a final compact comment referencing the exact new documentation revision before closing D195 with reason `completed`. The GitHub Project dashboard remains automation-owned and is not independently asserted to have synchronized.
+
+```text
+DECISION=D195
+OWNER_APPROVAL=PASS_ALREADY_PUBLISHED
+GITHUB021_INVARIANT_CONSISTENCY=PASS_ALREADY_PUBLISHED
+DURABLE_RATIFICATION=PASS
+NATIVE_PARENT=PASS_LM012_671
+NATIVE_SUBISSUE=PASS_D195_843
+DURABLE_RECORD_DECISION=REQUIRED
+CLOSURE_EVIDENCE_IDENTIFIED=PASS
+IMPLEMENTATION_OWNER=LM012_C1_SEPARATE
+D196_FORMAL_WORK=NOT_IDENTIFIED_IN_CURRENT_PROTOS_REPOS
+FINAL_NEXT_ACTION=POST_GITHUB020_COMMENT_AND_CLOSE_COMPLETED
+```
