@@ -182,3 +182,26 @@ PLAT052/PLAT053 safety/lifecycle invariants.
 
 Live updated issue:
 https://github.com/guillermomolina/protos/issues/839
+
+## Owner clarification — NumPy is optional, library choice is open
+
+The owner clarified on 2026-10-08 that NumPy is an illustrative example,
+**not a mandatory closure requirement**. The earlier NumPy-specific acceptance
+claims in this retained allocation history are superseded.
+
+The I085 objective is now the generic guest-language Truffle integration,
+demonstrated with real modules in **both GraalPy and GraalJS**. A representative
+real third-party library, if selected for extended proof, may be any suitable
+pre-provisioned Python or JavaScript library and need not be NumPy. This
+clarification does not weaken D188/D189/PLAT052/PLAT053 invariants, per-language
+import adapters, security, lifecycle or zero-use requirements.
+
+~~~text
+CURRENT_SCOPE_AUTHORITY=I085/#839_OWNER_CLARIFICATION
+FIRST_SLICE=I085-A
+IMPLEMENTATION_REPOSITORY=guillermomolina/protos
+REQUIRED_REAL_LANGUAGES=GRAALPY_AND_GRAALJS
+NUMPY_REQUIRED_FOR_I085_CLOSURE=NO
+THIRD_PARTY_LIBRARY_NAME=UNCONSTRAINED
+IMPORT_INSTALLS_DEPENDENCIES=NO
+~~~
