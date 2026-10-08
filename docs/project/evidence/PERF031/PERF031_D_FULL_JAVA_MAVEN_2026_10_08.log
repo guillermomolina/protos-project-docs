@@ -1,0 +1,2138 @@
+mvn  \
+	-Djunit.jupiter.execution.parallel.enabled=false \
+	"-Dtest=*Test,*Tests,*TestCase,Test*" \
+	-Dprotos.surefire.reports=/workspaces/protos/target/perf031-d/full-java-20261008-063642/reports \
+	test
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.guillermomolina:protos >---------------------
+[INFO] Building Protos 0.3.288-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ protos ---
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:copy-resources (copy-license) @ protos ---
+[INFO] Copying 1 resource from  to target/classes/META-INF
+[INFO] 
+[INFO] --- antrun:3.2.0:run (package-core-internal-resource) @ protos ---
+[INFO] Executing tasks
+[INFO]    [delete] Deleting directory /workspaces/protos/target/classes/META-INF/resources/protos/core
+[INFO]    [delete] Deleting directory /workspaces/protos/target/core-resource-checksums
+[INFO]      [copy] Copying 78 files to /workspaces/protos/target/classes/META-INF/resources/protos/core/lib
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ protos ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ protos ---
+[INFO] Copying 20 resources from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ protos ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 562 source files with javac [debug release 21] to target/test-classes
+[WARNING] /workspaces/protos/src/test/java/com/guillermomolina/protos/execution/ProtosAud007DapPortOwnershipTest.java:[86,25] auto-closeable resource client is never referenced in body of corresponding try statement
+[WARNING] /workspaces/protos/src/test/java/com/guillermomolina/protos/execution/ProtosAud007DapPortOwnershipTest.java:[96,21] auto-closeable resource engine is never referenced in body of corresponding try statement
+[WARNING] /workspaces/protos/src/test/java/com/guillermomolina/protos/execution/ProtosForeignCallbackTest.java:[327,18] explicit call to close() on an auto-closeable resource
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ protos ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.guillermomolina.protos.documentation.ProtosSourceDocumentationTest
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.085 s -- in com.guillermomolina.protos.documentation.ProtosSourceDocumentationTest
+[INFO] Running com.guillermomolina.protos.documentation.ProtosStandardLibraryDocumentationExtractorTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.348 s -- in com.guillermomolina.protos.documentation.ProtosStandardLibraryDocumentationExtractorTest
+[INFO] Running com.guillermomolina.protos.documentation.ProtosDocumentationJsonTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.documentation.ProtosDocumentationJsonTest
+[INFO] Running com.guillermomolina.protos.documentation.ProtosDocumentationModelTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in com.guillermomolina.protos.documentation.ProtosDocumentationModelTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosLm009FLanguageServerCliTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.199 s -- in com.guillermomolina.protos.cli.ProtosLm009FLanguageServerCliTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosTestToolFileSelectionWiringTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.cli.ProtosTestToolFileSelectionWiringTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosLm009DPublicDebugCliTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.644 s -- in com.guillermomolina.protos.cli.ProtosLm009DPublicDebugCliTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosCli008C1GuestStackCliTest
+CLI008_C1_REPL_D063_S3_PRESENTATION=PASS
+CLI008_C1_EVAL_D063_S3_PRESENTATION=PASS
+CLI008_C1_PRINT_OUTPUT_CHANGED=NO
+CLI008_C1_FILE_D063_S3_PRESENTATION=PASS
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.174 s -- in com.guillermomolina.protos.cli.ProtosCli008C1GuestStackCliTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosTestToolCorpusRegistryTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.056 s -- in com.guillermomolina.protos.cli.ProtosTestToolCorpusRegistryTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosCliPolyglotRoutingArchitectureTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.guillermomolina.protos.cli.ProtosCliPolyglotRoutingArchitectureTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosReplTest
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.330 s -- in com.guillermomolina.protos.cli.ProtosReplTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosTestToolI8D5AHostRegistryBootstrapTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.037 s -- in com.guillermomolina.protos.cli.ProtosTestToolI8D5AHostRegistryBootstrapTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosCliTest
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.812 s -- in com.guillermomolina.protos.cli.ProtosCliTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosTestToolI8D5CPublicCutoverTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.150 s -- in com.guillermomolina.protos.cli.ProtosTestToolI8D5CPublicCutoverTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosTestToolCaseRejectionPublicIntegrationTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.916 s -- in com.guillermomolina.protos.cli.ProtosTestToolCaseRejectionPublicIntegrationTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosTestToolExecutionRequirementRegistryTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in com.guillermomolina.protos.cli.ProtosTestToolExecutionRequirementRegistryTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosTestToolCaseSelectionPublicIntegrationTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.538 s -- in com.guillermomolina.protos.cli.ProtosTestToolCaseSelectionPublicIntegrationTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosTestToolH2B3PublicIntegrationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.227 s -- in com.guillermomolina.protos.cli.ProtosTestToolH2B3PublicIntegrationTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosCli008DDiagnosticReconciliationTest
+CLI008_D_SIGNAL_FALLBACK_TRACE_DROPPED=NO
+CLI008_D_WORKSPACE_ERROR_TRACE=CONSISTENT
+CLI008_D_BUNDLED_TOOL_ERROR_TRACE=CONSISTENT
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.cli.ProtosCli008DDiagnosticReconciliationTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosDiagnosticInspectorTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.cli.ProtosDiagnosticInspectorTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosTestToolCaseExecutionPublicIntegrationTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.213 s -- in com.guillermomolina.protos.cli.ProtosTestToolCaseExecutionPublicIntegrationTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosTestToolFileSelectionPublicIntegrationTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.123 s -- in com.guillermomolina.protos.cli.ProtosTestToolFileSelectionPublicIntegrationTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosCliLearningMaterialsTest
+[INFO] Tests run: 51, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.467 s -- in com.guillermomolina.protos.cli.ProtosCliLearningMaterialsTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosWorkspaceRunCliTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.356 s -- in com.guillermomolina.protos.cli.ProtosWorkspaceRunCliTest
+[INFO] Running com.guillermomolina.protos.cli.ProtosTestToolStdoutCompletionTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in com.guillermomolina.protos.cli.ProtosTestToolStdoutCompletionTest
+[INFO] Running com.guillermomolina.protos.conformance.ProtosSystemResourceEndToEndConformanceTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.070 s -- in com.guillermomolina.protos.conformance.ProtosSystemResourceEndToEndConformanceTest
+[INFO] Running com.guillermomolina.protos.conformance.ProtosResourceLifetimeMaturityConformanceTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in com.guillermomolina.protos.conformance.ProtosResourceLifetimeMaturityConformanceTest
+[INFO] Running com.guillermomolina.protos.conformance.ProtosFilesystemMaturityConformanceTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in com.guillermomolina.protos.conformance.ProtosFilesystemMaturityConformanceTest
+[INFO] Running com.guillermomolina.protos.conformance.ProtosFilesystemLanguageConformanceTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.032 s -- in com.guillermomolina.protos.conformance.ProtosFilesystemLanguageConformanceTest
+[INFO] Running com.guillermomolina.protos.conformance.ProtosFilesystemTreeIntegratedConformanceTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.020 s -- in com.guillermomolina.protos.conformance.ProtosFilesystemTreeIntegratedConformanceTest
+[INFO] Running com.guillermomolina.protos.conformance.ProtosFilesystemLibraryConformanceTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.056 s -- in com.guillermomolina.protos.conformance.ProtosFilesystemLibraryConformanceTest
+[INFO] Running com.guillermomolina.protos.conformance.ProtosFilesystemTreeSurfaceConformanceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.guillermomolina.protos.conformance.ProtosFilesystemTreeSurfaceConformanceTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerIndexedAssignmentTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.semantic.CanonicalizerIndexedAssignmentTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerFoundationTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.semantic.CanonicalizerFoundationTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerComparisonTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.semantic.CanonicalizerComparisonTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerSpreadTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.semantic.CanonicalizerSpreadTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerArithmeticTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.semantic.CanonicalizerArithmeticTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerClosureTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.semantic.CanonicalizerClosureTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerLazyBooleanTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.semantic.CanonicalizerLazyBooleanTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerReturnTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.semantic.CanonicalizerReturnTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerObjectTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.semantic.CanonicalizerObjectTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerSuperSendTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.semantic.CanonicalizerSuperSendTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerSlotWriteTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.semantic.CanonicalizerSlotWriteTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerMapConstructionTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.semantic.CanonicalizerMapConstructionTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerCallTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.semantic.CanonicalizerCallTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerEqualityTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.semantic.CanonicalizerEqualityTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerLiteralKindTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.semantic.CanonicalizerLiteralKindTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerUnaryTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.semantic.CanonicalizerUnaryTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerIndexTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.semantic.CanonicalizerIndexTest
+[INFO] Running com.guillermomolina.protos.semantic.CanonicalizerIntrinsicTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.semantic.CanonicalizerIntrinsicTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosMatcherHelpersBootstrapTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.guillermomolina.protos.execution.ProtosMatcherHelpersBootstrapTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCollectionsSetModuleTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.guillermomolina.protos.execution.ProtosCollectionsSetModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025VirtualReturnHomeTest
+PLAT044_INLINE_CALLBACK_ADMISSION=PRESERVED
+RETURN_HOME_STATIC_ANALYSIS=YES
+ANALYSIS_RUN_PER_INVOCATION=NO
+OUTER_DIRECT_CANONICAL_RETURN=NO
+DESCENDANT_CANONICAL_RETURN=YES
+OUTER_HOME_MATERIALIZED=YES
+TRANSITIVE_DESCENDANT_CANONICAL_RETURN_RETAINS_OWNER_HOME=YES
+NATIVE_UNKNOWN_FALLBACK=PRESERVED
+DIRECT_CANONICAL_RETURN_RETAINS_PHYSICAL_HOME=YES
+DEFAULT_CANONICAL_RETURN_RETAINS_PHYSICAL_HOME=YES
+NLR_DEAD_DESCENDANT_OWNER_HOME_MATERIALIZED=NO
+NLR_DEAD_DESCENDANT_HOME_PROVENANCE=SHARED
+SOURCE_NLR_DEAD_INVOCATION_NEW_PROTOS_RETURN_HOME=NO
+SOURCE_NLR_DEAD_COMPLETE_CALL=NO
+SAME_TASK_NLR=PRESERVED
+OBJECT_BODY_DESCENDANT_RETURN_RETAINS_OWNER_HOME=YES
+ESCAPED_NLR_INVALID_RETURN=PRESERVED
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.056 s -- in com.guillermomolina.protos.execution.ProtosPerf025VirtualReturnHomeTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosExactExternalPackageIdentityTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.execution.ProtosExactExternalPackageIdentityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosI026FDapTransportTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.138 s -- in com.guillermomolina.protos.execution.ProtosI026FDapTransportTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolPerf017AdmissionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.236 s -- in com.guillermomolina.protos.execution.ProtosTestToolPerf017AdmissionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosObjectMatchProtocolTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.guillermomolina.protos.execution.ProtosObjectMatchProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolDiscoveryImportedModuleTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in com.guillermomolina.protos.execution.ProtosTestToolDiscoveryImportedModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageExecutionPlanAdapterTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.712 s -- in com.guillermomolina.protos.execution.ProtosPackageExecutionPlanAdapterTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTomlParserLexicalKeyRegressionTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.177 s -- in com.guillermomolina.protos.execution.ProtosTomlParserLexicalKeyRegressionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025InlineCallbackPreparationTest
+PERF025_INLINE_CALLBACK_STATIC_BINDING_ANALYSIS=YES
+PERF025_INLINE_CALLBACK_STATIC_LAYOUT=YES
+PERF025_INLINE_CALLBACK_PARAMETER_FRAME_PATH=YES
+PERF025_INLINE_CALLBACK_LOCAL_READ_DIRECT=YES
+PERF025_INLINE_CALLBACK_LOCAL_WRITE_DIRECT=YES
+PERF025_INLINE_CALLBACK_EAGER_ACTIVATION=REMOVED
+PERF025_FRAME_NATIVE_CALLBACK_ENTRY_HAS_LOAD_INLINE_CALLBACK_ACTIVATION=NO
+PERF025_FRAME_NATIVE_CALLBACK_HAS_MATERIALIZE_INLINE_CALLBACK_ACTIVATION=YES
+PERF025_PLAT044_BOOLEAN_RICH_PREPARATION_BEFORE_ADMISSION=NO
+PERF025_PLAT044_EACH_RICH_PREPARATION_BEFORE_ADMISSION=NO
+PERF025_PLAT044_WHILE_RICH_PREPARATION_BEFORE_ADMISSION=NO
+PERF025_INLINE_CALLBACK_CONTEXT_OBSERVER_FALLBACK=PASS
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.051 s -- in com.guillermomolina.protos.execution.ProtosPerf025InlineCallbackPreparationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B4ECancellationUnwindTest
+PERF006_B4E_CLEANUP_CANCELLATION_SUPERSEDES_SELECTED_ERROR=PASS
+PERF006_B4E_SELECTED_ERROR_HANDLER_AFTER_CLEANUP_CANCELLATION=NO
+PERF006_B4E_NESTED_ENSURE_LIFO=PASS
+PERF006_B4E_CANCELLATION_INJECTED_INTO_CPRIME=PASS
+PERF006_B4E_ENSURE_ON_CANCELLATION=PASS
+PERF006_B4E_COMPLETED_PREFIX_REPLAY=NO
+PERF006_B4E_TERMINAL_AFTER_CLEANUP=PASS
+PERF006_B4E_CLEANUP_BEFORE_CHILD_DRAIN=PASS
+PERF006_B4E_STRUCTURED_CHILD_DRAIN=PASS
+PERF006_B4E_CLEANUP_SUSPENSION=PASS
+PERF006_B4E_SAME_REQUEST_REDELIVERY=NO
+PERF006_B4E_CLEANUP_PREFIX_REPLAY=NO
+PERF006_B4E_LATER_CLEANUP_ERROR_SUPERSEDES=PASS
+PERF006_B4E_SUPERSESSION_BEFORE_OUTER_HANDLER=PASS
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.040 s -- in com.guillermomolina.protos.execution.ProtosPerf006B4ECancellationUnwindTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosRegexUnicodeFacilityTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.096 s -- in com.guillermomolina.protos.execution.ProtosRegexUnicodeFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosModuleRuntimeTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in com.guillermomolina.protos.execution.ProtosModuleRuntimeTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosMapMatchProtocolTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.056 s -- in com.guillermomolina.protos.execution.ProtosMapMatchProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCoreSourceNamingArchitectureTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.ProtosCoreSourceNamingArchitectureTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosRegexSemanticTransferTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.486 s -- in com.guillermomolina.protos.execution.ProtosRegexSemanticTransferTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolSourceLoaderTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.071 s -- in com.guillermomolina.protos.execution.ProtosTestToolSourceLoaderTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2D3AOrdinaryObjectCallProtocolTest
+PERF006_B2D3A_INHERITED_CALL_SLOT=PASS
+PERF006_B2D3A_CALL_SUSPENSION_NO_REPLAY=PASS
+PERF006_B2D3A_INHERITED_CALL_HOME=PASS
+PERF006_B2D3A_DEFAULT_OBJECT_CALL_PROTOCOL=PASS
+PERF006_B2D3A_LOCAL_CALL_SLOT=PASS
+PERF006_B2D3A_CALL_RECEIVER_HOME=PASS
+PERF006_B2D3A_NEAREST_CALL_SHADOWING=PASS
+PERF006_B2D3A_NON_CLOSURE_CALL_FAILS=PASS
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2D3AOrdinaryObjectCallProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2C3B2SimpleDefaultBindingTest
+PERF006_B2C3B2_SUPPLIED_ARGUMENT_SUPPRESSES_DEFAULT=PASS
+PERF006_B2C3B2_SOURCE_LEVEL_SIMPLE_DEFAULT_CALL=PASS
+PERF006_B2C3B2_REQUIRED_ARITY_ERROR=PASS
+PERF006_B2C3B2_DEFAULT_INVOCATION_SPREAD_LOWERING=PASS
+PERF006_B2C3B2_DEFAULT_BEFORE_REST=PASS
+PERF006_B2C3B2_REST_CONSUMED_PREFIX=PASS
+PERF006_B2C3B2_LITERAL_DEFAULT=PASS
+PERF006_B2C3B2_LOOKUP_DEFAULT=PASS
+PERF006_B2C3B2_EARLIER_PARAMETER_VISIBILITY=PASS
+PERF006_B2C3B2_ARGS_VECTOR_UNCHANGED=PASS
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2C3B2SimpleDefaultBindingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025CallbackConsumerSpecializationTest
+PERF025_S3_CONTEXT_MATERIALIZES=YES
+PERF025_S3_MULTIPLE_CREATE_ERRORS_PRESERVED=YES
+PERF025_S3_WHILE_INTEGER_OPERATIONS_WITHOUT_ACTIVATION=YES
+PERF025_S3_MEMBER_LOOKUP_ERROR_PRESERVED=YES
+PERF028_A_DESTINATION_SELECTED_BEFORE_RHS=YES
+PERF028_A_NO_RETARGET_AFTER_RHS=YES
+PERF025_S3_DIRECT_SOURCE_CLOSURE_CALL_WITHOUT_ACTIVATION=YES
+PERF025_S3_MULTIPLE_CREATE_WITHOUT_ACTIVATION=YES
+PERF025_S3_NONCANONICAL_CALL_FALLBACK_PRESERVED=YES
+PERF025_S3_THIS_WITHOUT_ACTIVATION=YES
+PERF025_S3_MEMBER_READ_WITHOUT_ACTIVATION=YES
+PERF025_S3_CAPTURED_READ_WITHOUT_ACTIVATION=YES
+PERF025_S3_CANONICAL_INTEGER_SEND_WITHOUT_ACTIVATION=YES
+PERF025_S3_CAPTURED_WRITE_WITHOUT_ACTIVATION=YES
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.162 s -- in com.guillermomolina.protos.execution.ProtosPerf025CallbackConsumerSpecializationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCoreErrorInfrastructureTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.guillermomolina.protos.execution.ProtosCoreErrorInfrastructureTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolFutureStoredInspectionFixtureSuiteTest
+[INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.365 s -- in com.guillermomolina.protos.execution.ProtosTestToolFutureStoredInspectionFixtureSuiteTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPolyglotExecutionContextTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.216 s -- in com.guillermomolina.protos.execution.ProtosPolyglotExecutionContextTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardArrayFactoryTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosStandardArrayFactoryTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestLogicalCaseExecutionFacilityTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in com.guillermomolina.protos.execution.ProtosTestLogicalCaseExecutionFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolI8D4C2ResourcefulInspectionFacilityTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.020 s -- in com.guillermomolina.protos.execution.ProtosTestToolI8D4C2ResourcefulInspectionFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosWorkspacePackageAuthorityIsolationIntegrationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.337 s -- in com.guillermomolina.protos.execution.ProtosWorkspacePackageAuthorityIsolationIntegrationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolResourceCatalogOptionTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.181 s -- in com.guillermomolina.protos.execution.ProtosTestToolResourceCatalogOptionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageToolMetadataPersistenceTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.394 s -- in com.guillermomolina.protos.execution.ProtosPackageToolMetadataPersistenceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosBundledToolModuleResolverTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosBundledToolModuleResolverTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCli008C1DiagnosticTraceTest
+CLI008_C1_HANDLED_ERROR_TERMINAL_TRACE=NONE
+CLI008_C1_CONTEXT_TRACE_ISOLATION=PASS
+CLI008_C1_DIRECT_TASK_FAILURE_TRACE=PASS
+CLI008_C1_NESTED_SOURCE_CALL_ORDER=PASS
+CLI008_C1_TASK_TRACE_ISOLATION=PASS
+CLI008_C1_TRACE_BOUND=64
+CLI008_C1_TRUNCATION=PASS
+CLI008_C1_SAME_ERROR_DISTINCT_OCCURRENCES=PASS
+CLI008_C1_ERROR_GUEST_VISIBLE_MUTATION=NO
+CLI008_C1_PLAT044_INLINE_FRAME=YES
+CLI008_C1_PLAT044_INLINE_FRAME_DUPLICATED=NO
+CLI008_C1_PHYSICAL_CALLBACK_FRAME=YES
+CLI008_C1_ENSURE_SUPERSESSION_TRACE=PASS
+CLI008_C1_CONTINUATION_RESUME_ORDER=CORRECT
+CLI008_C1_FAILED_FUTURE_TRACE=CONSUMER_LOCAL
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.080 s -- in com.guillermomolina.protos.execution.ProtosCli008C1DiagnosticTraceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B6A2MutatingCanonicalCoverageTest
+PERF006_B6A2_MUTATION_PREVALIDATION_ORDER=PASS
+PERF006_B6A2_SLOT_MUTATION_BYTECODE=PASS
+PERF006_B6A2_SLOT_MUTATION_EXACT_RHS=PASS
+PERF006_B6A2_MUTATING_DEFAULT_EXPRESSION=PASS
+PERF006_B6A2_INDEXED_ATPUT_SUSPENSION_RESUME=PASS
+PERF006_B6A2_INDEXED_EXACT_RHS=PASS
+PERF006_B6A2_INDEXED_COMPLETED_PREFIX_REPLAY=NO
+PERF006_B6A2_MEMBER_ASSIGN_SUSPENSION_RESUME=PASS
+PERF006_B6A2_MEMBER_ASSIGN_COMPLETED_PREFIX_REPLAY=NO
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.guillermomolina.protos.execution.ProtosPerf006B6A2MutatingCanonicalCoverageTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosWorkspacePackageSourceLookupTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.guillermomolina.protos.execution.ProtosWorkspacePackageSourceLookupTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B3BTaskBytecodeCompositionTest
+PERF006_B3B_TASK_BACKED_SOURCE_COMPOSITION=PASS
+PERF006_B3B_TASK_BACKED_SOURCE_REPLAY=NO
+PERF006_B3B_SOURCE_CALL_TASK_IDENTITY=PASS
+PERF006_B3B_TASK_NATIVE_DIRECT_FAST_PATH=PASS
+PERF006_B3B_ORDINARY_NATIVE_FAST_PATH=PASS
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.execution.ProtosPerf006B3BTaskBytecodeCompositionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCoreContextSourceTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.execution.ProtosCoreContextSourceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolSequentialRunnerTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.707 s -- in com.guillermomolina.protos.execution.ProtosTestToolSequentialRunnerTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B6A6A1TaskOwnedClosureDispatchTest
+PERF006_B6A6A1_FUTURE_THEN_CPRIME_DISPATCH=PASS
+PERF006_B6A6A1R_FOREIGN_CONTEXT_BYTECODE_PROJECTION=PASS
+PERF006_B6A6A1R_LEGACY_AST_PROJECTION=NO
+PERF006_B6A6A1_CONTEXT_LOCAL_BYTECODE_DIRECT=PASS
+PERF006_B6A6A1_TASK_CPRIME_SUSPENSION=PASS
+PERF006_B6A6A1_COMPLETED_PREFIX_REPLAY=NO
+PERF006_B6A6A1_OBJECT_FUTURE_CPRIME_DISPATCH=PASS
+PERF006_B6A6A1R_CURRENT_CONTEXT_BYTECODE_DIRECT=PASS
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in com.guillermomolina.protos.execution.ProtosPerf006B6A6A1TaskOwnedClosureDispatchTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNetworkAuthorityConfinementTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in com.guillermomolina.protos.execution.ProtosNetworkAuthorityConfinementTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTomlParserIntegerRegressionTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.293 s -- in com.guillermomolina.protos.execution.ProtosTomlParserIntegerRegressionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardByteIoPositioningProtocolTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s -- in com.guillermomolina.protos.execution.ProtosStandardByteIoPositioningProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025DirectSourceClosureCompactInvocationTest
+PERF025_TASK_OWNED_DIRECT_SOURCE_COMPACT_PATH=PASS
+PERF025_CAPTURE_BY_REFERENCE=PASS
+PERF025_THIS_SEMANTICS=PASS
+PERF025_DIRECT_SOURCE_CLOSURE_COMPACT_ABI=PASS
+PERF025_DIRECT_SOURCE_EAGER_GUEST_CONTEXT=NO
+PERF025_DIRECT_SOURCE_EAGER_GUEST_ARGUMENT_ARRAY=NO
+PERF025_REST_ARGUMENT_SEMANTICS=PASS
+PERF025_RETURN_HOME_SEMANTICS=PASS
+PERF025_NON_LOCAL_RETURN=PASS
+PERF025_FRESH_CONTEXT_SEMANTICS=PASS
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.048 s -- in com.guillermomolina.protos.execution.ProtosPerf025DirectSourceClosureCompactInvocationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosForeignValueAdmissionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.076 s -- in com.guillermomolina.protos.execution.ProtosForeignValueAdmissionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolFileOptionTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.307 s -- in com.guillermomolina.protos.execution.ProtosTestToolFileOptionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosActorTestLogicalCaseExecutionFacilityTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.118 s -- in com.guillermomolina.protos.execution.ProtosActorTestLogicalCaseExecutionFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosArrayConformanceCompletionTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.guillermomolina.protos.execution.ProtosArrayConformanceCompletionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageToolManifestTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.081 s -- in com.guillermomolina.protos.execution.ProtosPackageToolManifestTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosIdentityMapConformanceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosIdentityMapConformanceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2C1SinglePositionalBindingTest
+PERF006_B2C1_ARITY_ERROR=PASS
+PERF006_B2C1_REQUIRED_PARAMETER_BINDING=PASS
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2C1SinglePositionalBindingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNetworkingIpEndpointsModuleTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.guillermomolina.protos.execution.ProtosNetworkingIpEndpointsModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosProjectBindingPrerequisiteClosureTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.guillermomolina.protos.execution.ProtosProjectBindingPrerequisiteClosureTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCollectionsArrayAlgorithmsModuleTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.guillermomolina.protos.execution.ProtosCollectionsArrayAlgorithmsModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardPolyglotEmbeddingTest
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.239 s -- in com.guillermomolina.protos.execution.ProtosStandardPolyglotEmbeddingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCollectionsSetAlgebraModuleTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in com.guillermomolina.protos.execution.ProtosCollectionsSetAlgebraModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf026D2AssociationEachInlineCallbackTest
+PERF026_D2_INLINE_ROOTTAG=YES
+PERF026_D2_INLINE_SCOPE_PROJECTION=YES
+PERF026_D2_OWNED_RETURN_HOME_FALLBACK=YES
+PERF026_D2_NLR_PRESERVED=YES
+PERF026_D2_ERROR_PROPAGATION_PRESERVED=YES
+PERF026_D2_IDENTITY_MAP_ASSOCIATION_SNAPSHOT_PRESERVED=YES
+PERF026_D2_IDENTITY_MAP_INSERTION_ORDER_PRESERVED=YES
+PERF026_D2_IDENTITY_MAP_CALLBACK_RESULT_IGNORED=YES
+PERF026_D2_IDENTITY_MAP_RECEIVER_RESULT_IDENTITY=YES
+PERF026_D2_INDEXED_EACH_D1_PRESERVED=YES
+PERF026_D2_NONCLOSURE_INVOKABLE_FALLBACK=YES
+PERF026_D2_CUSTOM_EACH_FALLBACK=YES
+PERF026_D2_UNSUPPORTED_ARITY_FALLBACK=YES
+PERF026_D2_ARITY_PREVALIDATION_INTRODUCED=NO
+PERF026_D2_MAP_ASSOCIATION_SNAPSHOT_PRESERVED=YES
+PERF026_D2_MAP_INSERTION_ORDER_PRESERVED=YES
+PERF026_D2_MAP_CALLBACK_RESULT_IGNORED=YES
+PERF026_D2_MAP_RECEIVER_RESULT_IDENTITY=YES
+PERF026_D2_CAPTURE_BY_REFERENCE_PRESERVED=YES
+PERF026_D2_FRESH_ACTIVATION_PER_CALLBACK=YES
+PERF026_D2_NESTED_CLOSURE_LITERAL_FALLBACK=YES
+PERF026_D2_DEFAULT_REST_PARAMETER_FALLBACK=YES
+PERF026_D2_MAP_EACH_LOCAL_LOOP=YES
+PERF026_D2_MAP_HELPER_ROOT_REMOVED=YES
+PERF026_D2_MAP_CALLBACK_ROOT_REMOVED=YES
+PERF026_D2_MAP_EXACT_KEY_VALUE_ARGUMENTS=YES
+PERF026_D2_SUSPENSION_RESUMPTION_PRESERVED=YES
+PERF026_D2_COMPLETED_PREFIX_REPLAY=NO
+PERF026_D2_IDENTITY_MAP_EACH_LOCAL_LOOP=YES
+PERF026_D2_IDENTITY_MAP_HELPER_ROOT_REMOVED=YES
+PERF026_D2_IDENTITY_MAP_CALLBACK_ROOT_REMOVED=YES
+PERF026_D2_IDENTITY_MAP_EXACT_KEY_VALUE_ARGUMENTS=YES
+PERF026_D2_IDENTITY_MAP_IDENTITY_RESEARCH_INTRODUCED=NO
+PERF026_D2_DYNAMIC_CALLBACK_FALLBACK=YES
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.155 s -- in com.guillermomolina.protos.execution.ProtosPerf026D2AssociationEachInlineCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosWorkspacePackageDependencyRoutingTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in com.guillermomolina.protos.execution.ProtosWorkspacePackageDependencyRoutingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolCatalogAcquisitionFacilityTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in com.guillermomolina.protos.execution.ProtosTestToolCatalogAcquisitionFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosWorkspaceMemberLocationTraversalTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosWorkspaceMemberLocationTraversalTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B3CSuspensionCapableNativeLeafTest
+PERF006_B3C_NESTED_NATIVE_SUSPENSION_CPRIME_CHAIN=PASS
+PERF006_B3C_NESTED_CALLER_REPLAY=NO
+PERF006_B3C_TASK_CAPABILITY_SYNCHRONOUS_FAST_PATH=PASS
+PERF006_B3C_NATIVE_SUSPENSION_CPRIME_LEAF=PASS
+PERF006_B3C_NATIVE_JAVA_ACTIVATION_REPLAY=NO
+PERF006_B3C_NATIVE_RESUMER_ONE_SHOT=PASS
+PERF006_B3C_NON_TASK_NATIVE_FAST_PATH=PASS
+PERF006_B3C_CAPABILITY_PROVENANCE_REBINDING=PASS
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosPerf006B3CSuspensionCapableNativeLeafTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolRepositoryCorpusPlansTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.527 s -- in com.guillermomolina.protos.execution.ProtosTestToolRepositoryCorpusPlansTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNonLocalReturnTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosNonLocalReturnTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTomlParserLexicalStringTriviaRegressionTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.233 s -- in com.guillermomolina.protos.execution.ProtosTomlParserLexicalStringTriviaRegressionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B6A3CObjectComposeCanonicalCoverageTest
+PERF006_B6A3C_COMPOSE_SOURCE_SUSPENSION_RESUME=PASS
+PERF006_B6A3C_OBJECT_COMPLETED_PREFIX_REPLAY=NO
+PERF006_B6A3C_OBJECT_PARENT_CONSTRUCTION=PASS
+PERF006_B6A3C_OBJECT_DEFAULT_EXPRESSION=PASS
+PERF006_B6A3C_CONTEXTUAL_COMPOSE_RESERVED_NAMES=PASS
+PERF006_B6A3C_OBJECT_CONSTRUCTION_CAPTURE_BOUNDARY=PASS
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.guillermomolina.protos.execution.ProtosPerf006B6A3CObjectComposeCanonicalCoverageTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolManifestPlanTest
+[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.833 s -- in com.guillermomolina.protos.execution.ProtosTestToolManifestPlanTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNioHostIoPollerTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in com.guillermomolina.protos.execution.ProtosNioHostIoPollerTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTomlParserPathRegressionTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.515 s -- in com.guillermomolina.protos.execution.ProtosTomlParserPathRegressionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageExecutionPlanV2AdapterTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.098 s -- in com.guillermomolina.protos.execution.ProtosPackageExecutionPlanV2AdapterTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B6A3ASuperSendCanonicalCoverageTest
+PERF006_B6A3A_INVALID_SUPER_FAILURE=PASS
+PERF006_B6A3A_SUPER_SPREAD=PASS
+PERF006_B6A3A_SUPER_DEFAULT_EXPRESSION=PASS
+PERF006_B6A3A_SUPER_PHYSICAL_HOME=PASS
+PERF006_B6A3A_SUPER_DYNAMIC_RECEIVER=PASS
+PERF006_B6A3A_SUPER_SUSPENSION_RESUME=PASS
+PERF006_B6A3A_SUPER_COMPLETED_PREFIX_REPLAY=NO
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in com.guillermomolina.protos.execution.ProtosPerf006B6A3ASuperSendCanonicalCoverageTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolResourceRequirementsJoinTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.244 s -- in com.guillermomolina.protos.execution.ProtosTestToolResourceRequirementsJoinTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosParallelPolyglotContextRoutingTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosParallelPolyglotContextRoutingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolI8D4BResourcefulAttemptBridgeTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in com.guillermomolina.protos.execution.ProtosTestToolI8D4BResourcefulAttemptBridgeTest
+[INFO] Running com.guillermomolina.protos.execution.CanonicalMapConstructionExecutionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in com.guillermomolina.protos.execution.CanonicalMapConstructionExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosI068Slice5CapturedMaterializedLexicalLoweringTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in com.guillermomolina.protos.execution.ProtosI068Slice5CapturedMaterializedLexicalLoweringTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolFloatNanExpectationsTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.330 s -- in com.guillermomolina.protos.execution.ProtosTestToolFloatNanExpectationsTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosI026EScopeTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.execution.ProtosI026EScopeTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolPackageExecutionEnvironmentTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.069 s -- in com.guillermomolina.protos.execution.ProtosTestToolPackageExecutionEnvironmentTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolI8D4ATerminalAttemptEnvelopeTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.guillermomolina.protos.execution.ProtosTestToolI8D4ATerminalAttemptEnvelopeTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolI8D3RootActorResourceBundleTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in com.guillermomolina.protos.execution.ProtosTestToolI8D3RootActorResourceBundleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNioNetworkProvisioningTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.054 s -- in com.guillermomolina.protos.execution.ProtosNioNetworkProvisioningTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosWorkspacePackageModuleKeyTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosWorkspacePackageModuleKeyTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTomlDataModelModuleTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.119 s -- in com.guillermomolina.protos.execution.ProtosTomlDataModelModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardTextWriterProtocolTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.guillermomolina.protos.execution.ProtosStandardTextWriterProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageTestLogicalCaseExecutionFacilityTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.426 s -- in com.guillermomolina.protos.execution.ProtosPackageTestLogicalCaseExecutionFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardFloatArithmeticTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosStandardFloatArithmeticTest
+[INFO] Running com.guillermomolina.protos.execution.CanonicalMemberReadExecutionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.CanonicalMemberReadExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestLogicalCaseAttemptBridgeTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.246 s -- in com.guillermomolina.protos.execution.ProtosTestLogicalCaseAttemptBridgeTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardStringProtocolTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in com.guillermomolina.protos.execution.ProtosStandardStringProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosProcessSnapshotLogicalCaseExecutionFacilityTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.092 s -- in com.guillermomolina.protos.execution.ProtosProcessSnapshotLogicalCaseExecutionFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNumericPrototypeBridgeTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosNumericPrototypeBridgeTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosAud007DapPortOwnershipTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in com.guillermomolina.protos.execution.ProtosAud007DapPortOwnershipTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolSuiteGraphTest
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.484 s -- in com.guillermomolina.protos.execution.ProtosTestToolSuiteGraphTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosEnvironmentParallelTransferTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosEnvironmentParallelTransferTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNioFilesystemTreeCaptureBackendTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in com.guillermomolina.protos.execution.ProtosNioFilesystemTreeCaptureBackendTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosFilesystemIntegratedConformanceTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in com.guillermomolina.protos.execution.ProtosFilesystemIntegratedConformanceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosForeignInteropTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.067 s -- in com.guillermomolina.protos.execution.ProtosForeignInteropTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosFormatterToolBootstrapTest
+[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.551 s -- in com.guillermomolina.protos.execution.ProtosFormatterToolBootstrapTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageRunDriverMixedApplicationTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.322 s -- in com.guillermomolina.protos.execution.ProtosPackageRunDriverMixedApplicationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosHostResourceCloseTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosHostResourceCloseTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolFutureStoredExpectationRecognitionTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.069 s -- in com.guillermomolina.protos.execution.ProtosTestToolFutureStoredExpectationRecognitionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNetworkingFoundationFinalConformanceTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.052 s -- in com.guillermomolina.protos.execution.ProtosNetworkingFoundationFinalConformanceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTomlEncoderDeepContainerRegressionTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.183 s -- in com.guillermomolina.protos.execution.ProtosTomlEncoderDeepContainerRegressionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosI026FDapBehaviorTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.569 s -- in com.guillermomolina.protos.execution.ProtosI026FDapBehaviorTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosForeignProviderRegistryTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosForeignProviderRegistryTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolFloatBitsParserTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.333 s -- in com.guillermomolina.protos.execution.ProtosTestToolFloatBitsParserTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTcpConnectionEndpointObservationTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosTcpConnectionEndpointObservationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPlat029IoOperationCPrimeDriverTest
+PLAT029_OPERATION_CPRIME_CONTINUATION_RESULT=PASS
+PLAT029_OPERATION_CPRIME_TASK_IDENTITY=NONE
+PLAT029_OPERATION_CPRIME_NESTED_OWNER_PROPAGATION=PASS
+PLAT029_OPERATION_CPRIME_BACKEND_INLINE_GUEST_REENTRY=NO
+PLAT029_OPERATION_CPRIME_READY_BEFORE_RETAIN=PASS
+PLAT029_OPERATION_CPRIME_LOST_WAKEUP=NO
+PLAT029_OPERATION_CPRIME_TERMINAL_WAIT_RELEASE=PASS
+PLAT029_OPERATION_CANCEL_TO_TASK_CANCEL=NO
+PLAT029_OPERATION_TERMINAL_GUEST_REENTRY=NO
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in com.guillermomolina.protos.execution.ProtosPlat029IoOperationCPrimeDriverTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTomlParserFlatDocumentRegressionTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.183 s -- in com.guillermomolina.protos.execution.ProtosTomlParserFlatDocumentRegressionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPolyglotProcessHostingTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosPolyglotProcessHostingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006Plat028MapEachCallbackTest
+PERF006_PLAT028_MAP_EACH_SNAPSHOT=PASS
+PERF006_PLAT028_MAP_EACH_CALLBACK_MUTATION_PREFIX=STABLE
+PERF006_PLAT028_MAP_EACH_EXACT_HOME=PASS
+PERF006_PLAT028_MAP_EACH_COPIED_HOME_PRIVILEGE=NO
+PERF006_PLAT028_MAP_EACH_COPIED_BODY_PRIVILEGE=NO
+PERF006_PLAT028_MAP_EACH_SUSPEND_RESUME=PASS
+PERF006_PLAT028_MAP_EACH_COMPLETED_PREFIX_REPLAY=NO
+PERF006_PLAT028_MAP_EACH_RESULT_RECEIVER_IDENTITY=PASS
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in com.guillermomolina.protos.execution.ProtosPerf006Plat028MapEachCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardBytesProtocolTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.guillermomolina.protos.execution.ProtosStandardBytesProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardEnvironmentProtocolTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosStandardEnvironmentProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2D5BBodySendSpreadTest
+PERF006_B2D5B_COMPOSED_RECEIVER_WITH_SPREAD=PASS
+PERF006_B2D5B_INVALID_SEND_SPREAD_PRECEDENCE=PASS
+PERF006_B2D5B_SEND_SPREAD_SNAPSHOT_AT_ARGUMENT_POSITION=PASS
+PERF006_B2D5B_SEND_SPREAD_FLATTEN_ORDER=PASS
+PERF006_B2D5B_DEFAULT_SPREAD_LOWERING=PASS
+PERF006_B2D5B_SEND_SPREAD_SNAPSHOT_SURVIVES_LATER_SUSPENSION=PASS
+PERF006_B2D5B_SEND_SPREAD_SUSPENSION_COMPOSED=PASS
+PERF006_B2D5B_RECEIVER_NO_REPLAY_ACROSS_SPREAD_SUSPENSION=PASS
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2D5BBodySendSpreadTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolFileSelectionFacilityTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.037 s -- in com.guillermomolina.protos.execution.ProtosTestToolFileSelectionFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosForeignPullEachTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.068 s -- in com.guillermomolina.protos.execution.ProtosForeignPullEachTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf026D3EnvironmentEachInlineCallbackTest
+PERF026_D3_INLINE_ROOTTAG=YES
+PERF026_D3_INLINE_SCOPE_PROJECTION=YES
+PERF026_D3_FRESH_ACTIVATION_PER_CALLBACK=YES
+PERF026_D3_CAPTURE_BY_REFERENCE_PRESERVED=YES
+PERF026_D3_OWNED_RETURN_HOME_FALLBACK=YES
+PERF026_D3_DYNAMIC_CALLBACK_FALLBACK=YES
+PERF026_D3_NESTED_CLOSURE_FALLBACK=YES
+PERF026_D3_DEFAULT_REST_FALLBACK=YES
+PERF026_D3_ENVIRONMENT_EACH_LOCAL_LOOP=YES
+PERF026_D3_ENVIRONMENT_HELPER_ROOT_REMOVED=YES
+PERF026_D3_ENVIRONMENT_CALLBACK_ROOT_REMOVED=YES
+PERF026_D3_EXACT_NAME_VALUE_ARGUMENTS=YES
+PERF026_D3_TWO_PARAMETER_BINDING_FROM_PREPARED_ACTIVATION=YES
+PERF026_D3_CANONICAL_NAME_ORDER_PRESERVED=YES
+PERF026_D3_CALLBACK_RESULT_IGNORED=YES
+PERF026_D3_RECEIVER_RESULT_IDENTITY=YES
+PERF026_D3_NLR_PRESERVED=YES
+PERF026_D3_ERROR_PROPAGATION_PRESERVED=YES
+PERF026_D3_ARRAY_BYTES_D1_PRESERVED=YES
+PERF026_D3_MAP_IDENTITYMAP_D2_PRESERVED=YES
+PERF026_D3_WHOLE_PORTABLE_PREVALIDATION_PRESERVED=YES
+PERF026_D3_CALLBACK_BEFORE_VALIDATION=NO
+PERF026_D3_UNSUPPORTED_ARITY_FALLBACK=YES
+PERF026_D3_ARITY_PREVALIDATION_INTRODUCED=NO
+PERF026_D3_NONCLOSURE_INVOKABLE_FALLBACK=YES
+PERF026_D3_CUSTOM_EACH_FALLBACK=YES
+PERF026_D3_COPIED_STANDARD_HOME_FALLBACK=YES
+PERF026_D3_SUSPENSION_RESUMPTION_PRESERVED=YES
+PERF026_D3_COMPLETED_PREFIX_REPLAY=NO
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.071 s -- in com.guillermomolina.protos.execution.ProtosPerf026D3EnvironmentEachInlineCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNioTcpConnectionReadTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.071 s -- in com.guillermomolina.protos.execution.ProtosNioTcpConnectionReadTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosProcessStandardStreamParallelTransferTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosProcessStandardStreamParallelTransferTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosWorkspacePackageApplicationExecutionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.guillermomolina.protos.execution.ProtosWorkspacePackageApplicationExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardLibraryModuleResolverTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in com.guillermomolina.protos.execution.ProtosStandardLibraryModuleResolverTest
+[INFO] Running com.guillermomolina.protos.execution.CanonicalClosureMaterializationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.CanonicalClosureMaterializationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf026C1WhileInlineCallbackTest
+PERF026_C1_WHILE_INLINE_SCOPE_PROJECTION=YES
+PERF026_C1_NESTED_CLOSURE_LITERAL_FALLBACK=YES
+PERF026_C1_CONDITION_SUSPENSION_PRESERVED=YES
+PERF026_C1_BODY_SUSPENSION_PRESERVED=YES
+PERF026_C1_WHILE_HELPER_ROOT_REMOVED=YES
+PERF026_C1_WHILE_CALLBACK_ROOTS_REMOVED=YES
+PERF026_C1_WHILE_INLINE_ROOTTAGS=YES
+PERF026_C1_WHILE_NORMAL_RESULT_NULL=YES
+PERF026_C1_NLR_PRESERVED=YES
+PERF026_C1_CAPTURE_BY_REFERENCE_PRESERVED=YES
+PERF026_C1_FRESH_ACTIVATION_PER_ITERATION=YES
+PERF026_C1_DYNAMIC_BODY_FALLBACK=YES
+PERF026_C1_OWNED_RETURN_HOME_FALLBACK=YES
+PERF026_C1_NON_WHILE_SELECTION_ORDINARY=YES
+PERF026_C1_STRICT_BOOLEAN_CONDITION_PRESERVED=YES
+PERF026_C1_BODY_ERROR_STOPS_LOOP=YES
+PERF026_C1_DYNAMIC_CONDITION_FALLBACK=YES
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in com.guillermomolina.protos.execution.ProtosPerf026C1WhileInlineCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosWorkspacePackageProjectIndexTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.execution.ProtosWorkspacePackageProjectIndexTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardFutureProtocolTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.054 s -- in com.guillermomolina.protos.execution.ProtosStandardFutureProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardBufferedByteIoProtocolTest
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.054 s -- in com.guillermomolina.protos.execution.ProtosStandardBufferedByteIoProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B6BFinalConformanceArchitectureTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in com.guillermomolina.protos.execution.ProtosPerf006B6BFinalConformanceArchitectureTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolCaseSelectionTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.982 s -- in com.guillermomolina.protos.execution.ProtosTestToolCaseSelectionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolH2B2BoundedDCaseSchedulingTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.081 s -- in com.guillermomolina.protos.execution.ProtosTestToolH2B2BoundedDCaseSchedulingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackagedCoreEmbeddingTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in com.guillermomolina.protos.execution.ProtosPackagedCoreEmbeddingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolResourceCatalogSchemaTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.431 s -- in com.guillermomolina.protos.execution.ProtosTestToolResourceCatalogSchemaTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2D3BSelectedStandardObjectCallIntrinsicTest
+PERF006_B2D3B_SUSPENSION_COMPOSED=PASS
+PERF006_B2D3B_RETURN_HOME_NOT_COMPLETED_ON_YIELD=PASS
+PERF006_B2D3B_DEBUG_ACTIVATION_AUTHORITY_PRESERVED=PASS
+PERF006_B2D3B_CLOSURE_CALL_OVERRIDE=PASS
+PERF006_B2D3B_OVERRIDE_RECEIVER_HOME=PASS
+PERF006_B2D3B_STANDARD_CLOSURE_INTRINSIC=PASS
+PERF006_B2D3B_DEFAULT_STRUCTURAL_CALL_PARITY=PASS
+PERF006_B2D3B_NON_CLOSURE_SHADOWING=PASS
+PERF006_B2D3B_CALL_TAG_COUNT=1
+PERF006_B2D3B_CALL_TAG_SOURCE_EXACT=PASS
+PERF006_B2D3B_NO_DUPLICATE_STANDARD_BRIDGE_TAG=PASS
+PERF006_B2D3B_STANDARD_CALL_ORDINARY_SLOT=PASS
+PERF006_B2D3B_STANDARD_CALL_HAS_NO_TRUFFLE_ROOT=PASS
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2D3BSelectedStandardObjectCallIntrinsicTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosRootActorBootstrapAuthorityTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in com.guillermomolina.protos.execution.ProtosRootActorBootstrapAuthorityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosWorkspacePackageStandardDelegationTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.execution.ProtosWorkspacePackageStandardDelegationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardIntegerArithmeticTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.guillermomolina.protos.execution.ProtosStandardIntegerArithmeticTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolTool012TomlOfficialProgressGroupingTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.22 s -- in com.guillermomolina.protos.execution.ProtosTestToolTool012TomlOfficialProgressGroupingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025StringProofPreservationTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.execution.ProtosPerf025StringProofPreservationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTcpConnectionDuplexLifecycleTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in com.guillermomolina.protos.execution.ProtosTcpConnectionDuplexLifecycleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025MapPhysicalIndexTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in com.guillermomolina.protos.execution.ProtosPerf025MapPhysicalIndexTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosMapConstructionFPrimeProtocolTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in com.guillermomolina.protos.execution.ProtosMapConstructionFPrimeProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageContentVerificationTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.303 s -- in com.guillermomolina.protos.execution.ProtosPackageContentVerificationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolFutureFreshInspectionFixtureSuiteTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in com.guillermomolina.protos.execution.ProtosTestToolFutureFreshInspectionFixtureSuiteTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolH2B1BoundedSimpleSchedulingTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.077 s -- in com.guillermomolina.protos.execution.ProtosTestToolH2B1BoundedSimpleSchedulingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCommandLineSpecModuleTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.752 s -- in com.guillermomolina.protos.execution.ProtosCommandLineSpecModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosForeignValueProjectionTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.041 s -- in com.guillermomolina.protos.execution.ProtosForeignValueProjectionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolDiscoverySignatureTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.139 s -- in com.guillermomolina.protos.execution.ProtosTestToolDiscoverySignatureTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolTool004CProgressPresentationTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.075 s -- in com.guillermomolina.protos.execution.ProtosTestToolTool004CProgressPresentationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosWorkspacePackageDirectoryIndexTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosWorkspacePackageDirectoryIndexTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosDirectFileModuleResolverTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosDirectFileModuleResolverTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNetworkBootstrapAuthorityTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.guillermomolina.protos.execution.ProtosNetworkBootstrapAuthorityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolI8D4C3RunnerRoundDrainTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.105 s -- in com.guillermomolina.protos.execution.ProtosTestToolI8D4C3RunnerRoundDrainTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCollectionsArrayReduceSortModuleTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in com.guillermomolina.protos.execution.ProtosCollectionsArrayReduceSortModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosActorBootstrapTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.guillermomolina.protos.execution.ProtosActorBootstrapTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardProcessProtocolTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in com.guillermomolina.protos.execution.ProtosStandardProcessProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosExternalPackageModuleKeyTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosExternalPackageModuleKeyTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosModuleSourceIdentityTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosModuleSourceIdentityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006Plat028MapRemoveCallbackTest
+PERF006_PLAT028_MAP_REMOVE_CLOSED_BEFORE_CALLBACK=PASS
+PERF006_PLAT028_MAP_REMOVE_FROZEN_BEFORE_CALLBACK=PASS
+PERF006_PLAT028_MAP_REMOVE_EQUALITY_SUSPENSION=PASS
+PERF006_PLAT028_MAP_REMOVE_EQUALITY_DIRECTION=QUERY_TO_STORED
+PERF006_PLAT028_MAP_REMOVE_RECORDED_HASH_FILTER=PASS
+PERF006_PLAT028_MAP_REMOVE_POST_CALLBACK_OPEN_RECHECK=PASS
+PERF006_PLAT028_MAP_REMOVE_SEARCH_BEFORE_RECHECK=PASS
+PERF006_PLAT028_MAP_REMOVE_HASH_SUSPENSION=PASS
+PERF006_PLAT028_MAP_REMOVE_HASH_SINGLE_INVOCATION=PASS
+PERF006_PLAT028_MAP_REMOVE_SAME_MAP_CONFLICT=ERROR
+PERF006_PLAT028_MAP_REMOVE_EXACT_VALUE=PASS
+PERF006_PLAT028_MAP_REMOVE_CANCEL_UNWIND=PASS
+PERF006_PLAT028_MAP_REMOVE_CANCEL_MUTATION=NO
+PERF006_PLAT028_MAP_REMOVE_COMPARISON_SCOPE_LEAK=NO
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.guillermomolina.protos.execution.ProtosPerf006Plat028MapRemoveCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006C2PortableRuntimeReconciliationTest
+PERF006_C2_ROOT_POM_AUTHORITY=PASS
+PERF006_C2_DIST_RUNTIME_POM=ABSENT
+PERF006_C2_DAP_RUNTIME_PROJECTION=DECLARED
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.guillermomolina.protos.execution.ProtosPerf006C2PortableRuntimeReconciliationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025LazyLexicalCaptureTest
+DEBUGGER_SCOPE_PROJECTION=PASS
+MULTIPLE_CLOSURES_SHARE_ENVIRONMENT_IDENTITY=PASS
+BIND_METHOD_CAPTURE_PRESERVED=PASS
+PARALLEL_PROJECTION_BOUNDARY_PRESERVED=PASS
+TRIVIAL_CLOSURE_DOES_NOT_FORCE_OUTER_CONTEXT=PASS
+OBJECT_BODY_LEXICAL_BOUNDARY=PASS
+GUARDED_MEMBER_READ_INVALIDATION=PASS
+GUARDED_MEMBER_READ_FRESH_CLOSURE=PASS
+GUARDED_MEMBER_READ_GENERIC_FALLBACK=PASS
+LATE_NEARER_CREATION_RETARGETING=PASS
+D179_C0_REMOVAL_FALLBACK=PASS
+REMOVE_RECREATE=PASS
+PRESENT_NULL_DISTINCT_FROM_ABSENT=PASS
+CONTEXT_INTRINSIC=PASS
+CONTEXT_REFLECTION=PASS
+CAPTURE_BY_REFERENCE=PASS
+LATER_MUTATION_VISIBLE=PASS
+ESCAPED_CAPTURE_AFTER_OWNER_RETURN=PASS
+MULTI_DEPTH_CAPTURE=PASS
+TRANSITIVE_NESTED_CAPTURE=PASS
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s -- in com.guillermomolina.protos.execution.ProtosPerf025LazyLexicalCaptureTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageToolExecutionPlanInvalidIdentityGraphTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.09 s -- in com.guillermomolina.protos.execution.ProtosPackageToolExecutionPlanInvalidIdentityGraphTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCsvModuleTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in com.guillermomolina.protos.execution.ProtosCsvModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B4FStructuredWhileTest
+PERF006_B4F_CONDITION_SUSPENSION_RESUME=PASS
+PERF006_B4F_BODY_SUSPENSION_RESUME=PASS
+PERF006_B4F_COMPLETED_CALLBACK_REPLAY=NO
+PERF006_B4F_VALIDATION_BEFORE_FIRST_CONDITION=PASS
+PERF006_B4F_FRESH_CALLBACK_RETURN_HOME_PER_ITERATION=PASS
+PERF006_B4F_FALSE_RETURNS_NULL=PASS
+PERF006_B4F_STRICT_CANONICAL_BOOLEAN=PASS
+PERF006_B4F_INVALID_CONDITION_SKIPS_BODY=PASS
+PERF006_B4F_EXTRACTED_WHILE_PROVENANCE=PASS
+PERF006_B4F_WHILE_SELECTOR_PET=NO
+PERF006_B4F_BODY_FUTURE_RESULT_IGNORED=PASS
+PERF006_B4F_BODY_FUTURE_OBSERVATION=NO
+PERF006_B4F_CANCELLATION_NO_LOOP_POLL=PASS
+PERF006_B4F_CANCELLATION_CROSSES_ENSURE_ONCE=PASS
+PERF006_B4F_BODY_ERROR_STOPS_LOOP=PASS
+PERF006_B4F_CONTROL_TRANSFER_RECHECKS_CONDITION=NO
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s -- in com.guillermomolina.protos.execution.ProtosPerf006B4FStructuredWhileTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosUriModuleTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.guillermomolina.protos.execution.ProtosUriModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolLogicalCaseMigrationTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.guillermomolina.protos.execution.ProtosTestToolLogicalCaseMigrationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosActorPolyglotContextRoutingTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosActorPolyglotContextRoutingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolActorGroupOwnershipArchitectureTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.execution.ProtosTestToolActorGroupOwnershipArchitectureTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPolymorphicInvocationTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosPolymorphicInvocationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardFilesystemTreeMaterializationTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosStandardFilesystemTreeMaterializationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolStalledCaseReporterTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.guillermomolina.protos.execution.ProtosTestToolStalledCaseReporterTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolErrorParentExpectationsTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.313 s -- in com.guillermomolina.protos.execution.ProtosTestToolErrorParentExpectationsTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolSimpleExpectationsTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.272 s -- in com.guillermomolina.protos.execution.ProtosTestToolSimpleExpectationsTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006Plat031BufferedWriterCPrimeTest
+D117_BUFFERED_CPRIME_UNKNOWN_EFFECT_FAILURE=EXACT
+D117_BUFFERED_CPRIME_PENDING_CANCEL_OVERRIDDEN_BY_FAILURE=YES
+PLAT031_BUFFERED_WRITER_FLUSH_CALLBACK_CPRIME=PASS
+PLAT031_BUFFERED_WRITER_WRITE_CALLBACK_REPLAY=NO
+PLAT031_BUFFERED_WRITER_FLUSH_CALLBACK_REPLAY=NO
+PLAT031_BUFFERED_WRITER_HIDDEN_TASK=NO
+PLAT031_BUFFERED_WRITER_BACKEND_INLINE_GUEST_REENTRY=NO
+D117_BUFFERED_CPRIME_POST_COMMIT_LOWER_CANCEL=FAILURE
+PLAT031_BUFFERED_WRITER_FLUSH_SUSPENSION_CAPABLE=YES
+PLAT031_BUFFERED_WRITER_WRITE_LOCAL_LEAF=YES
+PLAT031_BUFFERED_WRITER_CLOSE_INCLUDED=NO
+D117_BUFFERED_CPRIME_ZERO_EFFECT_LOWER_CANCEL=FAILURE_WITHOUT_OUTER_CUTOVER
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s -- in com.guillermomolina.protos.execution.ProtosPerf006Plat031BufferedWriterCPrimeTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTcpListenerIntegratedConformanceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosTcpListenerIntegratedConformanceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageToolContentIdentityTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.291 s -- in com.guillermomolina.protos.execution.ProtosPackageToolContentIdentityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006C1OptimizingRuntimeClosureTest
+PERF006_C1_SUREFIRE_RUNTIME=com.oracle.truffle.runtime.hotspot.HotSpotTruffleRuntime
+PERF006_C1_SUREFIRE_OPTIMIZING_RUNTIME=PASS
+PERF006_C1_WARNING_SUPPRESSION=NO
+PLAT045_NATIVE_GUEST_JIT_CLAIM=UNAVAILABLE_NOT_PASS
+PERF006_C1_SHADED_OPTIMIZER=NO
+PERF006_C1_CHECKOUT_RUNTIME_PLANE=PASS
+PLAT045_NATIVE_PROFILE_FALLBACK_RUNTIME=YES
+PLAT045_JVM_FALLBACK_RUNTIME=NO
+BUG014_NATIVE_PROFILE_SHADE_SKIP=NO
+BUG014_NATIVE_PROFILE_APPLICATION_INPUT=CLASSES_DIRECTORY
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.execution.ProtosPerf006C1OptimizingRuntimeClosureTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B4BNonLocalReturnTest
+PERF006_B4B_INVALID_RETURN=PASS
+PERF006_B4B_DIRECT_OWNER_CONSUMPTION=PASS
+PERF006_B4B_EXACT_RETURN_HOME=PASS
+PERF006_B4B_EXACT_RETURN_PAYLOAD=PASS
+PERF006_B4B_MISMATCH_PROPAGATION=PASS
+PERF006_B4B_RETURN_AFTER_CPRIME_RESUME=PASS
+PERF006_B4B_COMPLETED_PREFIX_REPLAY=NO
+PERF006_B4B_DEFAULT_RETURN_HOME=PASS
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.guillermomolina.protos.execution.ProtosPerf006B4BNonLocalReturnTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageContentIdentityV1ConformanceTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosPackageContentIdentityV1ConformanceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolTool009ALifecycleReporterTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.070 s -- in com.guillermomolina.protos.execution.ProtosTestToolTool009ALifecycleReporterTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolResourceRequirementsSchemaTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.431 s -- in com.guillermomolina.protos.execution.ProtosTestToolResourceRequirementsSchemaTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardPathProtocolTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in com.guillermomolina.protos.execution.ProtosStandardPathProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B4DErrorHandlersTest
+PERF006_B4D_VALIDATION_BEFORE_HANDLER_INSTALL=PASS
+PERF006_B4D_STANDARD_SIGNAL_CPRIME=PASS
+PERF006_B4D_STANDARD_SIGNAL_EXACT_IDENTITY=PASS
+PERF006_B4D_INNERMOST_HANDLER=PASS
+PERF006_B4D_SELECTED_HANDLER_INACTIVE_BEFORE_CLEANUP=PASS
+PERF006_B4D_CLEANUP_ERROR_SKIPS_CONSUMED_HANDLER=PASS
+PERF006_B4D_CLEANUP_ERROR_SUPERSEDES_ORIGINAL=PASS
+PERF006_B4D_SELECTED_HANDLER_REMOVED_BEFORE_HANDLER=PASS
+PERF006_B4D_HANDLER_SELF_REENTRY=NO
+PERF006_B4D_HANDLER_SUSPENSION_RESUME=PASS
+PERF006_B4D_BYTECODE_ERROR_SELECTION=PASS
+PERF006_B4D_EXACT_ERROR_OCCURRENCE=PASS
+PERF006_B4D_HANDLER_SCOPE_SURVIVES_SUSPENSION=PASS
+PERF006_B4D_PROTECTED_PREFIX_REPLAY=NO
+PERF006_B4D_EXTRACTED_HANDLE_PROVENANCE=PASS
+PERF006_B4D_HANDLER_SELECTOR_PET=NO
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.guillermomolina.protos.execution.ProtosPerf006B4DErrorHandlersTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolResourceReservationKernelTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.378 s -- in com.guillermomolina.protos.execution.ProtosTestToolResourceReservationKernelTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosI068Slice7ActivationLexicalDecompositionTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosI068Slice7ActivationLexicalDecompositionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf027AGuardedIntegerDeferredActivationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in com.guillermomolina.protos.execution.ProtosPerf027AGuardedIntegerDeferredActivationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2D2NestedArgumentCompositionTest
+PERF006_B2D2_NESTED_DEFAULT_ARGUMENT=PASS
+PERF006_B2D2_DEFAULT_ARGUMENT_SUSPENSION_NO_REPLAY=PASS
+PERF006_B2D2_LATER_ARGUMENT_SUSPENSION=PASS
+PERF006_B2D2_EARLIER_ARGUMENT_NO_REPLAY=PASS
+PERF006_B2D2_NESTED_ARGUMENTS=PASS
+PERF006_B2D2_ARGUMENT_ORDER_EXACTLY_ONCE=PASS
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2D2NestedArgumentCompositionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageRunDriverPlanningFailureCustodyTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.653 s -- in com.guillermomolina.protos.execution.ProtosPackageRunDriverPlanningFailureCustodyTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolHClosureReconciliationTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.execution.ProtosTestToolHClosureReconciliationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B3EStandardFutureValueCPrimeTest
+PERF006_B3E_PENDING_FAILURE_EXACT_ERROR_IDENTITY=PASS
+PERF006_B3E_CANCELLED_FRESH_ERROR_OCCURRENCES=PASS
+PERF006_B3E_RESOLVED_SYNCHRONOUS_FAST_PATH=PASS
+PERF006_B3E_EXTRACTED_VALUE_NO_SELECTOR_PET=PASS
+PERF006_B3E_VALUE_REBINDING_CAPABILITY_PROVENANCE=PASS
+PERF006_B3E_STANDARD_VALUE_NATIVE_CAPABILITY=PASS
+PERF006_B3E_PENDING_VALUE_CPRIME_RESUME=PASS
+PERF006_B3E_READY_VS_TASK_CANCEL_PRECEDENCE=PASS
+PERF006_B3E_WAITING_TASK_CANCEL_DETACH=PASS
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in com.guillermomolina.protos.execution.ProtosPerf006B3EStandardFutureValueCPrimeTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandaloneHostedSessionLifecycleTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.guillermomolina.protos.execution.ProtosStandaloneHostedSessionLifecycleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf026B3BooleanInlineCallbackTest
+PERF026_B3_PARAMETERIZED_LITERAL_ROOT_PRESERVED=YES
+PERF026_B3_NESTED_CLOSURE_LITERAL_ROOT_PRESERVED=YES
+PERF026_B3_TRUE_BRANCH_LITERAL_CALLBACK_ROOT_REMOVED=YES
+PERF026_B3_UNSELECTED_FALSE_CALLBACK_ENTERED=NO
+PERF026_B3_NLR_PRESERVED=YES
+PERF026_B3_CAPTURE_BY_REFERENCE_PRESERVED=YES
+PERF026_B3_FRESH_ACTIVATION_PRESERVED=YES
+PERF026_B3_DYNAMIC_CALLBACK_ROOT_PRESERVED=YES
+PERF026_B3_MISMATCHED_POSITION_FALLBACK_PRESERVED=YES
+PERF026_B3_EAGER_ORDERED_ARGUMENT_EVALUATION_PRESERVED=YES
+PERF026_B3_OWNED_RETURN_HOME_FALLBACK=YES
+PERF026_B3_ERROR_PROPAGATION_PRESERVED=YES
+PERF026_B3_FUTURE_WAIT_PRESERVED=YES
+PERF026_B3_FALSE_BRANCH_LITERAL_CALLBACK_ROOT_REMOVED=YES
+PERF026_B3_UNSELECTED_TRUE_CALLBACK_ENTERED=NO
+PERF026_B3_INLINE_ROOTTAG=YES
+PERF026_B3_INLINE_SCOPE_PROJECTION_PRESERVED=YES
+PERF026_B3_CUSTOM_BOOLEAN_SELECTOR_FALLBACK_PRESERVED=YES
+PERF026_B3_NONCLOSURE_INVOKABLE_FALLBACK_PRESERVED=YES
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in com.guillermomolina.protos.execution.ProtosPerf026B3BooleanInlineCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosSourceCompilerTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.ProtosSourceCompilerTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf013SliceA3ObjectBodyHelperSharedGroupingTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosPerf013SliceA3ObjectBodyHelperSharedGroupingTest
+[INFO] Running com.guillermomolina.protos.execution.CanonicalObjectExecutionTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.execution.CanonicalObjectExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosI026EDebuggerIntegrationTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosI026EDebuggerIntegrationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025C1cSemanticSourceTopologyTest
+PERF025_C2B_BOOLEAN_HELPER_CALLTARGET_REMOVED=YES
+PERF025_C1C_COMPACT_METHOD_SEND_ACTIVATION=PASS
+PERF025_C1C_STRUCTURED_ONLY_HELPER_BOUNDARY=YES
+PERF025_C1C_STRUCTURED_HELPER_ROOT_TAG=NO
+PERF025_C1C_UNIVERSAL_SEMANTIC_WRAPPER=REMOVED
+PERF025_C1C_ORDINARY_SOURCE_CLOSURE_CALLTARGET_COUNT=1
+PERF025_C1C_SEMANTIC_AUTOMATIC_ROOT_TAG=YES
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.042 s -- in com.guillermomolina.protos.execution.ProtosPerf025C1cSemanticSourceTopologyTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025H1LazyRootActivationTest
+DEBUGGER_REFLECTION_PROJECTION=PASS
+ON_DEMAND_ACTIVATION_MATERIALIZATION=PASS
+ACTIVATION_MATERIALIZED_AT_MOST_ONCE=PASS
+ZERO_ARG_DIRECT_SOURCE_CALL_WITHOUT_RICH_ACTIVATION=PASS
+DEFAULT_PARAMETER_COMPACT_PATH=PASS
+CAPTURE_BY_REFERENCE=PASS
+THIS_SEMANTICS=PASS
+NON_LOCAL_RETURN=PASS
+SINGLE_ARG_DIRECT_SOURCE_CALL_WITHOUT_RICH_ACTIVATION=PASS
+GENERIC_FALLBACK=PASS
+TASK_PROVENANCE=PASS
+ARITY_ERROR_PATH=PASS
+FRESH_CONTEXT_PER_INVOCATION=PASS
+SAME_CONTEXT_WITHIN_INVOCATION=PASS
+REPEATED_COMPACT_INVOCATIONS=PASS
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.033 s -- in com.guillermomolina.protos.execution.ProtosPerf025H1LazyRootActivationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageToolExecutionPlanInvalidGitAndEdgeGraphTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.105 s -- in com.guillermomolina.protos.execution.ProtosPackageToolExecutionPlanInvalidGitAndEdgeGraphTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025FrameMaterializationSliceTest
+LOCAL_ONLY_REQUIRES_MATERIALIZED_FRAME=NO
+DUPLICATE_CREATE_ERROR=PASS
+FRAME_AUTHORITY_PAY_AS_YOU_GROW=PASS
+CONTEXT_OBSERVATION=PASS
+RAW_VIRTUALFRAME_RETAINED_ACROSS_ROOT_LIFETIME=NO
+OBSERVED_ACTIVATION_IN_FRAME_TRANSITION=PASS
+CANDIDATE_DYNAMIC_FALLBACK=PASS
+SEQUENTIAL_PARAMETERS_DEFAULTS=PASS
+PARAMETER_ONLY_REQUIRES_MATERIALIZED_FRAME=NO
+CAPTURED_ESCAPE_SEMANTICS=PASS
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.guillermomolina.protos.execution.ProtosPerf025FrameMaterializationSliceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardBufferedByteIoPlacementTest
+FRESH_READER_WRAPPER_PER_CONSTRUCTION=PASS
+FRESH_WRITER_WRAPPER_PER_CONSTRUCTION=PASS
+P_TRANSFER_EXACT_FACTORY_IDENTITY=PASS
+ACTOR_TRANSFER_EXACT_FACTORY_IDENTITY=PASS
+DETACHED_TRANSFER_EXACT_FACTORY_IDENTITY=PASS
+TRANSFER_CAUSES_NO_MODULE_IMPORT=PASS
+TRANSFER_CAUSES_NO_MODULE_SOURCE_EXECUTION=PASS
+STDLIB_BUFFERED_READER_PRESENT=PASS
+STDLIB_BUFFERED_WRITER_PRESENT=PASS
+READER_FACTORY_FROZEN=PASS
+WRITER_FACTORY_FROZEN=PASS
+MODULE_INSTANCES_ACTOR_LOCAL=PASS
+FACTORY_IDENTITY_SHARED=PASS
+PRELUDE_BUFFERED_READER_ABSENT=PASS
+PRELUDE_BUFFERED_WRITER_ABSENT=PASS
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in com.guillermomolina.protos.execution.ProtosStandardBufferedByteIoPlacementTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosDiagnosticRootIdentityTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.guillermomolina.protos.execution.ProtosDiagnosticRootIdentityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2D1OrdinarySendCompositionTest
+PERF006_B2D1_SOURCE_SEND_COMPOSITION=PASS
+PERF006_B2D1_SEND_SUSPENSION_NO_REPLAY=PASS
+PERF006_B2D1_IMMEDIATE_METHOD_RECEIVER_HOME=PASS
+PERF006_B2D1_DEFAULT_SEND_SPREAD_LOWERING=PASS
+PERF006_B2D1_NATIVE_SEND=PASS
+PERF006_B2D1_NATIVE_SEND_ARGUMENT_IDENTITY=PASS
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2D1OrdinarySendCompositionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025H1IndexedParameterEstablishmentTest
+STATIC_BINDING_PRESENCE=NO
+DUPLICATE_CREATION_ERROR=PASS
+PRESENT_NULL_DISTINCT_FROM_ABSENT=PASS
+D179_C0_REMOVE_RECREATE=PASS
+ESTABLISHMENT_ORDER_SEMANTICS=PASS
+CONTEXT_REFLECTION=PASS
+CAPTURE_BY_REFERENCE=PASS
+FRAME_NATIVE_PARAMETER_PATH_PRESERVED=YES
+REST_SEMANTICS=PASS
+OPEN_CLOSED_FROZEN_RULES=PASS
+GENERIC_DYNAMIC_PARAMETER_FALLBACK_PRESERVED=YES
+PERF030_I_INDEXED_PARAMETER_CONSTANT_ORDINAL=YES
+LEFT_TO_RIGHT_PARAMETER_BINDING=PASS
+DEFAULT_SEMANTICS=PASS
+STATIC_PARAMETER_USES_INDEXED_AUTHORITY_ESTABLISHMENT=YES
+GENERIC_NAME_LOOKUP_FOR_STATIC_PARAMETER=NO
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.033 s -- in com.guillermomolina.protos.execution.ProtosPerf025H1IndexedParameterEstablishmentTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosExactExternalRequirementsPreflightTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.814 s -- in com.guillermomolina.protos.execution.ProtosExactExternalRequirementsPreflightTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolClosureFreshExpectationsTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.236 s -- in com.guillermomolina.protos.execution.ProtosTestToolClosureFreshExpectationsTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolStalledCaseDiagnosticFacilityTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.367 s -- in com.guillermomolina.protos.execution.ProtosTestToolStalledCaseDiagnosticFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosProcessIntegratedConformanceTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.036 s -- in com.guillermomolina.protos.execution.ProtosProcessIntegratedConformanceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosForeignProviderLifecycleTest
+[INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in com.guillermomolina.protos.execution.ProtosForeignProviderLifecycleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosInvalidSuperExecutionTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in com.guillermomolina.protos.execution.ProtosInvalidSuperExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosDerivedInequalityBackendTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosDerivedInequalityBackendTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNioTcpListenerBackendTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.070 s -- in com.guillermomolina.protos.execution.ProtosNioTcpListenerBackendTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTomlParserArrayOfTablesRegressionTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.095 s -- in com.guillermomolina.protos.execution.ProtosTomlParserArrayOfTablesRegressionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestLogicalCaseDiscoveryFacilityTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in com.guillermomolina.protos.execution.ProtosTestLogicalCaseDiscoveryFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardTextReaderProtocolTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in com.guillermomolina.protos.execution.ProtosStandardTextReaderProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardBooleanProtocolTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosStandardBooleanProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2D5CDefaultSpreadTest
+PERF006_B2D5C_DEFAULT_SPREAD_SNAPSHOT_AT_ARGUMENT_POSITION=PASS
+PERF006_B2D5C_INVALID_DEFAULT_SPREAD_PRECEDENCE=PASS
+PERF006_B2D5C_DEFAULT_CALL_SPREAD_FLATTEN_ORDER=PASS
+PERF006_B2D5C_DEFAULT_SPREAD_SNAPSHOT_SURVIVES_LATER_SUSPENSION=PASS
+PERF006_B2D5C_DEFAULT_SEND_SPREAD_COMPOSED_RECEIVER=PASS
+PERF006_B2D5C_SUPPLIED_ARGUMENT_SKIPS_SPREAD_DEFAULT=PASS
+PERF006_B2D5C_DEFAULT_SEND_SPREAD_SUSPENSION_COMPOSED=PASS
+PERF006_B2D5C_DEFAULT_RECEIVER_NO_REPLAY_ACROSS_SPREAD_SUSPENSION=PASS
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2D5CDefaultSpreadTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCoreBootstrapTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.guillermomolina.protos.execution.ProtosCoreBootstrapTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandaloneProcessBootstrapTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosStandaloneProcessBootstrapTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosSemanticTransferMaterializationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.guillermomolina.protos.execution.ProtosSemanticTransferMaterializationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolFutureObservationPolicyFixtureSuiteTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.422 s -- in com.guillermomolina.protos.execution.ProtosTestToolFutureObservationPolicyFixtureSuiteTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolI8D2ProviderTransactionTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosTestToolI8D2ProviderTransactionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosGroupTestLogicalCaseExecutionFacilityTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.073 s -- in com.guillermomolina.protos.execution.ProtosGroupTestLogicalCaseExecutionFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolResourceRequirementsDiscoveryTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.405 s -- in com.guillermomolina.protos.execution.ProtosTestToolResourceRequirementsDiscoveryTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006Plat031BufferedReaderCPrimeTest
+PLAT031_BUFFERED_READER_LATE_READ_AHEAD=DISCARDED
+PLAT031_BUFFERED_READER_LATE_CALLBACK_GUEST_REENTRY=NO
+PLAT031_BUFFERED_READER_READ_SUSPENSION_CAPABLE=YES
+PLAT031_BUFFERED_READER_CLOSE_INCLUDED=NO
+PLAT031_BUFFERED_READER_READ_CALLBACK_CPRIME=PASS
+PLAT031_BUFFERED_READER_CALLBACK_REPLAY=NO
+PLAT031_BUFFERED_READER_HIDDEN_TASK=NO
+PLAT031_BUFFERED_READER_BACKEND_INLINE_GUEST_REENTRY=NO
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in com.guillermomolina.protos.execution.ProtosPerf006Plat031BufferedReaderCPrimeTest
+[INFO] Running com.guillermomolina.protos.execution.CanonicalLookupExecutionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.execution.CanonicalLookupExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosAsyncExactExecutionFacilityTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.325 s -- in com.guillermomolina.protos.execution.ProtosAsyncExactExecutionFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNetworkConnectAcquisitionTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s -- in com.guillermomolina.protos.execution.ProtosNetworkConnectAcquisitionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolTool011ProgressGroupingTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.464 s -- in com.guillermomolina.protos.execution.ProtosTestToolTool011ProgressGroupingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosJsonDataModelModuleTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in com.guillermomolina.protos.execution.ProtosJsonDataModelModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolI8CResourceRoundSchedulingTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.093 s -- in com.guillermomolina.protos.execution.ProtosTestToolI8CResourceRoundSchedulingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosBug018CapturedMaterializedReadAfterOwnerTierTransitionTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.execution.ProtosBug018CapturedMaterializedReadAfterOwnerTierTransitionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf026B2BooleanInlineCallbackTest
+PERF026_B2_AND_BOOLEAN_RESULT_VALIDATION_PRESERVED=YES
+PERF026_B2_OR_BOOLEAN_RESULT_VALIDATION_PRESERVED=YES
+PERF026_B2_DYNAMIC_CALLBACK_ROOT_PRESERVED=YES
+PERF026_B2_NLR_PRESERVED=YES
+PERF026_B2_CAPTURE_BY_REFERENCE_PRESERVED=YES
+PERF026_B2_FRESH_ACTIVATION_PRESERVED=YES
+PERF026_B2_OR_LITERAL_CALLBACK_ROOT_REMOVED=YES
+PERF026_B2_IF_FALSE_LITERAL_CALLBACK_ROOT_REMOVED=YES
+PERF026_B2_ERROR_PROPAGATION_PRESERVED=YES
+PERF026_B2_FUTURE_WAIT_PRESERVED=YES
+PERF026_B2_TRUE_IF_FALSE_CALLBACK_ENTERED=NO
+PERF026_B2_FALSE_AND_CALLBACK_ENTERED=NO
+PERF026_B2_TRUE_OR_CALLBACK_ENTERED=NO
+PERF026_B2_INLINE_SCOPE_PROJECTION_PRESERVED=YES
+PERF026_B2_AND_LITERAL_CALLBACK_ROOT_REMOVED=YES
+PERF026_B2_CUSTOM_BOOLEAN_SELECTOR_FALLBACK_PRESERVED=YES
+PERF026_B2_NONCLOSURE_INVOKABLE_FALLBACK_PRESERVED=YES
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.049 s -- in com.guillermomolina.protos.execution.ProtosPerf026B2BooleanInlineCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolI8D5BTestRunOutcomeProjectionTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.067 s -- in com.guillermomolina.protos.execution.ProtosTestToolI8D5BTestRunOutcomeProjectionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNioConfinedFilesystemBackendTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosNioConfinedFilesystemBackendTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosLanguageSourceParsingTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.ProtosLanguageSourceParsingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandaloneHostedSessionGateTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.guillermomolina.protos.execution.ProtosStandaloneHostedSessionGateTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolFutureResolvedMechanismTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.084 s -- in com.guillermomolina.protos.execution.ProtosTestToolFutureResolvedMechanismTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025CompactCalleeExecutionTest
+LEFT_TO_RIGHT_PARAMETER_BINDING=PASS
+MISSING_ARGUMENT_PRECEDENCE=PASS
+EXCESS_ARGUMENT_PRECEDENCE=PASS
+DEFAULT_BINDING_VISIBILITY=PASS
+PERF030_I_FRAME_REST_CONSTANT_ORDINAL=YES
+PERF030_I_MULTIPLE_CREATE_RUNTIME_ORDINAL_ARRAY=NO
+PERF030_I_MULTIPLE_CREATE_PREFIX_BEFORE_FIRST_CREATION=YES
+PERSISTENT_AUTHORITY_INDEXED_CREATION=PASS
+D179_PRESENT_ABSENT=PASS
+D179_REMOVE_RECREATE=PASS
+TASK_DYNAMIC_CONTROL=PASS
+LATE_CONTEXT_PROJECTION=PASS
+FRESH_CONTEXT_IDENTITY=PASS
+REST_ARRAY_SEMANTICS=PASS
+CAPTURE_BY_REFERENCE=PASS
+ERROR_HANDLER_SELECTION=PASS
+NON_LOCAL_RETURN=PASS
+SOURCE_ROOT_UNIVERSAL_PUBLISH_FRAME_ACTIVATION=NO
+CALLEE_ACTIVATION_EAGER=NO
+FRAME_MATERIALIZATION_EAGER=NO
+PARAMETER_DIRECT_LOCAL_BINDING=YES
+IMMEDIATE_METHOD_COMPACT_PATH=PASS
+DIRECT_SOURCE_CLOSURE_COMPACT_PATH=PASS
+MATERIALIZED_ACTIVATION_IDENTITY_PER_INVOCATION=ONE
+SUPPLIED_ARGUMENT_LIST_COPY_ON_ENTRY=NO
+ORDINARY_LOCAL_ONLY_ROOT_EAGER_FRAME_MATERIALIZATION=NO
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.043 s -- in com.guillermomolina.protos.execution.ProtosPerf025CompactCalleeExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf026D1IndexedEachInlineCallbackTest
+PERF026_D1_INLINE_SCOPE_PROJECTION=YES
+PERF026_D1_BYTES_SNAPSHOT_PRESERVED=YES
+PERF026_D1_BYTES_ASCENDING_ORDER_PRESERVED=YES
+PERF026_D1_BYTES_CALLBACK_RESULT_IGNORED=YES
+PERF026_D1_BYTES_RECEIVER_RESULT_IDENTITY=YES
+PERF026_D1_BYTES_EACH_LOCAL_LOOP=YES
+PERF026_D1_BYTES_HELPER_ROOT_REMOVED=YES
+PERF026_D1_BYTES_CALLBACK_ROOT_REMOVED=YES
+PERF026_D1_BYTES_SEMANTIC_INTEGER_OCTET=YES
+PERF026_D1_OWNED_RETURN_HOME_FALLBACK=YES
+PERF026_D1_ARRAY_EACH_LOCAL_LOOP=YES
+PERF026_D1_ARRAY_HELPER_ROOT_REMOVED=YES
+PERF026_D1_ARRAY_CALLBACK_ROOT_REMOVED=YES
+PERF026_D1_ARRAY_EXACT_ELEMENT_ARGUMENT=YES
+PERF026_D1_UNSUPPORTED_ARITY_ORDINARY_ERROR=YES
+PERF026_D1_NLR_PRESERVED=YES
+PERF026_D1_ERROR_PROPAGATION_PRESERVED=YES
+PERF026_D1_NONCLOSURE_INVOKABLE_FALLBACK=YES
+PERF026_D1_CUSTOM_EACH_FALLBACK=YES
+PERF026_D1_NESTED_CLOSURE_LITERAL_FALLBACK=YES
+PERF026_D1_DEFAULT_REST_PARAMETER_FALLBACK=YES
+PERF026_D1_SUSPENSION_RESUMPTION_PRESERVED=YES
+PERF026_D1_COMPLETED_PREFIX_REPLAY=NO
+PERF026_D1_ARRAY_SNAPSHOT_PRESERVED=YES
+PERF026_D1_ARRAY_ASCENDING_ORDER_PRESERVED=YES
+PERF026_D1_ARRAY_CALLBACK_RESULT_IGNORED=YES
+PERF026_D1_ARRAY_RECEIVER_RESULT_IDENTITY=YES
+PERF026_D1_CAPTURE_BY_REFERENCE_PRESERVED=YES
+PERF026_D1_FRESH_ACTIVATION_PER_CALLBACK=YES
+PERF026_D1_DYNAMIC_CALLBACK_FALLBACK=YES
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.076 s -- in com.guillermomolina.protos.execution.ProtosPerf026D1IndexedEachInlineCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosWorkspacePackageSourceInventoryTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosWorkspacePackageSourceInventoryTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardNumberEqualityTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosStandardNumberEqualityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosForeignProviderEnforcementTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.054 s -- in com.guillermomolina.protos.execution.ProtosForeignProviderEnforcementTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosI072PhaseDPreparedCallSeparationTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.guillermomolina.protos.execution.ProtosI072PhaseDPreparedCallSeparationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B5ABytecodeDebuggerScopeTest
+PERF006_B5A_BYTECODE_SCOPE_AUTHORITY=PROTOS_ACTIVATION
+PERF006_B5A_BYTECODE_INTERNAL_LOCALS_EXPOSED=NO
+PERF006_B5A_SCOPE_LOOKUP_PARITY=PASS
+PERF006_B5A_BYTECODE_TAG_TREE_SCOPE_LIBRARY=YES
+PERF006_B5A_ROOT_TAG_EXPANSION=NO
+PERF006_B5A_SCOPE_WITHOUT_ACTIVATION=FAIL_CLOSED
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.ProtosPerf006B5ABytecodeDebuggerScopeTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2C3B3CallSendDefaultBindingTest
+PERF006_B2C3B3_SEND_DEFAULT=PASS
+PERF006_B2C3B3_IMMEDIATE_METHOD_RECEIVER_HOME=PASS
+PERF006_B2C3B3_CALL_DEFAULT_SUSPENSION=PASS
+PERF006_B2C3B3_DEFAULT_NO_REPLAY=PASS
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2C3B3CallSendDefaultBindingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosI068Slice6DebuggerReflectionProjectionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosI068Slice6DebuggerReflectionProjectionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCoreNativeBoundaryArchitectureTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in com.guillermomolina.protos.execution.ProtosCoreNativeBoundaryArchitectureTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf013SliceASharedLexicalRootGroupingTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.execution.ProtosPerf013SliceASharedLexicalRootGroupingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosSemanticTransferFamilyTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.guillermomolina.protos.execution.ProtosSemanticTransferFamilyTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNioTcpConnectionWriteTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.216 s -- in com.guillermomolina.protos.execution.ProtosNioTcpConnectionWriteTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCapturedProcessExecutionTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s -- in com.guillermomolina.protos.execution.ProtosCapturedProcessExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025D179LexicalMembershipStabilityReadTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.execution.ProtosPerf025D179LexicalMembershipStabilityReadTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPlat029FutureValueNonTaskCPrimeTest
+PLAT029_FUTURE_VALUE_FAILED_ERROR_IDENTITY=PASS
+PLAT029_FUTURE_VALUE_TERMINAL_FAST_PATH=PASS
+PLAT029_FUTURE_VALUE_TERMINAL_RELEASE=PASS
+PLAT029_FUTURE_VALUE_LATE_RESUME=NO
+PLAT029_FUTURE_VALUE_NON_TASK_CPRIME=PASS
+PLAT029_FUTURE_VALUE_BACKEND_INLINE_GUEST_REENTRY=NO
+PLAT029_FUTURE_VALUE_HIDDEN_TASK=NO
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in com.guillermomolina.protos.execution.ProtosPlat029FutureValueNonTaskCPrimeTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006Plat029TextWriterCallbackTest
+PLAT029_TEXT_WRITER_LOWER_FUTURE_WAIT_CPRIME=PASS
+PLAT029_TEXT_WRITER_LOWER_WAIT_HIDDEN_TASK=NO
+PLAT029_TEXT_WRITER_FLUSH_CALLBACK_CPRIME=PASS
+PLAT029_TEXT_WRITER_CLOSE_INCLUDED=NO
+PLAT029_TEXT_WRITER_INVOCATION_FAILURE_TO_IOERROR=PASS
+PLAT029_TEXT_WRITER_LOWER_FAILURE_IDENTITY=PASS
+PLAT029_TEXT_WRITER_CANCELLED_LOWER_TO_IOERROR=PASS
+PLAT029_TEXT_WRITER_PERMANENT_OUTPUT_POISON=PASS
+PLAT029_TEXT_WRITER_WRITE_CALLBACK_CPRIME=PASS
+PLAT029_TEXT_WRITER_WRITE_CALLBACK_REPLAY=NO
+PLAT029_TEXT_WRITER_WRITE_BACKEND_INLINE_GUEST_REENTRY=NO
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in com.guillermomolina.protos.execution.ProtosPerf006Plat029TextWriterCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025C1ObjectBodyInlineControlTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in com.guillermomolina.protos.execution.ProtosPerf025C1ObjectBodyInlineControlTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosBug018FrameLexicalAuthorityReadAfterOwnerTierTransitionTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.ProtosBug018FrameLexicalAuthorityReadAfterOwnerTierTransitionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolTool004BProgressBoundaryTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.204 s -- in com.guillermomolina.protos.execution.ProtosTestToolTool004BProgressBoundaryTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolI8D4C1ResourcefulExecutionFacilityTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in com.guillermomolina.protos.execution.ProtosTestToolI8D4C1ResourcefulExecutionFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolFileSelectionPlanTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.062 s -- in com.guillermomolina.protos.execution.ProtosTestToolFileSelectionPlanTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2D4BComposedSendReceiverTest
+PERF006_B2D4B_RECEIVER_FROM_CALL=PASS
+PERF006_B2D4B_RECEIVER_SUSPENSION_COMPOSED=PASS
+PERF006_B2D4B_RECEIVER_ACTIVATION_IDENTITY_NO_REPLAY=PASS
+PERF006_B2D4B_RECEIVER_FROM_SEND=PASS
+PERF006_B2D4B_DEFAULT_SEND_SPREAD_LOWERING=PASS
+PERF006_B2D4B_RECEIVER_NO_REPLAY_ACROSS_ARGUMENT_SUSPENSION=PASS
+PERF006_B2D4B_DEFAULT_COMPOSED_SEND_RECEIVER=PASS
+PERF006_B2D4B_RECEIVER_BEFORE_ARGUMENTS=PASS
+PERF006_B2D4B_RECEIVER_ARGUMENTS_EXACTLY_ONCE=PASS
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2D4BComposedSendReceiverTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2BClosureContinuationCompositionTest
+PERF006_B2B_LEGACY_DISPATCH_TEMPORARY_AST_FALLBACK=PASS
+PERF006_B2B_SEMANTIC_BYTECODE_PLAN_PRESERVED=PASS
+PERF006_B2B_SOURCE_LEVEL_CALL_LOWERING=PASS
+PERF006_B2B_NESTED_CONTINUATION_CHAIN=PASS
+PERF006_B2B_REPEATED_SUSPENSION=PASS
+PERF006_B2B_ACTIVATION_IDENTITY_NO_REPLAY=PASS
+PERF006_B2B_RETURN_HOME_LIFETIME=PASS
+PERF006_B2B_DEFAULT_SPREAD_LOWERING=PASS
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2BClosureContinuationCompositionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardEncodingProtocolTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.ProtosStandardEncodingProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2C2GeneralPositionalArityTest
+PERF006_B2C2_GENERAL_POSITIONAL_BINDING=PASS
+PERF006_B2C2_POSITIONAL_IDENTITY_ORDER=PASS
+PERF006_B2C2_SOURCE_LEVEL_GENERAL_ARITY=PASS
+PERF006_B2C2_DEFAULT_INVOCATION_SPREAD_LOWERING=PASS
+PERF006_B2C2_TOO_FEW_ARITY_ERROR=PASS
+PERF006_B2C2_TOO_MANY_ARITY_ERROR=PASS
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2C2GeneralPositionalArityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2D4AComposedCallTargetTest
+PERF006_B2D4A_CALL_TARGET_FROM_SEND=PASS
+PERF006_B2D4A_TARGET_BEFORE_ARGUMENTS=PASS
+PERF006_B2D4A_TARGET_ARGUMENTS_EXACTLY_ONCE=PASS
+PERF006_B2D4A_CALL_TARGET_FROM_CALL=PASS
+PERF006_B2D4A_DEFAULT_COMPOSED_CALL_TARGET=PASS
+PERF006_B2D4A_DEFAULT_SEND_SPREAD_LOWERING=PASS
+PERF006_B2D4A_TARGET_NO_REPLAY_ACROSS_ARGUMENT_SUSPENSION=PASS
+PERF006_B2D4A_TARGET_SUSPENSION_COMPOSED=PASS
+PERF006_B2D4A_TARGET_ACTIVATION_IDENTITY_NO_REPLAY=PASS
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2D4AComposedCallTargetTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosWorkspacePackagePreflightTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.721 s -- in com.guillermomolina.protos.execution.ProtosWorkspacePackagePreflightTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosLanguageRegistrationTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.execution.ProtosLanguageRegistrationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTomlParserNestedValueRegressionTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.217 s -- in com.guillermomolina.protos.execution.ProtosTomlParserNestedValueRegressionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCapturedFilesystemCustodyTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in com.guillermomolina.protos.execution.ProtosCapturedFilesystemCustodyTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNetworkListenAcquisitionTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.020 s -- in com.guillermomolina.protos.execution.ProtosNetworkListenAcquisitionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosA4B3ProductionEntryArchitectureTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in com.guillermomolina.protos.execution.ProtosA4B3ProductionEntryArchitectureTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosAPlusExecutionProjectionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s -- in com.guillermomolina.protos.execution.ProtosAPlusExecutionProjectionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B1BytecodeLiteralSequenceTest
+PERF006_B1_LITERAL_BYTECODE=PASS
+PERF006_B1_SEQUENCE_BYTECODE=PASS
+PERF006_B1_EMPTY_SEQUENCE=PASS
+PERF006_B1_ROOT_SOURCE_SECTION=PASS
+PERF006_B1_UNSUPPORTED_FAIL_CLOSED=PASS
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosPerf006B1BytecodeLiteralSequenceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf013SliceB2MaterializedCapturedWriteTest
+CAPTURE_BY_REFERENCE=PASS
+NO_RETARGET=PASS
+EXPECTED_MUTATION_ERROR=PASS
+SAME_GROUP_CAPTURED_WRITE=MATERIALIZED_LOCAL_ACCESSOR
+CAPTURED_WRITE=PASS
+ASSIGNMENT_RESULT_IS_RHS=PASS
+DEFAULT_CAPTURED_WRITE=PASS
+CLOSED_WRITE_ALLOWED=PASS
+NEARER_PRESENT_BEFORE_RESOLUTION=PASS
+MULTI_DEPTH_CAPTURED_WRITE=PASS
+DESTINATION_RESOLVED_BEFORE_RHS=PASS
+NO_POST_RHS_RETARGETING=PASS
+OBJECT_BODY_OUTER_CAPTURED_WRITE=PASS
+REMOVE_RECREATE_SELECTED_OWNER=PASS
+ISOLATED_GROUP_SAFE_WRITE_FALLBACK=PASS
+FROZEN_WRITE_REJECTED=PASS
+ESCAPED_CAPTURED_WRITE=PASS
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.guillermomolina.protos.execution.ProtosPerf013SliceB2MaterializedCapturedWriteTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosExternalPackagePlanningPreflightTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.936 s -- in com.guillermomolina.protos.execution.ProtosExternalPackagePlanningPreflightTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B6A3BClosureLiteralCanonicalCoverageTest
+PERF006_B6A3B_CLOSURE_DEFAULT_EXPRESSION=PASS
+PERF006_B6A3B_CLOSURE_CAPTURE_STATE=PASS
+PERF006_B6A3B_CLOSURE_BYTECODE_PLAN=YES
+PERF006_B6A3B_CLOSURE_SUSPENSION_RESUME=PASS
+PERF006_B6A3B_CLOSURE_COMPLETED_PREFIX_REPLAY=NO
+PERF006_B6A3B_LEXICAL_CAPTURE_BY_REFERENCE=YES
+PERF006_B6A3B_NESTED_CLOSURE_BYTECODE_INVOKE=PASS
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.guillermomolina.protos.execution.ProtosPerf006B6A3BClosureLiteralCanonicalCoverageTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolFutureTerminalMechanismTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.094 s -- in com.guillermomolina.protos.execution.ProtosTestToolFutureTerminalMechanismTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosClosureInvokerTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosClosureInvokerTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B3FClosureEvidenceTest
+PERF006_B3F_TASK_LOCAL_CONTINUATION_PUBLICATION=PASS
+PERF006_B3F_GLOBAL_CONTINUATION_REGISTRY=NO
+PERF006_B3F_THREADLOCAL_TASK_AUTHORITY=NO
+PERF006_B3F_COMPLETED_SEND_RECEIVER_NO_REPLAY=PASS
+PERF006_B3F_COMPLETED_SPREAD_NO_REPLAY=PASS
+PERF006_B3F_PENDING_FUTURE_CANCEL_RESUME=PASS
+PERF006_B3F_PENDING_CANCEL_FRESH_ERROR=PASS
+PERF006_B3F_COMPLETED_TARGET_NO_REPLAY=PASS
+PERF006_B3F_COMPLETED_ARGUMENT_NO_REPLAY=PASS
+PERF006_B3F_SUSPENDED_TASKS_RELEASE_CARRIER=PASS
+PERF006_B3F_MANY_TASKS_NO_LINEAR_CARRIER_GROWTH=PASS
+PERF006_B3F_CARRIER_REUSE_WHILE_TASKS_SUSPENDED=PASS
+PERF006_B3F_COMPLETED_DEFAULT_NO_REPLAY=PASS
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.034 s -- in com.guillermomolina.protos.execution.ProtosPerf006B3FClosureEvidenceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B6A1ReadOnlyCanonicalCoverageTest
+PERF006_B6A1_IDENTITY_SUSPENSION_RESUME=PASS
+PERF006_B6A1_IDENTITY_COMPLETED_PREFIX_REPLAY=NO
+PERF006_B6A1_READ_ONLY_DEFAULT_EXPRESSION=PASS
+PERF006_B6A1_MEMBER_READ_BYTECODE=PASS
+PERF006_B6A1_IDENTITY_BYTECODE=PASS
+PERF006_B6A1_INTRINSIC_THIS_CONTEXT_BYTECODE=PASS
+PERF006_B6A1_COMPOSED_MEMBER_RECEIVER=PASS
+PERF006_B6A1_COMPOSED_MEMBER_REPLAY=NO
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.guillermomolina.protos.execution.ProtosPerf006B6A1ReadOnlyCanonicalCoverageTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosParallelExecutionTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in com.guillermomolina.protos.execution.ProtosParallelExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolLogicalCaseRunnerTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.032 s -- in com.guillermomolina.protos.execution.ProtosTestToolLogicalCaseRunnerTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosA4B3NestedToolProcessHostingTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosA4B3NestedToolProcessHostingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardFilesystemProtocolTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s -- in com.guillermomolina.protos.execution.ProtosStandardFilesystemProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolExactBinary64Test
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.510 s -- in com.guillermomolina.protos.execution.ProtosTestToolExactBinary64Test
+[INFO] Running com.guillermomolina.protos.execution.ProtosI075DLexicalAuthorityCurrentBytecodeNodeTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosI075DLexicalAuthorityCurrentBytecodeNodeTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosEncodingTransferTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.execution.ProtosEncodingTransferTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardFileProtocolTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.guillermomolina.protos.execution.ProtosStandardFileProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosSourceFileLoaderTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.ProtosSourceFileLoaderTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCollectionsSetMutationModuleTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.039 s -- in com.guillermomolina.protos.execution.ProtosCollectionsSetMutationModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosFilesystemParallelTransferTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosFilesystemParallelTransferTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolFloatBitsExpectationsTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.316 s -- in com.guillermomolina.protos.execution.ProtosTestToolFloatBitsExpectationsTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf013SliceA2DefaultClosureSharedLexicalRootGroupingTest
+DEFAULT_CLOSURE_OWNER_SHARED_GROUP=PASS
+DEFAULT_CLOSURE_INDEPENDENT_CREATE=NO
+DEFAULT_CAPTURE_EARLIER_PARAMETER=PASS
+DEFAULT_CAPTURE_BY_REFERENCE=PASS
+DEFAULT_CLOSURE_MULTI_DEPTH_GROUPING=PASS
+DEFAULT_CLOSURE_MULTI_DEPTH_SHARED_GROUP=PASS
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosPerf013SliceA2DefaultClosureSharedLexicalRootGroupingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B4GControlUnwindClosureTest
+PERF006_B4B_RETURN_AFTER_CPRIME_RESUME=PASS
+PERF006_B4B_COMPLETED_PREFIX_REPLAY=NO
+PERF006_B4C_NLR_CROSSES_CLEANUP=PASS
+PERF006_B4C_NLR_EXACT_IDENTITY_AFTER_CLEANUP=PASS
+PERF006_B4C_CLEANUP_NLR_SUPERSEDES_BODY_NLR=PASS
+PERF006_B4D_SELECTED_HANDLER_INACTIVE_BEFORE_CLEANUP=PASS
+PERF006_B4D_CLEANUP_ERROR_SKIPS_CONSUMED_HANDLER=PASS
+PERF006_B4D_CLEANUP_ERROR_SUPERSEDES_ORIGINAL=PASS
+PERF006_B4D_SELECTED_HANDLER_REMOVED_BEFORE_HANDLER=PASS
+PERF006_B4D_HANDLER_SELF_REENTRY=NO
+PERF006_B4D_HANDLER_SUSPENSION_RESUME=PASS
+PERF006_B4E_CLEANUP_SUSPENSION=PASS
+PERF006_B4E_SAME_REQUEST_REDELIVERY=NO
+PERF006_B4E_CLEANUP_PREFIX_REPLAY=NO
+PERF006_B4E_LATER_CLEANUP_ERROR_SUPERSEDES=PASS
+PERF006_B4E_SUPERSESSION_BEFORE_OUTER_HANDLER=PASS
+PERF006_B4F_CONDITION_SUSPENSION_RESUME=PASS
+PERF006_B4F_BODY_SUSPENSION_RESUME=PASS
+PERF006_B4F_COMPLETED_CALLBACK_REPLAY=NO
+PERF006_B4F_CANCELLATION_NO_LOOP_POLL=PASS
+PERF006_B4F_CANCELLATION_CROSSES_ENSURE_ONCE=PASS
+PERF006_B4F_BODY_ERROR_STOPS_LOOP=PASS
+PERF006_B4F_CONTROL_TRANSFER_RECHECKS_CONDITION=NO
+PERF006_B4G_NLR_ENSURE_CPRIME_CROSS_PRODUCT=PASS
+PERF006_B4G_ERROR_HANDLER_ENSURE_CROSS_PRODUCT=PASS
+PERF006_B4G_CANCELLATION_ENSURE_HANDLER_CROSS_PRODUCT=PASS
+PERF006_B4G_WHILE_SUSPENSION_CANCELLATION_ERROR_CROSS_PRODUCT=PASS
+PERF006_B4G_BYTECODE_REPLAY_CURSOR=NO
+PERF006_B4G_LEGACY_REPLAY_BACKEND_RETIRED=YES
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s -- in com.guillermomolina.protos.execution.ProtosPerf006B4GControlUnwindClosureTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B6A4OrdinaryNativeFastPathTest
+PERF006_B6A4_NATIVE_METHOD_RECEIVER_HOME=PASS
+PERF006_B6A4_NATIVE_ERROR_IDENTITY=PASS
+PERF006_B6A4_CORE_NATIVE_PROTOCOL=PASS
+PERF006_B6A4_ORDINARY_NATIVE_TASK_CALL=PASS
+PERF006_B6A4_NATIVE_PREFIX_REPLAY=NO
+PERF006_B6A4_PLAT019_SUSPENSION_CAPABILITY_RETAINED=YES
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.guillermomolina.protos.execution.ProtosPerf006B6A4OrdinaryNativeFastPathTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosWorkspacePackageModuleResolverTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.guillermomolina.protos.execution.ProtosWorkspacePackageModuleResolverTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosExternalPackageResourceScopeTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in com.guillermomolina.protos.execution.ProtosExternalPackageResourceScopeTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosProcessSnapshotExecutionTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosProcessSnapshotExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf025LazyInlineCallbackActivationTest
+PERF025_DEBUGGER_MATERIALIZES_ON_DEMAND=YES
+PERF025_DEBUGGER_SEES_PARAMETER_AND_LOCAL=YES
+PERF025_NLR_SEMANTICS_PRESERVED=YES
+PERF025_FIRST_OBSERVER_MATERIALIZES=YES
+PERF025_DURABLE_TRANSFER_BEFORE_OBSERVER_RETURN=YES
+PERF025_CONTEXT_OBSERVER_SEES_DURABLE_BINDINGS=YES
+PERF025_POST_MATERIALIZATION_BINDING_OPERATION_REQUIRED=NO
+PERF025_BLOCK_LOCAL_ALIAS_AFTER_ESCAPE=NO
+PERF025_MATERIALIZATION_AT_MOST_ONCE=YES
+PERF025_INLINE_CALLBACK_ENTRY_MATERIALIZES_ACTIVATION=NO
+PERF025_FRAME_NATIVE_CALLBACK_ENTRY_HAS_LOAD_INLINE_CALLBACK_ACTIVATION=NO
+PERF025_FRAME_NATIVE_ZERO_PARAMETER_CALLBACK_STAYS_LAZY=YES
+PERF025_FRAME_NATIVE_CURRENT_READ_WITHOUT_ACTIVATION=YES
+PERF025_FRAME_NATIVE_CURRENT_WRITE_WITHOUT_ACTIVATION=YES
+PERF025_FRAME_NATIVE_CREATE_WITHOUT_ACTIVATION=YES
+PERF030_I_INLINE_PARAMETER_CONSTANT_ORDINAL=YES
+PERF030_I_INLINE_CREATION_CONSTANT_ORDINAL=YES
+PERF030_I_INLINE_MULTIPLE_CREATE_RUNTIME_ORDINAL_ARRAY=NO
+PERF025_UNOBSERVED_INVOCATION_ACTIVATION_MATERIALIZED=NO
+PERF025_UNOBSERVED_INVOCATION_DURABLE_AUTHORITY_CREATED=NO
+PERF025_FRAME_NATIVE_ONE_PARAMETER_EACH_STAYS_LAZY=YES
+PERF025_FRAME_NATIVE_PARAMETER_PATH_WITHOUT_ACTIVATION=YES
+PERF025_DURABLE_AUTHORITY_TRANSITION=YES
+PERF025_DURABLE_AUTHORITY_DOES_NOT_ALIAS_REUSED_BLOCK_LOCALS=YES
+PERF025_D179_PRESENT_ABSENT_PRESERVED=YES
+PERF025_SUSPEND_RESUME_DOES_NOT_REMATERIALIZE=YES
+PERF025_FRAME_NATIVE_CALLBACK_HAS_MATERIALIZE_INLINE_CALLBACK_ACTIVATION=YES
+PERF025_FIRST_SEMANTIC_OBSERVER_MATERIALIZES=YES
+PERF025_MATERIALIZATION_AT_MOST_ONCE=YES
+PERF025_FRESH_IDENTITY_PER_INVOCATION=YES
+PERF025_PREPARED_INLINE_LITERAL_CALL_IS_IDENTITY_CARRIER=YES
+PERF025_FRAME_NATIVE_TWO_PARAMETER_EACH_STAYS_LAZY=YES
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in com.guillermomolina.protos.execution.ProtosPerf025LazyInlineCallbackActivationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosLm009DDebugRuntimeHostTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosLm009DDebugRuntimeHostTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNetworkingIpAddressesModuleTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in com.guillermomolina.protos.execution.ProtosNetworkingIpAddressesModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTomlClosureConformanceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosTomlClosureConformanceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosSealedFamilyFacilityTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.111 s -- in com.guillermomolina.protos.execution.ProtosSealedFamilyFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosMapConstructionFPrimeBytecodeFoundationTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosMapConstructionFPrimeBytecodeFoundationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolResourceAdmissionBindingTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.561 s -- in com.guillermomolina.protos.execution.ProtosTestToolResourceAdmissionBindingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCaseOfProtocolTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.guillermomolina.protos.execution.ProtosCaseOfProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006C3DParallelBytecodeRematerializationTest
+PERF006_C3D_P_BYTECODE_REMATERIALIZATION=PASS
+PERF006_C3D_DESTINATION_CONTEXT_CACHE=PASS
+PERF006_C3D_AST_REPLAY_FALLBACK=NO
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosPerf006C3DParallelBytecodeRematerializationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosDetachedExecutionValueCrossPreludeTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.guillermomolina.protos.execution.ProtosDetachedExecutionValueCrossPreludeTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006Plat028ArrayEachCallbackTest
+PERF006_PLAT028_ARRAY_EACH_SUSPEND_RESUME=PASS
+PERF006_PLAT028_ARRAY_EACH_COMPLETED_PREFIX_REPLAY=NO
+PERF006_PLAT028_ARRAY_EACH_SNAPSHOT=PASS
+PERF006_PLAT028_ARRAY_EACH_RESULT_RECEIVER_IDENTITY=PASS
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosPerf006Plat028ArrayEachCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolFileSelectionMainAdoptionTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.execution.ProtosTestToolFileSelectionMainAdoptionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPolyglotNestedCallTargetSharingTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.guillermomolina.protos.execution.ProtosPolyglotNestedCallTargetSharingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006Plat029TextReaderCallbackTest
+PLAT029_TEXT_READER_LATE_READ_AHEAD=PASS
+PLAT029_TEXT_READER_LATE_CALLBACK_GUEST_REENTRY=NO
+PLAT029_TEXT_READER_REPEATED_CALLBACK_CPRIME=PASS
+PLAT029_TEXT_READER_CALLBACK_REPLAY=NO
+PLAT029_TEXT_READER_BACKEND_INLINE_GUEST_REENTRY=NO
+PLAT029_TEXT_READER_READ_CALLBACK_CPRIME=YES
+PLAT029_TEXT_READER_CLOSE_INCLUDED=NO
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in com.guillermomolina.protos.execution.ProtosPerf006Plat029TextReaderCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCommandLineModuleTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.guillermomolina.protos.execution.ProtosCommandLineModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTcpListenerLifecycleTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in com.guillermomolina.protos.execution.ProtosTcpListenerLifecycleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTextReaderLineProtocolTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s -- in com.guillermomolina.protos.execution.ProtosTextReaderLineProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf014DirectClosureCallSpecializationTest
+PERF014_LOCAL_CALL_OVERRIDE_SHADOWS_CANONICAL_FAST_PATH=PASS
+PERF014_FRESH_MATERIALIZATION_IDENTITY_CHURN_STABLE=PASS
+PERF014_REMOVE_RECREATE_CALL_OVERRIDE_CYCLE=PASS
+PERF014_NATIVE_DIRECT_CALL_UNAFFECTED=PASS
+PERF014_MONOMORPHIC_DIRECT_CALL_RESULT=PASS
+PERF014_ARGUMENT_BEARING_DIRECT_CALL_RESULT=PASS
+PERF014_DEFAULT_ARGUMENT_DIRECT_CALL_RESULT=PASS
+PERF014_CALL_OVERRIDE_AFTER_WARMUP_INVALIDATES_FAST_HIT=PASS
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosPerf014DirectClosureCallSpecializationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolResourceCatalogCompositionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.293 s -- in com.guillermomolina.protos.execution.ProtosTestToolResourceCatalogCompositionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolLogicalCasePlanTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in com.guillermomolina.protos.execution.ProtosTestToolLogicalCasePlanTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosArrayMatchProtocolTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in com.guillermomolina.protos.execution.ProtosArrayMatchProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolI8D1ProviderFoundationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosTestToolI8D1ProviderFoundationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006Plat028IdentityMapEachCallbackTest
+I049_IDENTITY_MAP_AT_IF_ABSENT_FALLBACK_SUSPEND_RESUME=PASS
+I049_IDENTITY_MAP_AT_IF_ABSENT_KEY_CALLBACKS=0
+I049_IDENTITY_MAP_AT_IF_ABSENT_FALLBACK_REPLAY=NO
+PERF006_PLAT028_IDENTITY_MAP_EACH_SUSPEND_RESUME=PASS
+PERF006_PLAT028_IDENTITY_MAP_EACH_COMPLETED_PREFIX_REPLAY=NO
+PERF006_PLAT028_IDENTITY_MAP_EACH_RESULT_RECEIVER_IDENTITY=PASS
+PERF006_PLAT028_IDENTITY_MAP_EACH_EXACT_HOME=PASS
+PERF006_PLAT028_IDENTITY_MAP_EACH_COPIED_HOME_PRIVILEGE=NO
+PERF006_PLAT028_IDENTITY_MAP_EACH_COPIED_BODY_PRIVILEGE=NO
+I049_IDENTITY_MAP_AT_IF_ABSENT_EXACT_HOME=PASS
+I049_IDENTITY_MAP_AT_IF_ABSENT_COPIED_HOME_PRIVILEGE=NO
+I049_IDENTITY_MAP_AT_IF_ABSENT_COPIED_BODY_PRIVILEGE=NO
+PERF006_PLAT028_IDENTITY_MAP_EACH_SNAPSHOT=PASS
+PERF006_PLAT028_IDENTITY_MAP_EACH_CALLBACK_MUTATION_PREFIX=STABLE
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.guillermomolina.protos.execution.ProtosPerf006Plat028IdentityMapEachCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006Plat028BytesEachCallbackTest
+PERF006_PLAT028_BYTES_EACH_SNAPSHOT=PASS
+PERF006_PLAT028_BYTES_EACH_CALLBACK_RESULT_IGNORED=PASS
+PERF006_PLAT028_BYTES_EACH_RESULT_RECEIVER_IDENTITY=PASS
+PERF006_PLAT028_BYTES_EACH_SUSPEND_RESUME=PASS
+PERF006_PLAT028_BYTES_EACH_COMPLETED_PREFIX_REPLAY=NO
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosPerf006Plat028BytesEachCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCommandLineArrayConstructionFacilityTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in com.guillermomolina.protos.execution.ProtosCommandLineArrayConstructionFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolProjectTreePlanTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.165 s -- in com.guillermomolina.protos.execution.ProtosTestToolProjectTreePlanTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageExecutionPlanV2ModuleResolverTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in com.guillermomolina.protos.execution.ProtosPackageExecutionPlanV2ModuleResolverTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCommandLineResultModelTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in com.guillermomolina.protos.execution.ProtosCommandLineResultModelTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNioReadOnlyTreeFilesystemBackendTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s -- in com.guillermomolina.protos.execution.ProtosNioReadOnlyTreeFilesystemBackendTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf026B1BooleanInlineCallbackTest
+PERF026_B1_IFTRUE_LITERAL_CALLBACK_ROOT_REMOVED=YES
+PERF026_B1_IFTRUE_INLINE_ROOTTAG=YES
+PERF026_B1_IFTRUE_INLINE_SCOPE_PROJECTION=YES
+PERF026_B1_DYNAMIC_CALLBACK_ROOT_PRESERVED=YES
+PERF026_B1_CUSTOM_IFTRUE_ORDINARY_DISPATCH_PRESERVED=YES
+PERF026_B1_NONCLOSURE_INVOKABLE_FALLBACK_PRESERVED=YES
+PERF026_B1_NLR_PRESERVED=YES
+PERF026_B1_CAPTURE_BY_REFERENCE_PRESERVED=YES
+PERF026_B1_IFTRUE_LITERAL_FRESH_ACTIVATION_PRESERVED=YES
+PERF026_B1_OWNED_RETURN_HOME_FALLBACK=YES
+PERF026_B1_ERROR_PROPAGATION_PRESERVED=YES
+PERF026_B1_FUTURE_WAIT_PRESERVED=YES
+PERF026_B1_FALSE_IFTRUE_CALLBACK_ENTERED=NO
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.032 s -- in com.guillermomolina.protos.execution.ProtosPerf026B1BooleanInlineCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageRunDriverFailureCustodyTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.582 s -- in com.guillermomolina.protos.execution.ProtosPackageRunDriverFailureCustodyTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosAsyncProcessSnapshotExecutionFacilityTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.execution.ProtosAsyncProcessSnapshotExecutionFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNioTcpConnectionLifecycleTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.076 s -- in com.guillermomolina.protos.execution.ProtosNioTcpConnectionLifecycleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardByteIoProtocolTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.guillermomolina.protos.execution.ProtosStandardByteIoProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosProjectFileBindingProviderTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in com.guillermomolina.protos.execution.ProtosProjectFileBindingProviderTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolJClosureReconciliationTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.execution.ProtosTestToolJClosureReconciliationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf010APreparedTargetSpecializationTest
+PERF010A_FRESH_ACTIVATION_PER_HIT=PASS
+PERF010A_METHOD_HOME_EXACT_PER_HIT=PASS
+PERF010A_REMOVED_OVERRIDE_OBSERVES_DELEGATION_PARENT=PASS
+PERF010A_NATIVE_SEND_UNAFFECTED=PASS
+PERF010A_FRESH_MATERIALIZATION_IDENTITY_CHURN_STABLE=PASS
+PERF010A_MONOMORPHIC_SEND_RESULT=PASS
+PERF010A_REPLACED_SELECTION_MISSES_STALE_HIT=PASS
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosPerf010APreparedTargetSpecializationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2D5ABodyCallSpreadTest
+PERF006_B2D5A_EMPTY_SPREAD=PASS
+PERF006_B2D5A_SPREAD_SUSPENSION_COMPOSED=PASS
+PERF006_B2D5A_TARGET_NO_REPLAY_ACROSS_SPREAD_SUSPENSION=PASS
+PERF006_B2D5A_INVALID_SPREAD_PRECEDENCE=PASS
+PERF006_B2D5A_DEFAULT_CALL_SPREAD_LOWERING=PASS
+PERF006_B2D5A_DEFAULT_SEND_SPREAD_LOWERING=PASS
+PERF006_B2D5A_SPREAD_SNAPSHOT_SURVIVES_LATER_SUSPENSION=PASS
+PERF006_B2D5A_CALL_SPREAD_FLATTEN_ORDER=PASS
+PERF006_B2D5A_SPREAD_SNAPSHOT_AT_ARGUMENT_POSITION=PASS
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2D5ABodyCallSpreadTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardNumericConversionTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.execution.ProtosStandardNumericConversionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosForeignCallbackTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.059 s -- in com.guillermomolina.protos.execution.ProtosForeignCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolPackageFailedExecutionTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.103 s -- in com.guillermomolina.protos.execution.ProtosTestToolPackageFailedExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosI050MultipleSlotCreationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.guillermomolina.protos.execution.ProtosI050MultipleSlotCreationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006Plat028BooleanCallbackTest
+PERF006_PLAT028_BOOLEAN_AND_SUSPEND_RESUME=PASS
+PERF006_PLAT028_BOOLEAN_AND_POSTCALL_VALIDATION=PASS
+PERF006_PLAT028_BOOLEAN_SELECTED_CALLBACK_CPRIME=PASS
+PERF006_PLAT028_BOOLEAN_UNSELECTED_NONCALLABLE=PASS
+PERF006_PLAT028_BOOLEAN_CALLBACK_PREFIX_REPLAY=NO
+PERF006_PLAT028_BOOLEAN_SHORT_CIRCUIT_SELECTED_ONLY=PASS
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.guillermomolina.protos.execution.ProtosPerf006Plat028BooleanCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006C3FLifecycleReleaseCarrierTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosPerf006C3FLifecycleReleaseCarrierTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2AClosureActivationTest
+PERF006_B2A_DEFAULT_SPREAD_LOWERING=PASS
+PERF006_B2A_EXACT_ACTIVATION_ARGUMENT_ABI=PASS
+PERF006_B2A_LEXICAL_CAPTURE_LOOKUP=PASS
+PERF006_B2A_CLOSURE_BODY_SOURCE_SECTION=PASS
+PERF006_B2A_BYTECODE_CLOSURE_BODY_CAPTURE_LOOKUP=PASS
+PERF006_B2A_RECEIVER_METHOD_HOME_PRESERVED=PASS
+PERF006_B2A_CAPTURED_RETURN_HOME_PRESERVED=PASS
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2AClosureActivationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006Plat028EnvironmentEachCallbackTest
+PERF006_PLAT028_ENVIRONMENT_EACH_EXACT_HOME=PASS
+PERF006_PLAT028_ENVIRONMENT_EACH_COPIED_HOME_PRIVILEGE=NO
+PERF006_PLAT028_ENVIRONMENT_EACH_SUSPEND_RESUME=PASS
+PERF006_PLAT028_ENVIRONMENT_EACH_COMPLETED_PREFIX_REPLAY=NO
+PERF006_PLAT028_ENVIRONMENT_EACH_SORTED_ORDER=PASS
+PERF006_PLAT028_ENVIRONMENT_EACH_RESULT_RECEIVER_IDENTITY=PASS
+PERF006_PLAT028_ENVIRONMENT_EACH_WHOLE_SNAPSHOT_PREVALIDATION=PASS
+PERF006_PLAT028_ENVIRONMENT_EACH_CALLBACK_BEFORE_VALIDATION=NO
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.guillermomolina.protos.execution.ProtosPerf006Plat028EnvironmentEachCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPlat036Slice3FrameBackedCurrentLocalTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosPlat036Slice3FrameBackedCurrentLocalTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageToolFilesystemSecurityTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in com.guillermomolina.protos.execution.ProtosPackageToolFilesystemSecurityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosCanonicalInitialModuleExecutionTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.guillermomolina.protos.execution.ProtosCanonicalInitialModuleExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.CanonicalBindingAnalyzerTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.CanonicalBindingAnalyzerTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B4CStructuredEnsureTest
+PERF006_B4C_NESTED_ENSURE_LIFO=PASS
+PERF006_B4C_EXTRACTED_ENSURE_PROVENANCE=PASS
+PERF006_B4C_ENSURE_SELECTOR_PET=NO
+PERF006_B4C_BODY_SUSPENSION_NOT_UNWIND=PASS
+PERF006_B4C_BODY_PREFIX_REPLAY=NO
+PERF006_B4C_NORMAL_EXACT_RESULT=PASS
+PERF006_B4C_NORMAL_CLEANUP_EXACTLY_ONCE=PASS
+PERF006_B4C_VALIDATION_BEFORE_EXTENT=PASS
+PERF006_B4C_CLEANUP_NLR_SUPERSEDES_BODY_NLR=PASS
+PERF006_B4C_NLR_CROSSES_CLEANUP=PASS
+PERF006_B4C_NLR_EXACT_IDENTITY_AFTER_CLEANUP=PASS
+PERF006_B4C_PENDING_ERROR_ACROSS_CLEANUP_SUSPENSION=PASS
+PERF006_B4C_CLEANUP_PREFIX_REPLAY=NO
+PERF006_B4C_CLEANUP_ERROR_SUPERSEDES_BODY_ERROR=PASS
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s -- in com.guillermomolina.protos.execution.ProtosPerf006B4CStructuredEnsureTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTomlParserFloatTemporalRegressionTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.315 s -- in com.guillermomolina.protos.execution.ProtosTomlParserFloatTemporalRegressionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2C3B1ActivationRootSeamTest
+PERF006_B2C3B1_ARITY_ERROR_PRESERVED=PASS
+PERF006_B2C3B1_DEFAULT_INVOCATION_SPREAD_LOWERING=PASS
+PERF006_B2C3B1_COMPOSED_CALL_ACTIVATION_TARGET=PASS
+PERF006_B2C3B1_CALLER_PREBIND_REQUIRED=NO
+PERF006_B2C3B1_BINDING_INSIDE_ACTIVATION_ROOT=PASS
+PERF006_B2C3B1_REQUIRED_REST_EQUIVALENCE=PASS
+PERF006_B2C3B1_ARGS_VECTOR_PRESERVED=PASS
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2C3B1ActivationRootSeamTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosExactExecutionFacilityTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.041 s -- in com.guillermomolina.protos.execution.ProtosExactExecutionFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosBug013FrameLexicalAuthorityMaterializationTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.ProtosBug013FrameLexicalAuthorityMaterializationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosWorkspacePackageModuleResolverBoundaryTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.ProtosWorkspacePackageModuleResolverBoundaryTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardMapProtocolTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosStandardMapProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardByteIoDurabilityProtocolTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in com.guillermomolina.protos.execution.ProtosStandardByteIoDurabilityProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.CanonicalCompositionExecutionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.CanonicalCompositionExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosMathIntegerModuleTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosMathIntegerModuleTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosExternalForeignProviderTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.571 s -- in com.guillermomolina.protos.execution.ProtosExternalForeignProviderTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosDirectionalShutdownTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.guillermomolina.protos.execution.ProtosDirectionalShutdownTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosWorkspaceExactDirectoryLookupTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosWorkspaceExactDirectoryLookupTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosI068Slice4SequentialParameterLoweringTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosI068Slice4SequentialParameterLoweringTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosSourceReadabilityAuthorityTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.execution.ProtosSourceReadabilityAuthorityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTcpConnectionIntegratedConformanceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosTcpConnectionIntegratedConformanceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf013SliceB1MaterializedCapturedReadTest
+MULTI_DEPTH_CAPTURE=PASS
+NEARER_LATE_CREATION_RETARGETING=PASS
+OWNER_REMOVAL_FALLBACK=PASS
+OLD_SAFE_FALLBACK=PASS
+DEFAULT_PARAMETER_CLOSURE_MATERIALIZED_READ=PASS
+CAPTURE_BY_REFERENCE=PASS
+LATER_MUTATION_VISIBLE=PASS
+ESCAPED_CAPTURE=PASS
+PRESENT_NULL_DISTINCT_FROM_ABSENT=PASS
+OBJECT_BODY_CLOSURE_MATERIALIZED_READ=PASS
+ORDINARY_CAPTURED_READ=PASS
+REMOVE_RECREATE=PASS
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in com.guillermomolina.protos.execution.ProtosPerf013SliceB1MaterializedCapturedReadTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosI072PhaseEStructuredSendConvergenceTest
+I072_PHASE_E_WARMED_ENSURE_HIT_INVALIDATES_ON_OVERRIDE=PASS
+PERF015_BOOLEAN_FROZEN_SELECTION_STABLE=PASS
+PERF015_CANONICAL_BOOLEAN_REPRESENTED_GUARD=PASS
+I072_PHASE_E_WARMED_ERROR_HANDLE_HIT_REMAINS_CORRECT=PASS
+I072_PHASE_E_WARMED_MAP_ATPUT_HIT_INVALIDATES_ON_OVERRIDE=PASS
+I072_PHASE_E_WARMED_ARRAY_EACH_HIT_INVALIDATES_ON_OVERRIDE=PASS
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.guillermomolina.protos.execution.ProtosI072PhaseEStructuredSendConvergenceTest
+[INFO] Running com.guillermomolina.protos.execution.CanonicalExplicitMemberMutationExecutionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.CanonicalExplicitMemberMutationExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B2C3ARestBindingTest
+PERF006_B2C3A_SOURCE_REST_BINDING=PASS
+PERF006_B2C3A_EMPTY_REST_CAPTURE=PASS
+PERF006_B2C3A_REST_SUFFIX_CAPTURE=PASS
+PERF006_B2C3A_REST_ARRAY_FROZEN=PASS
+PERF006_B2C3A_ARGS_VECTOR_UNCHANGED=PASS
+PERF006_B2C3A_REQUIRED_PREFIX_ARITY=PASS
+PERF006_B2C3A_DEFAULT_INVOCATION_SPREAD_LOWERING=PASS
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosPerf006B2C3ARestBindingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf028AResolvedCurrentLexicalWriteTest
+SUSPENDED_REMOVE_SELECTED_CURRENT=EXPECTED_MUTATION_ERROR
+RHS_CONTROL_TRANSFER_NO_WRITE=PASS
+DEFAULT_ASSIGNMENT_PATH=PASS
+CURRENT_RESOLVED_WRITE_USES_CONSTANT_LOCAL_ACCESSOR=YES
+ASSIGNMENT_RESULT_IS_RHS=PASS
+CLOSED_WRITE_ALLOWED=PASS
+RHS_REMOVE_SELECTED_CURRENT=EXPECTED_MUTATION_ERROR
+CURRENT_ABSENT_EXACT_FALLBACK=PASS
+RHS_YIELD_RESUME_SELECTION_PRESERVED=PASS
+CACHED_TRANSITION_ACCESSOR_COHERENT=PASS
+CANDIDATE_FALLBACK_PRESERVED=YES
+DYNAMIC_FALLBACK_PRESERVED=YES
+EXPLICIT_MEMBER_ASSIGNMENT_UNCHANGED=YES
+CAPTURED_WRITE_PATH_PRESERVED=YES
+DESTINATION_SELECTED_BEFORE_RHS=PASS
+POST_RHS_DESTINATION_RE_RESOLUTION=NO
+CURRENT_ABSENT_RECEIVER_FALLBACK=PASS
+PRESENT_NULL_DISTINCT_FROM_ABSENT=PASS
+ABSENT_THEN_RHS_RECREATE_NO_RETARGET=PASS
+FROZEN_WRITE_REJECTED=PASS
+RHS_REMOVE_RECREATE_SAME_OWNER=PASS
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in com.guillermomolina.protos.execution.ProtosPerf028AResolvedCurrentLexicalWriteTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardNumberOrderingProtocolTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.ProtosStandardNumberOrderingProtocolTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf012FrameLexicalLayoutTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosPerf012FrameLexicalLayoutTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageToolExecutionPlanCaptureTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.347 s -- in com.guillermomolina.protos.execution.ProtosPackageToolExecutionPlanCaptureTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNioNetworkBackendConnectTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.040 s -- in com.guillermomolina.protos.execution.ProtosNioNetworkBackendConnectTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosHostJavaProviderTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.067 s -- in com.guillermomolina.protos.execution.ProtosHostJavaProviderTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B4ATransferSubstrateTest
+PERF006_B4A_GUEST_ERROR_TRUFFLE_LANE=PASS
+PERF006_B4A_GUEST_ERROR_EXACT_OCCURRENCE=YES
+PERF006_B4A_NLR_CONTROL_LANE=PASS
+PERF006_B4A_CANCELLATION_CONTROL_LANE=PASS
+PERF006_B4A_BRIDGE_PUBLIC=NO
+PERF006_B4A_GLOBAL_TRANSFER_AUTHORITY=NO
+PERF006_B4A_NARROW_EH_BRIDGE=PASS
+PERF006_B4A_FOREIGN_CONTROL_BRIDGED=NO
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.execution.ProtosPerf006B4ATransferSubstrateTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTextIoFinalConformanceTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.guillermomolina.protos.execution.ProtosTextIoFinalConformanceTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPackageRunDriverTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.796 s -- in com.guillermomolina.protos.execution.ProtosPackageRunDriverTest
+[INFO] Running com.guillermomolina.protos.execution.ExtractedClosureBindingExecutionTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.execution.ExtractedClosureBindingExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006Plat028MapAtPutCallbackTest
+PERF006_PLAT028_MAP_ATPUT_EQUALITY_SUSPENSION=PASS
+PERF006_PLAT028_MAP_ATPUT_EQUALITY_DIRECTION=QUERY_TO_STORED
+PERF006_PLAT028_MAP_ATPUT_REPRESENTATIVE_KEY_RETAINED=YES
+PERF006_PLAT028_MAP_ATPUT_CLOSED_REPLACEMENT=PASS
+PERF006_PLAT028_MAP_ATPUT_FROZEN_FAILURE_BEFORE_CALLBACK=PASS
+PERF006_PLAT028_MAP_ATPUT_CLOSED_ABSENT_SEARCH_THEN_ERROR=PASS
+PERF006_PLAT028_MAP_ATPUT_CANCEL_UNWIND=PASS
+PERF006_PLAT028_MAP_ATPUT_CANCEL_MUTATION=NO
+PERF006_PLAT028_MAP_ATPUT_COMPARISON_SCOPE_LEAK=NO
+PERF006_PLAT028_MAP_ATPUT_HASH_SUSPENSION=PASS
+PERF006_PLAT028_MAP_ATPUT_HASH_SINGLE_INVOCATION=PASS
+PERF006_PLAT028_MAP_ATPUT_RECORDED_HASH_REUSE=PASS
+PERF006_PLAT028_MAP_ATPUT_SAME_MAP_CONFLICT=ERROR
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in com.guillermomolina.protos.execution.ProtosPerf006Plat028MapAtPutCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf033CanonicalCallableInteropTest
+CLOSED_SESSION_VALUE_REJECTED=PASS
+CANONICAL_POLYGLOT_VALUE_EXECUTE=PASS
+CONTEXT_BOUND_VALUE_REUSED=PASS
+ROOT_TASK_CREATED=NO
+PROTOS_EXPLICIT_CONTEXT_ENTER_LEAVE_PER_VALUE_CALL=NO
+RICH_CALLEE_ACTIVATION_MATERIALIZED=NO
+PROTOS_TASK_CREATED=NO
+NON_LOCAL_RETURN=PASS
+ARITY_REJECTED=PASS
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in com.guillermomolina.protos.execution.ProtosPerf033CanonicalCallableInteropTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006Plat028MapReadLookupCallbackTest
+PERF006_PLAT028_MAP_COMPARISON_CANCEL_UNWIND=PASS
+PERF006_PLAT028_MAP_COMPARISON_SCOPE_LEAK=NO
+I049_MAP_AT_IF_ABSENT_FALLBACK_SUSPEND_RESUME=PASS
+I049_MAP_AT_IF_ABSENT_SEARCH_REPLAY=NO
+I049_MAP_AT_IF_ABSENT_IMPLICIT_MUTATION=NO
+PERF006_PLAT028_MAP_INVALID_HASH_RESULT=ERROR
+PERF006_PLAT028_MAP_INVALID_EQUALITY_RESULT=ERROR
+PERF006_PLAT028_MAP_INVALID_RESULT_SCOPE_LEAK=NO
+PERF006_PLAT028_MAP_EQUALITY_SUSPENSION=PASS
+PERF006_PLAT028_MAP_EQUALITY_DIRECTION=QUERY_TO_STORED
+PERF006_PLAT028_MAP_RECORDED_HASH_FILTER=PASS
+PERF006_PLAT028_MAP_AT_EXACT_VALUE=PASS
+PERF006_PLAT028_MAP_HASH_SUSPENSION=PASS
+PERF006_PLAT028_MAP_HASH_SINGLE_INVOCATION=PASS
+PERF006_PLAT028_MAP_SAME_MAP_MUTATION_DURING_HASH=ERROR
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.guillermomolina.protos.execution.ProtosPerf006Plat028MapReadLookupCallbackTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B5BSourceInstrumentationLocationTest
+PERF006_B5B_ROOT_SOURCE_IDENTITY=PASS
+PERF006_B5B_STATEMENT_TAG_SOURCE_EXACT=PASS
+PERF006_B5B_CALL_TAG_SOURCE_EXACT=PASS
+PERF006_B5B_PLAT034_EXPRESSION_EQUALS_STATEMENT=PASS
+PERF006_B5B_PLAT034_ALWAYS_HALT_LOCATIONS=ZERO
+PERF006_B5B_CONTINUATION_CALLER_LOCATION=PASS
+PERF006_B5B_CONTINUATION_CALLEE_LOCATION=PASS
+PERF006_B5B_LOGICAL_LOCATION_STABLE_AFTER_RESUME=PASS
+PERF006_B5B_COMPLETED_PREFIX_REPLAY=NO
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.execution.ProtosPerf006B5BSourceInstrumentationLocationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosA4B3ModuleProcessHostingTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.execution.ProtosA4B3ModuleProcessHostingTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B3DTopLevelTaskPublicationTest
+PERF006_B3D_REPEATED_SUSPENSION_PUBLICATION=PASS
+PERF006_B3D_REPEATED_SUSPENSION_NATIVE_REPLAY=NO
+PERF006_B3D_READY_BEFORE_CAPTURE_NO_LOST_WAKE=PASS
+PERF006_B3D_NESTED_COMPLETE_CPRIME_PUBLICATION=PASS
+PERF006_B3D_SUSPENDED_CPRIME_CANCELLATION=PASS
+PERF006_B3D_TOP_LEVEL_TASK_PUBLICATION=PASS
+PERF006_B3D_NATIVE_REPLAY=NO
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.execution.ProtosPerf006B3DTopLevelTaskPublicationTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosStandardIpFamilyPlacementTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in com.guillermomolina.protos.execution.ProtosStandardIpFamilyPlacementTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosLoggingFacilityTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.692 s -- in com.guillermomolina.protos.execution.ProtosLoggingFacilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosPerf006B6A5ModuleInitializationCPrimeBridgeTest
+PERF006_B6A5_CANCELLATION_EXACT_RECORD_EVICTION=PASS
+PERF006_B6A5_CANCELLED_INITIALIZATION_RETRY_FRESH=PASS
+PERF006_B6A5_SUSPENDED_MODULE_REMAINS_INITIALIZING=PASS
+PERF006_B6A5_MODULE_READY_AFTER_TRUE_COMPLETION=PASS
+PERF006_B6A5_MODULE_BODY_VALUE_IGNORED=PASS
+PERF006_B6A5_MODULE_COMPLETED_PREFIX_REPLAY=NO
+PERF006_B6A5_READY_CACHE_HIT_CHILD_STATE=NONE
+PERF006_B6A5_POST_LOOKUP_EXACT_STANDARD_SELECTION=PASS
+PERF006_B6A5_SHADOWED_IMPORT_INTRINSIC=NO
+PERF006_B6A5_TERMINAL_FAILURE_EXACT_RECORD_EVICTION=PASS
+PERF006_B6A5_FAILED_INITIALIZATION_RETRY_FRESH=PASS
+PERF006_B6A5_INITIALIZING_CYCLE_EXACT_INSTANCE=PASS
+PERF006_B6A5_INITIALIZING_CYCLE_WAIT_GRAPH=NO
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.guillermomolina.protos.execution.ProtosPerf006B6A5ModuleInitializationCPrimeBridgeTest
+[INFO] Running com.guillermomolina.protos.execution.CanonicalBareSlotMutationExecutionTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.execution.CanonicalBareSlotMutationExecutionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolLib011OptionsAdoptionTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in com.guillermomolina.protos.execution.ProtosTestToolLib011OptionsAdoptionTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolBug010ProgressTemporalVisibilityTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.083 s -- in com.guillermomolina.protos.execution.ProtosTestToolBug010ProgressTemporalVisibilityTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosFreshProcessExecutorTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.034 s -- in com.guillermomolina.protos.execution.ProtosFreshProcessExecutorTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosForeignModuleImportTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in com.guillermomolina.protos.execution.ProtosForeignModuleImportTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTcpListenerAcceptTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.guillermomolina.protos.execution.ProtosTcpListenerAcceptTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosTestToolLogicalCaseResultTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.guillermomolina.protos.execution.ProtosTestToolLogicalCaseResultTest
+[INFO] Running com.guillermomolina.protos.execution.ProtosNativeGeneratedStructurePolicyTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.046 s -- in com.guillermomolina.protos.execution.ProtosNativeGeneratedStructurePolicyTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorPublicApiTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in com.guillermomolina.protos.runtime.ProtosActorPublicApiTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosTcpListenerFoundationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.guillermomolina.protos.runtime.ProtosTcpListenerFoundationTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorSendOperationTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in com.guillermomolina.protos.runtime.ProtosActorSendOperationTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosObjectInteropTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.runtime.ProtosObjectInteropTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosFilesystemTreeObservationFlowTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.guillermomolina.protos.runtime.ProtosFilesystemTreeObservationFlowTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorExecutionDomainTest
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.guillermomolina.protos.runtime.ProtosActorExecutionDomainTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosDynamicControlStateTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.runtime.ProtosDynamicControlStateTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosFilesystemOpenFlowTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in com.guillermomolina.protos.runtime.ProtosFilesystemOpenFlowTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosSimpleScalarInteropDisplayTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.runtime.ProtosSimpleScalarInteropDisplayTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorGroupRoutingTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.runtime.ProtosActorGroupRoutingTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosArrayInteropTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.runtime.ProtosArrayInteropTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosProcessRuntimeTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.guillermomolina.protos.runtime.ProtosProcessRuntimeTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosByteIoFirstEffectGateTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.runtime.ProtosByteIoFirstEffectGateTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorDeliveryAdmissionTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.runtime.ProtosActorDeliveryAdmissionTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosProcessStandardStreamEncodingTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in com.guillermomolina.protos.runtime.ProtosProcessStandardStreamEncodingTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorValueTransferTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.033 s -- in com.guillermomolina.protos.runtime.ProtosActorValueTransferTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosPerf006B6A6A2TaskTerminalLifecycleTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.runtime.ProtosPerf006B6A6A2TaskTerminalLifecycleTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosPerf025G2RootTaskBookkeepingTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.runtime.ProtosPerf025G2RootTaskBookkeepingTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorRemoteTransportTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.guillermomolina.protos.runtime.ProtosActorRemoteTransportTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosLexicalBindingAuthoritySeamTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.runtime.ProtosLexicalBindingAuthoritySeamTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosPerf025ObjectModelPayAsYouGrowTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.runtime.ProtosPerf025ObjectModelPayAsYouGrowTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosPreludeTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.runtime.ProtosPreludeTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosPerf006B6A6A3ActorGroupLifecycleIntegrationTest
+PERF006_B6A6A3_ACTOR_REQUEST_CPRIME_LIFECYCLE=PASS
+PERF006_B6A6A3_ACTOR_SEND_CPRIME_LIFECYCLE=PASS
+PERF006_B6A6A3_GROUP_REQUEST_CPRIME_LIFECYCLE=PASS
+PERF006_B6A6A3_GROUP_SEND_CPRIME_LIFECYCLE=PASS
+PERF006_B6A6A3_COMPLETED_PREFIX_REPLAY=NO
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.runtime.ProtosPerf006B6A6A3ActorGroupLifecycleIntegrationTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosExecutionContextValueTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.runtime.ProtosExecutionContextValueTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosPerf025ArraySnapshotGenerationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.runtime.ProtosPerf025ArraySnapshotGenerationTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorMailboxSchedulerTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.104 s -- in com.guillermomolina.protos.runtime.ProtosActorMailboxSchedulerTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosBufferedByteIoPlat031FoundationTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.runtime.ProtosBufferedByteIoPlat031FoundationTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosIntegerValueRepresentationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.runtime.ProtosIntegerValueRepresentationTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosSlotLookupResultTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.runtime.ProtosSlotLookupResultTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosPerf025IdentityMapSnapshotGenerationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.runtime.ProtosPerf025IdentityMapSnapshotGenerationTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosMethodHomeTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.guillermomolina.protos.runtime.ProtosMethodHomeTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosFloatInteropTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.runtime.ProtosFloatInteropTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosGroupRefPublicApiTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.runtime.ProtosGroupRefPublicApiTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosProcessStandardStreamBindingTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in com.guillermomolina.protos.runtime.ProtosProcessStandardStreamBindingTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosAdditionalIndexedInteropTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.runtime.ProtosAdditionalIndexedInteropTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosRepresentedValueLookupTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.runtime.ProtosRepresentedValueLookupTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosFilesystemNamespaceMutationFlowTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.guillermomolina.protos.runtime.ProtosFilesystemNamespaceMutationFlowTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosProcessCapabilityTransferTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.guillermomolina.protos.runtime.ProtosProcessCapabilityTransferTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosIntegralInteropTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.runtime.ProtosIntegralInteropTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosStringValueTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.runtime.ProtosStringValueTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosEnvironmentSnapshotTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.runtime.ProtosEnvironmentSnapshotTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosPerf025G1LazyTaskChildrenTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.runtime.ProtosPerf025G1LazyTaskChildrenTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosPlat029IoOperationRunnableSeamTest
+PLAT029_TERMINAL_QUEUED_OPERATION_EXECUTION=SKIPPED
+PLAT029_TASK_OPERATION_FIFO_QUEUE=PASS
+PLAT029_OPERATION_TASK_IDENTITY=NONE
+PLAT029_BACKEND_THREAD_GUEST_REENTRY=NO
+PLAT029_HIDDEN_TASK_TOPOLOGY=NO
+PLAT029_OPERATION_RESCHEDULE_COALESCING=PASS
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.guillermomolina.protos.runtime.ProtosPlat029IoOperationRunnableSeamTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosPerf019TargetedContinuationHandoffTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.runtime.ProtosPerf019TargetedContinuationHandoffTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosTcpConnectionFoundationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.runtime.ProtosTcpConnectionFoundationTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorCrossDomainConformanceTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.037 s -- in com.guillermomolina.protos.runtime.ProtosActorCrossDomainConformanceTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosGroupRemoteTransportTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in com.guillermomolina.protos.runtime.ProtosGroupRemoteTransportTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorProcessHostRoutingTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.runtime.ProtosActorProcessHostRoutingTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosObjectValueTest
+[INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.runtime.ProtosObjectValueTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosRepresentedValueInteropCoverageTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.runtime.ProtosRepresentedValueInteropCoverageTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosIoLifecycleTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.guillermomolina.protos.runtime.ProtosIoLifecycleTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosGuardedLookupTest
+[WARNING] Tests run: 19, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.017 s -- in com.guillermomolina.protos.runtime.ProtosGuardedLookupTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActivationTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.runtime.ProtosActivationTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorRefValueTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.runtime.ProtosActorRefValueTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorGroupAcquisitionTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.guillermomolina.protos.runtime.ProtosActorGroupAcquisitionTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosPerf006B3ATaskContinuationPublicationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.runtime.ProtosPerf006B3ATaskContinuationPublicationTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorRequestTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.guillermomolina.protos.runtime.ProtosActorRequestTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosProcessArgumentsSnapshotTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.runtime.ProtosProcessArgumentsSnapshotTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorGroupCommunicationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.guillermomolina.protos.runtime.ProtosActorGroupCommunicationTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorTerminationTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.069 s -- in com.guillermomolina.protos.runtime.ProtosActorTerminationTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosSimpleScalarInteropTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.runtime.ProtosSimpleScalarInteropTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActorIdentityLifecycleTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.runtime.ProtosActorIdentityLifecycleTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosArrayValueTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.runtime.ProtosArrayValueTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosClosureInvocationActivationTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.guillermomolina.protos.runtime.ProtosClosureInvocationActivationTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosNetworkCapabilityTransferTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.guillermomolina.protos.runtime.ProtosNetworkCapabilityTransferTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosReturnHomeTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.runtime.ProtosReturnHomeTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosFilesystemTransferTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.runtime.ProtosFilesystemTransferTest
+[INFO] Running com.guillermomolina.protos.runtime.ProtosActivationReceiverTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.runtime.ProtosActivationReceiverTest
+[INFO] Running com.guillermomolina.protos.lsp.ProtosLanguageServerDocumentSymbolsTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.guillermomolina.protos.lsp.ProtosLanguageServerDocumentSymbolsTest
+[INFO] Running com.guillermomolina.protos.lsp.ProtosWorkspaceSymbolSearchTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in com.guillermomolina.protos.lsp.ProtosWorkspaceSymbolSearchTest
+[INFO] Running com.guillermomolina.protos.lsp.ProtosLanguageServerWorkspaceSymbolsTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.guillermomolina.protos.lsp.ProtosLanguageServerWorkspaceSymbolsTest
+[INFO] Running com.guillermomolina.protos.lsp.ProtosLanguageServerReferencesTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in com.guillermomolina.protos.lsp.ProtosLanguageServerReferencesTest
+[INFO] Running com.guillermomolina.protos.lsp.ProtosLanguageServerFoundationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in com.guillermomolina.protos.lsp.ProtosLanguageServerFoundationTest
+[INFO] Running com.guillermomolina.protos.lsp.ProtosLanguageServerFormattingTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.046 s -- in com.guillermomolina.protos.lsp.ProtosLanguageServerFormattingTest
+[INFO] Running com.guillermomolina.protos.lsp.ProtosLanguageServerDiagnosticsTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.lsp.ProtosLanguageServerDiagnosticsTest
+[INFO] Running com.guillermomolina.protos.lsp.ProtosLanguageServerDefinitionTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.lsp.ProtosLanguageServerDefinitionTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserPostfixFoundationTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.parser.ProtosParserPostfixFoundationTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosGrammarSurfaceNegativeFixtureTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.parser.ProtosGrammarSurfaceNegativeFixtureTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserSourceFactsTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.parser.ProtosParserSourceFactsTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserStandardOperatorTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.parser.ProtosParserStandardOperatorTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserSlotAssignmentTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.parser.ProtosParserSlotAssignmentTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserExpressionSeparatorTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.parser.ProtosParserExpressionSeparatorTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosBindingSurfaceNegativeFixtureTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.parser.ProtosBindingSurfaceNegativeFixtureTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserNonLocalReturnTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.parser.ProtosParserNonLocalReturnTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserClosureTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.guillermomolina.protos.parser.ProtosParserClosureTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserEllipsisContinuationTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.parser.ProtosParserEllipsisContinuationTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserFoundationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.parser.ProtosParserFoundationTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserArgumentLayoutTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.parser.ProtosParserArgumentLayoutTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosReceiverSuperSurfaceNegativeFixtureTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.guillermomolina.protos.parser.ProtosReceiverSuperSurfaceNegativeFixtureTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserSuperSendTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.parser.ProtosParserSuperSendTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserTrailingClosureTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.parser.ProtosParserTrailingClosureTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosCallableSurfaceNegativeFixtureTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.guillermomolina.protos.parser.ProtosCallableSurfaceNegativeFixtureTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserObjectExpressionTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.parser.ProtosParserObjectExpressionTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserMemberContinuationTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.parser.ProtosParserMemberContinuationTest
+[INFO] Running com.guillermomolina.protos.parser.ProtosParserMatchTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.parser.ProtosParserMatchTest
+[INFO] Running com.guillermomolina.protos.embedding.ProtosStandaloneHostedSessionEmbeddingTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.043 s -- in com.guillermomolina.protos.embedding.ProtosStandaloneHostedSessionEmbeddingTest
+[INFO] Running com.guillermomolina.protos.embedding.ProtosStandaloneHostedExecutionEmbeddingTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s -- in com.guillermomolina.protos.embedding.ProtosStandaloneHostedExecutionEmbeddingTest
+[INFO] Running com.guillermomolina.protos.analysis.ProtosStaticAnalysisCoreTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.guillermomolina.protos.analysis.ProtosStaticAnalysisCoreTest
+[INFO] Running com.guillermomolina.protos.analysis.ProtosStaticReferencesTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.analysis.ProtosStaticReferencesTest
+[INFO] Running com.guillermomolina.protos.analysis.ProtosStaticAnalysisSessionTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.analysis.ProtosStaticAnalysisSessionTest
+[INFO] Running com.guillermomolina.protos.analysis.ProtosStaticDefinitionsTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.analysis.ProtosStaticDefinitionsTest
+[INFO] Running com.guillermomolina.protos.analysis.ProtosSourceLayoutViewTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.guillermomolina.protos.analysis.ProtosSourceLayoutViewTest
+[INFO] Running com.guillermomolina.protos.analysis.ProtosProjectBindingTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.guillermomolina.protos.analysis.ProtosProjectBindingTest
+[INFO] Running com.guillermomolina.protos.lexer.ProtosLexerTest
+[INFO] Tests run: 77, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.guillermomolina.protos.lexer.ProtosLexerTest
+[INFO] Running com.guillermomolina.protos.lexer.UnicodeXid17ConformanceTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.060 s -- in com.guillermomolina.protos.lexer.UnicodeXid17ConformanceTest
+[INFO] Running com.guillermomolina.protos.lexer.ProtosLexerSourceSpanTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.guillermomolina.protos.lexer.ProtosLexerSourceSpanTest
+[INFO] Running com.guillermomolina.protos.lexer.UnicodeNfc17ConformanceTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.914 s -- in com.guillermomolina.protos.lexer.UnicodeNfc17ConformanceTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 2811, Failures: 0, Errors: 0, Skipped: 1
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:33 min
+[INFO] Finished at: 2026-10-08T06:39:16Z
+[INFO] ------------------------------------------------------------------------
