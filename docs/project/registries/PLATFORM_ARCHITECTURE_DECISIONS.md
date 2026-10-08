@@ -85,6 +85,7 @@ process remains authoritative first.
 | PLAT047 | Portable Java slow-test admission architecture | RATIFIED + OWNER AMENDMENT | Candidate H ratified 2026-10-03; explicit project-owner amendment 2026-10-04 approves the deployed enforcement boundary `local=authoritative fail-closed`, `CI=advisory`, plus the exact TEST008-B calibration constants 0.5 / 4 / 1.5 / 2.5 / 1.35 / 25 / 180 | TEST008-B/#788 and TEST008/#761 closed at `e7b2ae2c`; PERF031/#787 remains independent and non-blocking |
 | PLAT048 | Public-run exact external materialization authority boundary | RATIFIED | Explicit project-owner approval, 2026-10-04 selecting Candidate B′ — requirements-first Package Tool exact requirements plus public-run-bootstrap-owned exact materialization provider | TOOL001-F2E5/#93 public-run external execution |
 | PLAT050 | Canonical formatter source/trivia authority and tooling bridge | RATIFIED | Explicit project-owner approval, 2026-10-04 selecting Candidate F — on-demand hybrid source-layout view + exact bundled Protos formatter policy over a tool-neutral host source mechanism | LM011-B/#670 canonical formatter implementation and later CLI/LSP/editor integration |
+| PLAT054 | Standard Polyglot Context.eval and language-bindings embedding | RATIFIED — NORMATIVE PUBLICATION PENDING | Explicit owner approval 2026-10-08 of PLAT054-1's seven-point exact contract while preserving all eight earlier directions; Candidate A lazy Process/Context + standard Truffle scope | MODULES/PROCESS_IO/ACTORS normative update, then grouped Protos embedding implementation; #838; benchmark only after product validation |
 
 See `docs/project/decisions/platform/PLAT001_TRUFFLE_RUNTIME_HOSTING.md` for the selected topology,
 its non-semantic boundary, alternatives, scaling rationale, invariants, and
@@ -247,3 +248,11 @@ module cache; PLAT052 authority profiles and D189 callback rules remain hard
 gates; unused providers create no foreign runtime resources. Ratification
 evidence is retained under
 `docs/project/evidence/PLAT053/PLAT053_OWNER_APPROVAL_AND_RATIFICATION.md`.
+
+See `docs/project/decisions/platform/PLAT054_STANDARD_POLYGLOT_EMBEDDING_CONTRACT.md`
+for the ratified standard Polyglot embedding architecture (lazy one Process per Context,
+ordinary module eval and last-completed module bindings, exact Closure extraction,
+fatal RootActor turn policy and PAY AS YOU GROW). The approved comparison and
+normative publication gate are recorded under
+`docs/project/evidence/PLAT054/PLAT054_1_OWNER_APPROVAL_NORMATIVE_RECONCILIATION.md`.
+The required `guillermomolina/protos` specification changes are NOT YET PUBLISHED.
