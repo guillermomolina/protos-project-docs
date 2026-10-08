@@ -257,3 +257,18 @@ EXTERNAL_FIXTURE_PROOF=REQUIRED
 
 Canonical current coordination:
 https://github.com/guillermomolina/protos/issues/839
+
+## I085-A publication and next proof pointer
+
+The implementation was published on `guillermomolina/protos/main` as
+`b1b86e46d84a07cdbd8aa405277d534fc3731fd8` (version
+`0.3.282-SNAPSHOT`). The maintainer reported all local tests PASS and
+`git diff --check` clean; those tests were not rerun here.
+
+The existing I085-A tests already package and import an out-of-core
+invented-scheme JAR using public SPI-only compilation and test the CLI in
+the current JUnit JVM. The next required proof is external-distribution
+black-box execution, not another duplicate Java fixture test, and not NumPy.
+
+Current detailed evidence and I085-B proposed acceptance:
+`docs/project/evidence/I085/I085_A_PUBLICATION_I085_B_PORTABLE_PLUGIN_PROOF.md`.
