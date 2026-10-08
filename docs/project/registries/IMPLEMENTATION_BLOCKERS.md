@@ -536,3 +536,110 @@ Published A4B2A/A4B2B1/A4B2B2 hosting and carrier-routing evidence remains
 valid. `I026-D` and unrelated implementation work may continue independently.
 `ContextPolicy.REUSE` and `ContextPolicy.SHARED` remain deferred platform
 optimizations and are not required by D049.
+
+## B011 — Standard Polyglot embedding default Filesystem authority and base
+
+Status: BLOCKED
+
+Implementation area:
+I086 / PLAT054 standard `Context.newBuilder("protos")` embedding,
+bootstrap-local `filesystem` capability provisioning and host-restricted
+Filesystem operations. Existing embedded Process bootstrap passes no
+Filesystem capability; the embedded guest therefore receives no default
+`filesystem` slot. This must not be interpreted as permission to weaken
+host filesystem restrictions.
+
+Normative dependency:
+`spec/io/PROCESS_IO.md` requires the slot only when the host grants a
+default Core Filesystem and requires the capability to remain bounded by
+the host's Polyglot Context authority. `spec/io/FILESYSTEM.md` §20
+defines a confined Filesystem namespace rooted at an authority base, but
+the published standard embedding contract does **not** yet select the
+exact grant/projection rule and namespace base for Polyglot hosts, in
+particular whether `IOAccess.ALL`, `allowAllAccess`, an explicit host
+`FileSystem`, or a combination suffices for a *default* Protos
+Filesystem, and which base the capability denotes. Choosing an implicit
+unrestricted root, current working directory, or new public option
+without owner approval would create observable authority semantics.
+
+Specification authority:
+- `spec/io/PROCESS_IO.md`, Standard Polyglot embedding bootstrap and authority
+  / Root filesystem capability provisioning;
+- `spec/io/FILESYSTEM.md` §20, Filesystem confinement, Path and base;
+- `spec/io/IO_CORE.md`, I/O and resource/cancellation contracts;
+- PLAT054 ratification record for the explicit host-authority ceiling.
+
+Objective unblock condition:
+The owner-approved and, where normative guest behavior is affected,
+published host embedding contract precisely defines which Polyglot
+configuration grants the initial/default Protos Filesystem, what
+confined namespace base/authority it obtains, and which configurations
+must leave `filesystem` absent. The approved design must preserve the
+configured Context filesystem restrictions without allowing the
+runtime's existing `java.nio`-backed `ProtosNio*` operations to bypass
+them. A `TruffleFile`-respecting or demonstrably equivalent confined
+backend is **implementation work after** this decision, not a substitute
+for the authority decision.
+
+Current consequence:
+I086-3D at `guillermomolina/protos@e0bb880584908f65cb78e66896eba334f3d5e13b`
+published Actor carriers and Context close without granting a default
+Filesystem. No `filesystem` capability is provisioned in the standard
+embedding; no positive host filesystem grant is claimed.
+
+Independent work:
+I086 Future.value host-entry suspension attribution, Network grant
+decision (B012), I087 application-module resolution, native validation
+and existing Actor/lifecycle regression work may advance separately.
+
+## B012 — Standard Polyglot embedding default Network grant and thread authority
+
+Status: BLOCKED
+
+Implementation area:
+I086 / PLAT054 default `network` capability provisioning in the
+standard Polyglot Context and compatibility of its asynchronous
+Network backend with Context thread restrictions. The default
+embedding supplies no Network capability.
+
+Normative dependency:
+`spec/io/PROCESS_IO.md` requires `network` only when the host
+explicitly grants Network authority, and `spec/io/NETWORK.md`
+owns capability behavior. The approved standard-embedding platform
+record establishes **deny by default**, but does not uniquely specify
+the exact mapping from the host Polyglot socket access policy to
+the Protos default Network grant, especially whether
+`Env.isSocketIOAllowed()`, host `allowHostSocketAccess(true)` or a
+broad `allowAllAccess(true)` is the sufficient explicit grant.
+An unconditional unrestricted `HOST_NETWORK` capability based solely
+on an ambiguous host flag would choose public authority semantics
+without owner approval.
+
+Specification authority:
+- `spec/io/PROCESS_IO.md`, Standard Polyglot embedding bootstrap and authority
+  / Root network capability provisioning;
+- `spec/io/NETWORK.md`, Network capability contracts;
+- `spec/io/IO_CORE.md`, asynchronous I/O/cancellation/resource ownership;
+- `spec/concurrency/ACTORS.md` and PLAT054 for Context-local thread/lifetime boundaries.
+
+Objective unblock condition:
+An explicit, owner-approved host grant mapping defines exactly when
+default `network` is present, what authority it conveys, how to avoid
+confusing `allowAllAccess` with an accidental automatic guest capability,
+and which host configurations must keep Network absent. Any required
+normative reconciliation must be published before an implementation
+widens guest authority. Backend implementation must additionally keep
+its NIO poller threads within applicable Context thread and cleanup
+constraints, or establish a safe non-threaded alternative.
+
+Current consequence:
+I086-3D at `guillermomolina/protos@e0bb880584908f65cb78e66896eba334f3d5e13b`
+keeps the default Network slot absent. The current NIO poller
+creates host Java threads, so `Env.isSocketIOAllowed()` alone is
+not an implementation-ready permission/custody model.
+
+Independent work:
+Filesystem grant decision (B011), I086 host Future.value
+classification, embedded Actor/lifecycle work already published,
+I087 non-standard app module bootstrap and Native Image validation
+can continue.
