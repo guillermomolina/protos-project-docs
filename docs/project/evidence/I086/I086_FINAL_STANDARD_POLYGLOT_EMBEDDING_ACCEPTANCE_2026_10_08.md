@@ -84,3 +84,22 @@ TECHNICALLY_CLOSEABLE=YES
 ISSUE_CLOSURE=AWAITING_GITHUB_TRANSACTION
 PLAT054_STATUS=OPEN_REVIEW
 ```
+
+## GitHub closure confirmation — coordinator reread, 2026-10-08
+
+After the technical evidence above was published and reread at `protos-project-docs@8ba15b78760438db8dd690ec7e94ffb5a97e588f`, the coordinator applied the GitHub Issue close transition and reread live state:
+
+- [`guillermomolina/protos#840`](https://github.com/guillermomolina/protos/issues/840) now has **`state=closed`, `state_reason=completed`**, with `family:I` retained and no open-state status label.
+- [`guillermomolina/protos#838`](https://github.com/guillermomolina/protos/issues/838) remains **`state=open`**, `family:PLAT` and `status:review`, intentionally unaffected.
+- The I086 formal identifier is unique in the live issue search. I086 is an explicitly allocated top-level `Ixxx` with no textual parent declaration, so the native parent relation is not applicable; there was no new Issue allocation or hierarchy change.
+- The repository's GITHUB004 process projects closed Issues to Project `Done`, but **live Project view/synchronization could not be independently inspected** using the available GitHub connector. That limitation remains visible and is not represented as a verified Project field.
+
+```text
+FINAL_GITHUB_ISSUE_STATE=CLOSED
+FINAL_GITHUB_STATE_REASON=COMPLETED
+FINAL_GITHUB_ISSUE_REREAD=PASS
+PLAT054_ISSUE_STATE=OPEN_REVIEW
+PRODUCT_REVISION=6dab6ecc08c9a2102a388e00908c710a15cf2a4c
+FINAL_ACCEPTANCE_EVIDENCE_ORIGINAL_REVISION=8ba15b78760438db8dd690ec7e94ffb5a97e588f
+PROJECT_DASHBOARD_SYNC=NOT_INDEPENDENTLY_VISIBLE
+```
