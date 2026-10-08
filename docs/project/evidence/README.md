@@ -10,6 +10,10 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`LM012/`](LM012/LM012_A0_DIAGNOSTICS_LINT_AUTHORITY_AUDIT.md) — LM012-A0/#671 source-diagnostic and lint ownership audit at exact Protos revision `3bb1278d91ee5cea98031462be2a5c4dd3c89019`; existing parser-LSP authority is reusable, while new public lint rules are blocked on D194. No implementation, tests, or design ratification are claimed.
+
+- [`D194/`](D194/D194_LINT_POLICY_COMPARATIVE_RESEARCH.md) — D194/#842 comparative lint-policy investigation (ESLint, Clippy, Ruff, Go vet, gopls, LSP), 12-criterion GITHUB010 assessment, adversarial Protos counterexamples, and an opt-in conservative proposal **pending owner approval**, not a ratification.
+
 - [`LM010/`](LM010/LM010_A0_REACTIVATION_AND_HOVER_AUDIT_HANDOFF.md) — 2026-10-08 LM010/#493 reactivation snapshot, exact product baseline and LM010-A0 investigation-only hover authority audit handoff. No runtime implementation, test result, new design ratification, or normative change is claimed.
 
 - [`I081/`](I081/I081_D189_SPECIFICATION_RECONCILIATION_CLOSURE.md) — retained I081/#829 D189 specification-reconciliation closure at exact Protos revision `44688445543a2cef79b89c67b7145e4d382da6d0` / spec `0.1.446`: Candidate A dynamic synchronous callback semantics are now normative across Foreign Values, Actor execution, and Task/suspension/cancellation ownership; no runtime/Standard Library/test implementation was added, the maintainer reports clean `git diff --check` and all local tests PASS, I081 has no further slice, and PLAT052/#821 remains the next separate AUD019 investigation.
