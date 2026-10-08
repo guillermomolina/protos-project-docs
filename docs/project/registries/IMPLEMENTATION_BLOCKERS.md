@@ -581,6 +581,8 @@ them. A `TruffleFile`-respecting or demonstrably equivalent confined
 backend is **implementation work after** this decision, not a substitute
 for the authority decision.
 
+**Owner-decision update — 2026-10-08 (PLAT054-3E1):** the project owner explicitly approved HOST-FS-1/FS-2, published as a non-normative decision and provenance record in [PLAT054-3E1](../evidence/PLAT054/PLAT054_3E1_HOST_SUSPENSION_AND_AUTHORITY_OWNER_APPROVAL.md). Effective Polyglot file-I/O authorization (including applicable custom provider/restrictions) is the authority source; base = the Context's effective authorized working directory; failure to prove a safe base is **fail-closed** with no unrestricted NIO fallback. The owner **did not select** whether an unprovisionable safe base aborts bootstrap or simply omits the default slot. **Status stays BLOCKED** pending exact normative specification publication and, if indispensable, this narrow clarification. After publication, move to READY for an authorized confined `TruffleFile` backend; do not claim an implemented Filesystem or tests in advance.
+
 Current consequence:
 I086-3D at `guillermomolina/protos@e0bb880584908f65cb78e66896eba334f3d5e13b`
 published Actor carriers and Context close without granting a default
@@ -631,6 +633,8 @@ normative reconciliation must be published before an implementation
 widens guest authority. Backend implementation must additionally keep
 its NIO poller threads within applicable Context thread and cleanup
 constraints, or establish a safe non-threaded alternative.
+
+**Owner-decision update — 2026-10-08 (PLAT054-3E1):** the project owner explicitly approved HOST-NET-1/NET-2 in [PLAT054-3E1](../evidence/PLAT054/PLAT054_3E1_HOST_SUSPENSION_AND_AUTHORITY_OWNER_APPROVAL.md). Effective Polyglot socket authorization is the default Network grant condition; scope remains host-bounded Protos TCP; thread-creation authorization is **independent** and not a prerequisite for the Network slot. The backend must satisfy the Context's effective thread policy and Process-close custody, without unapproved guest workers. **Status stays BLOCKED** because the approved grant mapping has not been published as new normative specification, and there is no new Network backend. After that gate, reclassify READY for backend work; no positive grant or Native validation is claimed.
 
 Current consequence:
 I086-3D at `guillermomolina/protos@e0bb880584908f65cb78e66896eba334f3d5e13b`
