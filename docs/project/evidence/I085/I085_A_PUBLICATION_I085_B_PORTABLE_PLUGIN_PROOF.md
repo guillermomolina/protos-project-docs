@@ -107,3 +107,66 @@ Prepared with AI assistance from the live GitHub product commit,
 `ProtosExternalForeignProviderTest`, CLI/loader/SPI code, distribution
 launcher/build description, I085 authority, and the maintainer's test report.
 Published evidence is descriptive, not independently re-executed proof.
+
+## Owner clarification — real Protos tests and strictly zero POM changes
+
+The owner tightened I085-B acceptance after the initial test-only allocation:
+**`pom.xml` must not be modified at all**, including no extra
+test-scope Maven dependencies and no version bump in this test-only slice.
+`CHANGELOG.md` is likewise left untouched in this bounded test slice.
+A provider may use only APIs already shipped with GraalVM/JDK 25 or external
+test-owned fixture code. The selected native proof is the Java 25 Foreign
+Function & Memory API (part of JDK 25), calling the actual Linux libc
+`strlen` symbol from an independently packaged *external provider JAR*.
+
+Crucially, the gate must include **programs and assertions authored in the
+Protos language**, not just Java/JUnit or Python harness checks. Add actual
+`.protos` cases under `protos/tests/foreign-provider/`, executed against
+the extracted portable distribution with the external plugin opt-in and
+checked for successful assertions/output. Include a separate negative
+no-provider `.protos` case or a deterministic missing-provider failure
+case. No new special test-only language syntax.
+
+Reproducible smoke workflow:
+
+1. Use the existing portable distribution builder and extract its ZIP to a
+   temporary directory. Use the exact packaged `lib/protos.jar` for SPI
+   client compilation, never the repository implementation/test classpath.
+2. Independently compile an external **plain Java opaque-object** plugin
+   and a second external **JDK 25 FFM/native libc** plugin with the
+   platform `javac`, package `META-INF/services`, keep them outside the
+   extracted Protos distribution.
+3. Spawn the extracted `bin/protos` in separate OS processes. Check no
+   implicit plugin discovery, explicit `--foreign-provider-path`,
+   successful Protos-language assertions on imported plugin values,
+   scalar/member-call behavior, repeat imports, real `strlen` value,
+   error cases, printed PASS markers and exit status.
+4. Native proof is a Linux/JDK25 gate, not an assumed universal JVM/Native
+   Image behavior; on unsupported OS/JDK report `UNSUPPORTED` and never
+   claim the FFM test passed. Explicitly trusted in-process native code is
+   not sandboxed by this SPI.
+5. No regular `make test-protos` manifest entry that would require a plugin
+   to be magically installed. The black-box test harness owns running these
+   opt-in Protos programs. Preserve the existing I085-A tests without
+   duplicating their fixture design.
+
+~~~text
+I085_B=TEST_ONLY_IMPLEMENTATION
+I085_B_REPOSITORY=guillermomolina/protos
+I085_B_SOURCE_PROGRAMS=PROTOS_LANGUAGE_TESTS_REQUIRED
+I085_B_SOURCE_TESTS_ACTUALLY_EXECUTED=REQUIRED
+I085_B_BLACK_BOX_PORTABLE=REQUIRED
+I085_B_FRESH_JVM_OS_PROCESS=REQUIRED
+I085_B_EXTERNAL_JAR=REQUIRED
+I085_B_FFM_JDK25_LIBC=LINUX_GATE
+I085_B_POM_EDIT=FORBIDDEN
+I085_B_CHANGELOG_EDIT=FORBIDDEN
+I085_B_ADDITIONAL_DEPENDENCIES=NONE
+I085_B_NUMPY_OR_GRAALPY_INSTALL=NO
+I085_B_GRAALJS_OR_GTK_QT_INSTALL=NO
+I085_B_CURRENT_STATUS=AWAITING_IMPLEMENTATION_AND_MAINTAINER_EXECUTION
+~~~
+
+The earlier historical I085-B note's lack of Protos-language programs is
+superseded by this explicit owner requirement. There is **no claim** that
+the Protos black-box tests or libc/native smoke have been run yet.
