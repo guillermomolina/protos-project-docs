@@ -20,10 +20,10 @@ The proposed text expressly covered:
 3. Ordinary entry-module semantics: distinct standalone moduleContexts without ModuleKey, importable READY instances reused without initialization and returning retained terminal result.
 4. Stable read-only Java scope showing local slots of last successfully completed entry, invalidated for live Process-member access upon termination.
 5. Ordinary Closure capture/extracted-identity/receiver/arity/native-body/non-local-return semantics.
-6. Public \`protos.CoreRoot\` override, distribution home then packaged-resource fallback, without authority amplification.
+6. Public `protos.CoreRoot` override, distribution home then packaged-resource fallback, without authority amplification.
 7. Existing module/error/Process I/O/Actor isolation/concurrency/PAY AS YOU GROW contracts; no REPL/global export registry, second call engine or universal serialization.
 
-This was an exact, surfaced seven-point selection. The earlier eight owner-approved directions remain authoritative. Approval of a platform direction and of exact proposed normative text is **not** publication of the normative text in \`guillermomolina/protos\`.
+This was an exact, surfaced seven-point selection. The earlier eight owner-approved directions remain authoritative. Approval of a platform direction and of exact proposed normative text is **not** publication of the normative text in `guillermomolina/protos`.
 
 ~~~text
 OWNER_APPROVAL=EXPLICIT_2026_10_08
@@ -38,29 +38,29 @@ PRODUCT_IMPLEMENTATION=NOT_YET
 ## Exact revisions and documents inspected
 
 Product revision at approval reconciliation:
-- \`guillermomolina/protos@ac1e660cc37f8629852062fee41dcc33cf0758f8\`.
-- Maven version: \`0.3.281-SNAPSHOT\`; GraalVM version: \`25.4.4.1.1\`.
-- Normative global changelog latest: \`0.1.448\`.
+- `guillermomolina/protos@ac1e660cc37f8629852062fee41dcc33cf0758f8`.
+- Maven version: `0.3.281-SNAPSHOT`; GraalVM version: `25.4.4.1.1`.
+- Normative global changelog latest: `0.1.448`.
 
-Documentation reference at start of this publication: \`guillermomolina/protos-project-docs@363b6ccd84102861be533737abbbf41f92ac49a4\`.
+Documentation reference at start of this publication: `guillermomolina/protos-project-docs@363b6ccd84102861be533737abbbf41f92ac49a4`.
 
 Inspection authority:
-- \`AGENTS.md\`, \`AGENTS.work/DESIGN.md\`, \`AGENTS.work/REFERENCE.md\`, \`AGENTS.work/COORDINATION.md\`, \`AGENTS.work/IMPLEMENTATION.md\`, \`spec/AGENTS.md\`.
-- \`spec/semantics/MODULES.md\`, \`CALLABLES.md\`, \`EXECUTION_AND_CONTROL.md\`, \`ERRORS.md\`, \`spec/io/PROCESS_IO.md\`, \`IO_CORE.md\`, \`NETWORK.md\`, \`spec/concurrency/ACTORS.md\`, \`spec/PROTOS_SPEC_CHANGELOG.md\`.
-- \`src/main/java/com/guillermomolina/protos/execution/ProtosLanguage.java\`, \`ProtosLanguageContext.java\`, \`ProtosHostExecutableClosure.java\`, \`ProtosStandaloneHostedSession.java\`, \`ProtosStandaloneHostedExecution.java\`, \`ProtosStandaloneProcessBootstrap.java\`, \`ProtosPolyglotProcessContext.java\`, \`ProtosCoreBootstrap.java\`; \`src/test/java/com/guillermomolina/protos/execution/ProtosPerf033CanonicalCallableInteropTest.java\`; \`pom.xml\`.
+- `AGENTS.md`, `AGENTS.work/DESIGN.md`, `AGENTS.work/REFERENCE.md`, `AGENTS.work/COORDINATION.md`, `AGENTS.work/IMPLEMENTATION.md`, `spec/AGENTS.md`.
+- `spec/semantics/MODULES.md`, `CALLABLES.md`, `EXECUTION_AND_CONTROL.md`, `ERRORS.md`, `spec/io/PROCESS_IO.md`, `IO_CORE.md`, `NETWORK.md`, `spec/concurrency/ACTORS.md`, `spec/PROTOS_SPEC_CHANGELOG.md`.
+- `src/main/java/com/guillermomolina/protos/execution/ProtosLanguage.java`, `ProtosLanguageContext.java`, `ProtosHostExecutableClosure.java`, `ProtosStandaloneHostedSession.java`, `ProtosStandaloneHostedExecution.java`, `ProtosStandaloneProcessBootstrap.java`, `ProtosPolyglotProcessContext.java`, `ProtosCoreBootstrap.java`; `src/test/java/com/guillermomolina/protos/execution/ProtosPerf033CanonicalCallableInteropTest.java`; `pom.xml`.
 - Existing ratified decisions PLAT001, PLAT046, PLAT053; earlier PLAT054-0 evidence; issues #838, #831, #832, #750.
 
-The prior PLAT054-0 evidence inspected \`guillermomolina/protos-benchmarks@e221bb056a208693c9102891df2e13d65e61eefb\`; this research did not modify it. Current timed canonical operations are \`Value.execute()\` in all three languages, while the preparation is \`Context.eval + getBindings\` for JS/Python and \`ProtosStandaloneHostedSession.prepareTopLevel(...).executable()\` for Protos. This is **preparation asymmetry**, not proven graph parity or a demonstrated timing cause.
+The prior PLAT054-0 evidence inspected `guillermomolina/protos-benchmarks@e221bb056a208693c9102891df2e13d65e61eefb`; this research did not modify it. Current timed canonical operations are `Value.execute()` in all three languages, while the preparation is `Context.eval + getBindings` for JS/Python and `ProtosStandaloneHostedSession.prepareTopLevel(...).executable()` for Protos. This is **preparation asymmetry**, not proven graph parity or a demonstrated timing cause.
 
 ## Source-confirmed normative fault line
 
-\`ACTORS.md\` §24C says unhandled Errors escaping an Actor turn are fatal, including initialization turns; §32 says an unhandled RootActor fatal failure terminates the minimal Process. \`CALLABLES.md\` §14 makes a late non-local return from an escaped Closure signal InvalidReturn. Yet \`ProtosPerf033CanonicalCallableInteropTest.returnHomeAndControlSemanticsArePreserved()\` currently asserts that after an escaped Value.execute raises a guest exception, another operation in the same session can execute successfully. This test is not normative authority. The approved direct-host RootActor-turn definition resolves the semantic ambiguity without requiring Task allocation; regression expectations must be reconciled only after the new specification revision is published.
+`ACTORS.md` §24C says unhandled Errors escaping an Actor turn are fatal, including initialization turns; §32 says an unhandled RootActor fatal failure terminates the minimal Process. `CALLABLES.md` §14 makes a late non-local return from an escaped Closure signal InvalidReturn. Yet `ProtosPerf033CanonicalCallableInteropTest.returnHomeAndControlSemanticsArePreserved()` currently asserts that after an escaped Value.execute raises a guest exception, another operation in the same session can execute successfully. This test is not normative authority. The approved direct-host RootActor-turn definition resolves the semantic ambiguity without requiring Task allocation; regression expectations must be reconciled only after the new specification revision is published.
 
-\`MODULES.md\` provides source-backed moduleContext identity, Actor-local ModuleKey cache, cache-before-execute, INITIALIZING/READY, cyclic partial access, failed-module eviction, and permanently standalone nonimportable instances. \`PROCESS_IO.md\` places process/filesystem/network bootstrap slots only on the initial RootActor module. A succession of direct Context.eval calls requires explicit application of those existing rules to later host entries, not REPL/global namespace semantics. A READY canonical module has to be returned without reinitialization; the approved host-eval result uses its retained terminal initialization result. Parse-cache identity never substitutes for ModuleKey identity.
+`MODULES.md` provides source-backed moduleContext identity, Actor-local ModuleKey cache, cache-before-execute, INITIALIZING/READY, cyclic partial access, failed-module eviction, and permanently standalone nonimportable instances. `PROCESS_IO.md` places process/filesystem/network bootstrap slots only on the initial RootActor module. A succession of direct Context.eval calls requires explicit application of those existing rules to later host entries, not REPL/global namespace semantics. A READY canonical module has to be returned without reinitialization; the approved host-eval result uses its retained terminal initialization result. Parse-cache identity never substitutes for ModuleKey identity.
 
-\`CALLABLES.md\` §11 specifies a fresh receiver-bound Closure extraction per ordinary Closure-valued member read, preserving receiver and methodHome; §13/14 prescribe return-home and InvalidReturn; parameter/default/rest binding is a single left-to-right algorithm. \`ProtosHostExecutableClosure\` currently admits only zero supplied arguments and source-backed bodies; that is current implementation limitation, not the newly approved public contract. Its existing owner/context/target/DirectCallNode compact path must be reused rather than replaced.
+`CALLABLES.md` §11 specifies a fresh receiver-bound Closure extraction per ordinary Closure-valued member read, preserving receiver and methodHome; §13/14 prescribe return-home and InvalidReturn; parameter/default/rest binding is a single left-to-right algorithm. `ProtosHostExecutableClosure` currently admits only zero supplied arguments and source-backed bodies; that is current implementation limitation, not the newly approved public contract. Its existing owner/context/target/DirectCallNode compact path must be reused rather than replaced.
 
-\`ProtosLanguage\` currently creates a language context and parses to a Bytecode CallTarget, but has no ordinary \`getScope\` and \`disposeContext\` override. \`ProtosLanguageContext\` contains Context-owned caches and Env, but the Process for existing hosted sessions is attached by an external wrapper. PLAT054 closes this host integration without redefining PLAT001 physical Context-to-Process topology.
+`ProtosLanguage` currently creates a language context and parses to a Bytecode CallTarget, but has no ordinary `getScope` and `disposeContext` override. `ProtosLanguageContext` contains Context-owned caches and Env, but the Process for existing hosted sessions is attached by an external wrapper. PLAT054 closes this host integration without redefining PLAT001 physical Context-to-Process topology.
 
 ## Truffle/peer evidence, scope and caveats
 
@@ -114,17 +114,17 @@ Confidence: A **MEDIUM** until actual Java product regressions and version-speci
 
 Present need: implement only one lazy Process, one existing module cache and one public scope projection, without an extra registry or mandatory scheduler. Incremental growth: retain separate Actor/Process/provider authorities and share immutable code artifacts later if many Contexts demand it. Deferring REPL, auto-restart, global foreign-provider pools, generic multi-caller serialization and speculative task wrappers does not require changing the approved semantic identity/lifecycle model later; adopting C or E *now* would.
 
-Regret case: 10,000 very short-lived Contexts make cold-start/Core cost material. Escape: share immutable Core/code artifacts, cache bounded implementation-only metadata, optimize Context startup, while retaining separate mutable Process/Actor state. Strongest counterargument: the stable scope plus host RootActor Error boundary adds difficult failure handling despite the extremely small \`Value.execute()\` workload. Answer: that contract is required for correct general embedding, but the cost must be outside steady-state minimal execute when unused.
+Regret case: 10,000 very short-lived Contexts make cold-start/Core cost material. Escape: share immutable Core/code artifacts, cache bounded implementation-only metadata, optimize Context startup, while retaining separate mutable Process/Actor state. Strongest counterargument: the stable scope plus host RootActor Error boundary adds difficult failure handling despite the extremely small `Value.execute()` workload. Answer: that contract is required for correct general embedding, but the cost must be outside steady-state minimal execute when unused.
 
 Adversarial checks required from implementation (not reported as already passed): multiple independent Contexts; same Source and different same-named Sources; importable READY and cyclic INITIALIZING; standalone entries and no fake ModuleKey; partially escaped module after failed initialization; handled and fatal Errors; held Value after reassignment, later eval, Context close; Closure receiver/home/default/rest/native body; restricted file environment/stdio; denied network; foreign provider laziness; concurrent same-Actor rejection without global GIL; normal Actor/P concurrency; Native/packaged Core; no-root-Task literal callable; stable namespace projection.
 
 ## Exact approved normative publication plan
 
 The accepted text was presented in PLAT054-1 as complete English sections:
-- \`MODULES.md\`: **Host-initiated evaluations in an embedded RootActor**. Direct subsequent entry handling, READY canonical reuse and retained terminal result, distinct standalone entries, last completed module scope, local slots, fresh bound Closure extraction, terminated scope.
-- \`PROCESS_IO.md\`: **Standard Polyglot embedding bootstrap and authority**. Lazy first valid guest execution; Process/RootActor bootstrap slots only for first entry, Env snapshot/resources, default Network absent, no re-create after fatal error, Context disposal respects semantic termination.
-- \`ACTORS.md\` §24C: **Host synchronous execution constitutes an Actor-local turn for unhandled Error fatality independent of physical Task materialization**.
-- One new global \`spec/PROTOS_SPEC_CHANGELOG.md\` entry; no duplicated normative owner or unjustified \`ERRORS.md\`/\`CALLABLES.md\` rewrite.
+- `MODULES.md`: **Host-initiated evaluations in an embedded RootActor**. Direct subsequent entry handling, READY canonical reuse and retained terminal result, distinct standalone entries, last completed module scope, local slots, fresh bound Closure extraction, terminated scope.
+- `PROCESS_IO.md`: **Standard Polyglot embedding bootstrap and authority**. Lazy first valid guest execution; Process/RootActor bootstrap slots only for first entry, Env snapshot/resources, default Network absent, no re-create after fatal error, Context disposal respects semantic termination.
+- `ACTORS.md` §24C: **Host synchronous execution constitutes an Actor-local turn for unhandled Error fatality independent of physical Task materialization**.
+- One new global `spec/PROTOS_SPEC_CHANGELOG.md` entry; no duplicated normative owner or unjustified `ERRORS.md`/`CALLABLES.md` rewrite.
 
 The next slice is **IMPLEMENTATION in guillermomolina/protos**, normative publication first. All sources and validations are human-executed according to AGENTS.md; the prompt must be self-sufficient for a local HEAD checkout and not depend on reading another repository.
 
