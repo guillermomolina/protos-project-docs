@@ -1,11 +1,11 @@
 # PERF031-H — Independent causal review and grouped PERF031-I implementation handoff
 
-**Date:** 2026-10-08  
-**Issue:** [PERF031 / #787](https://github.com/guillermomolina/protos/issues/787)  
-**Product authority:** [`guillermomolina/protos@a8027f6a78fac057f409103d8a79500faead72e2`](https://github.com/guillermomolina/protos/commit/a8027f6a78fac057f409103d8a79500faead72e2) (GitHub `main` at this independent source review)  
-**Investigation:** `TYPE=INVESTIGATION`; no compilation, tests, benchmarking, runtime/CLI execution, product edits or publication  
-**Decision:** The proposed immediate technical closure of PERF031 is **not supported** by the examined source. Recommend **one grouped implementation slice** addressing two related Test Tool case-count-scaled algorithms; keep the issue open.  
-**Normative changes proposed:** None.  
+**Date:** 2026-10-08
+**Issue:** [PERF031 / #787](https://github.com/guillermomolina/protos/issues/787)
+**Product authority:** [`guillermomolina/protos@a8027f6a78fac057f409103d8a79500faead72e2`](https://github.com/guillermomolina/protos/commit/a8027f6a78fac057f409103d8a79500faead72e2) (GitHub `main` at this independent source review)
+**Investigation:** `TYPE=INVESTIGATION`; no compilation, tests, benchmarking, runtime/CLI execution, product edits or publication
+**Decision:** The proposed immediate technical closure of PERF031 is **not supported** by the examined source. Recommend **one grouped implementation slice** addressing two related Test Tool case-count-scaled algorithms; keep the issue open.
+**Normative changes proposed:** None.
 **Performance gain measured:** None.
 
 ## Why the prior PERF031-H closure argument is insufficient
