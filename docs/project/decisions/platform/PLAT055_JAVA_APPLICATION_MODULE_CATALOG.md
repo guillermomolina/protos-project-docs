@@ -108,3 +108,20 @@ SPEC_CHANGE_REQUIRED=NO_FOR_APPROVED_HOST_RESOLVER_CONTRACT
 IMPLEMENTATION_OWNER=I087/#841
 IMPLEMENTATION_STATUS=NOT_STARTED
 ```
+
+
+## I087-2 — verified product publication (2026-10-08)
+
+The A1 Java host module API is **implemented and published** in [`guillermomolina/protos@011e14353eda636d33c7bbba3910980e9c05bb35`](https://github.com/guillermomolina/protos/commit/011e14353eda636d33c7bbba3910980e9c05bb35) as `0.3.307-SNAPSHOT`; normative `spec/0.1.451` is unchanged. [Exact I087-2 product evidence, accepted test provenance and limitations](../../evidence/I087/I087_2_JAVA_APPLICATION_MODULE_CATALOG_PUBLICATION_AND_ACCEPTANCE_2026_10_08.md).
+
+`ProtosEmbeddedModules.install(Context, Map<String,String>)` uses the entered host Polyglot Context and installs a defensive immutable `app:` source catalog before Process bootstrap. The optional `ProtosApplicationModuleResolver` wraps the existing std resolver without changing the `ProtosModuleRuntime` or Actor loaders. Native parent I087/#841 and PLAT055/#844 remain the respective implementation/decision authorities. The additional guard blocking a driver-owned Process from taking a catalog-equipped Context was expressly approved by the owner and preserves fail-closed Context ownership. Human reports all local tests PASS and clean diff; the product changelog claims focal, `make test` and portable smoke PASS. Tests were not re-executed by the coordinator and Native-hosted Java embedding was not claimed.
+
+The previously stated `IMPLEMENTATION_STATUS=NOT_STARTED` and pre-implementation notes are historical snapshots superseded by this publication; do not read them as the current state.
+
+```text
+PLAT055_DECISION=RATIFIED_AND_CLOSED
+I087_2_PRODUCT=IMPLEMENTED_PUBLISHED_011e14353eda636d33c7bbba3910980e9c05bb35
+PRODUCT_VERSION=0.3.307-SNAPSHOT
+SPEC_BASELINE=0.1.451_UNCHANGED
+NEXT_I087_IMPLEMENTATION=NONE
+```
