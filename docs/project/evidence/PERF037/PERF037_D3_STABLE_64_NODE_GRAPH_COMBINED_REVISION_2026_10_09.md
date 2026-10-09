@@ -4,24 +4,24 @@
 
 ## Exact measurement identity
 
-The maintainer supplied the completed `measure_graphs.py analyze`, `summarize`, `verify` and `unit.json` selected-class histogram output. This report records **human-supplied console evidence**. The new raw BGV and filtered JSON were retained in the maintainer's local `protos-benchmarks` checkout and **have not yet been verified as published in that repository**.
+The maintainer supplied the completed `measure_graphs.py analyze`, `summarize`, `verify` and `unit.json` selected-class histogram output. This report records **human-supplied console evidence**. **Raw BGV, filtered JSON, capture/unit metadata and trace logs are now published and verified** in [`guillermomolina/protos-benchmarks@dd8b6518057de62d940a10e5b3db1de7ea97929b`](https://github.com/guillermomolina/protos-benchmarks/commit/dd8b6518057de62d940a10e5b3db1de7ea97929b).
 
 - **Measured Protos revision:** [`89e1b038c2fd510f47ddb991496882548d1bbe44`](https://github.com/guillermomolina/protos/commit/89e1b038c2fd510f47ddb991496882548d1bbe44), product main HEAD when reviewed; commit subject `PERF038-F: prelude-split inherited send, length-only argument guards and class-profiled continuation check`.
 - **Parent:** [`46e3fca41868983b69971978baf04154ddb05e1f`](https://github.com/guillermomolina/protos/commit/46e3fca41868983b69971978baf04154ddb05e1f), `PERF037-D: owner absence specialization and presence continuity in owner-frame cache`. GitHub confirms the measured product is exactly one commit after the isolated PERF037-D publication.
-- **Capture directory:** `results/perf037-d-46e3fca4-graphs/primitive-object-slot-read/protos/`. **Important:** the directory name denotes intended product, but the **actual `unit.json.protos_revision` is `89e1b038...`**. This directory must not be described as a `46e3fca4` capture.
+- **Published capture directory:** [`results/perf037-d-89e1b038-graphs/primitive-object-slot-read/protos/`](https://github.com/guillermomolina/protos-benchmarks/tree/dd8b6518057de62d940a10e5b3db1de7ea97929b/results/perf037-d-89e1b038-graphs/primitive-object-slot-read/protos/). The maintainer corrected the previous misleading local directory name prior to publication. **The actual `unit.json.protos_revision` is `89e1b038...`**, not the intended standalone `46e3fca4`.
 - **Workload:** `primitive-object-slot-read`, `language=protos`, `stage=reference`, same configured `canonical` surface and selected `After TruffleTier` compiler-IR phase as previous PERF037-D1 graph. This is a structural graph measurement, **not latency timing**.
 - **IGV analysis:** 2 BGVs analyzed at selected budgets `16000` and `64000`, `ANALYZE_FAILURES=0`.
 - **Summarization:** `UNIT=primitive-object-slot-read/protos valid=YES total=64 graphs=1`, `protos_stabilization=STABLE`, `INVALID_UNITS=0`. Solo-Protos unit reported `peer=UNRESOLVED` and `node_comparison=SKIPPED` because unchanged peers were not remeasured; **this is not an admission failure**.
 - **Producer verification:** `CASES=1`, `WORKING_TREE_MATCHES_PRODUCER=YES`, `HEAD_MATCHES_PRODUCER=YES`.
 - **Exact `unit.json` output:** `PRODUCT_REVISION=89e1b038c2fd510f47ddb991496882548d1bbe44`, `EVIDENCE_VALID=True`, `STABILIZATION=STABLE`, `NODES=64`.
-- **Benchmark producer revision:** not supplied in console extract; recover from the unit JSON before publication, rather than inferring it from the directory name or current branch.
+- **Actual benchmark producer revision:** `a599949830cc7a240ffd347de615006c112c94d6` (now verified from the published `unit.json` and `capture.json`); the evidence-retention commit is `dd8b6518057de62d940a10e5b3db1de7ea97929b`.
 
 ## Structural comparison: published D1 vs new D3
 
 | Graph | Revision | Nodes | Evidence |
 | --- | --- | ---: | --- |
 | PERF037-D1 | `3e94ba7d01cf94852555d3daa18a3208d3908e35` | 88 | Published [D1 raw evidence](https://github.com/guillermomolina/protos-benchmarks/tree/a599949830cc7a240ffd347de615006c112c94d6/results/perf037-d-3e94ba7d-graphs) |
-| PERF037-D3 + PERF038-F | `89e1b038c2fd510f47ddb991496882548d1bbe44` | 64 | Valid/stable maintainer console; new BGV archive local pending publication |
+| PERF037-D3 + PERF038-F | `89e1b038c2fd510f47ddb991496882548d1bbe44` | 64 | [Published full BGV + filtered IR at `dd8b6518`](https://github.com/guillermomolina/protos-benchmarks/tree/dd8b6518057de62d940a10e5b3db1de7ea97929b/results/perf037-d-89e1b038-graphs) |
 | GraalJS reference | Published `global-20261008-graphs` reference | 36 | Existing stable 36-node baseline; no peer recapture |
 
 **Observed total:** 88 → 64, **−24 nodes (−27.3%)**. Remaining net gap to JS=36 is **28 nodes**. This is **the combined revision delta**, not a causally isolated effect of PERF037-D.
