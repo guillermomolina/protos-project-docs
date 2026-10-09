@@ -1,9 +1,9 @@
 # PERF038-H — Published implementation and residual compiled-graph checkpoint
 
-Date: 2026-10-09  
-Live issue: [guillermomolina/protos#852](https://github.com/guillermomolina/protos/issues/852)  
-Published product commit: [`0db24f00ff2d92d642351d7f7535517fe01a55ce`](https://github.com/guillermomolina/protos/commit/0db24f00ff2d92d642351d7f7535517fe01a55ce)  
-Product version: `0.3.324-SNAPSHOT`  
+Date: 2026-10-09
+Live issue: [guillermomolina/protos#852](https://github.com/guillermomolina/protos/issues/852)
+Published product commit: [`0db24f00ff2d92d642351d7f7535517fe01a55ce`](https://github.com/guillermomolina/protos/commit/0db24f00ff2d92d642351d7f7535517fe01a55ce)
+Product version: `0.3.324-SNAPSHOT`
 Status: implementation committed and pushed, maintainer-reported tests green; structural optimization remains open.
 
 ## Publication and validation evidence
