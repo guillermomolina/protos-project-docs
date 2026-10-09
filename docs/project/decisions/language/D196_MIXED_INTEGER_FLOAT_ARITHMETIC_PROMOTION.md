@@ -112,7 +112,7 @@ This is a **bounded prospective override** of the D006 mixed-arithmetic rejectio
 
 ## Execution handoff and publication status
 
-The following remains necessary in `guillermomolina/protos`:
+**Implementation owner: [I089 / guillermomolina/protos#867](https://github.com/guillermomolina/protos/issues/867).** D196 itself is the ratified **design** and does not own executable patches or test gates. The following implementation work remains under I089 in `guillermomolina/protos`:
 
 1. Update the normative mixed-arithmetic table and exact rounding contract in `spec/semantics/VALUES_AND_COLLECTIONS.md` and the global `spec/PROTOS_SPEC_CHANGELOG.md` at the then-current global revision.
 2. Implement the standard mixed operators for both receiver families without bypassing ordinary messages or altering unrelated numeric behavior; add focused regression and guard-path tests.
