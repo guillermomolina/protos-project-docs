@@ -66,3 +66,18 @@ CAPTURE_INVALID_CASES=0
 **Scope:** this is a **diagnostic capture of a dirty product working tree**. The `70c40d26` short revision embedded in the output directory labels only the repository commit; it does **not** mean the compiled sources match that clean commit. The capture metadata includes the product source-state SHA256 to distinguish the working tree. The graph driver accepts explicit dirty-product captures for diagnosis; its `summarize_case` structural validity check does not independently reject a dirty product, so `evidence_valid=YES` by itself would not make this a clean reference. Do not attribute the graph exclusively to PERF037-E and do not discard concurrent uncommitted work.
 
 **Next:** run analyzer, summarizer and producer-hash verification against the existing output directory, inspect the measured total and node histogram; compare diagnostically with historical Protos 64 and JS 36. Retain this capture as dirty diagnostic evidence, and perform a fresh clean-HEAD reference capture later only if a durable, reproducible comparison is required.
+
+## Analyzed 62-node dirty-checkout graph (maintainer-supplied, 2026-10-09)
+
+Maintainer supplied results of analyzer + summarizer for `results/perf037-current-70c40d26-graphs/primitive-object-slot-read/protos/unit.json`:
+
+- `PRODUCT_HEAD=70c40d269294937856c898a753af2f830e9fba25`
+- `PRODUCT_CLEAN=False`
+- `SOURCE_STATE=f86e9092be45e83191e85a992ad4af05241f1ff1e402fc6ed8d2844f887dc106`
+- `EVIDENCE_VALID=True`, `STABILIZATION=STABLE`, `NODES=62`.
+- Stable historical pre-E Protos baseline is `64`, giving a **descriptive difference −2 nodes**, and archived GraalJS is `36`, leaving **26 nodes gap**; because the new product source state was dirty and may include concurrent unpublished changes, the two-node delta **cannot be attributed solely to PERF037-E**. Do not label it reproducible clean-HEAD reference or infer that a `70c40d26` checkout by itself produces 62 nodes.
+- Exactly two graph classes changed from the historical 64-node histogram: `FixedGuardNode: 6→5` and `InstanceOfNode: 2→1`. All other class counts are unchanged, notably `ConstantNode=20`, `FrameState=6`, `VirtualArrayNode=4`, `VirtualObjectState=5`, `VirtualInstanceNode=1`, `TrufflePreserveFrameStateNode=1`, and `NarrowNode=1`. `families` now: `allocations=0, control_flow_splits=0, guards_deopts=6, invokes=0, loads=5, loops=0`. These are Graal IR virtual structures, not asserted runtime allocations.
+- The unchanged workbook source is `holder: { value: 1 }\nrun: () => { holder.value }`; `holder` is lexically captured by `run` and therefore requires the captured-binding owner selection/read mechanism. The source path in `CanonicalToBytecodeLowerer.emitCapturedMaterializedRead` selects the owner frame then uses the Bytecode DSL `LoadLocalMaterialized(ownerLocal)`, with D179 fallback on absence; the member read follows. Attribution of individual surviving frame/guard nodes requires *the actual filtered graph's edges/properties*, not class frequencies alone.
+- **Next investigation:** obtain the existing `unit.json.units[0].analysis` compressed filtered graph and map all surviving nodes to captured-owner frame selection, loaded scalar/tag, member-read, and Bytecode root/frame-state machinery. Preserve D179/BUG018 correctness; no speculative closure/captured-path removal, no arbitrary `@TruffleBoundary` concealment. Do not re-run compiler capture merely to get the already-generated filtered graph.
+
+Note: the owner supplied only the unit summary, not the actual filtered graph or `verify` command output; do **not** claim that producer-hash verification passed. 
