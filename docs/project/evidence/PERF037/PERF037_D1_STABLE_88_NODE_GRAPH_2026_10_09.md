@@ -63,3 +63,73 @@ Use **existing local**, already-analyzed `results/perf037-d-3e94ba7d-graphs/prim
 Do **not** rerun Protos capture nor unchanged GraalJS/GraalPy merely to obtain this attribution. Decide the next implementation within PERF037-D against those **actual residual nodes**, preserve BUG018/D179 and pay-as-you-grow. The original human-reported validation for the published source was clean `git diff --check` and all local tests PASS, with no coordinator-side tests executed.
 
 Publishing the local D1 BGV/output corpus to `guillermomolina/protos-benchmarks` is a separate **human-executed** git action and has **not** happened as of this record.
+
+## Post-capture identity and node attribution — human-extracted from preserved local files
+
+This section supersedes the **pending product identity and residual attribution** caveats above. The maintainer read the existing `primitive-object-slot-read/protos/unit.json` and `capture.json` without recapturing:
+
+```text
+PRODUCT_REVISION=3e94ba7d01cf94852555d3daa18a3208d3908e35
+PRODUCT_CLEAN=True
+EVIDENCE_VALID=True
+STABILIZATION=STABLE
+NODES=88
+FAMILIES={"allocations":0,"control_flow_splits":1,"guards_deopts":9,"invokes":0,"loads":6,"loops":0}
+FRAME_STATES=11
+SURVIVING_INVOKES=NONE
+```
+
+The exact expected product SHA is now independently confirmed from `unit.json`, and `capture.json.product_before.clean=True`. The selected graph has **no invokes, no loops, no allocations, one control-flow split, six loads, and eleven FrameState nodes**.
+
+**Top direct source attribution** (self-count, not the full 88-node partition):
+
+| Component | Self nodes |
+| --- | ---: |
+| `ProtosSemanticBytecodeRootNodeGen$CachedBytecodeNode` | 15 |
+| `ProtosSemanticBytecodeRootNodeGen$SelectCapturedMaterializedOwnerFrameAtRoot_Node` | 10 |
+| `ProtosSemanticBytecodeRootNodeGen$ReadMemberAtRoot_Node` | 5 |
+| `ProtosSemanticBytecodeRootNodeGen` | 4 |
+| `ProtosSemanticBytecodeRootNodeGen$UncachedBytecodeNode` | 3 |
+
+**Full top-20 class histogram supplied by the maintainer:**
+
+```text
+ConstantNode=25
+FrameState=11
+FixedGuardNode=8
+VirtualObjectState=7
+PiNode=4
+VirtualArrayNode=4
+LoadIndexedNode=3
+BeginNode=2
+EndNode=2
+InstanceOfNode=2
+IntegerEqualsNode=2
+IsNullNode=2
+LoadFieldNode=2
+ObjectEqualsNode=2
+GuardedUnsafeLoadNode=1
+IfNode=1
+MergeNode=1
+NarrowNode=1
+ParameterNode=1
+PiArrayNode=1
+```
+
+The sorted list is only the 20 most common classes, so it is not a complete 88-node histogram.
+
+For the **historical unchanged JS 36-node reference** the comparator was read from the published benchmark [`results/global-20261008-graphs/primitive-object-slot-read/js/unit.json`](https://github.com/guillermomolina/protos-benchmarks/blob/6160b0a0808a2d9391748bf65eba4667c958cad9/results/global-20261008-graphs/primitive-object-slot-read/js/unit.json), itself recording `harness_git_head=98abc9af7a05a45a7d4056b72f36aef5889cb76f` and `STABLE`. That JS histogram has `ConstantNode=6`, `FrameState=1`, `FixedGuardNode=5`, `PiNode=6`, `VirtualObjectState=0`, `VirtualArrayNode=0`, `IfNode=0`, `MergeNode=0`, `LoadIndexedNode=4`, `LoadFieldNode=3`, `GuardedUnsafeLoadNode=1`, `BoxNode$AllocatingBoxNode=1`. The cross-language comparator is **historical**, not remeasured for D1; the local D1 matrix remains single-language and `peer=UNRESOLVED`.
+
+| Selected node class | Protos D1 (88) | JS baseline (36) | Difference |
+| --- | ---: | ---: | ---: |
+| `ConstantNode` | 25 | 6 | +19 |
+| `FrameState` | 11 | 1 | +10 |
+| `VirtualObjectState` | 7 | 0 | +7 |
+| `VirtualArrayNode` | 4 | 0 | +4 |
+| `FixedGuardNode` | 8 | 5 | +3 |
+| `IfNode` | 1 | 0 | +1 |
+| `MergeNode` | 1 | 0 | +1 |
+
+**Interpretation and decision boundary:** the excess concentrated in constants, frame states and virtual carriers points toward the bytecode lowering, local selection/conditional, and generated root compilation state as the next code-reduction targets. This is a candidate hypothesis from class counts, **not** proof that any particular node is semantically removable; some classes are also present at different counts in JS and not all node classes have runtime cost. The D1 optimized owner-select operation itself has only **10 self nodes**, down from its prior C attribution **48**, while root `CachedBytecodeNode` remains **15 self nodes**. The next bundled implementation should start from these measured residuals, keep BUG018-safe `LoadLocalMaterialized` (or demonstrably equivalent tier-correct access), and preserve D179 and generic fallback. The user's still-open structural target is **at most 36 compiled nodes**, with **52 nodes to eliminate from the 88-node result**.
+
+**No D1 runtime latency, deoptimization-count timeline or raw BGV publication is claimed.** This update provides complete metadata and selected graph attribution, not additional benchmarks.
