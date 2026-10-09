@@ -44,3 +44,25 @@ python3 truffle/measure_graphs.py verify --output "$RESULTS_DIR"
 ```
 
 Acceptance gate: read exact `capture.json.product_before` identity/clean flag, `unit.json.protos_revision`, `capture_valid`, `evidence_valid`, stabilization status, selected-phase graph and full histogram/attribution. If valid and stable, compare new Protos-only `total_nodes` with 64 and the archived 36-node JS baseline, **but attribute any change to the complete intervening commit range rather than uniquely to PERF037-E**; retain raw BGVs and selected filtered graph before declaring graph progress. Any failed correctness/stabilization invalidates the relevant claim. Issue remains OPEN pending graph evidence and independently evaluated latency/cost.
+
+
+## Diagnostic capture received: dirty product state
+
+The maintainer executed `truffle/measure_graphs.py capture` for `primitive-object-slot-read/protos` under the current working tree. The first reference capture was rejected because the product checkout was dirty. The maintainer then deliberately used `--allow-dirty-product`, preserving concurrent agents' work instead of resetting any files. Harness output:
+
+```text
+RESULT_DIR=results/perf037-current-70c40d26-graphs
+SURFACE_SUPPORTED=YES
+ADAPTER_CACHE=compiled
+CORRECTNESS=primitive-object-slot-read/protos PASS
+BUDGET=primitive-object-slot-read/protos 1000 NOT_STABLE units=1 problems=UNIT_NOT_AT_FINAL_TIER
+BUDGET=primitive-object-slot-read/protos 4000 NOT_STABLE units=1 problems=UNIT_NOT_AT_FINAL_TIER
+BUDGET=primitive-object-slot-read/protos 16000 STABLE_CANDIDATE units=1 problems=-
+BUDGET=primitive-object-slot-read/protos 64000 STABLE_CANDIDATE units=1 problems=-
+CAPTURE=primitive-object-slot-read/protos valid=YES stabilization=STABLE pair=[16000, 64000]
+CAPTURE_INVALID_CASES=0
+```
+
+**Scope:** this is a **diagnostic capture of a dirty product working tree**. The `70c40d26` short revision embedded in the output directory labels only the repository commit; it does **not** mean the compiled sources match that clean commit. The capture metadata includes the product source-state SHA256 to distinguish the working tree. The graph driver accepts explicit dirty-product captures for diagnosis; its `summarize_case` structural validity check does not independently reject a dirty product, so `evidence_valid=YES` by itself would not make this a clean reference. Do not attribute the graph exclusively to PERF037-E and do not discard concurrent uncommitted work.
+
+**Next:** run analyzer, summarizer and producer-hash verification against the existing output directory, inspect the measured total and node histogram; compare diagnostically with historical Protos 64 and JS 36. Retain this capture as dirty diagnostic evidence, and perform a fresh clean-HEAD reference capture later only if a durable, reproducible comparison is required.
