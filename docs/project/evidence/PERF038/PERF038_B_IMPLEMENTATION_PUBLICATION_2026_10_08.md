@@ -105,3 +105,13 @@ Human executor supplied readout from local `results/local/perf038-c/primitive-me
 - No direct graph capture pinned specifically at `0ff9e1fb`, so separate causal contributions of PERF038-C versus PERF037-C **are not established**. No timing claim is made. Evidence is human-reported and local, not yet published as a complete post-change capture.
 
 Issue #852 remains open; any follow-up should target the residual 261-node graph and avoid attributing the entire delta to PERF038-C alone.
+
+## PERF038-D intermediate implementation published — 2026-10-09
+
+Verified Protos main commit: https://github.com/guillermomolina/protos/commit/0c3ad1350d18008d3c30c36c30dfb7dd7df56440 (push reported `41883727..0c3ad135`). Changes include `CanonicalToBytecodeLowerer`, `ProtosBytecodeRootNode`, `ProtosFrameArguments`, `ProtosFrameLexicalBindingAuthority`, `ProtosSemanticBytecodeRootNode`, runtime `ProtosActivation`, `ProtosLexicalBindingAuthority`, `ProtosObjectValue`, `ProtosPerf038DPrimitiveMethodCallTest`, and two PE baselines. No `pom.xml` or `CHANGELOG.md` change in this commit.
+
+Human executor reports `git diff --check` clean and all local tests PASS (test names/output not independently inspected).
+
+This is the PERF038-D intermediate A/C/D/E implementation checkpoint: captured owner frame cache with authority-installation retirement; compact caller reference/provenance path; guarded send home selection and reduced compact-carrier validation; regression tests for error handlers, Context, lexical owner/binding changes and durable handoff. B (generic bytecode dispatch) and F (residual allocations/splits/guards/loads) are not yet claimed complete.
+
+**Post-D structural graph not measured yet.** Accepted preceding combined PERF038-C/PERF037-C graph baseline is `261` at product `d88ed6b83e977a1bf02f425825a015e9e577ec3e`, harness `175e5b2c4bf740164cdef1f02b40e2165b61afcd`, GraalVM `25.4.4.1.1`, After TruffleTier tier 2, valid/STABLE/PASS. Graph peer reference GraalJS `34`. Human executor should capture `primitive-method-call` with product commit `0c3ad135` and unchanged policy; analyze BGV on host and publish evidence if valid. Do not infer graph improvement or timing improvement from commit alone. Keep #852 open.
