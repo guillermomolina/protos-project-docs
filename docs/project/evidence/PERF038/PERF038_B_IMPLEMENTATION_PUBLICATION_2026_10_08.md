@@ -91,3 +91,17 @@ Implementation as described by the human/agent handoff: complementary guarded sp
 **Acceptance pending**: no post-PERF038-C graph count has yet been supplied. Baseline for this slice is the human-reported valid STABLE 956 nodes from product revision `248b097e`, harness `bf5af4dc`, GraalVM `25.4.4.1.1`, `After TruffleTier`, tier 2. Previous pre-B reference is 1789; GraalJS reference 34. Capture identical `primitive-method-call` without modifying harness. Record graph validity, correct version/revision, compilation tier, final nodes, allocations, splits, guards, invokes, loads, invoke-target changes and Truffle expansion attribution. Do not claim improvement before capture.
 
 The `protos-benchmarks` HEAD inspected when recording this was `e14123532c7fa4fb97cdc247bfed5f1168e1fc73`; no post-C evidence was found in this check. Product issue #852 must remain open.
+
+## Combined PERF038-C + PERF037-C follow-up capture — 2026-10-09
+
+Human executor supplied readout from local `results/local/perf038-c/primitive-method-call/protos/unit.json`:
+- Product: `d88ed6b83e977a1bf02f425825a015e9e577ec3e` (commit `PERF037-C`, two commits after PERF038-C `0ff9e1fb`; preceding intervening commit `DOC010-F`). Therefore it is a **combined result, not a PERF038-C-only measurement**.
+- Harness: `175e5b2c4bf740164cdef1f02b40e2165b61afcd` (`PERF039-A`, additional control-flow workloads). The harness comparison must be recorded/verified before describing strict parity with previous revisions.
+- GraalVM 25.4.4.1.1, phase After TruffleTier, tier 2, evidence valid true, correctness PASS, STABLE natural pair [16000, 64000].
+- Total: **261 nodes**, 1 graph, allocations 6, control splits 12, guards/deopts 18, invokes 1, loads 21, loops 0.
+- Single remaining invoke: `ProtosFrameArguments.materializeCompactActivation` (1).
+- Attribution: `SelectCapturedMaterializedOwnerFrameAtRoot_Node` count 48 / ifs 8; `CachedBytecodeNode` count 40 / ifs 0; `PrepareSendArguments_Node` 32 / ifs 2; `FinishClosureCall_Node` 15 / ifs 2; `CurrentActivation_Node` 7 / ifs 0; `LoadFrameClosureArgument_Node` 5; `UncachedBytecodeNode` 5; `CheckFrameClosureArgumentUpperBound_Node` 2.
+- Historical valid totals: 1789 (pre-B product d59da442), 956 (post-B product 248b097e), now 261 (combined PERF038-C/PERF037-C). Combined reduction versus post-B: 695 (72.7%); reduction from 1789: 1528 (85.4%). Historical GraalJS reference: 34, hence 227-node gap.
+- No direct graph capture pinned specifically at `0ff9e1fb`, so separate causal contributions of PERF038-C versus PERF037-C **are not established**. No timing claim is made. Evidence is human-reported and local, not yet published as a complete post-change capture.
+
+Issue #852 remains open; any follow-up should target the residual 261-node graph and avoid attributing the entire delta to PERF038-C alone.
