@@ -50,7 +50,7 @@ See supporting primary-code/source references and comparison in the sibling [D19
 
 **Not separately selected:** detailed `Integer.recognizes` protocol behavior or a general `Integral.recognizes` owner, exact construction API and grammar spelling, complex IEEE exceptional arithmetic beyond preserving signed-zero branch semantics, complex ordering/error selectors, every interoperability conversion and error outcome, and particular Java/runtime carrier, Truffle specialization or performance target. Keep these subordinate decisions visible; raise a design checkpoint rather than silently choosing a new public contract.
 
-The intended implementation sequence is to settle PLAT056 representation compatibility and the domain-recognition acceptance contract, then implement via a dedicated Ixxx work item. Do not conflate a closed design with an implemented language release.
+The independently tracked implementation owner is [I090 / guillermomolina/protos#868](https://github.com/guillermomolina/protos/issues/868) (family:I), currently **BLOCKED** by the unselected PLAT056 numeric-carrier architecture and by the narrow open integer-domain recognition contract. I089/#867 remains independently READY for the already-approved D196 B1 rule. Do not conflate this closed design with an implemented language release; I090 requires its own conformance, green human tests and product publication.
 
 ## Release/validation status
 
