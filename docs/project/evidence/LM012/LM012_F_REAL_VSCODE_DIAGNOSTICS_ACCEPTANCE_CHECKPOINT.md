@@ -1,6 +1,6 @@
 # LM012-F — real VS Code diagnostics acceptance checkpoint
 
-**Date:** 2026-10-09. **Owner:** [LM012 / guillermomolina/protos#671](https://github.com/guillermomolina/protos/issues/671). **Role:** historical, non-normative human-observed editor evidence and acceptance gate ledger. **Status:** PARTIAL ACCEPTANCE; LM012 remains OPEN.
+**Date:** 2026-10-09. **Owner:** [LM012 / guillermomolina/protos#671](https://github.com/guillermomolina/protos/issues/671). **Role:** historical, non-normative human-observed editor evidence and acceptance gate ledger. **Current status after maintainer clarification:** REAL EDITOR ACCEPTANCE PASS; LM012 remains OPEN solely for packaged CLI distribution acceptance and formal closure.
 
 ## Authority and immutable revisions
 
@@ -36,7 +36,7 @@ The maintainer then edited the buffer to remove both warning causes (`^1` to `1`
 
 Next, after appending a standalone `)` as line 7, the maintainer supplied a second actual Problems-panel screenshot: **exactly 1 parser Error** with the message `Expected a primary expression but found RPAREN` at **Ln 7, Col 1**, with no stale lint warnings. This proves the invalid-buffer parser diagnostic path and its displayed location in the tested case.
 
-**Limit of observation:** the maintainer had not yet explicitly confirmed the separate final action of deleting the invalid `)` and seeing the parser error clear. Neither editor close/reopen behavior nor a new VSIX acceptance run was observed here; do not upgrade them to PASS. The coordinator read and recorded the reported screenshots; it did not itself operate VS Code.
+**Chronological clarification (2026-10-09):** at the time of the initial checkpoint, removal of the parser error had not yet been independently recorded. In the subsequent conversation the maintainer explicitly clarified that the full parser-error recovery check **had already been performed and passed**, including deletion of the invalid `)` and disappearance of the diagnostic. Accept this specific gate as **PASS, maintainer-reported**; do not require a repeat. No separate screenshot of the cleared parser Error was supplied, and VS Code close/reopen or a new VSIX acceptance run has not been reported. The coordinator read the prior screenshots and owner reports; it did not operate VS Code.
 
 Original chronological live coordination and screenshots-as-user-observations are described in these GitHub updates:
 
@@ -54,14 +54,14 @@ In the current handoff, the maintainer states:
 
 Treat this exactly as **maintainer-reported `git diff --check` CLEAN and all local tests PASS**, with no submitted test log or immutable revision binding. This statement is **not** the coordinator running tests/builds/commands; it does **not** mean that `git diff --check` was executed on the new documentation commits, and does **not** establish remote CI or packaged CLI end-to-end results.
 
-## Remaining LM012-F acceptance gates
+## LM012-F acceptance gates (editor complete, packaged CLI pending)
 
 | Gate | Status | Required completion evidence |
 | --- | --- | --- |
 | Real VS Code two D194 warnings | PASS observed | Two exact rule codes, severity and editor locations in Problems panel |
 | Live unsaved-buffer warning clearing | PASS maintainer reported | Both warnings disappear after edits without save |
 | Real parser Error on invalid buffer | PASS screenshot observed | `RPAREN` parser diagnostic, Ln 7 Col 1, no stale warnings |
-| Remove parser error and observe clean editor | PENDING | Maintainer confirms empty Problems panel after deleting `)` |
+| Remove parser error and observe clean editor | PASS maintainer-confirmed | Maintainer expressly clarified that deleting `)` made the parser Error disappear |
 | Published Native `v0.3.312` `protos lint` | PENDING | Human runs actual packaged binary; verifies warning/text/JSON/exit statuses and source read-only behavior |
 | Published portable JVM `v0.3.312` `protos lint` | PENDING | Same transport/exit/output checks against the actual JVM distribution |
 | Final issue evidence reconciliation and closure | PENDING | Bounded PASS results for remaining release gates; exact commits/docs revision cross-linked to #671 |
@@ -74,7 +74,7 @@ Use [the existing CLI contract and output/exit-code documentation](https://githu
 LM012_F_EDITOR_TWO_WARNINGS=PASS_HUMAN_SCREENSHOT
 LM012_F_EDITOR_UNSAVED_LINT_CLEAR=PASS_HUMAN_REPORTED
 LM012_F_EDITOR_PARSER_ERROR=PASS_HUMAN_SCREENSHOT
-LM012_F_EDITOR_PARSER_RECOVERY=PENDING
+LM012_F_EDITOR_PARSER_RECOVERY=PASS_HUMAN_CONFIRMED
 LM012_F_NATIVE_RELEASE_CLI=PENDING
 LM012_F_PORTABLE_JVM_RELEASE_CLI=PENDING
 MAINTAINER_REPORTED_LOCAL_TESTS=PASS
