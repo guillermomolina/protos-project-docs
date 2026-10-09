@@ -40,3 +40,20 @@ At this checkpoint, the most recent visible `guillermomolina/protos-benchmarks` 
 Human executor should capture the **unchanged** `primitive-method-call` graph at product revision `248b097e`, preserving harness, workload, GraalVM, phase/tier, stabilization and correctness policy. Compare node families and residual invoke targets only if admission is valid. Do not infer a percent improvement from source inspection.
 
 PERF038 / #852 remains OPEN pending valid post-change A/B and applicable functional validation evidence. No new design decision or specification change is recorded.
+
+## Post-change graph acceptance — human-executor result
+
+Human executor reported the following on 2026-10-09, after analyzing previously captured BGVs on the host using `python3 truffle/measure_graphs.py analyze --output results/local/perf038-b`:
+
+```text
+ANALYZED=primitive-method-call/protos/budget-16000/bgv/TruffleHotSpotCompilation-2467[ProtosSemanticBytecodeRootNodeGen@22787edc].bgv.gz
+ANALYZED=primitive-method-call/protos/budget-64000/bgv/TruffleHotSpotCompilation-2434[ProtosSemanticBytecodeRootNodeGen@60ea6b82].bgv.gz
+ANALYZE_FAILURES=0
+UNIT=primitive-method-call/protos valid=YES total=956 graphs=1
+RUNG=primitive-method-call protos=956 js=None python=None peer=UNRESOLVED protos_stabilization=STABLE protos_status=NOT_EVALUATED node_comparison=SKIPPED final_state=- signals=-
+INVALID_UNITS=0
+```
+
+Prior capture reported product revision `248b097e968219452b1663b9ed0fce597a719a79`, correctness PASS, natural warmup stable pair `[16000, 64000]`, capture valid YES. The resulting node count is **956**, versus **1789** at product revision `d59da442fd9bc6cf590fb9b2c82d3ff55c0391ae`: reduction **833 nodes (46.6%)**. Compared with the historical GraalJS 34-node reference, the gap is now 922 nodes. The A/B comparison is conditional on verifying that the post-change `unit.json` retains the same workload, harness, GraalVM, tier, phase, and analysis policy as the baseline. The host-local result is human-reported; it has **not yet been verified from a published post-change evidence directory**.
+
+No new timing claim is made. Residual invoke, allocation, guard, control split and FrameState metrics require the post-change `unit.json`. Do not close issue #852 on this graph reduction alone.
