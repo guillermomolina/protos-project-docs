@@ -1,13 +1,13 @@
 # PERF041-A1 — primitive-if-true: source-path and retained-graph causal checkpoint
 
-**Status:** PUBLISHED INVESTIGATION EVIDENCE; **not** an implementation authorization, design approval, exhaustive BGV topology audit, or issue closure.  
-**Formal owner:** [PERF041 / guillermomolina/protos#863](https://github.com/guillermomolina/protos/issues/863)  
-**Investigation scope:** `true.ifTrue() { 1 }`; `primitive-if-false` diagnostic control, `primitive-return-literal` root reference; `whileTrue` explicitly outside implementation scope.  
-**Product revision examined:** [`0db24f00ff2d92d642351d7f7535517fe01a55ce`](https://github.com/guillermomolina/protos/commit/0db24f00ff2d92d642351d7f7535517fe01a55ce) (same HEAD as the retained capture when checked).  
-**Benchmarks repository revision examined:** [`527035f01107e6c71f860e95f438b7553a5428a2`](https://github.com/guillermomolina/protos-benchmarks/commit/527035f01107e6c71f860e95f438b7553a5428a2).  
-**Capture directory:** `guillermomolina/protos-benchmarks/results/graphs-full-0db24f00ff2d/`.  
-**Selected evidence:** budget 64000; tier 2; `After TruffleTier`; `STABLE`; each focal Protos unit has one selected guest compilation graph. The harness metadata reports `harness_dirty=true` with tracked `harness_source_sha256` values; do **not** erase that provenance by claiming a clean harness tree.  
-**Execution:** no commands, tests, builds, benchmark reruns, or product edits; retained public source and JSON/BGV-derived metadata inspected through GitHub.  
+**Status:** PUBLISHED INVESTIGATION EVIDENCE; **not** an implementation authorization, design approval, exhaustive BGV topology audit, or issue closure.
+**Formal owner:** [PERF041 / guillermomolina/protos#863](https://github.com/guillermomolina/protos/issues/863)
+**Investigation scope:** `true.ifTrue() { 1 }`; `primitive-if-false` diagnostic control, `primitive-return-literal` root reference; `whileTrue` explicitly outside implementation scope.
+**Product revision examined:** [`0db24f00ff2d92d642351d7f7535517fe01a55ce`](https://github.com/guillermomolina/protos/commit/0db24f00ff2d92d642351d7f7535517fe01a55ce) (same HEAD as the retained capture when checked).
+**Benchmarks repository revision examined:** [`527035f01107e6c71f860e95f438b7553a5428a2`](https://github.com/guillermomolina/protos-benchmarks/commit/527035f01107e6c71f860e95f438b7553a5428a2).
+**Capture directory:** `guillermomolina/protos-benchmarks/results/graphs-full-0db24f00ff2d/`.
+**Selected evidence:** budget 64000; tier 2; `After TruffleTier`; `STABLE`; each focal Protos unit has one selected guest compilation graph. The harness metadata reports `harness_dirty=true` with tracked `harness_source_sha256` values; do **not** erase that provenance by claiming a clean harness tree.
+**Execution:** no commands, tests, builds, benchmark reruns, or product edits; retained public source and JSON/BGV-derived metadata inspected through GitHub.
 **Evidence caveat:** source file reads and retained `unit.json` analysis were available; decompressed `.bgv.gz` node/edge topology could **not** be retrieved through the accessible file-content interface. Accordingly, final-node producer-by-producer attribution remains OPEN.
 
 ## 1. Normative and ratified boundaries
@@ -73,9 +73,9 @@ The strongest supported source-level diagnosis is **late physical specialization
 
 ## 6. Candidate assessment and pending completion gate
 
-A. Keep generic preparation and trust Graal: semantically conservative, not effective in the published compiled graph.  
-B. Locally slim `PreparedBooleanCall`: bounded but likely only partial, because it retains the exterior prepared-send pipeline.  
-C. Add a guarded Boolean fast path with a full ordinary fallback in the same emitted Bytecode: may still retain the cold branch's IR.  
+A. Keep generic preparation and trust Graal: semantically conservative, not effective in the published compiled graph.
+B. Locally slim `PreparedBooleanCall`: bounded but likely only partial, because it retains the exterior prepared-send pipeline.
+C. Add a guarded Boolean fast path with a full ordinary fallback in the same emitted Bytecode: may still retain the cold branch's IR.
 D. Move canonical guarded selection ahead of generic exterior preparation; use compact semantic state and a sufficiently cold exact fallback/deopt boundary, reusing B-prime. Best **architectural hypothesis** for the observed problem, not ratified code or a proven quantitative attribution.
 
 **Unresolved required BGV gate:** analyze retained BGV topology, source/expansion edges and subsequent phase transitions; separate warm hot-hit IR from deopt/fallback/exception/tooling; attribute per-producer final nodes without adding expansion figures or assuming every invoke executes; state where BGV source mapping is missing. Avoid new measurements when already published data suffice. If binary graph tools are unavailable under the strict research-only/no-command workflow, report the exact access limitation instead of claiming completion.
