@@ -72,5 +72,5 @@ To determine the isolated PERF037-D delta without changing main HEAD or overwrit
 
 - Product `46e3fca4` was pushed and the human executor reported `git diff --check` clean and all local tests PASS.
 - Product `89e1b038` was confirmed to be the child of `46e3fca4` with PERF038-F source changes.
-- New 64-node raw graph **has not yet been published** by the human; do not claim its BGV has been independently fetched or verified from GitHub.
+- New 64-node raw graph **has been published** in `guillermomolina/protos-benchmarks@dd8b6518057de62d940a10e5b3db1de7ea97929b`. The coordinator independently verified the remote file listing and the source-identity/validity fields in remote `unit.json` and `capture.json`; a full node-edge audit of the published filtered IR has not yet been performed.
 - PERF037/#851 **remains OPEN** pending further causal isolation, structural parity or justified acceptance criteria, and a separate valid runtime measurement.
