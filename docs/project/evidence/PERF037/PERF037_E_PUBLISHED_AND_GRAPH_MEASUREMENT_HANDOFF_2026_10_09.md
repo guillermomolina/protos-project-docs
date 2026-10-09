@@ -81,3 +81,35 @@ Maintainer supplied results of analyzer + summarizer for `results/perf037-curren
 - **Next investigation:** obtain the existing `unit.json.units[0].analysis` compressed filtered graph and map all surviving nodes to captured-owner frame selection, loaded scalar/tag, member-read, and Bytecode root/frame-state machinery. Preserve D179/BUG018 correctness; no speculative closure/captured-path removal, no arbitrary `@TruffleBoundary` concealment. Do not re-run compiler capture merely to get the already-generated filtered graph.
 
 Note: the owner supplied only the unit summary, not the actual filtered graph or `verify` command output; do **not** claim that producer-hash verification passed. 
+
+## Four-way peer graph comparison: Protos pre/post, GraalJS and GraalPy
+
+**Workload:** `primitive-object-slot-read` in the existing harness. All four `unit.json` records report `evidence_valid=true`, `STABLE`, the `After TruffleTier` graph, final tier 2, and the stable budget pair `[16000, 64000]`. JS/Python records are unchanged, already published in `guillermomolina/protos-benchmarks@623e494493f0d3f91136d10048f365c24407c78c/results/global-20261008-graphs/`; no peer reruns were performed. Captured Protos current source remains **dirty**, so the source-state SHA256, not the short commit label, distinguishes the actual code.
+
+| Relevant graph | Nodes | Delta vs GraalJS 36 | Evidence and provenance |
+|---|---:|---:|---|
+| GraalJS | **36** | baseline | [archived peer unit](https://github.com/guillermomolina/protos-benchmarks/blob/623e494493f0d3f91136d10048f365c24407c78c/results/global-20261008-graphs/primitive-object-slot-read/js/unit.json), `executable-value`, stable |
+| Protos pre-E | **64** | +28 | [old product `89e1b038`](https://github.com/guillermomolina/protos-benchmarks/blob/dd8b6518057de62d940a10e5b3db1de7ea97929b/results/perf037-d-89e1b038-graphs/primitive-object-slot-read/protos/unit.json), `canonical`, stable |
+| Protos current diagnostic | **62** | +26 | owner-provided current `unit.json`, product dirty, source-state `f86e9092be45e83191e85a992ad4af05241f1ff1e402fc6ed8d2844f887dc106`, `canonical`, stable |
+| GraalPy | **103** | +67 | [archived peer unit](https://github.com/guillermomolina/protos-benchmarks/blob/623e494493f0d3f91136d10048f365c24407c78c/results/global-20261008-graphs/primitive-object-slot-read/python/unit.json), `executable-value`, stable |
+
+Selected node-class counts (missing classes are zero):
+
+| Node class | Protos pre | Protos current | JS | Python |
+|---|---:|---:|---:|---:|
+| ConstantNode | 20 | 20 | 6 | 30 |
+| FrameState | 6 | 6 | 1 | 10 |
+| FixedGuardNode | 6 | 5 | 5 | 7 |
+| InstanceOfNode | 2 | 1 | 1 | 2 |
+| VirtualArrayNode | 4 | 4 | 0 | 4 |
+| VirtualObjectState | 5 | 5 | 0 | 7 |
+| VirtualInstanceNode | 1 | 1 | 0 | 2 |
+| TrufflePreserveFrameStateNode | 1 | 1 | 0 | 1 |
+| NarrowNode | 1 | 1 | 0 | 0 |
+| GuardedUnsafeLoadNode | 1 | 1 | 1 | 1 |
+| LoadFieldNode | 2 | 2 | 3 | 6 |
+| LoadIndexedNode | 2 | 2 | 4 | 6 |
+| PiNode | 4 | 4 | 6 | 10 |
+| **All node types (total)** | **64** | **62** | **36** | **103** |
+
+This is **structural comparison, not directly equivalent semantic overhead**: peer program shape maps the same read-and-return idea, but Protos is `canonical` and JS/Python are `executable-value`; the JavaScript/Python captures use an earlier benchmark producer and product reference. Do not treat a numerical 26-node gap as proof that every extra node can or should be removed. The full four filtered graphs (their own `unit.json.units[0].analysis` paths) are required to attribute surviving frame and guard graphs causally.
