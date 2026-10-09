@@ -36,10 +36,11 @@ On a host with the pinned Docker IgvUtility analyzer and the same `results/` vol
 
 ```bash
 cd ~/Fuentes/protos-benchmarks
-# Replace <ACTUAL_OUTPUT> with the exact results directory printed during capture.
-python3 truffle/measure_graphs.py analyze --output <ACTUAL_OUTPUT>
-python3 truffle/measure_graphs.py summarize --output <ACTUAL_OUTPUT>
-python3 truffle/measure_graphs.py verify --output <ACTUAL_OUTPUT>
+# Set RESULTS_DIR to the exact "results/perf037-current-<SHA>-graphs" path from capture.
+RESULTS_DIR="results/perf037-current-REPLACE_WITH_CAPTURED_PRODUCT_SHA-graphs"
+python3 truffle/measure_graphs.py analyze --output "$RESULTS_DIR"
+python3 truffle/measure_graphs.py summarize --output "$RESULTS_DIR"
+python3 truffle/measure_graphs.py verify --output "$RESULTS_DIR"
 ```
 
 Acceptance gate: read exact `capture.json.product_before` identity/clean flag, `unit.json.protos_revision`, `capture_valid`, `evidence_valid`, stabilization status, selected-phase graph and full histogram/attribution. If valid and stable, compare new Protos-only `total_nodes` with 64 and the archived 36-node JS baseline, **but attribute any change to the complete intervening commit range rather than uniquely to PERF037-E**; retain raw BGVs and selected filtered graph before declaring graph progress. Any failed correctness/stabilization invalidates the relevant claim. Issue remains OPEN pending graph evidence and independently evaluated latency/cost.
