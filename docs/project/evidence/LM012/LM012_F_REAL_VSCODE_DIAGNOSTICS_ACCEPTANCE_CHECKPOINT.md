@@ -1,6 +1,6 @@
 # LM012-F — real VS Code diagnostics acceptance checkpoint
 
-**Date:** 2026-10-09. **Owner:** [LM012 / guillermomolina/protos#671](https://github.com/guillermomolina/protos/issues/671). **Role:** historical, non-normative human-observed editor evidence and acceptance gate ledger. **Current status after maintainer clarification:** REAL EDITOR ACCEPTANCE PASS; LM012 remains OPEN solely for packaged CLI distribution acceptance and formal closure.
+**Date:** 2026-10-09. **Owner:** [LM012 / guillermomolina/protos#671](https://github.com/guillermomolina/protos/issues/671). **Role:** historical, non-normative human-observed editor evidence and acceptance gate ledger. **Final LM012 acceptance assessment (2026-10-09):** REAL EDITOR ACCEPTANCE PASS and core CLI contract covered by implemented tests with maintainer-reported local suite PASS. The earlier additional requirement for direct `protos lint` smoke tests on both extracted release archives is recognized as **separate distribution validation, not an LM012 closure prerequisite**. The release-archive smoke tests were not performed here and no PASS is claimed for them. LM012 is eligible for closure after publication and GitHub reconciliation.
 
 ## Authority and immutable revisions
 
@@ -54,7 +54,7 @@ In the current handoff, the maintainer states:
 
 Treat this exactly as **maintainer-reported `git diff --check` CLEAN and all local tests PASS**, with no submitted test log or immutable revision binding. This statement is **not** the coordinator running tests/builds/commands; it does **not** mean that `git diff --check` was executed on the new documentation commits, and does **not** establish remote CI or packaged CLI end-to-end results.
 
-## LM012-F acceptance gates (editor complete, packaged CLI pending)
+## LM012-F acceptance and release-artifact boundary
 
 | Gate | Status | Required completion evidence |
 | --- | --- | --- |
@@ -62,21 +62,21 @@ Treat this exactly as **maintainer-reported `git diff --check` CLEAN and all loc
 | Live unsaved-buffer warning clearing | PASS maintainer reported | Both warnings disappear after edits without save |
 | Real parser Error on invalid buffer | PASS screenshot observed | `RPAREN` parser diagnostic, Ln 7 Col 1, no stale warnings |
 | Remove parser error and observe clean editor | PASS maintainer-confirmed | Maintainer expressly clarified that deleting `)` made the parser Error disappear |
-| Published Native `v0.3.312` `protos lint` | PENDING | Human runs actual packaged binary; verifies warning/text/JSON/exit statuses and source read-only behavior |
-| Published portable JVM `v0.3.312` `protos lint` | PENDING | Same transport/exit/output checks against the actual JVM distribution |
-| Final issue evidence reconciliation and closure | PENDING | Bounded PASS results for remaining release gates; exact commits/docs revision cross-linked to #671 |
+| Direct `protos lint` smoke from extracted Native `v0.3.312` release | NOT PERFORMED / NOT LM012 GATE | Additional distribution-artifact acceptance; do not infer it from editor acceptance or local tests |
+| Direct `protos lint` smoke from extracted portable JVM `v0.3.312` release | NOT PERFORMED / NOT LM012 GATE | Separate distribution-artifact acceptance; do not fabricate PASS |
+| LM012 formal closure | ELIGIBLE; pending GitHub closure transaction | Already published B1/C1 functional implementation, local test report and real-editor acceptance; verify exact docs publication and issue state |
 
-Use [the existing CLI contract and output/exit-code documentation](https://github.com/guillermomolina/protos/blob/f8ff34498f3a193c9bfe15f215a181c23504a6ad/docs/guide/tools/cli.md) and [LSP diagnostics documentation](https://github.com/guillermomolina/protos/blob/f8ff34498f3a193c9bfe15f215a181c23504a6ad/docs/guide/tools/language-server.md) for the expected acceptance behavior; avoid repeating the full suite solely for this gate. The existing `ProtosCliLintTest` and `ProtosLanguageServerDiagnosticsTest` source covers additional parser/positions/options, but tests committed and maintainer PASS claims do not substitute for checking the shipped binaries.
+Existing [CLI contract and output/exit-code documentation](https://github.com/guillermomolina/protos/blob/f8ff34498f3a193c9bfe15f215a181c23504a6ad/docs/guide/tools/cli.md) and [LSP diagnostics documentation](https://github.com/guillermomolina/protos/blob/f8ff34498f3a193c9bfe15f215a181c23504a6ad/docs/guide/tools/language-server.md) define supported behavior. Product test sources `ProtosCliLintTest` and `ProtosLanguageServerDiagnosticsTest` cover the CLI contract and protocol projection respectively; the maintainer reports the integrated local suite PASS. A separate direct smoke of each packaged archive would still add release-specific evidence, but is not necessary to claim that the LM012 implementation and editor behavior are accepted. Tests committed and local suite reports must not be misrepresented as actual checks of either extracted archive.
 
-**Disposition:** No defect is currently evidenced and no new implementation, semantic decision, Quick Fix, CLI change or Protos source edit is authorized. LM012/#671 remains open; D194/#842 and D195/#843 remain closed. No project normative specification was changed by this documentation checkpoint.
+**Disposition:** LM012 functional/editor scope is completed and qualifies for formal GitHub closure. No defect is currently evidenced and no new implementation, semantic decision, Quick Fix, CLI change or Protos source edit is authorized. Distribution-level direct archive smoke remains **not performed** (not a blocking LM012 gate). The canonical live state of LM012/#671 is set by the subsequent GitHub closure transaction, not by this evidence snapshot; D194/#842 and D195/#843 remain closed. No project normative specification was changed by this documentation checkpoint.
 
 ```text
 LM012_F_EDITOR_TWO_WARNINGS=PASS_HUMAN_SCREENSHOT
 LM012_F_EDITOR_UNSAVED_LINT_CLEAR=PASS_HUMAN_REPORTED
 LM012_F_EDITOR_PARSER_ERROR=PASS_HUMAN_SCREENSHOT
 LM012_F_EDITOR_PARSER_RECOVERY=PASS_HUMAN_CONFIRMED
-LM012_F_NATIVE_RELEASE_CLI=PENDING
-LM012_F_PORTABLE_JVM_RELEASE_CLI=PENDING
+LM012_F_NATIVE_RELEASE_CLI=NOT_PERFORMED_NOT_LM012_GATE
+LM012_F_PORTABLE_JVM_RELEASE_CLI=NOT_PERFORMED_NOT_LM012_GATE
 MAINTAINER_REPORTED_LOCAL_TESTS=PASS
 MAINTAINER_REPORTED_GIT_DIFF_CHECK=CLEAN
 TEST_RUN_COMMIT_SHA=NOT_PROVIDED
@@ -84,5 +84,5 @@ COORDINATOR_RAN_TESTS=NO
 COORDINATOR_RAN_BUILDS=NO
 COORDINATOR_RAN_PRODUCT_GIT_WRITES=NO
 NORMATIVE_SPEC_CHANGED=NO
-LM012_671=OPEN
+LM012_671=ELIGIBLE_FOR_CLOSURE
 ```
