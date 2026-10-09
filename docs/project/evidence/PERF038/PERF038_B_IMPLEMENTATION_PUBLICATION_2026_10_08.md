@@ -78,3 +78,16 @@ Truffle expansion attribution (not final-graph partition): `CachedBytecodeNode` 
 ### PERF038-C next grouped implementation scope
 
 Focus on reducing remaining generic interpreter/call machinery: retained `CachedBytecodeNode` expansions and 15 invokes. Source-ground each elimination; preserve lexical mutation/authority, Context observation and compact-to-materialized transition, dynamic lookup and invalidation, receiver/methodHome/super, arity, error/unwind and nonlocal control. Prefer compact-path guard specialization and partial-evaluation simplification; no benchmark-specific shortcut and no speculative blanket removal of fallbacks. Human executor validates focal/full gates and captures same-workload graph after code changes, with metadata versioning only after green tests and before publish. #852 remains open.
+
+## PERF038-C implementation publication (2026-10-09)
+
+Verified product commit: https://github.com/guillermomolina/protos/commit/0ff9e1fb1633c3bc7e196c43001df0a7ef110058
+Product version: `0.3.315-SNAPSHOT`.
+
+Files changed: `ProtosBytecodeRootNode.java`, `ProtosFrameArguments.java`, `ProtosSemanticBytecodeRootNode.java`, new `ProtosPerf038CCompactCallSpecializationTest.java`, plus `pom.xml` and `CHANGELOG.md`.
+
+Implementation as described by the human/agent handoff: complementary guarded specializations for compact versus materialized invocation paths (`CurrentActivation`, argument checks and reads, frame-local and captured-local reads), compact captured fallback behind one Truffle boundary, and lazy compilation of root guest-exception interception using a compilation-final flag. New tests cover compact/published transitions, D179 C0 retargeting, arity errors, guest exception crossing and nonlocal return. This is an implementation description; the commit confirms changed paths but does not itself independently prove test outcomes.
+
+**Acceptance pending**: no post-PERF038-C graph count has yet been supplied. Baseline for this slice is the human-reported valid STABLE 956 nodes from product revision `248b097e`, harness `bf5af4dc`, GraalVM `25.4.4.1.1`, `After TruffleTier`, tier 2. Previous pre-B reference is 1789; GraalJS reference 34. Capture identical `primitive-method-call` without modifying harness. Record graph validity, correct version/revision, compilation tier, final nodes, allocations, splits, guards, invokes, loads, invoke-target changes and Truffle expansion attribution. Do not claim improvement before capture.
+
+The `protos-benchmarks` HEAD inspected when recording this was `e14123532c7fa4fb97cdc247bfed5f1168e1fc73`; no post-C evidence was found in this check. Product issue #852 must remain open.
