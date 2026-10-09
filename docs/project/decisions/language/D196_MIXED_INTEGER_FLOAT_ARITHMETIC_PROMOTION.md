@@ -1,11 +1,11 @@
 # D196 — Integer/Float mixed arithmetic: binary64 operand-first promotion
 
-**Decision:** RATIFIED — B1 (operand-first Float promotion)  
-**Owner approval:** 2026-10-09, explicit in the active owner conversation: “apruebo D196 ahora” immediately after the exact B1 recommendation and clarification of D197 boundaries.  
-**Live decision:** [D196 / guillermomolina/protos#864](https://github.com/guillermomolina/protos/issues/864)  
-**Historical amended decision:** [D006 / #164](https://github.com/guillermomolina/protos/issues/164)  
-**Normative owner:** `spec/semantics/VALUES_AND_COLLECTIONS.md` in `guillermomolina/protos`  
-**Product revision inspected at ratification:** `0db24f00ff2d92d642351d7f7535517fe01a55ce`  
+**Decision:** RATIFIED — B1 (operand-first Float promotion)
+**Owner approval:** 2026-10-09, explicit in the active owner conversation: “apruebo D196 ahora” immediately after the exact B1 recommendation and clarification of D197 boundaries.
+**Live decision:** [D196 / guillermomolina/protos#864](https://github.com/guillermomolina/protos/issues/864)
+**Historical amended decision:** [D006 / #164](https://github.com/guillermomolina/protos/issues/164)
+**Normative owner:** `spec/semantics/VALUES_AND_COLLECTIONS.md` in `guillermomolina/protos`
+**Product revision inspected at ratification:** `0db24f00ff2d92d642351d7f7535517fe01a55ce`
 **Project-record parent revision before publication:** `c30926b5b16adacf6ab1233b8a53007f47599124`
 
 > This is a **non-normative decision and investigation-evidence record**, not an assertion that the current product specification or runtime has already been updated. The approved semantics must be published in the normative specification, reflected in its global changelog, and implemented and tested through the human-executor workflow. The product revision above still contains the prior mixed-arithmetic Error rule.
