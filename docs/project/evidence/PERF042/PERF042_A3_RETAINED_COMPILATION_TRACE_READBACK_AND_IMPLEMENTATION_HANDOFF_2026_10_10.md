@@ -1,14 +1,14 @@
 # PERF042-A3 — Retained compilation-trace readback and implementation-ready bounded handoff
 
-Date: 2026-10-10  
-Formal owner: [PERF042/#871](https://github.com/guillermomolina/protos/issues/871)  
-Nature: **read-only compiler-evidence reconciliation and source-backed PERF042-B implementation recommendation**. This is an **A3 supplement**, not another A4/A5 research slice, an implementation publication, or a design ratification.  
+Date: 2026-10-10
+Formal owner: [PERF042/#871](https://github.com/guillermomolina/protos/issues/871)
+Nature: **read-only compiler-evidence reconciliation and source-backed PERF042-B implementation recommendation**. This is an **A3 supplement**, not another A4/A5 research slice, an implementation publication, or a design ratification.
 Prior evidence: [A3 consolidated report](PERF042_A3_COMPLETE_CAUSAL_INVESTIGATION_AND_RETAINED_EVIDENCE_GATE_2026_10_10.md), [A2](PERF042_A2_CURRENT_HEAD_INVOCATION_ATTRIBUTION_2026_10_10.md), [A1](PERF042_A1_SOURCE_AND_GRAPH_INVESTIGATION_2026_10_10.md).
 
 ## 1. Provenance and material read
 
-Product source HEAD verified: **`7b609c4ad0e146d6f02a7a3d036c6ff938ccad08`**.  
-Benchmark HEAD now: **`8c91b495ac82ebe4a345ef02aa0db43fa5afe8c1`**, exactly one later commit beyond `527035f01107e6c71f860e95f438b7553a5428a2`; that commit adds unrelated I092 `primitive-if-true`, `primitive-if-false` and `primitive-return-literal` evidence and does not change the retained `primitive-closure-call` files.  
+Product source HEAD verified: **`7b609c4ad0e146d6f02a7a3d036c6ff938ccad08`**.
+Benchmark HEAD now: **`8c91b495ac82ebe4a345ef02aa0db43fa5afe8c1`**, exactly one later commit beyond `527035f01107e6c71f860e95f438b7553a5428a2`; that commit adds unrelated I092 `primitive-if-true`, `primitive-if-false` and `primitive-return-literal` evidence and does not change the retained `primitive-closure-call` files.
 GraalVM CE **25.4.4.1.1** with Java 25.0.4.1.1, exact historical source/harness revisions as in A3.
 
 Unlike A3's GitHub connector UTF-8 limitation, the connector's **explicit `fetch_file(encoding=base64)`** made the existing gzip trace contents readable in memory, and the analysis independently decoded their gzip DEFLATE payloads without running the product, harness, Java, Maven, benchmarks, validation scripts or any project command. Two retained traces were actually read:
