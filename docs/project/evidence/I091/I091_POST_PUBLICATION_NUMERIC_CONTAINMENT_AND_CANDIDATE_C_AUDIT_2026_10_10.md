@@ -1,12 +1,12 @@
 # I091 — Post-publication numeric containment and Candidate C closure audit
 
-**Date:** 2026-10-10  
-**Owning implementation issue:** [I091/#869](https://github.com/guillermomolina/protos/issues/869) — OPEN; this is **not** closure evidence.  
-**Governing ratified architecture:** [PLAT056/#866](https://github.com/guillermomolina/protos/issues/866), Candidate C.  
-**Published numeric migration:** `PROTOS_REVISION=0fec04835eef0ad625303dfb758918205eb3fd13` ([commit](https://github.com/guillermomolina/protos/commit/0fec04835eef0ad625303dfb758918205eb3fd13)).  
-**Previous published numeric implementation:** `7dfceb7ee96964eb5cb5ed6577b8be2fbd91b68f` ([commit](https://github.com/guillermomolina/protos/commit/7dfceb7ee96964eb5cb5ed6577b8be2fbd91b68f)).  
-**Later observed main HEAD, separate concurrent work:** `70ee9504224c59c033c647f9185bf8fb9b266b93` (I092); the implementation agent must inspect real local HEAD and preserve concurrent changes.  
-**Validation provenance:** owner reports `git diff --check` clean and all local tests PASS for the published work; command output, test inventory, exact execution time and benchmarking are not supplied. The evidence author did **not** compile, run tests or benchmark.  
+**Date:** 2026-10-10
+**Owning implementation issue:** [I091/#869](https://github.com/guillermomolina/protos/issues/869) — OPEN; this is **not** closure evidence.
+**Governing ratified architecture:** [PLAT056/#866](https://github.com/guillermomolina/protos/issues/866), Candidate C.
+**Published numeric migration:** `PROTOS_REVISION=0fec04835eef0ad625303dfb758918205eb3fd13` ([commit](https://github.com/guillermomolina/protos/commit/0fec04835eef0ad625303dfb758918205eb3fd13)).
+**Previous published numeric implementation:** `7dfceb7ee96964eb5cb5ed6577b8be2fbd91b68f` ([commit](https://github.com/guillermomolina/protos/commit/7dfceb7ee96964eb5cb5ed6577b8be2fbd91b68f)).
+**Later observed main HEAD, separate concurrent work:** `70ee9504224c59c033c647f9185bf8fb9b266b93` (I092); the implementation agent must inspect real local HEAD and preserve concurrent changes.
+**Validation provenance:** owner reports `git diff --check` clean and all local tests PASS for the published work; command output, test inventory, exact execution time and benchmarking are not supplied. The evidence author did **not** compile, run tests or benchmark.
 **Record type:** source-grounded audit / incomplete closure acceptance; not a normative amendment or an owner-approved new architecture.
 
 ## What the published work demonstrably changed
