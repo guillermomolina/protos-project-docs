@@ -1,10 +1,10 @@
 # I092 — Native Boolean branch acceptance gap after 0.3.326
 
-**Finding date:** 2026-10-10.  
-**Owner:** [I092 / guillermomolina/protos#870](https://github.com/guillermomolina/protos/issues/870) (**IMPLEMENTATION**, still open).  
-**Product implementation inspected:** [`7b609c4ad0e146d6f02a7a3d036c6ff938ccad08`](https://github.com/guillermomolina/protos/commit/7b609c4ad0e146d6f02a7a3d036c6ff938ccad08) (`0.3.326-SNAPSHOT`).  
-**Published post-implementation graph capture:** [`8c91b495ac82ebe4a345ef02aa0db43fa5afe8c1`](https://github.com/guillermomolina/protos-benchmarks/commit/8c91b495ac82ebe4a345ef02aa0db43fa5afe8c1), [result slot](https://github.com/guillermomolina/protos-benchmarks/tree/8c91b495ac82ebe4a345ef02aa0db43fa5afe8c1/results/i092-7b609c4a-graphs).  
-**Related evidence:** [PERF041-A2 causal graph](../PERF041/PERF041_A2_PRIMITIVE_IF_TRUE_BGV_TOPOLOGY.md), [I092 published implementation checkpoint](I092_IMPLEMENTATION_7b609c4a.md), [I092 graph comparison](I092_POST_IMPLEMENTATION_GRAPH_COMPARISON_8c91b495.md).  
+**Finding date:** 2026-10-10.
+**Owner:** [I092 / guillermomolina/protos#870](https://github.com/guillermomolina/protos/issues/870) (**IMPLEMENTATION**, still open).
+**Product implementation inspected:** [`7b609c4ad0e146d6f02a7a3d036c6ff938ccad08`](https://github.com/guillermomolina/protos/commit/7b609c4ad0e146d6f02a7a3d036c6ff938ccad08) (`0.3.326-SNAPSHOT`).
+**Published post-implementation graph capture:** [`8c91b495ac82ebe4a345ef02aa0db43fa5afe8c1`](https://github.com/guillermomolina/protos-benchmarks/commit/8c91b495ac82ebe4a345ef02aa0db43fa5afe8c1), [result slot](https://github.com/guillermomolina/protos-benchmarks/tree/8c91b495ac82ebe4a345ef02aa0db43fa5afe8c1/results/i092-7b609c4a-graphs).
+**Related evidence:** [PERF041-A2 causal graph](../PERF041/PERF041_A2_PRIMITIVE_IF_TRUE_BGV_TOPOLOGY.md), [I092 published implementation checkpoint](I092_IMPLEMENTATION_7b609c4a.md), [I092 graph comparison](I092_POST_IMPLEMENTATION_GRAPH_COMPARISON_8c91b495.md).
 **Classification:** Unfulfilled physical-control-path acceptance criterion in the existing I092 scope. Not a new language design or another formal issue. **This document supersedes any earlier inference that green tests and reduced node counts alone completed I092.**
 
 ## 1. Exact requested behavior: native implementation, ordinary guest semantics
@@ -41,8 +41,8 @@ The **source-level fast-branch acceptance failure** is independently established
 
 ## 4. Approved completion slice (one coherent implementation)
 
-**Slice:** `I092-NATIVE` (an implementation slice *inside* I092, not a new formal issue).  
-**Code repository:** `guillermomolina/protos` only.  
+**Slice:** `I092-NATIVE` (an implementation slice *inside* I092, not a new formal issue).
+**Code repository:** `guillermomolina/protos` only.
 **Required architecture:** after receiver/argument expressions are evaluated once, select exact canonical `ifTrue` under stable receiver/home/callback-`call` guards. On hit, execute a real `beginIfThenElse` with:
 - `false` → canonical null;
 - `true` → direct, eligible PLAT044 B-prime inline callback body and exact return/cleanup;
