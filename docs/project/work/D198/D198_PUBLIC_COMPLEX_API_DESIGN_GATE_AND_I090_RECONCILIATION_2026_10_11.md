@@ -1,0 +1,55 @@
+# D198 — Public Complex semantics design gate and I090 reconciliation
+
+**Recorded:** 2026-10-11  
+**Formal design issue:** [D198 / #876](https://github.com/guillermomolina/protos/issues/876) — **OPEN, not selected or ratified**  
+**Preceding ratified model:** [D197 / #865](https://github.com/guillermomolina/protos/issues/865) — **CLOSED / RATIFIED**  
+**Consuming implementation:** [I090 / #868](https://github.com/guillermomolina/protos/issues/868) — **OPEN**, remaining public Complex design/implementation gate  
+**Verified product baseline:** [`guillermomolina/protos@c75dea75b8db045eb6833aeab1d5b8710eaa0556`](https://github.com/guillermomolina/protos/commit/c75dea75b8db045eb6833aeab1d5b8710eaa0556)  
+**Implementation version / global specification revision:** `0.3.338-SNAPSHOT` / `0.1.455`  
+**Previous human validation:** `git diff --check` clean; local focused 20 tests PASS; integrated `make test` PASS; pushed. The coordinator did not execute tests. [Pinned C1 publication evidence](../../evidence/I090/I090_C1_PUBLISHED_CANONICAL_COMPLEX_2026_10_11.md).
+
+## Finding: not a contradiction in D197's approved mathematical invariants; incomplete executable contract for I090
+
+D197 ratified a mathematical numeric **model**, not every public selector and exceptional operation needed to expose that model. In particular it approves the family hierarchy, real Integer/Fraction/Float components of Complex, exact-imaginary-zero reduction and inexact signed-zero preservation, Float contagion and exact-normalized arithmetic, mathematical value/identity/hash rules, and the policy that mathematically representable exact function results remain exact where specified. The ratified record explicitly reserves public `Complex(...)` API and selector conventions, detailed math-function/sqrt branch selectors, and IEEE exceptional arithmetic for subsequent decisions.
+
+I090 was originally scoped to implement both the mathematical model **and** visible construction/functions/conformance that D197 had not specified fully. Publishing only the approved portion in independent slices is correct; claiming that the whole parent was done after its internal Complex foundation is not. The original I090-C / I090-D target should remain visible rather than silently deleting acceptance criteria or backfilling design approval.
+
+### Product implementation boundary
+
+- **I090-A**: [`888c2b4f2390b96de5990533fdb1b306587e0002`](https://github.com/guillermomolina/protos/commit/888c2b4f2390b96de5990533fdb1b306587e0002) — source-visible abstract Integer with SmallInteger/BigInteger canonical concrete families.
+- **I090-B**: [`e769869d155a999501e96873eb7d26d633b7c2e7`](https://github.com/guillermomolina/protos/commit/e769869d155a999501e96873eb7d26d633b7c2e7) — exact `Integer/Integer` division and canonical Fraction.
+- **I090-C1**: [`c75dea75b8db045eb6833aeab1d5b8710eaa0556`](https://github.com/guillermomolina/protos/commit/c75dea75b8db045eb6833aeab1d5b8710eaa0556) — authenticated, immutable Complex with real numeric components, normalization, equality/hash/identity, and isolated Actor/P transfer; Core exposes `Complex.recognizes` but **no** public constructor/operators/component selectors or `sqrt`.
+- **Pending:** publicly usable Complex construction and arithmetic; public mathematical functions including `sqrt` and exact negative-square cases, branch-cut/error/NaN/Infinity policies, and the relevant end-to-end conformance/interop closure. A public program cannot currently construct an arbitrary Complex value even though internal runtime/JUnit tests can.
+
+### Formal allocation and roles
+
+D198 is a new **language Dxxx** because choosing observable Complex operations requires independent approval. It is not an `Ixxx`, not an ordinary implementation slice, and not a reopening/erasure of D197. The issue was created with exact label `family:D` and `status:ready`, unassigned, without an invented priority. Allocation uniqueness was verified against GitHub Issues and indexed durable records; D198 is the sole retrieved allocation. No owner approval was inferred from this allocation.
+
+D198 can be explored next, using a single coherent research packet rather than several artificial micro-decisions. `AGENTS.work/DESIGN.md`'s GITHUB010 comparison/falsification/12-axis scoring applies. Compare prior art including Common Lisp, Smalltalk/Pharo, Python/cmath, C++/std::complex, and Julia, and reconcile with the current Protos source/spec before proposing any public API. The investigation must **STOP without code/spec publication or approval claim**; the owner chooses the exact semantics subsequently.
+
+After that explicit approval and durable publication, **the existing I090** implements the remainder and its conformance, with human-executor validation and late version/changelog metadata. Never add a new Ixxx just to consume D198 absent an independently meaningful implementation scope. D197 remains historically closed.
+
+### Gate / acceptance checklist
+
+1. D198 research: source-grounded alternatives, counterexamples, exact example programs and failure behavior, 12-dimension justified scores and smallest-sufficient Protos recommendation.
+2. Owner checkpoint: explicit approval of **precisely specified** public construction/operations/function semantics; any deferred claims and migration consequences recorded honestly.
+3. Durable D198 decision ratification record under `docs/project/decisions/language/`, then normative specification under `guillermomolina/protos:spec/`, with separate governance and revision publication.
+4. I090-C remainder: source-first Complex functionality with bounded Java numeric kernels only where unavoidable; integration and representative end-to-end conformance; correct Actor/P/Map and ordinary dispatch.
+5. I090-D and closure: final affected/integrated human tests, clean final diff, same-commit late version/changelog, push, SHA-pinned publication and final issue closure evidence, or explicit owner-approved narrowing/reassignment.
+
+**Native link limitation:** the available GitHub connector exposes Issue create/update/comments, but not native `blocked by` link mutation. The intended direct edge `I090/#868 blocked by D198/#876` is **PENDING NATIVE MUTATION**; textual cross-references are for readability and do not claim the native dependency exists. D198 is treated as a standalone top-level decision (no invented parent). Project/priority reconciliation is owned by the repository automation; no Project status was fabricated.
+
+## State assertions
+
+```text
+D197_DECISION=RATIFIED_AND_CLOSED
+D198_DECISION=OPEN_UNSELECTED
+D198_GITHUB_ISSUE=https://github.com/guillermomolina/protos/issues/876
+I090_A=PRODUCT_PUBLISHED
+I090_B=PRODUCT_PUBLISHED
+I090_C1=PRODUCT_PUBLISHED_HUMAN_SUITE_REPORTED_PASS
+I090_REMAINDER=AWAIT_D198_PUBLIC_SEMANTICS
+I090_PARENT_CLOSURE=NOT_SATISFIED
+NATIVE_ISSUE_DEPENDENCY=UNVERIFIED_PENDING_MUTATION
+NEW_TESTS_OR_PRODUCT_CHANGES_IN_THIS_COORDINATION=NONE
+```
