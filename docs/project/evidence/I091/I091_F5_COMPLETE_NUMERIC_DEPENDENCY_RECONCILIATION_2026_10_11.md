@@ -67,7 +67,7 @@ Every survivor is assigned an ownership classification below. Counts are **all m
 | `runtime/ProtosIntegerValue.java` | 3 | 2 | 0 | **JUSTIFIED — SIGNED-64 CARRIER / INTEROP.** Physical small-Integer class and explicit Truffle `asBigInteger` |
 | `runtime/ProtosFloatValue.java` | 2 | 0 | 2 | **JUSTIFIED — FLOAT CARRIER / INTEROP.** Physical Float class and exact-integral host `asBigInteger` projection |
 | `runtime/ProtosFixedIntegerInteropValue.java` | 5 | 0 | 0 | **JUSTIFIED — HOST ABI.** Fixed-width unsigned 64-bit carrier with exact arbitrary-precision interop projection |
-| `runtime/ProtosSemanticTransferPayload.java` | 10 | 0 | 0 | **JUSTIFIED — PLAT051 TRANSFER CONTRACT.** Inert exact `BigInteger` leaves, including small leaf materialization at an expressly requested transport boundary |
+| `runtime/ProtosSemanticTransferPayload.java` | 10 | 0 | 0 | **DESIGN DEFECT — PLAT051 TRANSFER LEAF.** Generic `integer(long)` and `integer(Object)` box small integers as Java BigInteger, used by Regex for ordinary capture positions/counts. PLAT051 requires inert exact leaves, not mandatory BigInteger leaves. Keep exact large-only payload if needed; normalize small leaves without breaking payload API. |
 | `execution/CanonicalToBytecodeLowerer.java` | 2 | 0 | 0 | **JUSTIFIED — LARGE LITERAL DESCRIPTOR.** Only truly large constants materialize an arbitrary-precision host descriptor |
 | `execution/ProtosSemanticBytecodeRootNode.java` | 1 | 5 | 5 | **JUSTIFIED — SELECTED NUMERIC FAST-PATH / MATERIALIZATION.** Guarded primitive numeric operations, standard method selection and actual rich literal observation; not a generic VM client |
 | `execution/ProtosCurrentNumericRelations.java` | 0 | 6 | 7 | **JUSTIFIED — NUMERIC EQUALITY/ORDER.** Compact carrier specialization plus numeric service fallback |
@@ -125,7 +125,7 @@ Every survivor is assigned an ownership classification below. Counts are **all m
 
 **F5-SOURCE-CENSUS=PASS (exact immutable Git-blob differential, whole-tree count).**
 **F5-PER-OCCURRENCE-OWNERSHIP=CLASSIFIED (20 files / 171 token sites, by source owner).**
-**F5-PER-OCCURRENCE-DESIGN_JUSTIFICATION=FAILED_AT_PUBLIC_SPI_SMALL_INTEGER_BOUNDARY.**
+**F5-PER-OCCURRENCE-DESIGN_JUSTIFICATION=FAILED_AT_PUBLIC_SPI_AND_PLAT051_TRANSFER_SMALL_INTEGER_BOUNDARIES.**
 **UNJUSTIFIED_SMALL_INTEGER_BIG_INTEGER_ABI_REQUIREMENT=CONFIRMED.**
 **CANONICAL_PYTHON_SCRIPT_EXECUTED_BY_HUMAN=YES; AUDITOR_EXECUTED=NO.**
 **CURRENT_SCRIPT_SHA256_FINGERPRINT=52cb776b3931489ecd237b172ef958d575f580b606bab8e7c74b7beeeba8e817 (operator report).**
@@ -165,3 +165,11 @@ The source fingerprint was emitted by the script as reported by the human. The a
 I091 remains **OPEN** until F1/F2/F3/F4 and final acceptance/closure evidence are satisfied. Future visible D197 BigInteger/Fraction/Complex and unresolved `Integer.recognizes` belong to I090, while pinned compiled-graph/timing measurements belong to PERF040. This F5 report does not claim either is completed or unblocked.
 
 The present report is durable audit evidence, not a normative specification amendment or a change in approved PLAT056 Candidate C.
+
+## Superseding strict review — transfer and public SPI defects (2026-10-11)
+
+The owner supplied a stricter validation criterion: assume Java BigInteger is unnecessary for a signed-64 value unless there is an explicit large-magnitude algorithm, a requested typed Truffle Java return, or a host Java formal parameter requiring it. Ask each generic client whether a Fraction or Complex would equally be used as an automatic Number carrier; avoid host representation leakage. The prior report's **source owner** classification was not sufficient architectural justification.
+
+The new [adversarial per-token audit](I091_F5_ADVERSARIAL_BIG_INTEGER_CASE_BY_CASE_AUDIT_2026_10_11.md) checks **all 73 BigInteger tokens in 16 production files**, assigns each to its path and proof, and compares with TruffleSqueak, TruffleRuby, GraalPy and Graal interop API behavior. **Two defect surfaces were confirmed**: (1) public foreign-provider SPI `Long → BigInteger → Long` in both directions, and (2) PLAT051 semantic transfer `integer(long)`/ordinary Regex capture indices unnecessarily boxed as BigInteger. **17 source tokens lie in the four defect-bearing classes**; this is an ownership count, not a claim that 17 lines must be deleted or that 17 allocations occur per execution. The other **56** are guarded truly-large numerical machinery or **on-demand** typed `asBigInteger`/explicit Java-host ABI, with file-level proof in the new report.
+
+This finding supersedes **all prior claims that zero unjustified BigInteger uses remained**. The original **73/59/39, 171 total** lexical census remains exact and independently confirmed by the human's canonical script run; source fingerprint `52cb776b3931489ecd237b172ef958d575f580b606bab8e7c74b7beeeba8e817`. **I091 stays open; strict architectural F5 acceptance fails until those two mandatory-small-BigInteger surfaces are repaired and validated.** Avoid indiscriminate replacements and preserve binary plugin ABI compatibility.
