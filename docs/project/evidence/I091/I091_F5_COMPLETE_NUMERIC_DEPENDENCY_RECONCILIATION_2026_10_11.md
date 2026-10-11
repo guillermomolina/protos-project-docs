@@ -1,11 +1,11 @@
 # I091-F5 — Complete numeric-dependency reconciliation at `ced3746f9664`
 
-**Audit date:** 2026-10-11 (Europe/Madrid).  
-**Owning issue:** [I091/#869](https://github.com/guillermomolina/protos/issues/869).  
-**Current product:** [`ced3746f9664ec5ceb562461c077bdf0627e5663`](https://github.com/guillermomolina/protos/commit/ced3746f9664ec5ceb562461c077bdf0627e5663), `0.3.331-SNAPSHOT`.  
+**Audit date:** 2026-10-11 (Europe/Madrid).
+**Owning issue:** [I091/#869](https://github.com/guillermomolina/protos/issues/869).
+**Current product:** [`ced3746f9664ec5ceb562461c077bdf0627e5663`](https://github.com/guillermomolina/protos/commit/ced3746f9664ec5ceb562461c077bdf0627e5663), `0.3.331-SNAPSHOT`.
 **Census baseline:** [`76de43651079172d90be5bc6b1f535336ae47cfb`](https://github.com/guillermomolina/protos/commit/76de43651079172d90be5bc6b1f535336ae47cfb); its production source was unchanged from `eba6250f96aa6873829f7011a3a1aee7b6969887` (I089) and the human reported a full `tools/numeric_dependency_census.py` count of 683.
-**Historical baseline fingerprint:** `605cd68c3e75bbc16cab54bbb89770161f2e5f59b21b0c77875e9c01f68f8034`.  
-**Previous audit:** [I091 at `ced3746f`](I091_CED3746_BIG_INTEGER_AND_CLOSURE_AUDIT_2026_10_10.md).  
+**Historical baseline fingerprint:** `605cd68c3e75bbc16cab54bbb89770161f2e5f59b21b0c77875e9c01f68f8034`.
+**Previous audit:** [I091 at `ced3746f`](I091_CED3746_BIG_INTEGER_AND_CLOSURE_AUDIT_2026_10_10.md).
 **Authority:** [PLAT056 Candidate C](../../decisions/platform/PLAT056_PRIMITIVE_FIRST_NUMERIC_GUEST_OBJECT_ARCHITECTURE.md). Do not implement D197's future public recognition/numeric tower under this evidence.
 
 ## Executive result
@@ -92,11 +92,11 @@ Every survivor is assigned an ownership classification below. Counts are **all m
 
 ## F5 disposition, limitations and coordination
 
-**F5-SOURCE-CENSUS=PASS (exact immutable Git-blob differential, whole-tree count).**  
-**F5-PER-OCCURRENCE-OWNERSHIP=CLASSIFIED (20 files / 171 token sites, by source owner).**  
-**UNJUSTIFIED_MATCHES_CONFIRMED=0.**  
-**CANONICAL_PYTHON_SCRIPT_EXECUTED_HERE=NO.**  
-**FRESH_SCRIPT_JSON_TSV_AND_SHA256_FINGERPRINT=NOT_GENERATED.**  
+**F5-SOURCE-CENSUS=PASS (exact immutable Git-blob differential, whole-tree count).**
+**F5-PER-OCCURRENCE-OWNERSHIP=CLASSIFIED (20 files / 171 token sites, by source owner).**
+**UNJUSTIFIED_MATCHES_CONFIRMED=0.**
+**CANONICAL_PYTHON_SCRIPT_EXECUTED_HERE=NO.**
+**FRESH_SCRIPT_JSON_TSV_AND_SHA256_FINGERPRINT=NOT_GENERATED.**
 **PRODUCT_SOURCE_EDITED=NO; TESTS_OR_BENCHMARKS_RUN_HERE=NO.**
 
 For reproducibility in an actual checkout of `ced3746f`, the human may run `python3 tools/numeric_dependency_census.py` to emit its JSON/TSV and SHA-256 source fingerprint. Such a run is a metadata/provenance confirmation, **not an excuse to repeat full application tests when source is unchanged**.
