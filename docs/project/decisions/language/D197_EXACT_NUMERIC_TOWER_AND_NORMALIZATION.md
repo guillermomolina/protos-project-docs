@@ -1,17 +1,60 @@
 # D197 — Exact numeric tower, canonical normalization and floating boundaries
 
-**Decision:** RATIFIED — owner-approved core semantic model; normative specification and runtime implementation PENDING
+**Decision:** RATIFIED — original 2026-10-09 model amended by explicit owner approval of hierarchy C on 2026-10-11; normative specification and runtime implementation PENDING
 **Owner approval:** 2026-10-09, active design conversation. Owner first corrected the proposal to make `BigInteger`, `Fraction` and `Complex` guest-visible Protos numeric types, approved de-promotion including zero-imaginary exact Complex, expressly accepted falsification recommendations 2 (IEEE complex signed-zero preservation), 3 (Float contagion), and 4 (approximation for nonrepresentable mathematical results), then answered **“si aprobado”** to fixing `Integer` at signed 64 bits and using `BigInteger` outside that range.
 **Live design issue:** [D197 / #865](https://github.com/guillermomolina/protos/issues/865)
 **Historical decisions affected:** [D006 / #164](https://github.com/guillermomolina/protos/issues/164), [D156 / #616](https://github.com/guillermomolina/protos/issues/616)
 **Independent ratified input:** [D196 / #864](https://github.com/guillermomolina/protos/issues/864), [decision record](D196_MIXED_INTEGER_FLOAT_ARITHMETIC_PROMOTION.md)
-**Platform design, NOT selected:** [PLAT056 / #866](https://github.com/guillermomolina/protos/issues/866)
+**Platform design (subsequently selected):** [PLAT056 / #866](https://github.com/guillermomolina/protos/issues/866), primitive-first Candidate C, ratified 2026-10-10; distinct from **D197 hierarchy Candidate C**.
 **Normative owner:** `guillermomolina/protos:spec/semantics/VALUES_AND_COLLECTIONS.md`, plus any actually affected other normative owners
 **Inspected product revision:** `0db24f00ff2d92d642351d7f7535517fe01a55ce` (2026-10-09 baseline). Recheck HEAD before implementation.
 
 > This is a durable **non-normative** owner-decision record, not a claim that `spec/`, runtime code, test suite, or any product commit already conforms. The previously green local suite and clean diff are historical baseline facts, not D197 acceptance.
 
-## Exact approved invariants (GITHUB021)
+## 2026-10-11 RATIFIED AMENDMENT — C: abstract Integer, concrete SmallInteger and BigInteger
+
+**Status:** **OWNER APPROVED AND RATIFIED** on 2026-10-11 in the active design conversation: “ok apruebo C”. This is an explicit later amendment following the recorded 2026-10-11 proposal, comparison and implementation-cost investigation; it is **not** retrospective approval of the previously and incorrectly claimed premature ratification. The mistaken revision `866a367fc0f381b647d6e2db9f1f42af60abcc09` remains withdrawn. **Research and falsification:** [D197 C ratification and implementation-cost evidence](../../evidence/D197/D197_C_HIERARCHY_RATIFICATION_AND_IMPLEMENTATION_COST_2026_10_11.md).
+
+```text
+Number
+├── Integer              abstract exact-integral domain / inherited common protocol
+│   ├── SmallInteger     canonical signed-64 concrete family
+│   └── BigInteger       canonical concrete family outside signed-64
+├── Fraction
+├── Float
+└── Complex
+```
+
+**Exact GITHUB021 delta against 2026-10-09 approval:**
+
+1. **Revised canonical visible family:** signed-64 values remain bounded at `[-2^63, 2^63-1]` but now belong to **guest-visible `SmallInteger`**, not concrete `Integer`. Values outside signed-64 remain guest-visible `BigInteger`. `Integer` is their common mathematical exact-integral prototype, **not a concrete family of numeric values**.
+2. **Prototype delegation:** `SmallInteger.parent() === Integer`, `BigInteger.parent() === Integer`, `Integer.parent() === Number`. For numeric values, `42.parent() === SmallInteger` and `100000000000000000000.parent() === BigInteger`. Prior conformance of `42.parent() === Integer` and large integer `.parent() === Integer` is intentionally superseded; this is a public semantic breaking change.
+3. **Common recognition:** `Integer.recognizes(x)` accepts *either genuine Core integer family*, including arbitrarily large integer values. `SmallInteger.recognizes(x)` accepts only signed-64 Core integer values; `BigInteger.recognizes(x)` only values outside signed-64. No `Fraction`, `Complex`, `Float`, or ordinary user object becomes an Integer simply through delegation or coercion. Preserve receiver/arity validation and trusted family classification. This explicitly resolves the former open mathematical integer-recognition gate.
+4. **Canonical promotion/demotion and identity:** exact overflow promotes SmallInteger to BigInteger; arithmetic reducing magnitude returns SmallInteger. `==` and standard hash preserve mathematical equality/coherence; non-overridable `===` remains semantic-family sensitive; the new concrete public family labels participate in reflection, overrides and identity. No Java host class decides guest membership.
+5. **Common protocol and factory:** ordinary standard integer operations and shared mathematical acceptance live under `Integer`, inherited by both concrete families. Existing `Integer(value)` is retained as the shared integer-domain conversion/normalization entry point where applicable, with the canonical concrete family as result. Novel public factory admission/error details for `SmallInteger(value)`/`BigInteger(value)` (if exposed) **remain unselected** and must not be fabricated by I090.
+6. **PLAT056 compatibility:** Java `long` and Truffle primitive carriers may represent SmallInteger on ordinary paths, without allocating a dedicated Java per-value SmallInteger wrapper. `java.math.BigInteger` remains only for genuinely exceptional arbitrary-precision algorithms or explicitly requested host/Truffle ABI conversions; it is unrelated to the guest-visible `BigInteger` prototype. A public subtype change alone is not proof of no allocations.
+7. **Unchanged D197 contracts:** exact rational division, Fraction normalization, IEEE Float contagion, Complex exact-zero versus signed inexact zero, standard numeric hash/identity, transfer, context isolation, cross-family equality and user-overridable D013 guarded method dispatch all remain as approved. No `Rational` public prototype is introduced.
+
+**Implementation ownership and ordering:** [I090/#868](https://github.com/guillermomolina/protos/issues/868) implements the public prototype hierarchy and D197 normative semantics; [I091/#869](https://github.com/guillermomolina/protos/issues/869) implements PLAT056 primitive-first representation and contains unwanted Java BigInteger dependencies. They **must be coordinated**, but I090 does **not** wait for I091 to close. The visible prototype change must be delivered in the same coherent green gate as protected lookup and D013 override/deoptimization changes, particularly `ProtosValueLookup.lookupGuardedInteger`, `ProtosStandardIntegerProtocol` and the Bytecode DSL routes. [PERF040/#862](https://github.com/guillermomolina/protos/issues/862) remains blocked until executable conformance and pinned graph/timing evidence exist.
+
+**Independent boundary concern, NOT part of C ratification:** the current Java NIO backend materializes Protos IpAddress/IpEndpoint objects and is threaded with an Integer prototype to construct 128-bit IPv6 bits. A possible cleaner interop adapter separating Java `InetAddress` and Protos's dynamic numeric/object model needs its **own source-grounded investigation/approval**, not a new network architecture silently invented by this amendment. See the linked evidence.
+
+```text
+D197_HIERARCHY_C=RATIFIED_OWNER_APPROVAL_2026_10_11
+D197_ABSTRACT_INTEGER=APPROVED
+D197_SMALLINTEGER_BIG_INTEGER_PUBLIC_PROTOTYPES=APPROVED
+D197_INTEGER_RECOGNITION_COMMON_DOMAIN=APPROVED
+D197_PRIOR_2026_10_09_INVARIANTS=RETAINED_EXCEPT_LISTED_C_DELTA
+I090_PUBLIC_HIERARCHY_DECISION_GATE=RESOLVED
+I090_I091_RUNTIME_IMPLEMENTATION=PENDING
+D197_SPEC_AND_TESTS_UPDATED=NO
+PERF040_GRAPH_VERIFIED=NO
+```
+
+---
+
+## 2026-10-09 approved invariants (historical baseline; subject to ratified C delta above)
+
 
 1. **Guest-visible semantic families.** `Integer`, `BigInteger`, `Fraction`, `Float` and `Complex` are Protos numeric types; no Java host class and no physical carrier defines their guest semantics. They belong in the integrated Number model, not an opt-in `std:math/Fraction` wrapper required to perform ordinary exact integer division.
 2. **Signed 64-bit `Integer`.** Mathematical integral values from `-2^63` through `2^63-1`, inclusive, have canonical visible type `Integer`; integral values outside that interval have canonical visible type `BigInteger`. The boundary is portable, not a host/VM word-size option.
@@ -72,7 +115,9 @@ Comparative evidence synthesized with AI assistance; project owner selected the 
 
 ---
 
-## Proposal for investigation — 2026-10-11 (NOT APPROVED)
+## Historical investigation proposal — 2026-10-11 (subsequently resolved by ratification of C)
+
+> The statements in this section describe the **previous pending state before owner approval**. They are preserved as historical context, **not** current status. The authoritative later resolution is the ratified C amendment at the top of this record.
 
 **Status: OPEN DESIGN QUESTION / RESEARCH NOT YET COMPLETED. This text does not amend, override or ratify any of the 2026-10-09 D197 clauses above.** The project owner proposed studying Smalltalk's distinction between an abstract mathematical `Integer` domain and `SmallInteger` / large-integer concrete subclasses, and asked for the proposal to be **recorded for investigation and later approval**. An earlier publication on 2026-10-11 incorrectly described the owner's instruction “ok enmienda D197” as approval of the specific semantic changes; the owner explicitly corrected that interpretation: **“te he dicho que lo metieras para ver si lo aprobamos o no, todavia no hemos investigado.”** The alleged approval and purported GITHUB021 resolution in that earlier revision are **withdrawn**. Do not use revision `866a367fc0f381b647d6e2db9f1f42af60abcc09` as evidence of ratification.
 
@@ -99,3 +144,8 @@ INTEGER_RECOGNITION_REDESIGN=OPEN
 I090_DEPENDENT_IMPLEMENTATION=BLOCKED
 PRODUCT_CODE_OR_TESTS_CHANGED=NO
 ```
+
+
+## 2026-10-11 resolution of the historical open proposal
+
+After the comparative and implementation-cost investigation, the owner expressly replied **“ok apruebo C”**. The historical `NOT_RATIFIED` and `INVESTIGATION=PENDING` flags reproduced above are obsolete for the hierarchy and common-recognition question. Candidate C is ratified; remaining new factory/API choices and executable conformance are not claimed approved or completed. Neither `guillermomolina/protos` nor its tests/specification were modified by this documentation-only publication.
