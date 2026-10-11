@@ -1,11 +1,11 @@
 # I093-A — Published source-backed canonical IP protocols and private octet codec
 
-**Date:** 2026-10-11.  
-**Work item:** [I093 / guillermomolina/protos#873](https://github.com/guillermomolina/protos/issues/873).  
-**Architectural impetus:** [AUD020 / #872](https://github.com/guillermomolina/protos/issues/872) and [owner-approved direction](../AUD020/AUD020_PROTOS_FIRST_HOST_NETWORK_BOUNDARY_OWNER_DIRECTION_2026_10_11.md).  
-**PROTOS_REVISION:** `b47be4b698ca27b537898abee89dd6f4c8c49fc3` ([published product commit](https://github.com/guillermomolina/protos/commit/b47be4b698ca27b537898abee89dd6f4c8c49fc3)).  
-**Implementation version:** `0.3.334-SNAPSHOT`.  
-**Publication state:** I093-A PUBLISHED, substantive local tests reported PASS by the human executor. **I093 remains OPEN** for B (host descriptors/NIO boundary) and C (architecture/conformance closure).
+- **Date:** 2026-10-11.
+- **Work item:** [I093 / guillermomolina/protos#873](https://github.com/guillermomolina/protos/issues/873).
+- **Architectural impetus:** [AUD020 / #872](https://github.com/guillermomolina/protos/issues/872) and [owner-approved direction](../AUD020/AUD020_PROTOS_FIRST_HOST_NETWORK_BOUNDARY_OWNER_DIRECTION_2026_10_11.md).
+- **PROTOS_REVISION:** `b47be4b698ca27b537898abee89dd6f4c8c49fc3` ([published product commit](https://github.com/guillermomolina/protos/commit/b47be4b698ca27b537898abee89dd6f4c8c49fc3)).
+- **Implementation version:** `0.3.334-SNAPSHOT`.
+- **Publication state:** I093-A PUBLISHED, substantive local tests reported PASS by the human executor. **I093 remains OPEN** for B (host descriptors/NIO boundary) and C (architecture/conformance closure).
 
 ## Published implementation and retained semantics
 
