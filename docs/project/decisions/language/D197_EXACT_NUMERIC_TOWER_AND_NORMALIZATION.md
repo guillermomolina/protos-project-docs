@@ -1,98 +1,5 @@
 # D197 — Exact numeric tower, canonical normalization and floating boundaries
 
-**Current decision status: RATIFIED, amended 2026-10-11.** The **2026-10-11 amendment below is controlling** wherever it differs from the historical 2026-10-09 ratification preserved after it. Normative `guillermomolina/protos:spec/`, runtime, standard-library and conformance implementation remain **pending I090**; this project decision document does not itself change executable semantics.
-
-**Approval provenance:** The project owner first raised the Smalltalk/TruffleSqueak-inspired distinction between the mathematical integer category and its small/large canonical implementations, explicitly asked to revise I090 for the new SmallInteger requirement, received the concrete proposed hierarchy and implications for `parent()`/`recognizes`/normalization, and then instructed **“ok enmienda D197”** on 2026-10-11. This approval amends that **specified hierarchy and its stated immediate consequences**, not any unrelated selector, syntax, factory, parser, rational class or host-carrier policy. The prior 2026-10-09 owner approval remains valid except for the precise revised clauses identified here.
-
-## Current controlling amendment — 2026-10-11: Integer as exact domain, SmallInteger and BigInteger as canonical families
-
-### Exact approved public semantic model
-
-1. **Two levels, not two unrelated integers.** `Integer` is the **common semantic mathematical-integer category and protocol owner**, not the concrete signed-64 family. Its **canonical concrete** value families are `SmallInteger` and `BigInteger`, with visible ordinary prototype delegation:
-
-   ```text
-   Number
-   ├── Integer                     common exact-integral protocol/recognition
-   │   ├── SmallInteger            canonical signed-64 integral values
-   │   └── BigInteger              canonical integral values outside signed-64
-   ├── Fraction                    canonical exact non-integral rationals
-   ├── Float                       IEEE 754 binary64
-   └── Complex                     exact/inexact numeric components per D197
-   ```
-
-   This is a **semantic Protos prototype hierarchy**, not a mandate for a Java class for each prototype or for a Java BigInteger on ordinary numeric paths. A `Rational` public prototype is **not approved** as part of this amendment; mathematical set inclusion alone does not justify adding a permanent Core protocol owner.
-
-2. **Canonical integer range.** Integral values in `[-2^63, 2^63-1]` inclusive have observable concrete family **`SmallInteger`**. Exact integral values outside that range have observable concrete family **`BigInteger`**. The fixed signed-64 boundary is portable and unchanged; there is **no canonical value whose concrete family is abstract `Integer`**. `SmallInteger` is not an overflow-prone fixed-width arithmetic family: mathematical arithmetic promotes to BigInteger on true overflow and demotes back to SmallInteger on exact results returning to range. Neither fraction nor complex is used as the carrier of an integer simply because it could represent one.
-
-3. **Ordinary delegation and observability.** The Core prototype objects satisfy `Integer.parent() === Number`, `SmallInteger.parent() === Integer`, `BigInteger.parent() === Integer`. The observable parent of a concrete signed-64 integer such as `42` is **`SmallInteger`**, and the parent of an exact out-of-range integer such as `2^100` is **`BigInteger`**. This intentionally supersedes the former `42.parent() === Integer` contract and therefore requires a versioned normative/spec/conformance change. The two subfamilies inherit shared Integer operations through ordinary delegation; no duplication of arithmetic merely to represent the hierarchy. An object that merely delegates to `SmallInteger`/`BigInteger`/`Integer` is **not** thereby a semantic numeric value.
-
-4. **Domain recognition without coercion.** `Integer.recognizes(value)` recognizes **both** canonical integral families and therefore remains true for exact small and large mathematical integers. `SmallInteger.recognizes(value)` recognizes exactly canonical signed-64 SmallInteger values; `BigInteger.recognizes(value)` recognizes exactly canonical beyond-signed-64 BigInteger values. These checks inspect intrinsic semantic family, not Java host class, representability in another family, immediate parent imitation, arbitrary delegation, user callbacks or automatic conversion. Only the exact canonical owner may invoke its standard recognizer, consistent with the existing `Integer.recognizes` receiver/arity discipline; a foreign or user object cannot opt into these families by defining a `recognizes` slot. The initial normative reconciliation must retain `Integer.recognizes` acceptance in existing integer-only `gcd`, `factorial`, `pow`, `powMod`, Array/indexing and library boundaries.
-
-   | Value (conceptual) | `Integer.recognizes` | `SmallInteger.recognizes` | `BigInteger.recognizes` |
-   | --- | --- | --- | --- |
-   | `42` | true | true | false |
-   | `2^100` | true | false | true |
-   | `2/5` (canonical Fraction) | false | false | false |
-   | `Float(42.0)` | false | false | false |
-   | `Complex(0,1)` | false | false | false |
-
-   A computed rational quotient that is mathematically integral is **already normalized** to its SmallInteger/BigInteger family, so its recognition is based on the resulting canonical value; it is not a recognizer-side conversion. Other newly introduced families' public `recognizes` methods are **not implicitly selected** by symmetry; their surface can be specified as part of the corresponding I090 normative closure without inventing an unrelated generic `Number.recognizes`.
-
-5. **Exact arithmetic, result normalization, and interop.** The 2026-10-09 D197 rules on exact mathematical promotion, demotion, integral/fractional exact quotient, reduced `Fraction`, exact/approximate `Complex`, signed IEEE imaginary-zero preservation, D196 B1 mixed-Float contagion, exact `==`, family-sensitive `===`, coherent normal hash and actor/process/interop isolation **remain approved and unchanged**, except that references to a *canonical concrete signed-64 `Integer` result* now mean **`SmallInteger`**. For example, exact `2/1` yields canonical SmallInteger; exact nonintegral `2/5` yields Fraction; overflow of SmallInteger yields BigInteger and falling back into signed-64 yields SmallInteger. The abstract category `Integer` continues to own the common exact-integer operation domain, including results and parameters that may be either concrete family.
-
-6. **Pay-as-you-grow is binding.** Implement ordinary SmallInteger computation using a primitive `long` wherever permitted by PLAT056 Candidate C. The new semantic `SmallInteger` prototype does **not** require `ProtosSmallIntegerValue`, eager guest boxing, a Java BigInteger conversion, extra numeric wrappers, or new materialization in a trivial `1+2`. Genuine large magnitudes and mathematically exceptional operations may use narrow encapsulated arbitrary-precision arithmetic; explicit typed Truffle/Java host APIs remain independent on-demand exceptions. `Fraction`, `Complex`, Actor/P, interop and generic reflection machinery are **not** mandatory on a trivial small integer path.
-
-### Owner-invariant delta / GITHUB021
-
-| Prior ratified statement | Current amendment | Status |
-| --- | --- | --- |
-| D197 2026-10-09 §§1–2: concrete signed-64 `Integer`; concrete out-of-range `BigInteger` | **Explicitly replaced:** `Integer` is the exact-integral base; `SmallInteger` is concrete signed-64; `BigInteger` is concrete beyond range | **Reopened by owner and superseded through 2026-10-11 explicit amendment** |
-| D197 2026-10-09 §3: promotion/demotion between `Integer` and `BigInteger` | Magnitude threshold unchanged; canonical results now SmallInteger/BigInteger under common Integer | **Semantic family vocabulary amended; mathematical behavior preserved** |
-| D197 2026-10-09 §4: exact division normalizes to `Integer` or `BigInteger` | Concrete integral quotient is canonical SmallInteger or BigInteger; Fraction still reduced and only when nonintegral | **Preserved, concrete naming amended** |
-| D197 2026-10-09 §10: family-sensitive `===` and coherent hash | Concrete SmallInteger/BigInteger are the two families; abstract Integer is an ancestor, not a third concrete result family | **Preserved with explicit subtype observation** |
-| Pre-D197 `Integer.recognizes` accepts all mathematical integers; D197 originally deferred this issue | Integer remains a genuine common recognizer for SmallInteger and BigInteger; concrete subtype recognizers are narrower | **Previously open selector scope explicitly selected** |
-| D156 rejected eight fixed-width arithmetic families | SmallInteger is a **bounded canonical magnitude** with exact overflow promotion, not an `Int64` fixed-width modular arithmetic family | **Preserved** |
-| D196 Float mixing; D197 Fraction/Complex/IEEE rules; PLAT056 primitive-first physical model | No changes to those substantive rules; new semantic name must not force new Java carrier costs | **Preserved** |
-| Pharo/Squeak reference hierarchy | Common Integer plus small/large concrete types; Protos retains *portable 64-bit* threshold and one BigInteger rather than sign-split large subclasses | **Adapted, not blindly copied** |
-
-**Alternative considered and rejected for this amendment:** using only `Number → Integer → BigInteger` (no SmallInteger) would preserve `42.parent() === Integer` and reduce migration cost, but would not express both small and large canonical integer families symmetrically as requested. The owner specifically elected to **amend D197** after the observed costs and the Pharo/TruffleSqueak comparison. No public `Rational` is introduced on mathematical elegance alone.
-
-**Cross-runtime primary evidence:** [Pharo `Integer`](https://github.com/pharo-project/pharo/blob/Pharo15/src/Kernel/Integer.class.st) is an abstract common integer class; [`SmallInteger`](https://github.com/pharo-project/pharo/blob/Pharo15/src/Kernel/SmallInteger.class.st) inherits from it; [`Fraction`](https://github.com/pharo-project/pharo/blob/Pharo15/src/Kernel/Fraction.class.st) inherits from Number; [TruffleSqueak `SqueakObjectClassNode`](https://github.com/hpi-swa/trufflesqueak/blob/77bbbec529e9869c3b94173235294032576547f8/src/de.hpi.swa.trufflesqueak/src/de/hpi/swa/trufflesqueak/nodes/accessing/SqueakObjectClassNode.java) maps primitive Java `long` to guest SmallInteger class without mandatory boxed value; [TruffleSqueak `ArithmeticPrimitives`](https://github.com/hpi-swa/trufflesqueak/blob/77bbbec529e9869c3b94173235294032576547f8/src/de.hpi.swa.trufflesqueak/src/de/hpi/swa/trufflesqueak/nodes/primitives/impl/ArithmeticPrimitives.java) uses primitive arithmetic with overflow fallback.
-
-### Deliberately unselected contracts (not gates to re-decide the approved hierarchy)
-
-- Specific construction/normalizing **factory and call** behavior of `SmallInteger(...)`, `BigInteger(...)`, and abstract `Integer(...)`, including whether explicit out-of-range conversion fails or normalizes, is **not inferred** from recognition or hierarchy alone. Preserve existing `Integer(value)` contract until normative reconciliation specifies the approved behavior; any genuine new public choice needs separate owner confirmation.
-- Fraction/Complex constructor spelling, new public recognizer methods beyond the explicitly chosen integer-family trio, generic `Number.recognizes`, `Rational`, new mandatory general-purpose `Integral`/Number tag types, and host-Java carriers remain **unselected** unless separately ratified.
-- Continue to respect the already recorded IEEE signed-zero Complex exception, equality/identity/hash/Map, Actor/P, interop and D013 overrides. The concrete implementation of guarded lookup across `SmallInteger → Integer` and `BigInteger → Integer`, with exact selected-home and invalidation semantics, belongs to I090/I091 and must pass conformance without semantic shortcuts.
-
-### Implementation and coordination after amendment
-
-- **D197 remains an approved language design.** The new exact SmallInteger / Integer / BigInteger semantic hierarchy and the three recognition domains are **ratified by the owner's 2026-10-11 instruction**. No additional design issue is needed for this specifically approved change. The historical 2026-10-09 body is preserved below so a reader can distinguish originally approved invariants from their explicit amendment.
-- **I090/#868** owns normative `spec/`, visible Core bindings, `Integer`/SmallInteger/BigInteger delegation and constructors, source-level conformance, exact Fraction and Complex operations and integration. Revise I090-A plan to implement the approved new hierarchy, not the obsolete concrete signed-64 `Integer` model.
-- **I091/#869** owns primitive-first physical carriers, guarded bytecode operations, `ProtosValueLookup`/numeric services, BigInteger containment, and proof of no mandatory small-path boxing, on the actual current product HEAD. D197 does **not** retroactively declare any untested C feasibility proof satisfied.
-- **Current product** `guillermomolina/protos@ced3746f9664ec5ceb562461c077bdf0627e5663` still publishes `Integer` as the immediate parent of a small integer and `Integer.recognizes` for both existing host representations. `protos/tests/conformance/reflection/parent.protos` asserts the old small parent; `ProtosStandardIntegerProtocol` and `ProtosValueLookup.lookupGuardedInteger` anchor direct-send selection to the old path. These are **future I090/I091 changes**, not tests already passing for the amendment.
-- Normative `spec/semantics/VALUES_AND_COLLECTIONS.md`, relevant `spec/` owners, `protos/lib/core/prelude.protos`, bootstrap, recognizers, integer protocols and conformance must be updated atomically with the approved implementation by the human-executor workflow. **No normative/prod source edit, new tests, benchmark or release is claimed by this decision publication.**
-
-```text
-D197_OWNER_AMENDMENT=EXPLICITLY_APPROVED_2026-10-11
-D197_AMENDED_INTEGER_HIERARCHY=RATIFIED
-INTEGER_RECOGNITION_DOMAIN=SMALL_AND_BIG
-CANONICAL_SIGNED64_FAMILY=SMALLINTEGER
-CANONICAL_OUT_OF_RANGE_FAMILY=BIGINTEGER
-SMALLINTEGER_PARENT=INTEGER
-BIGINTEGER_PARENT=INTEGER
-RATIONAL_PUBLIC_PROTOTYPE=NOT_SELECTED
-HOST_JAVA_CARRIER_CHANGE=NOT_SELECTED
-PLAT056_C=UNCHANGED
-NORMATIVE_PRODUCT_SPEC=AWAITING_I090
-RUNTIME_CONFORMANCE=AWAITING_I090_I091
-PRODUCT_TESTS=NOT_RUN_FOR_THIS_AMENDMENT
-```
-
----
-
-## Historical ratification — 2026-10-09 (preserved verbatim; superseded where identified)
-
 **Decision:** RATIFIED — owner-approved core semantic model; normative specification and runtime implementation PENDING
 **Owner approval:** 2026-10-09, active design conversation. Owner first corrected the proposal to make `BigInteger`, `Fraction` and `Complex` guest-visible Protos numeric types, approved de-promotion including zero-imaginary exact Complex, expressly accepted falsification recommendations 2 (IEEE complex signed-zero preservation), 3 (Float contagion), and 4 (approximation for nonrepresentable mathematical results), then answered **“si aprobado”** to fixing `Integer` at signed 64 bits and using `BigInteger` outside that range.
 **Live design issue:** [D197 / #865](https://github.com/guillermomolina/protos/issues/865)
@@ -162,3 +69,33 @@ PRODUCT_PUBLISH=NOT_PERFORMED_BY_THIS_PUBLICATION
 ## AI assistance
 
 Comparative evidence synthesized with AI assistance; project owner selected the semantics directly. No independent execution or green validation of new code is claimed.
+
+---
+
+## Proposal for investigation — 2026-10-11 (NOT APPROVED)
+
+**Status: OPEN DESIGN QUESTION / RESEARCH NOT YET COMPLETED. This text does not amend, override or ratify any of the 2026-10-09 D197 clauses above.** The project owner proposed studying Smalltalk's distinction between an abstract mathematical `Integer` domain and `SmallInteger` / large-integer concrete subclasses, and asked for the proposal to be **recorded for investigation and later approval**. An earlier publication on 2026-10-11 incorrectly described the owner's instruction “ok enmienda D197” as approval of the specific semantic changes; the owner explicitly corrected that interpretation: **“te he dicho que lo metieras para ver si lo aprobamos o no, todavia no hemos investigado.”** The alleged approval and purported GITHUB021 resolution in that earlier revision are **withdrawn**. Do not use revision `866a367fc0f381b647d6e2db9f1f42af60abcc09` as evidence of ratification.
+
+**Open proposal, NOT selected:** consider `Number → Integer → SmallInteger / BigInteger` as visible Protos prototypes, with `Integer` a common exact-integral domain, SmallInteger the signed-64 canonical concrete family and BigInteger the outside-signed-64 concrete family. Evaluate whether `Fraction` remains a sibling under Number or whether a rational common ancestor has independently justified public behavior. The actual 2026-10-09 D197 ratified model is **still** `Integer` canonical for signed-64 and `BigInteger` canonical beyond range until a subsequent exact-candidate approval supersedes it. `Rational` and `SmallInteger` are **not currently ratified public types**.
+
+**Candidates that the investigation must compare:**
+
+1. **A — D197 as ratified:** concrete signed-64 `Integer` plus separate concrete out-of-range `BigInteger`; define a consistent shared integer-domain acceptance API, preserving fast paths.
+2. **B — minimal inherited mathematical domain:** `Number → Integer → BigInteger`, ordinary signed-64 values still directly under Integer; broad `Integer.recognizes`, separate large recognizer as justified. This preserves `42.parent() === Integer` but changes the role of Integer relative to the original D197.
+3. **C — full Smalltalk-like visible split:** `Number → Integer → SmallInteger / BigInteger`. This changes `42.parent()` observably, may introduce more public factories/recognizers and guarded dispatch work, but offers explicit concrete family symmetry. Do not presume C is already preferred or approved.
+
+**Mandatory falsification / specific questions:** (a) show what real Pharo/Squeak/TruffleSqueak expose vs Java primitive representation and where their model diverges from Protos; (b) account for `Integer.recognizes`, subclass-specific `recognizes`, receiver/arity and the fact that simple delegation must not admit user-defined objects as semantic numbers; (c) `parent()`, `===`, equality/hash, serialization, reflection, factory/call grammar, all Core prelude bindings and tests, plus mathematical acceptance by Array indexing, `gcd`, `factorial`, `pow`; (d) `ProtosValueLookup.lookupGuardedInteger`, `ProtosStandardIntegerProtocol`, D013 overrides/deopt, invalidation, transfer/interop and true cost of another prototype step; (e) prove PLAT056 Candidate C still permits primitive `long` on the ordinary path without extra `ProtosSmallIntegerValue` wrappers; (f) prove the new public type earns its long-term semantic/maintenance cost instead of choosing it solely for mathematical neatness; (g) score meaningful candidates under the project's Dxxx comparative and GITHUB021 falsification rules, with exact invariant deltas to the 2026-10-09 approval.
+
+**Primary starting references, not an investigation conclusion:** [Pharo Integer](https://github.com/pharo-project/pharo/blob/Pharo15/src/Kernel/Integer.class.st), [Pharo SmallInteger](https://github.com/pharo-project/pharo/blob/Pharo15/src/Kernel/SmallInteger.class.st), [TruffleSqueak SmallInteger class lookup](https://github.com/hpi-swa/trufflesqueak/blob/77bbbec529e9869c3b94173235294032576547f8/src/de.hpi.swa.trufflesqueak/src/de/hpi/swa/trufflesqueak/nodes/accessing/SqueakObjectClassNode.java). The inspected Protos `ced3746f9664ec5ceb562461c077bdf0627e5663` still returns `Integer` from `42.parent()`, and has existing integer-prototype guards and conformances. The consumer work item is [I090/#868](https://github.com/guillermomolina/protos/issues/868). I091 continues independently on previously ratified PLAT056 carrier architecture.
+
+**Approval gate:** perform the comparative/implementation-impact investigation, present the complete alternatives and exact proposed public contract to the owner, **ask for explicit approval**, then publish a separate clearly identified ratification delta **only if approved**. Do not update normative `spec/`, product code, conformance or I090 readiness based on this open proposal.
+
+```text
+D197_2026_10_09_RATIFICATION=RETAINED
+D197_SMALLINTEGER_PROPOSAL=OPEN_NOT_APPROVED
+D197_SMALLINTEGER_INVESTIGATION=PENDING
+D197_SMALLINTEGER_AMENDMENT=NOT_RATIFIED
+INTEGER_RECOGNITION_REDESIGN=OPEN
+I090_DEPENDENT_IMPLEMENTATION=BLOCKED
+PRODUCT_CODE_OR_TESTS_CHANGED=NO
+```
