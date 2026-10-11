@@ -1,13 +1,13 @@
 # I094 — Published source-owned Path semantics and inert Filesystem boundary
 
-**Record date:** 2026-10-11  
-**Formal implementation owner:** [I094 / #875](https://github.com/guillermomolina/protos/issues/875)  
-**Originating audit:** [AUD021 / #874](https://github.com/guillermomolina/protos/issues/874)  
-**Approved architecture:** Candidate C; see [AUD021-B/C owner approval](../AUD021/AUD021_BC_CANDIDATE_C_OWNER_APPROVAL_AND_IMPLEMENTATION_BOUNDARY_2026_10_11.md)  
-**PROTOS_REVISION:** `0980d59b9f654b1668f836f1c5286dedab90770b`  
-**Prior product revision:** `b47be4b698ca27b537898abee89dd6f4c8c49fc3`  
-**Published change:** [I094 source/test commit](https://github.com/guillermomolina/protos/commit/0980d59b9f654b1668f836f1c5286dedab90770b)  
-**Version observed at published product revision:** `0.3.334-SNAPSHOT`  
+**Record date:** 2026-10-11
+**Formal implementation owner:** [I094 / #875](https://github.com/guillermomolina/protos/issues/875)
+**Originating audit:** [AUD021 / #874](https://github.com/guillermomolina/protos/issues/874)
+**Approved architecture:** Candidate C; see [AUD021-B/C owner approval](../AUD021/AUD021_BC_CANDIDATE_C_OWNER_APPROVAL_AND_IMPLEMENTATION_BOUNDARY_2026_10_11.md)
+**PROTOS_REVISION:** `0980d59b9f654b1668f836f1c5286dedab90770b`
+**Prior product revision:** `b47be4b698ca27b537898abee89dd6f4c8c49fc3`
+**Published change:** [I094 source/test commit](https://github.com/guillermomolina/protos/commit/0980d59b9f654b1668f836f1c5286dedab90770b)
+**Version observed at published product revision:** `0.3.334-SNAPSHOT`
 **Evidence classification:** revision-pinned implementation inspection and maintainer-reported validation; no independent execution by the recording agent.
 
 ## Publication and implemented slices
