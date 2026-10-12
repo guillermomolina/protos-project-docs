@@ -1,5 +1,25 @@
 # D198 — Public Complex semantics design gate and I090 reconciliation
 
+## 2026-10-12 — P2/N2/R/N4/N5 and F1–F4 explicitly owner-approved; exhaustive contract pending
+
+**Owner-approved design gates:** P2 (operation-local Float promotion), N2 (specified exceptional numeric tuples and non-signaling envelope), R (finite Complex multiply/divide precision), N4 (exact/principal-branch sqrt), N5 (ordinary public Complex factory/selectors/operations), **plus** the subsequent exact refinements **F1** (finite arithmetic signed-zero), **F2-A/B conservative** (axis Infinity-times-zero remains NaN; genuine incoming NaN not silently erased in coupled operations), **F3** (exact-coordinate-preserving sqrt and no destructive premature exact-radicand-to-Float conversion), **F4** (`std:math/Math` ordinary exported `sqrt`). The owner explicitly approved the five initial named candidates and subsequently said **"Apruebo las sugerencias"** after the F1–F4 consolidated decision packet.
+
+**Authority/provenance:** [F1–F4 approval and GITHUB021 invariant audit](../../evidence/D198/D198_F1_F4_RECONCILIATION_OWNER_APPROVAL_2026_10_12.md); preceding [E2 approval](../../evidence/D198/D198_E2_EXCEPTIONAL_ARITHMETIC_OWNER_APPROVAL_2026_10_12.md). Preserve D197 closed ratification, D198-C/B/E2 and D013; this evidence is non-normative.
+
+**Still OPEN:** a deterministic and exhaustive signed-zero/NaN/infinity/overflow/underflow result specification beyond the expressly approved N2/F2 examples; formal portable approximation acceptance for inexact complex `sqrt`; final GITHUB021 approval after these remaining contract details are surfaced. No new architectural candidate or Ixxx is required. D198 remains **OPEN**, and I090's remaining public Complex work remains **BLOCKED** until the complete design/normative contract is ratified. The current `spec/`/product has not been updated by this record; **no tests run**.
+
+```text
+D198_P2_N2_R_N4_N5=OWNER_APPROVED
+D198_F1_F2_A_F2_B_F3_F4=OWNER_APPROVED
+D198_EXCEPTIONAL_EXHAUSTIVE_TABLE=OPEN
+D198_INEXACT_COMPLEX_SQRT_CONFORMANCE=OPEN
+D198_FULL_RATIFICATION=NO
+I090_PUBLIC_COMPLEX_REMAINDER=BLOCKED
+TESTS_EXECUTED=NO
+```
+
+---
+
 ## 2026-10-12 — Owner APPROVES E2 exceptional arithmetic signaling policy; detailed results still OPEN
 
 **Explicit owner decision:** "apruebo E2" after the E1/E2/E3 comparison, with an express separation between Error-vs-numeric-outcome policy and the **unselected** exact numerical output tuple. **E2 APPROVED**: entirely exact Complex division by exact complex zero signals fresh `Error`; if an operation genuinely enters the inexact Float domain, IEEE numeric exceptions (zero, NaN, Infinity, over/underflow) are **not in themselves reasons to signal Error**. Correct normal protocol/argument failures may still signal Error; E2 does not bypass them.
