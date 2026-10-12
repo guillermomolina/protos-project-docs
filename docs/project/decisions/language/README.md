@@ -89,3 +89,5 @@ This list is not a closed manifest for future language decisions.
 - [`D192_FOREIGN_EACH_NORMAL_COMPLETION_RESULT.md`](D192_FOREIGN_EACH_NORMAL_COMPLETION_RESULT.md)
 - [`D193_EXPLICIT_STD_INTEROP_PUBLIC_OPERATION_CONTRACT.md`](D193_EXPLICIT_STD_INTEROP_PUBLIC_OPERATION_CONTRACT.md)
 - [`D196_MIXED_INTEGER_FLOAT_ARITHMETIC_PROMOTION.md`](D196_MIXED_INTEGER_FLOAT_ARITHMETIC_PROMOTION.md) — approved B1 operand-first binary64 mixed arithmetic; normative/runtime reconciliation pending.
+- [`D197_EXACT_NUMERIC_TOWER_AND_NORMALIZATION.md`](D197_EXACT_NUMERIC_TOWER_AND_NORMALIZATION.md) — ratified exact number hierarchy and canonical value/family model; implementation tracked separately.
+- [`D198_PUBLIC_COMPLEX_CONSTRUCTION_ARITHMETIC_AND_SQRT.md`](D198_PUBLIC_COMPLEX_CONSTRUCTION_ARITHMETIC_AND_SQRT.md) — ratified public Complex operations and Math.sqrt, published in normative spec `0.1.457`.
