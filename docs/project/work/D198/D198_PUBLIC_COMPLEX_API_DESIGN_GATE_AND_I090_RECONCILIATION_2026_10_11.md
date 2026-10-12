@@ -1,5 +1,33 @@
 # D198 — Public Complex semantics design gate and I090 reconciliation
 
+## 2026-10-12 — D198 normative 0.1.457 published and ratified
+
+**Public product read-back:** [`guillermomolina/protos` commit `7903d43208a8365c6f75d4c886e5babd815754b2`](https://github.com/guillermomolina/protos/commit/7903d43208a8365c6f75d4c886e5babd815754b2) is published on `main` with the exact title **"D198: specify public Complex construction, arithmetic, and std:math/Math.sqrt"**. The commit changes only `spec/semantics/VALUES_AND_COLLECTIONS.md` and `spec/PROTOS_SPEC_CHANGELOG.md`, and the latter assigns global normative spec revision **`0.1.457` (2026-10-12)**.
+
+**Durable decision authority:** [D198 published language ratification](../../decisions/language/D198_PUBLIC_COMPLEX_CONSTRUCTION_ARITHMETIC_AND_SQRT.md) with bounded owner approvals C/B/E2, P2/N2/R/N4/N5, F1/F2-A/F2-B/F3/F4, G1/G2-B, three subsequent clarifications and approved A exact-zero-divisor policy. [Publication and human-validation closure evidence](../../evidence/D198/D198_SPEC_0_1_457_PUBLICATION_AND_CLOSURE_2026_10_12.md). This maintained work record is not a second source of language norm.
+
+**GITHUB021:** PASS; D197 remains closed and binding, D013 overridable dispatch/pay-as-you-grow retained, Complex stays an independent scalar numeric family, and the spec carries E2/A, G1, N4/G2-B and all owner-approved signed-zero/NaN exceptions. Prior records declaring D198 decisions unselected or normative publication pending are **historical entries now superseded** by the normative `0.1.457` publication.
+
+**Human-executor evidence:** Owner reports `git diff --check` clean, local tests PASS and product commit pushed. Agent did not execute tests or builds. Normative publication does not mean that I090 has implemented or tested the newly public Complex API.
+
+**Lifecycle:** D198's decision ratification and spec publication conditions are satisfied once the bounded durable records above are published/read back; then close D198 and move I090 from `status:blocked` to `status:ready` provided no other live blockers. The separate public Complex implementation and acceptance remain owned by I090.
+
+```text
+D198_DESIGN_APPROVAL=COMPLETE
+D198_SPEC_REVISION=0.1.457
+PROTOS_REVISION=7903d43208a8365c6f75d4c886e5babd815754b2
+D198_GITHUB021=PASS
+D198_NORMATIVE_PUBLICATION=PUBLISHED
+D198_DURABLE_DECISION=PUBLISHED
+D197_REOPENED=NO
+I090_COMPLEX_RUNTIME_AND_CONFORMANCE=PENDING
+HUMAN_REPORTED_GIT_DIFF_CHECK=PASS
+HUMAN_REPORTED_LOCAL_TESTS=PASS
+AGENT_EXECUTED_TESTS=NO
+```
+
+---
+
 ## 2026-10-12 — A approved: Float-bearing Complex divided by exact Integer zero
 
 The owner explicitly answered **"Apruebo A"** after reviewing the unresolved D198-NORM case `Complex(1.0,2) / 0` and the proposed **narrow E2/P2 reconciliation**. [Bounded owner-approval evidence and GITHUB021 audit](../../evidence/D198/D198_MIXED_COMPLEX_DIVISION_EXACT_ZERO_OWNER_APPROVAL_2026_10_12.md).
