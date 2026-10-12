@@ -1,5 +1,21 @@
 # D198 — Public Complex semantics design gate and I090 reconciliation
 
+## 2026-10-12 — Next decision packet: Complex exceptional arithmetic (RESEARCH ONLY)
+
+The owner-approved **C architecture** and **B Float-component admission** are preserved without any implied arithmetic approval. [The comparative investigation of complex division by zero and exceptional arithmetic](../../evidence/D198/D198_COMPLEX_EXCEPTIONAL_ARITHMETIC_AND_ZERO_DIVISION_RESEARCH_2026_10_12.md) was published at [documentation commit `e36a1f1f3aff4a043d86a8a78f06f6eb8555ca11`](https://github.com/guillermomolina/protos-project-docs/commit/e36a1f1f3aff4a043d86a8a78f06f6eb8555ca11).
+
+**Proposed E2, NOT APPROVED:** exact/exact complex division by zero signals an Error, while operations entering the approximate Float domain do not signal an Error merely for IEEE numerical exceptional conditions (zero, Infinity, NaN, overflow, underflow). A later **detailed portable Complex exceptional-result table**, signed-zero behavior, component rounding/precision and stable algorithms remain unselected. Alternative E1 signals Error for any zero Complex divisor; alternative E3 rejects non-finite Complex arithmetic. The packet compares Python, Racket, Julia, C/C++, Apache Commons Numbers with the twelve GITHUB010 axes and falsification cases.
+
+**Status:** D198 OPEN; I090 blocked only for remaining public Complex semantics. No new `Ixxx`, no product code or normative `spec/` modifications, no tests.
+
+```text
+D198_COMPLEX_EXCEPTION_POLICY=E2_PROPOSED_NOT_APPROVED
+D198_EXCEPTIONAL_RESULT_TABLE=OPEN
+D198_NUMERICAL_PRECISION=OPEN
+```
+
+---
+
 ## 2026-10-12 — Candidate B approved: NaN and Infinity Float components
 
 **Explicit owner approval:** "Apruebo B" after reviewing the three alternatives for admission of exceptional Float components in Complex. **B is selected strictly for the Complex component VALUE DOMAIN:** either component may be any genuine semantic Float binary64 value, including canonical NaN and positive/negative infinity. Integer/Fraction components remain exact and Float signed zeros remain distinct under semantic identity.
