@@ -1,5 +1,28 @@
 # D198 — Public Complex semantics design gate and I090 reconciliation
 
+## 2026-10-12 — G1 and G2-B explicitly owner approved; publication gate remains
+
+The owner clarified his intent explicitly after the assistant had left the closing candidates marked pending: **"te dije que aprobaba todas, pense que ya lo habias registrado"**. This confirms the exact **G1** exceptional-case generator and **G2-B** maximum-4-ULP inexact Complex `sqrt` contract in the [closing research](../../evidence/D198/D198_CLOSING_NONFINITE_MATRIX_AND_SQRT_CONFORMANCE_RESEARCH_2026_10_12.md). The assistant's previous narrower approval interpretation was incorrect; do not continue to request another G1/G2-B selection.
+
+**Owner approval and GITHUB021 evidence:** [D198 G1/G2-B approval and invariant review](../../evidence/D198/D198_G1_G2_B_OWNER_APPROVAL_AND_GITHUB021_2026_10_12.md). All earlier D197/D198 approvals remain binding, including the independent Complex scalar-not-Vector/Matrix distinction. This does **not** authorize a new Matrix/Vector API, language syntax or host arithmetic policy.
+
+**State:** D198's semantic candidate selection is complete. The separate authority/publication gate remains: reconcile the exhaustive result generator and the `sqrt` 4-ULP requirement into authoritative normative `spec/`, perform the final publication-time GITHUB021 check, then close D198 and unblock I090's remaining public Complex implementation work. No tests, program, product code or `spec/` edits were performed in this approval-recording step.
+
+```text
+D198_G1=OWNER_APPROVED
+D198_G2_B=OWNER_APPROVED
+D198_SEMANTIC_SELECTION=COMPLETE
+D198_NORMATIVE_PUBLICATION=PENDING
+D198_FINAL_CLOSURE=PENDING
+I090_REMAINING_PUBLIC_COMPLEX=BLOCKED_UNTIL_SPEC_PUBLICATION
+D197_REOPENED=NO
+TESTS_EXECUTED=NO
+```
+
+**All lower entries identifying G1 or G2-B as unapproved are historical statuses now superseded.**
+
+---
+
 ## 2026-10-12 — Approved Complex scalar separation from future Vector/Matrix
 
 The owner explicitly approved retaining **Complex as a distinct semantic scalar Number family**, **not** a disguised `Vector(2)` or a `Matrix(2,2)`, after an architectural comparison. D197 is **not reopened**. Future Vector/Matrix containers may carry Complex elements, but no Vector/Matrix family hierarchy, factory, storage/mutability semantics, algebraic interface, module, or generic protocol is selected. Potential shared ordinary algebraic abstractions require a separate future research and explicit owner decision, rather than deriving Complex multiplication/division from vector multiplication.
