@@ -1,5 +1,27 @@
 # D198 — Public Complex semantics design gate and I090 reconciliation
 
+## 2026-10-12 — Approved Complex scalar separation from future Vector/Matrix
+
+The owner explicitly approved retaining **Complex as a distinct semantic scalar Number family**, **not** a disguised `Vector(2)` or a `Matrix(2,2)`, after an architectural comparison. D197 is **not reopened**. Future Vector/Matrix containers may carry Complex elements, but no Vector/Matrix family hierarchy, factory, storage/mutability semantics, algebraic interface, module, or generic protocol is selected. Potential shared ordinary algebraic abstractions require a separate future research and explicit owner decision, rather than deriving Complex multiplication/division from vector multiplication.
+
+**Owner approval and GITHUB021 evidence:** [Complex scalar vs Vector/Matrix approval](../../evidence/D198/D198_COMPLEX_SCALAR_VS_VECTOR_MATRIX_OWNER_APPROVAL_2026_10_12.md). Preserves D197 hierarchy, exact/Float components, signed zero, numeric equality/identity/hash, Actor/P/Context, D198-C/B/E2, P2/N2/R/N4/N5/F1–F4, D013 and pay-as-you-grow; makes **no** new numeric arithmetic, sqrt or API choice. The closing **G1** exceptional generator and **G2-B** sqrt 4-ULP proposal stay **UNAPPROVED**.
+
+**State:** D197 CLOSED/RATIFIED; D198 OPEN; I090 public Complex remainder BLOCKED pending final G1/G2 selection and normative publication. No `spec/` or product changes/tests, and no new formal Vector/Matrix Issue allocated for unspecified future work.
+
+```text
+D198_COMPLEX_SCALAR_SEPARATE_FROM_VECTOR_MATRIX=OWNER_APPROVED
+D197_REOPENED=NO
+VECTOR_MATRIX_PUBLIC_CONTRACT=NOT_SELECTED
+GENERIC_ALGEBRA_API=NOT_SELECTED
+D198_G1=PROPOSED_NOT_APPROVED
+D198_G2_B=PROPOSED_NOT_APPROVED
+D198_FULL_RATIFICATION=NO
+I090_PUBLIC_COMPLEX_REMAINDER=BLOCKED
+TESTS_EXECUTED=NO
+```
+
+---
+
 ## 2026-10-12 — Closing research G1/G2 candidate pending owner selection
 
 After express owner approvals of P2/N2/R/N4/N5 and F1/F2-A/F2-B/F3/F4, a single [closing investigation](../../evidence/D198/D198_CLOSING_NONFINITE_MATRIX_AND_SQRT_CONFORMANCE_RESEARCH_2026_10_12.md) compared C/CPython, Apache Commons Numbers, C++/musl and robust division research. It proposes **G1**, a generative and exhaustive exceptional Complex arithmetic classification (256 Z/F/I/N kinds per coupled binary operation, plus signs), and **G2-B**, at most four binary64 ULP steps from an independent correctly rounded complex-sqrt oracle on finite inexact components. This records **research proposals only**. Provisional scalar-real / complex signed-zero exceptional outputs and generalized NaN propagation are new observable consequences and MUST NOT be inferred from previously approved N2/F2.
