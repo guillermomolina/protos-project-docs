@@ -1,5 +1,22 @@
 # D198 — Public Complex semantics design gate and I090 reconciliation
 
+## 2026-10-12 — Closing research G1/G2 candidate pending owner selection
+
+After express owner approvals of P2/N2/R/N4/N5 and F1/F2-A/F2-B/F3/F4, a single [closing investigation](../../evidence/D198/D198_CLOSING_NONFINITE_MATRIX_AND_SQRT_CONFORMANCE_RESEARCH_2026_10_12.md) compared C/CPython, Apache Commons Numbers, C++/musl and robust division research. It proposes **G1**, a generative and exhaustive exceptional Complex arithmetic classification (256 Z/F/I/N kinds per coupled binary operation, plus signs), and **G2-B**, at most four binary64 ULP steps from an independent correctly rounded complex-sqrt oracle on finite inexact components. This records **research proposals only**. Provisional scalar-real / complex signed-zero exceptional outputs and generalized NaN propagation are new observable consequences and MUST NOT be inferred from previously approved N2/F2.
+
+**Remaining owner checkpoint:** select G1 and G2-B explicitly (or alternatives), then perform final GITHUB021 and normative publication. D198 OPEN, I090 BLOCKED for public Complex remainder; D197 and C/B/E2/P2/N2/R/N4/N5/F1–F4 remain approved. No product/spec editing, implementations or tests were done.
+
+\`\`\`text
+D198_G1_EXCEPTIONAL_GENERATOR=PROPOSED_NOT_APPROVED
+D198_G2_B_SQRT_4ULP=PROPOSED_NOT_APPROVED
+D198_P2_N2_R_N4_N5_F1_F2_F3_F4=OWNER_APPROVED
+D198_FULL_RATIFICATION=NO
+I090_PUBLIC_COMPLEX_REMAINDER=BLOCKED
+TESTS_EXECUTED=NO
+\`\`\`
+
+---
+
 ## 2026-10-12 — P2/N2/R/N4/N5 and F1–F4 explicitly owner-approved; exhaustive contract pending
 
 **Owner-approved design gates:** P2 (operation-local Float promotion), N2 (specified exceptional numeric tuples and non-signaling envelope), R (finite Complex multiply/divide precision), N4 (exact/principal-branch sqrt), N5 (ordinary public Complex factory/selectors/operations), **plus** the subsequent exact refinements **F1** (finite arithmetic signed-zero), **F2-A/B conservative** (axis Infinity-times-zero remains NaN; genuine incoming NaN not silently erased in coupled operations), **F3** (exact-coordinate-preserving sqrt and no destructive premature exact-radicand-to-Float conversion), **F4** (`std:math/Math` ordinary exported `sqrt`). The owner explicitly approved the five initial named candidates and subsequently said **"Apruebo las sugerencias"** after the F1–F4 consolidated decision packet.
