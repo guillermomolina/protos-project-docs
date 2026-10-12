@@ -20,7 +20,7 @@ The product revision above publishes the final I091 reconciliation: primitive nu
 | **F4 — identity, reflection and isolation** | Semantic equality/identity/hash and key coherence, explicit standard Object rejection of genuine Numbers, conditional Actor/P transfer, deferred P destination shell population with parent/child cycles, sharing, Array/Bytes/Map/IdentityMap, hashes and mutation-state publication; fresh Context and Native Image acceptance | Cross-domain and observation boundaries have focused regression coverage; no claim of formal proof over all possible graphs |
 | **F5 — Java representation containment** | Exhaustive canonical production census and source-owner/per-site inventory, with ordinary long leaf transfer, long-first SPI admission and legacy interop compatibility. Every currently counted occurrence is assigned to one of 22 source owners and 204 site records | The earlier *confirmed* compulsory small-`BigInteger` SPI and transfer defects have been repaired. Remaining genuine large arithmetic, explicit host/SPI contract, exact hash and requested `asBigInteger` boundaries are not banned by policy |
 
-The maintainer executed `python3 tools/numeric_dependency_census.py` on original review HEAD `3ff2835525cad30787a1a2b45f81936ddd18160f` (same production Java sources as final `1fc6899bbc6e18359bd84d2357bd63e78523b53c`) and reported:
+The maintainer executed `python3 tools/numeric_dependency_census.py` on original review HEAD `3ff2835525cad30787a1a2b45f81936ddd18160f` (the final product commit changes one Java source file without adding or removing a counted numeric symbol) and reported:
 
 ```text
 PRODUCTION_JAVA_FILES=441
