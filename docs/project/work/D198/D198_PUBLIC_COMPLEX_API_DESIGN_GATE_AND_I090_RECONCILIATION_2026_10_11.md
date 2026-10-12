@@ -1,5 +1,29 @@
 # D198 — Public Complex semantics design gate and I090 reconciliation
 
+## 2026-10-12 — Three final Complex/sqrt clarifications explicitly owner approved
+
+During the D198-NORM specification-authoring handoff the human executor surfaced three previously unbound observable edges. The owner confirmed the assistant's recommendations in all three cases, then expressly replied **"ok pues aprobadas las 3 recomendaciones para ti tambien"**. The exact three selections are recorded in [D198 final clarifications owner approval and GITHUB021 review](../../evidence/D198/D198_THREE_FINAL_SEMANTIC_CLARIFICATIONS_OWNER_APPROVAL_2026_10_12.md).
+
+**Approved Q1:** `real ÷ Complex` uses **G1 branches with no synthetic numerator imaginary `b` terms**. Float finite result signs derive from direct `r*c` and `-(r*d)` math, not `C(r,+0)` conversion; `+0.0/C(1.0,1.0)` has imaginary `-0.0`. Float complex-zero divisor retains `C(k*r,NaN)` and the already approved `1.0/C(+0,+0)=C(+Inf,NaN)`. G1 infinity direction and E2 exact-zero Error remain binding.
+
+**Approved Q2:** `sqrt(C(-Infinity,NaN))=C(NaN,+Infinity)` deterministically; Protos Float NaN exposes no sign and other N4 special cases remain unchanged.
+
+**Approved Q3:** **G2-B 4 ULP per finite inexact Float output coordinate applies to `sqrt` of real inputs as well as Complex inputs.** E.g. `sqrt(2)`, `sqrt(2.0)`, imaginary coordinate of `sqrt(-2)`; independently correctly rounded oracle, exact required zeros, F3 exact results and N4 exceptional cases are preserved. Correct rounding of all real-input roots is **not** newly mandated.
+
+**GITHUB021:** The exact observable refinements were exposed to and approved by the owner. They preserve D197, D198 C/B/E2/P2/N2/R/N4/N5/F1–F4/G1/G2-B and Complex-scalar-not-Vector. **No design selection gate remains for these three points.** Product `spec/` authoring/validation/publication must still complete; do not claim it completed from this docs coordination. D198 remains OPEN until normative publication and closure; I090's remaining public Complex work stays BLOCKED until that publication.
+
+```text
+D198_REAL_DIV_COMPLEX_NO_SYNTHETIC_B=OWNER_APPROVED
+D198_SQRT_NEG_INF_NAN=COMPLEX_NAN_POS_INF_OWNER_APPROVED
+D198_SQRT_4ULP_ALL_INEXACT_COORDINATES=OWNER_APPROVED
+D198_NORMATIVE_PUBLICATION=PENDING
+D198_ISSUE_CLOSURE=PENDING
+I090_REMAINING_PUBLIC_COMPLEX=BLOCKED_UNTIL_NORMATIVE_PUBLICATION
+TESTS_EXECUTED=NO
+```
+
+---
+
 ## 2026-10-12 — G1 and G2-B explicitly owner approved; publication gate remains
 
 The owner clarified his intent explicitly after the assistant had left the closing candidates marked pending: **"te dije que aprobaba todas, pense que ya lo habias registrado"**. This confirms the exact **G1** exceptional-case generator and **G2-B** maximum-4-ULP inexact Complex `sqrt` contract in the [closing research](../../evidence/D198/D198_CLOSING_NONFINITE_MATRIX_AND_SQRT_CONFORMANCE_RESEARCH_2026_10_12.md). The assistant's previous narrower approval interpretation was incorrect; do not continue to request another G1/G2-B selection.
