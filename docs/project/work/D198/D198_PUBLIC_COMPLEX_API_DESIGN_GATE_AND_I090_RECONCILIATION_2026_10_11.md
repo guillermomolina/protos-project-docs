@@ -1,5 +1,27 @@
 # D198 — Public Complex semantics design gate and I090 reconciliation
 
+## 2026-10-12 — Candidate B approved: NaN and Infinity Float components
+
+**Explicit owner approval:** "Apruebo B" after reviewing the three alternatives for admission of exceptional Float components in Complex. **B is selected strictly for the Complex component VALUE DOMAIN:** either component may be any genuine semantic Float binary64 value, including canonical NaN and positive/negative infinity. Integer/Fraction components remain exact and Float signed zeros remain distinct under semantic identity.
+
+**Evidence:** [D198 Candidate B owner approval and D197 invariant audit](../../evidence/D198/D198_B_NONFINITE_FLOAT_COMPONENT_ADMISSION_OWNER_APPROVAL_2026_10_12.md) (documentation commit [`705a2420908e8b8d7446e14f390b10c7ea2dee56`](https://github.com/guillermomolina/protos-project-docs/commit/705a2420908e8b8d7446e14f390b10c7ea2dee56)), following the [comparative investigation](../../evidence/D198/D198_NONFINITE_COMPLEX_COMPONENT_POLICY_RESEARCH_2026_10_12.md).
+
+**Invariant preservation:** Exact Integer imaginary zero collapses to the real component even when the real component is Float infinity/NaN; imaginary Float +0.0 or -0.0 never collapses. Float NaN preserves its already-approved `==` nonreflexivity and `===` semantic identity; Complex normal/identity hash, authenticated family, Actor/P/Context transfer and exact component retention are unchanged. The current Java finite-only check is provisional and must be reconciled under later specification-backed implementation.
+
+**Unapproved and STILL BLOCKING:** Complex arithmetic NaN/infinity propagation; exact/inexact complex division by zero; mixed numeric Float conversion and complex division/sqrt stability; final public constructor/component/math API and normative publication. This approval **does not** ratify the whole D198 or authorize an unfinished public API; **I090 remains blocked only for the public Complex remainder**. Prior D197 and I090-A/B/C1 are unchanged; no `protos` source/spec/tests modified here.
+
+```text
+D198_ARCHITECTURE=C_SELECTED
+D198_NONFINITE_FLOAT_COMPONENT_ADMISSION=B_SELECTED_BY_OWNER_2026_10_12
+D198_EXCEPTIONAL_ARITHMETIC=UNSELECTED
+D198_PRECISION=UNSELECTED
+D198_FINAL_PUBLIC_API=UNRATIFIED
+D198_ISSUE=OPEN
+I090_REMAINDER=BLOCKED
+```
+
+---
+
 ## 2026-10-12 — Owner-selected Candidate C architecture; D198 remains OPEN
 
 **Explicit owner approval:** "ok apruebo C" (2026-10-12), after the architectural selection had been explicitly separated from NaN/Infinity and precision decisions. **Scope: Protos-first Complex architecture with the smallest justified host kernel**, ordinary Protos protocol/dispatch, no host-dominated double-pair representation, D197 invariants preserved and no mandatory cost on programs that do not use Complex.
