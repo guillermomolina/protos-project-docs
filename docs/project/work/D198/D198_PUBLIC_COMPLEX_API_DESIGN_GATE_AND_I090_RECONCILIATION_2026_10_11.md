@@ -1,5 +1,28 @@
 # D198 — Public Complex semantics design gate and I090 reconciliation
 
+## 2026-10-12 — Owner-selected Candidate C architecture; D198 remains OPEN
+
+**Explicit owner approval:** "ok apruebo C" (2026-10-12), after the architectural selection had been explicitly separated from NaN/Infinity and precision decisions. **Scope: Protos-first Complex architecture with the smallest justified host kernel**, ordinary Protos protocol/dispatch, no host-dominated double-pair representation, D197 invariants preserved and no mandatory cost on programs that do not use Complex.
+
+**Durable evidence:** [D198 Candidate C owner selection and falsification](../../evidence/D198/D198_C_ARCHITECTURE_OWNER_SELECTION_2026_10_12.md), published in [documentation commit `d4a2589f021ec49d07ed14d0f2b188d9dcedb848`](https://github.com/guillermomolina/protos-project-docs/commit/d4a2589f021ec49d07ed14d0f2b188d9dcedb848).
+
+**Still unresolved:** NaN/Infinity admission and exceptional arithmetic; Float conversion/rounding, stable complex division and square-root precision; exact public constructors/component selectors/math module/error contracts. Exploratory API spellings are **not** independently ratified simply because architecture C was selected. The normative `spec/` and implementation are untouched. D198 stays **OPEN**, and I090 remains **BLOCKED only on its still-unratified public Complex contract**; A/B/C1 stay published.
+
+```text
+D198_ARCHITECTURE=C_SELECTED_BY_OWNER_2026_10_12
+D198_EXCEPTIONAL_IEEE_POLICY=UNSELECTED
+D198_PRECISION_POLICY=UNSELECTED
+D198_COMPLETE_PUBLIC_API=UNRATIFIED
+D198_ISSUE_STATE=OPEN
+D197=UNCHANGED_RATIFIED
+I090_REMAINING_PUBLIC_COMPLEX=BLOCKED
+PRODUCT_OR_NORMATIVE_CHANGES=NONE
+```
+
+---
+
+## Original 2026-10-11 intake (historical; superseded where selection state differs)
+
 **Recorded:** 2026-10-11  
 **Formal design issue:** [D198 / #876](https://github.com/guillermomolina/protos/issues/876) — **OPEN, not selected or ratified**  
 **Preceding ratified model:** [D197 / #865](https://github.com/guillermomolina/protos/issues/865) — **CLOSED / RATIFIED**  
