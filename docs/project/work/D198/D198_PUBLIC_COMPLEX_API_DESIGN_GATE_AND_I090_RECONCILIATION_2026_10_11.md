@@ -1,5 +1,28 @@
 # D198 — Public Complex semantics design gate and I090 reconciliation
 
+## 2026-10-12 — Owner APPROVES E2 exceptional arithmetic signaling policy; detailed results still OPEN
+
+**Explicit owner decision:** "apruebo E2" after the E1/E2/E3 comparison, with an express separation between Error-vs-numeric-outcome policy and the **unselected** exact numerical output tuple. **E2 APPROVED**: entirely exact Complex division by exact complex zero signals fresh `Error`; if an operation genuinely enters the inexact Float domain, IEEE numeric exceptions (zero, NaN, Infinity, over/underflow) are **not in themselves reasons to signal Error**. Correct normal protocol/argument failures may still signal Error; E2 does not bypass them.
+
+**Approval and GITHUB021 invariants:** [E2 owner approval evidence](../../evidence/D198/D198_E2_EXCEPTIONAL_ARITHMETIC_OWNER_APPROVAL_2026_10_12.md), first published in documentation commit [`279c80b77001cbaa6a717a6c6d15373c699ca2ae`](https://github.com/guillermomolina/protos-project-docs/commit/279c80b77001cbaa6a717a6c6d15373c699ca2ae). Previously approved C Protos-first architecture and B non-finite Float-component admission remain binding, as do D197 exact preservation, normalized exact imaginary zero, Float signed imaginary zeros, numeric hash/identity and Actor/P transfer.
+
+**STOP (not approved):** detailed finite/infinite Complex component-result/NaN recovery table for `+`, `-`, `*`, `/`, unary minus; Float conversion order, precision, rounded/stable algorithms, `sqrt` exactness/branches and final public API construction/access/math selectors. In particular a not-yet-ratified `Complex(1,2) / Complex(0.0,0.0)` must yield a numerical result under E2, but its specific components/signs are *not* approved yet. Normative `spec/`, product, and tests are unchanged by the documentation work.
+
+**Next slice:** single consolidated **D198 INVESTIGATION**, not new Ixxx or implementation; the agent researches the remaining result-table/precision/sqrt/API interaction and returns an exact decision packet, with **no source edits or tests**. I090 remains `status:blocked` for its public Complex remainder. The human reported local `git diff --check` clean and all tests PASS without a linked revision/run; this is not claimed as E2 implementation validation.
+
+```text
+D198_C_ARCHITECTURE=APPROVED
+D198_B_COMPONENT_ADMISSION=APPROVED
+D198_E2_ERROR_VS_NUMERIC_RESULT=APPROVED_2026_10_12
+D198_EXCEPTION_OUTPUT_TABLE=OPEN
+D198_PRECISION_SQRT_PUBLIC_API=OPEN
+D198_FULL_DECISION=OPEN
+I090_PUBLIC_COMPLEX_REMAINDER=BLOCKED
+PRODUCT_OR_NORMATIVE_CHANGES_IN_THIS_COORDINATION=NONE
+```
+
+---
+
 ## 2026-10-12 — Next decision packet: Complex exceptional arithmetic (RESEARCH ONLY)
 
 The owner-approved **C architecture** and **B Float-component admission** are preserved without any implied arithmetic approval. [The comparative investigation of complex division by zero and exceptional arithmetic](../../evidence/D198/D198_COMPLEX_EXCEPTIONAL_ARITHMETIC_AND_ZERO_DIVISION_RESEARCH_2026_10_12.md) was published at [documentation commit `e36a1f1f3aff4a043d86a8a78f06f6eb8555ca11`](https://github.com/guillermomolina/protos-project-docs/commit/e36a1f1f3aff4a043d86a8a78f06f6eb8555ca11).
