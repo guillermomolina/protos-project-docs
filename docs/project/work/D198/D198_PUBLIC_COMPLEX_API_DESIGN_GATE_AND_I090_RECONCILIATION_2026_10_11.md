@@ -1,5 +1,25 @@
 # D198 — Public Complex semantics design gate and I090 reconciliation
 
+## 2026-10-12 — A approved: Float-bearing Complex divided by exact Integer zero
+
+The owner explicitly answered **"Apruebo A"** after reviewing the unresolved D198-NORM case `Complex(1.0,2) / 0` and the proposed **narrow E2/P2 reconciliation**. [Bounded owner-approval evidence and GITHUB021 audit](../../evidence/D198/D198_MIXED_COMPLEX_DIVISION_EXACT_ZERO_OWNER_APPROVAL_2026_10_12.md).
+
+**Binding A:** If `C(a,b)` is divided by exact Integer `0`, then **both exact components** still signal `Error`; if **any component is genuine Float**, convert that zero divisor to Float `+0.0` and convert the remaining exact component(s) to Float *before* coordinatewise binary64 division. The result remains componentwise (one NaN does not contaminate the other). `C(1.0,2)/0=C(+Inf,+Inf)`, `C(-1.0,2)/0=C(-Inf,+Inf)`, `C(0.0,2)/0=C(NaN,+Inf)`, `C(NaN,2)/0=C(NaN,+Inf)`. This narrow zero-divisor rule does not change `Complex ÷` nonzero real or existing `Complex ÷` Float-zero behaviors, nor G1's coupled division rules.
+
+**GITHUB021 delta:** owner explicitly chose the observable exceptional-domain priority rather than deriving it silently from E2 or P2; D197 all-exact Error and ordinary per-coordinate operations outside exact-zero exception are preserved. G1/G2-B, N4/F3, D013, and Complex-scalar-not-Vector/Matrix remain approved/unchanged.
+
+**State:** No owner decision blocker remains for the mixed division-zero case. D198-NORM may replace its placeholder in the human's currently uncommitted `spec/semantics/VALUES_AND_COLLECTIONS.md` and proceed to normative review. Product `spec/` publication and D198 final closure remain unconfirmed; I090 public Complex remainder stays blocked until the norm is published. This GitHub coordination did not modify product files or execute tests.
+
+```text
+D198_MIXED_COMPLEX_DIV_EXACT_ZERO=A_OWNER_APPROVED
+D198_GITHUB021_AMENDMENT=PASS
+D198_NORMATIVE_SPEC_PUBLICATION=PENDING
+D198_FINAL_CLOSURE=PENDING
+I090_PUBLIC_COMPLEX_REMAINDER=BLOCKED_UNTIL_SPEC_PUBLICATION
+```
+
+---
+
 ## 2026-10-12 — Three final Complex/sqrt clarifications explicitly owner approved
 
 During the D198-NORM specification-authoring handoff the human executor surfaced three previously unbound observable edges. The owner confirmed the assistant's recommendations in all three cases, then expressly replied **"ok pues aprobadas las 3 recomendaciones para ti tambien"**. The exact three selections are recorded in [D198 final clarifications owner approval and GITHUB021 review](../../evidence/D198/D198_THREE_FINAL_SEMANTIC_CLARIFICATIONS_OWNER_APPROVAL_2026_10_12.md).
