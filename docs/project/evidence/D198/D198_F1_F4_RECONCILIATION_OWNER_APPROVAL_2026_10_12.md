@@ -1,8 +1,8 @@
 # D198 — Owner approval of F1–F4: final Complex contract reconciliation
 
-**Date:** 2026-10-12  
-**Decision authority:** [D198/#876](https://github.com/guillermomolina/protos/issues/876), remains **OPEN** pending exhaustive result matrix and final GITHUB021 check.  
-**Implementation consumer:** [I090/#868](https://github.com/guillermomolina/protos/issues/868), remaining public Complex work **BLOCKED** until publication/ratification of the complete contract.  
+**Date:** 2026-10-12
+**Decision authority:** [D198/#876](https://github.com/guillermomolina/protos/issues/876), remains **OPEN** pending exhaustive result matrix and final GITHUB021 check.
+**Implementation consumer:** [I090/#868](https://github.com/guillermomolina/protos/issues/868), remaining public Complex work **BLOCKED** until publication/ratification of the complete contract.
 **Product reference:** `guillermomolina/protos` HEAD `18f71b2a664c56ac808e2f508b6369984de02280` was inspected during the immediately preceding research; not an implementation or test provenance.
 
 ## Exact owner approval and boundary
