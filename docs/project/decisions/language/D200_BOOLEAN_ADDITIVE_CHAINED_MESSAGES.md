@@ -4,7 +4,7 @@
 **Authority:** [D200/#880](https://github.com/guillermomolina/protos/issues/880).  
 **Evidence:** [D200 comparative research and falsification](../../evidence/D200/D200_BOOLEAN_RETURN_AND_ELSEIF_EVIDENCE_2026_10_13.md).  
 **Observed product baseline:** [`57a43b6d94697f9a6256e36c7a775dfa4a1218d7`](https://github.com/guillermomolina/protos/commit/57a43b6d94697f9a6256e36c7a775dfa4a1218d7) (read 2026-10-13, before implementation).  
-**Implementation:** not yet performed under this decision; a separate `Ixxx` issue must apply it in `guillermomolina/protos`.  
+**Implementation:** **PUBLISHED** by [I097/#885](https://github.com/guillermomolina/protos/issues/885), [Protos `6dbbbe46612e5821c3c5191cd9d5723a3987d78f`](https://github.com/guillermomolina/protos/commit/6dbbbe46612e5821c3c5191cd9d5723a3987d78f), `0.3.345-SNAPSHOT`, specification `0.1.458`; [closure evidence](../../evidence/I097/I097_PUBLISHED_RECEIVER_PRESERVING_BOOLEAN_IF_ELSE_2026_10_13.md).  
 **Normative ownership:** `guillermomolina/protos/spec/semantics/VALUES_AND_COLLECTIONS.md` §16, with ordinary call/lookup/grammar responsibilities in `CALLABLES.md`, `EXECUTION_AND_CONTROL.md`, `OBJECT_MODEL.md` and `PROTOS_GRAMMAR.md`.
 
 This is a durable **non-normative ratification record**, not a product change or substitute for the normative `spec/` contract. All new behavior remains prospective until implementation/specification publication and human-reported tests.
@@ -101,10 +101,33 @@ The strongest argument against the selected pair is expanding the standard froze
 
 Add `elseIf` later only if demonstrated real-source readability needs justify another selector and its unusual eager argument-producing-expression timing. The owner approved **not adding it now**, not a permanent language-wide ban.
 
-## Implementation handoff — I097
+## Implementation closure — I097 / 2026-10-13
+
+The approved product implementation was published by [I097/#885](https://github.com/guillermomolina/protos/issues/885), now **COMPLETED**, as [`6dbbbe46612e5821c3c5191cd9d5723a3987d78f`](https://github.com/guillermomolina/protos/commit/6dbbbe46612e5821c3c5191cd9d5723a3987d78f). The product publishes `0.3.345-SNAPSHOT` and global spec revision `0.1.458`. The human executor explicitly reported clean `git diff --check`, all local tests PASS, and commit/push; the publishing agent independently inspected the commit and version/spec metadata, without running tests.
+
+[**Durable I097 publication evidence**](../../evidence/I097/I097_PUBLISHED_RECEIVER_PRESERVING_BOOLEAN_IF_ELSE_2026_10_13.md) is independently verified at [`14853069623521486ef2a957e0fe84974f52cd47`](https://github.com/guillermomolina/protos-project-docs/commit/14853069623521486ef2a957e0fe84974f52cd47).
+
+The product implements the selected additive Boolean protocol using existing structured C-prime callback dispatch for Tasks and native bodies for the synchronous path. `ifTrue`/`ifFalse`/other messages are unchanged; no `elseIf` or new grammar. This is an implementation checkpoint, **not a new owner design approval**; D201 loop and PERF044 matching work remain independent.
+
+```text
+D200_IMPLEMENTATION=I097_PUBLISHED_AND_COMPLETED
+PROTOS_REVISION=6dbbbe46612e5821c3c5191cd9d5723a3987d78f
+PRODUCT_VERSION=0.3.345-SNAPSHOT
+SPEC_REVISION=0.1.458
+I097_EVIDENCE_REVISION=14853069623521486ef2a957e0fe84974f52cd47
+I097_HUMAN_TESTS=PASS
+I097_HUMAN_DIFF_CHECK=PASS
+CROSS_REFERENCES=PASS
+```
+
+## Historical implementation handoff — at ratification
+
+The passage below described the pending implementation at the time D200 was approved, prior to I097's publication. It is retained for auditability, **not** as a current TODO.
+
+
 
 The approved product implementation is tracked separately in [I097/#885](https://github.com/guillermomolina/protos/issues/885), created **after** this decision and its evidence were durably published. Its initial state is READY, not implemented or validated. It must consume the exact contract in this record and publish code, normative spec and conformance through the human-executor gate. No new `elseIf`, loop or matching capability is delegated.
 
-## Next step
+## Original next step (now completed)
 
 After verification of this durable record, update D200's live issue and allocate one I-family implementation item for the bounded spec + runtime + conformance + guide reconciliation in `guillermomolina/protos`. Agent edits; human runs tests/checks/commits/push under root `AGENTS.md`. Product version/changelog only after all tests green and immediately before human commit, with **no tests after version metadata changes**. No implementation claims until published and verified.
