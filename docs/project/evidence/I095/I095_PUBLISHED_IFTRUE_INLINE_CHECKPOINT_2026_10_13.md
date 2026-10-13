@@ -1,13 +1,13 @@
 # I095 — Published canonical Boolean inline checkpoint and validation
 
-**Evidence date:** 2026-10-13  
-**Product owner:** [I095 / #878](https://github.com/guillermomolina/protos/issues/878)  
-**Performance investigation:** [PERF041 / #863](https://github.com/guillermomolina/protos/issues/863)  
-**New broader architectural investigation:** [PLAT057 / #881](https://github.com/guillermomolina/protos/issues/881)  
-**PROTOS_REVISION:** `57a43b6d94697f9a6256e36c7a775dfa4a1218d7`  
-**Published version:** `0.3.343-SNAPSHOT`  
-**Previous published main:** `55be9274bf90677a2ac243c77450476150b1c8c6`  
-**Commit:** [I095 squash integration into main](https://github.com/guillermomolina/protos/commit/57a43b6d94697f9a6256e36c7a775dfa4a1218d7)  
+**Evidence date:** 2026-10-13
+**Product owner:** [I095 / #878](https://github.com/guillermomolina/protos/issues/878)
+**Performance investigation:** [PERF041 / #863](https://github.com/guillermomolina/protos/issues/863)
+**New broader architectural investigation:** [PLAT057 / #881](https://github.com/guillermomolina/protos/issues/881)
+**PROTOS_REVISION:** `57a43b6d94697f9a6256e36c7a775dfa4a1218d7`
+**Published version:** `0.3.343-SNAPSHOT`
+**Previous published main:** `55be9274bf90677a2ac243c77450476150b1c8c6`
+**Commit:** [I095 squash integration into main](https://github.com/guillermomolina/protos/commit/57a43b6d94697f9a6256e36c7a775dfa4a1218d7)
 **Evidence level:** human-reported local command results, independently verified published commit/POM/changelog through GitHub; no independent compilation, native build, benchmark or BGV execution by the recording agent.
 
 ## Publication identity and content
