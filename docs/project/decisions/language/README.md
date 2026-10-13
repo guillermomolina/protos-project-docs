@@ -91,3 +91,4 @@ This list is not a closed manifest for future language decisions.
 - [`D196_MIXED_INTEGER_FLOAT_ARITHMETIC_PROMOTION.md`](D196_MIXED_INTEGER_FLOAT_ARITHMETIC_PROMOTION.md) — approved B1 operand-first binary64 mixed arithmetic; normative/runtime reconciliation pending.
 - [`D197_EXACT_NUMERIC_TOWER_AND_NORMALIZATION.md`](D197_EXACT_NUMERIC_TOWER_AND_NORMALIZATION.md) — ratified exact number hierarchy and canonical value/family model; implementation tracked separately.
 - [`D198_PUBLIC_COMPLEX_CONSTRUCTION_ARITHMETIC_AND_SQRT.md`](D198_PUBLIC_COMPLEX_CONSTRUCTION_ARITHMETIC_AND_SQRT.md) — ratified public Complex operations and Math.sqrt, published in normative spec `0.1.457`.
+- [`D199_FLUENT_BOOLEAN_SYNTAX_NO_CHANGE.md`](D199_FLUENT_BOOLEAN_SYNTAX_NO_CHANGE.md) — owner-rejected fluent/undotted Boolean sugar, no syntax or semantic change; independent [D200/#880](https://github.com/guillermomolina/protos/issues/880) remains open on Io-style message returns.
