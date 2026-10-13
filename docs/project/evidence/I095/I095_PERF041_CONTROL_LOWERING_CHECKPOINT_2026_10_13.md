@@ -77,3 +77,32 @@ A_TO_E_DYNAMIC_INFRASTRUCTURE=RETAIN_AS_EXPERIMENTAL_CANDIDATE
 SEMANTIC_CHANGE=NONE
 PRODUCT_MAIN_PUBLICATION=NONE
 ```
+
+## 2026-10-13 correction — immutable NORMAL/DEBUG boundary and Smalltalk inline debugging
+
+**Owner correction:** do not require runtime debugging provenance and a materialized semantic callback activation on the normal physical execution path as a prerequisite for compiling a proven standard `ifTrue` to direct control or folding its constant case. A debug-visible frame/activation is an *observation obligation*, not necessarily an object or invocation that must be eagerly created.
+
+**Source verification:**
+
+- [`ProtosExecutionMode.java`](https://github.com/guillermomolina/protos/blob/main/src/main/java/com/guillermomolina/protos/execution/ProtosExecutionMode.java): two immutable execution modes; `NORMAL` does not promise debugger scopes for eligible headerless calls, `DEBUG` transports provenance from initial entry. Do not claim that *all* instrumentation/tags disappear in `NORMAL`; they do not.
+- [`ProtosHostExecutableClosure.java`](https://github.com/guillermomolina/protos/blob/main/src/main/java/com/guillermomolina/protos/execution/ProtosHostExecutableClosure.java): `headerlessEntry` selected from immutable Context mode, `NORMAL` only, not from whether a debugger happens to be attached.
+- [`ProtosBytecodeTagTreeNodeExports.java`](https://github.com/guillermomolina/protos/blob/main/src/main/java/com/guillermomolina/protos/execution/ProtosBytecodeTagTreeNodeExports.java): B′ inline callback currently materializes its activation via `PreparedInlineLiteralCall` **upon a scope query**, while headerless NORMAL roots explicitly reject unsupported debugger scopes. Current use of the carrier is implementation machinery, not proof that an inline source location must execute a physical Closure call.
+- [Squeak BlockClosure compiler documentation](https://wiki.squeak.org/squeak/6609) and [Squeak message-inline FAQ](https://wiki.squeak.org/squeak/1055): control messages are open-coded to branches, and ordinary tooling/debugging remains part of the Smalltalk environment; those references do **not** prove identical override or frame semantics in Protos.
+
+**Revised implementation posture:**
+
+1. `NORMAL`: implement admitted standard `ifTrue` as direct control/folded constant without adding callback activation, carrier, compact argument array, or generic `ifTrue` invocation solely for debugger scope projection. Ordinary guest-observable effects, argument evaluation, side-effect order, nonlocal returns and error/continuation semantics still apply; mode is **not** permission to change guest semantics.
+2. `DEBUG`: use the same direct body/control where possible. Preserve source positions/tags and exact observable scopes through suitable frame-state metadata and **on-demand** reconstruction; do not assume a separate callback physical call is necessary. Whether the existing B′ `getScope` bridge needs an inline metadata or lazy fallback path is an implementation question to prove with tests, not grounds for imposing the carrier on `NORMAL`.
+3. Do not add a runtime `if (DEBUG)` check to every `ifTrue` merely to route around tooling. Respect the immutable Context-level policy, and the language's existing root/callback instrumentation policy.
+4. Preserve the A–E dynamic canonical fast path and generic message fallback. Confirm whether an emitted Closure can be eliminated only when no guest-visible identity or authority observer needs it; this is separate from debugger scope concerns.
+
+**Correction to prior handoff:** phrases in the prior section that appear to require a fresh physical callback carrier to maintain debugging are too strong. No code has been changed, tested, or benchmarked in this coordination correction. The next implementation must first establish a sound `NORMAL` direct-body eligibility path and independently verify `DEBUG` semantics. Do not conflate debug support with regular-path allocation.
+
+```text
+OWNER_CORRECTION=NORMAL_NO_DEBUG_PROVENANCE_TAX
+NORMAL_INLINE_CONTROL=PRIMARY_TARGET
+DEBUG_INLINE_CONTROL=REQUIRES_EXACT_SCOPE_PROOF
+DEBUG_EAGER_CARRIER_REQUIREMENT=NOT_ASSUMED
+SOURCE_TAGS_AND_GUEST_SEMANTICS=PRESERVED
+PRODUCT_EDITS_FOR_THIS_CORRECTION=NONE
+```
