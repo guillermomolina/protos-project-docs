@@ -1,5 +1,7 @@
 # I096 — Published generic ordinary Closure inlining: validation checkpoint
 
+> **Coordination correction, 2026-10-13:** This record's initial publication mentioned I099 as the separate future Boolean-control implementation. The maintainer corrected that issue boundary: [I099/#887](https://github.com/guillermomolina/protos/issues/887) was closed as duplicate; all proposed four-selector work stays within [I095/#878](https://github.com/guillermomolina/protos/issues/878). Published source/test facts for I096 are unchanged.
+
 **Evidence date:** 2026-10-13  
 **Product implementation owner:** [I096 / #884](https://github.com/guillermomolina/protos/issues/884)  
 **Architecture authority:** [PLAT057 / #881](https://github.com/guillermomolina/protos/issues/881), ratified conservative Candidate B  
@@ -48,7 +50,7 @@ The existence of tests covering these cases and the maintainer's reported suite 
 
 **I096/#884 remains OPEN.** Even with a published commit and human-reported green local tests, its independent final-tier graph/code-size/compiled-call acceptance has not been supplied. [PERF042/#871](https://github.com/guillermomolina/protos/issues/871) owns ordinary Closure-call measurement; [PERF041/#863](https://github.com/guillermomolina/protos/issues/863) owns Boolean-control graphs, and historical pre-I095 5,193/892/39-node values must not be attributed to this commit.
 
-[I095/#878](https://github.com/guillermomolina/protos/issues/878) remains OPEN for its prior `ifTrue` evidence/acceptance. [I099/#887](https://github.com/guillermomolina/protos/issues/887) was allocated as an **independent, future implementation** to generalize aggressive, pre-Graal Boolean control lowering over `ifTrue`, `ifFalse`, `if` and `else` without rewriting approved public semantics. No I099 source work, validation or publication is claimed in this record.
+[I095/#878](https://github.com/guillermomolina/protos/issues/878) remains OPEN and, following the owner's coordination correction, **also owns the next coherent four-selector Boolean-control inlining slice** (`ifTrue`, `ifFalse`, `if`, `else`). [I099/#887](https://github.com/guillermomolina/protos/issues/887) was briefly allocated separately in error, then **CLOSED AS DUPLICATE** without any product source changes, tests, publication or independent implementation. The identifier is not reused. This later correction does not modify the published I096-A/B1 validation evidence above.
 
 **Evidence boundaries:** a source-code/commit inspection, owner-reported local tests/diff-check, and the cited ratified decision. **Not performed by the recording agent:** product tests, compilation, execution, Native Image, graph BGV capture, benchmark timing, CodeSize analysis. **No normative spec changed in this documentation checkpoint.**
 
@@ -63,5 +65,6 @@ POST_I096_MATCHED_FINAL_TIER_GRAPHS=PENDING
 I096_FUNCTIONAL_PUBLICATION=YES
 I096_FULL_PERFORMANCE_ACCEPTANCE=PENDING
 NEW_PRODUCT_CHANGE_IN_THIS_RECORD=NONE
-I099_IMPLEMENTATION=NOT_STARTED
+I099_IMPLEMENTATION=CLOSED_DUPLICATE_NO_PRODUCT_WORK
+I095_FOUR_SELECTOR_EXTENSION=NEXT_IMPLEMENTATION_SLICE_NOT_YET_EXECUTED
 ```
