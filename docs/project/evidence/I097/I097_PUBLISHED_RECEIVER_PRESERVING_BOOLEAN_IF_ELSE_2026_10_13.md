@@ -84,7 +84,7 @@ The explicit human report plus the actual published revision satisfy the impleme
 
 - **D200 / #880:** owner-ratified additive receiver-preserving `if`/`else` design. Implementation now published under I097; D200 remains a completed **decision**, not reopened for implementation.
 - **I097 / #885:** bounded implementation published with spec, guide, conformance and product metadata; can close as completed after re-reading this exact project evidence revision and GitHub issue state.
-- **D201 / #882:** separate, unresolved loop `whileTrue`/`while` return-choice research; no outcome inferred.
+- **D201 / #882:** independent loop-result decision **ratified and closed** under its own authority, with separate implementation [I098/#886](https://github.com/guillermomolina/protos/issues/886) still required. I097 neither implements nor alters the D201 contract.
 - **PERF044 / #883:** separate, unresolved aggressive matching/`caseOf` physical inlining research; no outcome inferred.
 - **I095 / #878 and PLAT057 / #881:** existing Boolean `ifTrue` fastpath and general Closure inlining not altered/ratified here.
 
