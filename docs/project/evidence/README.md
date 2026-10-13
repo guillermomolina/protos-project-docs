@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`D199/`](D199/D199_FLUENT_BOOLEAN_SYNTAX_FALSIFICATION_2026_10_13.md) — [2026-10-13 owner-rejected fluent Boolean syntax evidence](D199/D199_FLUENT_BOOLEAN_SYNTAX_FALSIFICATION_2026_10_13.md): current parser/object-construction collision, undotted-send precedence, newline/formatter hazards, and existing callback-return incompatibility. No product/spec change; Io return-contract question moved to [D200/#880](https://github.com/guillermomolina/protos/issues/880).
+
 - [`PERF043/`](PERF043/PERF043_SOURCE_COMPARISON_AND_FOLDING_CANDIDATE_2026_10_12.md) — [Source comparison and guarded constant-folding candidate](PERF043/PERF043_SOURCE_COMPARISON_AND_FOLDING_CANDIDATE_2026_10_12.md), pinned to Protos `18f71b2a` / `0.3.342-SNAPSHOT`: scalar-local admission limitation identified; GraalPy/GraalJS early constant folding compared; D013-safe precomputation remains a candidate pending root/IR proof and human-run validation. No PERF043 implementation or speedup is claimed.
 
 - [`PERF040/`](PERF040/PERF040_342_RETAINED_NUMERIC_TIMING_AND_GRAPH_CAPTURE_2026_10_12.md) — [published 0.3.342 numeric timing and graph evidence](PERF040/PERF040_342_RETAINED_NUMERIC_TIMING_AND_GRAPH_CAPTURE_2026_10_12.md), revision-pinned to product `18f71b2a` and benchmark `f68ba6e`: stable addition 463.0944 ns/call / 2,771 nodes and integer loop 9,120,743 ns/call / 28,500 nodes; no same-parent A/B or new peer comparison. [PERF040-A/B/C source publication](PERF040/PERF040_ABC_CANONICAL_PRIMITIVE_ARITHMETIC_PUBLISHED_2026_10_12.md) remains separate; PERF040/#862 remains open.
