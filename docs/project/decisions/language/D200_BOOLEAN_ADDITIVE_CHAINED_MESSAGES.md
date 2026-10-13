@@ -101,6 +101,10 @@ The strongest argument against the selected pair is expanding the standard froze
 
 Add `elseIf` later only if demonstrated real-source readability needs justify another selector and its unusual eager argument-producing-expression timing. The owner approved **not adding it now**, not a permanent language-wide ban.
 
+## Implementation handoff — I097
+
+The approved product implementation is tracked separately in [I097/#885](https://github.com/guillermomolina/protos/issues/885), created **after** this decision and its evidence were durably published. Its initial state is READY, not implemented or validated. It must consume the exact contract in this record and publish code, normative spec and conformance through the human-executor gate. No new `elseIf`, loop or matching capability is delegated.
+
 ## Next step
 
 After verification of this durable record, update D200's live issue and allocate one I-family implementation item for the bounded spec + runtime + conformance + guide reconciliation in `guillermomolina/protos`. Agent edits; human runs tests/checks/commits/push under root `AGENTS.md`. Product version/changelog only after all tests green and immediately before human commit, with **no tests after version metadata changes**. No implementation claims until published and verified.
