@@ -1,13 +1,13 @@
 # I095-D — Published eight-selector Boolean-control inline lowering (0.3.350)
 
-**Evidence date:** 2026-10-13  
-**Formal owner:** [I095 / #878](https://github.com/guillermomolina/protos/issues/878)  
-**Causal control-graph measurement owner:** [PERF041 / #863](https://github.com/guillermomolina/protos/issues/863)  
-**Architectural decision:** [PLAT057 / #881](https://github.com/guillermomolina/protos/issues/881), owner-ratified proof-driven lexical inlining (Candidate B)  
-**Product repository:** `guillermomolina/protos`  
-**PROTOS_REVISION:** `045768b9d352bcc18a6132fccf84e46973abb51f` — [published commit](https://github.com/guillermomolina/protos/commit/045768b9d352bcc18a6132fccf84e46973abb51f)  
-**PRODUCT_VERSION:** `0.3.350-SNAPSHOT`, independently re-read at the exact product commit in `pom.xml` and `CHANGELOG.md`  
-**Direct predecessor:** `ffd6da2fb265f4d999ee26ddbfc19369f0f0403a`, separately published I096 C2–C8 / nested-Closure implementation `0.3.349-SNAPSHOT`; do not attribute that work to I095-D  
+**Evidence date:** 2026-10-13
+**Formal owner:** [I095 / #878](https://github.com/guillermomolina/protos/issues/878)
+**Causal control-graph measurement owner:** [PERF041 / #863](https://github.com/guillermomolina/protos/issues/863)
+**Architectural decision:** [PLAT057 / #881](https://github.com/guillermomolina/protos/issues/881), owner-ratified proof-driven lexical inlining (Candidate B)
+**Product repository:** `guillermomolina/protos`
+**PROTOS_REVISION:** `045768b9d352bcc18a6132fccf84e46973abb51f` — [published commit](https://github.com/guillermomolina/protos/commit/045768b9d352bcc18a6132fccf84e46973abb51f)
+**PRODUCT_VERSION:** `0.3.350-SNAPSHOT`, independently re-read at the exact product commit in `pom.xml` and `CHANGELOG.md`
+**Direct predecessor:** `ffd6da2fb265f4d999ee26ddbfc19369f0f0403a`, separately published I096 C2–C8 / nested-Closure implementation `0.3.349-SNAPSHOT`; do not attribute that work to I095-D
 **Human validation:** maintainer reports all local tests PASS and `git diff --check` clean, after pushing product; no agent-executed build/test/performance measurement.
 
 ## Exact published product scope
