@@ -1,14 +1,14 @@
 # I095-C — Published shared Boolean control inline lowering (0.3.348)
 
-**Evidence date:** 2026-10-13  
-**Formal implementation owner:** [I095 / #878](https://github.com/guillermomolina/protos/issues/878)  
-**Performance evidence owner:** [PERF041 / #863](https://github.com/guillermomolina/protos/issues/863)  
-**Architectural authority:** [PLAT057 / #881](https://github.com/guillermomolina/protos/issues/881), approved B (bounded proof-driven Canonical → Bytecode DSL inline lowering)  
-**Product repo:** `guillermomolina/protos`  
-**PROTOS_REVISION:** `ac7c5f65800fc558843e6060cc3bc5e7c356cfbb` — [published product commit](https://github.com/guillermomolina/protos/commit/ac7c5f65800fc558843e6060cc3bc5e7c356cfbb)  
-**PRODUCT_VERSION:** `0.3.348-SNAPSHOT`  
-**Product direct parent:** `74ba4f7156d0cad909e8140c4a5a6fee632c82f8` — [preceding TEST009-V publication](https://github.com/guillermomolina/protos/commit/74ba4f7156d0cad909e8140c4a5a6fee632c82f8)  
-**Historical I095 checkpoint:** `57a43b6d94697f9a6256e36c7a775dfa4a1218d7`, `0.3.343-SNAPSHOT` — [earlier I095 evidence](I095_PUBLISHED_IFTRUE_INLINE_CHECKPOINT_2026_10_13.md)  
+**Evidence date:** 2026-10-13
+**Formal implementation owner:** [I095 / #878](https://github.com/guillermomolina/protos/issues/878)
+**Performance evidence owner:** [PERF041 / #863](https://github.com/guillermomolina/protos/issues/863)
+**Architectural authority:** [PLAT057 / #881](https://github.com/guillermomolina/protos/issues/881), approved B (bounded proof-driven Canonical → Bytecode DSL inline lowering)
+**Product repo:** `guillermomolina/protos`
+**PROTOS_REVISION:** `ac7c5f65800fc558843e6060cc3bc5e7c356cfbb` — [published product commit](https://github.com/guillermomolina/protos/commit/ac7c5f65800fc558843e6060cc3bc5e7c356cfbb)
+**PRODUCT_VERSION:** `0.3.348-SNAPSHOT`
+**Product direct parent:** `74ba4f7156d0cad909e8140c4a5a6fee632c82f8` — [preceding TEST009-V publication](https://github.com/guillermomolina/protos/commit/74ba4f7156d0cad909e8140c4a5a6fee632c82f8)
+**Historical I095 checkpoint:** `57a43b6d94697f9a6256e36c7a775dfa4a1218d7`, `0.3.343-SNAPSHOT` — [earlier I095 evidence](I095_PUBLISHED_IFTRUE_INLINE_CHECKPOINT_2026_10_13.md)
 **Validation attribution:** Human executor reported all local tests PASS and `git diff --check` clean; independent GitHub reading verified product commit and metadata, not test execution.
 
 ## Published scope — exact product commit
