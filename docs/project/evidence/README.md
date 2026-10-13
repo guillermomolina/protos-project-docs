@@ -10,6 +10,9 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`I096 0.3.349`](I096/I096_349_PUBLISHED_C2_C8_OPERAND_NESTED_CLOSURE_INLINE_2026_10_13.md) — Exact-revision [published C2–C8, operand-position and nested-Closure inlining](I096/I096_349_PUBLISHED_C2_C8_OPERAND_NESTED_CLOSURE_INLINE_2026_10_13.md) at Protos `ffd6da2fb265` / `0.3.349-SNAPSHOT`, plus large-Integer callback regression and maintainer-reported local tests/diff-check PASS. Structural in-root admission is distinct from still-pending PERF042/I096 final-tier graph evidence; prior [I096 0.3.347](I096/I096_PUBLISHED_GENERIC_CLOSURE_INLINE_VALIDATION_2026_10_13.md) remains historical.
+
+
 - [`D199/`](D199/D199_FLUENT_BOOLEAN_SYNTAX_FALSIFICATION_2026_10_13.md) — [2026-10-13 owner-rejected fluent Boolean syntax evidence](D199/D199_FLUENT_BOOLEAN_SYNTAX_FALSIFICATION_2026_10_13.md): current parser/object-construction collision, undotted-send precedence, newline/formatter hazards, and existing callback-return incompatibility. No product/spec change; Io return-contract question moved to [D200/#880](https://github.com/guillermomolina/protos/issues/880).
 
 - [`PERF043/`](PERF043/PERF043_344_PUBLISHED_INTEGER_FOLDING_AND_GRAPH_CLOSURE_2026_10_13.md) — [published Integer-folding and graph closure evidence](PERF043/PERF043_344_PUBLISHED_INTEGER_FOLDING_AND_GRAPH_CLOSURE_2026_10_13.md), pinned to Protos `8f7e5ea5` / `0.3.344-SNAPSHOT` and benchmark evidence `1b28b390`: stable, valid 42-node Tier-2 graph and maintainer-reported `make test` / `make check` PASS, without timing speedup or new matched peer comparison. The [2026-10-12 source investigation](PERF043/PERF043_SOURCE_COMPARISON_AND_FOLDING_CANDIDATE_2026_10_12.md) remains historical.
