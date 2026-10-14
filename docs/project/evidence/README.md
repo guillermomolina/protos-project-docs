@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`I090 CLOSED / D`](I090/I090_D_FINAL_NUMERIC_INTEGRATION_AND_CLOSURE_2026_10_14.md) — [Final I090-D exact-revision closure evidence](I090/I090_D_FINAL_NUMERIC_INTEGRATION_AND_CLOSURE_2026_10_14.md), Protos `5a57c2edb5d6` / unchanged `0.3.352-SNAPSHOT`: 98-line test-only Actor/P rematerialization coverage for derived `sqrt` and Complex arithmetic; human-reported 57/0/0/0 focal tests and `make test` FULL PASS; GitHub publication independently verified. No Graal performance benchmark claim; PERF040/PERF046 remain separate.
+
 - [`I090 0.3.352`](I090/I090_C_352_PUBLISHED_STANDARD_MATH_SQRT_2026_10_14.md) — [Published I090-C Standard Library `std:math/Math.sqrt`](I090/I090_C_352_PUBLISHED_STANDARD_MATH_SQRT_2026_10_14.md), pinned to Protos `8b452c83b42d` / `0.3.352-SNAPSHOT`: exact rational F3, exceptional N4, correctly rounded finite roots G2-B, public-module and accuracy conformance. Maintainer reports local tests and diff-check PASS. I090 remains open pending cross-slice closure and final integrated validation; no speedup is claimed.
 
 - [`I090 0.3.351`](I090/I090_COMPLEX_AB_PUBLIC_CONSTRUCTION_ARITHMETIC_PUBLISHED_2026_10_14.md) — [Published I090 Complex A+B: construction, components and standard arithmetic](I090/I090_COMPLEX_AB_PUBLIC_CONSTRUCTION_ARITHMETIC_PUBLISHED_2026_10_14.md) at exact Protos `978c25968ffe` / `0.3.351-SNAPSHOT`, with maintainer-reported local tests and diff check PASS. I090 remains open for `std:math/Math.sqrt` and final cross-slice integration; no performance speedup is claimed.
