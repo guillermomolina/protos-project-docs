@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`I101-A 0.3.353`](I101/I101_A_353_CONTEXT_PROFILE_MINIMAL_BOOLEAN_FOLD_PUBLISHED_2026_10_14.md) — [Published Context-owned NORMAL/DEBUG physical lowering and handwritten Builder-oracle Boolean fold](I101/I101_A_353_CONTEXT_PROFILE_MINIMAL_BOOLEAN_FOLD_PUBLISHED_2026_10_14.md) at Protos `97404f1cc1c1` / `0.3.353-SNAPSHOT`; maintainer reports clean diff check and all local tests PASS. I101 remains open for B/C; no independent Graal-performance result is asserted.
+
 - [`I090 CLOSED / D`](I090/I090_D_FINAL_NUMERIC_INTEGRATION_AND_CLOSURE_2026_10_14.md) — [Final I090-D exact-revision closure evidence](I090/I090_D_FINAL_NUMERIC_INTEGRATION_AND_CLOSURE_2026_10_14.md), Protos `5a57c2edb5d6` / unchanged `0.3.352-SNAPSHOT`: 98-line test-only Actor/P rematerialization coverage for derived `sqrt` and Complex arithmetic; human-reported 57/0/0/0 focal tests and `make test` FULL PASS; GitHub publication independently verified. No Graal performance benchmark claim; PERF040/PERF046 remain separate.
 
 - [`I090 0.3.352`](I090/I090_C_352_PUBLISHED_STANDARD_MATH_SQRT_2026_10_14.md) — [Published I090-C Standard Library `std:math/Math.sqrt`](I090/I090_C_352_PUBLISHED_STANDARD_MATH_SQRT_2026_10_14.md), pinned to Protos `8b452c83b42d` / `0.3.352-SNAPSHOT`: exact rational F3, exceptional N4, correctly rounded finite roots G2-B, public-module and accuracy conformance. Maintainer reports local tests and diff-check PASS. I090 remains open pending cross-slice closure and final integrated validation; no speedup is claimed.
