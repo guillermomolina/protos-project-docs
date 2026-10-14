@@ -1,9 +1,9 @@
 # PLAT058-D — Owner approval, invariant preservation, prior art, and Builder-oracle falsification
 
-**Date:** 2026-10-14.  
-**Decision:** [PLAT058-D ratification](../../decisions/platform/PLAT058_PROFILE_SPECIALIZED_MINIMAL_LOWERING_AND_BUILDER_ORACLES.md).  
-**Issue:** [PLAT058/#891](https://github.com/guillermomolina/protos/issues/891); **implementation:** [I101/#892](https://github.com/guillermomolina/protos/issues/892).  
-**Observed product source:** [`guillermomolina/protos@1b4cc76f4fdfb4eae7ac14d156a10b34cdabc5c0`](https://github.com/guillermomolina/protos/commit/1b4cc76f4fdfb4eae7ac14d156a10b34cdabc5c0), read-only source reference.  
+**Date:** 2026-10-14.
+**Decision:** [PLAT058-D ratification](../../decisions/platform/PLAT058_PROFILE_SPECIALIZED_MINIMAL_LOWERING_AND_BUILDER_ORACLES.md).
+**Issue:** [PLAT058/#891](https://github.com/guillermomolina/protos/issues/891); **implementation:** [I101/#892](https://github.com/guillermomolina/protos/issues/892).
+**Observed product source:** [`guillermomolina/protos@1b4cc76f4fdfb4eae7ac14d156a10b34cdabc5c0`](https://github.com/guillermomolina/protos/commit/1b4cc76f4fdfb4eae7ac14d156a10b34cdabc5c0), read-only source reference.
 **Verification boundary:** Repo files/API and upstream implementations were inspected read-only. No builds/tests/benchmarks, no product changes. The primary handwritten Builder test was **provided by the project owner in conversation and reported PASS**; it was not found as a committed `ProtosI095AggressiveConstantFoldTest` in current product search and was not executed by the coordinating agent.
 
 ## Owner authorization provenance and GITHUB021 delta check
