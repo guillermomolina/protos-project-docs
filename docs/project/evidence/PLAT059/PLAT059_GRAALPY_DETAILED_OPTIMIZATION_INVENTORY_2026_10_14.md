@@ -1,9 +1,9 @@
 # PLAT059 — GraalPy detailed AST and bytecode-lowering optimization inventory
 
-**Type:** historical upstream static-source audit; non-normative evidence, not an approved Protos platform decision.  
-**Source:** [oracle/graalpython](https://github.com/oracle/graalpython/tree/a099d006438942d54c1856c2cce7b6c2839b0c85) at exact commit `a099d006438942d54c1856c2cce7b6c2839b0c85`.  
-**Protos owner:** [PLAT059/#894](https://github.com/guillermomolina/protos/issues/894).  
-**Companion:** [GraalJS detailed inventory](PLAT059_GRAALJS_DETAILED_OPTIMIZATION_INVENTORY_2026_10_14.md).  
+**Type:** historical upstream static-source audit; non-normative evidence, not an approved Protos platform decision.
+**Source:** [oracle/graalpython](https://github.com/oracle/graalpython/tree/a099d006438942d54c1856c2cce7b6c2839b0c85) at exact commit `a099d006438942d54c1856c2cce7b6c2839b0c85`.
+**Protos owner:** [PLAT059/#894](https://github.com/guillermomolina/protos/issues/894).
+**Companion:** [GraalJS detailed inventory](PLAT059_GRAALJS_DETAILED_OPTIMIZATION_INVENTORY_2026_10_14.md).
 **Protos baseline reviewed separately:** `guillermomolina/protos@8c1a54c9bfff2b09deb693eab8ad8fa11b18f0ff`.
 
 ## Audit boundary and architecture
