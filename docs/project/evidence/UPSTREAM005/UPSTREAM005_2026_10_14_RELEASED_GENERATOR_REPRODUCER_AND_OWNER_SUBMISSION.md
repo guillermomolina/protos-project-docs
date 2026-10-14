@@ -1,8 +1,8 @@
 # UPSTREAM005 — Released Bytecode DSL code-generation failure and owner-submitted report
 
-**Evidence date:** 2026-10-14  
-**Owner:** [UPSTREAM005 / #893](https://github.com/guillermomolina/protos/issues/893)  
-**External report:** [oracle/graal#14682](https://github.com/oracle/graal/issues/14682) — submitted by the human owner, open when verified on 2026-10-14.  
+**Evidence date:** 2026-10-14
+**Owner:** [UPSTREAM005 / #893](https://github.com/guillermomolina/protos/issues/893)
+**External report:** [oracle/graal#14682](https://github.com/oracle/graal/issues/14682) — submitted by the human owner, open when verified on 2026-10-14.
 **Type:** Standalone Truffle Bytecode DSL annotation-processor reproduction; not a Protos runtime bug or production change.
 
 ## Exact tested environment and source retention
