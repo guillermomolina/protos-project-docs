@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`UPSTREAM005/`](UPSTREAM005/README.md) — Released 25.4.4.1.1 Bytecode DSL no-tracing generator compile-failure evidence and owner-submitted Oracle report; upstream tracking remains open, with no demonstrated Protos performance impact.
+
 - [`I101-A 0.3.353`](I101/I101_A_353_CONTEXT_PROFILE_MINIMAL_BOOLEAN_FOLD_PUBLISHED_2026_10_14.md) — [Published Context-owned NORMAL/DEBUG physical lowering and handwritten Builder-oracle Boolean fold](I101/I101_A_353_CONTEXT_PROFILE_MINIMAL_BOOLEAN_FOLD_PUBLISHED_2026_10_14.md) at Protos `97404f1cc1c1` / `0.3.353-SNAPSHOT`; maintainer reports clean diff check and all local tests PASS. I101 remains open for B/C; no independent Graal-performance result is asserted.
 
 - [`I090 CLOSED / D`](I090/I090_D_FINAL_NUMERIC_INTEGRATION_AND_CLOSURE_2026_10_14.md) — [Final I090-D exact-revision closure evidence](I090/I090_D_FINAL_NUMERIC_INTEGRATION_AND_CLOSURE_2026_10_14.md), Protos `5a57c2edb5d6` / unchanged `0.3.352-SNAPSHOT`: 98-line test-only Actor/P rematerialization coverage for derived `sqrt` and Complex arithmetic; human-reported 57/0/0/0 focal tests and `make test` FULL PASS; GitHub publication independently verified. No Graal performance benchmark claim; PERF040/PERF046 remain separate.
