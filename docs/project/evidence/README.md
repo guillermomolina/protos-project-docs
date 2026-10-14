@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`I090 0.3.352`](I090/I090_C_352_PUBLISHED_STANDARD_MATH_SQRT_2026_10_14.md) — [Published I090-C Standard Library `std:math/Math.sqrt`](I090/I090_C_352_PUBLISHED_STANDARD_MATH_SQRT_2026_10_14.md), pinned to Protos `8b452c83b42d` / `0.3.352-SNAPSHOT`: exact rational F3, exceptional N4, correctly rounded finite roots G2-B, public-module and accuracy conformance. Maintainer reports local tests and diff-check PASS. I090 remains open pending cross-slice closure and final integrated validation; no speedup is claimed.
+
 - [`I090 0.3.351`](I090/I090_COMPLEX_AB_PUBLIC_CONSTRUCTION_ARITHMETIC_PUBLISHED_2026_10_14.md) — [Published I090 Complex A+B: construction, components and standard arithmetic](I090/I090_COMPLEX_AB_PUBLIC_CONSTRUCTION_ARITHMETIC_PUBLISHED_2026_10_14.md) at exact Protos `978c25968ffe` / `0.3.351-SNAPSHOT`, with maintainer-reported local tests and diff check PASS. I090 remains open for `std:math/Math.sqrt` and final cross-slice integration; no performance speedup is claimed.
 
 - [`I096 0.3.349`](I096/I096_349_PUBLISHED_C2_C8_OPERAND_NESTED_CLOSURE_INLINE_2026_10_13.md) — Exact-revision [published C2–C8, operand-position and nested-Closure inlining](I096/I096_349_PUBLISHED_C2_C8_OPERAND_NESTED_CLOSURE_INLINE_2026_10_13.md) at Protos `ffd6da2fb265` / `0.3.349-SNAPSHOT`, plus large-Integer callback regression and maintainer-reported local tests/diff-check PASS. Structural in-root admission is distinct from still-pending PERF042/I096 final-tier graph evidence; prior [I096 0.3.347](I096/I096_PUBLISHED_GENERIC_CLOSURE_INLINE_VALIDATION_2026_10_13.md) remains historical.
