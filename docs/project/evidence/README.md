@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`PLAT059/`](PLAT059/PLAT059_PRELIMINARY_CANONICAL_OPTIMIZER_COMPARISON_2026_10_14.md) — [Preliminary GraalJS/GraalPy canonical-optimizer comparison](PLAT059/PLAT059_PRELIMINARY_CANONICAL_OPTIMIZER_COMPARISON_2026_10_14.md), pinned to Protos `8c1a54c9`, GraalJS `3df14182`, GraalPy `a099d006`; research intake only, not a selected architecture, implementation or measured performance result. [PLAT059/#894](https://github.com/guillermomolina/protos/issues/894) remains open.
+
 - [`UPSTREAM005/`](UPSTREAM005/README.md) — Released 25.4.4.1.1 Bytecode DSL no-tracing generator compile-failure evidence and owner-submitted Oracle report; upstream tracking remains open, with no demonstrated Protos performance impact.
 
 - [`I101-A 0.3.353`](I101/I101_A_353_CONTEXT_PROFILE_MINIMAL_BOOLEAN_FOLD_PUBLISHED_2026_10_14.md) — [Published Context-owned NORMAL/DEBUG physical lowering and handwritten Builder-oracle Boolean fold](I101/I101_A_353_CONTEXT_PROFILE_MINIMAL_BOOLEAN_FOLD_PUBLISHED_2026_10_14.md) at Protos `97404f1cc1c1` / `0.3.353-SNAPSHOT`; maintainer reports clean diff check and all local tests PASS. I101 remains open for B/C; no independent Graal-performance result is asserted.
