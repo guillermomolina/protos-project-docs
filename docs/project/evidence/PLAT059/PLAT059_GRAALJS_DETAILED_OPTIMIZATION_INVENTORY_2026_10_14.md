@@ -1,9 +1,9 @@
 # PLAT059 — GraalJS detailed lowering and optimization inventory
 
-**Type:** historical upstream static-source audit; non-normative evidence, not a Protos implementation plan or ratified decision.  
-**Source:** [oracle/graaljs](https://github.com/oracle/graaljs/tree/3df14182071768bd4162734ca69e8b2a81eed5d4) at exact revision `3df14182071768bd4162734ca69e8b2a81eed5d4`.  
-**Protos owner:** [PLAT059/#894](https://github.com/guillermomolina/protos/issues/894).  
-**Companion:** [GraalPy detailed inventory](PLAT059_GRAALPY_DETAILED_OPTIMIZATION_INVENTORY_2026_10_14.md).  
+**Type:** historical upstream static-source audit; non-normative evidence, not a Protos implementation plan or ratified decision.
+**Source:** [oracle/graaljs](https://github.com/oracle/graaljs/tree/3df14182071768bd4162734ca69e8b2a81eed5d4) at exact revision `3df14182071768bd4162734ca69e8b2a81eed5d4`.
+**Protos owner:** [PLAT059/#894](https://github.com/guillermomolina/protos/issues/894).
+**Companion:** [GraalPy detailed inventory](PLAT059_GRAALPY_DETAILED_OPTIMIZATION_INVENTORY_2026_10_14.md).
 **Protos baseline reviewed separately:** `guillermomolina/protos@8c1a54c9bfff2b09deb693eab8ad8fa11b18f0ff`.
 
 ## Audit boundary
