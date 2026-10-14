@@ -7,6 +7,15 @@
 **GraalPy source revision inspected:** [`a099d006438942d54c1856c2cce7b6c2839b0c85`](https://github.com/oracle/graalpython/commit/a099d006438942d54c1856c2cce7b6c2839b0c85).  
 **Evidence type:** comparative source inspection and proposed investigation boundaries. **No tests, build, benchmark, graph capture, compatibility proof or implementation performed for PLAT059.**
 
+## Detailed source inventories preserved for future research
+
+The initial comparison summarizes, but does not reproduce, the full per-mechanism source audits. The two separate **revision-pinned, historical, non-normative** inventories now preserve the entire enumerated findings and their classification (literal folding vs specialized node/bytecode emission vs scope/control structure vs runtime behavior):
+
+- [**GraalJS — 65 classified mechanisms/variants**](PLAT059_GRAALJS_DETAILED_OPTIMIZATION_INVENTORY_2026_10_14.md), revision `3df14182071768bd4162734ca69e8b2a81eed5d4`.
+- [**GraalPy — 57 classified mechanisms/variants**](PLAT059_GRAALPY_DETAILED_OPTIMIZATION_INVENTORY_2026_10_14.md), revision `a099d006438942d54c1856c2cce7b6c2839b0c85`.
+
+These are not counts of independent optimization passes, not exhaustive whole-runtime coverage and **not approval** of a new Protos architecture; the review must still falsify alternatives against ratified PLAT058 and current I101 implementation.
+
 ## 1. Why this question is distinct from existing work
 
 - [PLAT058/#891](https://github.com/guillermomolina/protos/issues/891) has already ratified **one shared proof-driven Canonical → Bytecode DSL lowerer** with immutable Context-owned NORMAL/DEBUG physical profiles, deterministic reparse, and a **handwritten independent Builder-oracle requirement** for every claimed lowering optimization. See [ratified PLAT058 decision](../../decisions/platform/PLAT058_PROFILE_SPECIALIZED_MINIMAL_LOWERING_AND_BUILDER_ORACLES.md). This architecture is authority, not a candidate to reconsider.
