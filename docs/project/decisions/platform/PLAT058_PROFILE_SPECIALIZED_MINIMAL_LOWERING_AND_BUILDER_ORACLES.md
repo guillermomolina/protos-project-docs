@@ -1,11 +1,11 @@
 # PLAT058 — Profile-specialized minimal executable lowering and independent Builder-oracle validation
 
-**Status:** RATIFIED — Candidate D, 2026-10-14.  
+**Status:** RATIFIED — Candidate D, 2026-10-14.
 **Owner approval:** Explicit active owner statement: **"Aprobada"**, immediately following the PLAT058-D recommendation and the owner-imposed independent Builder-oracle acceptance rule. This is approval of **D as scoped below**, not approval for arbitrary new guest semantics, universal rematerialization or a second compiler.
-**Decision issue:** [PLAT058/#891](https://github.com/guillermomolina/protos/issues/891).  
-**Implementation issue:** [I101/#892](https://github.com/guillermomolina/protos/issues/892), independent top-level I-family owner; slices remain internal until an independent-identity trigger arises.  
-**Product source checkpoint (read-only):** [`guillermomolina/protos@1b4cc76f4fdfb4eae7ac14d156a10b34cdabc5c0`](https://github.com/guillermomolina/protos/commit/1b4cc76f4fdfb4eae7ac14d156a10b34cdabc5c0). This is research baseline, not a target version or publication of the new architecture.  
-**Comparative research, structural-oracle model and GITHUB021:** [PLAT058 owner approval and falsification evidence](../../evidence/PLAT058/PLAT058_D_OWNER_APPROVAL_INVARIANT_AND_ORACLE_EVIDENCE_2026_10_14.md).  
+**Decision issue:** [PLAT058/#891](https://github.com/guillermomolina/protos/issues/891).
+**Implementation issue:** [I101/#892](https://github.com/guillermomolina/protos/issues/892), independent top-level I-family owner; slices remain internal until an independent-identity trigger arises.
+**Product source checkpoint (read-only):** [`guillermomolina/protos@1b4cc76f4fdfb4eae7ac14d156a10b34cdabc5c0`](https://github.com/guillermomolina/protos/commit/1b4cc76f4fdfb4eae7ac14d156a10b34cdabc5c0). This is research baseline, not a target version or publication of the new architecture.
+**Comparative research, structural-oracle model and GITHUB021:** [PLAT058 owner approval and falsification evidence](../../evidence/PLAT058/PLAT058_D_OWNER_APPROVAL_INVARIANT_AND_ORACLE_EVIDENCE_2026_10_14.md).
 **Authority:** PLAT001 (exclusive Context language instance), PLAT005 (tooling tags), PLAT035/036/040/044, PLAT057-B (proof-driven generic Closure inlining), and governing normative `spec/semantics/CALLABLES.md`, `EXECUTION_AND_CONTROL.md`, `OBJECT_MODEL.md`, `VALUES_AND_COLLECTIONS.md`, `spec/PROTOS_GRAMMAR.md`. No normative specification change.
 
 ## Problem and selected architectural boundary
