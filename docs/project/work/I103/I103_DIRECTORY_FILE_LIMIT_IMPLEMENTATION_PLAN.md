@@ -1,6 +1,6 @@
 # I103 — Directory direct-file limit implementation plan
 
-Status: **IMPLEMENTATION STRATEGY ACCEPTED; I103-A PUBLISHED; I103 OPEN** (2026-10-15).
+Status: **IMPLEMENTATION STRATEGY ACCEPTED; I103-A AND I103-B PUBLISHED; I103 OPEN** (2026-10-15).
 Live owner: [I103 / guillermomolina/protos#897](https://github.com/guillermomolina/protos/issues/897).
 Baseline product revision: [`c7004f71cb05621dd5a7f89e46459542bd7d9c87`](https://github.com/guillermomolina/protos/commit/c7004f71cb05621dd5a7f89e46459542bd7d9c87).
 Scope: non-semantic physical organization of tracked first-party files; this is not a new Dxxx/PLATxxx architecture selection.
@@ -85,3 +85,11 @@ The maintainer published [product commit `cfe41f56eec4ae9cb2c1b582d8ad05ee6ad0f3
 - Reuse the closed [TOOL009-F/#694](https://github.com/guillermomolina/protos/issues/694) work, which consolidated 1,234 suite-native test sources to 270 while preserving all 1,263 logical Cases. No renewed source-consolidation campaign for those Cases is justified by I103.
 - The current priority is the 94 direct files in `protos/tests/tooling`, a distinct, largely JUnit-consumed fixture corpus. Relocate by actual fixture consumer/contract family, not by arbitrary size or formal-issue number alone, and reconcile every exact path dependency.
 - Next source publication must change `scripts/directory_file_limit.py` and its selftests to 30 as part of a human-executed product commit. Until then, the published executable still enforces the historical 25 limit when manually invoked. Final `make check` and real CI activation remains I103-H work only after zero 30-file offenders remain.
+
+## I103-B publication checkpoint (2026-10-15)
+
+**Exact product publication:** [`f004063207f827d70734c92ef93a0f0dc633234e`](https://github.com/guillermomolina/protos/commit/f004063207f827d70734c92ef93a0f0dc633234e), version `0.3.362-SNAPSHOT`. The guard now has **`LIMIT = 30`** and synthetic 29/30/31 tests. Ninety-four content-identical JUnit-owned Test Tool fixtures moved from the flat `protos/tests/tooling` root into 13 semantic directories (largest: 22 direct files), with Java/TSV consumers reconciled and F1/F2 filesystem roots corrected. First-party 28-file IO and TOML suite directories remain untouched. There is still **no mandatory guard** in `make check` or CI.
+
+**Human validation:** Python unit tests 50/50 PASS; affected JUnit focal run initially had two F1/F2 failures out of 121, both repaired and successfully rerun in isolation; subsequent integrated `make test` PASS; byte-for-byte original-vs-new fixture audit `I103_B_FIXTURES=PASS`; both tracked and staged diff-checks clean. See [exact-revision I103-B publication record](../../evidence/I103/I103_B_PUBLISHED_TOOLING_FIXTURES_AND_30_FILE_LIMIT_2026_10_15.md).
+
+**Next approved slice:** I103-C, physical Core organization, subject to auditing its exact current bootstrap/resource dependencies. At product `f0040632`, `protos/lib/core` contains 34 direct tracked files (33 `.protos` and `README.md`); five cohesive network and TCP source members (`IpAddress.protos`, `IpEndpoint.protos`, `Network.protos`, `TcpConnection.protos`, `TcpListener.protos`) are a candidate `core/network/` family. `ProtosCoreBootstrap` explicitly loads their root-relative paths and order, so preserve canonical object identity, bootstrap order, resource packaging and any additional path consumers. This is a **candidate pending current-HEAD audit**, not prior approval to alter language semantics or module identity. The layout should leave 29 files directly in `core/` and five in `core/network/` if the dependency proof succeeds; do not force the move if invariants disagree. I103-D through H remain outstanding; the parent Issue stays **OPEN**.
