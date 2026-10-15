@@ -12,6 +12,9 @@ migrate it explicitly rather than duplicating or moving it opportunistically.
 
 Current role-first work records:
 
+- [`I104/I104_NORMAL_CLOSURE_ENTRY_COMPLIANCE_CLOSURE_2026_10_15.md`](I104/I104_NORMAL_CLOSURE_ENTRY_COMPLIANCE_CLOSURE_2026_10_15.md)
+  — I104 A/B/C published compliance closure at Protos `2263d4f66294817524052b9782ffee1562848a50` / `0.3.365-SNAPSHOT`; human-reported full tests and constant-local PE guard PASS; owner clarified that Tier-2 benchmarking is not an I104 acceptance gate.
+
 - [`D179/D179_EXECUTION_CONTEXT_OBJECT_MODEL_CAPABILITY_BOUNDARY.md`](D179/D179_EXECUTION_CONTEXT_OBJECT_MODEL_CAPABILITY_BOUNDARY.md)
   — open D179 execution-context/object-model capability-boundary decision trigger, PLAT036 blocking dependency, and comparative-runtime evidence checkpoint.
 
