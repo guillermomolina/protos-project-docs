@@ -1,6 +1,6 @@
 # I103 — Directory direct-file limit implementation plan
 
-Status: **IMPLEMENTATION STRATEGY ACCEPTED; I103-A AND I103-B PUBLISHED; I103 OPEN** (2026-10-15).
+Status: **IMPLEMENTATION STRATEGY ACCEPTED; I103-A/B/C PUBLISHED; I103 OPEN** (2026-10-15).
 Live owner: [I103 / guillermomolina/protos#897](https://github.com/guillermomolina/protos/issues/897).
 Baseline product revision: [`c7004f71cb05621dd5a7f89e46459542bd7d9c87`](https://github.com/guillermomolina/protos/commit/c7004f71cb05621dd5a7f89e46459542bd7d9c87).
 Scope: non-semantic physical organization of tracked first-party files; this is not a new Dxxx/PLATxxx architecture selection.
@@ -93,3 +93,11 @@ The maintainer published [product commit `cfe41f56eec4ae9cb2c1b582d8ad05ee6ad0f3
 **Human validation:** Python unit tests 50/50 PASS; affected JUnit focal run initially had two F1/F2 failures out of 121, both repaired and successfully rerun in isolation; subsequent integrated `make test` PASS; byte-for-byte original-vs-new fixture audit `I103_B_FIXTURES=PASS`; both tracked and staged diff-checks clean. See [exact-revision I103-B publication record](../../evidence/I103/I103_B_PUBLISHED_TOOLING_FIXTURES_AND_30_FILE_LIMIT_2026_10_15.md).
 
 **Next approved slice:** I103-C, physical Core organization, subject to auditing its exact current bootstrap/resource dependencies. At product `f0040632`, `protos/lib/core` contains 34 direct tracked files (33 `.protos` and `README.md`); five cohesive network and TCP source members (`IpAddress.protos`, `IpEndpoint.protos`, `Network.protos`, `TcpConnection.protos`, `TcpListener.protos`) are a candidate `core/network/` family. `ProtosCoreBootstrap` explicitly loads their root-relative paths and order, so preserve canonical object identity, bootstrap order, resource packaging and any additional path consumers. This is a **candidate pending current-HEAD audit**, not prior approval to alter language semantics or module identity. The layout should leave 29 files directly in `core/` and five in `core/network/` if the dependency proof succeeds; do not force the move if invariants disagree. I103-D through H remain outstanding; the parent Issue stays **OPEN**.
+
+## I103-C publication checkpoint (2026-10-15)
+
+**Exact Protos publication:** [`5948ee7ce70d5a70636c921e31566483c4809323`](https://github.com/guillermomolina/protos/commit/5948ee7ce70d5a70636c921e31566483c4809323), version `0.3.363-SNAPSHOT`. All five network/TCP Core sources moved unchanged into `protos/lib/core/network/` (29 files remain in Core root, five in network); corresponding `ProtosCoreBootstrap` path loads, Core naming/license architecture test and maintained IP protocol comments updated. No Truffle package format change.
+
+**Human-reported validation:** focal 49 JUnit tests PASS (0 failures/errors/skips); integrated `make test` PASS; both diff checks clean; source/commit verification recorded in [I103-C durable evidence](../../evidence/I103/I103_C_PUBLISHED_CORE_NETWORK_LAYOUT_2026_10_15.md). No agent-executed tests or product Git actions claimed.
+
+**Next:** I103-D runtime Java package and JUnit ownership reconciliation, with 104 direct production files and 79 direct test files in the existing runtime package at product `5948ee7c`. Java package-private dependencies and cross-package references make path-only moves insufficient; prove the real dependency closure first, group by cohesive owner, and retain compilation/testability in intermediate publications. I103-E/F/G execution Java and I103-H final zero-violation strict `make check`/CI enforcement remain outstanding. Parent I103 stays **OPEN**.
