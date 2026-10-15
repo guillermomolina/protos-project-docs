@@ -1,6 +1,6 @@
 # I103 — Directory direct-file limit implementation plan
 
-Status: **IMPLEMENTATION STRATEGY ACCEPTED; I103-A/B/C PUBLISHED; I103 OPEN** (2026-10-15).
+Status: **IMPLEMENTATION STRATEGY ACCEPTED; I103-A/B/C/D PUBLISHED; I103 OPEN** (2026-10-15).
 Live owner: [I103 / guillermomolina/protos#897](https://github.com/guillermomolina/protos/issues/897).
 Baseline product revision: [`c7004f71cb05621dd5a7f89e46459542bd7d9c87`](https://github.com/guillermomolina/protos/commit/c7004f71cb05621dd5a7f89e46459542bd7d9c87).
 Scope: non-semantic physical organization of tracked first-party files; this is not a new Dxxx/PLATxxx architecture selection.
@@ -101,3 +101,15 @@ The maintainer published [product commit `cfe41f56eec4ae9cb2c1b582d8ad05ee6ad0f3
 **Human-reported validation:** focal 49 JUnit tests PASS (0 failures/errors/skips); integrated `make test` PASS; both diff checks clean; source/commit verification recorded in [I103-C durable evidence](../../evidence/I103/I103_C_PUBLISHED_CORE_NETWORK_LAYOUT_2026_10_15.md). No agent-executed tests or product Git actions claimed.
 
 **Next:** I103-D runtime Java package and JUnit ownership reconciliation, with 104 direct production files and 79 direct test files in the existing runtime package at product `5948ee7c`. Java package-private dependencies and cross-package references make path-only moves insufficient; prove the real dependency closure first, group by cohesive owner, and retain compilation/testability in intermediate publications. I103-E/F/G execution Java and I103-H final zero-violation strict `make check`/CI enforcement remain outstanding. Parent I103 stays **OPEN**.
+
+## I103-D publication checkpoint (2026-10-15)
+
+**Exact human-published product commit:** [`d12d890db64a0a4f7b9c512521774c2c4ecaa283`](https://github.com/guillermomolina/protos/commit/d12d890db64a0a4f7b9c512521774c2c4ecaa283), version `0.3.364-SNAPSHOT`. GitHub confirms `main` at that SHA and the published Maven version.
+
+**Runtime root direct-file counts:** production `104 -> 30`, JUnit/test `79 -> 30`; source identities remain present in responsibility-oriented subdirectories. Java `runtime` encapsulation required a mixed approach: genuine subpackages where safe, physical-only groupings that retain `package com.guillermomolina.protos.runtime` where package-private contracts and Truffle exports need it. Relocated-source path consumers and structural source-reading assertions were reconciled without weakening test coverage.
+
+**Maintainer validation:** focused JUnit runs of 20 and 24 tests PASS; `test-compile` PASS; first full Java run identified three stale physical paths in structural tests (0 assertions failed), repaired before the maintainer-reported integrated `make test` PASS. Human executed Git publication; documentation agent neither ran the tests nor published product source.
+
+**Exact evidence:** [I103-D runtime layout publication record](../../evidence/I103/I103_D_PUBLISHED_RUNTIME_JAVA_LAYOUT_2026_10_15.md), anchored to the above Protos commit. No global strict-guard acceptance yet.
+
+**Next planned slice:** **I103-E**, Java `execution` module/package/workspace and foreign-provider/interop physical organization plus focused tests, starting from the live product HEAD. At this checkpoint, `src/main/java/com/guillermomolina/protos/execution` has **240** direct Java files and `src/test/java/com/guillermomolina/protos/execution` has **447**. I103-F/G must finish remaining `execution` owners and I103-H must pass a policy-aware global Git-index census before enabling strict `make check` and actual CI enforcement. Parent I103 stays **OPEN**.
