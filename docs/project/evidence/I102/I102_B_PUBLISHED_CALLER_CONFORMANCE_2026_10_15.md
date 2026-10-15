@@ -59,3 +59,25 @@ I102_B_PROPOSED_NEXT_VERSION=0.3.361-SNAPSHOT
 I102_B_METADATA_PUBLICATION=PENDING
 I102_B_GRAAL_FINAL_TIER_GAIN=NOT_MEASURED
 ```
+
+## Final publication reconciliation — 0.3.361-SNAPSHOT
+
+**Updated 2026-10-15.** This section supersedes **only the pending publication status** in the earlier checkpoint above; that checkpoint correctly describes the earlier Java-only product commit and remains unchanged as historical evidence.
+
+- **Final product revision:** [`dc69fd6269a73e0510e90eb0743514eb63e4630a`](https://github.com/guillermomolina/protos/commit/dc69fd6269a73e0510e90eb0743514eb63e4630a), parent [`2710b282b3a84be8bfcfee15fbed099cb664e8e4`](https://github.com/guillermomolina/protos/commit/2710b282b3a84be8bfcfee15fbed099cb664e8e4). The owner executed `git push origin main`, publishing the metadata-only commit `I102: record B5 conformance version`. GitHub readback verifies the commit is the current `main` head at the closure checkpoint.
+- **Exact delta:** only `pom.xml` and `CHANGELOG.md` (17 additions, 1 deletion). The published Maven version is **`0.3.361-SNAPSHOT`**, and the changelog has a dedicated `I102` slice-B section covering the state-specific caller-slot invariant and tests.
+- **Validation ordering:** maintainer reported `make test` PASS and `git diff --check` clean for the executable Java patch before the Java commit; the independent metadata-only commit followed, with **no test reruns claimed or requested after metadata edits**. The owner also reported 13 focal tests passing earlier. No optimizer measurement is inferred.
+- **No lost concurrency:** the executable commit's parent `0982d1149e45c68deee13623afea6890b49f166a` incorporated I103-A and PERF040; the final commit is a descendant and preserves both. The previously pending metadata discrepancy is now resolved.
+
+```text
+I102_B_FINAL_PROTOS_REVISION=dc69fd6269a73e0510e90eb0743514eb63e4630a
+I102_B_SOURCE_TEST_REVISION=2710b282b3a84be8bfcfee15fbed099cb664e8e4
+I102_B_METADATA_REVISION=dc69fd6269a73e0510e90eb0743514eb63e4630a
+I102_B_PUBLISHED_VERSION=0.3.361-SNAPSHOT
+I102_B_METADATA_PUBLICATION=PASS
+I102_B_FULL_VALIDATION=MAINTAINER_REPORTED_PASS
+I102_B_GRAAL_FINAL_TIER_GAIN=NOT_MEASURED
+PLAT060_B5_OWNER_APPROVAL=RATIFIED
+```
+
+**Closure interpretation:** I102-A's ABI migration and I102-B's approved state-specific invariant, regression coverage and integrated validation are published. This source/metadata publication is sufficient to reconcile the **implementation** closure; it is not a claim of an independently measured Graal speedup or an exhaustive new peer benchmark. [I102/#896](https://github.com/guillermomolina/protos/issues/896) remains the live owner of Issue closure, and [PLAT060/#895](https://github.com/guillermomolina/protos/issues/895) remains the closed architecture authority.
