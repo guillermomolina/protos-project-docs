@@ -88,3 +88,13 @@ I104_PRODUCT_PUBLICATION=NOT_YET
 DECISION_APPROVAL_PROVENANCE=PASS
 DECISION_INVARIANT_CONSISTENCY=PASS
 ```
+
+## Post-implementation closure reconciliation — 2026-10-15
+
+This section is a **subsequent owner-directed I104 acceptance-scope clarification**, not a retroactive change to the originally ratified D202 exploration, normative language semantics, or the five-slot PLAT060-B5 ABI.
+
+- The owner published I104 A/B/C at Protos commit [`2263d4f66294817524052b9782ffee1562848a50`](https://github.com/guillermomolina/protos/commit/2263d4f66294817524052b9782ffee1562848a50) (`0.3.365-SNAPSHOT`), reported full `make test` PASS, focused tests 48/0/0/0, `git diff --check` clean, and `make check-local-range-index-pe` PASS with zero PE-reachable index risks.
+- The owner then clarified explicitly: **“no hace falta medir, esta issue no era por performance, era por compliance”**. Thus the originally suggested I104-D Tier-2/GraalPy benchmark is **not a closure gate for I104**. No Tier-2 speedup or performance equivalence has been measured or claimed. This supersedes the earlier I104 implementation-acceptance expectation **only regarding required performance measurement**; semantic, ABI, source, error and Context obligations are unchanged.
+- The authoritative non-normative closure record is [I104 compliance evidence](../../work/I104/I104_NORMAL_CLOSURE_ENTRY_COMPLIANCE_CLOSURE_2026_10_15.md); GitHub [I104/#899](https://github.com/guillermomolina/protos/issues/899) remains the live status authority.
+
+**Provenance:** original D202 approval and investigation above remain preserved as historical decisions; this dated addendum documents the owner's later and narrower acceptance instruction.
