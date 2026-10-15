@@ -49,6 +49,14 @@ The maintainer traced the three unrelated-looking handlers `PREPARE_CLOSURE_CALL
 
 The assistant **did not execute** the product build, tests or benchmarks. The maintainer's reported PASS is retained as human validation, not recast as independent CI or Graal compilation-graph evidence. Changes to `pom.xml` and `CHANGELOG.md` belong to the final human publication transaction; no post-version-bump testing is claimed.
 
+## Scope correction — correctness of Truffle specialization, not promised speedup
+
+**Maintainer clarification (2026-10-15):** the primary goal of this E1/E2 implementation was to make Protos' Truffle DSL specialization structure and transitions **correct by the DSL's own contracts**, using GraalPy as an upstream architectural reference. The former universal negative/generic specialization with broad `replaces` could evict viable positive numeric specializations; disjoint admission prevents this, and narrow `doLL` / `doLLOvf` rewrites generalize only overflow within the same numeric domain. Owned BigInteger lanes and the memoized Prelude certificate preserve exact canonical method-selection authority without conflating ordinary lookalikes with builtins.
+
+This is **compiler/specialization correctness**, not necessarily evidence of previously incorrect guest-language results: the old ordinary D013 fallback could still produce the correct observable answer while failing to retain the intended specialized state. The correctness fix was not commissioned on an assumption that it would make programs faster. It may or may not change steady-state performance; no speedup, regression, or parity with GraalPy is inferred.
+
+**Acceptance distinction:** the maintainer's green focal/integrated tests, generated-topology audit and published source commit close the **implementation and functional-validation scope of E1 and its BigInteger extension**. Any new Tier-1/Tier-2 graph or timing work is an independently scoped **performance investigation under the broader PERF040 issue**, not a retroactive gate preventing acceptance of these published correctness changes. Fraction/Complex remains separately pending within the broader previously authorized numeric-family plan.
+
 ## Remaining PERF040 acceptance
 
 **PERF040 #862 stays OPEN/READY.** E1 and the BigInteger part of E2 are published; no need to recreate these as new Issues. Still not established: pinned Tier-1/Tier-2 Graal IR, whether a monomorphic caller's Prelude/certificate reads fold away, non-boxing and stable arithmetic after overflow in final compiled code, measured timing/allocations versus a clean controlled baseline, and the separately constrained Fraction/Complex accelerated-admission/execution semantics. Fraction/Complex standard source-backed Closures must retain observability, instrumentation, control/suspension and Error behavior; they were intentionally **not** bypassed by these BigInteger lanes.
