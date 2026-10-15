@@ -1,6 +1,6 @@
 # I103 — Directory direct-file limit implementation plan
 
-Status: **IMPLEMENTATION STRATEGY ACCEPTED; I103-A/B/C/D PUBLISHED; I103 OPEN** (2026-10-15).
+Status: **I103-A THROUGH I103-H PUBLISHED; FINAL ACCEPTANCE PASS; ISSUE CLOSURE AUTHORIZED** (2026-10-15).
 Live owner: [I103 / guillermomolina/protos#897](https://github.com/guillermomolina/protos/issues/897).
 Baseline product revision: [`c7004f71cb05621dd5a7f89e46459542bd7d9c87`](https://github.com/guillermomolina/protos/commit/c7004f71cb05621dd5a7f89e46459542bd7d9c87).
 Scope: non-semantic physical organization of tracked first-party files; this is not a new Dxxx/PLATxxx architecture selection.
@@ -113,3 +113,17 @@ The maintainer published [product commit `cfe41f56eec4ae9cb2c1b582d8ad05ee6ad0f3
 **Exact evidence:** [I103-D runtime layout publication record](../../evidence/I103/I103_D_PUBLISHED_RUNTIME_JAVA_LAYOUT_2026_10_15.md), anchored to the above Protos commit. No global strict-guard acceptance yet.
 
 **Next planned slice:** **I103-E**, Java `execution` module/package/workspace and foreign-provider/interop physical organization plus focused tests, starting from the live product HEAD. At this checkpoint, `src/main/java/com/guillermomolina/protos/execution` has **240** direct Java files and `src/test/java/com/guillermomolina/protos/execution` has **447**. I103-F/G must finish remaining `execution` owners and I103-H must pass a policy-aware global Git-index census before enabling strict `make check` and actual CI enforcement. Parent I103 stays **OPEN**.
+
+## I103-E/F/G/H final published closure (2026-10-15)
+
+**Final product revision:** [`0c617058487be96ea05b26c04df417eda6985cbe`](https://github.com/guillermomolina/protos/commit/0c617058487be96ea05b26c04df417eda6985cbe); version `0.3.366-SNAPSHOT`, following concurrently published I104 commit `2263d4f6`. This supersedes the earlier *next-slice* instructions and the historical OPEN snapshot at I103-D; preceding intermediate publication sections above remain unchanged as chronological evidence.
+
+**Execution Java:** 240 production and 447 preexisting test Java files were relocated under cohesive execution owner directories (zero direct Java files at either execution root), and I104's one new Builder-oracle test was integrated into `compiler/optimizations`. Final recursive census: **240 production + 448 test Java identities**; no production class or preexisting test identity was discarded. Maintain physical subdirectories without mechanically changing package declarations where package-private or Truffle contracts require the original Java package.
+
+**Strict repository guard:** published `LIMIT = 30` on directly Git-tracked regular files, with only the pinned third-party TOML snapshot exempt. `make check` invokes `check-directory-file-limit`; `.github/workflows/tests.yml` invokes it before `make test`. Maintainer reported **zero violations**, final combined **`make check → PASS`**, final combined **`make test → PASS`**, and clean diff. GitHub independently confirms product publication; tests were run by the maintainer, not by the documenting agent.
+
+**I104 integration:** six overlapping Java files merged in their new locations; two directly overlapping PE JSON baselines reconciled; the operand PE baseline gained four proven/nonreachable sink entries; the generated BCI topology baseline updated to the actually generated I104 root. Reported generated BCI counts: **1112 total, 1108 proven, 4 dynamic, 0 risk, 0 unknown**. No I104 behavior was intentionally reverted or excluded.
+
+**Complete evidence:** [I103-E/F/G/H exact-revision acceptance record](../../evidence/I103/I103_EFGH_FINAL_DIRECTORY_LIMIT_CLOSURE_2026_10_15.md).
+
+**Disposition:** I103-A through H implemented and published. The final issue closure is governed by the live GitHub Issue, after verifying this durable publication.
