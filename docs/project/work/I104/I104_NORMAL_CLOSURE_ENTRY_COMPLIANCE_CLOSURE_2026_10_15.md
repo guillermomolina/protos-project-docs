@@ -14,7 +14,7 @@ The implementation must still preserve D003/CALLABLES, D179, PLAT058-D immutable
 
 ## Published implementation
 
-The exact product commit contains 13 paths: two production files, six test files (including the new `ProtosPerf042IdentityBuilderOracleTest`), four local-range PE analyzer/baseline/test files, and the root `pom.xml` and `CHANGELOG.md`.
+The exact product commit contains 13 paths: two production files, five test files (including the new `ProtosPerf042IdentityBuilderOracleTest`), four local-range PE analyzer/baseline/test files, and the root `pom.xml` and `CHANGELOG.md`.
 
 - **A — unary parameter establishment.** `BindUnaryFrameParameter` admits the proved compact NORMAL unary binding path while keeping richer fallback and DEBUG behavior. Independent handwritten Builder-oracle and materialization/indexed-binding tests were adapted to actual emitted structure.
 - **B — supplied required-prefix transfer.** The attempted `CopyRequiredParameterPrefix` bulk operation with a runtime loop index failed the strict `LocalRangeAccessor` PE guard. The final implementation replaced it with one emitted `BindRequiredFrameParameter` operation per required parameter. Each `ordinal` is an `@ConstantOperand` of the Bytecode DSL operation; the source lowerer loops at emission time, not as a guest execution loop.
