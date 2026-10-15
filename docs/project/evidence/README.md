@@ -10,6 +10,9 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`PLAT060/`](PLAT060/PLAT060_B5_OWNER_APPROVAL_INVARIANT_RECONCILIATION_2026_10_15.md) — [2026-10-15 B5 owner-approved universal five-slot ordinary Closure-call ABI](PLAT060/PLAT060_B5_OWNER_APPROVAL_INVARIANT_RECONCILIATION_2026_10_15.md): evidence, upstream source pins, 12-axis GITHUB010 scores, GITHUB021 reconciliation and explicit supersession of NORMAL host headerless. [Ratified decision](../decisions/platform/PLAT060_B5_UNIVERSAL_ORDINARY_CLOSURE_CALL_ABI.md). Baseline Protos `df4142919d02`; no product migration or Graal performance improvement claimed.
+
+
 - [`PLAT059/`](PLAT059/PLAT059_FINAL_RESEARCH_AND_OWNER_APPROVAL_2026_10_14.md) — [Final owner-approved PLAT059 no-new-architecture decision packet](PLAT059/PLAT059_FINAL_RESEARCH_AND_OWNER_APPROVAL_2026_10_14.md) (`NO_NEW_ARCHITECTURE_REQUIRED`), with [canonical platform resolution](../decisions/platform/PLAT059_NO_NEW_CANONICAL_OPTIMIZER_ARCHITECTURE.md), GITHUB010 12-axis matrix, GITHUB021 invariant reconciliation and a separately **unverified** D013 literal-sum concern. Historical [preliminary research](PLAT059/PLAT059_PRELIMINARY_CANONICAL_OPTIMIZER_COMPARISON_2026_10_14.md) and upstream [GraalJS (65 mechanisms)](PLAT059/PLAT059_GRAALJS_DETAILED_OPTIMIZATION_INVENTORY_2026_10_14.md) / [GraalPy (57 mechanisms)](PLAT059/PLAT059_GRAALPY_DETAILED_OPTIMIZATION_INVENTORY_2026_10_14.md) source audits remain intact; Protos `8c1a54c9`, GraalJS `3df14182`, GraalPy `a099d006` are pinned research baselines, not test or performance evidence. I101-B/C remains independently OPEN.
 
 - [`UPSTREAM005/`](UPSTREAM005/README.md) — Released 25.4.4.1.1 Bytecode DSL no-tracing generator compile-failure evidence and owner-submitted Oracle report; upstream tracking remains open, with no demonstrated Protos performance impact.
