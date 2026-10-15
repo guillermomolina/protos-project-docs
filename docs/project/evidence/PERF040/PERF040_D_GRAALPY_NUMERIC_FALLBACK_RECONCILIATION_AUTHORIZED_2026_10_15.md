@@ -1,5 +1,17 @@
 # PERF040-D — Owner-authorized reconciliation of numeric DSL fallback
 
+## 2026-10-15 — PERF040-D EXACT-PATCH HANDOFF WITHDRAWN (technical correction)
+
+The immediately preceding directive to **only remove `replaces` from the catch-all `@Specialization generic` is not an acceptable final GraalPy-equivalent reconciliation** and its implementation prompt must NOT be executed as closure of PERF040-D. It is at most a partial non-eviction fix: after a *generic-first* execution, the unconditional generic specialization can remain active and consume future numeric inputs before the numeric fast specializations are installed. Likewise, tests that check only guest results and inspect the absence of `replaces` cannot establish recovery of the numeric fast path.
+
+The Truffle DSL processor's negative-cache limitation for `@Fallback` with multiple `@Cached` instances (`limit = "3"`) and warning for `assumptions` reaching fallback are genuine. They are reasons to redesign the **separation of admission/guard caching and primitive/fallback execution**, not reasons to accept an unguarded catch-all as equivalent to GraalPy.
+
+**Revised acceptance required before an implementation-only handoff:** both **numeric -> generic -> numeric** and **generic -> numeric** on exactly one dynamically evaluated call site, for Integer addition and numeric ordering; with structural or generated-code evidence that primitive specializations can remain/become active, not only semantic-output tests. Preserve exact D013 selected-send fallback, Context/Prelude, existing assumptions/invalidation and I101 constant lowering. Do not assume a source-only annotation edit satisfies the objective. A fully specified source-verified implementation must be selected before delegating to a non-investigating implementation agent.
+
+This correction supersedes the previously published section titled "exact patch" and its prescribed `@Specialization`-only change as an **approved sufficient implementation**. The earlier text is retained below solely as chronology of a rejected intermediate proposal; its direction is no longer active. No product code has been changed or tested by this publication.
+
+---
+
 **Date:** 2026-10-15. **Formal owner:** [PERF040/#862](https://github.com/guillermomolina/protos/issues/862), OPEN/READY. **Implementation repository:** `guillermomolina/protos`. **Source baseline:** [Protos `df4142919d0222635ab8f9f8c54e7a1966e6edaa`](https://github.com/guillermomolina/protos/commit/df4142919d0222635ab8f9f8c54e7a1966e6edaa), `0.3.357-SNAPSHOT`. **Benchmark harness published main baseline (not independently proven as the user's local producer):** `guillermomolina/protos-benchmarks@1b28b390b61d5a59e9b1573ea30e26306a6dde86`.
 
 **Disposition:** The owner explicitly requested immediate implementation of the GraalPy/Protos fallback reconciliation and authorized PERF040 coordination and durable evidence publication. **PERF040-D is a bounded implementation slice of PERF040**, not a separately schedulable Issue. The implementation itself has **NOT** been performed or validated by this evidence publication; product `main` is unchanged by this record. No new PLAT decision, new optimizer architecture or language-semantic change is approved.
