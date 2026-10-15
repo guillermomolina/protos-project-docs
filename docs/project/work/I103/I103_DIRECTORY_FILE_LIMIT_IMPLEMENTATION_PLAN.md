@@ -1,6 +1,6 @@
 # I103 — Directory direct-file limit implementation plan
 
-Status: **IMPLEMENTATION STRATEGY ACCEPTED; I103 OPEN** (2026-10-15).
+Status: **IMPLEMENTATION STRATEGY ACCEPTED; I103-A PUBLISHED; I103 OPEN** (2026-10-15).
 Live owner: [I103 / guillermomolina/protos#897](https://github.com/guillermomolina/protos/issues/897).
 Baseline product revision: [`c7004f71cb05621dd5a7f89e46459542bd7d9c87`](https://github.com/guillermomolina/protos/commit/c7004f71cb05621dd5a7f89e46459542bd7d9c87).
 Scope: non-semantic physical organization of tracked first-party files; this is not a new Dxxx/PLATxxx architecture selection.
@@ -69,4 +69,10 @@ For every published slice, obtain actual current HEAD, changed-path set, `git di
 
 ## Evidence / limits
 
-The maintainer accepted this recommendation on 2026-10-15 and separately reported `git diff --check` clean and all local tests passing. **I103 code was not implemented in this coordination transaction**, so these general test reports are **not** I103 post-change test evidence. No build, tests, refactor, source publication or strict guard acceptance is claimed here. Implementation remains pending and the Issue must stay OPEN.
+The maintainer accepted this recommendation on 2026-10-15 and separately reported `git diff --check` clean and all local tests passing. **I103 code was not implemented in this coordination transaction**, so these general test reports are **not** I103 post-change test evidence. No build, tests, refactor, source publication or strict guard acceptance is claimed here. This paragraph documents the pre-implementation evidence state. Slice A has since been published as recorded below; the parent Issue must stay OPEN.
+
+## I103-A publication checkpoint (2026-10-15)
+
+The maintainer published [product commit `cfe41f56eec4ae9cb2c1b582d8ad05ee6ad0f36d`](https://github.com/guillermomolina/protos/commit/cfe41f56eec4ae9cb2c1b582d8ad05ee6ad0f36d): deterministic 25-direct-file index guard and 15 self-tests, staged-but-not-enforced manual Makefile targets, and responsibility-based `tools/`/`dist/` restructuring. The post-staging inventory reports 25 direct files in each root and at most 18 in each affected subdirectory. Human-reported integrated `make test` and focused validation are documented with the isolated distribution-test correction and its rerun.
+
+[Exact-revision I103-A publication and test evidence](../../evidence/I103/I103_A_PUBLISHED_DIRECTORY_GUARD_AND_TOOLS_DIST_LAYOUT_2026_10_15.md). Continue with approved I103-B work against actual current HEAD; I103 remains **OPEN**, and global guard enforcement remains deferred until zero first-party violations.
