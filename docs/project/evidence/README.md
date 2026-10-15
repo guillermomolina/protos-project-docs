@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`D203/`](D203/D203_ARGUMENT_BINDING_FALSIFICATION_2026_10_15.md) — [source-pinned Closure argument falsification and 12-axis decision comparison](D203/D203_ARGUMENT_BINDING_FALSIFICATION_2026_10_15.md), linked to [ratified language decision](../decisions/language/D203_FLEXIBLE_CLOSURE_ARGUMENT_BINDING.md) and pending [I105/#902](https://github.com/guillermomolina/protos/issues/902); no D203 product implementation or tests claimed.
+
 - [`I103-A published`](I103/I103_A_PUBLISHED_DIRECTORY_GUARD_AND_TOOLS_DIST_LAYOUT_2026_10_15.md) — [2026-10-15 guard and tools/dist reorganization](I103/I103_A_PUBLISHED_DIRECTORY_GUARD_AND_TOOLS_DIST_LAYOUT_2026_10_15.md) at exact Protos `cfe41f56eec4ae9cb2c1b582d8ad05ee6ad0f36d`: 25 direct files in each reorganized root, 15 guard self-tests, 278 tools tests, initial 233/234 distribution discovery plus corrected isolated rerun, toolchain verification and human-reported integrated `make test` PASS. I103/#897 remains OPEN; strict CI enforcement is deferred until final zero-violation closure.
 
 - [`PLAT060/`](PLAT060/PLAT060_B5_OWNER_APPROVAL_INVARIANT_RECONCILIATION_2026_10_15.md) — [2026-10-15 B5 owner-approved universal five-slot ordinary Closure-call ABI](PLAT060/PLAT060_B5_OWNER_APPROVAL_INVARIANT_RECONCILIATION_2026_10_15.md): evidence, upstream source pins, 12-axis GITHUB010 scores, GITHUB021 reconciliation and explicit supersession of NORMAL host headerless. [Ratified decision](../decisions/platform/PLAT060_B5_UNIVERSAL_ORDINARY_CLOSURE_CALL_ABI.md). Baseline Protos `df4142919d02`; no product migration or Graal performance improvement claimed.
