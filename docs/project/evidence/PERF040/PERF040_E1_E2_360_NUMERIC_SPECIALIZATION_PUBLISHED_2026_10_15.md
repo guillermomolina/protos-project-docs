@@ -42,7 +42,7 @@ The maintainer traced the three unrelated-looking handlers `PREPARE_CLOSURE_CALL
 **Human-reported, after the E1/E2 source changes:**
 
 - `188` focal tests PASS (reported in the coordination conversation; do not infer total suite count).
-- `make check-generated-bytecode-bci-pe` PASS, including the guard self-tests and dynamic compilation step, after review of the generated candidate.
+- Generator BCI guard classification reported **1,107 proven / 4 dynamic / zero RISK / zero UNKNOWN**, and the candidate was reviewed before adoption. An exact final `make check-generated-bytecode-bci-pe` PASS log, including the separate dynamic compilation check, was not supplied in the coordination messages.
 - Complete local `make test` PASS.
 - `git diff --check` clean.
 - Product commit and push completed; the commit and matching metadata were independently verified through GitHub.
