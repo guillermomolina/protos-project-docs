@@ -1,6 +1,6 @@
 # PLAT060 — Universal five-slot ordinary Closure-call ABI (B5)
 
-**Status:** RATIFIED — implementation pending. **Owner approval:** 2026-10-15, explicit statement “ok apruebo B5” following the B5/B6/C reevaluation and explicit earlier rejection of different NORMAL/DEBUG ABIs. **Issue:** [PLAT060/#895](https://github.com/guillermomolina/protos/issues/895). **Product source audited:** [guillermomolina/protos@df4142919d0222635ab8f9f8c54e7a1966e6edaa](https://github.com/guillermomolina/protos/commit/df4142919d0222635ab8f9f8c54e7a1966e6edaa). **Project-record baseline:** `guillermomolina/protos-project-docs@932e7b2042e58b3fd2121acfc3af2d310e5e23b0`. **Evidence:** [PLAT060 B5 research, falsifiers, scoring and GITHUB021 approval reconciliation](../../evidence/PLAT060/PLAT060_B5_OWNER_APPROVAL_INVARIANT_RECONCILIATION_2026_10_15.md).
+**Status:** RATIFIED — I102 implementation/validation in progress; see the 2026-10-15 approved caller-slot clarification below. **Owner approval:** 2026-10-15, explicit statement “ok apruebo B5” following the B5/B6/C reevaluation and explicit earlier rejection of different NORMAL/DEBUG ABIs. **Issue:** [PLAT060/#895](https://github.com/guillermomolina/protos/issues/895). **Product source audited:** [guillermomolina/protos@df4142919d0222635ab8f9f8c54e7a1966e6edaa](https://github.com/guillermomolina/protos/commit/df4142919d0222635ab8f9f8c54e7a1966e6edaa). **Project-record baseline:** `guillermomolina/protos-project-docs@932e7b2042e58b3fd2121acfc3af2d310e5e23b0`. **Evidence:** [PLAT060 B5 research, falsifiers, scoring and GITHUB021 approval reconciliation](../../evidence/PLAT060/PLAT060_B5_OWNER_APPROVAL_INVARIANT_RECONCILIATION_2026_10_15.md).
 
 ## Ratified decision (exact scope)
 
@@ -10,7 +10,7 @@
 0: invoked Closure, or the same invocation's published ProtosActivation
 1: receiver for an immediate method call, or DIRECT_CLOSURE_CALL marker
 2: methodHome for immediate method; owning Task or null for direct Closure call
-3: caller activation
+3: exact caller in unpublished-Closure state; retained caller or null in published-activation state (see approved addendum below)
 4: exact per-invocation returnHome (including existing proven-unobservable markers)
 5...: supplied positional arguments (arity = array.length - 5)
 ```
