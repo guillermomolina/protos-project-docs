@@ -1,5 +1,9 @@
 # PLAT059 — No additional canonical-optimizer architecture required
 
+## PLAT061-B bounded follow-on — owner approval 2026-10-16
+
+The project owner has now **separately** approved revised [PLAT061-B](PLAT061_COMPOSABLE_COMPILER_FACTS_AND_EMISSION_PLANNING.md): reuse/composition of existing compile-time proven facts with a minimal optional pre-Builder planning seam and one unchanged PLAT058 lowerer. This satisfies the **explicitly deferred future design gate** in this PLAT059 resolution, following a fresh comparative GITHUB010/GITHUB021 investigation ([evidence](../../evidence/PLAT061/PLAT061_B_COMPOSABLE_FACTS_RESEARCH_RATIFICATION_2026_10_16.md)). It does **not** authorize the distinct new general canonical value/effect optimizer, rewritten IR, automatic global invalidation manager, or different DSL interpreter family that PLAT059 rejected. Its 2026-10-15 frozen canonical Core dispatch clarification remains authoritative. Earlier historical text saying the bounded fact analysis was not yet approved is accurate *as of 2026-10-14/15* and is superseded **only** as to this bounded newly approved follow-on.
+
 ## Owner-approved clarification — 2026-10-15: canonical Core selection
 
 **Approval provenance:** In the active PLAT059/I101 correction conversation, the project owner explicitly approved replacing the overbroad "ordinary messages may be overridden" objection with the **Canonical Core Dispatch Invariant**, and approved propagating it to the normative specification, I101 and agent instructions. This is a bounded clarification of canonical Core behavior, **not** authorization for another optimizer architecture, not proof that every send is pure, and not a change to custom-object dispatch.
