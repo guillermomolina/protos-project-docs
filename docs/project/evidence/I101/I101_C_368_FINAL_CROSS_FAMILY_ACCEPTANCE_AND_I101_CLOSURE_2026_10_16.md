@@ -1,10 +1,10 @@
 # I101-C — Published cross-family acceptance and final I101 closure
 
 **Evidence date:** 2026-10-16
-**Formal work:** [I101 / #892](https://github.com/guillermomolina/protos/issues/892) — final implementation acceptance of [PLAT058-D / #891](https://github.com/guillermomolina/protos/issues/891).  
-**PROTOS_REVISION:** `42c602fc629873436bbc52748acc77391bdb2fc3`  
-**Published product:** [`42c602fc629873436bbc52748acc77391bdb2fc3`](https://github.com/guillermomolina/protos/commit/42c602fc629873436bbc52748acc77391bdb2fc3) on `main`.  
-**Product version:** `0.3.368-SNAPSHOT` in the published `pom.xml` and `CHANGELOG.md`.  
+**Formal work:** [I101 / #892](https://github.com/guillermomolina/protos/issues/892) — final implementation acceptance of [PLAT058-D / #891](https://github.com/guillermomolina/protos/issues/891).
+**PROTOS_REVISION:** `42c602fc629873436bbc52748acc77391bdb2fc3`
+**Published product:** [`42c602fc629873436bbc52748acc77391bdb2fc3`](https://github.com/guillermomolina/protos/commit/42c602fc629873436bbc52748acc77391bdb2fc3) on `main`.
+**Product version:** `0.3.368-SNAPSHOT` in the published `pom.xml` and `CHANGELOG.md`.
 **Evidence provenance:** public product commit, file paths and Maven version verified by GitHub readback. Focal/integrated test results and clean `git diff --check` were **reported by the maintainer**; the coordinating agent did not execute tests, compilation, graph captures or benchmarks.
 
 ## Final published I101-C scope
