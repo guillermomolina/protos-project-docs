@@ -1,0 +1,39 @@
+# I107 — compositional non-suspension facts and emission planning: published implementation and acceptance (2026-10-16)
+
+**Formal work:** [I107/#906](https://github.com/guillermomolina/protos/issues/906) (independent top-level implementation, `family:I`).
+**Ratified decisions:** [PLAT061-B/#903](https://github.com/guillermomolina/protos/issues/903) ([decision](../../decisions/platform/PLAT061_COMPOSABLE_COMPILER_FACTS_AND_EMISSION_PLANNING.md)) and [D204-A/#905](https://github.com/guillermomolina/protos/issues/905) ([decision](../../decisions/language/D204_SUSPENSION_CAPABILITY_AND_PROOF_BOUNDARIES.md)).
+**Dependency:** [I106/#904](https://github.com/guillermomolina/protos/issues/904), previously published at `d1697153256dc3952008cb40e507f09aea0f7101`.
+**Product revision:** [`c00b36c0edaf6678b7d8101de3a405124f179644`](https://github.com/guillermomolina/protos/commit/c00b36c0edaf6678b7d8101de3a405124f179644) — `I107: implement PLAT061-B compositional non-suspension facts and emission planning (0.3.370)`.
+**Version:** `0.3.370-SNAPSHOT` in the published `pom.xml` and `CHANGELOG.md`.
+**Independent performance owner:** [PERF042/#871](https://github.com/guillermomolina/protos/issues/871); I107 does not close or replace its benchmark acceptance.
+
+## Published changes (revision-verified)
+
+The product commit changes seven implementation/test files plus `pom.xml` and `CHANGELOG.md`:
+
+1. [`CanonicalNonSuspensionAnalysis.java`](https://github.com/guillermomolina/protos/blob/c00b36c0edaf6678b7d8101de3a405124f179644/src/main/java/com/guillermomolina/protos/execution/bytecode/lowering/CanonicalNonSuspensionAnalysis.java) adds a bounded compositional `PROVEN_NO_SUSPENSION` / `UNKNOWN` analysis with distinct `CANONICAL_BODY`, `EFFECTIVE_ROOT`, `COMPLETE_INVOCATION`, and `GUARDED_CALL_SITE` subjects. Unknown/dynamic operations retain their general physical path; closure construction does not imply body execution.
+2. [`CanonicalCompilationFacts.java`](https://github.com/guillermomolina/protos/blob/c00b36c0edaf6678b7d8101de3a405124f179644/src/main/java/com/guillermomolina/protos/execution/bytecode/lowering/CanonicalCompilationFacts.java) implements identity-, analysis- and scope-bounded query, publication, refinement, consumption and invalidation. `CANONICAL_BODY` is independent of lowerer-specific send selection. Publication outcomes explicitly distinguish accepted contributions from incompatible, consumed and invalidated rejections.
+3. [`CanonicalToBytecodeLowerer.java`](https://github.com/guillermomolina/protos/blob/c00b36c0edaf6678b7d8101de3a405124f179644/src/main/java/com/guillermomolina/protos/execution/bytecode/lowering/CanonicalToBytecodeLowerer.java) prepares a root plan before opening the Bytecode Builder, selects Boolean controls using the actual owner analysis/scope (including nested callbacks), and publishes effective-root refinements. It accounts for physical continuation paths at `emitContinuationComposition`; emission evidence prevents a previously consumed proof from falsely labeling a root. Redundant ordinary-call `InvocationEmission` analysis was removed without changing dynamic `Object.call` selection.
+4. [`ProtosSemanticBytecodeRootNode.java`](https://github.com/guillermomolina/protos/blob/c00b36c0edaf6678b7d8101de3a405124f179644/src/main/java/com/guillermomolina/protos/execution/bytecode/activation/ProtosSemanticBytecodeRootNode.java) clarifies the documented capability boundary: the root's emitted effective-body non-suspension claim is not a complete ordinary-invocation proof.
+5. [`ProtosI106ComposableCompilationFactsTest.java`](https://github.com/guillermomolina/protos/blob/c00b36c0edaf6678b7d8101de3a405124f179644/src/test/java/com/guillermomolina/protos/execution/compiler/optimizations/ProtosI106ComposableCompilationFactsTest.java) extends I106's identity/scope facts tests for I107.
+6. [`ProtosI107NonSuspensionFactsTest.java`](https://github.com/guillermomolina/protos/blob/c00b36c0edaf6678b7d8101de3a405124f179644/src/test/java/com/guillermomolina/protos/execution/compiler/optimizations/ProtosI107NonSuspensionFactsTest.java) verifies compositional forms, unknown cases, identity scope, cache isolation, callback lexical scopes, publication/refinement/rejection and consumption.
+7. [`ProtosI107ContinuationEmissionTest.java`](https://github.com/guillermomolina/protos/blob/c00b36c0edaf6678b7d8101de3a405124f179644/src/test/java/com/guillermomolina/protos/execution/compiler/optimizations/ProtosI107ContinuationEmissionTest.java) compares full physical instruction signatures against an independent handwritten Builder oracle, verifies nested selected Boolean-control elimination and absence of continuation operations, retains generic fallback for unknown/dynamic paths, and exercises reparse, profile and Context boundaries.
+
+The **positive physical omission** is an authorized, completely selected nested NORMAL Boolean-control expression: the emitted root matches the independent literal-root Builder oracle, eliminating the ordinary sends, callback roots and continuation composition. This does **not** prove that an arbitrary ordinary or dynamically replaceable Closure call can dispense with fallback. For such cases, `UNKNOWN` is absence of proof, not evidence of actual suspension.
+
+## Acceptance evidence and provenance
+
+- **Maintainer-reported focal validation:** 38 tests covered across I106 (8), I107 facts (22) and I107 emission (8). One newly written test initially failed because its Java source contained a literal backslash/newline escape in a Protos input; after correcting the fixture, its isolated rerun reported 1 test, 0 failures, 0 errors. No unresolved focal failure was reported.
+- **Maintainer-reported final integrated validation:** `make test -> PASSED`; `make check -> PASSED`; `git diff --check` clean, all local tests passed, and product commit pushed as version 0.3.370.
+- **Earlier diagnostic (superseded by final reported PASS):** a `make test` log showed Surefire confirmation tests passing while a slow-test guard reported timing anomalies and the follow-on Maven packaging step failed resolving a plugin because DNS was unavailable. The maintainer subsequently identified a hung pod and reported the complete `make test` and `make check` gates PASSED. The prior diagnostic is not treated as a measured Protos performance regression or as the final gate result.
+- **Independently verified publication:** the exact GitHub product commit exists, has parent `d1697153256dc3952008cb40e507f09aea0f7101`, contains the nine expected paths, and records `0.3.370-SNAPSHOT` in both implementation metadata files. The coordinating agent did not execute the owner's local tests or inspect unpublished host artifacts.
+
+## Preserved boundaries and non-claims
+
+I107 implements ratified [PLAT061-B](../../decisions/platform/PLAT061_COMPOSABLE_COMPILER_FACTS_AND_EMISSION_PLANNING.md) and [D204-A](../../decisions/language/D204_SUSPENSION_CAPABILITY_AND_PROOF_BOUNDARIES.md), not a new semantic decision. D013 live `Object.call` selection, D179 binding presence/replacement, D203 default/rest arguments, ReturnHome, Error/ensure, Future, cancellation/restart-without-replay, NORMAL/DEBUG and cross-Context behavior must remain observable as before. The universal PLAT060-B5 ABI is unchanged. No `spec/` file is changed by the product commit.
+
+The accepted result is a source/physical-topology and correctness publication. It does **not** include a fresh stable Tier-2 compilation graph, A/B benchmark, performance speedup, native-image acceptance, or independent external audit. PERF042 remains independent.
+
+## Disposition
+
+This record fixes the published revision and the maintainer's reported validation of I107. GitHub [I107/#906](https://github.com/guillermomolina/protos/issues/906) remains the authoritative live closure state; this historical evidence is not itself a design approval or a scheduling/Issue authority.
