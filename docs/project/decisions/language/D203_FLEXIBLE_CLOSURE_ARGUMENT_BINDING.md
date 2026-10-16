@@ -77,3 +77,9 @@ PREEXISTING_STANDARD_CONTRACTS=PROTECTED
 PLAT060_B5_ABI_CHANGE=NO
 PRODUCT_BUILDS_AND_TESTS_BY_AGENT=NO
 ```
+
+## I105 publication addendum — 2026-10-16
+
+The approval-time status above (`NORMATIVE_PRODUCT_AMENDMENT=NOT_YET_PUBLISHED`) is a historical statement about the ratification checkpoint, **not** the current product state. Its subsequent implementation has been published to [`guillermomolina/protos@ddf93eebd4923aa143b56a1d941cfa4ce758fc0a`](https://github.com/guillermomolina/protos/commit/ddf93eebd4923aa143b56a1d941cfa4ce758fc0a), version `0.3.367-SNAPSHOT`, normative spec revision `0.1.460`. The [I105 exact-revision publication record](../../evidence/I105/I105_367_D203_FLEXIBLE_CLOSURE_BINDING_PUBLISHED_2026_10_16.md) documents the concrete parser, runtime, library/Core, tooling, test and spec migration. The maintainer reports all local tests PASS and clean `git diff --check`; these were not run independently by the documentation coordinator. No Native Image or performance measurement is inferred.
+
+This records **implementation of the same ratified D203 decision**, not another semantic amendment, reopen of D003/D202/I104, or newly approved architecture.
