@@ -43,3 +43,7 @@ PLAT058/#891 already ratified one shared Canonical-to-Bytecode lowerer with immu
 - Full GITHUB010/021 packet with competitive alternatives, peer reference matrix, comparative 1–5 scoring and strongest counterexample is **pending**. No candidate is yet selected, and no product implementation is authorized.
 
 **Research outcome:** `ONE_GENERATOR_GOAL=APPROVED`; `MECHANISM=UNSELECTED`; `IMPLEMENTATION=NOT_AUTHORIZED`; `TESTS_EXECUTED=NO`; `PRODUCT_MODIFIED=NO`.
+
+## Concurrent HEAD movement — intake readback
+
+After the original evidence snapshot was inspected, `guillermomolina/protos/main` advanced to [`62ca4eb602432f3457c080954b716f8466b76983`](https://github.com/guillermomolina/protos/commit/62ca4eb602432f3457c080954b716f8466b76983) (I108: specialized Closure invocation operations, 0.3.373). This commit changes **both** generated-root Java files, `CanonicalToBytecodeLowerer.java` and tests. Therefore prior operation counts and specialization examples are explicitly **historical at `30b5c617`**, not asserted to describe current HEAD. PLAT065-RESEARCH-A MUST resolve HEAD anew, enumerate concrete post-I108 changes and independently rebuild the complete operation collision and consumer map. No product file was modified by this evidence publication.
