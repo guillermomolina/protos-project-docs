@@ -109,3 +109,24 @@ Materially inspected: `AGENTS.md`, `AGENTS.work/DESIGN.md`, `AGENTS.work/REFEREN
 Counts above are **textual current-source observations** and selected-producer searches. They do not prove dead code, generated code size, runtime impact, a failing test, or a Truffle bug. Other peers are evidence of possible idioms, not conformance authority. Reinspect actual product HEAD before each child study, preserve concurrent changes, and publish per-child results under this canonical evidence owner.
 
 **PLAT064 remains OPEN** pending documented classification of all bounded families and GitHub structural reconciliation. I110 stays independently actionable and its progress is not a parent completion requirement.
+
+---
+
+## PLAT064-A — Final child reconciliation (2026-10-17)
+
+**Update type:** additive, revision-pinned disposition to the historical triage snapshot above; this does not retroactively alter its preliminary findings.  
+**Owning child:** [PLAT064-A / #913](https://github.com/guillermomolina/protos/issues/913), native sub-issue of [PLAT064 / #911](https://github.com/guillermomolina/protos/issues/911).  
+**Fresh product baseline:** [`e07340c2ea6ac26278a04495e145a08e3bb2cd4d`](https://github.com/guillermomolina/protos/commit/e07340c2ea6ac26278a04495e145a08e3bb2cd4d) / `0.3.371-SNAPSHOT`.  
+**Dossier:** [PLAT064-A BCI/scope/materialized-local final KEEP evidence](PLAT064_A_BCI_SCOPE_MATERIALIZED_LOCAL_KEEP_2026_10_17.md).  
+**Owner disposition:** `KEEP / NO_ACTION`; no product mutation, new Ixxx, further speculative proof-search or performance gate.
+
+| Parent matrix row | Final classification | Disposition / existing owner |
+| --- | --- | --- |
+| #1 — BCI in frame | `CONFIG_ONLY` | **KEEP** the current false default. Fast in-operation BCI and updated location metadata already serve verified consumers; global storage adds per-frame cost without demonstrated need. |
+| #2 — Block scoping | `REQUIRED_SEMANTIC_CHOICE` | **KEEP** true. Semantic bindings are created directly under Root; Block-scoped compiler temporaries are intentionally short-lived. |
+| #3 — Materialized locals | `REQUIRED_SEMANTIC_CHOICE` semantic root; `CONFIG_ONLY` helper reachability not fully proven | **KEEP** true in both roots. Semantic root emits `LoadLocalMaterialized`; helper has materialized accessors; no justified deletion. PLAT064-C retains independent general generator-operation census without being a blocker for A. |
+| #16 — Cached/uncached | `REQUIRED_SEMANTIC_CHOICE` current metadata strategy | **KEEP** `BytecodeLocation.update()`, current declaring `BytecodeNode` and existing guards/regressions; no distinct failure reproduced. |
+
+The comparison includes SWALox, TrufflePascal, Bridje, SimpleLanguage, Hara, GraalPy, Cadenza, GraalJS, TruffleRuby, Pkl, Espresso, CPython and V8, at pinned sources in the dossier. No system was treated as a vote by annotation. The plausible cross-group `MaterializedLocalAccessor`/frame mismatch was considered adversarially but no reachable product defect was demonstrated. Existing regression sources were inspected, **not run** for this investigation. Neither an exhaustive correctness proof nor byte identity of the pinned upstream Truffle branch with the exact released 25.4.4.1.1 processor is claimed.
+
+**PLAT064-A closure condition:** source-backed dossier published and parent rows reconciled; **completed with KEEP**. Other children PLAT064-B/C/D/E stay open; parent PLAT064/#911 remains open until its own scope is complete. I110/#912 remains independent.

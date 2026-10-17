@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`PLAT064-A / #913 — KEEP / NO_ACTION`](PLAT064/PLAT064_A_BCI_SCOPE_MATERIALIZED_LOCAL_KEEP_2026_10_17.md) — [Final cross-Bytecode-DSL BCI, block scoping, materialized-local and cached/uncached investigation](PLAT064/PLAT064_A_BCI_SCOPE_MATERIALIZED_LOCAL_KEEP_2026_10_17.md), pinned to Protos `e07340c2ea6ac26278a04495e145a08e3bb2cd4d` / `0.3.371-SNAPSHOT`; Truffle defaults and physical-owner lifetime, cross-language controls, source regressions and explicitly retained uncertainty. No confirmed defect, no new implementation, no executed tests or performance claim; reconciles PLAT064 matrix rows 1/2/3/16 while parent #911 and other children remain open.
+
 - [`I109 / 0.3.371 completed`](I109/I109_371_FINAL_SHARED_STRUCTURED_EACH_IMPLEMENTATION_CLOSURE_2026_10_17.md) — [Final PLAT063-C shared structured standard `each` implementation and acceptance](I109/I109_371_FINAL_SHARED_STRUCTURED_EACH_IMPLEMENTATION_CLOSURE_2026_10_17.md), pinned to product `e07340c2ea6ac26278a04495e145a08e3bb2cd4d` / `0.3.371-SNAPSHOT`; I109-A five-to-one structural consolidation, reconciled generated BCI guard, maintainer-reported `make test` and `make check` PASS, and separately verified two-commit version finalization. No unmeasured runtime improvement claimed.
 
 - [`I109-A functional checkpoint (historical)`](I109/I109_A_SHARED_STRUCTURED_EACH_IMPLEMENTATION_CHECKPOINT_2026_10_17.md) — [Earlier `eed3098b` code publication](I109/I109_A_SHARED_STRUCTURED_EACH_IMPLEMENTATION_CHECKPOINT_2026_10_17.md), accurately recording the temporary version/changelog omission later corrected by `e07340c2`. The final I109 closure above supersedes the checkpoint's then-pending status.
