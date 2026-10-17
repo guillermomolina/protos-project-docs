@@ -1,0 +1,32 @@
+# I109-A — shared structured standard `each`: published functional checkpoint (2026-10-17)
+
+**Formal owner:** [I109/#910](https://github.com/guillermomolina/protos/issues/910), consuming owner-ratified [PLAT063-C/#908](https://github.com/guillermomolina/protos/issues/908) and the [ratified platform decision](../../decisions/platform/PLAT063_SHARED_STRUCTURED_STANDARD_EACH_LOWERING.md).
+**Product source checkpoint:** [`eed3098b59ee86af4639e2710ce38999a4707d39`](https://github.com/guillermomolina/protos/commit/eed3098b59ee86af4639e2710ce38999a4707d39), parent [`c00b36c0edaf6678b7d8101de3a405124f179644`](https://github.com/guillermomolina/protos/commit/c00b36c0edaf6678b7d8101de3a405124f179644).
+**Status at evidence publication:** product functionality/test sources and generated BCI baseline **pushed**; project implementation metadata **NOT YET PUBLISHED**, so I109 publication closure **PENDING**.
+**Published Maven version:** still `0.3.370-SNAPSHOT` in `pom.xml`; `CHANGELOG.md` latest entry still I107/0.3.370. No I109 version increment is present in the product commit. Do **not** describe I109 as released in 0.3.371 until a separately verified corrective product commit exists.
+
+## Independently verified product delta
+
+Exactly six product files were changed in the published commit (GitHub compare/fetch, not just a local report):
+
+1. [`ProtosBytecodeRootNode.java`](https://github.com/guillermomolina/protos/blob/eed3098b59ee86af4639e2710ce38999a4707d39/src/main/java/com/guillermomolina/protos/execution/bytecode/activation/ProtosBytecodeRootNode.java): six shared structured-local-`each` adapter operations for existing `PreparedLocalEachCall` families.
+2. [`ProtosStructuredDispatchLowerer.java`](https://github.com/guillermomolina/protos/blob/eed3098b59ee86af4639e2710ce38999a4707d39/src/main/java/com/guillermomolina/protos/execution/bytecode/lowering/ProtosStructuredDispatchLowerer.java): five previously duplicated C-prime collection branches converge into one shared Bytecode DSL `While` with its existing `TryFinally` and scoped callback invocation.
+3. [`ProtosI109ASharedLocalEachLoweringTest.java`](https://github.com/guillermomolina/protos/blob/eed3098b59ee86af4639e2710ce38999a4707d39/src/test/java/com/guillermomolina/protos/execution/ProtosI109ASharedLocalEachLoweringTest.java): shared-emission structural assertions.
+4. [`ProtosI109ABytecodeMaterializationTest.java`](https://github.com/guillermomolina/protos/blob/eed3098b59ee86af4639e2710ce38999a4707d39/src/test/java/com/guillermomolina/protos/execution/ProtosI109ABytecodeMaterializationTest.java): materialized Bytecode operation/topology assertions.
+5. [`ProtosI109ADynamicLocalEachTest.java`](https://github.com/guillermomolina/protos/blob/eed3098b59ee86af4639e2710ce38999a4707d39/src/test/java/com/guillermomolina/protos/execution/ProtosI109ADynamicLocalEachTest.java): all five families, dynamic callback, snapshot/receiver and transfer, cancellation of suspended callback, NORMAL/DEBUG and reparse/root/CallTarget invariants. The six JUnit test methods ultimately passed across the initial five-pass run and focused repair of the sole failing reparse assertion.
+6. [`java_generated_bytecode_bci_pe_baseline.json`](https://github.com/guillermomolina/protos/blob/eed3098b59ee86af4639e2710ce38999a4707d39/tools/java_generated_bytecode_bci_pe_baseline.json): reviewed generated BCI topology delta, **12 added proven transitions** (six operations in two cached dispatchers), **6 stale transitions removed** for Map operations absent only from `CachedBytecodeNode.continueAt`; those six Map operations still appear in `CachedBytecodeNodeTailCall.continueAt`.
+
+No product `pom.xml`, `CHANGELOG.md`, normative `spec/`, foreign-`each` lowering or generic Closure-call ABI change is part of this commit.
+
+## Maintainer-reported validation and quantified emitted structure
+
+- **Full integrated validation:** `make test` **PASS**; `make check` **PASS** after strictly reviewing/reconciling the BCI topology baseline; `git diff --check` clean. The first `make check` reported 12 new, 6 stale sites and 0 `RISK`/0 `UNKNOWN`; the maintainer then reported `make check` PASS.
+- **Structural audit** comparing `emitPreparedInvocation` at local HEAD-before-I109 with the final candidate: emitted `While` 15→11 (−4), `TryFinally` 29→25 (−4), `IfThenElse` 22→18 (−4), `createLocal` 42→34 (−8), and canonical `each` branches 5→1. `I109_SHARED_STRUCTURED_EACH=PASS` reported.
+- **Focal validation:** shared lowering, Bytecode materialization and semantic dynamic suites passed; cancellation and NORMAL/DEBUG root reparse included. Reparse's initial fixture assertion was too restrictive about an unreachable `load.null / clear.local* / return` epilogue; a bounded test-only fix was followed by 1 targeted JUnit test PASS (0 failures, 0 errors). The earlier cancellation test and other five methods had passed. No production regression was implicated by that fixture assertion.
+- **Evidence provenance:** full gate results and structural counters are maintainer-reported local output, not independently executed by the documentation agent; published file identities and missing implementation-version files were independently verified via GitHub at the exact product SHA.
+
+## Non-claims and open publication obligation
+
+The accepted outcome is **physical Bytecode emission consolidation with regression coverage**. Fewer emitted operations do **not** prove smaller final Graal IR, reduced per-element overhead, lower allocation or faster execution. [PERF045/#889](https://github.com/guillermomolina/protos/issues/889) retains independent measured `each` performance and more aggressive inlining ownership; [I108/#909](https://github.com/guillermomolina/protos/issues/909) retains Closure-invocation consolidation. No new Native Image acceptance run is claimed.
+
+**Outstanding requirement:** the repository's implementation-version rule requires a current next patch `-SNAPSHOT` in `pom.xml` and a matching I109 root `CHANGELOG.md` entry. The maintainer must publish the corrective metadata through the human-executor path. No repeat of already-green behavioral tests is implied by metadata-only correction if runtime/build dependencies stay unchanged. After publication, verify the exact corrective SHA and re-reconcile the final version record and live I109 closure state. This checkpoint is an honest immutable snapshot, **not** the final I109 closure evidence.
