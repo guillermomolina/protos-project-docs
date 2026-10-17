@@ -1,12 +1,12 @@
 # I111 — A publication and B implementation / Human Executor handoff
 
-**Date:** 2026-10-17  
-**Formal owner:** [I111/#919](https://github.com/guillermomolina/protos/issues/919)  
-**Decision:** [PLAT065-A/#918](https://github.com/guillermomolina/protos/issues/918) (ratified; implementation separate)  
-**Product repository:** `guillermomolina/protos`  
-**Evidence repository:** `guillermomolina/protos-project-docs`  
-**Exact product publication:** [`63a178e3ea19af1caf3e2e43e947130c5bcfc792`](https://github.com/guillermomolina/protos/commit/63a178e3ea19af1caf3e2e43e947130c5bcfc792), `I111: implement PLAT065-A explicit semantic RootTag emission (0.3.375)`.  
-**Validation provenance:** project owner reports local `git diff --check` clean and all local tests PASS after I111-A, including the I112 guard suite. This record did not run tests, re-verify CI, or independently read full console output.  
+**Date:** 2026-10-17
+**Formal owner:** [I111/#919](https://github.com/guillermomolina/protos/issues/919)
+**Decision:** [PLAT065-A/#918](https://github.com/guillermomolina/protos/issues/918) (ratified; implementation separate)
+**Product repository:** `guillermomolina/protos`
+**Evidence repository:** `guillermomolina/protos-project-docs`
+**Exact product publication:** [`63a178e3ea19af1caf3e2e43e947130c5bcfc792`](https://github.com/guillermomolina/protos/commit/63a178e3ea19af1caf3e2e43e947130c5bcfc792), `I111: implement PLAT065-A explicit semantic RootTag emission (0.3.375)`.
+**Validation provenance:** project owner reports local `git diff --check` clean and all local tests PASS after I111-A, including the I112 guard suite. This record did not run tests, re-verify CI, or independently read full console output.
 **Lifecycle:** I111-A product publication complete; **I111/#919 remains open** for single-generator migration (B) and cleanup/acceptance (C). No new issue necessary.
 
 ## I111-A published contract
@@ -59,9 +59,9 @@ No new external research, web, or other repository checkout is required for B; t
 - Respect the agent/human-executor split: **agent may edit only**, no build/tests/scripts/product Git state changes, no version/CHANGELOG until green human validation. After tests, human edits metadata and publishes; **no tests after metadata**.
 - If full B cannot be produced as a coherent passing publication, stop and report the exact blocked contract rather than leaving a purported released half-merged generator. Keep I111-C cleanup distinct only when it can be a coherent subsequent publication.
 
-`I111_A_PRODUCT_SHA=63a178e3ea19af1caf3e2e43e947130c5bcfc792`  
-`I111_A_OWNER_REPORTED_DIFF_CHECK=PASS`  
-`I111_A_OWNER_REPORTED_LOCAL_TESTS=PASS`  
-`I112_DEFAULT_INSTRUCTION_BUDGET_PRESERVED_BY_TEST=LE16`  
-`I111_OVERALL=OPEN_PENDING_B_C`  
+`I111_A_PRODUCT_SHA=63a178e3ea19af1caf3e2e43e947130c5bcfc792`
+`I111_A_OWNER_REPORTED_DIFF_CHECK=PASS`
+`I111_A_OWNER_REPORTED_LOCAL_TESTS=PASS`
+`I112_DEFAULT_INSTRUCTION_BUDGET_PRESERVED_BY_TEST=LE16`
+`I111_OVERALL=OPEN_PENDING_B_C`
 `NEXT_SLICE=I111_B_IMPLEMENTATION`
