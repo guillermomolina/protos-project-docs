@@ -1,3 +1,5 @@
+> **HISTORICAL RESEARCH HANDOFF — SUPERSEDED (2026-10-17).** PLAT065 Candidate A is now explicitly approved and durably ratified. The NEXT SLICE below describes the earlier research state only. The current **I111 implementation** Agent/Human Executor handoff is [here](PLAT065_A_I111_AGENT_HUMAN_EXECUTOR_IMPLEMENTATION_HANDOFF_2026_10_17.md); do not execute this document's old research-only handoff as current work.
+
 # PLAT065 — Research-only agent and human-executor handoff
 
 **Issue:** [PLAT065/#918](https://github.com/guillermomolina/protos/issues/918).
