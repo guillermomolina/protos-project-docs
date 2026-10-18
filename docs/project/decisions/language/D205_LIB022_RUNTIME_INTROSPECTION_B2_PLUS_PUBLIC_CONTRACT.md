@@ -1,10 +1,10 @@
 # D205 — LIB022 runtime and diagnostic introspection: Candidate B / B2+ public contract
 
-**Status:** RATIFIED — owner-selected **Candidate B, exact B2+ public contract** on **2026-10-18**.  
-**Formal decision:** [D205/#922](https://github.com/guillermomolina/protos/issues/922).  
-**Parent:** [LIB022/#921](https://github.com/guillermomolina/protos/issues/921).  
-**Product basis:** [guillermomolina/protos@6ad7ab2864e8e48fc546dce5d4cd61472a026819](https://github.com/guillermomolina/protos/commit/6ad7ab2864e8e48fc546dce5d4cd61472a026819), `0.3.376-SNAPSHOT`, GraalVM `25.4.4.1.1`, observed during design research, **not** an instruction to check out that revision during implementation.  
-**Earlier owner selection and research:** [LIB022-0 Candidate B evidence](../../evidence/LIB022/LIB022_0_CANDIDATE_B_RESEARCH_AND_OWNER_SELECTION_2026_10_18.md) at `d2f083816a9b6772dd0dfadc9b64774fc6044b2e`.  
+**Status:** RATIFIED — owner-selected **Candidate B, exact B2+ public contract** on **2026-10-18**.
+**Formal decision:** [D205/#922](https://github.com/guillermomolina/protos/issues/922).
+**Parent:** [LIB022/#921](https://github.com/guillermomolina/protos/issues/921).
+**Product basis:** [guillermomolina/protos@6ad7ab2864e8e48fc546dce5d4cd61472a026819](https://github.com/guillermomolina/protos/commit/6ad7ab2864e8e48fc546dce5d4cd61472a026819), `0.3.376-SNAPSHOT`, GraalVM `25.4.4.1.1`, observed during design research, **not** an instruction to check out that revision during implementation.
+**Earlier owner selection and research:** [LIB022-0 Candidate B evidence](../../evidence/LIB022/LIB022_0_CANDIDATE_B_RESEARCH_AND_OWNER_SELECTION_2026_10_18.md) at `d2f083816a9b6772dd0dfadc9b64774fc6044b2e`.
 **Role:** durable, non-normative ratification and evidence. Public Standard Library behavior must be reconciled with the applicable normative `spec/` owners when implemented. This record is **not** evidence that any code, tests or Native Image feature already shipped.
 
 ## Exact owner-approval provenance
