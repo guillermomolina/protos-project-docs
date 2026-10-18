@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`I114 / 0.3.380 — decoded Tier-1 BGV physical-path attribution`](I114/I114_380_TIER1_BGV_PATH_ATTRIBUTION_2026_10_18.md) — Graph `3501`, SHA-256-pinned binary readback: 1,080 After TruffleTier IR nodes, 13 residual opaque calls, no expanded generic prepared-call fallback, conditional admission/local authority/certificate and caller materialization, and cold suspension continuation. I114's full Section F and PERF042 gates remain pending.
+
 - [`I114 / 0.3.380 — terminal Closure pre-admission and first Tier-1 observation`](I114/I114_380_TERMINAL_CLOSURE_PREADMISSION_PUBLICATION_AND_TIER1_2026_10_18.md) — [Published product revision](https://github.com/guillermomolina/protos/commit/fcc5c405413d70df546c5a9e5fa2c57b78c8ec91), maintainer-reported clean diff-check and local tests PASS. The real bare `identity(1)` TOP_LEVEL Tier-1 trace records **1,080 After TruffleTier / 3,505 final IR** at CompId 3501, with BGV retained only in the maintainer's local checkout. This is not a matched A/B or GraalPy comparison; I114's physical graph-reachability gate and PERF042 remain open.
 
 - [`LIB022-A / 0.3.378 — lazy `std:runtime` accepted`](LIB022/LIB022_A_378_RUNTIME_METADATA_FINAL_ACCEPTANCE_2026_10_18.md) — D205 B2+ `std:runtime.info/0` on-demand native facility, exact five-field frozen snapshot, Actor-local lazy module setup, CLI version identity and 0.1.461 specification; product pinned at `74c4d2b41102a3dfed5e382e4b62f4b2df7fa427` / `0.3.378-SNAPSHOT`. Maintainer-reported Java/integrated/native validation; LIB022-A completed, parent LIB022 remains open for `std:inspect`.
