@@ -1,10 +1,10 @@
 # I113 — unified Bytecode DSL operation consolidation: 0.3.381 publication
 
-**Date:** 2026-10-18  
-**Implementation owner:** [I113/#927](https://github.com/guillermomolina/protos/issues/927)  
-**Related historical research:** [PLAT064-C/#915](https://github.com/guillermomolina/protos/issues/915) and its [107-operation source-signature feasibility screen](https://github.com/guillermomolina/protos/issues/915#issuecomment-6247083595)  
-**Exact published product revision:** [`136ab787a7e76c295f3cae299cefa016749ed68c`](https://github.com/guillermomolina/protos/commit/136ab787a7e76c295f3cae299cefa016749ed68c)  
-**Product commit subject:** `I113: consolidate the Bytecode DSL operation surface to 144 operations (0.3.381)`  
+**Date:** 2026-10-18
+**Implementation owner:** [I113/#927](https://github.com/guillermomolina/protos/issues/927)
+**Related historical research:** [PLAT064-C/#915](https://github.com/guillermomolina/protos/issues/915) and its [107-operation source-signature feasibility screen](https://github.com/guillermomolina/protos/issues/915#issuecomment-6247083595)
+**Exact published product revision:** [`136ab787a7e76c295f3cae299cefa016749ed68c`](https://github.com/guillermomolina/protos/commit/136ab787a7e76c295f3cae299cefa016749ed68c)
+**Product commit subject:** `I113: consolidate the Bytecode DSL operation surface to 144 operations (0.3.381)`
 **Source version:** `0.3.381-SNAPSHOT`. This is a source implementation version; no release, tag, Native Image run, or distributed binary is claimed.
 
 ## Revision-pinned result
