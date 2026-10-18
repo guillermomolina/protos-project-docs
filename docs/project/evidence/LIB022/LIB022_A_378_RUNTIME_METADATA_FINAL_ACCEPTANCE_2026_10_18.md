@@ -1,9 +1,9 @@
 # LIB022-A — `std:runtime` lazy metadata: implementation and acceptance (2026-10-18)
 
-**Owner:** [LIB022-A / #923](https://github.com/guillermomolina/protos/issues/923); parent [LIB022 / #921](https://github.com/guillermomolina/protos/issues/921).  
-**Approved public contract:** [D205 / #922](../../decisions/language/D205_LIB022_RUNTIME_INTROSPECTION_B2_PLUS_PUBLIC_CONTRACT.md), owner-ratified Candidate B / B2+.  
-**Final product revision:** [`74c4d2b41102a3dfed5e382e4b62f4b2df7fa427`](https://github.com/guillermomolina/protos/commit/74c4d2b41102a3dfed5e382e4b62f4b2df7fa427) (`0.3.378-SNAPSHOT`; normative specification revision `0.1.461`).  
-**Status:** LIB022-A implementation and publication **COMPLETE**. LIB022 parent **OPEN** pending the distinct `std:inspect` implementation slice.  
+**Owner:** [LIB022-A / #923](https://github.com/guillermomolina/protos/issues/923); parent [LIB022 / #921](https://github.com/guillermomolina/protos/issues/921).
+**Approved public contract:** [D205 / #922](../../decisions/language/D205_LIB022_RUNTIME_INTROSPECTION_B2_PLUS_PUBLIC_CONTRACT.md), owner-ratified Candidate B / B2+.
+**Final product revision:** [`74c4d2b41102a3dfed5e382e4b62f4b2df7fa427`](https://github.com/guillermomolina/protos/commit/74c4d2b41102a3dfed5e382e4b62f4b2df7fa427) (`0.3.378-SNAPSHOT`; normative specification revision `0.1.461`).
+**Status:** LIB022-A implementation and publication **COMPLETE**. LIB022 parent **OPEN** pending the distinct `std:inspect` implementation slice.
 **Role:** pinned implementation/acceptance evidence, **not** a normative Standard Library contract or a performance benchmark.
 
 ## Published artifact and verified revision
