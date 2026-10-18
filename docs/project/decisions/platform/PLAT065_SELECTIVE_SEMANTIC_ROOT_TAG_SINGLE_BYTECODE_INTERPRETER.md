@@ -38,3 +38,14 @@ A and B/C may be regrouped when required by real dependency/buildability. Every 
 `OWNER_APPROVAL=EXPLICIT`
 `SPEC_CHANGE=NO`
 `PRODUCT_IMPLEMENTATION=PENDING_I111`
+
+## Implementation result — 2026-10-18 (later checkpoint)
+
+**I111 implementation COMPLETE**, separate from the historical 2026-10-17 ratification snapshot above. I111-A was published as [`63a178e3ea19af1caf3e2e43e947130c5bcfc792`](https://github.com/guillermomolina/protos/commit/63a178e3ea19af1caf3e2e43e947130c5bcfc792) (0.3.375). The unified interpreter, generator retirement and originally planned C acceptance were published together as [`edcb758fadb0e749cd45711cd664044d0b6db6bd`](https://github.com/guillermomolina/protos/commit/edcb758fadb0e749cd45711cd664044d0b6db6bd) (0.3.377-SNAPSHOT); the owner reports all local tests green and `git diff --check` clean.
+
+The surviving generator is **`ProtosBytecodeRootNode`**, not the historically proposed `ProtosSemanticBytecodeRootNode`. It owns both kinds of physical root under explicit `semanticActivationRoot` classification. The old semantic Java source file is gone and a single `@GenerateBytecode` is retained. Later I112 added the real `@Prolog` and `@EpilogReturn` before this implementation was published; the historical no-prolog statement in the original approval describes the earlier baseline only. The unchanged I112 FULL identity budget test retains target `<=16` across the two source roots, with independent ceiling 17.
+
+**Completion evidence:** [I111 closure and validation provenance](../../evidence/I111/I111_PLAT065_UNIFIED_BYTECODE_COMPLETION_2026_10_18.md). This status note does not alter the owner-ratified architecture or retrofit later source facts into historical evidence.
+
+`CURRENT_PRODUCT_REVISION=edcb758fadb0e749cd45711cd664044d0b6db6bd`
+`CURRENT_PRODUCT_IMPLEMENTATION=COMPLETE_I111`
