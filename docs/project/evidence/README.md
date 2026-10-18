@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`LIB022-A / 0.3.378 — lazy `std:runtime` accepted`](LIB022/LIB022_A_378_RUNTIME_METADATA_FINAL_ACCEPTANCE_2026_10_18.md) — D205 B2+ `std:runtime.info/0` on-demand native facility, exact five-field frozen snapshot, Actor-local lazy module setup, CLI version identity and 0.1.461 specification; product pinned at `74c4d2b41102a3dfed5e382e4b62f4b2df7fa427` / `0.3.378-SNAPSHOT`. Maintainer-reported Java/integrated/native validation; LIB022-A completed, parent LIB022 remains open for `std:inspect`.
+
 - [`PLAT066 / #924 — initial source-path evidence (2026-10-18)`](PLAT066/PLAT066_INITIAL_SOURCE_TRACE_AND_UNRESOLVED_MECHANISM_LEDGER_2026_10_18.md) — Initial Protos 0.3.377 vs pinned GraalPy 25.4.4 Closure DSL physical-path traces, verified direct/fallback/activation source anchors and explicitly open replacement-algorithm/IR-attribution requirements. This is **incomplete investigation evidence**, not a ratified PLAT, an executable I, a proven node-removal percentage or a new graph measurement.
 
 - [`PERF042 / 0.3.376 diagnostic publication`](PERF042/PERF042_376_REAL_IDENTITY_GRAPH_DIAGNOSTICS_PUBLISHED_2026_10_18.md) — [Pinned test-only publication](PERF042/PERF042_376_REAL_IDENTITY_GRAPH_DIAGNOSTICS_PUBLISHED_2026_10_18.md) at Protos [`6ad7ab2864e8`](https://github.com/guillermomolina/protos/commit/6ad7ab2864e8e48fc546dce5d4cd61472a026819): restored original semantic oracle, added opt-in Tier-1/Tier-2 real-root BGV capture, maintainer-reported focal and integrated tests PASS. Prior 4,804/4,970-node local BGVs are explicitly prepublication experimental evidence, not a clean new-head A/B or matched GraalPy comparison; PERF042/#871 remains OPEN.
