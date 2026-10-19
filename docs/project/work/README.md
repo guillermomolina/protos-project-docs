@@ -12,6 +12,8 @@ migrate it explicitly rather than duplicating or moving it opportunistically.
 
 Current role-first work records:
 
+- [`I116/I116_B_AGENT_HUMAN_EXECUTOR_HANDOFF.md`](I116/I116_B_AGENT_HUMAN_EXECUTOR_HANDOFF.md) — I116-B implementation-ready, test-only real DAP TCP acceptance over optimized constant-return and scalar-local bodies, building on human-published I116-A `0.3.383` without changing language semantics or introducing a new Issue.
+
 - [`I104/I104_NORMAL_CLOSURE_ENTRY_COMPLIANCE_CLOSURE_2026_10_15.md`](I104/I104_NORMAL_CLOSURE_ENTRY_COMPLIANCE_CLOSURE_2026_10_15.md)
   — I104 A/B/C published compliance closure at Protos `2263d4f66294817524052b9782ffee1562848a50` / `0.3.365-SNAPSHOT`; human-reported full tests and constant-local PE guard PASS; owner clarified that Tier-2 benchmarking is not an I104 acceptance gate.
 
