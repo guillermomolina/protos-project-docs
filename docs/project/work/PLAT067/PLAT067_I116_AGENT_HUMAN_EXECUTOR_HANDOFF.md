@@ -1,5 +1,9 @@
 # PLAT067 / D208 / I116 — Agent & Human Executor Handoff
 
+## Next slice — I116-B (test-only DAP TCP acceptance; implementation)
+
+**Current autonomous agent + human executor handoff:** [I116-B real DAP optimized-code acceptance](../I116/I116_B_AGENT_HUMAN_EXECUTOR_HANDOFF.md). This **supersedes the old pending/optional I116-B handoff** and is now the active bounded remaining work inside [I116/#935](https://github.com/guillermomolina/protos/issues/935). I116-A remains immutable and published at `12d9672df656bc72bb7a41a14843876bc01d20e5`. No new issue or new design approval is required. Agent edits local product tests only; the human runs all builds/tests and publishes product changes.
+
 ## Current publication status — I116-A published (2026-10-19)
 
 **Product commit:** [`12d9672df656bc72bb7a41a14843876bc01d20e5`](https://github.com/guillermomolina/protos/commit/12d9672df656bc72bb7a41a14843876bc01d20e5) (`0.3.383-SNAPSHOT`). The human maintainer reports clean `git diff --check` and all local tests PASS. See [immutable I116-A publication evidence](../../evidence/I116/I116_A_383_UNIFIED_BYTECODE_PUBLICATION_2026_10_19.md). The historical implementation/approval/recipe sections below are **already executed** and are preserved only as the original handoff, not as current instructions to re-edit the product.
