@@ -1,5 +1,13 @@
 # PLAT067 / D208 / I116 — Agent & Human Executor Handoff
 
+## Current publication status — I116-A published (2026-10-19)
+
+**Product commit:** [`12d9672df656bc72bb7a41a14843876bc01d20e5`](https://github.com/guillermomolina/protos/commit/12d9672df656bc72bb7a41a14843876bc01d20e5) (`0.3.383-SNAPSHOT`). The human maintainer reports clean `git diff --check` and all local tests PASS. See [immutable I116-A publication evidence](../../evidence/I116/I116_A_383_UNIFIED_BYTECODE_PUBLICATION_2026_10_19.md). The historical implementation/approval/recipe sections below are **already executed** and are preserved only as the original handoff, not as current instructions to re-edit the product.
+
+**Current coordination:** I116-A is published; [I116/#935](https://github.com/guillermomolina/protos/issues/935) remains open for explicit review of optional I116-B scope, rather than falsely asserting I116-B's separate debugger/network/native acceptance is complete. PLAT067-B and D208-A decisions remain ratified and closed. No product writes or tests were performed by the coordinating agent.
+
+---
+
 **Type:** self-contained, product-implementation handoff, **READY FOR HUMAN-EXECUTOR IMPLEMENTATION** after explicit owner ratification on 2026-10-19: [PLAT067-B](../../decisions/platform/PLAT067_UNIFIED_PROOF_OPTIMIZED_BYTECODE_DSL_WITH_LAZY_TOOLING.md) and [D208-A](../../decisions/language/D208_RUNTIME_METADATA_WITHOUT_EXECUTION_MODE.md). [Approval evidence](../../evidence/PLAT067/PLAT067_B_D208_A_EXPLICIT_OWNER_RATIFICATION_2026_10_19.md).
 **Implementation issue:** [I116/#935](https://github.com/guillermomolina/protos/issues/935).
 **Product repo:** `guillermomolina/protos` (with two “mo”). The agent may edit but may not execute tests/builds/version/publication. **Project docs repo** `guillermomolina/protos-project-docs` (with two “mo”) is authorized for agent commit/push on this task only; that does not authorize product repo publication.
@@ -97,7 +105,7 @@ PY
 
 Do not run compilation after this **partial** batch. The follow-up agent edit batch removes lowerer `profile` constructor+all eight proof gates and migrates Context/Closure/host contracts and tests; the full I116-A patch must be coherent before a human validation request. Verify scopes/source after I116-B or earlier if all tests already pass.
 
-### Handoff state
+### Historical handoff state at ratification (superseded by I116-A publication above)
 
 `PLAT067_APPROVAL=RATIFIED_B_2026_10_19`
 `D208_APPROVAL=RATIFIED_A_2026_10_19`
@@ -107,3 +115,12 @@ Do not run compilation after this **partial** batch. The follow-up agent edit ba
 `GITHUB_PRODUCT_PUBLICATION=HUMAN_ONLY`
 
 This handoff implements only the two expressly ratified decisions; it is not authority to decide further semantic or architectural questions.
+
+### Current publication evidence
+
+`I116_A=PRODUCT_PUBLISHED_0.3.383`
+`PROTOS_REVISION=12d9672df656bc72bb7a41a14843876bc01d20e5`
+`HUMAN_REPORTED_LOCAL_TESTS=PASS`
+`HUMAN_REPORTED_DIFF_CHECK=CLEAN`
+`I116_B=OPTIONAL_SCOPE_REVIEW_NOT_YET_ASSERTED_COMPLETE`
+`PRODUCT_PUBLICATION_BY_COORDINATING_AGENT=NONE`
