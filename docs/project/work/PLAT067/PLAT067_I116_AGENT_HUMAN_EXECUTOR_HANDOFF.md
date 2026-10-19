@@ -1,13 +1,13 @@
 # PLAT067 / D208 / I116 — Agent & Human Executor Handoff
 
-**Type:** self-contained, product-implementation handoff, **prepared but BLOCKED** until exact ratification of [PLAT067-B](https://github.com/guillermomolina/protos/issues/933) and [D208](https://github.com/guillermomolina/protos/issues/934).
+**Type:** self-contained, product-implementation handoff, **READY FOR HUMAN-EXECUTOR IMPLEMENTATION** after explicit owner ratification on 2026-10-19: [PLAT067-B](../../decisions/platform/PLAT067_UNIFIED_PROOF_OPTIMIZED_BYTECODE_DSL_WITH_LAZY_TOOLING.md) and [D208-A](../../decisions/language/D208_RUNTIME_METADATA_WITHOUT_EXECUTION_MODE.md). [Approval evidence](../../evidence/PLAT067/PLAT067_B_D208_A_EXPLICIT_OWNER_RATIFICATION_2026_10_19.md).
 **Implementation issue:** [I116/#935](https://github.com/guillermomolina/protos/issues/935).
 **Product repo:** `guillermomolina/protos` (with two “mo”). The agent may edit but may not execute tests/builds/version/publication. **Project docs repo** `guillermomolina/protos-project-docs` (with two “mo”) is authorized for agent commit/push on this task only; that does not authorize product repo publication.
 **Research baseline:** product `27cb31d20e517d8377e58963ea595e5ec16bfd15`; use **actual local HEAD** when coding, not the research SHA. The full evidence and actual per-file changes are [here](../../evidence/PLAT067/PLAT067_ONE_STREAM_RESEARCH_2026_10_19.md).
 
-## Next slice — I116-A (IMPLEMENTATION, not investigation; currently blocked)
+## Next slice — I116-A (IMPLEMENTATION, not investigation; ready)
 
-**Gate:** verify that PLAT067 Candidate B and the exact D208 public contract choice are explicitly owner-approved and durably ratified. Without this gate, **STOP before editing product source**. The current conversation authorized documentation and issue coordination, not those two design approvals. The implementation is already researched: do not open new PLAT research or browse other language repositories.
+**Gate SATISFIED:** owner explicitly ratified **PLAT067 Candidate B and D208 Candidate A** on 2026-10-19. Before editing, read the two durable decision records linked above. This is authorization to implement only those selected contracts, **not** to make additional substantive choices. Do not open new PLAT research or browse other languages: sufficient source facts are embedded below.
 
 **Fixed goal:** only one semantic Bytecode DSL stream; all independently proven former NORMAL fast paths active for every Context; Truffle source/tags/probes on demand; DAP as host Engine service, not a debug guest mode; minimum Builder oracle unchanged for literal and optimized Boolean witness. No invented callback frame for optimized-out calls. No changes to D013 selection, to normative Closure semantics, to one-generator I111, or to C-prime/Task helpers.
 
@@ -37,7 +37,7 @@ HUMAN: after the agent finishes a coherent code/test edit, run `git diff --check
 
 ## First editing batch — Python mechanical front-end conversion
 
-**Use this batch ONLY after BOTH approval/ratification gates pass, while preparing the complete I116-A implementation.** It intentionally updates only the parse/source/module front-end; the same I116-A patch **must** migrate lowerer constructors, Closure plans, Context and DAP before compile/test. The script verifies exact current HEAD text before changing; STOP if assertions fail (concurrent edits), inspect and adapt, never overwrite unknown changes. Use this in the **product repository root**:
+**Both design gates PASSED on 2026-10-19. Use this batch as the first edit step of I116-A, while preparing the complete implementation.** It intentionally updates only the parse/source/module front-end; the same I116-A patch **must** migrate lowerer constructors, Closure plans, Context and DAP before compile/test. The script verifies exact current HEAD text before changing; STOP if assertions fail (concurrent edits), inspect and adapt, never overwrite unknown changes. Use this in the **product repository root**:
 
 ```bash
 python3 - <<'PY'
@@ -99,11 +99,11 @@ Do not run compilation after this **partial** batch. The follow-up agent edit ba
 
 ### Handoff state
 
-`PLAT067_APPROVAL=PENDING`
-`D208_APPROVAL=PENDING`
-`I116_STATUS=BLOCKED`
+`PLAT067_APPROVAL=RATIFIED_B_2026_10_19`
+`D208_APPROVAL=RATIFIED_A_2026_10_19`
+`I116_STATUS=READY`
 `PRODUCT_WRITES=NONE`
 `TESTS=NOT_RUN`
 `GITHUB_PRODUCT_PUBLICATION=HUMAN_ONLY`
 
-This document does not authorize the agent to reclassify the design as approved.
+This handoff implements only the two expressly ratified decisions; it is not authority to decide further semantic or architectural questions.
