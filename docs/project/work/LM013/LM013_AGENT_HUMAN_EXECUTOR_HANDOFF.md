@@ -1,5 +1,13 @@
 # LM013 — Agent and Human Executor Handoff (D209-C)
 
+## Current status — product published (2026-10-20)
+
+**This historical implementation prompt has been executed and published.** The human-pushed product commit is [`cb027faa4205ada04ffe9f875e5242f19067e5e8`](https://github.com/guillermomolina/protos/commit/cb027faa4205ada04ffe9f875e5242f19067e5e8), version `0.3.389-SNAPSHOT`. The maintainer reports all local tests PASS and `git diff --check` clean. See the [independently verified publication record](../../evidence/LM013/LM013_389_DOCUMENT_LOCAL_LSP_PRODUCT_PUBLICATION_2026_10_20.md).
+
+**Remaining milestone:** maintainer-observed real VS Code acceptance comparing a canonical bound project and an unbound/standalone Protos document, with version/extension identities, positive local intelligence and negative project navigation. [LM013/#861](https://github.com/guillermomolina/protos/issues/861) remains **OPEN** until that acceptance is recorded. Do not reapply the original source-edit batch, reset code to the historical baseline, repeat already-green tests without a new behavioral reason, or invent an additional implementation slice.
+
+The original agent/human instructions below are retained as a historical handoff; their earlier `PRODUCT_EDIT=NOT_YET_APPLIED` and test-pending markers describe the **pre-publication** state, not the current state.
+
 **Type:** IMPLEMENTATION, **not** investigation.
 **Owning Issue:** [LM013/#861](https://github.com/guillermomolina/protos/issues/861).
 **Selected decision:** [D209 Candidate C](../../decisions/tooling/D209_UNBOUND_DOCUMENT_LOCAL_LSP_INTELLIGENCE_AUTHORITY.md), owner-approved 2026-10-20 and recorded in [D209/#936](https://github.com/guillermomolina/protos/issues/936).
