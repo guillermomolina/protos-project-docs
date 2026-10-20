@@ -141,7 +141,7 @@ Archivos **aportados por el propietario** y disponibles como adjuntos originales
 | Protos BGV Tier 1 `CompId 3554` | 87.847.109 bytes | `a573f8a8c329b160ca888ca864ac2285bc2d34f73a2db6af403a54a4400e10c1` |
 | Protos BGV Tier 2 `CompId 3569` | 126.808.591 bytes | `475bccb23071286d89a9580851854a78b6ce0349fea7483155862e90c2422d10` |
 | `perf042-graalpy-run-cold-20261020T090032Z.tar.gz` | 24.605.428 bytes | `d1f20cc2c8bda8240f871d24a023c50c7360908c7032ff8bc0cb16ecd8b12057` |
-| GraalPy driver original `GraalPyRunCold.java` | 8.216 bytes | `c364dfcc622cff8b50ce80f3a` **(prefijo informativo; usar archivo original para hash completo)** |
+| GraalPy driver original `GraalPyRunCold.java` | 8.216 bytes | `c364dfcc622cff8b50ce80f3a8abc6bf5dc532411187ec07c2ccbbd0aac2faa2` |
 | GraalPy `tier1/run.log` | 20.483 bytes | `e79c1513801f65aa77ee7347d86f792ee63864b25911c2a076d537e73ed882ac` |
 | GraalPy `tier2/run.log` | 21.325 bytes | `203b9c966fe2c10b446b8e048ed1dc7f0842e50a7af13b6f0c0a6fb77bf3a6e5` |
 | GraalPy BGV Tier 1 `CompId 5912` | 6.103.210 bytes | `5395479aded2cbdbd6e4db5d9ed556efd2b86cec48ac68f03288f13dd4b3c382` |
