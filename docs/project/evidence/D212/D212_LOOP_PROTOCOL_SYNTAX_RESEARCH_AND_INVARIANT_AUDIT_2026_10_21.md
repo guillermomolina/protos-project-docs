@@ -1,9 +1,10 @@
 # D212 — Comparative research, failure cases and exact owner-decision audit
 
-**Status:** DESIGN RESEARCH / RATIFICATION EVIDENCE, 2026-10-21. No source implementation, compilation or test run is claimed.  
-**Decision:** [D212/#947](https://github.com/guillermomolina/protos/issues/947), [approved exact candidate](https://github.com/guillermomolina/protos/issues/947#issuecomment-6319758145).  
-**Durable decision:** [D212 post-test and whileFalse](../../decisions/language/D212_POST_TEST_UNTIL_AND_WHILE_FALSE.md).  
-**Earlier normative baseline:** [D210/#941](https://github.com/guillermomolina/protos/issues/941), [D210 ratification](../../decisions/language/D210_CLOSURE_WHILE_SELECTOR_AND_CONTEXTUAL_SYNTAX.md).  
+**Status:** DESIGN RESEARCH / RATIFICATION EVIDENCE, 2026-10-21. No source implementation, compilation or test run is claimed.
+**Implementation handoff:** [I121/#948](https://github.com/guillermomolina/protos/issues/948), not yet executed.
+**Decision:** [D212/#947](https://github.com/guillermomolina/protos/issues/947), [approved exact candidate](https://github.com/guillermomolina/protos/issues/947#issuecomment-6319758145).
+**Durable decision:** [D212 post-test and whileFalse](../../decisions/language/D212_POST_TEST_UNTIL_AND_WHILE_FALSE.md).
+**Earlier normative baseline:** [D210/#941](https://github.com/guillermomolina/protos/issues/941), [D210 ratification](../../decisions/language/D210_CLOSURE_WHILE_SELECTOR_AND_CONTEXTUAL_SYNTAX.md).
 **Ownership:** All language rules in this document are evidence of the owner-selected intended spec delta, **not** a substitute for future normative edits under `guillermomolina/protos/spec/`.
 
 ## Problem and origin
