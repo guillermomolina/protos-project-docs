@@ -1,10 +1,10 @@
 # LM013 — Agent and Human Executor Handoff (D209-C)
 
-## Current status — product published (2026-10-20)
+## Current status — completed and real-editor accepted (2026-10-21)
 
-**This historical implementation prompt has been executed and published.** The human-pushed product commit is [`cb027faa4205ada04ffe9f875e5242f19067e5e8`](https://github.com/guillermomolina/protos/commit/cb027faa4205ada04ffe9f875e5242f19067e5e8), version `0.3.389-SNAPSHOT`. The maintainer reports all local tests PASS and `git diff --check` clean. See the [independently verified publication record](../../evidence/LM013/LM013_389_DOCUMENT_LOCAL_LSP_PRODUCT_PUBLICATION_2026_10_20.md).
+**LM013/#861 is CLOSED / Completed.** The implemented document-local feature is published at [`protos@cb027faa4205ada04ffe9f875e5242f19067e5e8`](https://github.com/guillermomolina/protos/commit/cb027faa4205ada04ffe9f875e5242f19067e5e8), `0.3.389-SNAPSHOT`. The independent BUG023 Native ICU4J repair is published at [`protos@d7e48d86698c08b0f74e176080fd2b3b4526c0cd`](https://github.com/guillermomolina/protos/commit/d7e48d86698c08b0f74e176080fd2b3b4526c0cd), `0.3.390-SNAPSHOT`; BUG023/#937 is also CLOSED / Completed.
 
-**Remaining milestone:** maintainer-observed real VS Code acceptance comparing a canonical bound project and an unbound/standalone Protos document, with version/extension identities, positive local intelligence and negative project navigation. [LM013/#861](https://github.com/guillermomolina/protos/issues/861) remains **OPEN** until that acceptance is recorded. Do not reapply the original source-edit batch, reset code to the historical baseline, repeat already-green tests without a new behavioral reason, or invent an additional implementation slice.
+**Final acceptance:** the maintainer reports PASS for real VS Code loose-file Hover/Completion/literal Closure Signature Help, negative loose-file Definition, and post-BUG023 Native bound-workspace Symbols/Definition/References/Hover/Completion. On 2026-10-21 the maintainer again reported all local tests PASS and `git diff --check` clean. See the [final acceptance evidence](../../evidence/LM013/LM013_390_NATIVE_VSCODE_FINAL_ACCEPTANCE_AND_BUG023_RESOLUTION_2026_10_21.md) and the [original published-feature checkpoint](../../evidence/LM013/LM013_389_DOCUMENT_LOCAL_LSP_PRODUCT_PUBLICATION_2026_10_20.md). No further LM013 implementation or release is pending.
 
 The original agent/human instructions below are retained as a historical handoff; their earlier `PRODUCT_EDIT=NOT_YET_APPLIED` and test-pending markers describe the **pre-publication** state, not the current state.
 
