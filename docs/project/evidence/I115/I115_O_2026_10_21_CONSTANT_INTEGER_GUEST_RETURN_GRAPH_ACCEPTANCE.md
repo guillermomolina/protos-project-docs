@@ -1,8 +1,8 @@
 # I115-O / PLAT066-C / PERF041 — certified constant Integer guest return: physical IR acceptance and semantic boundaries
 
-**Date:** 2026-10-21. **Classification:** revision-pinned experimental implementation evidence, not a normative language decision or production-conformance approval.  
-**Product:** [guillermomolina/protos@ab632560f19e1b876b9b6c8f2018f5cb86e9eb13](https://github.com/guillermomolina/protos/commit/ab632560f19e1b876b9b6c8f2018f5cb86e9eb13), branch **I115** (experimental). **Baseline:** [04c04e998d1cefd0e7c55ab335ad704607f652b2](https://github.com/guillermomolina/protos/commit/04c04e998d1cefd0e7c55ab335ad704607f652b2), I115-M/N.  
-**Owners:** [I115 #931](https://github.com/guillermomolina/protos/issues/931), [PLAT066-C #930](https://github.com/guillermomolina/protos/issues/930), [PERF041 #863](https://github.com/guillermomolina/protos/issues/863). All remain **OPEN**.  
+**Date:** 2026-10-21. **Classification:** revision-pinned experimental implementation evidence, not a normative language decision or production-conformance approval.
+**Product:** [guillermomolina/protos@ab632560f19e1b876b9b6c8f2018f5cb86e9eb13](https://github.com/guillermomolina/protos/commit/ab632560f19e1b876b9b6c8f2018f5cb86e9eb13), branch **I115** (experimental). **Baseline:** [04c04e998d1cefd0e7c55ab335ad704607f652b2](https://github.com/guillermomolina/protos/commit/04c04e998d1cefd0e7c55ab335ad704607f652b2), I115-M/N.
+**Owners:** [I115 #931](https://github.com/guillermomolina/protos/issues/931), [PLAT066-C #930](https://github.com/guillermomolina/protos/issues/930), [PERF041 #863](https://github.com/guillermomolina/protos/issues/863). All remain **OPEN**.
 **Evidence provenance:** Maintainer-supplied I115-O report dated 2026-10-21, with source publication independently checked against the exact GitHub commit. Test outcomes and new compilation-graph totals are **maintainer-reported**; the new BGV binary files and logs were not independently redecoded in this documentation transaction. No product mainline integration or release is claimed.
 
 ## 1. Exact workload and why the next change was needed
