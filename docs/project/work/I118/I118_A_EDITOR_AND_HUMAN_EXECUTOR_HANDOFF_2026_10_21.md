@@ -1,56 +1,79 @@
-# I118-A — Adopt contextual while in bounded Standard Library modules
+# I118 — Single-slice contextual while adoption: Claude editor and human executor
 
 **Date:** 2026-10-21  
-**Class:** IMPLEMENTATION (I118-A), not investigation  
-**Product repository:** `guillermomolina/protos`  
 **Issue:** [I118 / #943](https://github.com/guillermomolina/protos/issues/943)  
-**Prerequisite:** I117-B product [`7a122cdeeed91ca31690e2d39412dadad3518f72`](https://github.com/guillermomolina/protos/commit/7a122cdeeed91ca31690e2d39412dadad3518f72), specification `0.1.465`; executor's current HEAD is authoritative.  
-**Ratified authority:** [D210 / #941](https://github.com/guillermomolina/protos/issues/941), normative `spec/PROTOS_GRAMMAR.md` and `spec/semantics/EXECUTION_AND_CONTROL.md`.  
-**Style:** `protos/AGENTS.md`, `docs/guide/SOURCE_STYLE.md`.  
-**Validation authority:** `AGENTS.work/IMPLEMENTATION.md`; human executor only.
+**Class:** IMPLEMENTATION, **one unified slice**, **one Claude prompt**, **one product publication**  
+**Product repository:** `guillermomolina/protos`  
+**Published prerequisite:** [I117-B `7a122cdeeed91ca31690e2d39412dadad3518f72`](https://github.com/guillermomolina/protos/commit/7a122cdeeed91ca31690e2d39412dadad3518f72), implementation `0.3.394-SNAPSHOT`, spec `0.1.465`. Local editor HEAD is authoritative.  
+**Normative authority:** D210/#941, `spec/PROTOS_GRAMMAR.md`, `spec/semantics/EXECUTION_AND_CONTROL.md`, `spec/semantics/CALLABLES.md`.  
+**Style and execution policy:** `AGENTS.md`, `AGENTS.work/IMPLEMENTATION.md`, `protos/AGENTS.md`, `docs/guide/SOURCE_STYLE.md`; human runs all tests/publication commands.
 
-## Bounded file inventory
+> **Supersession:** The owner's explicit instruction is to combine all originally proposed I118-A/B/C/D source migrations into **one I118 implementation slice**. The earlier limited 12-module plan under this path is obsolete. No intermediate product commits, new sub-issues, multiple Claude prompts, or separate release/checkpoints. The single final patch may exceed 30 modified files; do not reduce scope by arbitrary truncation or delete tests. The normative/runtime constraints remain unchanged.
 
-Read-only GitHub search and file inspection on the published I117-B HEAD found the following `.whileTrue(` occurrences in 12 ordinary `protos/lib` modules. These are **occurrence counts, not automatically approved replacements**; each call must be inspected structurally before editing.
+## Scope and one-pass file inventory
 
-| Owned file | Observed whileTrue spellings | Notes |
-|---|---:|---|
-| `protos/lib/core/Path.protos` | 2 | literal single-expression conditions, braced trailing bodies |
-| `protos/lib/math/Integer.protos` | 3 | same |
-| `protos/lib/datetime/ISO8601.protos` | 14 | same; nested parentheses in predicates |
-| `protos/lib/collections/Range.protos` | 2 | same |
-| `protos/lib/network/IpEndpoints.protos` | 4 | three simple conditions; one multiline braced Closure `}).whileTrue()` is a non-trivial case and should be preserved |
-| `protos/lib/network/IpAddresses.protos` | 14 | thirteen simple conditions; one `}).whileTrue()` condition body is non-trivial; preserve |
-| `protos/lib/logging/TextFormatter.protos` | 10 | zero-argument explicit `.whileTrue(() => { ... })` bodies |
-| `protos/lib/logging/ColoredFormatter.protos` | 2 | zero-argument explicit bodies |
-| `protos/lib/logging/JsonFormatter.protos` | 1 | zero-argument explicit body |
-| `protos/lib/io/Files.protos` | 2 | zero-argument explicit bodies |
-| `protos/lib/semver/SemVer.protos` | 5 | braced trailing bodies |
-| `protos/lib/crypto/SHA256.protos` | 1 | braced trailing body |
+Read-only GitHub code search from the prerequisite revision found **92 files referencing `whileTrue(`**. That number includes normative documents, generated/test strings, protocol-specific tests, benchmarks, and sources that must be preserved; it is **not** a target count of edits. Eligible first-party code occurs in these broad groups:
 
-No other paths are owned by this slice, except final `pom.xml` and root `CHANGELOG.md` after the human reports tests green. Do not change any normative specifications or spec changelog. The absolute 30-file limit still applies.
+- `protos/lib/**`: core/Path, math/Integer, datetime/ISO8601, uri, collections/Range and Array, network/IpEndpoints and IpAddresses, logging/TextFormatter/ColoredFormatter/JsonFormatter, io/Files, semver/SemVer, cli/CommandLine, regex/Regex, toml/TOML, crypto/SHA256, plus any current HEAD equivalents.
+- `protos/tools/**`: formatter/Structural, package/ProjectMetadata and ContentIdentity, and test-tool files ArrayAccumulator, CaseRef, Progress, LogicalCaseRunner, SuiteGraph, Main, FileSelection, Runner, RepositorySuite, Manifest, etc.
+- `protos/examples/**`, `protos/tutorials/**`: ordinary teaching material and programs.
+- `protos/tests/**`: ordinary library, tooling and conformance programs that merely *use* a loop; keep explicit `whileTrue` where it IS the test target (validation/selection/identity/return/Future/suspend/cancel/structured/inline/dispatch).
+- `protos/benchmarks/**`: migrate only source whose measurement identity and cross-language comparability are not invalidated; preserve fixed baseline and same-source workloads when changing source would destroy longitudinal evidence.
+- Java/Python/shell fixture strings: default KEEP when they encode the precise `whileTrue` spelling, expected graph/source spans, protocol behavior, baseline workloads or benchmark comparability; optional migration only when ordinary source and rigorously equivalent.
+- Normative specification and old changelogs: KEEP `whileTrue` protocol examples; never rewrite historical evidence for style.
 
-## Editor work — precise transformations
+## Exact authorized edits
 
-1. Files `core/Path.protos`, `math/Integer.protos`, `collections/Range.protos`, `semver/SemVer.protos`, `crypto/SHA256.protos`: replace only single-expression `(() => E).whileTrue() { B }` with `while(E) { B }`. Preserve nesting, evaluation count/order, body text, result identity, comments, line boundaries. No functional changes.
-2. `datetime/ISO8601.protos`: apply exactly the same transformation to its 14 simple forms, including parenthesized compounds. Do not remove boolean grouping that ensures original precedence.
-3. `network/IpEndpoints.protos`, `network/IpAddresses.protos`: migrate only the identifiable single-expression arrow-body predicates on the `.whileTrue() { ... }` shape. **Retain** each multi-statement `(() => { ... }).whileTrue() { ... }` form and record why it stays. Do not attempt `while({ ... })`: braces have different source semantics.
-4. `logging/TextFormatter.protos`, `logging/ColoredFormatter.protos`, `logging/JsonFormatter.protos`, `io/Files.protos`: for the explicitly supplied **zero-parameter, braced** body `(() => E).whileTrue(() => { B })`, convert to `while(E) { B }` with complete matching of both Closure delimiters. Do not alter any call to a named, parameterized, computed, or non-braced Closure.
-5. Keep explicit `whileTrue` when its receiver is a named/computed Closure (selector reflection, receiver method-home, protocol intent) or its condition is a braced multi-expression Closure. Such exceptions are normal and are NOT workarounds; enumerate exact surviving sites and reasons.
-6. Do not modify tests, benchmark baselines, Truffle/Java/runtime/compiler, scanner, grammar, canonicalizer, formatter, source-style guard or exception count speculatively. Source-style guard checks, coverage and full suite are **human** tasks.
+**A.** For fresh zero-arg expression-bodied condition and parameterless trailing body:
+```protos
+(() => COND).whileTrue() { BODY }
+```
+becomes
+```protos
+while(COND) { BODY }
+```
 
-Safeguards: change exact spelling only when the pattern is provably equivalent to the ratified D210 desugaring. `while` remains a contextual expression, never a new keyword. Preserve `this`, `super`, `context`, local capture, NLR, Future ownership, shadowing/selection, strict Boolean tests, Error and cancellation. Do not turn a literal `true` condition into a constant expression for optimization. No 'native' `while` runtime or extra bytecode.
+**B.** For the same receiver with an explicit zero-arg braced body:
+```protos
+(() => COND).whileTrue(() => { BODY })
+```
+becomes
+```protos
+while(COND) { BODY }
+```
+Be careful about original double-closure delimiters and multi-expression body formatting.
 
-## Truffle-language precedent for editing (no external lookup)
+**C.** For `(() => { EXPR }).whileTrue() { BODY }`, migrate only when its condition Closure has exactly one ordinary expression, with no slot creation, locals/declarations, comments misplaced, or other structural difference; otherwise retain the explicit protocol spelling.
 
-Oracle Graal **SimpleLanguage** uses `SLBytecodeParser.visitWhile_statement` and `beginWhile/endWhile` for a *statement*; **GraalJS** `WhileNode` implements JavaScript loops through `LoopNode`/`RepeatingNode`; **GraalPy** `while` follows Python statement/truthiness rules. None applies to Protos's return-value, object protocol or Closure semantics. This slice must not borrow any of these mechanisms. It only uses existing Protos canonical lowering `while(E) {B}` = `(() => E).whileTrue() {B}`.
+**D.** Retain all receiver variables or computed/extracted Closures `condition.whileTrue(body)`, non-zero parameter Closures, condition bodies with multiple expressions, explicit protocol tests, source-location and benchmark fixtures, cases with relevant `whileTrue` extraction/shadowing/method-home behavior, or any non-equivalent/newline/comment case. Do NOT mechanically replace named receiver calls, nor turn `while` into a reserved word.
 
-## Human executor
+**E.** Preserve `this`, `super`, `context`, lexical captures, return-home/NLR, Future ownership, exact last-result identity and zero-run `null`, strict Booleans, Error/cancel/ensure, evaluation order and count. No runtime/Truffle/Bytecode/AST/parser/formatter changes are authorized to enable conversion.
 
-Agent performs edits only (not runs). Human first audits changed paths and exact diff, then checks `git diff --check`, run focused affected Standard Library/control/IO tests (selection by actual changed-file closure), and request the integrated gate if prescribed by `scripts/validation_impact.py`. No tests were independently executed in preparing this handoff.
+**F.** Preserve APL notices and local file style. Use targeted guarded Python file edits with assertions; a textual regex can only help *find* a simple same-line form, not authorize nested/complex replacement. Read target file before writing, honor unrelated work. Do not add redundant source-style exceptions to justify leaving mechanically convertible code or modify baselines to force tests green.
 
-After human reports green, editor rereads current HEAD and moving metadata and edits `pom.xml` and root `CHANGELOG.md` to the then-current next implementation version (no new normative spec revision). Human reruns any final nonbehavioral checks required by policy; do not repeat behavior tests after metadata-only changes unless executable/dependency bytes changed. Human explicitly stages owned files, commits single line `I118-A: adopt contextual while syntax in standard library modules`, pushes. Only after exact product SHA exists does documentation publication and Issue work log update occur.
+## Human-only checks and publication
 
-## First PBATCH edit content
+One final substantive candidate, validated in increasing cost order:
+```bash
+git status --short
+git diff --check
+git diff --stat
+# focused affected test-tool, formatter, libraries and conformance, as determined by exact changed paths
+make test
+make check
+```
+The repository's `scripts/source_style_guard.py` and `scripts/validation_impact.py` are part of established source-style/validation discipline; humans run gates with current documented command-line flags, do not guess invocation syntax. The human will return PASS/FAIL (with failing excerpt only). The editor does not run tests/build/validation/git mutations.
 
-Safe initial edit subset: `core/Path.protos`, `math/Integer.protos`, `collections/Range.protos`, `crypto/SHA256.protos`, `semver/SemVer.protos`. Match exact old spellings from the current HEAD with assertions, apply the corresponding new spelling and no other changes. The agent must inspect ownership/overlap before patch; commands belong to the editor, never the human test step. Further files in the first slice are handled in subsequent editor PBATCHes before handing validation to the human.
+After human green, metadata finalization reads current HEAD and `origin/main`, and updates `pom.xml` / root `CHANGELOG.md` exactly once to the current next patch version. Style-only migration introduces **no normative spec revision**. Human stages ONLY owned paths (explicit `git add` lines; never `git add -A`), commits `I118: adopt contextual while in first-party Protos sources`, and pushes. No post-metadata behavior tests unless relevant executable bytes have changed. After exact product SHA is published, append durable per-revision evidence in `docs/project/evidence/I118/`, and update/close #943 when all acceptance criteria and publication gates are met.
+
+## Prior art included — no external lookup
+
+Truffle SimpleLanguage's `SLBytecodeParser.visitWhile_statement` + `beginWhile/endWhile`, GraalJS `WhileNode` via `LoopNode`/`RepeatingNode`, and GraalPy's while statement all embody independent host-language statement or truthiness/loop semantics. These are explicitly **not** the required algorithm. Protos already specifies `while(COND) {BODY}` as an ordinary `whileTrue` message sent to a zero-parameter Closure. This slice is source-only.
+
+## Editor's initial PBATCH — actual file editing
+
+First safe group: `core/Path.protos` (2), `math/Integer.protos` (3), `collections/Range.protos` (2), `crypto/SHA256.protos` (1), `semver/SemVer.protos` (5) = 13 known `.whileTrue` sites. A guarded Python script can replace these exact one-line arrow predicates, after reading and verifying their current shape and expected counts; the complete one-slice agent prompt will own all remaining groups in the same editing session. No human code execution is required for the edits; the human remains responsible for validation.
+
+## Final report required
+
+One complete changed-path list; per-directory counts of transformed sites; deliberate-survivor ledger with exact path/line/semantic reason; statement of no syntax/runtime/backend changes; files materially inspected and normative/style constraints applied; human focal + integrated commands. No ungrounded performance improvement claims.
