@@ -94,8 +94,8 @@ s = ctl.read_text(encoding="utf-8")
 for old, label in [
     ("                case IF -> receiver == ProtosBooleanValue.TRUE;\n", "hasCallback if"),
     ("                case ELSE -> receiver == ProtosBooleanValue.FALSE;\n", "hasCallback else"),
-    ("                case IF, ELSE -> receiver;\n", "immediate result"),
     ("                // D200: the callback's normal result is ignored; the receiver is returned.\n                case IF, ELSE -> receiver;\n", "callback result"),
+    ("                case IF, ELSE -> receiver;\n", "immediate result"),
 ]:
     s = remove_once(s, old, label)
 s = replace_once(s,
