@@ -1,9 +1,9 @@
 # CLI010 — standalone `--inspect` publication and validation evidence
 
-**Evidence date:** 2026-10-21.  
-**Formal work:** [CLI010 / #938](https://github.com/guillermomolina/protos/issues/938).  
-**Product revision:** [`guillermomolina/protos@e03e2c82ad1d2f4090e8e5baae631ad9790a09c6`](https://github.com/guillermomolina/protos/commit/e03e2c82ad1d2f4090e8e5baae631ad9790a09c6).  
-**Implementation version:** `0.3.391-SNAPSHOT`.  
+**Evidence date:** 2026-10-21.
+**Formal work:** [CLI010 / #938](https://github.com/guillermomolina/protos/issues/938).
+**Product revision:** [`guillermomolina/protos@e03e2c82ad1d2f4090e8e5baae631ad9790a09c6`](https://github.com/guillermomolina/protos/commit/e03e2c82ad1d2f4090e8e5baae631ad9790a09c6).
+**Implementation version:** `0.3.391-SNAPSHOT`.
 **Evidence class:** GitHub-verified product commit, published changelog, and maintainer-reported tests and diff check. The coordinating agent did not execute builds, test suites, or a Native executable.
 
 ## Published scope
