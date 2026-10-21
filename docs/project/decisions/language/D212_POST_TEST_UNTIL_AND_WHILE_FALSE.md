@@ -1,10 +1,11 @@
 # D212 — Post-test Closure loops, contextual suffix until, and pre-test whileFalse
 
-**Status:** RATIFIED AS LANGUAGE DESIGN — owner-approved 2026-10-21; product implementation remains separate.  
-**Issue:** [D212/#947](https://github.com/guillermomolina/protos/issues/947).  
-**Explicit approval:** Owner's active-chat statement: “Ok apruebo bodyClosure.untilFalse(conditionClosure) y untilTrue, y el sintactic sugar de untilTrue como {} until(condition). Y agregar el whileFalse”. Recorded without claiming the owner directly authored the [GitHub transcription](https://github.com/guillermomolina/protos/issues/947#issuecomment-6319758145).  
-**Previous decision, narrowly reopened:** [D210/#941](https://github.com/guillermomolina/protos/issues/941), [cross-reference](https://github.com/guillermomolina/protos/issues/941#issuecomment-6319782484).  
-**Evidence:** [D212 comparative evidence and invariant audit](../../evidence/D212/D212_LOOP_PROTOCOL_SYNTAX_RESEARCH_AND_INVARIANT_AUDIT_2026_10_21.md).  
+**Status:** RATIFIED AS LANGUAGE DESIGN — owner-approved 2026-10-21; product implementation remains separate.
+**Issue:** [D212/#947](https://github.com/guillermomolina/protos/issues/947).
+**Implementation:** [I121/#948](https://github.com/guillermomolina/protos/issues/948), not yet executed.
+**Explicit approval:** Owner's active-chat statement: “Ok apruebo bodyClosure.untilFalse(conditionClosure) y untilTrue, y el sintactic sugar de untilTrue como {} until(condition). Y agregar el whileFalse”. Recorded without claiming the owner directly authored the [GitHub transcription](https://github.com/guillermomolina/protos/issues/947#issuecomment-6319758145).
+**Previous decision, narrowly reopened:** [D210/#941](https://github.com/guillermomolina/protos/issues/941), [cross-reference](https://github.com/guillermomolina/protos/issues/941#issuecomment-6319782484).
+**Evidence:** [D212 comparative evidence and invariant audit](../../evidence/D212/D212_LOOP_PROTOCOL_SYNTAX_RESEARCH_AND_INVARIANT_AUDIT_2026_10_21.md).
 **Authority:** Non-normative ratification record; normative ownership stays in `guillermomolina/protos/spec/`. No build, test, product edit, implementation completion, or source-revision publication is asserted by this record.
 
 ## Selected public protocols
