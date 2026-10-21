@@ -3,7 +3,7 @@
 **Date:** 2026-10-21  
 **Formal work:** [I117 / #942](https://github.com/guillermomolina/protos/issues/942) (open; I117-B pending)  
 **Ratified authority:** [D210 / #941](https://github.com/guillermomolina/protos/issues/941) and [D210 decision](../../decisions/language/D210_CLOSURE_WHILE_SELECTOR_AND_CONTEXTUAL_SYNTAX.md)  
-**Exact published product revision:** [`9641eefcf11a014d41ae485d0c1884aed25df857`](https://github.com/guillermomolina/protos/commit/9641eefcf11a014d41ae485d0c1884aed25df857)  
+**Exact published product revision:** [`8940e779f9c48a898a5f365a26fdb307587d6a60`](https://github.com/guillermomolina/protos/commit/8940e779f9c48a898a5f365a26fdb307587d6a60)  
 **Commit:** `I117-A: remove standard Object.while and keep whileTrue as the single loop protocol`  
 **Evidence scope:** read-only GitHub commit/file inspection and maintainer-reported local validation; no validation rerun by the documentation author.
 
@@ -26,17 +26,13 @@ Maintainer explicitly reported for the published I117-A delta:
 - local tests: **all PASS**;
 - `I117-A`: **pushed**.
 
-This is a maintainer report, **not** an independently reproduced test or CI result. The exact tested command list, counts and native-specific output were not provided for this publication, so no narrower claim about a particular suite's executed count is made.
+This is a maintainer report, **not** an independently reproduced test or CI result. The product changelog names the executed validation suites and counts as maintainer-reported evidence, not as an independently reproduced run.
 
-## Publication metadata observation — outstanding
+## Current publication metadata — corrected after main moved
 
-At the observed product HEAD `9641eefcf11a014d41ae485d0c1884aed25df857`, the commit's path list **does not include** `pom.xml`, `CHANGELOG.md`, or `spec/PROTOS_SPEC_CHANGELOG.md`. The current published files still read:
+The later `main` head `8940e779f9c48a898a5f365a26fdb307587d6a60` has the same I117-A commit message but supersedes the earlier `9641eefc` observation. It now **includes** `pom.xml` and `CHANGELOG.md` in the product commit, with implementation version `0.3.393-SNAPSHOT` and a corresponding I117-A changelog entry. The changelog specifically records maintainer validation: focal JUnit 25/25 PASS, learning-material JUnit 54/54 PASS, `make test` PASS and `make check` PASS. These remain claims supplied by the maintainer in published metadata; they were not independently rerun here.
 
-- Maven implementation version: `0.3.392-SNAPSHOT`;
-- most recent implementation changelog heading: `0.3.392-SNAPSHOT`, for BUG024;
-- most recent normative specification revision: `0.1.463`, dated 2026-10-19.
-
-The publication therefore satisfies the code/test evidence reported for Q1, **but the required implementation and normative changelog metadata have not been observed for I117-A**. Do not attribute a new version/spec revision to this slice without a separately published reconciliation. This is a publication-record discrepancy, not a claim of failed runtime behavior.
+The same current product HEAD **does not include** `spec/PROTOS_SPEC_CHANGELOG.md` in its changed paths, and the most recent normative revision remains `0.1.463`. D210-Q1 did change normative documents; the normative revision entry remains to be reconciled separately. Do not assign a new normative revision without its published changelog update.
 
 ## Next slice
 
