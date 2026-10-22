@@ -1,12 +1,12 @@
 # D212 — Post-test Closure loops, contextual suffix until, and pre-test whileFalse
 
-**Status:** RATIFIED AS LANGUAGE DESIGN — owner-approved 2026-10-21; product implementation remains separate.
+**Status:** RATIFIED language design (owner-approved 2026-10-21); I121-A and I121-B product publication complete by 2026-10-22. Normative ownership remains in `guillermomolina/protos/spec/`.
 **Issue:** [D212/#947](https://github.com/guillermomolina/protos/issues/947).
-**Implementation:** [I121/#948](https://github.com/guillermomolina/protos/issues/948), not yet executed.
+**Implementation:** [I121/#948](https://github.com/guillermomolina/protos/issues/948), both A and B slices published: [A `dafee2cb`](https://github.com/guillermomolina/protos/commit/dafee2cb0c145fb6ed8a2a33ba8854526a448631) (`0.3.397-SNAPSHOT`, specification `0.1.467`) and [B `7af62b8`](https://github.com/guillermomolina/protos/commit/7af62b8394b04790b678029501031a12d9d13c4d) (`0.3.398-SNAPSHOT`, specification `0.1.468`).
 **Explicit approval:** Owner's active-chat statement: “Ok apruebo bodyClosure.untilFalse(conditionClosure) y untilTrue, y el sintactic sugar de untilTrue como {} until(condition). Y agregar el whileFalse”. Recorded without claiming the owner directly authored the [GitHub transcription](https://github.com/guillermomolina/protos/issues/947#issuecomment-6319758145).
 **Previous decision, narrowly reopened:** [D210/#941](https://github.com/guillermomolina/protos/issues/941), [cross-reference](https://github.com/guillermomolina/protos/issues/941#issuecomment-6319782484).
 **Evidence:** [D212 comparative evidence and invariant audit](../../evidence/D212/D212_LOOP_PROTOCOL_SYNTAX_RESEARCH_AND_INVARIANT_AUDIT_2026_10_21.md).
-**Authority:** Non-normative ratification record; normative ownership stays in `guillermomolina/protos/spec/`. No build, test, product edit, implementation completion, or source-revision publication is asserted by this record.
+**Authority:** Non-normative ratification record; normative ownership stays in `guillermomolina/protos/spec/`. The product commits above are verified; local `make test`/`make check` results are maintainer-reported, not independently run here.
 
 ## Selected public protocols
 
@@ -51,6 +51,12 @@ Recognize only a standalone bare braced body containing a normal `expression-seq
 
 No unrelated syntax, Boolean truthiness, shared lexical block, special scheduler/runtime class, or general no-dot fluent-call syntax is approved.
 
+## Verified implementation and closure evidence
+
+- **I121-A:** [publication record](../../evidence/I121/I121_A_397_STANDARD_CLOSURE_LOOPS_PUBLICATION_2026_10_21.md), standard `whileFalse`, `untilTrue` and `untilFalse` Closure protocols with exact canonical Boolean/phase/result identity.
+- **I121-B:** [publication record](../../evidence/I121/I121_B_398_CONTEXTUAL_UNTIL_SYNTAX_PUBLICATION_2026_10_22.md), approved contextual `until` suffix with ordinary `CanonicalSend` lowering, parser/tooling/comment preservation and strict object-construction fallback.
+- **Validation:** maintainer reports clean diff check and all local tests passing for both slices; the committed B changelog records `make check PASS` and `make test PASS`. This evidence is not an independently rerun test log. I121 GitHub lifecycle is governed by the live Issue and not changed by this non-normative record.
+
 ## Implementation and publication boundary
 
-The D212 decision is independent of implementation. A subsequent `Ixxx` issue owns standard Object publication, native execution, prepared/structured/Bytecode DSL specialization, precise contextual parser/surface AST/canonical lowering, tooling, conformance and spec revision. The human executor performs build/test/check and Protos publication; do not claim green results before they are reported. Review new public slots, compatibility and source-location contracts together. The first implementation slice should establish protocol semantics, followed by contextual syntax and tooling; group adjacent edits within each meaningful publication unit.
+The D212 decision is independent of implementation. The separate implementation Issue I121 owns standard Object publication, native execution, prepared/structured/Bytecode DSL specialization, contextual parser/surface AST/canonical lowering, tooling, conformance and spec revision; those publications are recorded above. The human executor performs build/test/check and Protos publication; do not claim green results before they are reported. Review new public slots, compatibility and source-location contracts together. The first implementation slice should establish protocol semantics, followed by contextual syntax and tooling; group adjacent edits within each meaningful publication unit.
