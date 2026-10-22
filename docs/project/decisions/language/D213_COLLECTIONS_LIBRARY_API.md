@@ -1,6 +1,6 @@
 # D213 — Ratified Standard Library Array collection enhancements
 
-**Status:** RATIFIED / OWNER APPROVED (2026-10-22). **Decision issue:** https://github.com/guillermomolina/protos/issues/949. **Implementation baseline:** `guillermomolina/protos@7af62b8394b04790b678029501031a12d9d13c4d`. **Authority:** This is a durable non-normative decision record; the actual public normative API must be introduced under `guillermomolina/protos/spec/` by subsequent product work. No product files were edited, compiled or tested by this ratification publication.
+**Status:** RATIFIED / OWNER APPROVED (2026-10-22). **Decision issue:** https://github.com/guillermomolina/protos/issues/949. **Implementation owner:** [LIB023/#953](https://github.com/guillermomolina/protos/issues/953), a single grouped three-slice Standard Library implementation issue. **Implementation baseline:** `guillermomolina/protos@7af62b8394b04790b678029501031a12d9d13c4d`. **Authority:** This is a durable non-normative decision record; the actual public normative API must be introduced under `guillermomolina/protos/spec/` by subsequent product work. No product files were edited, compiled or tested by this ratification publication.
 
 ## Approval provenance and exact scope
 
