@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`I122 / 0.3.399 — eleven Rosetta Code task examples and exact CLI correctness regressions`](I122/I122_ROSETTA_CODE_11_TASK_CORPUS_CLOSURE_2026_10_24.md) — Verified [product commit `662dc3d9`](https://github.com/guillermomolina/protos/commit/662dc3d9c4037fb69574b6231e8f0304275816c9), 13 paths, 11 task examples with focused CLI checks; maintainer reports clean diff and all local tests PASS. `Parallel calculations` remains Planned under open [BUG026/#958](https://github.com/guillermomolina/protos/issues/958).
+
 - [`D214-S1 / spec 0.1.470 — verified normative publication and release to implementation`](D214/D214_S1_NORMATIVE_PUBLICATION_CLOSURE_2026_10_24.md) — exact [Protos `798797a72ff3d292b52870da59f595c8607ca2d7`](https://github.com/guillermomolina/protos/commit/798797a72ff3d292b52870da59f595c8607ca2d7) updates only normative values spec and global spec changelog; C1/S1 invariants are reconciled, maintainer reports clean diff and tests PASS, runtime implementation belongs to a subsequent grouped `LIBxxx` issue.
 
 - [`D214-S1 — C1 architecture and eight-point owner approval (2026-10-24)`](D214/D214_S1_OWNER_APPROVAL_AND_PUBLICATION_GATE_2026_10_24.md) — [D214/#955](https://github.com/guillermomolina/protos/issues/955) owner approval recorded; no D214 product/spec SHA published at checkpoint; normative publication and subsequent grouped implementation explicitly gated.
