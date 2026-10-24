@@ -14,7 +14,7 @@ Current role-first work records:
 
 - [`I123/I123_A1_T_DIAGNOSTIC_CONTINUATION_AGENT_HUMAN_HANDOFF_2026_10_24.md`](I123/I123_A1_T_DIAGNOSTIC_CONTINUATION_AGENT_HUMAN_HANDOFF_2026_10_24.md) — owner-approved **diagnostic-only** A1 versus temporary T comparison: exact three-file editing-agent batch, full upstream Truffle facts for offline autonomous editing, and separately human-run validation/measurement stages. I123/#960 remains owner; no product acceleration approved.
 
-- [`D215/D215_HTTP_APPROVAL_AND_NORMATIVE_EDITOR_HANDOFF_2026_10_24.md`](D215/D215_HTTP_APPROVAL_AND_NORMATIVE_EDITOR_HANDOFF_2026_10_24.md) — owner-approved D215 HTTP/1.1 contracts F3–F8, exact ratification boundary, non-normative approval evidence, and next grouped normative-specification editing-agent/human-executor handoff; no product publication or HTTP runtime claimed.
+- [`D215/D215_HTTP_APPROVAL_AND_NORMATIVE_EDITOR_HANDOFF_2026_10_24.md`](D215/D215_HTTP_APPROVAL_AND_NORMATIVE_EDITOR_HANDOFF_2026_10_24.md) — owner-approved D215 HTTP/1.1 contracts F3–F8 **and F9 A–F**, exact explicit F9-A reversal of initial-argument synchronous failure, non-normative ratification evidence, and bounded spec-only editing-agent/human-executor handoff; no product publication or HTTP runtime claimed.
 
 - [`I123/I123_STRICT_CPU_KERNEL_AGENT_HUMAN_HANDOFF_2026_10_24.md`](I123/I123_STRICT_CPU_KERNEL_AGENT_HUMAN_HANDOFF_2026_10_24.md) — bounded edit-only agent instructions and human-executor checks for a strict CPU-kernel eligibility diagnostic; no tests or acceleration implementation claimed, PLAT068 remains unratified.
 
