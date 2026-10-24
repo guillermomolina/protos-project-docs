@@ -12,6 +12,8 @@ migrate it explicitly rather than duplicating or moving it opportunistically.
 
 Current role-first work records:
 
+- [`D215/D215_HTTP_APPROVAL_AND_NORMATIVE_EDITOR_HANDOFF_2026_10_24.md`](D215/D215_HTTP_APPROVAL_AND_NORMATIVE_EDITOR_HANDOFF_2026_10_24.md) — owner-approved D215 HTTP/1.1 contracts F3–F8, exact ratification boundary, non-normative approval evidence, and next grouped normative-specification editing-agent/human-executor handoff; no product publication or HTTP runtime claimed.
+
 - [`I123/I123_STRICT_CPU_KERNEL_AGENT_HUMAN_HANDOFF_2026_10_24.md`](I123/I123_STRICT_CPU_KERNEL_AGENT_HUMAN_HANDOFF_2026_10_24.md) — bounded edit-only agent instructions and human-executor checks for a strict CPU-kernel eligibility diagnostic; no tests or acceleration implementation claimed, PLAT068 remains unratified.
 
 - [`I115/I115_E2A_PUBLISHED_CLOSURE_DIRECT_METADATA_EDIT_HANDOFF_2026_10_20.md`](I115/I115_E2A_PUBLISHED_CLOSURE_DIRECT_METADATA_EDIT_HANDOFF_2026_10_20.md) — owner-requested pure file-edit instructions for E2-A: 2 production paths (`ProtosActivation` nullable getters and `MaterializeCurrentClosure.published` direct constructor) plus 1 focused test class, no commands, no changes to guards/DSL/lowering, no implementation success claimed.
