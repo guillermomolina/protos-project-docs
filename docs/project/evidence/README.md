@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`D214-S1 / spec 0.1.470 — verified normative publication and release to implementation`](D214/D214_S1_NORMATIVE_PUBLICATION_CLOSURE_2026_10_24.md) — exact [Protos `798797a72ff3d292b52870da59f595c8607ca2d7`](https://github.com/guillermomolina/protos/commit/798797a72ff3d292b52870da59f595c8607ca2d7) updates only normative values spec and global spec changelog; C1/S1 invariants are reconciled, maintainer reports clean diff and tests PASS, runtime implementation belongs to a subsequent grouped `LIBxxx` issue.
+
 - [`D214-S1 — C1 architecture and eight-point owner approval (2026-10-24)`](D214/D214_S1_OWNER_APPROVAL_AND_PUBLICATION_GATE_2026_10_24.md) — [D214/#955](https://github.com/guillermomolina/protos/issues/955) owner approval recorded; no D214 product/spec SHA published at checkpoint; normative publication and subsequent grouped implementation explicitly gated.
 
 - [`LIB023-A / 0.3.399 — Array copy/edit operations and default sort: verified publication and maintainer-reported PASS`](LIB023/LIB023_A_399_ARRAY_COPY_EDIT_DEFAULT_SORT_PUBLICATION_2026_10_23.md) — Verified [product commit `64b198f3`](https://github.com/guillermomolina/protos/commit/64b198f3b10ad050e83918eea9e8636b2a6e17cc), 12 changed paths, Maven `0.3.399-SNAPSHOT`, spec `0.1.469`. Six fresh open shallow Array copy/edit functions and omitted-comparator default for stable `sort`; registered 29-case new suite and expanded collection coverage. Maintainer reports clean `git diff --check`, all local tests PASS and prior `make check` PASS; focused collection run 135/135 PASS. Earlier full-run `INFRA` was not root-caused. **LIB023 B/C remain pending and #953 stays open.**

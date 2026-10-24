@@ -1,8 +1,10 @@
 # D214 — Vector and Matrix standard linear-algebra semantics (C1 / S1)
 
-**Decision status:** OWNER APPROVED, 2026-10-24. **Normative publication:** PENDING in `guillermomolina/protos/spec/`. **Implementation:** NOT AUTHORIZED until that publication and its exact revision are recorded. **Decision issue:** [D214/#955](https://github.com/guillermomolina/protos/issues/955). **Approval checkpoint:** [eight owner-approved clauses](https://github.com/guillermomolina/protos/issues/955#issuecomment-6380265698). **Evidence:** [D214-S1 publication-gate checkpoint](../../evidence/D214/D214_S1_OWNER_APPROVAL_AND_PUBLICATION_GATE_2026_10_24.md).
+**Decision status:** OWNER APPROVED / NORMATIVELY PUBLISHED, 2026-10-24. **Normative publication:** [Protos `798797a72ff3d292b52870da59f595c8607ca2d7`](https://github.com/guillermomolina/protos/commit/798797a72ff3d292b52870da59f595c8607ca2d7), specification `0.1.470`. **Implementation:** Released for separately tracked grouped Standard Library work; no implementation has been published by D214. **Decision issue:** [D214/#955](https://github.com/guillermomolina/protos/issues/955). **Approval checkpoint:** [eight owner-approved clauses](https://github.com/guillermomolina/protos/issues/955#issuecomment-6380265698). **Evidence:** [D214-S1 publication-gate checkpoint](../../evidence/D214/D214_S1_OWNER_APPROVAL_AND_PUBLICATION_GATE_2026_10_24.md).
 
-This is a **non-normative decision/rationale record**. Observable Protos behavior becomes authoritative only when the matching text is published under `spec/` in the product repository. In particular, the approval and the maintainer's test report do not establish a D214 normative product commit.
+This is a **non-normative decision/rationale record**. The corresponding public language contract was published by the human executor in `guillermomolina/protos/spec/` at exact product revision [`798797a72ff3d292b52870da59f595c8607ca2d7`](https://github.com/guillermomolina/protos/commit/798797a72ff3d292b52870da59f595c8607ca2d7), global spec `0.1.470`. Owner approval and reported local test/diff results have separate provenance; no runtime Vector/Matrix implementation is claimed.
+
+**Exact closure evidence:** [D214-S1 normative publication and release checkpoint](../../evidence/D214/D214_S1_NORMATIVE_PUBLICATION_CLOSURE_2026_10_24.md). The earlier [approval-only snapshot](../../evidence/D214/D214_S1_OWNER_APPROVAL_AND_PUBLICATION_GATE_2026_10_24.md) remains historical and was not silently rewritten.
 
 ## Selected architecture: C1
 
@@ -31,7 +33,7 @@ m2: LA.Matrix(2, 2, ...data)
 
 `Vector(3)` is a one-element Vector, not a capacity constructor. `Matrix(2, 3, ...)` takes exactly six positional values. Storage and fast-path optimization are implementation details; user-observable operation order and numeric families are not.
 
-## Normative and implementation publication gates
+## Original normative and implementation publication gates (historical plan)
 
 1. **Normative-publication slice:** Human executor edits `spec/semantics/VALUES_AND_COLLECTIONS.md` and adds a matching new entry to the current `spec/PROTOS_SPEC_CHANGELOG.md` in one spec-only product commit. No runtime implementation, `pom.xml`, root `CHANGELOG.md`, or unapproved language sugar. The normative change must explicitly preserve the fact that **Core** does not define Vector/Matrix while documenting the new **Standard Library** module.
 2. **Evidence reconciliation:** After the human publishes that product commit, record its exact SHA and new spec revision in D214/#955 and in the durable D214 evidence; replace the pending normative marker. Never infer a SHA from a previous unrelated maintainer test report.
