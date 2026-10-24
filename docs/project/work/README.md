@@ -12,6 +12,8 @@ migrate it explicitly rather than duplicating or moving it opportunistically.
 
 Current role-first work records:
 
+- [`I123/I123_STRICT_CPU_KERNEL_AGENT_HUMAN_HANDOFF_2026_10_24.md`](I123/I123_STRICT_CPU_KERNEL_AGENT_HUMAN_HANDOFF_2026_10_24.md) — bounded edit-only agent instructions and human-executor checks for a strict CPU-kernel eligibility diagnostic; no tests or acceleration implementation claimed, PLAT068 remains unratified.
+
 - [`I115/I115_E2A_PUBLISHED_CLOSURE_DIRECT_METADATA_EDIT_HANDOFF_2026_10_20.md`](I115/I115_E2A_PUBLISHED_CLOSURE_DIRECT_METADATA_EDIT_HANDOFF_2026_10_20.md) — owner-requested pure file-edit instructions for E2-A: 2 production paths (`ProtosActivation` nullable getters and `MaterializeCurrentClosure.published` direct constructor) plus 1 focused test class, no commands, no changes to guards/DSL/lowering, no implementation success claimed.
 - [`I116/I116_B_AGENT_HUMAN_EXECUTOR_HANDOFF.md`](I116/I116_B_AGENT_HUMAN_EXECUTOR_HANDOFF.md) — I116-B implementation-ready, test-only real DAP TCP acceptance over optimized constant-return and scalar-local bodies, building on human-published I116-A `0.3.383` without changing language semantics or introducing a new Issue.
 
