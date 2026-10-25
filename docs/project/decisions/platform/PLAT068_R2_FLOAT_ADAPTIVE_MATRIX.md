@@ -1,6 +1,6 @@
 # PLAT068 — R2-Float adaptive Matrix storage (owner-ratified partial platform decision)
 
-**Selected component:** PLAT068 R2-Float, 2026-10-25. **Parent platform issue:** [PLAT068/#959](https://github.com/guillermomolina/protos/issues/959), which remains OPEN for SIMD, CPU matrix ISA, native-library and GPU admission. **Implementing issue:** [I124/#963](https://github.com/guillermomolina/protos/issues/963), READY but not yet implemented. **Prior diagnostic:** [I123/#960](https://github.com/guillermomolina/protos/issues/960), separately open.
+**Selected component:** PLAT068 R2-Float, 2026-10-25. **Parent platform issue:** [PLAT068/#959](https://github.com/guillermomolina/protos/issues/959), which remains OPEN for SIMD, CPU matrix ISA, native-library and GPU admission. **Implementing issue:** [I124/#963](https://github.com/guillermomolina/protos/issues/963), published at [Protos `c9843f0f` / 0.3.402](https://github.com/guillermomolina/protos/commit/c9843f0f82dbec6d0c626f35ec22f8f496ffe110). **Prior diagnostic:** [I123/#960](https://github.com/guillermomolina/protos/issues/960), separately open.
 
 **Approval provenance:** after the comparison with the current FastR representation and strict canonical Protos Float semantics, the project owner expressly responded **“ok apruebo la decision”** on 2026-10-25 to the R2-Float recommendation. This is an exact, bounded approval of the private Matrix representation and Float-matmul admission below. It does not approve GPU, SIMD, native BLAS, public casts, Vector storage conversion, a changed numerical contract, or measured speedups.
 
@@ -66,8 +66,8 @@ The earlier PLAT068 research compares A/R1, transient T, CPU SIMD, native and GP
 
 ## Delivery and measurable acceptance
 
-- [I124/#963](https://github.com/guillermomolina/protos/issues/963) owns the concrete Java source/test changes, preserving the user-owned dirty I123 diagnostic paths.
+- [I124/#963](https://github.com/guillermomolina/protos/issues/963) owns the published R2-Float Java implementation and tests. The human-published product commit also includes the previously staged I123 diagnostics; [I123/#960](https://github.com/guillermomolina/protos/issues/960) retains independent diagnostic ownership and closure gates.
 - Human executes targeted static checks/tests and the final impacted full-suite gate. `pom.xml`/`CHANGELOG.md` changes, if required, follow only green tests and precede human commit/push; no tests afterward.
 - Use byte-exact Float witnesses (including first-product signed zero, FMA difference, non-associativity, NaN/Infinity/subnormal), heterogeneous transitions, error precedence, copying, freeze and Actor/P tests.
 - Do **not** claim a guest speedup, SIMD emission or Native Image parity until measured against the exact product commit. I123 retains distinct diagnostic responsibility.
-- Exact I124 product SHA and later revision-bound closure evidence are pending. PLAT068 remains open for unselected accelerators.
+- I124 source is published at exact Protos [commit `c9843f0f82dbec6d0c626f35ec22f8f496ffe110`](https://github.com/guillermomolina/protos/commit/c9843f0f82dbec6d0c626f35ec22f8f496ffe110) (0.3.402); [revision-bound implementation/closure evidence](../../evidence/I124/I124_402_R2_FLOAT_MATRIX_MATMUL_CLOSURE_2026_10_25.md) records source scope and maintainer-reported green validation. PLAT068 remains open for unselected accelerators.
