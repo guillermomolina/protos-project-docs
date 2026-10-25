@@ -6,7 +6,7 @@ This is a non-normative handoff, not authorization to redefine observable HTTP b
 
 ## Editing agent — first implementation batch
 
-**Do source edits only.** Do not execute shell commands, compilations, tests, validators, sample programs, Git staging/commit/push/pull, web lookups, or commands in another repository. Read the local `AGENTS.md`, `AGENTS.work/LIBRARY.md`, `AGENTS.work/IMPLEMENTATION.md`, `protos/AGENTS.md`, relevant source tests and owning local specs. The following external RFC facts are provided; **no cross-language investigation is needed**. Inspect actual HEAD for syntax/signatures before editing; preserve unrelated work.
+**Do source edits only.** Read-only local file inspection (for example exact source reads, grep and Git status/diffs) is permitted. Do not execute builds, compilations, tests, validators, sample programs, state-changing Git actions (including staging, commit, push, pull, fetch or checkout), web lookups, or commands in another repository. Read the local `AGENTS.md`, `AGENTS.work/LIBRARY.md`, `AGENTS.work/IMPLEMENTATION.md`, `protos/AGENTS.md`, relevant source tests and owning local specs. The following external RFC facts are provided; **no cross-language investigation is needed**. Inspect actual HEAD for syntax/signatures before editing; preserve unrelated work.
 
 **File 1 — NEW `protos/lib/http/internal/MessageBody.protos`.** Add the complete Adaptive Public License `//` header following `MessageHead.protos`, plus `//!` module documentation labelling it strictly internal/unpublished. Exactly three top-level private module selectors are allowed in this batch:
 
