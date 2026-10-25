@@ -12,6 +12,8 @@ migrate it explicitly rather than duplicating or moving it opportunistically.
 
 Current role-first work records:
 
+- [`LIB025/LIB025_B1_PRIVATE_BODY_FRAMER_AGENT_HUMAN_HANDOFF_2026_10_25.md`](LIB025/LIB025_B1_PRIVATE_BODY_FRAMER_AGENT_HUMAN_HANDOFF_2026_10_25.md) — implementation-only B1 private HTTP body-framing and chunk-byte encoding batch after published A/0.3.403: exact four-file edit-only instructions, RFC 9112 wire grammar included offline, and separate human validation/commit boundary. [LIB025 #962](https://github.com/guillermomolina/protos/issues/962) stays open; no new micro-slice Issue.
+
 - [`I123/I123_A1_T_DIAGNOSTIC_CONTINUATION_AGENT_HUMAN_HANDOFF_2026_10_24.md`](I123/I123_A1_T_DIAGNOSTIC_CONTINUATION_AGENT_HUMAN_HANDOFF_2026_10_24.md) — owner-approved **diagnostic-only** A1 versus temporary T comparison: exact three-file editing-agent batch, full upstream Truffle facts for offline autonomous editing, and separately human-run validation/measurement stages. I123/#960 remains owner; no product acceleration approved.
 
 - [`D215/D215_HTTP_APPROVAL_AND_NORMATIVE_EDITOR_HANDOFF_2026_10_24.md`](D215/D215_HTTP_APPROVAL_AND_NORMATIVE_EDITOR_HANDOFF_2026_10_24.md) — owner-approved D215 HTTP/1.1 contracts F3–F8 **and F9 A–F**, exact explicit F9-A reversal of initial-argument synchronous failure, non-normative ratification evidence, and bounded spec-only editing-agent/human-executor handoff; no product publication or HTTP runtime claimed.
