@@ -27,5 +27,6 @@ separate platform decision registry to
 - [`PLAT014_TRUFFLE_COOPERATIVE_CONTINUATIONS.md`](PLAT014_TRUFFLE_COOPERATIVE_CONTINUATIONS.md)
 - [`PLAT015_TRUFFLE_DEBUGGER_SCOPE_PROJECTION.md`](PLAT015_TRUFFLE_DEBUGGER_SCOPE_PROJECTION.md)
 - [`PLAT067_UNIFIED_PROOF_OPTIMIZED_BYTECODE_DSL_WITH_LAZY_TOOLING.md`](PLAT067_UNIFIED_PROOF_OPTIMIZED_BYTECODE_DSL_WITH_LAZY_TOOLING.md) — 2026-10-19 owner-ratified Candidate B: single optimized semantic stream, lazy Truffle source/tags/instrumentation; narrow supersession of NORMAL/DEBUG physical-profile architecture.
+- [`PLAT068_R2_FLOAT_ADAPTIVE_MATRIX.md`](PLAT068_R2_FLOAT_ADAPTIVE_MATRIX.md) — 2026-10-25 partial owner-ratification: lazy persistent private binary64 Matrix packing and strict Float matmul; SIMD, CPU matrix ISA and GPU decisions remain open.
 
 PLAT014 was created directly at the canonical role-first path before F3; F3 preserves it in place. Identifier gaps or future additions do not imply missing migration work by themselves. This list records the post-F3 execution-time set and is not a closed manifest for future platform decisions.
