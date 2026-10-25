@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`D215 / spec 0.1.471 — HTTP/1.1 single-request server normative ratification and publication`](D215/D215_NORMATIVE_PUBLICATION_2026_10_25.md) — independently verified [Protos `9dc4e508`](https://github.com/guillermomolina/protos/commit/9dc4e50875252508e2afecf91541fb50f756d450), seven normative/ownership paths including new `spec/io/HTTP.md`, explicit F3–F11 ratification and Actor-root Task ownership; maintainer reports clean `git diff --check` and all local tests PASS. No HTTP runtime implementation or deployment claimed.
+
 - [`I123 — strict CPU-kernel host measurements and human-reported local validation (2026-10-24)`](I123/I123_CPU_RUNTIME_JIT_MEASUREMENT_CHECKPOINT_2026_10_24.md) — Repeatable isolated Java strict column-lane gains, packing crossover observations and explicitly NOT_STABLE cross-domain Protos timings. Human reports `git diff --check` clean and all local tests PASS; local I123 source remains unpublished/unverified, no production speedup or SIMD proven. [I123 #960](https://github.com/guillermomolina/protos/issues/960) remains open.
 
 - [`PLAT068 — source-level Truffle/JIT finding and owner-approved A1/T diagnostic comparison (2026-10-24)`](PLAT068/PLAT068_CPU_TRUFFLE_JIT_A1_T_APPROVED_EXPERIMENT_2026_10_24.md) — Exact source observation at Protos `3f37ef3`; native canonical scalar arithmetic crosses `@TruffleBoundary`; compare R1 Float A1 versus temporary T in I123 diagnostics. D214-F1 unchanged, R2/native/GPU deferred, **PLAT068 remains OPEN and no accelerator ratified**.
