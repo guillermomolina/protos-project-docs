@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`I125-C / 0.3.407 — real NIO cross-Actor TcpAcceptor conformance`](I125/I125_C_0_3_407_REAL_NIO_CONFORMANCE_2026_10_27.md) — Verified [Protos `ecbcd4c1`](https://github.com/guillermomolina/protos/commit/ecbcd4c19acf9f2561ed03ff7a15351b175f7407), three changed paths, two real loopback integration tests covering cross-Actor connection custody and listener-close cutover. Maintainer reports all local tests PASS and clean diff; explicit `make test` confirmation remains to be reconciled for I125 #966 closure.
+
 - [`I125-B / 0.3.406 — same-Process Actor.spawn TcpAcceptor delegation publication`](I125/I125_B_0_3_406_SAME_PROCESS_ACTOR_DELEGATION_2026_10_26.md) — Verified [Protos `da71217a`](https://github.com/guillermomolina/protos/commit/da71217a4d4ecaba4b399e905aee119aef9d14fd), 15 changed paths, spawn-only same-Process capability descriptors and Worker-local connections, safe cancellation/close publication and lifetime; maintainer reports clean diff and all local tests PASS. I125 #966 remains open for bounded real-NIO cross-Actor end-to-end conformance and explicit final gate.
 
 - [`I125-A / 0.3.405 — Actor-local TcpAcceptor acceptance foundation`](I125/I125_A_0_3_405_ACTOR_LOCAL_ACCEPTOR_PUBLICATION_2026_10_26.md) — Verified [Protos `bc373053`](https://github.com/guillermomolina/protos/commit/bc3730539d73c94bb0f95cb9b699e4f2de0dde2d), canonical private capability prototype, shared listener flow and focused lifecycle regressions; human reports all local tests PASS. Historical foundation preceding I125-B.
