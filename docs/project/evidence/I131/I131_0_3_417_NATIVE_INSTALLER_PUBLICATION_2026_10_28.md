@@ -1,6 +1,6 @@
 # I131 — version-agnostic Linux Native Image installer publication (2026-10-28)
 
-Status: **published implementation and maintainer-reported validation evidence**; not a new binary release or a clean-host certification.
+Status: **published implementation, maintainer-reported validation, and post-publication clean-container acceptance evidence**; not a new binary release or a blanket multi-platform certification.
 
 - Owning implementation: [I131 / #982](https://github.com/guillermomolina/protos/issues/982).
 - Parent distribution work: [DIST018 / #981](https://github.com/guillermomolina/protos/issues/981).
@@ -99,16 +99,70 @@ for publication identity by GitHub. They are **not** claims that the agent
 ran the tests, that original logs were archived, or that a new release
 asset was built or published.
 
+## Post-publication clean-container acceptance (2026-10-28)
+
+Guillermo then executed the **published installer bytes**, commit-pinned to
+`ce6cdec09a615a31edf668e22bd022be6cac2626`, inside a newly built
+`ubuntu:24.04` (`linux/amd64`) Podman container as unprivileged
+`uid=10001(protoscheck)`, on `glibc 2.39`. The image contained only
+basic shell/network/extraction/checksum tools; command checks reported
+`TOOL_ABSENT=java`, `javac`, `mvn`, `native-image`, and `gu`,
+and `CLEAN_JAVA_GRAALVM_MAVEN=PASS`.
+
+- The stable public installer URL on `main` and the installer at the
+  exact product commit were byte-identical:
+  `PUBLIC_INSTALLER_IDENTITY=PASS`;
+  observed installer SHA-256:
+  `a0b90267bbca8fbe838fbc8d06eeb3cf8d03930b88d036137d9307fa426dde5b`.
+- Against official published release `v0.3.398`:
+  `INSPECTION=PASS`, `NATIVE_CHECKSUM_VERIFIED=PASS`,
+  `NATIVE_ARCHIVE_VERIFIED=PASS` and `NATIVE_LAYOUT_VERIFIED=PASS`.
+  A real `curl -fsSL "$I131_INSTALL_URL" | sh` installed
+  `v0.3.398` in the unprivileged container;
+  `protos --version` returned `Protos 0.3.398`,
+  `-e 'print("Hello, Protos!")'` returned `Hello, Protos!`,
+  and an unrelated-CWD file returned `Unrelated CWD: OK`.
+  The command also worked when `$HOME/.local/bin` was explicitly
+  added to `PATH`; no profile or system PATH change was made.
+- In a **second, fresh container**, `--inspect --tag v0.3.312`
+  returned `INSPECTION=PASS`; `--tag v0.3.312` performed a real
+  verified Native installation and reported `ACTIVE_VERSION=v0.3.312`;
+  the command returned `Protos 0.3.312`.
+  Running **the same installer** without a tag upgraded the installed
+  release to `v0.3.398`, returning `INSTALL_STATUS=INSTALLED`,
+  `ACTIVE_VERSION=v0.3.398`, `Protos 0.3.398`,
+  and `Upgrade: OK` from a Protos `-e` smoke invocation.
+- Without downloads, `--rollback --tag v0.3.312` activated the
+  retained older version (`Protos 0.3.312`), then
+  `--rollback --tag v0.3.398` restored the newer version
+  (`Protos 0.3.398`); both reported
+  `ROLLBACK_STATUS=ACTIVATED`.
+- A separate previous clean-container session verified `--uninstall`
+  removed the managed command wrapper and retained the versioned
+  Native distribution: `UNINSTALL_WRAPPER_REMOVED=PASS` and
+  `INSTALLED_VERSION_RETAINED=PASS`.
+  Negative-path focused fixtures had already passed in the
+  maintainer's 44-test suite.
+
+This is **human-executed post-publication acceptance evidence**, not an
+agent-run test or a newly published Protos binary release. Truffle's
+interpreter-only fallback warning was observed during runtime smoke
+but did not prevent successful execution.
+
 ## Remaining acceptance limits
 
-- The host smoke used an isolated user home, but the evidence does **not**
-  establish a completely clean Linux host/container without Java/GraalVM/Maven.
-- Same-byte selection of a newer compatible release was covered by
-  synthetic published-release fixtures; a later **real** published
-  release has not yet been observed through an end-to-end update.
-- Post-publication `curl | sh` execution against the public stable URL,
-  an independent clean-host missing-dependency matrix and the parent
-  DIST018 custom-prefix expectation have not been separately demonstrated.
+- A clean Ubuntu 24.04/glibc 2.39 x86_64 container and two actual
+  published Native versions were verified, but this is not a certification
+  of other Linux distributions, architectures, glibc versions or future
+  binary releases. No *future* release published after this validation
+  was available to test.
+- The 44 focused tests exercise missing dependency and unsafe/failed
+  input paths, but the post-publication container runs did not remove
+  each individual required non-Java tool to reproduce every error message.
+- The parent DIST018 custom-prefix expectation remains **unimplemented**:
+  the approved I131 installer uses `$HOME/.local` with no
+  `--prefix` option; the owner must decide whether explicit prefix
+  support is required before closing DIST018.
 - The currently observed binary release remains `v0.3.398`; publishing
   implementation `0.3.417-SNAPSHOT` does not publish another Native ZIP.
 
