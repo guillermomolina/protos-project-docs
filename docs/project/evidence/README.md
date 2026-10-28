@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`I130-A / 0.3.413 — portable TLS specification and private JSSE foundation`](I130/I130_A_0_3_413_COMPLETION_2026_10_28.md) — exact verified [Protos `5d1a65de`](https://github.com/guillermomolina/protos/commit/5d1a65de7fc3cf14a042b49fe1f8b0530f46c3e2), global spec `0.1.477`; Guillermo reports clean `git diff --check`, `make test` PASS and `make check` PASS. Frontend and Native Image still pending in I130; D220 remains open for an approved `javaCacerts` error-kind normative clarification.
+
 - [`I129-A / 0.3.411 — private HTTP facility invokable deduplication`](I129/I129_HTTP_FACILITY_0_3_411_COMPLETION_2026_10_28.md) — verified [Protos `7f3113ad`](https://github.com/guillermomolina/protos/commit/7f3113ad5c29a15584053c6440640bff6911e60a); owner reports clean `git diff --check`, `make test` PASS and `make check` PASS; all three HTTP call sites use `provides(value, "call")` and the eight remaining private operations are unchanged.
 
 - [`I127 / 0.3.410 — single-exchange Protos-first HTTP/1.1 Client completion`](I127/I127_HTTP_CLIENT_0_3_410_COMPLETION_2026_10_28.md) — verified [Protos `6b80a8f7`](https://github.com/guillermomolina/protos/commit/6b80a8f70325e20999f55add0ccf8e9c6ec7c8ba), specification `0.1.476`; owner reports clean `git diff --check`, `make test` PASS and `make check` PASS. Five native client suites and real TCP integration, no Java HTTP engine.
