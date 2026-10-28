@@ -1,5 +1,7 @@
 # D220 — Next slice: exact TLS contract, research agent / human-executor handoff (2026-10-28)
 
+> **HISTORICAL / SUPERSEDED (2026-10-28):** Guillermo has explicitly approved the exact D220–S12 contract. This research-only prompt is preserved as historical evidence and must **not** be used for the next slice. Use the [I130-A implementation agent and human-executor handoff](D220_S12_IMPLEMENTATION_AGENT_HUMAN_EXECUTOR_2026_10_28.md) and the [ratified D220–S12 decision](../../decisions/language/D220_PORTABLE_TLS_HTTPS_CLIENT_S12_2026_10_28.md). No product code/spec or tests were changed by this historical research phase.
+
 **Work type:** INVESTIGATION / D220 exact-design ratification packet. **No implementation.**
 **Owning Issue:** [D220 #975](https://github.com/guillermomolina/protos/issues/975) — OPEN; no new Ixxx Issue yet.
 **Read-only source baseline:** [guillermomolina/protos@7f3113ad5c29a15584053c6440640bff6911e60a](https://github.com/guillermomolina/protos/commit/7f3113ad5c29a15584053c6440640bff6911e60a). Re-read the **actual** current GitHub HEAD when invoked, do not assume this SHA is still HEAD.
