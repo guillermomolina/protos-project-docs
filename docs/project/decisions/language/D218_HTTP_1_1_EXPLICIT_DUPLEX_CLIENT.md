@@ -1,13 +1,13 @@
 # D218 — Single-exchange HTTP/1.1 Client over an explicit duplex
 
-**Decision:** OWNER-APPROVED EXACT CANDIDATE B (2026-10-28); **NORMATIVE PUBLICATION PENDING**.
+**Decision:** RATIFIED — OWNER-APPROVED EXACT CANDIDATE B; normative publication completed at Protos spec `0.1.476` (2026-10-28).
 **Issue:** [D218/#969](https://github.com/guillermomolina/protos/issues/969).
 **Approval provenance:** [owner decision recorded on the D218 Issue](https://github.com/guillermomolina/protos/issues/969#issuecomment-6460926536), quoting the owner's explicit active-chat selection.
 **Approved full candidate:** [D218 research §5](../../evidence/D218/D218_EXPLICIT_DUPLEX_HTTP_CLIENT_COMPARATIVE_RESEARCH_2026_10_28.md) at [project record revision `30cbacd985726c799261d6714268a41458a0f157`](https://github.com/guillermomolina/protos-project-docs/blob/30cbacd985726c799261d6714268a41458a0f157/docs/project/evidence/D218/D218_EXPLICIT_DUPLEX_HTTP_CLIENT_COMPARATIVE_RESEARCH_2026_10_28.md).
 **Protos comparison baseline:** `b0ae444f30951f8d85a6776bab7c057bed8d0a3d`, specification `0.1.474`; **not** a new Client normative revision.
-**Implementation:** one consolidated Ixxx slice only, separately tracked; no implementation or test PASS is claimed here.
+**Implementation:** one consolidated [I127 #970](https://github.com/guillermomolina/protos/issues/970) slice published as [`0.3.410-SNAPSHOT`](https://github.com/guillermomolina/protos/commit/6b80a8f70325e20999f55add0ccf8e9c6ec7c8ba); human integrated validation reported PASS.
 
-This record is a non-normative owner-approval and rationale record. Until the new Client contract is actually published in `spec/io/HTTP.md` with the then-current global `spec/PROTOS_SPEC_CHANGELOG.md` revision, this record is **not a substitute for normative language/Standard Library specification**. D218 must remain open through the normative publication and required cross-revision closure verification.
+This record is a non-normative owner-approval and rationale record. The Client contract is now published in `spec/io/HTTP.md` §16 with the global `spec/PROTOS_SPEC_CHANGELOG.md` revision `0.1.476` at [`6b80a8f70325e20999f55add0ccf8e9c6ec7c8ba`](https://github.com/guillermomolina/protos/commit/6b80a8f70325e20999f55add0ccf8e9c6ec7c8ba). This decision record is **not a substitute for that normative specification**. The revision-bound [D218 publication evidence](../../evidence/D218/D218_HTTP_CLIENT_SPEC_0_1_476_RATIFICATION_2026_10_28.md) supplies the remaining durable ratification/closure checkpoint.
 
 ## Exact owner selection
 
@@ -53,10 +53,10 @@ The full research snapshot contains the precise logical error/cancellation conse
 
 **DECISION_APPROVAL_PROVENANCE=PASS** (exact active owner approval recorded on D218 issue).
 **DECISION_INVARIANT_CONSISTENCY=PASS** (selected candidate preserves the applicable prior invariants as compared above).
-**NORMATIVE_SPEC_PUBLICATION=PENDING**, **PROTOS_CLIENT_IMPLEMENTATION=PENDING**, **D218_CLOSURE=PENDING**.
+**NORMATIVE_SPEC_PUBLICATION=PASS** (`0.1.476`), **PROTOS_CLIENT_IMPLEMENTATION=PASS** (`0.3.410-SNAPSHOT`; owner-reported `make test`/`make check` PASS), **D218_CLOSURE=READY_FOR_LIVE_ISSUE_FINALIZATION** (after durable record publication).
 
-## Next publication gate
+## Publication and closure checkpoint
 
-One Ixxx implementation Issue owns a single complete HTTP Client change in `guillermomolina/protos` (normative Client section, Protos-first code, only necessary Java bootstrap reuse, guest+Java/NIO conformance, full human-executor validation, version/changelog finalization and one product commit). This must not edit/move D215/D216 semantics, add URL/DNS/TLS/pools or preimplement HTTP/2–3. Human-executor mode remains binding for product validation and publication; only `guillermomolina/protos-project-docs` has task-specific agent-direct publication authorization.
+I127 #970 owned the single consolidated HTTP Client change in `guillermomolina/protos`: normative Client §16, Protos-first implementation, only private Java bootstrap reuse, guest/Java/NIO conformance, human integrated validation, version/changelog finalization, and one product commit. D215/D216/D217 semantics and the deferred URL/DNS/TLS/pool/HTTP2–3 boundary remain unchanged. Human-executor mode governed product validation and publication; this project-documentation repository has the user-authorized bounded direct-publication exception.
 
-When the exact product publication and current global specification revision exist, append a revision-bound ratification/publication evidence record. Only then re-check D218 closure postconditions and close it. This decision record must not be marked normatively published or used to close D218 prematurely.
+Product publication and the normative spec revision are now verified at [`6b80a8f70325e20999f55add0ccf8e9c6ec7c8ba`](https://github.com/guillermomolina/protos/commit/6b80a8f70325e20999f55add0ccf8e9c6ec7c8ba). The companion [revision-bound ratification record](../../evidence/D218/D218_HTTP_CLIENT_SPEC_0_1_476_RATIFICATION_2026_10_28.md) documents the approval/invariant/validation chain. After that record is published, the coordinator must re-read its exact project-record revision and live D218 Issue state, then close the Issue only when the GITHUB015 cross-reference checks pass.

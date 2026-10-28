@@ -10,6 +10,10 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`I127 / 0.3.410 — single-exchange Protos-first HTTP/1.1 Client completion`](I127/I127_HTTP_CLIENT_0_3_410_COMPLETION_2026_10_28.md) — verified [Protos `6b80a8f7`](https://github.com/guillermomolina/protos/commit/6b80a8f70325e20999f55add0ccf8e9c6ec7c8ba), specification `0.1.476`; owner reports clean `git diff --check`, `make test` PASS and `make check` PASS. Five native client suites and real TCP integration, no Java HTTP engine.
+
+- [`D218-B / spec 0.1.476 — explicit-duplex HTTP Client normative ratification`](D218/D218_HTTP_CLIENT_SPEC_0_1_476_RATIFICATION_2026_10_28.md) — owner-approved Candidate B and GITHUB021 invariants published in [Protos `6b80a8f7`](https://github.com/guillermomolina/protos/commit/6b80a8f70325e20999f55add0ccf8e9c6ec7c8ba); exact normative `/spec/io/HTTP.md` §16 and I127 implementation, with revision-bound closure evidence.
+
 - [`I125 / 0.3.407 — final D217 TcpAcceptor implementation closure`](I125/I125_0_3_407_FINAL_IMPLEMENTATION_CLOSURE_2026_10_27.md) — A/B/C published through verified [Protos `ecbcd4c1`](https://github.com/guillermomolina/protos/commit/ecbcd4c19acf9f2561ed03ff7a15351b175f7407); maintainer explicitly confirms `git diff --check` clean and **both `make test` and `make check` PASS**. I125 #966 eligible for completed closure; D216 continuous HTTP hosting remains separate.
 
 - [`I125-C / 0.3.407 — real NIO cross-Actor TcpAcceptor conformance`](I125/I125_C_0_3_407_REAL_NIO_CONFORMANCE_2026_10_27.md) — Verified [Protos `ecbcd4c1`](https://github.com/guillermomolina/protos/commit/ecbcd4c19acf9f2561ed03ff7a15351b175f7407), three changed paths, two real loopback integration tests covering cross-Actor connection custody and listener-close cutover. Maintainer reports all local tests PASS and clean diff; explicit `make test` confirmation remains to be reconciled for I125 #966 closure.
