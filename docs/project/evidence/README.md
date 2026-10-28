@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`I131 / 0.3.417 — version-agnostic Linux Native Image installer`](I131/I131_0_3_417_NATIVE_INSTALLER_PUBLICATION_2026_10_28.md) — exact [Protos `ce6cdec0`](https://github.com/guillermomolina/protos/commit/ce6cdec09a615a31edf668e22bd022be6cac2626), eight-file installer/tests/docs delta. Guillermo reports 44 focal tests PASS, real `v0.3.398` Native install/verification and unrelated-CWD smoke PASS, clean `git diff --check`, `make test` PASS and `make check` PASS; version bump followed validation without retesting. Clean Java-free host and real two-release update are not independently evidenced.
+
 - [`I130-B / 0.3.416 — Protos-first TLS Client frontend publication`](I130/I130_B_0_3_416_COMPLETION_2026_10_28.md) — exact [Protos `07ca92be`](https://github.com/guillermomolina/protos/commit/07ca92be06c7139cfff4b35c47b2452e2ff50e28), global spec `0.1.478`, 29-path delta including native suite registration; Guillermo reports clean `git diff --check`, local `make test` PASS and `make check` PASS. BUG029/030 are independently closed; I130-C and D220 remain open for Native Image, `limit` and full IDNA2008 A-label conformance.
 
 - [`BUG030 / 0.3.415 — BufferedReader late lower-byte preservation closure`](BUG030/BUG030_0_3_415_COMPLETION_2026_10_28.md) — exact verified [Protos `ba3720f3`](https://github.com/guillermomolina/protos/commit/ba3720f349d26060fe2eb244c2767a91ac5ad802); nine new Java tests plus the revised historical C′ cancellation test in two existing suites. Guillermo reports clean `git diff --check`, local `make test` PASS and `make check` PASS. I130-B TLS acceptance remains separate and pending.
