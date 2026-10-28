@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`I130-B / 0.3.416 — Protos-first TLS Client frontend publication`](I130/I130_B_0_3_416_COMPLETION_2026_10_28.md) — exact [Protos `07ca92be`](https://github.com/guillermomolina/protos/commit/07ca92be06c7139cfff4b35c47b2452e2ff50e28), global spec `0.1.478`, 29-path delta including native suite registration; Guillermo reports clean `git diff --check`, local `make test` PASS and `make check` PASS. BUG029/030 are independently closed; I130-C and D220 remain open for Native Image, `limit` and full IDNA2008 A-label conformance.
+
 - [`BUG030 / 0.3.415 — BufferedReader late lower-byte preservation closure`](BUG030/BUG030_0_3_415_COMPLETION_2026_10_28.md) — exact verified [Protos `ba3720f3`](https://github.com/guillermomolina/protos/commit/ba3720f349d26060fe2eb244c2767a91ac5ad802); nine new Java tests plus the revised historical C′ cancellation test in two existing suites. Guillermo reports clean `git diff --check`, local `make test` PASS and `make check` PASS. I130-B TLS acceptance remains separate and pending.
 - [`BUG029 / 0.3.414 — BufferedReader C′ pre-start cancellation queue-retirement closure`](BUG029/BUG029_0_3_414_COMPLETION_2026_10_28.md) — exact verified [Protos `40245052`](https://github.com/guillermomolina/protos/commit/40245052541c5a6879d842742199aecd09797e61), 14 new tests in two JUnit suites; Guillermo reports focal PASS, clean `git diff --check`, `make test` PASS and `make check` PASS. I130-B TLS acceptance must be rerun separately; late lower-byte preservation is [BUG030 #983](https://github.com/guillermomolina/protos/issues/983).
 
