@@ -102,3 +102,13 @@ Other investigated models rejected: `SSLContext.getDefault()` plus ambient trust
 - Pending: product-side normative publication with exact `PROTOS_REVISION`, implementation issue execution, JVM/Native Image proofs, human-run tests and release validation. Do not close D220 or assert HTTPS is implemented until its particular normative publication/closure conditions are met.
 
 **RESEARCH EVIDENCE + OWNER APPROVAL / NO COMMANDS / NO TEST RESULTS / NO PRODUCT CHANGES.**
+
+## 5. Second exact owner approval — two error-kind mappings (2026-10-28)
+
+Guillermo explicitly approved in the active I130-A Human Executor interaction:
+
+> Apruebo `trustUnavailable` para `javaCacerts` no utilizable y `backendUnavailable` para ausencia local de configuración TLS compatible
+
+The [D220–S12 decision record](../../decisions/language/D220_PORTABLE_TLS_HTTPS_CLIENT_S12_2026_10_28.md) now specifies precise early, fail-closed mappings: (a) selected Java `cacerts` missing/unreadable/empty/no usable anchors → `trustUnavailable` in handshake Future before TLS traffic, with no fallback or implicit union; available anchors that reject the peer → `untrustedPeer`; (b) local backend cannot supply an approved compatible protocol/cipher configuration → `backendUnavailable` before TLS bytes; remote version/ALPN negotiation refusal without conclusive evidence → general `handshakeFailure`, not guessed specialized kinds. This introduces no new public kind and changes no GITHUB021 invariant.
+
+**No test, native-image proof, product command, source/spec publication or D220 closure is established by this approval.**

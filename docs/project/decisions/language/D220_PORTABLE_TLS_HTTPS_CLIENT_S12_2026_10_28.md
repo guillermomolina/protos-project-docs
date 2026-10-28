@@ -102,3 +102,18 @@ Normative product owners to publish without inventing fresh semantics:
 The [D220-S12 acceptance/evidence matrix](../../evidence/D220/D220_S12_APPROVAL_AND_ACCEPTANCE_2026_10_28.md) includes test expectations, two proposed feasibility checks, GITHUB010 comparison and deferred-cost review. Neither proof nor any test is claimed PASS. The implementation scope is tracked separately; its code, normative product publication, exact revision and human-executed checks still need to happen before D220 can be closed.
 
 **State at writing:** DECISION SELECTED / NON-NORMATIVE RATIFICATION RECORD / NO PRODUCT SPEC EDIT / NO CODE / NO COMMANDS / NO TEST RESULTS.
+
+## 7. Owner-approved post-ratification error-kind clarification (2026-10-28)
+
+**Approval provenance:** In the active I130-A Human Executor conversation, Guillermo explicitly stated:
+
+> Apruebo `trustUnavailable` para `javaCacerts` no utilizable y `backendUnavailable` para ausencia local de configuración TLS compatible
+
+This is **a bounded clarification of two previously under-specified mappings** within the existing approved `TlsError.kind` set, not permission to enlarge that set or replace any earlier D220–S12 invariant:
+
+1. An explicitly selected `Trust.javaCacerts()` descriptor whose Java `cacerts` source is missing, unreadable, empty, or provides no usable CA trust anchor fails the admitted handshake Future with a fresh `TlsError(kind="trustUnavailable")` **at local trust resolution, before TLS network bytes**, without default-store substitution, OS-policy fallback or root union. This is distinct from a nonempty usable selected trust store that rejects the **peer's** chain: that is `untrustedPeer`. It does not alter the already-approved synchronous ordinary-`Error` constructor failure for malformed `Trust.anchors` input.
+2. If the local TLS backend/provider cannot instantiate or configure **any** protocol/cipher combination meeting the caller's approved `minimumVersion` and the selected secure suite allowlists, fail the handshake Future with a fresh `TlsError(kind="backendUnavailable")` before TLS bytes. This is a **local availability** failure. It must not be inferred merely because a remote server cannot negotiate (for example a TLS-1.3-only request against a TLS-1.2-only peer); ambiguous peer refusal remains the general `handshakeFailure` unless a specific cause is conclusively known. An observed wrong ALPN selection, distinct from refusal to negotiate, is still `alpn`.
+
+**GITHUB021 invariant/delta reconciliation:** Both refinements preserve explicit opt-in trust, portable fail-closed behavior, no OS fallback, no hidden protocol downgrade and stable public error kinds. All earlier approved S12 invariants are unchanged. **DECISION_INVARIANT_CONSISTENCY=PASS** for this exact clarification.
+
+**Implementation status:** I130-A remains an unpublished local patch awaiting Human Executor cleanup and first compilation/test gates; no TLS test PASS, Native Image proof, product normative revision or D220 closure is asserted by this addendum.
