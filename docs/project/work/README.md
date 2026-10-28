@@ -12,6 +12,8 @@ migrate it explicitly rather than duplicating or moving it opportunistically.
 
 Current role-first work records:
 
+- [`DOC012/DOC012_A_HTTP_LIBRARY_DOCUMENTATION_CLOSURE_EVIDENCE.md`](DOC012/DOC012_A_HTTP_LIBRARY_DOCUMENTATION_CLOSURE_EVIDENCE.md) — DOC012-A HTTP/1.1 Server/Host/Client guide, tutorials and examples published at Protos `65d0e76303d09229f036e99ed5f29fe2c5367958`; maintainer reports clean diff and local `make test` / `make check` PASS, with exact revision-bound closure evidence.
+
 - [`LIB025/LIB025_B1_PRIVATE_BODY_FRAMER_AGENT_HUMAN_HANDOFF_2026_10_25.md`](LIB025/LIB025_B1_PRIVATE_BODY_FRAMER_AGENT_HUMAN_HANDOFF_2026_10_25.md) — implementation-only B1 private HTTP body-framing and chunk-byte encoding batch after published A/0.3.403: exact four-file edit-only instructions, RFC 9112 wire grammar included offline, and separate human validation/commit boundary. [LIB025 #962](https://github.com/guillermomolina/protos/issues/962) stays open; no new micro-slice Issue.
 
 - [`I123/I123_A1_T_DIAGNOSTIC_CONTINUATION_AGENT_HUMAN_HANDOFF_2026_10_24.md`](I123/I123_A1_T_DIAGNOSTIC_CONTINUATION_AGENT_HUMAN_HANDOFF_2026_10_24.md) — owner-approved **diagnostic-only** A1 versus temporary T comparison: exact three-file editing-agent batch, full upstream Truffle facts for offline autonomous editing, and separately human-run validation/measurement stages. I123/#960 remains owner; no product acceleration approved.
