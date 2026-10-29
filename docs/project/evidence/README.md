@@ -10,6 +10,10 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`I130-C3 / 0.3.420 — strict IDNA2008 A-labels and isolated Native TLS test profile`](I130/I130_C3_0_3_420_COMPLETION_2026_10_29.md) — exact [Protos `5232e971`](https://github.com/guillermomolina/protos/commit/5232e971ad5a85fdbfc9235c0f3273fb1912038c), 20-path commit, global spec `0.1.479`; Guillermo reports clean `git diff --check`, `make test`, `make check` PASS. Prior Native TLS logs show 38/38 native JUnit PASS and required guest TLS gates; provides closure evidence for [I130 #977](https://github.com/guillermomolina/protos/issues/977).
+
+- [`D220–S12 — exact normative product reconciliation and closure evidence`](D220/D220_S12_NORMATIVE_CLOSURE_2026_10_29.md) — compares the 2026-10-28 owner-approved invariants to normative [Protos `5232e971`](https://github.com/guillermomolina/protos/commit/5232e971ad5a85fdbfc9235c0f3273fb1912038c) / `0.1.479`, resolves the former temporary A-label exclusion and records `DECISION_INVARIANT_CONSISTENCY=PASS` for [D220 #975](https://github.com/guillermomolina/protos/issues/975).
+
 - [`I130-C2 / 0.3.419 — actual Native Image TLS peer and trust provenance gates`](I130/I130_C2_0_3_419_COMPLETION_2026_10_29.md) — exact [Protos `36a0bad8`](https://github.com/guillermomolina/protos/commit/36a0bad894181c9534c200614361b8aa132b8df4), nine-path Native image/gates/tests/docs commit. Guillermo supplied native JUnit 34/34 PASS and native TLS peer/trust markers PASS, plus clean `git diff --check`, `make test` and `make check` PASS; C3 strict IDNA2008 and formal I130/D220 closure remain open.
 
 - [`I130-C1 / 0.3.418 — conclusive oversized TLS records map to limit`](I130/I130_C1_0_3_418_COMPLETION_2026_10_29.md) — exact [Protos `fb7c9845`](https://github.com/guillermomolina/protos/commit/fb7c984574a11612f0527127c454d6783cbd6a8f), eight-path commit; Guillermo reports focal Java TLS PASS, guest TLS 20/20 and 49/49, clean `git diff --check`, `make test` PASS and `make check` PASS. Native JSSE/CA provenance and strict IDNA2008 remain open under I130/D220.
