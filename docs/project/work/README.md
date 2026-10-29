@@ -12,6 +12,8 @@ migrate it explicitly rather than duplicating or moving it opportunistically.
 
 Current role-first work records:
 
+- [`I130/I130_C2_AGENT_HUMAN_EXECUTOR_2026_10_29.md`](I130/I130_C2_AGENT_HUMAN_EXECUTOR_2026_10_29.md) — next I130-C2 **IMPLEMENTATION**, three existing product-file edits: mandatory actual Native Image TLS guest gates, JVM explicit `cacerts` source isolation regression and precise Native trust/provenance documentation; offline Truffle/JSSE facts and separately executable Human Executor checks. Product baseline I130-C1 `fb7c9845` / 0.3.418. Native peer, CA and distrust freshness and strict IDNA2008 remain formal closure holds.
+
 - [`I130/I130_C1_AGENT_HUMAN_EXECUTOR_2026_10_28.md`](I130/I130_C1_AGENT_HUMAN_EXECUTOR_2026_10_28.md) — I130-C1 IMPLEMENTATION handoff after published I130-B/0.3.416: conclusive oversized TLS record classification, focused adversarial JVM matrix, offline Truffle/standards references, Protos-first ownership and separate Human Executor gates. C2 Native Image and C3 strict IDNA2008 remain open under I130 #977 / D220 #975.
 
 - [`I130/I130_B_AGENT_HUMAN_EXECUTOR_2026_10_28.md`](I130/I130_B_AGENT_HUMAN_EXECUTOR_2026_10_28.md) — I130-B Protos-first TLS frontend/secure-duplex implementation handoff based on published `protos@5d1a65de7fc3cf14a042b49fe1f8b0530f46c3e2` / `0.3.413-SNAPSHOT`; full D220–S12 offline security/Future/Byte I/O contract, host-primitive boundary, Truffle references, test matrix and separate Human Executor gates. I130 #977 remains open; C retains Native Image proof.
