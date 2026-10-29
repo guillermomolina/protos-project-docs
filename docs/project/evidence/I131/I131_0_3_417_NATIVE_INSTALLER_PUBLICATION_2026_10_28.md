@@ -149,6 +149,16 @@ agent-run test or a newly published Protos binary release. Truffle's
 interpreter-only fallback warning was observed during runtime smoke
 but did not prevent successful execution.
 
+## Owner-confirmed scope completion (2026-10-29)
+
+After reviewing the clean-container installation, actual published-release
+upgrade, and rollback evidence, the owner confirmed that support for an
+optional custom installation prefix is **not necessary**. The fixed
+unprivileged `$HOME/.local` layout is accepted for DIST018.
+This decision does not add any installer flags or change Protos artifacts;
+it resolves the only remaining parent-scope question. I131 was already
+closed with its independently verified acceptance record.
+
 ## Remaining acceptance limits
 
 - A clean Ubuntu 24.04/glibc 2.39 x86_64 container and two actual
@@ -159,10 +169,12 @@ but did not prevent successful execution.
 - The 44 focused tests exercise missing dependency and unsafe/failed
   input paths, but the post-publication container runs did not remove
   each individual required non-Java tool to reproduce every error message.
-- The parent DIST018 custom-prefix expectation remains **unimplemented**:
-  the approved I131 installer uses `$HOME/.local` with no
-  `--prefix` option; the owner must decide whether explicit prefix
-  support is required before closing DIST018.
+- The parent DIST018 originally considered a custom prefix, but the
+  owner explicitly declined additional `--prefix` support on
+  2026-10-29 ("No, no hace falta"). The accepted scope is the
+  unprivileged `$HOME/.local` installation with documented PATH
+  setup. Custom prefix remains intentionally unimplemented and is
+  **not an outstanding acceptance requirement**.
 - The currently observed binary release remains `v0.3.398`; publishing
   implementation `0.3.417-SNAPSHOT` does not publish another Native ZIP.
 
