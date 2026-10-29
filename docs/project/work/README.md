@@ -12,6 +12,8 @@ migrate it explicitly rather than duplicating or moving it opportunistically.
 
 Current role-first work records:
 
+- [`I130/I130_C1_AGENT_HUMAN_EXECUTOR_2026_10_28.md`](I130/I130_C1_AGENT_HUMAN_EXECUTOR_2026_10_28.md) — I130-C1 IMPLEMENTATION handoff after published I130-B/0.3.416: conclusive oversized TLS record classification, focused adversarial JVM matrix, offline Truffle/standards references, Protos-first ownership and separate Human Executor gates. C2 Native Image and C3 strict IDNA2008 remain open under I130 #977 / D220 #975.
+
 - [`I130/I130_B_AGENT_HUMAN_EXECUTOR_2026_10_28.md`](I130/I130_B_AGENT_HUMAN_EXECUTOR_2026_10_28.md) — I130-B Protos-first TLS frontend/secure-duplex implementation handoff based on published `protos@5d1a65de7fc3cf14a042b49fe1f8b0530f46c3e2` / `0.3.413-SNAPSHOT`; full D220–S12 offline security/Future/Byte I/O contract, host-primitive boundary, Truffle references, test matrix and separate Human Executor gates. I130 #977 remains open; C retains Native Image proof.
 
 - [`BUG028/BUG028_HTTP_HOST_SHUTDOWN_CLOSURE_EVIDENCE_2026_10_28.md`](BUG028/BUG028_HTTP_HOST_SHUTDOWN_CLOSURE_EVIDENCE_2026_10_28.md) — BUG028 HTTP Host shutdown repair at Protos `1c719a50daf66fbd74e7a8b4031cf98636c9e8e9` / `0.3.412-SNAPSHOT`; maintainer reports clean diff, focal regressions and local `make test` / `make check` PASS. The record distinguishes observed rejection from preemptive cancellation in the D121 negative test.
