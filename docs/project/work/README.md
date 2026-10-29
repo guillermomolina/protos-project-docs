@@ -12,6 +12,8 @@ migrate it explicitly rather than duplicating or moving it opportunistically.
 
 Current role-first work records:
 
+- [`I130/I130_C3_IDNA2008_AGENT_HUMAN_EXECUTOR_2026_10_29.md`](I130/I130_C3_IDNA2008_AGENT_HUMAN_EXECUTOR_2026_10_29.md) — next I130-C3 **IMPLEMENTATION** (not investigation), self-contained agent + Human Executor, one Protos-only edit batch for strict RFC 3492/5890–5893/8753 A-label validation, Protos-owned DNS/SAN/SNI semantics, controlled ICU mechanics, positive/negative JVM/Native peer proof and specification reconciliation. Product baseline C2 `36a0bad8` / 0.3.419, no other repositories/web/agent commands; I130 #977 and D220 #975 remain open.
+
 - [`I130/I130_C2_AGENT_HUMAN_EXECUTOR_2026_10_29.md`](I130/I130_C2_AGENT_HUMAN_EXECUTOR_2026_10_29.md) — next I130-C2 **IMPLEMENTATION**, three existing product-file edits: mandatory actual Native Image TLS guest gates, JVM explicit `cacerts` source isolation regression and precise Native trust/provenance documentation; offline Truffle/JSSE facts and separately executable Human Executor checks. Product baseline I130-C1 `fb7c9845` / 0.3.418. Native peer, CA and distrust freshness and strict IDNA2008 remain formal closure holds.
 
 - [`I130/I130_C1_AGENT_HUMAN_EXECUTOR_2026_10_28.md`](I130/I130_C1_AGENT_HUMAN_EXECUTOR_2026_10_28.md) — I130-C1 IMPLEMENTATION handoff after published I130-B/0.3.416: conclusive oversized TLS record classification, focused adversarial JVM matrix, offline Truffle/standards references, Protos-first ownership and separate Human Executor gates. C2 Native Image and C3 strict IDNA2008 remain open under I130 #977 / D220 #975.
