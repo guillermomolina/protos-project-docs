@@ -67,3 +67,11 @@ Research compared Go net/http handler closures, Rust axum explicit State, Python
 - [D215 #961](https://github.com/guillermomolina/protos/issues/961), [D216 #964](https://github.com/guillermomolina/protos/issues/964), [D223 #987](https://github.com/guillermomolina/protos/issues/987), [D222 #986](https://github.com/guillermomolina/protos/issues/986)
 - `guillermomolina/protos:spec/io/{HTTP,NETWORK,PROCESS_IO}.md`, `spec/concurrency/ACTORS.md`, `spec/semantics/MODULES.md`
 - `guillermomolina/protos:protos/lib/http/{Host.protos,internal/HostWorker.protos,internal/HostLifecycle.protos}`
+
+## Later D225-B1 owner approval (2026-10-30)
+
+The exclusions above are the exact **A-only scope at the time of D225-A approval**. They are historical and are **not retroactively revised** by the later decision.
+
+The owner has now **separately approved D225-B1**: an explicit, opt-in RootActor initial message-service bootstrap using the existing module/binding and ordinary behavior-at-READY model; application-level `Actor.group(Actor.current())` produces a communication-only `GroupRef` transferable to I133 HTTP Worker factories. It is neither automatic RootActor publication nor transferable Network/Resolver authority. See [B1 selected decision](D225_B1_OPT_IN_ROOT_ACTOR_MESSAGE_SERVICE_BOOTSTRAP.md) and [B1 approval/invariant evidence](../../evidence/D225/D225_B1_OWNER_SELECTION_AND_GITHUB021_RECONCILIATION_2026_10_30.md).
+
+**Publication gate:** The B1 choice is durably recorded in project documentation but has **not** yet been published as normative Protos specification or implemented. D225's formal design closure still awaits that separately human-executed product normative revision; this A record continues to document the already completed I133 boundary.
