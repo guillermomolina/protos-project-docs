@@ -15,7 +15,7 @@ SPECIFICATION_CHANGE=NO
 VALIDATION_PROVENANCE=MAINTAINER_REPORTED
 ```
 
-[Published Protos revision](https://github.com/guillermomolina/protos/commit/e5a55588362340aba3faa39e007b0228db77f543) is the commit `TEST010: audit repository test registration integrity`. It contains eight added/modified paths beyond the two removed legacy sources and the version/changelog metadata: `protos/tools/test/RepositoryCorpusAudit.protos`, `RepositoryCorpusPlans.protos`, two new JUnit completeness support/test files, two updated JUnit integration tests, and `docs/guide/tools/test-tool.md`. It removes `protos/tests/package-tool/resolution-input/lockfile-fresh.protos` and `lockfile-stale.protos`. The two behaviors are covered by registered suite-native `resolution-input-lock/fixtures/fresh.protos` and `stale.protos` from their `manifest.tsv`.
+[Published Protos revision](https://github.com/guillermomolina/protos/commit/e5a55588362340aba3faa39e007b0228db77f543) is the commit `TEST010: audit repository test registration integrity`. It contains seven other added/modified paths beyond the two removed legacy sources and the version/changelog metadata: `protos/tools/test/RepositoryCorpusAudit.protos`, `RepositoryCorpusPlans.protos`, two new JUnit completeness support/test files, two updated JUnit integration tests, and `docs/guide/tools/test-tool.md`. It removes `protos/tests/package-tool/resolution-input/lockfile-fresh.protos` and `lockfile-stale.protos`. The two behaviors are covered by registered suite-native `resolution-input-lock/fixtures/fresh.protos` and `stale.protos` from their `manifest.tsv`.
 
 ## Corpus enrollment evidence
 
