@@ -1,13 +1,26 @@
 # D225-B1 — Opt-in RootActor message-service bootstrap with communication-only GroupRef
 
 **Decision family:** D225, residual application-service provisioning after D225-A.
-**State:** **OWNER SELECTED / DURABLE DESIGN DECISION RECORDED; NORMATIVE SPECIFICATION PUBLICATION PENDING.** This is not a claim of implemented runtime or already-published normative semantics.
+**State:** **OWNER SELECTED / NORMATIVELY PUBLISHED / IMPLEMENTED.** D225-B1 is published in Protos `0.3.426-SNAPSHOT`, specification `0.1.483`, at the exact product revision linked below. The original 2026-10-30 selection checkpoint is preserved as historical evidence.
 **Approval date:** 2026-10-30.
 **Exact owner approval:** “Apruebo D225-B1: bootstrap explícito opt-in del RootActor como servicio de mensajes y GroupRef de comunicación, con las condiciones y límites del informe. Procede con la ratificación según AGENTS.md.”
 **Live coordination:** [D225 #992](https://github.com/guillermomolina/protos/issues/992).
 **Protos product baseline inspected:** [`e88f4f0e510320ede0ec61bd67dfd671f30fc2cb`](https://github.com/guillermomolina/protos/commit/e88f4f0e510320ede0ec61bd67dfd671f30fc2cb) (`0.3.422-SNAPSHOT`, spec `0.1.481`).
 **Previously implemented slice:** [D225-A selected record](D225_EXPLICIT_HTTP_HOST_WORKER_FACTORY.md), [I133 #995](https://github.com/guillermomolina/protos/issues/995), [I133 publication evidence](../../evidence/I133/I133_0_3_422_HTTP_HOST_WORKER_FACTORY_COMPLETION_2026_10_30.md).
-**Authority boundary:** This is durable **non-normative decision/approval provenance** in `guillermomolina/protos-project-docs`. The observable RootActor entry contract becomes normative only after a reviewed, human-executed publication under `guillermomolina/protos/spec/`. No `PROTOS_REVISION` for B1 normative publication exists yet; never substitute the inspected I133 baseline SHA.
+**Authority boundary:** This remains durable **non-normative decision/approval provenance** in `guillermomolina/protos-project-docs`. The authoritative B1 semantics were subsequently published under `guillermomolina/protos/spec/` at **PROTOS_REVISION=0ff5c9828e64b9a127d945f4e2cb98053dcb7c23**; the earlier I133 baseline above remains historical.
+
+## Published B1 outcome and revision-bound closure reconciliation — 2026-10-30
+
+**PROTOS_REVISION:** [`0ff5c9828e64b9a127d945f4e2cb98053dcb7c23`](https://github.com/guillermomolina/protos/commit/0ff5c9828e64b9a127d945f4e2cb98053dcb7c23)
+**IMPLEMENTATION_VERSION:** `0.3.426-SNAPSHOT`
+**SPECIFICATION_REVISION:** `0.1.483`
+**Exact B1 publication / validation evidence:** [D225-B1 completion evidence](../../evidence/D225/D225_B1_0_3_426_ROOT_ACTOR_SERVICE_PUBLICATION_AND_CLOSURE_2026_10_30.md).
+
+The reviewed, maintainer-published product revision simultaneously updates `ACTORS.md` `32, `MODULES.md`, `PROCESS_IO.md` and `DISTRIBUTED_RUNTIME.md`, adds the explicit hosted `ProtosRootActorServiceSession.open(...)` API, canonical Actor-bootstrap module identity and supporting authority/HTTP integration tests. The implementation revision also repairs publication of already-committed listener close outcomes needed by live cancellation-cleanup Tasks, without changing the irrevocable `close()` contract.
+
+The maintainer reports `make test` PASS and `make check` PASS before the version/changelog edits, plus 117 focal tests with zero failures or errors; `git diff --cached --check` was clean. New source license notices were checked at the exact product revision. The application-level B1 GroupRef path transfers neither Network nor Resolver and changes no D225-A HTTP Host method.
+
+The following handoff section and its `NOT_PUBLISHED` fields reproduce the **earlier selection-time checkpoint**, not current repository state. The exact published completion and remaining exclusions are recorded in the linked immutable evidence. D225 closure and scheduling state are owned by GitHub Issue #992, not by this document.
 
 ## Decision and motivating gap
 
@@ -58,7 +71,7 @@ The original D225-A comparative research remains [here](../../evidence/D225/D225
 
 A fatal unhandled error in the RootActor ends the whole Process, and a single RootActor serializes guest-code segments. For a high-load production service this may be an unacceptable shared failure/throughput domain. **Strongest counterargument:** provisioning an independently authorized, ordinary child service Actor would provide fault isolation and parallelism from the beginning. **Reversibility:** D225-A accepts explicit transferable communication dependencies irrespective of service placement; a future separately approved B2 broker can provide them without changing `handler(request)` or HTTP Host factory transfer semantics. A future Group strategy may require new policy/management APIs and rewriting application bootstrapping; Core's one-member GroupRef does **not** currently allow replacement or retargeting. Do not claim transparent B1 -> B2 migration.
 
-## Normative publication / implementation handoff — NOT YET COMPLETED
+## Historical normative-publication handoff — pending at initial B1 selection
 
 The owner selected the architecture but did **not** approve a specific new CLI flag, command syntax, Polyglot Context option, launcher invocation signature, module locator syntax, host service registry or failure taxonomy. These are **public-entry design details** if guest-visible/portable and must be made precise under the D225 approved invariants before normative publication. A concrete CLI flag/embedding selector may require further explicit owner approval rather than being guessed during implementation.
 
@@ -72,7 +85,7 @@ The owner selected the architecture but did **not** approve a specific new CLI f
 
 **Acceptance evidence to require of an implementation work item:** opt-in and legacy modes; RootActor local binding and invalid bootstrap; one behavior at READY; grant combinations (neither, Network-only, Resolver-only, both); no ambient grant/child inheritance; GroupRef transferred into multiple Host Workers; no Worker ActorRef or stop on GroupRef; bounded messages before Root READY; no Host-ready/bootstrap circular wait; fatal RootActor Process teardown; Host drain/abort independent of Root service; handled vs fatal service errors, Actor reply transfer rejection, request late replies; standalone/embedding portability and Native gate when applicable.
 
-**Publication state:**
+**Historical publication state at the original selection checkpoint (superseded by the exact 0.3.426 publication above):**
 ```text
 WORK_ITEM=D225-B1
 DECISION_APPROVAL_PROVENANCE=PASS
