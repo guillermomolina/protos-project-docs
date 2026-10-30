@@ -1,5 +1,14 @@
 # D222-C — Optional HTTP Router and URL Client composition
 
+## Publication update (2026-10-30)
+
+The **owner-selected D222-C architecture is now normatively specified and implemented** in [guillermomolina/protos@`8b4ccbf43a1d3208137296fccb068534d4e14019`](https://github.com/guillermomolina/protos/commit/8b4ccbf43a1d3208137296fccb068534d4e14019): specification **`0.1.482`** (`spec/io/HTTP.md` §§17–18), implementation **`0.3.423-SNAPSHOT`**, with the two optional modules published together under [LIB026 #996](https://github.com/guillermomolina/protos/issues/996). See [revision-bound normative reconciliation and invariant check](../../evidence/D222/D222_C_SPEC_0_1_482_NORMATIVE_PUBLICATION_2026_10_30.md) and [LIB026 closure evidence](../../evidence/LIB026/LIB026_0_3_423_HTTP_ROUTER_URLCLIENT_COMPLETION_2026_10_30.md).
+
+**Historical provenance:** the `Status` and candidate/pending language in the original 2026-10-29 text below describes the state **at the time of owner selection**. It is retained as evidence, not a statement that the currently published API remains provisional. The exact public semantics now belong exclusively to the product specification; this record remains non-normative. Independent [D225 #992](https://github.com/guillermomolina/protos/issues/992) is not resolved by LIB026.
+
+---
+
+
 **Owner decision:** D222-C, expressly approved on 2026-10-29 by Guillermo Adrián Molina: “Apruebo D222-C”.
 **Coordination:** [D222 #986](https://github.com/guillermomolina/protos/issues/986).
 **Research and comparison:** [GITHUB010/GITHUB021 evidence](../../evidence/D222/D222_C_REST_HTTP_COMPARATIVE_RESEARCH_AND_OWNER_APPROVAL_2026_10_29.md).
