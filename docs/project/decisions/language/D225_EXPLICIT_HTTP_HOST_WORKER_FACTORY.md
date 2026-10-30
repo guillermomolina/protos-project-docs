@@ -3,7 +3,7 @@
 **Decision:** D225-A (partial, approved)
 **Owner approval:** 2026-10-30, exact user statement: "Apruebo D225-A".
 **Source issue:** [D225 #992](https://github.com/guillermomolina/protos/issues/992)
-**Normative authority:** Not this record. Publication of the corresponding change to `guillermomolina/protos:spec/io/HTTP.md` and `spec/PROTOS_SPEC_CHANGELOG.md` is pending I133. The currently approved D215/D216/Actor/Network/Resolver contracts remain normative until that publication.
+**Normative authority:** Not this record. I133 published [`spec/io/HTTP.md` §15.13](https://github.com/guillermomolina/protos/blob/e88f4f0e510320ede0ec61bd67dfd671f30fc2cb/spec/io/HTTP.md) and [`spec/PROTOS_SPEC_CHANGELOG.md` revision 0.1.481](https://github.com/guillermomolina/protos/blob/e88f4f0e510320ede0ec61bd67dfd671f30fc2cb/spec/PROTOS_SPEC_CHANGELOG.md) in the exact Protos product commit [`e88f4f0e510320ede0ec61bd67dfd671f30fc2cb`](https://github.com/guillermomolina/protos/commit/e88f4f0e510320ede0ec61bd67dfd671f30fc2cb). The normative specification, not this decision record, owns observable behavior.
 **Implementation owner:** I133 (one atomic implementation slice; independently tracked Issue).
 
 ## Problem and exact selection
@@ -24,7 +24,7 @@ The existing `Host.owning(listener, handlerModule, handlerBinding, options)` is 
 2. `factoryModule` is imported/instantiated inside each Worker; its own `factoryBinding` is selected locally and invoked **exactly once per Worker** with one argument: that Worker's copied initialization.
 3. The factory result must be callable; no implicit Future adoption, awaiting, lazy factory execution, per-request factory invocation or module sharing is introduced.
 4. The resulting callable remains the D215 `handler(request)`. No second request argument, request-context registry or global service resolution.
-5. Factory resolution, invocation and callable validation occur before Worker READY; factory failure produces the existing Host startup failure/cleanup behavior. Structural validation of the new public arguments must precede listener custody as D216 requires. Failures arising during Worker transfer/bootstrap remain startup failures with mandatory cleanup.
+5. Factory resolution, invocation and callable validation occur before **Worker hosting readiness** (entering its HTTP acceptance service), not necessarily before the Actor lifecycle's `INITIALIZING -> READY` cutover; factory failure produces the existing Host startup failure/cleanup behavior. Structural validation of the new public arguments must precede listener custody as D216 requires. Failures arising during Worker transfer/bootstrap remain startup failures with mandatory cleanup. The precise two-boundary distinction is normative in published `HTTP.md` §15.13.
 6. Existing D216 ownership, acceptance quotas, `ready`, `drain`, `abort`, termination, mandatory close and error-precedence contracts remain unchanged. Host does not create, supervise, stop or own any application service referenced by initialization.
 7. No authority amplification, ambient service lookup, cross-Actor mutable-object identity, implicit creator/parent access, or broader exception to Actor transfer.
 8. A service `ActorRef` retains its destination identity when transferred. The full existing `ActorRef` authority (including `stop`) is NOT silently attenuated; applications must assess the risk.
@@ -55,9 +55,9 @@ Research compared Go net/http handler closures, Rust axum explicit State, Python
 
 ## Publication and closure boundaries
 
-- I133 shall implement the complete A contract in **one** coherent source/spec/test/documentation publication in `guillermomolina/protos`, with normal human-executor validation and Git publication.
+- I133 **published** the selected A contract in one coherent source/spec/test/documentation commit [`e88f4f0e510320ede0ec61bd67dfd671f30fc2cb`](https://github.com/guillermomolina/protos/commit/e88f4f0e510320ede0ec61bd67dfd671f30fc2cb) at `0.3.422-SNAPSHOT` / spec `0.1.481`. The maintainer reports clean `git diff --check`, local `make test` PASS and `make check` PASS. See [I133 completion evidence](../../evidence/I133/I133_0_3_422_HTTP_HOST_WORKER_FACTORY_COMPLETION_2026_10_30.md).
 - D225 remains **open for the residual application-service provisioning question**; do not describe A as the full D225 resolution.
-- Exact product commit `PROTOS_REVISION` does not exist for I133 at this decision-record publication and must not be invented. After I133 publishes, record its exact SHA in the I133 closure evidence.
+- The product publication distinguishes Actor READY from **hosting readiness**: the factory runs after Actor bootstrap, before Host RUNNING and acceptance. `HostWorker` uses an `entered` gate to prevent `host.ready()` racing the acceptance service. This paragraph records the published implementation/spec clarification, not new authorization to provision live service authority.
 - The remaining broker/root Actor authority question requires a separate, explicit D-level decision before any implementation; neither this record nor the I133 Issue approves it.
 
 ## Evidence and references
