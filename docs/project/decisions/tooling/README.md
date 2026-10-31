@@ -71,3 +71,5 @@ DOC002-F0 ratified this role by explicit project-owner approval on 2026-09-10.\n
 - [`D195_SINGLE_SOURCE_LINT_PUBLIC_CLI_CI_CONTRACT.md`](D195_SINGLE_SOURCE_LINT_PUBLIC_CLI_CI_CONTRACT.md) — owner-ratified single-source `protos lint` text/JSON v1 CLI/CI, static parser + two D194 warning rules, opt-in warning failure, explicit 0/1/2/3/70 exits, no guest runtime, no new rules or project discovery.
 
 - [`D227_REPL_TAB_COMPLETION_CANDIDATE_AUTHORITY_AND_LIVE_SESSION_VISIBILITY.md`](D227_REPL_TAB_COMPLETION_CANDIDATE_AUTHORITY_AND_LIVE_SESSION_VISIBILITY.md) — owner-ratified revised A1, 2026-10-31: read-only live Actor-owned lexical names plus parser-proven candidates for interactive TAB, without guest evaluation, context materialization, or LSP dependency; CLI011 owns implementation.
+
+- [`D228_REPL_RECEIVER_SELECTOR_TAB_COMPLETION_AUTHORITY_AND_DELEGATION.md`](D228_REPL_RECEIVER_SELECTOR_TAB_COMPLETION_AUTHORITY_AND_DELEGATION.md) — owner-ratified D228-A1, 2026-10-31: parser-proven receiver selector names, own and delegated Protos slots, bounded Actor-owned read-only observation without guest execution; I134 owns one implementation slice.
