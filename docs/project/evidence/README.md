@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`D227-A1 — owner approval and runtime/REPL authority source audit (2026-10-31)`](D227/D227_A1_OWNER_APPROVAL_AND_SOURCE_AUDIT_2026_10_31.md) — explicit approved revised A1 at published Protos inspection baseline [`0ff5c982`](https://github.com/guillermomolina/protos/commit/0ff5c9828e64b9a127d945f4e2cb98053dcb7c23), cross-system comparison, names-only/frame/deferred-context/Actor-state constraints and unexecuted TTY/test gates. [Decision](../decisions/tooling/D227_REPL_TAB_COMPLETION_CANDIDATE_AUTHORITY_AND_LIVE_SESSION_VISIBILITY.md); [D227/#999](https://github.com/guillermomolina/protos/issues/999), [CLI011/#988](https://github.com/guillermomolina/protos/issues/988).
+
 - [`I115-H7-R5 — raw Integer return and primitive-method-call cold graph convergence`](I115/I115_H7_R5_METHOD_CALL_COLD_GRAPH_CONVERGENCE_2026_10_30.md) — [Protos `cb515322`](https://github.com/guillermomolina/protos/commit/cb51532254d177dac909021cefb47283f8331a69) on experimental `I115`: targeted tests PASS, no full suite. With independently selected Tier 1/Tier 2 primary cold graphs, After TruffleTier **153/66** vs R4 **158/69** and GraalPy **181/82**; Final IR **257/110**, machine code **1030/470 B**. The Tier-2 `ProtosIntegerValue` allocation disappears from the selected graph; the 17-workload recapture and exact benchmark publication remain pending, so I115 remains open.
 
 
