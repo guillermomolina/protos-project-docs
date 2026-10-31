@@ -11,6 +11,9 @@ slices.
 
 ## Maintained records
 
+- [`INCUBATOR_ISSUE_FAMILY_ADOPTION.md`](INCUBATOR_ISSUE_FAMILY_ADOPTION.md) —
+  non-normative evidence of INCxxx governance adoption, validation, and the
+  historical D226-to-INC001 Issue reclassification.
 - [`LICENSING_RATIONALE.md`](LICENSING_RATIONALE.md) — non-normative rationale
   for the project's APL-1.0 licensing choice; `LICENSE.TXT` remains authoritative.
 - [`STANDARD_LIBRARY_NAMING.md`](STANDARD_LIBRARY_NAMING.md) — non-normative
