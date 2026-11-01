@@ -2,9 +2,22 @@
 
 **Execution repository:** an existing local checkout of **`guillermomolina/protos`** only, **already at HEAD**. No checkout, pull, fetch, worktree, web browsing, alternate repo, or change to `guillermomolina/protos-project-docs` is needed to run the implementation. **One complete implementation slice**, no staged interim feature publications.
 
-## STOP / design gate first
+## D232 ratified — implementation gate open
 
-**I136 #1015 is currently BLOCKED**. D232 approved `Range`/`InvertedRange` as first-class ordinary Protos prototypes, strict direction-signed `eachStep`, `invert` (bounds swapped, membership usually changes), `reverse` (membership preserved), and deliberate removal of old module helpers. The precise constructor exposure, ordered-bound-invalid case, constructor-arity/state/reflection rules have not yet received exact owner ratification. If the agent reports `BLOCKED_ON_D232_PUBLIC_CONTRACT`, **do not ask it to invent semantics** or run project commands. Publish the exact D232 public contract and unblocking evidence first; supply that text to the agent prompt.
+**I136 is READY.** On 2026-11-01 the owner expressly approved both the dual inversions (“ok apruebo esto último”) and the final construction/export, ordered-bound, exactly-two-Integer and frozen-reflectable-instance contract (“Si lo apruebo”). Durable [D232 decision at commit 064485be](https://github.com/guillermomolina/protos-project-docs/blob/064485be40fde8eef0db93f6ce6b8116b360b9a7/docs/project/decisions/language/D232_DIRECTIONAL_RANGE_DUAL_INVERSION_SELECTED.md). The [agent prompt at commit b5fa6e2](https://github.com/guillermomolina/protos-project-docs/blob/b5fa6e2c7d732942df3c8450911682b00832c8f5/docs/project/work/I136/I136_AGENT_ONE_SLICE_PROMPT.md) reproduces the entire exact contract; the editing agent must not consult other repositories or the web.
+
+### Required approved constructor shape
+
+```protos
+Ranges: import("std:collections/Range")
+Range: Ranges.Range
+InvertedRange: Ranges.InvertedRange
+
+a: Range(0, 3)
+b: InvertedRange(3, 0)
+```
+
+Both are ordinary prototype-created first-class objects. `a.parent() === Range` and `b.parent() === InvertedRange`. Exactly two genuine semantic Integer arguments, no missing or extra values; wrong directional bound order signals `Error`, equal bounds mean empty range. Constructor calls evaluate their receiver and args once left-to-right. Each successful instance is frozen and owns reflectable local `start` and `stop` slots; `reverse()` and `invert()` produce new frozen instances. There is **no additional owner design gate** for this surface.
 
 **Approved semantic quick-check, to use during review:**
 
@@ -24,7 +37,7 @@ any eachStep(0)                     Error
 
 The old `Ranges.each(start,stop,block)` and `Ranges.reverseEach(start,stop,block)` module helpers must disappear, not survive as aliases.
 
-## Run sequence only after D232 contract is complete and editing agent has prepared a cohesive diff
+## Run sequence after the editing agent has prepared one cohesive diff
 
 Human action 1: check which working tree, changed files and patch are in front of you. This is read-only and safe for a checkout already at HEAD:
 
@@ -84,7 +97,7 @@ This script assumes you are on the correct existing main checkout and that its p
 ## Handoff back to coordination
 
 Send the agent the **actual** conformance/Maven/Make/Native results and immutable product commit. The agent may then prepare GitHub issue updates and durable revision-bound evidence, but must not claim publication merely from local diff or the planned command sequence. Ensure:
-- D232 public contract was fully selected and durably published before unblocking I136.
+- D232 public contract is fully owner-approved and durably published; implementation proceeds within the one ready I136 issue.
 - The single I136 product commit contains all source-backed prototypes, both transforms, both signed iterators, old-selector removal, migrated callers, tests, spec, docs and version/changelog changes.
 - Any resulting performance observation is not advertised as measured unless an actual benchmark is reported; PERF045 is independently responsible for that investigation.
 - All updates use **`guillermomolina`** (two `mo`), never any other namespace.
