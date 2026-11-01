@@ -1,9 +1,9 @@
 # D232 — First-class directed Range values and two distinct inversion operations
 
-**D232 state:** **OWNER-SELECTED SEMANTIC MODEL; EXACT CONSTRUCTION CONTRACT AND NORMATIVE RATIFICATION STILL PENDING**. This is a role-first durable language-decision checkpoint, not a completed normative language specification or a record of product implementation.
+**D232 state:** **RATIFIED — OWNER-APPROVED D232 FINAL CONTRACT (2026-11-01)**. This is the durable design authority for subsequent normative Standard Library specification and implementation, **not** a claim that the product's spec, source, tests or version have already changed.
 
 - Formal owner: [D232 #1014](https://github.com/guillermomolina/protos/issues/1014), [guillermomolina/protos](https://github.com/guillermomolina/protos).
-- Approval provenance: active 2026-11-01 owner conversation, exact **“ok apruebo esto último”** after the two-operation `invert()/reverse()` model was explained with examples; relevant explicit earlier owner preferences: direct `InvertedRange(3,0)` must visit `3,2,1`, step-sign validation belongs to direction, and old module helpers should be removed rather than retained indefinitely.
+- Approval provenance: active 2026-11-01 owner conversation: (1) exact **“ok apruebo esto último”** selecting the two-operation `invert()/reverse()` proposal with concrete outputs; (2) subsequent explicit **“Si lo apruebo”** selecting the exact three-part constructor contract presented for D232. Earlier owner invariants require direct `InvertedRange(3,0)` visiting `3,2,1`, direction-sign step validation, and removing the redundant old helpers.
 - Evidence: [comparative research, GITHUB010 scores, LIB017 conflict and falsification](https://github.com/guillermomolina/protos-project-docs/blob/949dd487c6931565baec7e9d6fc648f0bc7a47d8/docs/project/evidence/D232/D232_DIRECTIONAL_RANGES_COMPARATIVE_AND_INVARIANTS_2026_11_01.md).
 - Product inspected: [guillermomolina/protos@fba47c40c4b79b6e580df1c1f78a3fcecbd067e2](https://github.com/guillermomolina/protos/commit/fba47c40c4b79b6e580df1c1f78a3fcecbd067e2), 2026-11-01, after I135. No repository mutation to Protos as part of this decision.
 
@@ -85,17 +85,52 @@ This approval does not add arbitrary float ranges, generic Comparable ranges, in
 
 **OWNER_APPROVAL_PROVENANCE=PASS for the precisely recorded orientation, two transformations and public-helper-removal direction.** **DECISION_INVARIANT_CONSISTENCY=PASS for those invariants; NOT YET CHECKABLE for unresolved construction details.** These status markers are intentionally *not* an overall completed-ratification PASS.
 
-## Outstanding exact public-contract gate (do not invent implementation authority)
+## Final owner-approved construction, export and object contract
 
-Before closing D232 or releasing an implementation Issue, resolve at the owner approval gate:
-1. **Constructor/export surface and topology.** The visible binding spelling `Range(0,10)` and `InvertedRange(3,0)` is selected, but whether the module exports two prototypes to bind explicitly (as in `std:math/LinearAlgebra`) or supplies a module-level factory/selector, and their observable `parent()`/reflection identity, is not selected. Avoid unapproved special semantics for ordinary module contexts.
-2. **Wrong-ordered bounds.** The last explicit approval included equal-bound empties and direction-specific steps. Rejecting `Range(10,0)` and `InvertedRange(0,10)` with `Error`, versus preserving an empty range, changes existing behavior and must be explicitly chosen, not inferred from implementation convenience.
-3. **Exact constructor error, arity and object mutability contract.** Ordinary Protos Closure binding accepts extra arguments; `Object.init` has different arity constraints. Decide whether constructor arguments are exact, validation order (including failed initializer), read-only/frozen instance semantics, fields visible via reflection, and constructor overriding/dispatch. These details are observable and cannot be delegated to arbitrary user code without a contract.
+**Exact owner approval:** **“Si lo apruebo”**, following the assistant's concrete presentation of these three elements on 2026-11-01; this approval explicitly completes the previously outstanding public constructor gate.
 
-The proposed smallest matching implementation boundary is one **`I136`**, solely in `guillermomolina/protos`, with source-backed prototypes/methods, migrated examples, grouped tests, required normative specification and changelog, and any necessary version change. **I136 must remain blocked by the unresolved public-contract gate; this record is not implementation authorization.** The implementation agent should use local HEAD and this fully reproduced contract, never fetch another repo or browse.
+### Module exposure and normal prototype invocation
+
+The existing `std:collections/Range` import yields the ordinary **module object**, which exports two ordinary prototype objects as members named `Range` and `InvertedRange`. A consumer binds the objects explicitly before invoking them:
+
+```protos
+Ranges: import("std:collections/Range")
+Range: Ranges.Range
+InvertedRange: Ranges.InvertedRange
+
+ascending: Range(0, 10)
+descending: InvertedRange(3, 0)
+```
+
+This follows the ordinary module and prototype invocation pattern used in `std:math/LinearAlgebra`, not an ad hoc parser construct. `Ranges.Range(0,10)` and `Ranges.InvertedRange(3,0)` are **not** interchangeable invocation forms under ordinary Protos member-call semantics; direct use requires first extracting/binding the prototype as shown. The name `Range` on the module is **not** an old module-level iteration helper. Each constructed instance's immediate delegation parent is its respective actual prototype: `ascending.parent() === Range`, `descending.parent() === InvertedRange`. The exported prototypes use normal Protos object/delegation rules and are not new Core value-identity families.
+
+### Strict constructor arguments and endpoints
+
+Exactly two explicit semantic, mathematical, unbounded `Integer` arguments are required; zero, one, or three-or-more supplied positional arguments signal ordinary `Error`. `null`, Float, Fraction, Complex and objects merely delegating to `Integer` are invalid. A constructor must enforce exact arity explicitly; Core's ordinary Closure parameter binder alone would ignore surplus arguments. No implicit numeric conversion occurs. Protos evaluates the receiver and every supplied argument **once, strictly left-to-right, before any constructor validation or allocation/initialization as governed by ordinary `Object.call`**. Constructor validation signals `Error`; no partially initialized instance is normally returned. If several supplied values are invalid, the first particular failed validation need not define an additional `Error` subclass or precedence beyond ordinary evaluation effects; the only portable required failure is `Error`.
+
+For the two constructors:
+- `Range(start,stop)` requires **`start <= stop`**; otherwise `Error`. It visits `start,start+1,...,stop-1`.
+- `InvertedRange(start,stop)` requires **`start >= stop`**; otherwise `Error`. It visits `start,start-1,...,stop+1`.
+- `start == stop` is a valid empty instance in either orientation (and does not loosen incompatible `step` validation).
+- Bound arithmetic, including `reverse()`'s ±1, is exact unbounded Integer arithmetic with no host-word truncation.
+
+### Observable, frozen instance state
+
+Each successfully constructed object has **own local slots named `start` and `stop`** storing the exact supplied semantic Integers; they are visible via ordinary member reads and Core reflection such as `hasSlot`, `slotValue`, and `slotNames`. After successful initialization, the instance is **structurally FROZEN** using ordinary Protos object-state semantics. Consequently its existing slots cannot be reassigned or removed and new local slots cannot be added; its two stored Integers are already immutable numeric values. `start` and `stop` are in traversal argument order, not normalized to numeric lower/upper. `invert()` and `reverse()` return **fresh ordinary frozen instances** of the opposite prototype and do not mutate the original.
+
+Ordinary Protos identity and delegation still apply. No structural/value equality contract, `hash` override, range recognition intrinsic, host-backed storage or custom `Iterable` protocol is selected. User source is free to reference/override inherited ordinary methods according to standard object model rules; an operation cannot use a hidden runtime exception to bypass visible selector dispatch. Standard-construction invariants apply to successfully constructed instances, not to arbitrary user-authored objects deliberately delegating to a prototype.
+
+### GITHUB021 final invariant/delta attestation
+
+- **Exact owner-approved preserved:** direct two-prototype construction and direction-specific first-inclusive/last-exclusive intervals; `InvertedRange(3,0)` visits `3,2,1`; `invert` swaps endpoints and changes membership, `reverse` adjusts ±1 to preserve members; both are involutive on logical descriptor; `eachStep` sign constraint; explicit removal of old helpers; ordinary Protos implementation and historical LIB017 semantics that remain applicable.
+- **Later approved additions:** explicit prototype members/extraction, exact two-Integer constructor arguments, strict ordering with equal empty, frozen locally reflectable `start`/`stop` instance slots, ordinary parent identities. These directly replace the previously pending public construction questions; they introduce no contradiction with prior owner-approved directional semantics.
+- **LIB017 intentional reopen:** source compatibility for module `each`/`reverseEach` is deliberately broken; old `start>=stop -> empty` helper behavior does not immunize a newly constructed `Range(start,stop)` against the approved wrong-order `Error`. Original LIB017 decision remains historical; no aliases/wrappers are selected.
+- **No unapproved extensions:** no new `Range` syntax, no Core prototype/identity hierarchy, no general Iterator, no Float/Comparable ranges, no hidden native/Truffle acceleration. No new semantic approval is inferred beyond this exact contract.
+
+`OWNER_APPROVAL_PROVENANCE=PASS` for both explicit conversational approvals; `DECISION_INVARIANT_CONSISTENCY=PASS` for the exact approved contract and intentional LIB017 compatibility reopen; `EXACT_PUBLIC_CONTRACT=SELECTED`. The published project decision is sufficient to release **one** follow-up I136 implementation slice; implementation edits, product spec changes and tests remain human-executor-gated and have **not** occurred under D232.
 
 ## Delivery status
 
-- Evidence and selected semantic checkpoint published by GitHub docs-only commits, under the owner's explicit bounded exception for `guillermomolina/protos-project-docs`.
-- No production code, tests, benchmark, native build, spec change, version bump or commit in `guillermomolina/protos`.
-- Do not close D232 or mark an implementation ready until the exact public-contract gate is approved, revision-bound decision is complete and cross-references verified.
+- The final owner-approved semantic model, public constructor/export/identity contract and GITHUB021 reconciliation have been durably ratified in `guillermomolina/protos-project-docs`.
+- Next work: one [I136 implementation issue](https://github.com/guillermomolina/protos/issues/1015) in `guillermomolina/protos`, with a self-contained agent prompt and separate human-executor workflow. This design decision alone is **not** production implementation or normative spec publication.
+- No product code, tests, benchmark, native build, spec change, version bump or product commit is claimed by this docs-only ratification. D232 Issue closure and I136 readiness must be verified through live GitHub coordination after document publication.
