@@ -40,7 +40,9 @@ Create a small **standalone-CLI** lesson immediately following `03-assignment.pr
 // Six fixed bitwise forms are ordinary Integer message sends.
 // Expected output, one value per line: 8, 14, 6, -1, -2, true.
 
-andValue: 12 & 10
+left: 12
+andValue: left & 10
+namedAnd: left.bitAnd(10)
 orValue: 12 | 10
 xorValue: 12 ~ 10
 complement: ~0
@@ -54,10 +56,11 @@ word32: (~0) & 4294967295
 mixed: 1 | 6 & 3
 doubleTilde: 12 ~ ~10
 
-// Bitwise & evaluates its right argument even when the receiver is zero.
+// Both bitwise & and | evaluate their right argument even for 0 and -1.
 // Boolean && is deliberately lazy and does not evaluate the right expression.
 calls: 0
-ignored: 0 & (calls = calls + 1)
+andResult: 0 & (calls = calls + 1)
+orResult: -1 | (calls = calls + 1)
 lazy: false && (calls = calls + 1)
 
 // All six operators send ordinary messages. Receivers need not be Integers.
@@ -68,6 +71,7 @@ customResult: custom & 2
 
 verified:
     (andValue == 8) &&
+    (andValue == namedAnd) &&
     (orValue == 14) &&
     (xorValue == 6) &&
     (complement == -1) &&
@@ -76,8 +80,9 @@ verified:
     (word32 == 4294967295) &&
     (mixed == 3) &&
     (doubleTilde == -7) &&
-    (ignored == 0) &&
-    (calls == 1) &&
+    (andResult == 0) &&
+    (orResult == -1) &&
+    (calls == 2) &&
     (lazy === false) &&
     (customResult == 42)
 
@@ -93,7 +98,7 @@ print(negativeShift)
 print(verified)
 ```
 
-Use only existing source features: `if` is contextual control, `Error().signal()` fails an invalid demo, `print` is provided by the CLI, object literal method `bitAnd` uses ordinary dynamic dispatch. No import or capability authorization needed. Do not invent a private bitwise library, Java helper, runtime facility, a syntax test inside executable source that fails lexing, or hidden evaluation-dependent side effects.
+Use only existing source features: `if` is contextual control, `Error().signal()` fails an invalid demo, `print` is provided by the CLI, object literal method `bitAnd` uses ordinary dynamic dispatch. The `namedAnd` binding explicitly checks that operator `&` and named message `.bitAnd(10)` agree. The `andResult` and `orResult` cases independently prove strict RHS evaluation; the `lazy` case proves `&&` does not evaluate its RHS. No import or capability authorization needed. Do not invent a private bitwise library, Java helper, runtime facility, a syntax test inside executable source that fails lexing, or hidden evaluation-dependent side effects.
 
 ### FILE 2 — NEW `protos/examples/numbers/bit-flags-and-masks.protos`
 
@@ -203,13 +208,13 @@ The **only** new executable behavior is in two ordinary Protos learning sources,
 Do not edit `src/`, `spec/`, `protos/lib/`, `protos/tools/`, `pom.xml`, `CHANGELOG.md`, scripts, Makefile, root README, `docs/guide/SOURCE_STYLE.md`, or unrelated tutorial/example files. DOC014 does not introduce a new implementation version or spec revision: the educational material uses already shipped I137 semantics. Preserve the existing `LICENSE.TXT`; exact complete APL Part 5 notice in both new source files. No speculative release or Native Image assertion.
 
 **External precedent packet, already resolved; use solely to avoid misleading prose, no research needed:**
-- Lua 5.4 §3.4.2 and §3.4.8 uses `& | ~ << >>` and unary `~`, but has finite-width/coercion, different shift/negative-count semantics; never teach those as Protos.
-- Python/GraalPy explains unbounded sign-extended bitwise integers, arithmetic right shift, precedence AND > XOR > OR; Python spells XOR `^`, but Protos `^` is non-local return.
-- Ruby/TruffleRuby shows message-oriented operator dispatch; Protos uses its specifically named `bitAnd/bitOr/bitXor/bitNot/shiftLeft/shiftRight` methods, not Ruby's selectors.
-- GraalJS `JSBitwiseXorNode` has `ToInt32` Number specialization and separate BigInt path. Protos has **neither implicit int32 truncation nor Boolean conversion** from this.
-- Truffle SimpleLanguage `SLNodeParser`/`SLAddNode` separate grammar/parser from specialized execution nodes; here I137's `CanonicalSend` bridge is already complete, so learning material must not suggest adding new DSL nodes.
+- Lua 5.4 official manual §3.4.2/§3.4.8 uses `& | ~ << >>` and unary `~`, but has finite-width/coercion, zero-filled right shifts and opposite-direction negative counts; never teach those as Protos. Primary authority: `https://www.lua.org/manual/5.4/manual.html`.
+- Python official reference (§6.8–6.9) defines right shift by floor division by a power of two and distinct AND > XOR > OR precedence. GraalPy is a Truffle implementation of Python, but Python spells XOR `^` and Protos `^` is non-local return. Authorities: `https://docs.python.org/3/reference/expressions.html` and `https://www.graalvm.org/reference-manual/graalpy/`. No claim is made that GraalPy's implementation internals were inspected.
+- Ruby official `Integer` documentation defines symbolic methods (including `Integer#&`, `Integer#^`, `Integer#|`, unary `~`) and sign-extended complement; TruffleRuby follows Ruby language semantics. Protos instead dispatches to the *six exact named message selectors*, not Ruby's symbolic selectors. Authorities: `https://docs.ruby-lang.org/en/master/Integer.html`, `https://www.truffleruby.org/`. This is a semantic contrast, not a claim to have audited TruffleRuby implementation source.
+- GraalJS source `oracle/graaljs:graal-js/src/com.oracle.truffle.js/src/com/oracle/truffle/js/nodes/binary/JSBitwiseXorNode.java` has `doDouble` via `JSToInt32Node`, a distinct `doBigInt` and `doInteger`. `JSRightShiftNode.java` separately handles JavaScript Number shifts and BigInt. Protos has **neither implicit int32 truncation nor JS Number/BigInt coercion**; never copy those nodes. Browser semantic reference: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators`.
+- Truffle SimpleLanguage source `graalvm/simplelanguage:language/src/main/java/com/oracle/truffle/sl/parser/SLNodeParser.java` uses `createBinary` to assemble left-associative expressions; `language/src/main/java/com/oracle/truffle/sl/nodes/expression/SLAddNode.java` uses `@Specialization` over long/BigInteger. Unlike a new SimpleLanguage operator implementation, Protos I137 already lowers to ordinary `CanonicalSend`; learning material must not suggest extra Truffle DSL nodes.
 - Espresso (Java bytecode) and Sulong (LLVM) are not Protos syntax authorities.
-- Human-only external reference URLs for traceability, **not to browse**: `https://www.lua.org/manual/5.4/manual.html`, `https://docs.python.org/3/reference/expressions.html`, `https://www.graalvm.org/reference-manual/graalpy/`, `https://www.truffleruby.org/`, `https://github.com/oracle/graaljs`, `https://github.com/graalvm/simplelanguage`.
+- The contrast has been completed using the official Lua/Python/Ruby/JavaScript references and actual repository files from GraalJS and Truffle SimpleLanguage. **Do not browse** these URLs or look up other Truffle sources: every consequence relevant to DOC014 is fixed above. Espresso/Sulong remain outside the Protos syntax authority boundary.
 
 ## Completion response from editing agent
 
