@@ -14,7 +14,8 @@
 
 After the published I135 commit and after discussion of the missing final proof, the project maintainer explicitly reported in the active conversation:
 
-> el git diff check esta limpio.  
+> el git diff check esta limpio.
+>
 > make test y make check pasan en local.
 
 The maintainer had previously reported the focused I135 tests passing. For closure, the final human report supplies all previously missing required integrated gates:
