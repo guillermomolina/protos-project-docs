@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [DOC016 — contextual for learning publication and validation](DOC016/DOC016_PROTOS_FIRST_CONTEXTUAL_FOR_PUBLICATION_AND_VALIDATION_2026_11_01.md) — published [Protos fadb184409fc](https://github.com/guillermomolina/protos/commit/fadb184409fc9b985e19db4a75ca76461592ff6b), 7 paths, two APL-licensed standalone programs, Protos-first guides and links; clean diff, make test and make check PASS as reported by maintainer. Exact stdout and Native checks not separately attested. [DOC016 #1032](https://github.com/guillermomolina/protos/issues/1032) owns closure.
+
 - [`DOC015 — contextual non-local return Protos-first tutorial and cookbook closure`](DOC015/DOC015_PROTOS_FIRST_CONTEXTUAL_RETURN_LEARNING_COMPLETION_2026_11_01.md) — exact [Protos `8af1a70a56ca`](https://github.com/guillermomolina/protos/commit/8af1a70a56ca113a94eea1a5935a74a80fecdfd2); two new standalone Closure learning programs, five navigation/guide additions, 216 added lines, no product version/spec/runtime change. Maintainer reports clean `git diff --check`, `make test` and `make check` PASS; exact example stdout and Native Image checks are not separately attested. [DOC015 #1025](https://github.com/guillermomolina/protos/issues/1025) owns live closure.
 
 
