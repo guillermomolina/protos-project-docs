@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [`D230-C1 — Core Integer bitwise comparative research and falsification (2026-11-01)`](D230/D230_C1_COMPARATIVE_RESEARCH_2026_11_01.md) — Python/Java BigInteger/JavaScript BigInt/Smalltalk/Rust/Go/SMT bit-vector precedents, five candidate scorecard (12 criteria), source-level SHA-256 evidence, adversarial vector plan, exact Protos source baseline `73bd9fe9`, and explicit owner approval; [ratified decision](../decisions/language/D230_CORE_INTEGER_BITWISE_OPERATIONS_C1.md). No code, tests or benchmarks executed.
+
 - [`INC002 / D229 / LIB027 — external-process capability and command-library work split (2026-10-31)`](INC002/INC002_EXTERNAL_PROCESS_AND_COMMAND_LIBRARY_SPLIT_2026_10_31.md) — owner-directed separation of [D229 #1008](https://github.com/guillermomolina/protos/issues/1008) (unselected OS process-execution capability contract) and [LIB027 #1009](https://github.com/guillermomolina/protos/issues/1009) (blocked Protos-first command/pipeline library), with syntax sugar and embedded/template grammar retained in [INC002 #1004](https://github.com/guillermomolina/protos/issues/1004). Read-only Protos baseline [`73bd9fe9`](https://github.com/guillermomolina/protos/commit/73bd9fe913421ff493146b546869f9a1f0d2b34e); no product change, implementation, approval, tests or native blocker-edge reconciliation claimed.
 
 
