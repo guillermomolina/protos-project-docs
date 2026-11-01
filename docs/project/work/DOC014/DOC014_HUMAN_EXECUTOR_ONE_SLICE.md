@@ -70,7 +70,7 @@ bin/protos protos/tutorials/01-values-and-slots/04-bitwise-operators.protos
 bin/protos protos/examples/numbers/bit-flags-and-masks.protos
 ```
 
-Expected tutorial stdout has **six lines**: `8`, `14`, `6`, `-1`, `-2`, `true`. Example stdout has **six `true` lines**. Both have exit code 0 and no stderr. If the launcher is not usable or is stale, rely on the direct JUnit CLI hosting test and report the separate manual command as skipped; never claim an unrun test. Do not add a separate Java runtime/Truffle test merely to accommodate the fixture.
+Expected tutorial stdout has **six lines**: `8`, `14`, `6`, `-1`, `-2`, `true`. Example stdout has **six `true` lines**. The tutorial must also evaluate both eager RHS expressions (`0 & ...` and `-1 | ...`) exactly once, leave the `false && ...` RHS unevaluated, check the final counter is 2, and compare `left & 10` against `left.bitAnd(10)`. Those internal checks are enforced by `verified` and `Error().signal()`. Both have exit code 0 and no stderr. If the launcher is not usable or is stale, rely on the direct JUnit CLI hosting test and report the separate manual command as skipped; never claim an unrun test. Do not add a separate Java runtime/Truffle test merely to accommodate the fixture.
 
 ## 4. Full publication gate and static checks
 
