@@ -1,3 +1,7 @@
+> **COMPLETED — product published 2026-11-01:** DOC015's exact seven-path, one-slice source publication is [`guillermomolina/protos@8af1a70a56ca113a94eea1a5935a74a80fecdfd2`](https://github.com/guillermomolina/protos/commit/8af1a70a56ca113a94eea1a5935a74a80fecdfd2), with two APL-licensed Protos-first executable programs and five linked guides/indices; 216 additions, zero deletions, and no DOC015 version/spec/runtime bump. The maintainer reports clean `git diff --check`, `make test` PASS and `make check` PASS. [Revision-bound publication and validation record](../../evidence/DOC015/DOC015_PROTOS_FIRST_CONTEXTUAL_RETURN_LEARNING_COMPLETION_2026_11_01.md). Exact CLI stdout comparison and Native checks were not separately attested. The original **planning statements below are historical and superseded** by this publication evidence; live closure is owned by [DOC015 #1025](https://github.com/guillermomolina/protos/issues/1025).
+>
+> ---
+
 # DOC015 — Contextual non-local return: one-slice documentation, tutorials and examples
 
 **Issue:** [DOC015 #1025](https://github.com/guillermomolina/protos/issues/1025) (`family:DOC`, `status:ready` at creation, unassigned, priority unset). **Created:** 2026-11-01. **Authority:** Already shipped [D234-B2-S1 / I138](https://github.com/guillermomolina/protos/issues/1021), exact source `guillermomolina/protos@ab637aa264ddbb2b99fdb03cb19207cc19651f45` (product 0.3.432-SNAPSHOT, normative spec 0.1.487).
