@@ -1,5 +1,25 @@
 # I094 — Published source-owned Path semantics and inert Filesystem boundary
 
+## Final native issue-hierarchy reconciliation — 2026-11-02
+
+**NATIVE_PARENT=PASS.** The repository owner created the native GitHub Parent/Sub-issue relationship using GitHub's sub-issue endpoint. Independently re-read on 2026-11-02:
+
+- `GET /repos/guillermomolina/protos/issues/875/parent` returned **AUD021 issue #874**, database ID `5798097305`.
+- `GET /repos/guillermomolina/protos/issues/874/sub_issues` returned **I094 issue #875**, database ID `5798428913`. Exactly one native child was visible at the verification checkpoint.
+
+**Metadata omission: historical exception already approved.** The owner explicitly approved recording the original missing same-commit `pom.xml` version increment and root `CHANGELOG.md` entry as an exception for I094; see the prior addendum below. This approval does not claim the historical commit complied, nor does it change future implementation-versioning rules.
+
+**Implementation acceptance:** the immutable [`0980d59b9f654b1668f836f1c5286dedab90770b`](https://github.com/guillermomolina/protos/commit/0980d59b9f654b1668f836f1c5286dedab90770b) contains all approved Candidate C implementation slices (A1/A2/A3). The maintainer previously reported successful local tests and a clean diff; no new tests were executed during administrative reconciliation. Native parent verified, metadata exception recorded, no implementation slices outstanding. Both formal closure blockers described in the 2026-10-11 historical section are now resolved.
+
+**PRODUCT_REVISION=`0980d59b9f654b1668f836f1c5286dedab90770b`**  
+**HISTORICAL_METADATA_EXCEPTION=APPROVED**  
+**NATIVE_PARENT=PASS (AUD021 #874)**  
+**REQUIRED_DURABLE_PUBLICATION=PASS once this updated record is published and re-read at an exact project revision**  
+**I094_ACCEPTANCE=COMPLETE; ISSUES_STATE_REQUIRES_SEPARATE_CLOSURE_TRANSACTION**
+
+---
+
+
 ## Owner-approved historical metadata exception — 2026-11-02
 
 **Owner authorization:** on 2026-11-02, after the I120/AUD021/I094/DIST016 issue reconciliation, the owner replied **"apruebo"** to the explicit proposal to treat the I120 and I094 missing same-commit `pom.xml` version increments and root `CHANGELOG.md` entries as **documented historical exceptions**, without changing current version metadata. This does **not** change the requirement for future implementation commits.
