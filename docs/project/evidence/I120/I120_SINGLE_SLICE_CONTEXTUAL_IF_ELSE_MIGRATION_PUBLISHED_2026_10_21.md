@@ -1,5 +1,22 @@
 # I120 — Published single-slice contextual if/else source migration (metadata reconciliation pending)
 
+## Owner-approved historical metadata exception — 2026-11-02
+
+**Owner authorization:** on 2026-11-02, after reviewing the I120/I094/DIST016/AUD021 reconciliation, the owner replied **"apruebo"** to the explicit proposal to treat the I120 and I094 missing same-commit `pom.xml` version bumps and `CHANGELOG.md` entries as **documented historical exceptions**, rather than making artificial changes to current version metadata. The approval covers **the historical documentation exception only**. It is not a repeal of the version/changelog policy for future commits.
+
+**Exception outcome for I120: ACCEPTED_HISTORICAL_NONCONFORMANCE.** [`guillermomolina/protos@e552feced508db25950747f446c507b8e65e3dff`](https://github.com/guillermomolina/protos/commit/e552feced508db25950747f446c507b8e65e3dff) remains the complete immutable I120 source publication. That commit genuinely lacks both the required `pom.xml` increment and matching root changelog; it therefore **did not comply** with the same-commit rule. No replacement commit, altered release, changed version number, changelog retro-edit, or history rewrite is claimed or required under the approved exception. Its semantic scope and originally reported successful local tests are unchanged; tests are not rerun for Issue reconciliation.
+
+The **2026-10-21 historical "NOT_RECONCILED" / pending closure snapshot below remains truthful for its date** and is superseded for current Issue coordination **only by this owner-approved waiver**, once the publication of this addendum is independently read back at the exact project-docs commit SHA. The waiver resolves I120's sole documented administrative closure hold; it does not change language semantics, the ratified D211 source-style target, or any other Issue's structural postconditions.
+
+**METADATA_SAME_COMMIT_POLICY=HISTORICALLY_NOT_MET**  
+**HISTORICAL_EXCEPTION_APPROVED=YES (owner, 2026-11-02)**  
+**RETROACTIVE_METADATA_COMMIT=NONE**  
+**REQUIRED_NEW_PRODUCT_WORK=NONE**  
+**I120_CLOSURE_HOLD_METADATA=WAIVED_WITH_PROVENANCE**
+
+---
+
+
 **Date:** 2026-10-21  
 **Formal work:** [I120 / #946](https://github.com/guillermomolina/protos/issues/946), **one substantive implementation slice**  
 **Product repository:** `guillermomolina/protos`  
