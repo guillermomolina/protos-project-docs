@@ -1,7 +1,7 @@
 # LM009 — VS Code extension 0.2.3: TextMate alignment and Marketplace report
 
-**Evidence date:** 2026-11-02  
-**Classification:** immutable, non-normative editor/extension distribution evidence, linked to existing LM009 and AUD022 formal authority.  
+**Evidence date:** 2026-11-02
+**Classification:** immutable, non-normative editor/extension distribution evidence, linked to existing LM009 and AUD022 formal authority.
 **Semantics:** no Protos language, runtime, Standard Library, LSP or DAP semantic change is claimed.
 
 ## Ownership and exact product identity
