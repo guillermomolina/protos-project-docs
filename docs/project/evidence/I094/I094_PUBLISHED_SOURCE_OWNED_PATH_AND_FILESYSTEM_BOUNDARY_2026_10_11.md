@@ -1,5 +1,25 @@
 # I094 — Published source-owned Path semantics and inert Filesystem boundary
 
+## Owner-approved historical metadata exception — 2026-11-02
+
+**Owner authorization:** on 2026-11-02, after the I120/AUD021/I094/DIST016 issue reconciliation, the owner replied **"apruebo"** to the explicit proposal to treat the I120 and I094 missing same-commit `pom.xml` version increments and root `CHANGELOG.md` entries as **documented historical exceptions**, without changing current version metadata. This does **not** change the requirement for future implementation commits.
+
+**Exception outcome for I094: ACCEPTED_HISTORICAL_NONCONFORMANCE.** The published [`guillermomolina/protos@0980d59b9f654b1668f836f1c5286dedab90770b`](https://github.com/guillermomolina/protos/commit/0980d59b9f654b1668f836f1c5286dedab90770b) genuinely omits the version bump and same-commit changelog required for changes under `src/` and `protos/lib/`. The record retains that noncompliance rather than claiming retroactive conformance. The owner explicitly accepts this historical deviation; no new product source/metadata edits, retroactive release, fabricated test PASS, or Git history rewrite are requested. The implementation and human-reported validation remain as originally published.
+
+**Separate still-open structural condition:** the approved metadata exception **does not** waive GITHUB006/GITHUB015 native issue hierarchy. At this reconciliation, GitHub `GET /repos/guillermomolina/protos/issues/875/parent` returned **404 No parent issue found**, and `GET /repos/guillermomolina/protos/issues/874/sub_issues` returned an **empty list**. I094 [#875](https://github.com/guillermomolina/protos/issues/875) must be attached as a **native sub-issue** of AUD021 [#874](https://github.com/guillermomolina/protos/issues/874); textual references and this durable record cannot substitute for the native relationship. The project retains I094 and AUD021 in `status:review` until that distinct postcondition is verified.
+
+The **2026-10-11 historical metadata reconciliation section below remains a true record of that earlier date**; only the **metadata hold** is superseded by the current explicit owner exception.
+
+**METADATA_SAME_COMMIT_POLICY=HISTORICALLY_NOT_MET**  
+**HISTORICAL_EXCEPTION_APPROVED=YES (owner, 2026-11-02)**  
+**RETROACTIVE_METADATA_COMMIT=NONE**  
+**REQUIRED_NEW_PRODUCT_WORK=NONE**  
+**I094_CLOSURE_HOLD_METADATA=WAIVED_WITH_PROVENANCE**  
+**I094_CLOSURE_HOLD_NATIVE_PARENT=STILL_PENDING_VERIFICATION**
+
+---
+
+
 **Record date:** 2026-10-11
 **Formal implementation owner:** [I094 / #875](https://github.com/guillermomolina/protos/issues/875)
 **Originating audit:** [AUD021 / #874](https://github.com/guillermomolina/protos/issues/874)
