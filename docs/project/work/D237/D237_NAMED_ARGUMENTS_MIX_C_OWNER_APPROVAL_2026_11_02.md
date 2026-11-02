@@ -1,11 +1,11 @@
 # D237 — Owner-approved named-call syntax and MIX-C argument-binding checkpoint
 
-**Record type:** bounded, non-normative design/work evidence; **not** a complete D237 ratification, product specification change or implementation closure.  
-**Recorded date:** 2026-11-02.  
-**Authoritative live design issue:** [guillermomolina/protos#1038](https://github.com/guillermomolina/protos/issues/1038).  
-**Future implementation issue (blocked):** [I143 #1039](https://github.com/guillermomolina/protos/issues/1039).  
-**Exact product baseline inspected:** [guillermomolina/protos@2e85e8dc0b85548add6962ef6556f24513bc8d05](https://github.com/guillermomolina/protos/commit/2e85e8dc0b85548add6962ef6556f24513bc8d05).  
-**Normative owners (unchanged at that revision):** `spec/PROTOS_GRAMMAR.md` §16–19, `spec/semantics/CALLABLES.md` (invocation arguments and ordinary `call`), `spec/semantics/EXECUTION_AND_CONTROL.md`, `OBJECT_MODEL.md`, `ERRORS.md`, `VALUES_AND_COLLECTIONS.md`, concurrency/interop owners where relevant.  
+**Record type:** bounded, non-normative design/work evidence; **not** a complete D237 ratification, product specification change or implementation closure.
+**Recorded date:** 2026-11-02.
+**Authoritative live design issue:** [guillermomolina/protos#1038](https://github.com/guillermomolina/protos/issues/1038).
+**Future implementation issue (blocked):** [I143 #1039](https://github.com/guillermomolina/protos/issues/1039).
+**Exact product baseline inspected:** [guillermomolina/protos@2e85e8dc0b85548add6962ef6556f24513bc8d05](https://github.com/guillermomolina/protos/commit/2e85e8dc0b85548add6962ef6556f24513bc8d05).
+**Normative owners (unchanged at that revision):** `spec/PROTOS_GRAMMAR.md` §16–19, `spec/semantics/CALLABLES.md` (invocation arguments and ordinary `call`), `spec/semantics/EXECUTION_AND_CONTROL.md`, `OBJECT_MODEL.md`, `ERRORS.md`, `VALUES_AND_COLLECTIONS.md`, concurrency/interop owners where relevant.
 **Authority:** specification under `guillermomolina/protos/spec/` remains normative; this record preserves exact owner selections and outstanding decisions only.
 
 ## 1. Exact human decision provenance
