@@ -156,3 +156,38 @@ FULL_SUITE=NOT_RUN
 ```
 
 The remaining `pom.graal_components` drift is **expected but not accepted as final**: direct Maven compilation must temporarily override `-Dgraalvm.version=25.5.5.0.3` and use the actual GraalVM 25.5 JDK; final canonical POM alignment must be separately validated before DIST017 acceptance. The project version/changelog bump is reserved for after the final full-suite validation, per owner instructions.
+
+## 9. Human-reported 25.5 devcontainer/JDK/JVMCI runtime acceptance — 2026-11-04
+
+**Execution provenance:** maintainer's terminal output from rebuilt development container `43c2b83b157c`, checked out on local branch `graalvm-25-5`. Product base revision as previously captured `250b89bf2faf3e580980a67c2d69aa94d10e4df3`; eight local paths modified by DIST017-B1, no `pom.xml` or `CHANGELOG.md` modifications reported.
+
+The maintainer's rebuilt devcontainer reports the following exact identifiers:
+
+```text
+java.version=25.0.5.0.3
+java.vendor.runtime=GraalVM CE 25.5.5.0.3+1.1
+java.vm.build=25.0.5.0.3+1-jvmci-25.5-b26
+java.internal.version=25.0.5.0.3+1-jvmci-25.5-b26
+java.internal.build_timestamp=2026-10-27T22:27:33Z
+java.internal.platform=linux-amd64
+maven=Apache Maven 3.9.9 (Red Hat 3.9.9-3)
+maven.java.runtime=/opt/graalvm-community-java25i5
+runtime_verifier=PASS (RUNTIME_STATUS=0)
+runtime_toolchain_drift=0
+development_toolchain=PASS (TOOLCHAIN_STATUS=0)
+development_toolchain_drift=0
+```
+
+The runtime verifier explicitly marked `runtime.maven.version`, `runtime.maven.java_version`, `runtime.maven.java_vendor`, `runtime.maven.java_runtime`, and `runtime.redundant_openjdk_rpm` as `status=PASS`; `make toolchain` checked the selected dev image pinned by index digest, Java bytecode release 21, Maven installation/repository scope, `JAVA_HOME`-first PATH, CI image binding and CI Maven cache, all `status=PASS`. The `protos-ci` image is still the **old digest** `sha256:94c01739a95d6bbcb197180b86ef3aaa8c429483686d29d2b12d50ae35028fc1`; consistency of the development-scope selector does not prove that derivative CI image was rebuilt for 25.5. Also, development-scope verification **does not** check the still intentionally drifting `pom.graal_components` binding. No 25.5 source compile or full-suite outcome was reported yet.
+
+**Distinction:** An earlier attempt to download the official 334 MB x64 JDK tarball inside the old container failed with `curl (23)` during local file write at approximately 76% completion; this is a local I/O/storage failure, not an upstream 25.5 compatibility failure. The maintainer instead rebuilt the actual existing devcontainer using its pinned 25.5 image and obtained the passing results above. No need for a second manually unpacked JDK.
+
+```text
+DIST017_B1_FOCAL_TOOLCHAIN_TEST=PASS_REPORTED
+DIST017_C1_25_5_RUNTIME_IDENTITY=PASS_REPORTED
+DIST017_C1_25_5_JVMCI_IDENTITY=VERIFIED_BY_JAVA_XINTERNALVERSION
+DIST017_C1_25_5_SOURCE_GENERATION_AND_COMPILE=NOT_RUN
+DIST017_D_NATIVE_AND_PORTABLE_VALIDATION=NOT_RUN
+DIST017_D_FULL_SUITE=NOT_RUN
+POM_VERSION_AND_CHANGELOG=UNCHANGED
+```
