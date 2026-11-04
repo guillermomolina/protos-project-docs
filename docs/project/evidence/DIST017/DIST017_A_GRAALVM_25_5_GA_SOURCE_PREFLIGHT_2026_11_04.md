@@ -519,3 +519,11 @@ DIST017_D2_NATIVE_TLS_JUNIT=NOT_RUN
 DIST017_D2_NATIVE_DISTRIBUTION_ARCHIVE=NOT_BUILT
 DIST017_D3_CI_IMAGE=NOT_REBUILT
 ```
+
+## 17. DIST017-D2 Native 25.5 regression PASS — 2026-11-04
+
+Human-reported execution of `bash build/native/test-native.sh` in the unified 25.5 Native Image devcontainer finished with `DIST017_NATIVE_TEST_STATUS=0` and `NATIVE_REGRESSION_SUITE=PASS`. The native executable had been built successfully in the previous gate.
+
+Results: native version/help/guest smoke, Test Tool, numeric conformance (4 files), TLS conformance (3 files), DAP breakpoint and stacktrace and continue, LSP workspace symbols and Unicode parity and clean shutdown, regex, inspection authority, and interpreter-only policy all PASS. Expected denied authorization probes returned status 1; authorized probes returned status 0. `NATIVE_TEST_TOOL_CONTEXT_TEARDOWN_FAILURES=0`. `NATIVE_FALLBACK_RUNTIME_MARKERS=1`; `OPT_DONE=0`, `OPT_FAILED=0`, `FRAME_WITHOUT_BOXING_FAILURES=0`, `COMPILATION_FAILURES=0`, matching the deliberately interpreter-only Native profile. Native guest JIT remains unsupported (oracle/graal#14579).
+
+Not yet tested: separate `-Pnative-tls-tests` JUnit Native Image, Native distribution archive, new CI image, final integrated tests. No Protos version or changelog changes. User requires commands to print full terminal output without redirecting or hiding it.
