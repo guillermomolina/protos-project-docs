@@ -292,3 +292,41 @@ DIST017_DIFF_CHECK=PASS
 DIST017_C3_PRODUCT_COMMIT=NOT_PUBLISHED
 DIST017_D_CI_NATIVE_PORTABLE_AND_FULL_SUITE=NOT_RUN
 ```
+
+
+## 13. Human-reported DIST017-C4 25.5 filesystem, module, TLS and optimizing runtime acceptance — 2026-11-04
+
+**Human execution provenance:** uncommitted `graalvm-25-5` checkout, rebuilt official GraalVM CE 25.5.5.0.3 / JDK 25.0.5.0.3 / JVMCI 25.5-b26 development container. The root Maven `graalvm.version` property had already been aligned to 25.5.5.0.3 (no `-Dgraalvm.version` override). The maintainer reported running:
+
+```text
+mvn -Djunit.jupiter.execution.parallel.enabled=false \
+  -Dtest=ProtosEmbeddedFilesystemTest,ProtosSourceReadabilityAuthorityTest,ProtosModuleSourceIdentityTest,ProtosPerf006C1OptimizingRuntimeClosureTest,ProtosTlsTrustTest test
+DIST017_C4_COMPATIBILITY_STATUS=0
+```
+
+Results from the human-supplied output:
+
+| Focal test class | Tests | Failures | Errors | Skipped | Outcome |
+| --- | ---: | ---: | ---: | ---: | --- |
+| `ProtosEmbeddedFilesystemTest` | 28 | 0 | 0 | 0 | PASS |
+| `ProtosSourceReadabilityAuthorityTest` | 4 | 0 | 0 | 0 | PASS |
+| `ProtosModuleSourceIdentityTest` | 6 | 0 | 0 | 0 | PASS |
+| `ProtosPerf006C1OptimizingRuntimeClosureTest` | 4 | 0 | 0 | 0 | PASS |
+| `ProtosTlsTrustTest` | 9 | 0 | 0 | 0 | PASS |
+| **TOTAL** | **51** | **0** | **0** | **0** | **PASS** |
+
+The optimizer proof printed `PERF006_C1_SUREFIRE_RUNTIME=com.oracle.truffle.runtime.hotspot.HotSpotTruffleRuntime`, `PERF006_C1_SUREFIRE_OPTIMIZING_RUNTIME=PASS`, `PERF006_C1_WARNING_SUPPRESSION=NO`, `PERF006_C1_SHADED_OPTIMIZER=NO`, and `PERF006_C1_CHECKOUT_RUNTIME_PLANE=PASS`. `BUILD SUCCESS`; `DIFF_CHECK_STATUS=0`. Human-reported worktree contains precisely 12 edited product/config/test paths so far: `.devcontainer/Dockerfile`, `build/native/Dockerfile`, `dist/build_native.py`, `dist/build_portable.py`, `dist/smoke/smoke_optimizing_runtime.sh`, `pom.xml`, three DAP test files, `toolchain.json`, `tools/tests/test_verify_toolchain.py`, and `tools/verify_toolchain.py`.
+
+**Cumulative non-overlapping focal JUnit classes reported after C2/C3/C4:** `47 + 5 + 51 = 103`, zero failures in their latest relevant runs. Earlier five C3 DAP teardown failures are retained separately in section 11 and were repaired/retested in section 12, not erased.
+
+**Limit:** This verifies an optimizing JVM and the five selected filesystem/module/TLS test classes, **not** Native Image, extracted portable distribution, new derivative `protos-ci` digest, official independently executed full suite, or product-version/changelog finalization. `pom.xml` project version `0.3.442-SNAPSHOT` remains frozen until the final integrated validation.
+
+```text
+DIST017_C4_FOCAL_JUNIT=51_PASS_0_FAIL_0_ERROR_0_SKIP
+DIST017_C4_OPTIMIZING_RUNTIME=HOTSPOT_TRUFFLE_RUNTIME_PASS
+DIST017_C4_DIFF_CHECK=PASS
+DIST017_CUMULATIVE_CURRENT_FOCAL_JUNIT=103_PASS
+DIST017_D_PORTABLE_NATIVE_CI=NOT_RUN
+DIST017_D_FULL_SUITE=NOT_RUN
+PRODUCT_PUBLISH=NOT_YET
+```
