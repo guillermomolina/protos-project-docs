@@ -330,3 +330,85 @@ DIST017_D_PORTABLE_NATIVE_CI=NOT_RUN
 DIST017_D_FULL_SUITE=NOT_RUN
 PRODUCT_PUBLISH=NOT_YET
 ```
+
+
+## 14. Human-reported DIST017-D1 portable distribution 25.5 build and cross-slice acceptance — 2026-11-04
+
+**Execution provenance:** maintainer's terminal output from the rebuilt 25.5 Community devcontainer, local `graalvm-25-5` uncommitted product checkout. The D1 portable preview intentionally used `--allow-dirty` and `--allow-dirty-source` and was **not** a clean-source release artifact.
+
+**Build (PASS)**
+
+```text
+python3 dist/build_portable.py --allow-dirty
+DIST017_D1_BUILD_STATUS=0
+BUILD SUCCESS
+DIST_RUNTIME_PROJECTION_CHECK=PASS
+DIST_RUNTIME_PROJECTION_JARS=12
+DIST_ARCHIVE_CRC_CHECK=PASS
+DIST_LAYOUT_CHECK=PASS
+DIST_SOURCE_IDENTITY_CHECK=PASS
+DIST_RUNTIME_METADATA_CHECK=PASS
+DIST_LAUNCHER_MODE_CHECK=PASS
+DIST_ARCHIVE=/workspaces/protos/target/distributions/protos-0.3.442-SNAPSHOT-posix-jvm.zip
+DIST_ARTIFACT_KIND=development-distribution
+DIST_BUILD=PASS
+```
+
+**Extracted portable ZIP cross-slice validation (PASS)**
+
+```text
+sh dist/validate_portable.sh --allow-dirty-source --archive target/distributions/protos-0.3.442-SNAPSHOT-posix-jvm.zip
+DIST017_D1_VALIDATE_STATUS=0
+DIST_ARCHIVE_CRC_CHECK=PASS
+DIST_SINGLE_ROOT_CHECK=PASS
+DIST_SOURCE_REVISION_CHECK=PASS revision=250b89bf2faf3e580980a67c2d69aa94d10e4df3
+DIST_ARTIFACT_MODE_CHECK=PASS mode=development-distribution
+DIST_SOURCE_CLEAN_CHECK=DIRTY_ALLOWED
+DIST_INTERNAL_CHECKSUM_COVERAGE_CHECK=PASS files=1928
+DIST_INTERNAL_CHECKSUM_VALUE_CHECK=PASS
+DIST001_B2_VERIFY=PASS
+DIST001_B3_SMOKE=PASS
+TEST001_H_PORTABLE_REPOSITORY_SUITE_CHECK=PASS passed=3596 failed=0
+DIST001_B4A_SMOKE=PASS
+PLAT054_PACKAGED=PASS
+PLAT054_HOME=PASS
+PLAT054_OVERRIDE=PASS
+PLAT054_INVALID_OVERRIDE=PASS
+PLAT055_APPLICATION_MODULES=PASS
+PLAT054_JAR_CONTAINS_CORE=PASS
+PLAT054_OUTSIDE_CHECKOUT=PASS
+PLAT055_APPLICATION_MODULES_PORTABLE=PASS
+PLAT054_3C_SMOKE=PASS
+DIST_SELECTED_JDK_CHECK=PASS java.version=25.0.5.0.3
+DIST_OPTIMIZER_JAR_INTACT_CHECK=PASS version=25.5.5.0.3
+DIST_TRUFFLE_COMPILER_CHECK=PASS version=25.5.5.0.3
+DIST_DAP_RUNTIME_CLOSURE_CHECK=PASS version=25.5.5.0.3
+DIST_OPTIMIZING_RUNTIME_CHECK=PASS class=com.oracle.truffle.runtime.hotspot.HotSpotTruffleRuntime
+DIST001_B4B_SMOKE=PASS
+DIST_B5_SINGLE_ARCHIVE_CHECK=PASS sha256=b9d4a12f4f75975a643731338e8a1639f381eca3c478a23aba6b9aadf65b91c6
+DIST_B5_ARTIFACT_MODE_CHECK=PASS mode=development
+DIST_B5_ARCHIVE_IDENTITY_CHECK=PASS
+DIST_B5_CWD_PACKAGE_CHECK=PASS
+DIST_B5_TEST_TOOL_CHECK=PASS
+DIST_B5_POLYGLOT_EMBEDDING_CHECK=PASS
+DIST_B5_OPTIMIZING_RUNTIME_CHECK=PASS
+DIST001_B5_CROSS_SLICE=PASS
+DIFF_CHECK_STATUS=0
+```
+
+**Interpretation:** the packed 25.5 runtime compiler and DAP closure are validated as present; the distributed portable launcher and out-of-checkout Polyglot/Test Tool flows pass, including a 3,596-case Protos corpus executed inside the **portable** distribution. The 3,596 cases must **not** be described as a completed integrated `make test` Java/Protos repository gate. There are 103 separately reported selected JUnit PASS from C2/C3/C4. No evidence yet of Native Image, rebuilt/pinned CI derivative image, final full suite, clean-source release/revision artifact, or product commit/push.
+
+**Next source-audited blockers:** `build/native/Dockerfile` points to the new pinned Native 25.5 base, but `dist/build_native.py --allow-dirty` requires an *already-built* executable `target/native/protos` and validates canonical Oracle Linux 10 / glibc 2.39 build provenance. Build and test Native in the canonical Native container; do not treat the devcontainer's JVM/JDK as proof of the Native build OS. CI image lock still points to a previously published 25.4 derivative even though the selector-audit's internal CI-image lock binding passes (consistency only). Native and CI need separate human-executed verification.
+
+```text
+DIST017_D1_PORTABLE_BUILD=PASS_REPORTED
+DIST017_D1_PORTABLE_BUNDLE_SMOKE=PASS_REPORTED
+DIST017_D1_PORTABLE_PROTOS_CORPUS=3596_PASS_0_FAIL
+DIST017_D1_PORTABLE_JAR_COUNT=12
+DIST017_D1_PORTABLE_CHECKSUM_COVERAGE=1928
+DIST017_D1_PORTABLE_SHA256=b9d4a12f4f75975a643731338e8a1639f381eca3c478a23aba6b9aadf65b91c6
+DIST017_D1_SOURCE_DIRTY=TRUE_ALLOWED_PRECOMMIT
+DIST017_D2_NATIVE_IMAGE=NOT_RUN
+DIST017_D3_CI_IMAGE=NOT_REBUILT
+DIST017_FINAL_MAKE_TEST_AND_CHECK=NOT_RUN
+```
