@@ -1,12 +1,12 @@
 # PLAT069 — Owner-directed pause pending I115 shape/storage convergence
 
-**Evidence date:** 2026-11-04  
-**Formal work owner:** [PLAT069 / guillermomolina/protos#1048](https://github.com/guillermomolina/protos/issues/1048)  
-**Direct prerequisite:** [I115 / guillermomolina/protos#931](https://github.com/guillermomolina/protos/issues/931) (still open)  
-**Product main revision inspected:** [`a7aa54bc0eceabcc2258ebf0c5b52c1b6d6ea71b`](https://github.com/guillermomolina/protos/commit/a7aa54bc0eceabcc2258ebf0c5b52c1b6d6ea71b)  
-**Experimental I115 branch revision inspected:** [`e7124cbcbf2adaeffc1cf063adc1ebeea66d2357`](https://github.com/guillermomolina/protos/commit/e7124cbcbf2adaeffc1cf063adc1ebeea66d2357)  
-**Adopted platform:** GraalVM / Truffle 25.5.5.0.3 through [DIST017/#968](https://github.com/guillermomolina/protos/issues/968)  
-**Evidence class:** read-only source comparison plus explicit project-owner coordination instruction; **not** design ratification, test acceptance, completed exhaustive inventory, or product publication.
+- **Evidence date:** 2026-11-04
+- **Formal work owner:** [PLAT069 / guillermomolina/protos#1048](https://github.com/guillermomolina/protos/issues/1048)
+- **Direct prerequisite:** [I115 / guillermomolina/protos#931](https://github.com/guillermomolina/protos/issues/931) (still open)
+- **Product main revision inspected:** [`a7aa54bc0eceabcc2258ebf0c5b52c1b6d6ea71b`](https://github.com/guillermomolina/protos/commit/a7aa54bc0eceabcc2258ebf0c5b52c1b6d6ea71b)
+- **Experimental I115 branch revision inspected:** [`e7124cbcbf2adaeffc1cf063adc1ebeea66d2357`](https://github.com/guillermomolina/protos/commit/e7124cbcbf2adaeffc1cf063adc1ebeea66d2357)
+- **Adopted platform:** GraalVM / Truffle 25.5.5.0.3 through [DIST017/#968](https://github.com/guillermomolina/protos/issues/968)
+- **Evidence class:** read-only source comparison plus explicit project-owner coordination instruction; **not** design ratification, test acceptance, completed exhaustive inventory, or product publication.
 
 ## Owner instruction and disposition
 
