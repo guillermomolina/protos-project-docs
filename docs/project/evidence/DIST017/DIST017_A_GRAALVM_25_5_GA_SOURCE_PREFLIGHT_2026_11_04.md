@@ -96,3 +96,34 @@ FULL_SUITE=NOT_RUN
 POM_CHANGELOG_VERSION_CHANGE=NONE
 MIGRATION_ACCEPTANCE=NOT_YET
 ```
+
+
+## 7. Human-run DIST017-A Maven and OCI checkpoint — 2026-11-04
+
+**Execution provenance:** the maintainer returned terminal output from the local `/workspaces/protos` checkout, inside container `f001205a6c7e`. These are **human-reported outcomes**; the coordinator did not run the commands or inspect the original local files. The branch name actually created was **`graalvm-25-5`**, superseding the previously suggested `dist017/graalvm-25-5`. The maintainer's pre-branch readback showed both HEAD and `origin/main` equal to `250b89bf2faf3e580980a67c2d69aa94d10e4df3`; the Git worktree status output was empty.
+
+### Maven Central direct-artifact preflight — 6/6 exit 0
+
+The maintainer ran `mvn -U -q dependency:get -Dartifact=...` separately for:
+
+```text
+org.graalvm.sdk:graal-sdk:25.5.5.0.3                       STATUS=0
+org.graalvm.polyglot:polyglot:25.5.5.0.3                   STATUS=0
+org.graalvm.truffle:truffle-api:25.5.5.0.3                 STATUS=0
+org.graalvm.truffle:truffle-runtime:25.5.5.0.3             STATUS=0
+org.graalvm.truffle:truffle-dsl-processor:25.5.5.0.3       STATUS=0
+org.graalvm.polyglot:dap:25.5.5.0.3:pom                    STATUS=0
+```
+
+This establishes direct artifact resolution at the recorded coordinates; the **full project-effective dependency graph and source compilation remain NOT RUN**.
+
+### OCI manifest-index preflight — two image indices verified
+
+The maintainer used an authenticated anonymous GHCR registry manifest GET and compared the returned `Docker-Content-Digest` header with SHA-256 of the received manifest bytes. Both were reported PASS. Manifest-list/index values are **not** interchangeable with individual platform manifest digests or the JDK tarball digest.
+
+| Repository / 25.5 OL10 tag | Verified index digest | Linux amd64 child | Linux arm64 child |
+| --- | --- | --- | --- |
+| `graalvm/graalvm-community:25i5-25.0.5.0.3-ol10` | `sha256:7a3e98abbb4af1f9dd085c09e2cb70d45a8abac53fd07277a50d2fbb6a3855f4` | `sha256:4e4995bdab038b0f469f3ff9e4f90566600d9c70acdd8f246373b74d456e6913` | `sha256:236cee15b46ba4fe4a15216073adce89c00156c5669b1eb2d16a9162824b96f8` |
+| `graalvm/native-image-community:25i5-25.0.5.0.3-ol10` | `sha256:2800b5bd11cbb9bf11c92591d05ea37d9a735522bdc0e86827302d998843ad79` | `sha256:5413b3f9b57707f8252ec2313004fe4d62d5a37437b17a848ba35070ea8cf483` | `sha256:15ab4562c1a778e9bd49ffcaffcaa5dae214bf21def04b9ab3b204d7cf2120e0` |
+
+**Status after checkpoint:** `DIST017_A_DIRECT_MAVEN=PASS_REPORTED`, `DIST017_A_OCI_INDEX=PASS_REPORTED`, `DIST017_A_FULL_MAVEN_GRAPH=NOT_RUN`, `DIST017_A_JDK_JVMCI=NOT_RUN`, `DIST017_A_PROTOS_COMPILATION=NOT_RUN`, `DIST017_A_DERIVED_CI_IMAGE_DIGEST=PENDING`. No `guillermomolina/protos` implementation file, `pom.xml` project version or `CHANGELOG.md` change was reported. This supersedes the preflight's earlier `GA_MAVEN_RESOLUTION=NOT_RUN` and `GA_OCI_MANIFEST_DIGESTS=NOT_VERIFIED` **for those two bounded checks only**, without rewriting historical observations.
