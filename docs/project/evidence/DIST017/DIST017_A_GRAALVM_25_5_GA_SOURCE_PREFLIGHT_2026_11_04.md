@@ -251,3 +251,44 @@ POM_DEPENDENCY_SELECTOR_CHANGE=PROPOSED_NOT_APPLIED
 PRODUCT_VERSION_CHANGE=NONE
 FULL_SUITE=NOT_RUN
 ```
+
+
+## 12. Human-reported 25.5 POM selector alignment and DAP lifecycle retest — 2026-11-04
+
+**Source of the results:** maintainer-pasted command transcript from the local, still-uncommitted `graalvm-25-5` branch in the rebuilt GraalVM 25.5.5.0.3/Java 25.0.5.0.3/JVMCI 25.5-b26 devcontainer. Repository source is not independently materialized or executed by the documentation coordinator.
+
+**POM separation and realignment:** the owner clarified that the deferred release/version finalization applies to Protos' project `<version>` and `CHANGELOG.md`, **not** to the `<graalvm.version>` dependency/annotation-processor property. The human applied a checked Python edit changing only `<graalvm.version>25.4.4.1.1</graalvm.version>` to `<graalvm.version>25.5.5.0.3</graalvm.version>`. Project version remains `0.3.442-SNAPSHOT`; target bytecode release remains 21. All subsequent normal Maven tests should use the canonical POM without `-Dgraalvm.version` overrides.
+
+**DAP compatibility repair:** after five initial failed teardown checks (section 11), the human applied the Python patch to only three test files: `ProtosI026FDapBehaviorTest.java`, `ProtosI026FDapTransportTest.java`, and `ProtosI116OptimizedDapAcceptanceTest.java`. The patch orders `Context.close()` and explicit `Engine.close()` (where applicable) **before** asserting termination of GraalVM's DAP listener connection thread. It retains the original DAP handshake/breakpoints/optimized-values checks and non-leak assertion. This matches the source-confirmed 25.5 listener architecture in [`DebugProtocolServerListener`](https://github.com/oracle/graal/blob/graal-25.5.5.0.3/tools/src/com.oracle.truffle.tools.dap/src/com/oracle/truffle/tools/dap/server/DebugProtocolServerListener.java), which permits subsequent DAP sessions until instrument/engine disposal; it is not a change to Protos runtime semantics or DAP production code.
+
+**Human-run focal retest**, now **without the Maven `-Dgraalvm.version` override**:
+
+```text
+python3 tools/verify_toolchain.py --mode check --scope all
+TOOLCHAIN_ALL_STATUS=0
+TOOLCHAIN_DRIFT_COUNT=0
+TOOLCHAIN_BINDINGS=PASS
+
+mvn -Djunit.jupiter.execution.parallel.enabled=false \\
+  -Dtest=ProtosI026FDapTransportTest,ProtosI026FDapBehaviorTest,ProtosI116OptimizedDapAcceptanceTest test
+DIST017_C3_DAP_RETEST_STATUS=0
+ProtosI026FDapBehaviorTest: 1 run, 0 failures, 0 errors, 0 skipped
+ProtosI026FDapTransportTest: 1 run, 0 failures, 0 errors, 0 skipped
+ProtosI116OptimizedDapAcceptanceTest: 3 run, 0 failures, 0 errors, 0 skipped
+TOTAL: 5 run, 0 failures, 0 errors, 0 skipped
+BUILD SUCCESS
+DIFF_CHECK_STATUS=0
+```
+
+**Scope and limits:** this is a focused 25.5 DAP transport/behavior/optimized visibility success, *not* evidence that independent BUG025 nonlocal return reporting was repaired or that CI, Native Image, portable distribution, the entire foreign filesystem, or the integrated suite passed. A static `ci.tests.container` binding PASS verifies equality with the existing `ci-image-lock.json`, not that the old `protos-ci` image actually contains GraalVM 25.5. The derivative CI image remains on the old digest until published/verified and re-pinned.
+
+```text
+DIST017_POM_GRAALVM_VERSION=25.5.5.0.3
+DIST017_PROTOS_PROJECT_VERSION=0.3.442-SNAPSHOT_UNCHANGED
+DIST017_C3_INITIAL_FOCAL_DAP=FAIL_5_OF_5
+DIST017_C3_CORRECTED_FOCAL_DAP=PASS_5_OF_5
+DIST017_TOOLCHAIN_ALL_STATIC_CHECK=PASS_0_DRIFTS
+DIST017_DIFF_CHECK=PASS
+DIST017_C3_PRODUCT_COMMIT=NOT_PUBLISHED
+DIST017_D_CI_NATIVE_PORTABLE_AND_FULL_SUITE=NOT_RUN
+```
