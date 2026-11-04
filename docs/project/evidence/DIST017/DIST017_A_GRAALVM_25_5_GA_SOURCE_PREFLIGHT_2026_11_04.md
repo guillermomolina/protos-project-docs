@@ -412,3 +412,73 @@ DIST017_D2_NATIVE_IMAGE=NOT_RUN
 DIST017_D3_CI_IMAGE=NOT_REBUILT
 DIST017_FINAL_MAKE_TEST_AND_CHECK=NOT_RUN
 ```
+
+
+## 15. Human-reported unified GraalVM 25.5 Native Image development container runtime acceptance — 2026-11-04
+
+**Source:** maintainer's terminal results in the uncommitted `graalvm-25-5` checkout, rebuilt through VS Code Dev Containers using its single `.devcontainer/Dockerfile` based on the **exact same pinned** `ghcr.io/graalvm/native-image-community:25i5-25.0.5.0.3-ol10@sha256:2800b5bd11cbb9bf11c92591d05ea37d9a735522bdc0e86827302d998843ad79` selected by `build/native/Dockerfile`. The maintainer inspected Podman on `chaca` and entered the newly built container `f47f021b50df`; this is not evidence that the previously used container ID `43c2b83b157c` was somehow upgraded in-place.
+
+The **unified design** has only one actual VS Code devcontainer configuration. The root JVM, the optimizing HotSpotTruffleRuntime and the `native-image` command live side-by-side; `build/native/Dockerfile` remains a dedicated canonical Native distribution builder description, *not* a second devcontainer. No Native tool needs to be installed in the host `chaca`.
+
+Reported static checks **before** rebuilding the devcontainer:
+
+```text
+python3 tools/tests/test_verify_toolchain.py
+TOOLCHAIN_VERIFIER_TESTS: PASS
+VERIFIER_TEST_STATUS=0
+
+python3 tools/verify_toolchain.py --mode check --scope all
+TOOLCHAIN_CONTRACT=PASS
+TOOLCHAIN_BINDINGS=PASS
+TOOLCHAIN_DRIFT_COUNT=0
+TOOLCHAIN_STATUS=0
+devcontainer.image: PASS (exact pinned 25i5 native-image-community digest)
+native.image: PASS (exact same pinned digest)
+native.distribution_builder_image: PASS (exact same pinned digest)
+pom.graal_components: PASS (25.5.5.0.3)
+git diff --check: PASS
+```
+
+Reported runtime acceptance **inside newly built unified devcontainer**:
+
+```text
+openjdk version "25.0.5.0.3"
+OpenJDK Runtime Environment GraalVM CE 25.5.5.0.3+1.1
+JVMCI build=25.0.5.0.3+1-jvmci-25.5-b26
+
+native-image 25.0.5.0.3
+GraalVM Runtime Environment GraalVM CE 25.5.5.0.3+1.1
+Substrate VM GraalVM CE 25.5.5.0.3+1.1
+
+Apache Maven 3.9.9 (Red Hat 3.9.9-3)
+Maven Java 25.0.5.0.3 / GraalVM Community
+Maven runtime=/usr/lib64/graalvm/graalvm-community-java25i5
+
+python3 tools/verify_toolchain.py --mode runtime
+MAVEN_RUNTIME_VALIDATION: PASS
+RUNTIME_STATUS=0
+TOOLCHAIN_DRIFT_COUNT=0
+
+mvn -q -Dtest=ProtosPerf006C1OptimizingRuntimeClosureTest test
+PERF006_C1_SUREFIRE_RUNTIME=com.oracle.truffle.runtime.hotspot.HotSpotTruffleRuntime
+PERF006_C1_SUREFIRE_OPTIMIZING_RUNTIME=PASS
+PERF006_C1_WARNING_SUPPRESSION=NO
+PERF006_C1_SHADED_OPTIMIZER=NO
+PERF006_C1_CHECKOUT_RUNTIME_PLANE=PASS
+PLAT045_NATIVE_PROFILE_FALLBACK_RUNTIME=YES
+PLAT045_JVM_FALLBACK_RUNTIME=NO
+OPTIMIZING_RUNTIME_TEST_STATUS=0
+```
+
+**Scope:** proves that Native Image is installed in the one preferred devcontainer and that *ordinary JVM JUnit* still selects the exact optimizing Truffle runtime, rather than falling back to interpreter-only. The Native profile remains intentionally interpreter-only per PLAT045. This is **NOT** an executed Native Image compilation/test, nor validation of the generated ELF/glibc compatibility, native packaged distribution or a rebuilt/re-pinned `protos-ci` image. The CI image lock still carries the old published digest, and static equality does not validate its contents. No `make test` integrated closure has been performed; project version and changelog must remain unchanged until final required gates.
+
+```text
+DIST017_UNIFIED_DEVCONTAINER=ONE_VSCODE_CONFIGURATION
+DIST017_UNIFIED_DEVCONTAINER_IMAGE=NATIVE_IMAGE_COMMUNITY_25_5_PINNED
+DIST017_UNIFIED_TOOLCHAIN_STATIC_CHECK=PASS_0_DRIFTS
+DIST017_UNIFIED_JVM_RUNTIME=OPTIMIZING_HOTSPOT_TRUFFLE_PASS
+DIST017_UNIFIED_NATIVE_IMAGE_CLI=25_0_5_0_3_PRESENT
+DIST017_NATIVE_BUILD=NOT_RUN
+DIST017_NATIVE_EXECUTION_TESTS=NOT_RUN
+DIST017_NEW_CI_DERIVATIVE_IMAGE=NOT_REBUILT
+```
