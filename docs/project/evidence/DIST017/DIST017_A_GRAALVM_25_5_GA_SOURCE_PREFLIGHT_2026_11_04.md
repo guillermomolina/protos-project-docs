@@ -219,3 +219,35 @@ DIST017_C3_REAL_DAP=NOT_RUN
 DIST017_D_NATIVE_PORTABLE_CI=NOT_RUN
 POM_AND_CHANGELOG=UNCHANGED
 ```
+
+
+## 11. Human-reported DIST017-C3 25.5 DAP lifecycle failure and upstream source attribution — 2026-11-04
+
+**Human-reported focal run (failure):** in the rebuilt JDK 25.0.5.0.3/GraalVM 25.5.5.0.3 container, the maintainer ran `mvn -Dgraalvm.version=25.5.5.0.3 -Djunit.jupiter.execution.parallel.enabled=false -Dtest=ProtosI026FDapTransportTest,ProtosI026FDapBehaviorTest,ProtosI116OptimizedDapAcceptanceTest test`. Result: `DIST017_C3_DAP_STATUS=1`, **5 tests, 5 failures, 0 errors/skips**, `BUILD FAILURE`, `DIFF_CHECK_STATUS=0`. All five assertions failed in test teardown, not at the earlier DAP handshake/breakpoint/value assertions:
+
+- `ProtosI026FDapTransportTest` 1/1 failed in `awaitDapClientConnectionThreadTermination()` (line 179).
+- `ProtosI026FDapBehaviorTest` 1/1 failed at the same helper (line 341).
+- `ProtosI116OptimizedDapAcceptanceTest` 3/3 failed at the imported helper (test common cleanup line 452).
+
+Exact common error: `GraalVM DAP client connection thread must terminate before Context.close() ==> expected: <false> but was: <true>`. Each test sends and awaits a successful `disconnect` response and closes client socket, then waits up to 8 seconds for DAP's *listener* thread to die **before** closing its Context/Engine. This ordering is the pre-25.5 assumption being tested, not an established 25.5 protocol requirement.
+
+**Independent released upstream source inspection identifies a 25.5 DAP architecture change**; no product patch or test rerun has yet verified the resolution:
+
+- [25.5 `DAPInstrument.java`](https://github.com/oracle/graal/blob/graal-25.5.5.0.3/tools/src/com.oracle.truffle.tools.dap/src/com/oracle/truffle/tools/dap/instrument/DAPInstrument.java): engine instrument now creates a `DebugProtocolServerListener` and calls its `dispose()` on instrument `onFinalize` rather than directly constructing `DebugProtocolServerImpl`.
+- [25.5 `DebugProtocolServerListener.java`](https://github.com/oracle/graal/blob/graal-25.5.5.0.3/tools/src/com.oracle.truffle.tools.dap/src/com/oracle/truffle/tools/dap/server/DebugProtocolServerListener.java) explicitly states it owns the Engine's listening socket, serves **one debugger client at a time**, and permits fresh sessions on successive client connections. Its `run()` loops accepting new clients **after** a successful disconnect. `dispose()` closes the listening and client sockets and joins `DAP client connection thread` on Engine teardown.
+- [25.5 `DebugProtocolServerImpl.java`](https://github.com/oracle/graal/blob/graal-25.5.5.0.3/tools/src/com.oracle.truffle.tools.dap/src/com/oracle/truffle/tools/dap/server/DebugProtocolServerImpl.java) `disconnect()` now disposes the **session** while keeping the listener alive for reconnect. In [25.4.4.1.1](https://github.com/oracle/graal/blob/graal-25.4.4.1.1/tools/src/com.oracle.truffle.tools.dap/src/com/oracle/truffle/tools/dap/server/DebugProtocolServerImpl.java), `dispose()` called `clientConnectionExecutor.shutDownAndJoin()`. This distinction explains why the 25.4-specific `join`-before-`Context.close()` assertion fails on 25.5.
+
+**Bounded correction hypothesis:** retain all DAP handshake, breakpoint, visibility and nonlocal-control checks; update only test teardown to perform normal Context/Engine close *before* asserting the listener thread terminates. This should preserve leak detection without discarding it or increasing timeouts. The implicit-engine case in the transport test needs an actual focal retest; if it does not stop the thread after `Context.close()`, inspect engine ownership explicitly rather than suppress the failure. No evidence has established BUG025 resolution or Native/portable readiness.
+
+**POM distinction clarified by owner:** the root project `<version>0.3.442-SNAPSHOT</version>` must remain frozen until the final test gate, but the unrelated dependency selector `<graalvm.version>...</graalvm.version>` **should** be updated to 25.5.5.0.3 now so Maven selects the canonical processor and runtime without manual flags. No such POM edit is claimed as completed before the maintainer applies the next Python patch.
+
+```text
+DIST017_C3_DAP_FOCAL_INITIAL=FAIL_5_OF_5
+COMMON_FAILURE=PRE_25_5_LISTENER_TERMINATION_ORDER
+UPSTREAM_25_5_LISTENER_RECONNECT_DESIGN=SOURCE_CONFIRMED
+PROTOS_DAP_TEARDOWN_FIX=PROPOSED_NOT_APPLIED
+PROTOS_DAP_RETEST=NOT_RUN
+POM_DEPENDENCY_SELECTOR_CHANGE=PROPOSED_NOT_APPLIED
+PRODUCT_VERSION_CHANGE=NONE
+FULL_SUITE=NOT_RUN
+```
