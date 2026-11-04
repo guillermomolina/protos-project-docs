@@ -191,3 +191,31 @@ DIST017_D_NATIVE_AND_PORTABLE_VALIDATION=NOT_RUN
 DIST017_D_FULL_SUITE=NOT_RUN
 POM_VERSION_AND_CHANGELOG=UNCHANGED
 ```
+
+## 10. Human-reported 25.5 source compilation and focused C2 JUnit runtime acceptance — 2026-11-04
+
+**Execution provenance:** the maintainer ran the commands in the rebuilt 25.5 Community devcontainer on the local, uncommitted Protos `graalvm-25-5` branch. These are *human-reported logs*, not tests run by the coordinator. The root `pom.xml` still declares `<graalvm.version>25.4.4.1.1</graalvm.version>`, so both commands explicitly supplied `-Dgraalvm.version=25.5.5.0.3` to test the 25.5 Maven Truffle/Polyglot/annotation-processor dependency plane without changing the POM prematurely; this override is not a committed toolchain alignment.
+
+**Clean production compile:** `mvn -U -Dgraalvm.version=25.5.5.0.3 -DskipTests clean compile` reported `BUILD SUCCESS`, compiled 509 Java source files with `javac [debug release 21]`, elapsed 18.769 seconds, and `git diff --check` exit 0. The previously captured B1 checkpoint was preserved before Maven `clean`.
+
+**Focused execution:** `mvn -Dgraalvm.version=25.5.5.0.3 -Dtest=ProtosI109ABytecodeMaterializationTest,ProtosI109ADynamicLocalEachTest,ProtosI115ARuntimeAdmissionTest,ProtosI115BDeferredCallerTest test` reported:
+
+| JUnit class | Tests run | Failures | Errors | Skipped |
+| --- | ---: | ---: | ---: | ---: |
+| `ProtosI109ABytecodeMaterializationTest` | 4 | 0 | 0 | 0 |
+| `ProtosI109ADynamicLocalEachTest` | 6 | 0 | 0 | 0 |
+| `ProtosI115ARuntimeAdmissionTest` | 15 | 0 | 0 | 0 |
+| `ProtosI115BDeferredCallerTest` | 22 | 0 | 0 | 0 |
+| **TOTAL** | **47** | **0** | **0** | **0** |
+
+The maintainer's `DIST017_C2_RUNTIME_TEST_STATUS=0`, `BUILD SUCCESS`, and `DIFF_CHECK_STATUS=0` are reported. These tests cover materialization, dynamic callback suspend/resume and nonlocal control, and I115 closure/caller behavior on the 25.5 candidate. Real debugger/DAP, full dependency packaging, Native Image, portable distribution, new CI image, and required end-of-item full tests remain **NOT RUN**. The intermediate POM drift `pom.graal_components` remains until the owner-authorized final POM update; do not misstate `make toolchain` development-scope PASS as all-surface full alignment.
+
+```text
+DIST017_C1_SOURCE_COMPILE=PASS_REPORTED
+DIST017_C1_COMPILED_JAVA_SOURCES=509
+DIST017_C2_FOCAL_JUNIT=47_PASS_0_FAIL_0_ERROR_0_SKIP
+DIST017_C2_FULL_SUITE=NOT_RUN
+DIST017_C3_REAL_DAP=NOT_RUN
+DIST017_D_NATIVE_PORTABLE_CI=NOT_RUN
+POM_AND_CHANGELOG=UNCHANGED
+```
