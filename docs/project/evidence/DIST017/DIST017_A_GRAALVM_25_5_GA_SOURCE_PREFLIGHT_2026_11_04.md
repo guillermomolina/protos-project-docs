@@ -127,3 +127,32 @@ The maintainer used an authenticated anonymous GHCR registry manifest GET and co
 | `graalvm/native-image-community:25i5-25.0.5.0.3-ol10` | `sha256:2800b5bd11cbb9bf11c92591d05ea37d9a735522bdc0e86827302d998843ad79` | `sha256:5413b3f9b57707f8252ec2313004fe4d62d5a37437b17a848ba35070ea8cf483` | `sha256:15ab4562c1a778e9bd49ffcaffcaa5dae214bf21def04b9ab3b204d7cf2120e0` |
 
 **Status after checkpoint:** `DIST017_A_DIRECT_MAVEN=PASS_REPORTED`, `DIST017_A_OCI_INDEX=PASS_REPORTED`, `DIST017_A_FULL_MAVEN_GRAPH=NOT_RUN`, `DIST017_A_JDK_JVMCI=NOT_RUN`, `DIST017_A_PROTOS_COMPILATION=NOT_RUN`, `DIST017_A_DERIVED_CI_IMAGE_DIGEST=PENDING`. No `guillermomolina/protos` implementation file, `pom.xml` project version or `CHANGELOG.md` change was reported. This supersedes the preflight's earlier `GA_MAVEN_RESOLUTION=NOT_RUN` and `GA_OCI_MANIFEST_DIGESTS=NOT_VERIFIED` **for those two bounded checks only**, without rewriting historical observations.
+
+
+## 8. Human-reported DIST017-B1 intermediate selector audit — 2026-11-04
+
+**Scope:** local uncommitted Protos branch `graalvm-25-5` from `250b89bf2faf3e580980a67c2d69aa94d10e4df3`; report supplied by the maintainer after running the Python editing blocks. **This is intermediate uncommitted workspace evidence, not a versioned product commit.**
+
+Eight edited product paths: `toolchain.json`, `.devcontainer/Dockerfile`, `build/native/Dockerfile`, `dist/build_native.py`, `dist/build_portable.py`, `dist/smoke/smoke_optimizing_runtime.sh`, `tools/verify_toolchain.py`, and `tools/tests/test_verify_toolchain.py`. Runtime selectors set to candidate Graal/Truffle 25.5.5.0.3 / JDK 25.0.5.0.3 with confirmed GHCR index digests (section 7); `toolchain.json` additionally gains a pinned `graalvm.native_container_image`, with fail-closed verification of its digest and distribution-builder binding. No user-reported `pom.xml` or `CHANGELOG.md` modification.
+
+Two focal test failures occurred while preparing the new validator; they were **patch defects**, not GraalVM 25.5 compatibility results: (a) overescaped/native validation regex and ambiguous patch anchor; (b) test fixture `dist/build_native.py` construction generated the wrong content and was rejected by the newly added binder. Subsequent bounded Python fixes were applied and the maintainer supplied the final results:
+
+```text
+B1_APPLIED_FILES=8
+BRANCH=graalvm-25-5
+TOOLCHAIN_VERIFIER_TESTS=PASS
+VERIFIER_TEST_STATUS=0
+DEVELOPMENT_CHECK_STATUS=0  # reported in prior bounded run
+NATIVE_IMAGE_BINDING=PASS
+NATIVE_DISTRIBUTION_BUILDER_BINDING=PASS
+TOOLCHAIN_DRIFT_COUNT=1
+TOOLCHAIN_DRIFT=pom.graal_components
+DIFF_CHECK_STATUS=0
+POM_PROJECT_VERSION=UNCHANGED
+POM_GRAALVM_PROPERTY=25.4.4.1.1  # intentional intermediate incompatibility
+CHANGELOG=UNCHANGED
+PROTOS_25_5_SOURCE_COMPILE=NOT_RUN
+FULL_SUITE=NOT_RUN
+```
+
+The remaining `pom.graal_components` drift is **expected but not accepted as final**: direct Maven compilation must temporarily override `-Dgraalvm.version=25.5.5.0.3` and use the actual GraalVM 25.5 JDK; final canonical POM alignment must be separately validated before DIST017 acceptance. The project version/changelog bump is reserved for after the final full-suite validation, per owner instructions.
