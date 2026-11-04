@@ -482,3 +482,40 @@ DIST017_NATIVE_BUILD=NOT_RUN
 DIST017_NATIVE_EXECUTION_TESTS=NOT_RUN
 DIST017_NEW_CI_DERIVATIVE_IMAGE=NOT_REBUILT
 ```
+
+
+## 16. Human-reported Native Image executable compilation under unified 25.5 devcontainer — 2026-11-04
+
+The maintainer reported successful native compilation **inside** the rebuilt single `native-image-community` GraalVM CE 25.5.5.0.3 devcontainer on the local `graalvm-25-5` branch, using `make -C build/native build` (whose goal runs `mvn -Pnative -DskipTests package`). This is not a repository commit or release publication.
+
+Human-pasted `native-image` output from the real build:
+
+```text
+[7/8] Laying out methods... (6.0s @ 1.66GiB)
+[8/8] Creating image... (4.1s @ 1.91GiB)
+52,293 compilation units
+25.29MiB code area; 27.88MiB image heap; 5.94MiB other data
+59.11MiB total image size; 54.69MiB file size
+Peak RSS: 3.17GiB
+Build artifacts: /workspaces/protos/target/native/protos (executable, 54.69MiB)
+Finished generating 'protos' in 1m 18s
+Maven: BUILD SUCCESS
+Maven total time: 01:50 min
+Finished at: 2026-11-04T03:41:18Z
+```
+
+**Evidence semantics:** Compilation PASS proves 25.5 Native Image can produce the Protos executable with the existing `-Pnative` profile on the unified 25.5 toolchain. The profile deliberately uses `-Dtruffle.UseFallbackRuntime=true`; it must **not** be described as Native guest JIT/Tier 2 availability. No successful `build/native/test-native.sh`, Native TLS JUnit executable, Native ELF policy/distribution archive, rebuilt CI derivative image, or final one-shot integrated suite is claimed from this build log. Keep `pom.xml` project version and `CHANGELOG.md` unchanged until full candidate validation.
+
+**Operator preference communicated at this checkpoint:** subsequent human-executor commands must print their full terminal output; do not redirect commands to logfiles or pipe them through `grep`/`tail` to conceal build/test output.
+
+```text
+DIST017_D2_NATIVE_IMAGE_BUILD=PASS_HUMAN_REPORTED
+DIST017_D2_NATIVE_IMAGE_OUTPUT=target/native/protos
+DIST017_D2_NATIVE_IMAGE_BYTES_HUMAN_REPORTED=54.69MiB
+DIST017_D2_NATIVE_IMAGE_PEAK_RSS=3.17GiB
+DIST017_D2_NATIVE_INTERPRETER_ONLY_PROFILE=YES
+DIST017_D2_NATIVE_EXECUTION_TESTS=NOT_RUN
+DIST017_D2_NATIVE_TLS_JUNIT=NOT_RUN
+DIST017_D2_NATIVE_DISTRIBUTION_ARCHIVE=NOT_BUILT
+DIST017_D3_CI_IMAGE=NOT_REBUILT
+```
