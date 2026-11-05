@@ -1,7 +1,7 @@
 # D240 — Adversarial evaluation of public library/module topology
 
 **Evidence role:** GITHUB010 comparative/falsification packet and GITHUB021 invariant review for the bounded D240 architecture selection. This is non-normative decision evidence, **not** implementation or test evidence.
-**Product revision inspected:** [guillermomolina/protos@384966eec789831bdc954f44d3d17e891fd1cb19](https://github.com/guillermomolina/protos/commit/384966eec789831bdc954f44d3d17e891fd1cb19), 2026-11-05, `0.3.446-SNAPSHOT / specification 0.1.493.
+**Product revision inspected:** [guillermomolina/protos@384966eec789831bdc954f44d3d17e891fd1cb19](https://github.com/guillermomolina/protos/commit/384966eec789831bdc954f44d3d17e891fd1cb19), 2026-11-05, `0.3.446-SNAPSHOT` / specification `0.1.493`.
 **Issue:** [D240 #1057](https://github.com/guillermomolina/protos/issues/1057).
 **Incubator provenance:** [INC004 #1010](https://github.com/guillermomolina/protos/issues/1010), “Module access declarations”.
 **Separate exact-contract design:** [D242 #1060](https://github.com/guillermomolina/protos/issues/1060).
