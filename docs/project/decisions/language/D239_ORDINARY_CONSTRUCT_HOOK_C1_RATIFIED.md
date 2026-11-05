@@ -1,12 +1,12 @@
 # D239 — Ordinary `construct` hook, selected C1
 
-**Decision status:** OWNER-APPROVED C1, 2026-11-05; durable non-normative ratification record. **Implementation and normative specification publication remain pending I145.**
+**Decision status:** OWNER-APPROVED C1, 2026-11-05; durable non-normative ratification record. **I145-A implemented and published** in [Protos `384966eec789831bdc954f44d3d17e891fd1cb19`](https://github.com/guillermomolina/protos/commit/384966eec789831bdc954f44d3d17e891fd1cb19), Maven `0.3.446-SNAPSHOT`, specification revision `0.1.493`.
 **Governing issue:** [D239 #1055](https://github.com/guillermomolina/protos/issues/1055).
 **Implementation owner:** [I145 #1056](https://github.com/guillermomolina/protos/issues/1056), a separate single-slice implementation issue.
 **Exact inspected product baseline:** [guillermomolina/protos@5fc18249ea425d99fcfcfe387be950678b7ac5c5](https://github.com/guillermomolina/protos/commit/5fc18249ea425d99fcfcfe387be950678b7ac5c5). This is a **pre-implementation** revision.
 **Selection provenance:** On 2026-11-05, after the exhaustive D239 investigation and the exact presented recommendation “D239-C1 — Ordinary construct hook”, the project owner replied **“Apruebo C1, Actualiza issues en guillermomolina/protos y agrega evidencias en guillermomolina/protos-project-docs.”** The prior decision packet explicitly disclosed the changed meaning of pre-existing `construct` slots, the replacement of `Range.call` with `Range.construct`, the two forwarding layers, and incompatibility with some reflection. This is approval of C1, not approval of unmentioned future features.
 **Comparative/GITHUB021 evidence:** [D239 C1 approval and implementation boundary](../../evidence/D239/D239_C1_APPROVAL_INVARIANTS_AND_PROTOS_FIRST_IMPLEMENTATION_2026_11_05.md).
-**Authority:** This repository records approved design rationale; only the corresponding ratified `guillermomolina/protos/spec/` edits establish normative published language semantics. No code, tests, benchmark or version bump is claimed here.
+**Authority:** This repository records approved design rationale; only the corresponding published `guillermomolina/protos/spec/` edits establish normative language semantics. Runtime and validation publication evidence is tracked separately under [I145-A](../../evidence/I145/I145_A_0_3_446_OBJECT_CONSTRUCT_IMPLEMENTATION_PUBLICATION_2026_11_05.md); this decision record itself is not code, test or benchmark evidence.
 
 ## Selected semantic model
 
@@ -61,4 +61,6 @@ C1's observable compatibility deltas were explicitly disclosed to the owner befo
 
 [I145 #1056](https://github.com/guillermomolina/protos/issues/1056) owns one maximal Protos-first substantive slice: normative `CALLABLES.md`/`VALUES_AND_COLLECTIONS.md`/grammar, ordinary `Object.construct` installation, native prepared/structured invocation and named forwarding, Core/Standard Library factory migration, conformance/regression coverage and guides. Update the informative `ABSTRACT_RUNTIME.md` sketch consistently. Do not prematurely materialize `pom.xml`, root `CHANGELOG.md` or global spec revision; under the human-executor policy, derive and write those only after required substantive validation is reported green, atomically with eventual product publication.
 
-**Outstanding:** product edits, human-executed tests/builds, source/spec publication and post-publication evidence. Approval and this project-record commit alone do not claim an implemented feature.
+**Publication update (2026-11-05):** The product implementation, normative nine-spec revision set, focused and integrated test artifacts, guides, `pom.xml`, root changelog and spec changelog were published together in exact [Protos commit `384966eec789831bdc954f44d3d17e891fd1cb19`](https://github.com/guillermomolina/protos/commit/384966eec789831bdc954f44d3d17e891fd1cb19); the human maintainer reported clean `git diff --check` and `make test` / `make check` PASS. See [revision-bound I145-A evidence](../../evidence/I145/I145_A_0_3_446_OBJECT_CONSTRUCT_IMPLEMENTATION_PUBLICATION_2026_11_05.md) for the exact publication and provenance distinction. No throughput improvement, Native Image coverage or independent local rerun is asserted.
+
+**Separate design boundary:** [D240 #1057](https://github.com/guillermomolina/protos/issues/1057) owns module-as-prototype versus exported-prototype organization; the I145 implementation does not settle that question.
