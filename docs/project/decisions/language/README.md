@@ -32,6 +32,10 @@ This list is not a closed manifest for future language decisions.
 
 ## Subsequent language-domain decisions
 
+- [D242 — owner-ratified MODULE/SOURCE imports, explicit public exports and `package.toml` replacement](D242_MODULE_SOURCE_PUBLIC_EXPORTS_AND_PACKAGE_MANIFEST_RATIFIED.md) — mandatory `module.protos` for source-backed logical modules; source imports expose complete contexts, MODULE imports only explicitly published slots; direct breaking replacement, [I151](https://github.com/guillermomolina/protos/issues/1066) and [I152](https://github.com/guillermomolina/protos/issues/1067) own implementation.
+
+- [D240 — prior bounded public-module architecture, now refined by D242](D240_PUBLIC_LIBRARY_MODULE_TOPOLOGY_C_INCREMENTAL_B_RATIFIED.md) — historical C/B staging decision; D242 replaces only its formerly deferred export semantics and rollout policy.
+
 - [D241 — owner-ratified selective named argument migration](D241_SELECTIVE_NAMED_ARGUMENT_MIGRATION_B_RATIFIED.md) — convert per-call option bags in CLI, Filesystem, Network, HTTP Host/UrlClient, TLS, retain shared policies/domain objects and explicit pre-entry error delta.
 
 - [D239 — owner-approved C1 ordinary construct hook](D239_ORDINARY_CONSTRUCT_HOOK_C1_RATIFIED.md) — preserves `Prototype(...)` / D013 ordinary `call`; adds ordinary `Object.construct` default and Protos-first custom factories, with explicit reflective compatibility changes and [I145 implementation](https://github.com/guillermomolina/protos/issues/1056) pending.
