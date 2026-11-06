@@ -1,6 +1,6 @@
 # D241 — Selective named-argument migration of temporary configuration bags (B ratified)
 
-**Status:** OWNER-RATIFIED, 2026-11-06. **Implementation:** NOT STARTED. Durable, non-normative design record; Protos `spec/` remains the normative authority after publication of an Ixxx.
+**Status:** OWNER-RATIFIED, 2026-11-06. **Implementation:** PARTIALLY PUBLISHED — I147/I149/I150 at Protos 0.3.447; I148 still OPEN / READY. Durable, non-normative design record; Protos `spec/` remains the normative authority after publication of an Ixxx.
 **Design issue:** [D241 #1058](https://github.com/guillermomolina/protos/issues/1058).
 **Comparative audit:** [method-by-method evidence](../../evidence/D241/D241_METHOD_BY_METHOD_REVIEW_AND_APPROVAL_2026_11_06.md), [full issue research](https://github.com/guillermomolina/protos/issues/1058#issuecomment-6665341495).
 **Inspected product:** [guillermomolina/protos@384966eec789831bdc954f44d3d17e891fd1cb19](https://github.com/guillermomolina/protos/commit/384966eec789831bdc954f44d3d17e891fd1cb19) (I145-A, Maven 0.3.446). This is a read-only research baseline, not an implementation of D241.
@@ -73,4 +73,10 @@ The issue research includes **12 required GITHUB010 dimensions**, confidence, st
 
 This durable decision does not itself edit product source or specifications and does not prove tests. Publish independent Ixxx implementations for (1) CLI, (2) native Filesystem+Network, (3) HTTP Host+UrlClient, (4) TLS, with source migration, directly affected `spec/` updates, tests, guides and validation. Re-evaluate current HEAD; do not silently change D237. Retain the project's human-executor rules for tests/build and product commits, and bump versions only after tests, with no tests after the final bump. No speedup is presumed from avoiding a literal config object.
 
-**Approval checkpoint closed; implementation evidence absent until separate product publication.**
+**Approval checkpoint closed; the separate product implementation evidence follows.**
+
+## 8. Implementation outcome — 2026-11-06
+
+**Exact published product commit:** [Protos `380548e10cec893581ee25ebf00da9c5c6bd7399`, 0.3.447](https://github.com/guillermomolina/protos/commit/380548e10cec893581ee25ebf00da9c5c6bd7399); normative spec **0.1.494** in `spec/io/HTTP.md` and `spec/io/TLS.md`. The maintainer reports `make test`, `make check` and a clean Git diff PASS locally; the documentation agent did not execute those commands or independently retrieve test logs.
+
+**Durable implementation evidence:** [D241-B / I147+I149+I150 publication](../../evidence/D241/D241_I147_I149_I150_0_3_447_IMPLEMENTATION_PUBLICATION_2026_11_06.md). The three implementation issues [I147 #1062](https://github.com/guillermomolina/protos/issues/1062), [I149 #1064](https://github.com/guillermomolina/protos/issues/1064) and [I150 #1065](https://github.com/guillermomolina/protos/issues/1065) have a verified implementation revision; [I148 #1063](https://github.com/guillermomolina/protos/issues/1063) stays **OPEN / READY** for the native Filesystem/Network APIs. The original product snapshot in §1 remains the historical ratification baseline, not the current state.
