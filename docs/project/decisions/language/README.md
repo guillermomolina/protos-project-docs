@@ -32,6 +32,8 @@ This list is not a closed manifest for future language decisions.
 
 ## Subsequent language-domain decisions
 
+- [D241 — owner-ratified selective named argument migration](D241_SELECTIVE_NAMED_ARGUMENT_MIGRATION_B_RATIFIED.md) — convert per-call option bags in CLI, Filesystem, Network, HTTP Host/UrlClient, TLS, retain shared policies/domain objects and explicit pre-entry error delta.
+
 - [D239 — owner-approved C1 ordinary construct hook](D239_ORDINARY_CONSTRUCT_HOOK_C1_RATIFIED.md) — preserves `Prototype(...)` / D013 ordinary `call`; adds ordinary `Object.construct` default and Protos-first custom factories, with explicit reflective compatibility changes and [I145 implementation](https://github.com/guillermomolina/protos/issues/1056) pending.
 
 - [`D071_MULTI_WAY_MATCHING_ARCHITECTURE.md`](D071_MULTI_WAY_MATCHING_ARCHITECTURE.md)
