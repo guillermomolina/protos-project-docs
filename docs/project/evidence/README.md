@@ -10,6 +10,9 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [AUD023 — Owner approval of Alternative B and audit closure gate (2026-11-07)](AUD023/AUD023_B_OWNER_APPROVAL_AND_CLOSURE_2026_11_07.md) — exact owner response “ok apruebo B”; KEEP ratified collection/mutability contracts, DOCUMENT optional capabilities, DEFER novel semantics; baseline [Protos `08c27760`](https://github.com/guillermomolina/protos/commit/08c27760eb3f85105277e5b1b1b159abbca67ebe), independent [DOC021 #1089](https://github.com/guillermomolina/protos/issues/1089) OPEN / READY. No tests or product changes.
+
+
 - [AUD023 — Source-verified collection protocol matrix, historical invariants and external comparators (2026-11-07)](AUD023/AUD023_REVISION_BOUND_COLLECTION_PROTOCOL_EVIDENCE_2026_11_07.md) — exact product [Protos `08c27760`](https://github.com/guillermomolina/protos/commit/08c27760eb3f85105277e5b1b1b159abbca67ebe), no product edits or tests executed; [maintained assessment](../work/AUD023/AUD023_COLLECTION_PROTOCOL_COHERENCE_AUDIT.md), [AUD023 #1087](https://github.com/guillermomolina/protos/issues/1087). Findings await owner review and authorize no mutability or protocol redesign.
 
 - [DIST022 — Java 25 source/classfile and JVM/Native distribution implementation, tested artifacts and owner-reported validation (2026-11-07)](DIST022/DIST022_JAVA_25_JVM_NATIVE_IMPLEMENTATION_PUBLICATION_2026_11_07.md) — [Protos `08c27760`](https://github.com/guillermomolina/protos/commit/08c27760eb3f85105277e5b1b1b159abbca67ebe) / `0.3.453-SNAPSHOT`; Java 25 classfile 69, pinned GraalVM 25.5/JDK 25, portable 3,684/3,684, Java 21-targeted providers and Java 25 FFM provider, Native Image plus offline installer, final `make test` and `make check` PASS. Archives validated before the metadata-only bump; confined Linux FFM and T01–T16 remain I156's separate work.

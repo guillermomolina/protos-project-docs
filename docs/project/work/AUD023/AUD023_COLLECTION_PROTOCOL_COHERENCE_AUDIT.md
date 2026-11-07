@@ -3,7 +3,7 @@
 - **Issue:** [AUD023 / guillermomolina/protos#1087](https://github.com/guillermomolina/protos/issues/1087).
 - **Product baseline:** [`guillermomolina/protos@08c27760eb3f85105277e5b1b1b159abbca67ebe`](https://github.com/guillermomolina/protos/commit/08c27760eb3f85105277e5b1b1b159abbca67ebe), inspected 2026-11-07.
 - **Evidence:** [AUD023 exact source and test map](../../evidence/AUD023/AUD023_REVISION_BOUND_COLLECTION_PROTOCOL_EVIDENCE_2026_11_07.md).
-- **Status:** research assessment available for owner review; **no new semantics selected, no normative edit or implementation, no tests executed as part of this audit**.
+- **Status:** **AUD023 owner-approved outcome B (2026-11-07)**: preserve existing semantics, publish an explanatory capability/contract matrix separately under DOC021; **no new semantics selected, no normative edit or implementation, no tests executed as part of this audit**.
 - **Authority:** normative product specifications, not this non-normative work record. The previously ratified D213, D214, D231, D232/D235/D236, D188/D192 and AUD009-B9/E1 outcomes are preserved.
 
 ## Executive finding
@@ -12,7 +12,7 @@ The collection APIs are not a single interface and should not be made one. Exist
 
 There is **no confirmed cross-family contradiction in the normative contracts examined**. There are three real *discoverability/ergonomic boundaries* worth explicit documentation and, only if concrete users require it, a later owner decision: (1) `for` only works on values with `each`, so standard `Vector`/`String` are excluded; (2) `each` is a dispatch point, **not** a promise of a common result, callback arity or snapshot strategy; (3) index grammar handles one expression, so `Matrix.at(row, column)` has no multi-index bracket spelling. A further naming hazard is `add`: it cannot mean generic collection insertion because `Vector.add` and `Matrix.add` already mean algebraic addition.
 
-**Recommended disposition:** **KEEP** existing public semantics; **DOCUMENT/CLARIFY** the optional capability matrix, especially `for`/`each` and the separate meaning of `add`; **DEFER** any new Core collection hierarchy, iterator/stream, universal mutator, syntax extension or default retroactive `each`. No existing Dxxx is reopened by this recommendation.
+**Owner-approved disposition (Alternative B, 2026-11-07):** **KEEP** existing public semantics; **DOCUMENT/CLARIFY** the optional capability matrix, especially `for`/`each` and the separate meaning of `add`; **DEFER** any new Core collection hierarchy, iterator/stream, universal mutator, syntax extension or default retroactive `each`. The exact owner approval was “ok apruebo B”; no existing Dxxx is reopened or re-ratified. The independent documentation deliverable is [DOC021 #1089](https://github.com/guillermomolina/protos/issues/1089).
 
 ## Boundary and definitions
 
@@ -169,8 +169,8 @@ Important consequence: it would be a **breaking change** to require that all `ea
 
 ## Smallest practical follow-up and non-goals
 
-1. Owner reviews findings and classifications; **do not treat this audit as approval**.
-2. If desired, scope one **documentation-only** child/slice to add a brief matrix in maintained guide/library docs, explicitly stating that generic `for` is just `each` and that `add` has no universal meaning. This itself creates no new API.
+1. **Owner approval received 2026-11-07:** B selected with the classifications above; no semantic or implementation authority is implied.
+2. **Tracked separately:** [DOC021 #1089](https://github.com/guillermomolina/protos/issues/1089) owns the documentation-only capability matrix, guide examples and navigation; it is not a sub-issue or blocker of this independent completed audit and creates no new API.
 3. Independently collect real use cases in which `for` on `Vector` or `String` would materially simplify ordinary Protos without surprising Unicode iteration or numeric performance. A **new Dxxx** is required *if and only if* a concrete public protocol is proposed later; AUD023 does not implement one.
 4. No mutable `Array` growth, no generic interface hierarchy, no semantic rewrite of `Set`, no new indexed syntax, no implicit conversion, no hidden iterator, no renaming or deprecating `add`, no modifying or removing prior conformance tests.
 
@@ -178,4 +178,16 @@ Important consequence: it would be a **breaking change** to require that all `ea
 
 The evidence record lists the exact audited source/spec/test paths and links. Source files were inspected read-only at the product commit above, with historical decision records in `guillermomolina/protos-project-docs`. Published test files demonstrate intended assertions; **none were executed here**. No performance numbers were measured, and none are claimed. No normative product source changed; no Protos version bump or changelog update is applicable.
 
-**Proposed work disposition:** `AUDIT_CLASSIFICATIONS=PROPOSED_FOR_OWNER_REVIEW`; `PROTOS_SEMANTIC_CHANGE=NONE`; `MUTABILITY_REFORM=NOT_PROPOSED`; `DXXX_RATIFICATION=NONE`.
+**Owner-approved audit disposition:** `AUDIT_CLASSIFICATIONS=OWNER_APPROVED_B`; `PROTOS_SEMANTIC_CHANGE=NONE`; `MUTABILITY_REFORM=NOT_PROPOSED`; `DXXX_RATIFICATION=NONE`; `DOCUMENTATION_FOLLOW_UP=DOC021_1089`.
+
+## Owner approval and formal audit closure checkpoint — 2026-11-07
+
+The project owner explicitly selected **Alternative B** with the statement **“ok apruebo B”**, following the presentation of the exact B recommendation. This approval applies **only** to the audit outcome and documentation-oriented follow-up, not to any C/D proposal or to code/specification changes. The formal implementation-independent outcome is **KEEP current behavior + DOCUMENT existing capability/contract boundaries**. Findings F1–F13 above remain the scoped classifications; deliberate absences and the historical Array fixed-size and Vector/Matrix invariants remain intact.
+
+- **Primary issue:** [AUD023 #1087](https://github.com/guillermomolina/protos/issues/1087), to close on completed audit publication/evidence, independently of the later DOC021 deliverable.
+- **Owner approval snapshot:** [AUD023-B selection and GITHUB021 invariant reconciliation](../../evidence/AUD023/AUD023_B_OWNER_APPROVAL_AND_CLOSURE_2026_11_07.md).
+- **Documentation execution owner:** [DOC021 #1089](https://github.com/guillermomolina/protos/issues/1089), independently OPEN / READY, no unselected public behavior.
+- **Exact Protos code/spec baseline:** [`08c27760eb3f85105277e5b1b1b159abbca67ebe`](https://github.com/guillermomolina/protos/commit/08c27760eb3f85105277e5b1b1b159abbca67ebe); this audit made **zero** product repository source/spec changes.
+- **Test result:** NOT_RUN; this is a read-only audit/documentary decision, not a claim of conformance execution.
+
+Audit closure does not assert that DOC021's public programming guide edits are already published.
