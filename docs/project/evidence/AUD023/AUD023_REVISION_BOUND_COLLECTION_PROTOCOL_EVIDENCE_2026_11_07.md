@@ -1,15 +1,15 @@
 # AUD023 — Revision-bound collection protocol evidence (2026-11-07)
 
-**Issue:** [AUD023 #1087](https://github.com/guillermomolina/protos/issues/1087).  
-**Exact product tree:** [guillermomolina/protos@08c27760eb3f85105277e5b1b1b159abbca67ebe](https://github.com/guillermomolina/protos/commit/08c27760eb3f85105277e5b1b1b159abbca67ebe).  
-**Maintained audit interpretation:** [AUD023 cross-family assessment](../../work/AUD023/AUD023_COLLECTION_PROTOCOL_COHERENCE_AUDIT.md).  
+**Issue:** [AUD023 #1087](https://github.com/guillermomolina/protos/issues/1087).
+**Exact product tree:** [guillermomolina/protos@08c27760eb3f85105277e5b1b1b159abbca67ebe](https://github.com/guillermomolina/protos/commit/08c27760eb3f85105277e5b1b1b159abbca67ebe).
+**Maintained audit interpretation:** [AUD023 cross-family assessment](../../work/AUD023/AUD023_COLLECTION_PROTOCOL_COHERENCE_AUDIT.md).
 **Nature:** source-reading snapshot / documentation-only; **no executable test, build, benchmark, local validation or normative edit** performed for AUD023. The original product commit is a pre-audit immutable baseline, *not* an AUD023 implementation commit.
 
 ## Inventory method
 
 1. Queried the full recursively listed tracked repository tree and inspected public Core, `protos/lib/collections`, `protos/lib/math/linear_algebra` and cross-cutting stdlib modules.
 2. Inspected the owning normative collection, syntax, iteration, byte-I/O, Process Environment and foreign-projection sections, including explicitly absent capabilities; checked selected Java protocol installers and Protos source-backed implementations at the exact product revision.
-3. Read the retained conformance cases for Array, Bytes, Map, IdentityMap, Set, IdentitySet, Range, Vector and Matrix, and inspected consumer/tutorial examples. Where excerpts below name an assertion, this is evidence that the test *exists*, **not** that it passed in this task.
+3. Inspected representative retained conformance cases for Array, Bytes, Map, IdentityMap, Set, IdentitySet, Range, Vector and Matrix, and inventoried further test paths and consumer/tutorial examples. Where excerpts below name an assertion, this is evidence that the test *exists*, **not** that it passed in this task.
 4. Reconciled against existing ratified project records rather than inferring a new proposal from a naming similarity.
 5. Used upstream official reference documents for cross-language precedents and recorded disadvantages of copying any one language's hierarchy.
 
@@ -69,7 +69,7 @@
 
 ## Historical authority checked in the durable project record repository
 
-- [AUD009-B9 Array/Map/IdentityMap review](../AUD009/../../work/AUD009/AUD009_B9_ARRAY_MAP_IDENTITYMAP_REVIEW.md), live [#620](https://github.com/guillermomolina/protos/issues/620).
+- [AUD009-B9 Array/Map/IdentityMap review](../../work/AUD009/AUD009_B9_ARRAY_MAP_IDENTITYMAP_REVIEW.md), live [#620](https://github.com/guillermomolina/protos/issues/620).
 - [AUD009-E1 stdlib collections review](../../work/AUD009/AUD009_E1_STDLIB_COLLECTIONS_REVIEW.md), live [#646](https://github.com/guillermomolina/protos/issues/646). Historical record predates promotion of Range to Core; do not misread the old module shape as current.
 - [LIB001 collections design](../../work/LIB001/LIB001_COLLECTIONS_DESIGN.md), especially Set/IdentitySet underlying Map invariant and deferred hierarchy.
 - [D213 ratified library API](../../decisions/language/D213_COLLECTIONS_LIBRARY_API.md), live [#949](https://github.com/guillermomolina/protos/issues/949).
