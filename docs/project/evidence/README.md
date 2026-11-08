@@ -10,6 +10,13 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [I155 — Explicit confined Filesystem CLI implementation (2026-11-08)](I155/I155_EXPLICIT_FILESYSTEM_CLI_IMPLEMENTATION_2026_11_08.md) — product [`b27a9253`](https://github.com/guillermomolina/protos/commit/b27a925367047be04c7a272501624ff4ded462c0), opt-in directory grant, default-deny authority, host/CLI regression evidence and maintainer-reported `make test`/`make check` PASS. Native executable smoke not reported. [I155 #1079](https://github.com/guillermomolina/protos/issues/1079).
+
+- [I156 — Linux kernel-confined Filesystem with Java 25 FFM (2026-11-08)](I156/I156_LINUX_CONFINED_FFM_IMPLEMENTATION_2026_11_08.md) — same exact product revision, openat2/Landlock/grant workers/FFM, concurrent security regressions, 15 Truffle compilations and full JVM/Protos checks. Native T16/installed binary execution not reported. [I156 #1083](https://github.com/guillermomolina/protos/issues/1083).
+
+- [I158 — D251-A1 taskless Actor bootstrap suspension (2026-11-08)](I158/I158_TASKLESS_ACTOR_BOOTSTRAP_IMPLEMENTATION_2026_11_08.md) — same exact product revision, pending Future continuation with INITIALIZING exclusivity, Actor/host lifecycle and concurrent regressions. [I158 #1091](https://github.com/guillermomolina/protos/issues/1091).
+
+
 - [I157 — D243-C secure Entropy implementation, publication and validation (2026-11-08)](I157/I157_D243_C_SECURE_ENTROPY_IMPLEMENTATION_PUBLICATION_2026_11_08.md) — exact [Protos `20843008`](https://github.com/guillermomolina/protos/commit/20843008ba2abe5103b06c11b12f12cd08ca5d29) / `0.3.454-SNAPSHOT`, 53 paths: explicit host-granted secure Entropy, Future-based Bytes, Actor/P non-transferability, independent CLI/embedding opt-in, and RootActor broker. Maintainer reports 47 focused tests, `make test`, `make check`, and clean diff PASS. Distinct installed-Native entropy smoke not reported; D243 native parent verified via both GitHub REST endpoints; installed-Native smoke remains separately unreported. [I157 #1090](https://github.com/guillermomolina/protos/issues/1090).
 
 
