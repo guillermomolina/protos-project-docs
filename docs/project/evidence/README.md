@@ -10,6 +10,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [I159 — D244-C standard HMAC-SHA256 implementation and validation (2026-11-08)](I159/I159_D244_C_HMAC_SHA256_IMPLEMENTATION_PUBLICATION_2026_11_08.md) — exact [Protos `52b6da5d`](https://github.com/guillermomolina/protos/commit/52b6da5da98e7eedb525ab4eb5111258c136193e) / `0.3.456-SNAPSHOT` and normative spec revision `0.1.499`. Owner-reported focused 48 Java tests, 24/24 HMAC cases, final 3,708 Protos cases and `make test`, `make check`, `make test-native` PASS; Workspace CLI tests isolated from cross-class parallel contention. [I159 #1092](https://github.com/guillermomolina/protos/issues/1092).
+
 - [I155 — Explicit confined Filesystem CLI implementation (2026-11-08)](I155/I155_EXPLICIT_FILESYSTEM_CLI_IMPLEMENTATION_2026_11_08.md) — product [`b27a9253`](https://github.com/guillermomolina/protos/commit/b27a925367047be04c7a272501624ff4ded462c0), opt-in directory grant, default-deny authority, host/CLI regression evidence and maintainer-reported `make test`/`make check` PASS. Native executable smoke not reported. [I155 #1079](https://github.com/guillermomolina/protos/issues/1079).
 
 - [I156 — Linux kernel-confined Filesystem with Java 25 FFM (2026-11-08)](I156/I156_LINUX_CONFINED_FFM_IMPLEMENTATION_2026_11_08.md) — same exact product revision, openat2/Landlock/grant workers/FFM, concurrent security regressions, 15 Truffle compilations and full JVM/Protos checks. Native T16/installed binary execution not reported. [I156 #1083](https://github.com/guillermomolina/protos/issues/1083).
