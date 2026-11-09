@@ -2,6 +2,7 @@
 
 **Evidence date:** 2026-11-09. **Status:** owner-approved design research; *not* an implementation, product normative publication or test result. This snapshot records the comparison and GITHUB010/GITHUB021 decision gate for [D253 #1101](https://github.com/guillermomolina/protos/issues/1101). The maintained ratification record is [D253-C1](../../decisions/language/D253_EXPLICIT_CORE_WALL_CLOCK_NANOSECONDS_C1_RATIFIED_2026_11_09.md).
 
+- Independent implementation allocated as [I163 #1102](https://github.com/guillermomolina/protos/issues/1102), with `family:I`, `status:ready`, native D253 parent **not yet established**. Issue creation is not normative product publication or validation.
 - Exact inspected `PROTOS_REVISION=9c92dbc0cfdfbfe5cb2751339ea27297c8c22bcd` (`0.3.458-SNAPSHOT`); [commit](https://github.com/guillermomolina/protos/commit/9c92dbc0cfdfbfe5cb2751339ea27297c8c22bcd).
 - Exact inspected RealWorld revision `d242b73e6bd327739147bfc8ce85a789b4384533`; [commit](https://github.com/guillermomolina/protos-realworld-example-app/commit/d242b73e6bd327739147bfc8ce85a789b4384533).
 - Owner approval in active conversation, **2026-11-09**: **“apruebo D253-C1”**, explicitly followed by the request to update `guillermomolina/protos` Issues, publish evidence in `guillermomolina/protos-project-docs`, and create an I-family implementation item if needed. The approved label is the **second, revised C1 packet**, not the earlier first-pass B1 proposal.
