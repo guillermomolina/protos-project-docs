@@ -32,6 +32,8 @@ This list is not a closed manifest for future language decisions.
 
 ## Subsequent language-domain decisions
 
+- [D252 — owner-ratified C1 String, Vector and Matrix ordinary `each` traversal](D252_COLLECTION_TRAVERSAL_STRING_VECTOR_MATRIX_C1_RATIFIED.md) — scalar String elements, ascending Vector snapshot, row-major Matrix snapshot, receiver return and ordinary callback/control; no new Iterator hierarchy or parser sugar. [Owner approval / invariant evidence](../../evidence/D252/D252_C1_OWNER_APPROVAL_AND_INVARIANT_RECONCILIATION_2026_11_09.md); [D252 #1098](https://github.com/guillermomolina/protos/issues/1098) owns ratification, with implementation tracked separately.
+
 - [D242 — owner-ratified MODULE/SOURCE imports, explicit public exports and `package.toml` replacement](D242_MODULE_SOURCE_PUBLIC_EXPORTS_AND_PACKAGE_MANIFEST_RATIFIED.md) — mandatory `module.protos` for source-backed logical modules; source imports expose complete contexts, MODULE imports only explicitly published slots; direct breaking replacement, [I151](https://github.com/guillermomolina/protos/issues/1066) and [I152](https://github.com/guillermomolina/protos/issues/1067) own implementation.
 
 - [D240 — prior bounded public-module architecture, now refined by D242](D240_PUBLIC_LIBRARY_MODULE_TOPOLOGY_C_INCREMENTAL_B_RATIFIED.md) — historical C/B staging decision; D242 replaces only its formerly deferred export semantics and rollout policy.
