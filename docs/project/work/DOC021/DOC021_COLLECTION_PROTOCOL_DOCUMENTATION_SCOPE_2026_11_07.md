@@ -45,3 +45,16 @@ PROTOS_REVISION_AT_ALLOCATION=08c27760eb3f85105277e5b1b1b159abbca67ebe
 TESTS_EXECUTED=NO
 COMPLETION=NOT_CLAIMED
 ```
+
+
+---
+
+## Later owner-selected C and D252-C1 ratification — 2026-11-09
+
+**Historical scope preserved:** The 2026-11-07 AUD023-B approval and this DOC021 allocation were valid when issued. The text above documents the older **pre-C1 product baseline**; do not rewrite that older approval as though C1 were known in advance.
+
+**Subsequent direction:** the owner changed the future AUD023 outcome to **C** on 2026-11-09, then expressly approved **D252-C1** (“perfecto me gusta C1, apruebo”). [D252 #1098](https://github.com/guillermomolina/protos/issues/1098) is durably ratified; its [language decision](../../decisions/language/D252_COLLECTION_TRAVERSAL_STRING_VECTOR_MATRIX_C1_RATIFIED.md) defines standard `each` on String/Vector/Matrix. The implementation is separately tracked in [I162 #1099](https://github.com/guillermomolina/protos/issues/1099).
+
+**DOC021 remains a separate documentation-only deliverable**, not implementation authority. Interpret the earlier “do not add `each`” as **do not introduce public behavior from a DOC-only edit**, rather than as a permanent ban overriding the later owner-approved D252-C1. Until I162 actually publishes `spec/` + code, current docs must accurately describe the still-unimplemented baseline, distinguishing the **approved future contract** from shipped capabilities. Once I162 publishes, align the broad family capability/contract matrix and examples with the published revision and avoid duplicating I162's directly affected guide edits. If independent DOC021 work precedes I162, do not present `for` on String/Vector/Matrix as currently executable.
+
+No tests, product changes, DOC021 implementation completion, new priority or blocker are asserted by this project-record correction. DOC021 remains OPEN / READY; the C1 implementation is independently OPEN / READY.
