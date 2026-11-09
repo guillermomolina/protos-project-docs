@@ -4,6 +4,7 @@
 
 - Decision: [D253 #1101](https://github.com/guillermomolina/protos/issues/1101).
 - Downstream consumer: [I153 RealWorld #1068](https://github.com/guillermomolina/protos/issues/1068).
+- Allocated implementation: [I163 #1102](https://github.com/guillermomolina/protos/issues/1102), `status:ready`; native parent relation to D253 #1101 **pending** (read-only GitHub REST returned no parent/sub-issue). Product specification and runtime still unpublished.
 - Existing JWT contract: [D246-C / I161](https://github.com/guillermomolina/protos/issues/1094), [`spec/auth/JWT.md`](https://github.com/guillermomolina/protos/blob/9c92dbc0cfdfbfe5cb2751339ea27297c8c22bcd/spec/auth/JWT.md).
 - Inspected **PROTOS_REVISION=`9c92dbc0cfdfbfe5cb2751339ea27297c8c22bcd`** (`0.3.458-SNAPSHOT`), before Clock.
 - Inspected RealWorld revision `d242b73e6bd327739147bfc8ce85a789b4384533`; RootActor owns the domain state and authenticated HTTP operations are not yet enabled.
