@@ -191,3 +191,16 @@ The project owner explicitly selected **Alternative B** with the statement **“
 - **Test result:** NOT_RUN; this is a read-only audit/documentary decision, not a claim of conformance execution.
 
 Audit closure does not assert that DOC021's public programming guide edits are already published.
+
+
+---
+
+## Post-closure owner correction and separately ratified D252-C1 — 2026-11-09
+
+This section is a **dated successor checkpoint**, not a reinterpretation of the completed 2026-11-07 audit. Historical AUD023-B approval, its 13 findings, baseline and closure evidence remain authentic. On 2026-11-09 the project owner expressly changed the preferred **future** audit disposition to Alternative C ([AUD023 issue correction](https://github.com/guillermomolina/protos/issues/1087#issuecomment-6731237139)), then approved **D252-C1** in the independently tracked [D252 #1098](https://github.com/guillermomolina/protos/issues/1098#issuecomment-6731616772).
+
+The [durable D252-C1 language decision](../../decisions/language/D252_COLLECTION_TRAVERSAL_STRING_VECTOR_MATRIX_C1_RATIFIED.md) approves ordinary `each(block)` on Core String (Unicode scalar Strings), Standard Library Vector (ascending snapshot) and Matrix (row-major snapshot), each supplying one element, returning its original receiver, and preserving ordinary callback/control semantics. [GITHUB021 invariant/approval evidence](../../evidence/D252/D252_C1_OWNER_APPROVAL_AND_INVARIANT_RECONCILIATION_2026_11_09.md) reconciles D213, D214, D157, D231, Actor/P and the completed AUD023 historical scope. No Iterator/Collection hierarchy, structural resizing, new Matrix indexing, universal mutator or other originally rejected expansion is introduced.
+
+**Implementation remains pending**, under native [I162 #1099](https://github.com/guillermomolina/protos/issues/1099), child of D252. [DOC021 #1089](https://github.com/guillermomolina/protos/issues/1089) remains an independently owned documentation-only task; its [dated scope addendum](../DOC021/DOC021_COLLECTION_PROTOCOL_DOCUMENTATION_SCOPE_2026_11_07.md#later-owner-selected-c-and-d252-c1-ratification--2026-11-09) prevents its original B-era exclusions from being misread as a ban on owner-approved I162 work.
+
+The **product repository** at [`52b6da5da98e7eedb525ab4eb5111258c136193e`](https://github.com/guillermomolina/protos/commit/52b6da5da98e7eedb525ab4eb5111258c136193e) still lacks the newly approved methods: this is decision publication, **not** runtime or normative specification delivery. No tests or benchmarks have been run for this post-closure record.
