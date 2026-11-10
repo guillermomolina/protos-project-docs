@@ -12,6 +12,9 @@ migrate it explicitly rather than duplicating or moving it opportunistically.
 
 Current role-first work records:
 
+- [I153 — RealWorld backend 19-route implementation and remaining acceptance](I153/I153_REALWORLD_BACKEND_CURRENT_STATUS_2026_11_10.md) — published application and reported HTTP/secure-auth/lifecycle/Hurl checks, durable persistence and official conformance outstanding; [snapshot evidence](../evidence/I153/I153_REALWORLD_PUBLISHED_APP_ACCEPTANCE_GAP_2026_11_10.md), [I153 #1068](https://github.com/guillermomolina/protos/issues/1068).
+
+
 - [AUD023 — Owner-approved B: cross-family collection protocol audit](AUD023/AUD023_COLLECTION_PROTOCOL_COHERENCE_AUDIT.md) — [owner approval/closure evidence](../evidence/AUD023/AUD023_B_OWNER_APPROVAL_AND_CLOSURE_2026_11_07.md) preserves fixed Array and every ratified family contract; no product/source changes or tests executed. [AUD023 #1087](https://github.com/guillermomolina/protos/issues/1087) has a separately closable audit outcome, with [DOC021 #1089](https://github.com/guillermomolina/protos/issues/1089) responsible for public teaching.
 
 - [DOC021 — Cross-family collection capability documentation scope](DOC021/DOC021_COLLECTION_PROTOCOL_DOCUMENTATION_SCOPE_2026_11_07.md) — owner-approved AUD023 Alternative B teaching plan for collection matrix, `for`/`each` and `add` distinctions and focused examples; independently OPEN / READY, **not yet delivered** in the Protos guide. [Issue #1089](https://github.com/guillermomolina/protos/issues/1089).
