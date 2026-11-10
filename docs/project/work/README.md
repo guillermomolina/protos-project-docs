@@ -1,5 +1,7 @@
 # Work-item records
 
+- [DOC023 — Public `std:ffi` guides, tutorials and examples completed (2026-11-10)](DOC023/DOC023_PUBLIC_STD_FFI_LEARNING_PATH_COMPLETION_2026_11_10.md) — exact [Protos `fcae8c54`](https://github.com/guillermomolina/protos/commit/fcae8c544347d53841b35e4cdebf69d168ca9f05), 18 changed paths, one new guide, three tutorials, two examples and four new external FFM cases; all local tests and clean diff owner-reported PASS. [Revision-bound evidence](../evidence/DOC023/DOC023_S1_STD_FFI_LEARNING_PUBLICATION_VALIDATION_2026_11_10.md); [Issue #1114](https://github.com/guillermomolina/protos/issues/1114).
+
 - [DOC022 — External FFM and SQLite learning material completion (2026-11-10)](DOC022/DOC022_FFM_PROVIDER_LEARNING_COMPLETION_2026_11_10.md) — exact [Protos `053e55ff`](https://github.com/guillermomolina/protos/commit/053e55ffb0cdee56d71ec38876410e6740d80783), 12 documentation/example/harness paths (+986/−6), two tutorials and two examples; owner-reported 22/22 external-provider cases, `make test`, `make check`, clean diff PASS. [Revision-bound evidence](../evidence/DOC022/DOC022_FFM_LEARNING_PUBLICATION_VALIDATION_2026_11_10.md), [Issue #1112](https://github.com/guillermomolina/protos/issues/1112).
 
 `work/` contains durable non-normative records whose primary owner is one formal
