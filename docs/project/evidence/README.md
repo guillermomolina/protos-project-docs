@@ -15,6 +15,8 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [D245 — I160 native hierarchy and final closure (2026-11-10)](D245/D245_C_NATIVE_HIERARCHY_AND_FINAL_CLOSURE_2026_11_10.md) — owner-ratified C, verified D245 → I160 parentage, closed I160, rebuilt Native Argon2id acceptance, D245 closure checkpoint. [D245 #1071](https://github.com/guillermomolina/protos/issues/1071).
+
 - [I153 — RealWorld published application and acceptance gaps (2026-11-10)](I153/I153_REALWORLD_PUBLISHED_APP_ACCEPTANCE_GAP_2026_11_10.md) — exact application source revision, maintainer-reported 12 groups and native HTTP/lifecycle PASS, official Hurl 12/13 vs adjusted 13/13 (157 requests), persistence/restart still missing; [maintained work status](../work/I153/I153_REALWORLD_BACKEND_CURRENT_STATUS_2026_11_10.md).
 
 
