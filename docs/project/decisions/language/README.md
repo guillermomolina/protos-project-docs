@@ -1,5 +1,8 @@
 # Language decision records
 
+- [D254 — owner-ratified A: preserve mandatory `InvalidReturn` for unreachable return homes](D254_ESCAPED_NON_LOCAL_RETURN_A_NO_CHANGE_RATIFIED_2026_11_10.md) — no new Smalltalk-style recovery selector, no normative or implementation changes; [approval and no-change evidence](../../evidence/D254/D254_A_OWNER_APPROVAL_AND_NO_CHANGE_RECONCILIATION_2026_11_10.md), [D254 #1103](https://github.com/guillermomolina/protos/issues/1103).
+
+
 This role contains durable non-normative decision records whose primary
 domain is observable language or specification semantics. These files record
 decision process and rationale; they do not replace the normative specification
