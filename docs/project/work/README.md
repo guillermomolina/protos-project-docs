@@ -1,5 +1,7 @@
 # Work-item records
 
+- [DOC022 — External FFM and SQLite learning material completion (2026-11-10)](DOC022/DOC022_FFM_PROVIDER_LEARNING_COMPLETION_2026_11_10.md) — exact [Protos `053e55ff`](https://github.com/guillermomolina/protos/commit/053e55ffb0cdee56d71ec38876410e6740d80783), 12 documentation/example/harness paths (+986/−6), two tutorials and two examples; owner-reported 22/22 external-provider cases, `make test`, `make check`, clean diff PASS. [Revision-bound evidence](../evidence/DOC022/DOC022_FFM_LEARNING_PUBLICATION_VALIDATION_2026_11_10.md), [Issue #1112](https://github.com/guillermomolina/protos/issues/1112).
+
 `work/` contains durable non-normative records whose primary owner is one formal
 tracked work item. Records are grouped by the **individual identifier**, for
 example `I026/`, `LIB001/`, `TOOL001/`, or `DOC002/`, rather than by broad family
