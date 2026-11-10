@@ -1,5 +1,7 @@
 # Historical and immutable evidence
 
+- [I144 — optional Java 25 FFM provider and whole-signature admission (2026-11-10)](I144/I144_EXTERNAL_FFM_PROVIDER_IMPLEMENTATION_PUBLICATION_2026_11_10.md) — exact published [Protos `a7d9666a`](https://github.com/guillermomolina/protos/commit/a7d9666aeb29a18905232907b83450fc82d034ec) / `0.3.460-SNAPSHOT`; generic I085 `ffi:sqlite3` provider, owned/borrowed memory rules and SQLite ABI fixture. Maintainer reports focal, external-provider, `make test`, `make check` and clean diff PASS after the separate RootActor READY-race fix. [I144 #1050](https://github.com/guillermomolina/protos/issues/1050); independent [DOC022 #1112](https://github.com/guillermomolina/protos/issues/1112) owns tutorials/examples.
+
 - [D250 — B1 approval, host-derived Process authority, 12-axis comparison and GITHUB021 invariant reconciliation (2026-11-10)](D250/D250_B1_OWNER_APPROVAL_GITHUB010_GITHUB021_2026_11_10.md) — exact [ratified decision](../decisions/language/D250_SESSION_SCOPED_PROCESS_AUTHORITY_B1_RATIFIED_2026_11_10.md), [D250 #1080](https://github.com/guillermomolina/protos/issues/1080), [I165 #1110](https://github.com/guillermomolina/protos/issues/1110), product inspection [`c9da7ff3`](https://github.com/guillermomolina/protos/commit/c9da7ff3e6c95f7a88948e875f61d67007fdeaa5), **no D250 product implementation or tests**.
 
 
