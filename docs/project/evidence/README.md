@@ -1,5 +1,8 @@
 # Historical and immutable evidence
 
+- [D250 — B1 approval, host-derived Process authority, 12-axis comparison and GITHUB021 invariant reconciliation (2026-11-10)](D250/D250_B1_OWNER_APPROVAL_GITHUB010_GITHUB021_2026_11_10.md) — exact [ratified decision](../decisions/language/D250_SESSION_SCOPED_PROCESS_AUTHORITY_B1_RATIFIED_2026_11_10.md), [D250 #1080](https://github.com/guillermomolina/protos/issues/1080), [I165 #1110](https://github.com/guillermomolina/protos/issues/1110), product inspection [`c9da7ff3`](https://github.com/guillermomolina/protos/commit/c9da7ff3e6c95f7a88948e875f61d67007fdeaa5), **no D250 product implementation or tests**.
+
+
 - [D207 — owner approval of A, D013 no-change and experimental evidence (2026-11-10)](D207/D207_A_OWNER_APPROVAL_NO_CHANGE_AND_EXPERIMENT_2026_11_10.md) — 645→645 Tier-1 graph and 55→55 inclusive ancestry in reported direct-Closure experiment; retained invocation semantics, no code or test changes; [ratified decision](../decisions/language/D207_A_KEEP_D013_ORDINARY_CALL_DISPATCH_RATIFIED_2026_11_10.md), [D207 #932](https://github.com/guillermomolina/protos/issues/932).
 
 

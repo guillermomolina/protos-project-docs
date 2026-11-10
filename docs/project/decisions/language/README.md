@@ -1,5 +1,7 @@
 # Language decision records
 
+- [D250 — owner-ratified B1 host-derived attenuated Filesystem authority for new Protos Processes](D250_SESSION_SCOPED_PROCESS_AUTHORITY_B1_RATIFIED_2026_11_10.md) — no implicit inheritance or public launcher; independent host-authorized Process grant, secure same/descendant root, scope/lifetime and no amplification; [GITHUB010/GITHUB021 evidence](../../evidence/D250/D250_B1_OWNER_APPROVAL_GITHUB010_GITHUB021_2026_11_10.md), [D250 #1080](https://github.com/guillermomolina/protos/issues/1080), [I165 #1110](https://github.com/guillermomolina/protos/issues/1110). Product implementation pending.
+
 - [D207 — owner-ratified A: retain D013 ordinary `call` dispatch unchanged](D207_A_KEEP_D013_ORDINARY_CALL_DISPATCH_RATIFIED_2026_11_10.md) — isolated direct-call experiment did not reduce Tier-1 graph nodes; no normative/product changes; [approval and invariant evidence](../../evidence/D207/D207_A_OWNER_APPROVAL_NO_CHANGE_AND_EXPERIMENT_2026_11_10.md), [D207 #932](https://github.com/guillermomolina/protos/issues/932).
 
 
