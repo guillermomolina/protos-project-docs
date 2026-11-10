@@ -1,5 +1,8 @@
 # Language decision records
 
+- [D207 — owner-ratified A: retain D013 ordinary `call` dispatch unchanged](D207_A_KEEP_D013_ORDINARY_CALL_DISPATCH_RATIFIED_2026_11_10.md) — isolated direct-call experiment did not reduce Tier-1 graph nodes; no normative/product changes; [approval and invariant evidence](../../evidence/D207/D207_A_OWNER_APPROVAL_NO_CHANGE_AND_EXPERIMENT_2026_11_10.md), [D207 #932](https://github.com/guillermomolina/protos/issues/932).
+
+
 - [D254 — owner-ratified A: preserve mandatory `InvalidReturn` for unreachable return homes](D254_ESCAPED_NON_LOCAL_RETURN_A_NO_CHANGE_RATIFIED_2026_11_10.md) — no new Smalltalk-style recovery selector, no normative or implementation changes; [approval and no-change evidence](../../evidence/D254/D254_A_OWNER_APPROVAL_AND_NO_CHANGE_RECONCILIATION_2026_11_10.md), [D254 #1103](https://github.com/guillermomolina/protos/issues/1103).
 
 
