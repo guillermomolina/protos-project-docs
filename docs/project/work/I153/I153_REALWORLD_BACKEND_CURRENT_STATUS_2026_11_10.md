@@ -38,3 +38,9 @@ The original official `errors_auth.hurl` reused a JWT that the application had r
 SQLite/FFI investigations [LIB028 #1051](https://github.com/guillermomolina/protos/issues/1051) and [LIB029 #1052](https://github.com/guillermomolina/protos/issues/1052) are **potential approaches**, not newly declared hard blockers. Production HTTPS, hardening and upstream catalog listing are outside the original closure criteria for the local learning application unless separately scheduled.
 
 No source edits, runtime tests, new implementation issues, normative changes or version bump are claimed by this status update.
+
+## D255-H1 design checkpoint ratified (2026-11-10)
+
+The owner explicitly approved **D255-H1 (E+A)** for application-owned, single-writer Protos-first durability over the existing explicitly provisioned confined Filesystem. See [D255 ratification](../../decisions/language/D255_PROTOS_FIRST_DURABLE_PERSISTENCE_H1_RATIFIED_2026_11_10.md), [research and GITHUB021 evidence](../../evidence/D255/D255_H1_GITHUB010_GITHUB021_APPROVAL_AND_COMPARATIVE_EVIDENCE_2026_11_10.md), and [I153 bounded handoff](../D255/D255_H1_IMPLEMENTATION_HANDOFF_2026_11_10.md).
+
+D255's *design* dependency is resolved upon its verified durable publication/closure, but this **does not fulfill I153's remaining acceptance**: no journal, durable recovery, crash tests, or successful restart is claimed at the inspected RealWorld revision. The native `blocked_by` link may remain as historical dependency; I153 stays OPEN / `status:ready` pending implementation and separate official-Hurl reconciliation. Optional SQLite `std:ffi` work (I144/LIB028/LIB029) remains independent and is not an I153 prerequisite. No new I issue is warranted while the work remains application-local slices owned by I153.
