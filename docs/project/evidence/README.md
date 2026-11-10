@@ -13,6 +13,9 @@ its references, retention role, and compatibility implications.
 
 ## Evidence groups
 
+- [I153 — RealWorld published application and acceptance gaps (2026-11-10)](I153/I153_REALWORLD_PUBLISHED_APP_ACCEPTANCE_GAP_2026_11_10.md) — exact application source revision, maintainer-reported 12 groups and native HTTP/lifecycle PASS, official Hurl 12/13 vs adjusted 13/13 (157 requests), persistence/restart still missing; [maintained work status](../work/I153/I153_REALWORLD_BACKEND_CURRENT_STATUS_2026_11_10.md).
+
+
 - [I160 — rebuilt Native Password/Argon2id acceptance and closure (2026-11-10)](I160/I160_REBUILT_NATIVE_PASSWORD_ACCEPTANCE_AND_CLOSURE_2026_11_10.md) — owner-reported Native build SUCCESS, Password 3/3 vector/NFC and 9/9 invalid-record tests PASS, explicit Entropy example three true outputs; discharges rebuilt Native gate, no installed distribution or full `make test-native` claim. [I160 #1093](https://github.com/guillermomolina/protos/issues/1093).
 
 - [D251 — GitHub native hierarchy reconciliation and owner-directed closure (2026-11-10)](D251/D251_A1_NATIVE_HIERARCHY_RECONCILIATION_AND_CLOSURE_2026_11_10.md) — I156 → D251 → I158 native parentage and I156 blocked-by I158 verified reciprocally; D251 closed completed with owner approval, no new product edits or tests claimed. [D251 #1088](https://github.com/guillermomolina/protos/issues/1088).
