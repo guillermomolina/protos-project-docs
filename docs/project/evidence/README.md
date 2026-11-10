@@ -1,5 +1,8 @@
 # Historical and immutable evidence
 
+- [D207 — owner approval of A, D013 no-change and experimental evidence (2026-11-10)](D207/D207_A_OWNER_APPROVAL_NO_CHANGE_AND_EXPERIMENT_2026_11_10.md) — 645→645 Tier-1 graph and 55→55 inclusive ancestry in reported direct-Closure experiment; retained invocation semantics, no code or test changes; [ratified decision](../decisions/language/D207_A_KEEP_D013_ORDINARY_CALL_DISPATCH_RATIFIED_2026_11_10.md), [D207 #932](https://github.com/guillermomolina/protos/issues/932).
+
+
 - [DIST023 — public Protos v0.3.459 JVM + Native prerelease verification (2026-11-10)](DIST023/DIST023_PROTOS_0.3.459_PUBLIC_RELEASE_VERIFICATION_2026_11_10.md) — exact release-only candidate [`5f248eb0`](https://github.com/guillermomolina/protos/commit/5f248eb0158bbf7a3ed701929132467b502e2306) from [`c9da7ff3`](https://github.com/guillermomolina/protos/commit/c9da7ff3e6c95f7a88948e875f61d67007fdeaa5), GitHub prerelease and five public asset digests verified; owner-reported `git diff --check`, `make test`, `make check` PASS; prior exact-candidate approval and DIST005 prepare/publish transcript still unverified. [DIST023 #1106](https://github.com/guillermomolina/protos/issues/1106).
 
 - [D254 — owner approval of A, mandatory `InvalidReturn` retained (2026-11-10)](D254/D254_A_OWNER_APPROVAL_AND_NO_CHANGE_RECONCILIATION_2026_11_10.md) — explicit no-change choice for escaped / foreign-Task return homes, invariant reconciliation, zero product delta, no tests claimed; [ratified decision](../decisions/language/D254_ESCAPED_NON_LOCAL_RETURN_A_NO_CHANGE_RATIFIED_2026_11_10.md), [D254 #1103](https://github.com/guillermomolina/protos/issues/1103).
