@@ -1,5 +1,8 @@
 # Historical and immutable evidence
 
+- [D254 — owner approval of A, mandatory `InvalidReturn` retained (2026-11-10)](D254/D254_A_OWNER_APPROVAL_AND_NO_CHANGE_RECONCILIATION_2026_11_10.md) — explicit no-change choice for escaped / foreign-Task return homes, invariant reconciliation, zero product delta, no tests claimed; [ratified decision](../decisions/language/D254_ESCAPED_NON_LOCAL_RETURN_A_NO_CHANGE_RATIFIED_2026_11_10.md), [D254 #1103](https://github.com/guillermomolina/protos/issues/1103).
+
+
 `evidence/` contains immutable or snapshot-like project evidence. When evidence
 has a genuine formal owner, it is grouped beneath
 `evidence/<formal-work-item>/` rather than mixed with maintained work prose.
