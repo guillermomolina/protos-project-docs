@@ -65,3 +65,11 @@ Only then can D256 be considered fully ratified/closed and durable implementatio
 `D256_AUTHORITY_AND_CANCELLATION_GATES=OPEN`
 `D256_CODE_OR_TEST_ACCEPTANCE=NOT_CLAIMED`
 `D255_REALWORLD_SQLITE_HANDOFF=NOT_YET_APPROVED`
+
+## Live coordination established 2026-11-11
+
+- [LIB030 #1119](https://github.com/guillermomolina/protos/issues/1119) created OPEN / `family:LIB`, `status:ready`, unassigned, priority unset: safe TEXT/BLOB input and reusable single-statements, independently verifiable in memory, without claiming durable access.
+- [LIB031 #1120](https://github.com/guillermomolina/protos/issues/1120) created OPEN / `family:LIB`, `status:blocked`, unassigned, priority unset: durable SQLite authority, transactions and restart acceptance **only after** D256's unresolved gate and LIB030 prerequisites.
+- [D256 #1118](https://github.com/guillermomolina/protos/issues/1118) remains OPEN / `status:ready` with exact owner approval recorded and explicit unresolved authority and cancellation gates. [D255 #1107](https://github.com/guillermomolina/protos/issues/1107) and [I153 #1068](https://github.com/guillermomolina/protos/issues/1068) remain OPEN; their current coordination prose was updated to distinguish SQLite from historical journal H1.
+- **Native GitHub dependency links and Project routing were not verified** because the available coordination connector does not expose those relationships. Pending exact edges: LIB031 `blocked_by` D256 and LIB030. Do not treat prose as an established native GITHUB009 relation. Issues have no invented native parent: D256 is a standalone design and the LIB deliverables are independently closable.
+- No source/test/build executions or `git diff --check` were performed as part of connector publication; record-content round-trip verification was performed by fetching each document at its exact published commit.
