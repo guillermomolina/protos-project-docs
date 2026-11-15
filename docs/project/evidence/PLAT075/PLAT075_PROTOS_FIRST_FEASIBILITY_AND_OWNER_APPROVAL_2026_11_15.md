@@ -44,3 +44,7 @@ The lowerer and `ProtosActorModuleState` were reported unchanged, reusing establ
 There is **no verified implementation SHA** on `guillermomolina/protos` for these POC edits. There is **no Native Image result** or performance measurement. The ratification records owner approval and functional feasibility; promotion to production, removal of native policy and final product publication belong to separately governed I-family work.
 
 **OWNER_REPORTED_LOCAL_TESTS=PASS; FOCAL_REGRESSION=82/82_PASS; DESIGN_APPROVED=PROTOS_FIRST; PRODUCT_IMPLEMENTATION_REVISION=UNPUBLISHED.**
+
+## Subsequent production implementation — I167 (2026-11-15)
+
+The original feasibility evidence above described the situation **before** the production implementation had a published revision. That limitation was correct at the time and must not be read as the current project status. The later [I167 implementation evidence](../../evidence/I167/I167_PROTOS_FIRST_IMPORT_PRODUCTION_CUTOVER_2026_11_15.md) records publication at [`86f705237c15f51717dbcadeb6a6fa49d318b3ed`](https://github.com/guillermomolina/protos/commit/86f705237c15f51717dbcadeb6a6fa49d318b3ed), **101/101** focal JUnit tests and **16/16** Protos module conformance tests in locally supplied console output, plus the owner's declaration that all local tests pass and `git diff --check` is clean. I167 is implemented; no Native Image/CI outcome is asserted.
