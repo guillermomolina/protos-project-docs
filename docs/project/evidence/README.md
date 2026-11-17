@@ -1,5 +1,8 @@
 # Historical and immutable evidence
 
+- [UPSTREAM004-H — owner-authorized closure of Protos Native upstream tracking (2026-11-17)](UPSTREAM004/UPSTREAM004_H_PROTOS_IMPACT_RESOLVED_AND_OWNER_AUTHORIZED_CLOSURE_2026_11_17.md) — Oracle graal#14579 closed with a configuration explanation; published [I115 `50a7d3b6`](https://github.com/guillermomolina/protos/commit/50a7d3b6924c8a2a87e0488f909d8fa98316dc66) restores native guest Tier-2 capability and guarded admission for tested paths; owner explicitly authorized completion of [UPSTREAM004 #753](https://github.com/guillermomolina/protos/issues/753), without a universal upstream-fix claim.
+
+
 - [I115 — Native guest Tier-2 and TLS JUnit image acceptance (2026-11-17)](I115/I115_NATIVE_GUEST_TIER2_AND_NATIVE_TLS_JUNIT_ACCEPTANCE_2026_11_17.md) — published [Protos `50a7d3b6`](https://github.com/guillermomolina/protos/commit/50a7d3b6924c8a2a87e0488f909d8fa98316dc66) / `0.4.155-SNAPSHOT`; 2/2 Tier-2 roots, zero opt/FrameWithoutBoxing/fallback failures, native CLI regressions PASS and Native TLS JUnit 38/38 PASS in maintainer-supplied local 0.4.154-SNAPSHOT transcripts (not exact-post-commit transcript). [I115 #931](https://github.com/guillermomolina/protos/issues/931).
 
 - [UPSTREAM004-G — Protos optimizing Native re-enablement (2026-11-17)](UPSTREAM004/UPSTREAM004_G_PROTOS_OPTIMIZING_NATIVE_REENABLEMENT_2026_11_17.md) — supersedes the 2026-11-13 inability to test Protos native Tier-2 with new positive Native acceptance, while preserving Oracle's configuration explanation and original F evidence; no generic upstream fix or release claim. [UPSTREAM004 #753](https://github.com/guillermomolina/protos/issues/753).
