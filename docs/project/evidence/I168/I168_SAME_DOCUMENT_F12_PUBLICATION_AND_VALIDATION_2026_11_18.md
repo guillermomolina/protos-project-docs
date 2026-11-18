@@ -91,3 +91,73 @@ REAL_VSCODE_F12_WITH_I168=NOT_YET_PROVIDED
 NATIVE_SNAPSHOT_INSTALLED=NOT_YET_VERIFIED
 ISSUE_CLOSURE=WAITING_REAL_EDITOR_ACCEPTANCE
 ```
+---
+
+## Addendum — lexical callback navigation, object construction and installed-editor acceptance (2026-11-18)
+
+**Scope of this addendum:** later product publication and owner-observed functional acceptance. The preceding \`0.4.167-SNAPSHOT\` checkpoint is historical evidence and remains intact.
+
+**Exact later product revision:** [\`guillermomolina/protos@01c8566e6481501b051ee67d475e1d67accadb4a\`](https://github.com/guillermomolina/protos/commit/01c8566e6481501b051ee67d475e1d67accadb4a).
+**Commit subject:** \`I168: Navigate Definition to lexical declarations in Closures and object construction contexts\`.
+**Published product implementation version:** \`0.4.170-SNAPSHOT\`, confirmed in the exact commit's \`pom.xml\` and matching root \`CHANGELOG.md\`.
+**Files:** 15 modified tracked paths including \`pom.xml\`, \`CHANGELOG.md\`, maintained language-server guide, analysis/LSP production code, and tests. No new production Java class or runtime/JIT semantics change is claimed.
+
+### Behavior and proof boundaries
+
+- \`textDocument/definition\` now navigates within the exact open URI and snapshot from bare reads inside ordinary, immediate, stored and deferred Closures, including callbacks to methods of arbitrary names. Source-backed lexical-context identity is constructed from the existing Protos AST in a two-pass, query-local scope walk. The implementation does not need to infer the implementation or invocation time of \`Range.each\` to navigate the lexical read \`finalDoors\`.
+- During object construction, direct reads can navigate to earlier own-slot declarations of the object being built. Closures and nested objects constructed inside that body skip the constructed object when selecting a lexical parent, preserving Protos's genuine lexical-context capture rule.
+- Parameter navigation targets the identifier alone, excluding default expressions and the rest prefix; F12 also accepts a cursor immediately after the reference span, while keeping the parser's half-open spans.
+- The existing exact-origin proof remains a separate query used by References and Hover; Completion remains limited to its exact proven-parameter policy. References and Workspace Symbols still require ProjectBinding. Neither cross-file navigation nor unbound package/source authority has been added.
+- **Contract distinction:** in \`ProtosStaticAnalysisCore.definition()\`, an exact proven origin is preferred, but when unavailable a bare-name read may navigate to AST-derived lexical declaration candidate(s). These are *not* a complete proven set of dynamically selected slot origins. In particular, unknown calls, mutable aliases, \`removeSlot\`, recreated slots and delayed callback invocation can invalidate the exact-origin proof without changing the source location of the lexical declaration.
+
+### Reported validation
+
+The maintainer supplied the focal Maven output for substantive code at \`0.4.169-SNAPSHOT\`, before final commit/version finalization:
+
+| Test class | Tests | Failures | Errors | Skipped |
+| --- | ---: | ---: | ---: | ---: |
+| \`ProtosStaticDefinitionsTest\` | 110 | 0 | 0 | 0 |
+| \`ProtosStaticReferencesTest\` | 24 | 0 | 0 | 0 |
+| \`ProtosStaticHoverTest\` | 17 | 0 | 0 | 0 |
+| \`ProtosStaticCompletionTest\` | 18 | 0 | 0 | 0 |
+| \`ProtosLanguageServerDefinitionTest\` | 17 | 0 | 0 | 0 |
+| \`ProtosLanguageServerIntegratedEditorTest\` | 17 | 0 | 0 | 0 |
+| \`ProtosLm009FLanguageServerCliTest\` | 4 | 0 | 0 | 0 |
+| **Total** | **207** | **0** | **0** | **0** |
+
+Focal command: \`mvn test -Dtest='ProtosStaticDefinitionsTest,ProtosStaticHoverTest,ProtosStaticReferencesTest,ProtosStaticCompletionTest,ProtosLanguageServerDefinitionTest,ProtosLanguageServerIntegratedEditorTest,ProtosLm009FLanguageServerCliTest'\`. The log ends \`BUILD SUCCESS\` on 2026-11-18 at 11:38:23Z; \`git diff --check\` was clean. The earlier intermediate focal checkpoints were 79/79, 55/55, 158 with one parameter-span assertion failure, 163/163 and 196/196; the final 207/207 focal supersedes the failed intermediate check.
+
+The maintainer **later explicitly reported** that the implementation was pushed, the Git diff check was clean, and **all local tests passed**. This is owner-attested final/integrated validation: no final post-commit full-suite transcript or report count was supplied and none is invented here.
+
+**Installed-editor acceptance — owner reported PASS:** after installing a locally built Protos SNAPSHOT and testing the extension in VS Code, the maintainer wrote **"ya esta, funciona perfecto"**, confirming the earlier F12 acceptance problem is resolved in the actual editor. The earlier manual tests had established caret-inside navigation for \`x\` in \`slots.protos\` and \`doorsAfterPasses\` in \`100-doors.protos\`, with the selected-identifier boundary and captured \`finalDoors\` as the missing cases. The new integrated JSON-RPC test tests the *real complete* \`protos/examples/algorithms/100-doors.protos\` and asserts that F12 on \`finalDoors\` inside the \`each\` callback returns the \`finalDoors:\` creation for cursor start/interior/end, including snapshot change and document close. Exact installed Native artifact digest, binary/source cleanliness marker and installed-extension revision were not provided; do not equate that local binary with a separately verified post-publication \`0.4.170-SNAPSHOT\` artifact.
+
+### Design governance still requiring reconciliation
+
+[D110 Candidate B′](../../decisions/tooling/D110_STATIC_GO_TO_DEFINITION_PROOF_BOUNDARY_IDENTITY_AND_AMBIGUITY_CONTRACT.md) requires standard \`textDocument/definition\` to return only a **complete finite static proof set of exact runtime-selectable binding origins**; if that proof is incomplete, it must return no definition. [D258 Candidate B](../../decisions/tooling/D258_UNBOUND_DOCUMENT_LOCAL_GO_TO_DEFINITION_AUTHORITY.md) amended *only* the same-open-snapshot source authority, not the D110 semantic completeness guarantee.
+
+The \`0.4.170-SNAPSHOT\` lexical-navigation fallback thus materially widens Definition behavior beyond the ratified D110/D258 contracts. It is useful, backed by Truffle lexical-scope precedents, and owner-tested in VS Code, but **successful implementation and functional acceptance are not, by themselves, ratification of a replacement D110 policy**. The exact approval/invariant reconciliation must be recorded through the canonical Protos design process before claiming formal contract closure. Do not retroactively rewrite the historical D110 or D258 decision records, and do not label this as an already-approved amendment.
+
+**Coordination recommendation:** the original real-editor acceptance gate is satisfied; I168 can be recorded as *implemented, published, locally tested, editor-accepted*, while formal closure remains in **Review** pending the explicit D110/D258 policy reconciliation. No public release, new I-family issue, guest runtime change or blanket project-authority expansion is claimed.
+
+### Revision-bound markers
+
+\`\`\`text
+WORK_ITEM=I168
+EARLIER_PRODUCT_COMMIT=e59693eafa634f81eb5708a20925c3847ee41e52
+LATEST_I168_PRODUCT_COMMIT=01c8566e6481501b051ee67d475e1d67accadb4a
+LATEST_I168_PRODUCT_VERSION=0.4.170-SNAPSHOT
+LATEST_I168_PRODUCT_COMMIT_VERIFIED=PASS
+FOCAL_PRE_FINALIZATION_JUNIT=207_207_PASS
+FOCAL_FAILURES=0
+FOCAL_ERRORS=0
+FOCAL_SKIPPED=0
+FINAL_LOCAL_TESTS=PASS_OWNER_REPORTED
+FINAL_LOCAL_GIT_DIFF_CHECK=CLEAN_OWNER_REPORTED
+REAL_VSCODE_F12=PASS_OWNER_REPORTED
+EXACT_POST_COMMIT_FULL_SUITE_TRANSCRIPT=NOT_PROVIDED
+INSTALLED_NATIVE_ARTIFACT_SHA256=NOT_PROVIDED
+D110_LEXICAL_NAVIGATION_POLICY_RECONCILIATION=PENDING_EXPLICIT_APPROVAL
+RUNTIME_AND_JIT_SEMANTICS=UNCHANGED
+PUBLIC_RELEASE=NOT_CLAIMED
+ISSUE_CLOSURE=REVIEW_PENDING_DESIGN_RECONCILIATION
+\`\`\`
