@@ -2,6 +2,8 @@
 
 Status: **RATIFIED — Candidate B′ selected**
 
+**Current effective contract (2026-11-18):** Candidate B′ remains the strict exact-origin tier; the owner also approved an [AST-backed lexical-navigation fallback](#post-ratification-amendment--lexical-declaration-navigation-for-same-document-f12-2026-11-18) for same-document F12. The original ratification text below is preserved as historical approval.
+
 Allocated: **2026-09-12**
 
 Explicit project-owner approval: **2026-09-12**
@@ -328,3 +330,71 @@ D110 does not decide:
 After D110 publication, `LM009-G4` is `READY_FOR_IMPLEMENTATION_AUDIT`.
 
 That audit may choose mechanically necessary internal representations and decompose generation-1 exact proof coverage. If it exposes a new substantive semantic or durable architecture choice, G4 must stop at the normal Dxxx/PLATxxx approval gate.
+
+## Post-ratification amendment — lexical declaration navigation for same-document F12 (2026-11-18)
+
+**Effective status:** **RATIFIED — original Candidate B′ exact-origin proof retained as the strict tier, plus the explicitly approved lexical-navigation tier below.**
+**Decision issue:** [D110 #435](https://github.com/guillermomolina/protos/issues/435); this is an approved additive amendment to that *existing* decision, not a new D-family identifier and not a retroactive claim about its September approval.
+**Owning implementation:** [I168 #1135](https://github.com/guillermomolina/protos/issues/1135), [`guillermomolina/protos@01c8566e6481501b051ee67d475e1d67accadb4a`](https://github.com/guillermomolina/protos/commit/01c8566e6481501b051ee67d475e1d67accadb4a), `0.4.170-SNAPSHOT`.
+**Explicit owner approval:** on 2026-11-18, after the coordinating agent explicitly identified the unresolved difference between *AST lexical-declaration navigation* and the ratified *complete exact dynamic binding proof* and said I168 should remain open until the exact D110/D258 policy reconciliation, the owner replied: **“pues apruebo, documenta y cierra”**. This approves the **specific two-tier F12 policy already implemented and tested**, not arbitrary name matching, runtime-assisted guessing, project inference, or any later unrelated extension.
+
+### Approved effective contract (this addendum governs on conflict)
+
+Standard `textDocument/definition` inside a current open Protos source may return:
+
+1. **Exact-binding result (preferred).** The original D110-B′ complete finite proof set of the exact source slot origin(s) dynamically selectable under proven effects, lexical lookup and receiver/member rules. The original proof-set completeness and fail-closed rules still apply **to this tier**. An exact proven target is returned instead of lexical candidates when such a result exists.
+2. **AST-backed lexical-declaration navigation (fallback).** If exact binding is *not* proven, the language service **may still navigate a syntactic bare-name read or bare assignment target** to explicit source declarations identified by its *actual AST lexical-context chain*. This is an editor navigation affordance, not evidence that any returned slot still exists, that the runtime will select it, or that the set is the complete universe of dynamically selectable bindings. Any resulting locations must remain within the exact same open URI and immutable current snapshot. A correctly parsed read without identifiable lexical declarations yields the ordinary empty response.
+
+The fallback uses the **canonical Protos syntax tree**, not a search for matching source text, workspace symbols, filesystem names or module paths. The analyzer first builds query-local lexical context identities and declarations, and then navigates the reference's scope chain. A nearer applicable parameter or slot creation shadows a more distant one; `=` is not a declaration. A declaration's source span is the identifier alone. A context with multiple structurally identifiable same-name creations can return those candidates in stable source traversal order, without asserting their runtime selection or ranking by popularity. It must not truncate candidates arbitrarily.
+
+**Temporal scope and closures:** a direct read within its own activation sees declarations completed before that read. At an enclosing context, lookup is anchored to the point the child was created; a deferred Closure can run after subsequent mutations or creations, so structurally applicable later creations may also be shown as *possible navigation destinations* rather than proven bindings. Deferred, stored and nested Closures and callbacks passed to any message use the same rule; no selector-specific rule for `each`, `Range`, a user-defined callback method or its invocation time is permitted.
+
+**Object construction:** while constructing an object, a direct body read can navigate to an earlier declaration of a slot on that object. A later own-slot creation does not satisfy an earlier immediate read. A Closure or nested object created inside the body does **not** capture that object as its lexical parent; it uses the genuine enclosing execution context. A method's unresolved dynamic receiver, delegation or `methodHome` is never synthesized as a lexical declaration.
+
+**Effect boundary:** unknown calls, `removeSlot`, context aliases, new slot creations and deferred invocation can remove an exact proof; they do **not** erase the source AST's lexical relationship. Conversely, a lexical location can be incorrect as an assertion of what binding is dynamically selected. **A Definition result at this tier MUST NOT be reused as proof for References, Rename, Hover, Completion or any refactoring.** The existing strict `ProtosStaticDefinitions.resolve` path remains separate from `resolveDeclaration`; References/Hover consume exact proofs and Completion retains its proven-parameter policy. References and Workspace Symbols remain ProjectBinding-gated under D124/D209.
+
+**Source and protocol authority:** D258-B and the unchanged D085/D089/D209/D124 boundaries continue to govern exact open URI, current snapshot, invalid/stale/closed documents, no cross-document authority, and project gating outside Definition. The standard LSP location list does **not** itself carry a confidence/proof-tier marker; consumers must not infer an exact binding merely from receiving a location. Within Definition the response is allowed to be a lexical navigation location without a complete runtime proof, and the maintained guide must state that limitation clearly. A cursor immediately after the final character of a reference may navigate only when that precise half-open span ends at the requested cursor; no scanning through whitespace or adjacent names.
+
+### Explicit GITHUB021 predecessor invariant/delta reconciliation
+
+| Ratified invariant / prior rule | Later approved delta or preservation |
+| --- | --- |
+| D110 B′ clauses 1–2, 7–8: every successful Definition is a proven, complete finite exact runtime-origin set; otherwise empty | **Amended for standard Definition only**: the exact tier retains that guarantee, but a separate AST lexical-navigation fallback may answer without a dynamically exact, complete binding set. Empty remains mandatory when neither tier has a source-backed target. The old universal exactness claim no longer covers every successful F12 result. |
+| D110 clauses 3–6: singleton, multiple targets, deterministic order, no cap | Retained for proven results; lexical multiple targets are deterministic source-backed navigation candidates, **not** a complete runtime binding set and not ranking. No arbitrary truncation. |
+| D110 clause 9: reject workspace/symbol, text, ranking and proximity guesses | **Preserved**; lexical navigation follows AST scope identity and declaration provenance, not name search. |
+| D110 clause 10: never execute guest code / Truffle Context | **Preserved**. |
+| D110 clauses 11–12, as explicitly amended by D258-B: only canonical project sources or an exact open same-URI/snapshot local Definition | **Preserved**. D258 was a source-authority amendment; this later addendum independently approves the weaker navigation-certainty tier, **not** additional source authority. |
+| D110 clause 13: source definitions may include lexical binding origins beyond workspace symbols | Preserved and used; the newer tier still requires a canonical AST source declaration, rather than a workspace-symbol match. |
+| D110 clause 14: `:` creates, `=` assigns existing selected binding | **Preserved**. For unproven assignment targets, navigation may show a syntactic lexical declaration without proving the selected destination. |
+| D110 clause 15: no answer for an incompletely proven lexical chain/possible receiver fallback | **Amended for bare-name lexical navigation only**: an AST declaration may be returned despite incomplete runtime selection, with no claim about actual receiver fallback. |
+| D110 clauses 16–20: member/delegation/`super`, composition/import/module/prelude and multi-project authority | **Preserved for exact proof**. No lexical fallback for unknown member selectors, implicit delegated targets, modules or guessed external sources. |
+| D110 clause 21: implementation/index topology replaceable while preserving successful exact identity | **Preserved for strict tier**; lexical-navigation provenance must also remain AST-backed and within the same snapshot. |
+| D110 clause 22: a non-exact candidate capability must be separate and not silently weaken standard Definition | **Explicitly superseded only for the described AST lexical-declaration F12 fallback**, now a disclosed standard Definition behavior. Generic possible implementors, arbitrary candidate search and fuzzy ranked navigation remain separate/unapproved. |
+| D258-B clauses on exact URI/immutable snapshot, project gating for References and Workspace Symbols, no runtime, no inferred project | **Unchanged**, notwithstanding D258's *historical* statement that every Definition result had to meet the original strict D110 proof. That strict-result wording is superseded only by this later owner-approved D110 amendment. |
+| Core Protos execution semantics and runtime/JIT, including lexical contexts as mutable objects | **Unchanged**. This decision governs editor navigation, not guest slot lookup, dispatch or assignment. |
+
+**Owner-approval consistency result:** PASS for this *bounded* delta. The previously owner-ratified unconditional exact-result guarantee and ban on inline non-exact Definition were explicitly surfaced as the remaining conflict *before* the owner's above approval. The approved replacement is limited to AST-backed same-document lexical navigation with an independently unchanged strict proof tier. No approval is inferred for fuzzy/nominal guesses or future extensions.
+
+### Evidence, precedent and regret outcome
+
+The original D110 prior-art research compared Self, Smalltalk/Pharo, TypeScript, Pyright/Jedi, Ruby tooling, LuaLS, ELP, clojure-lsp, rust-analyzer, clangd, SourceKit-LSP and JDT. The later I168 implementation uses the **scope parent/variable-resolution separation** established by GraalPy, GraalJS and TruffleRuby, retaining Protos's mutable context and slot semantics; those implementations are precedents, not semantic authorities.
+
+The original D110 regret trigger is now observed: exact-only Definition was too sparse to navigate a deferred `finalDoors` capture in the real `100-doors.protos` callback. The owner's real VS Code acceptance reports successful F12 after the two-tier implementation. The exact implementation's focused suite reported **207/207 PASS** on substantive pre-finalization source, and the owner reported all local tests PASS, clean `git diff --check`, and installed-editor F12 PASS. No post-finalization full-suite transcript, installed binary digest or public release is claimed.
+
+**Why this narrow alternative instead of generic heuristics:** the original pure-proof-only policy remains sound but misses commonplace callback navigation; broad same-name/fuzzy candidates or runtime inspection break source identity and operational cost; a separate editor command would require a different UX and client contract. This explicitly approved fallback reuses AST scope identity without a second resolver or guest execution. The trade-off is that standard LSP Definition locations no longer all assert exact runtime binding identity. That limitation is an intentional public tooling promise and must stay documented.
+
+```text
+DECISION=D110_POST_RATIFICATION_LEXICAL_NAVIGATION_AMENDMENT
+APPROVED_BY=PROJECT_OWNER_2026_11_18_ACTIVE_CHAT
+APPROVAL_TEXT=pues apruebo, documenta y cierra
+GITHUB021_INVARIANT_DELTA=PASS_FOR_EXPLICITLY_REOPENED_DEFINITION_PROOF_GUARANTEE
+EFFECTIVE_DEFINITION=EXACT_PROOF_PREFERRED_ELSE_AST_LEXICAL_NAVIGATION
+LEXICAL_CANDIDATE_IS_EXACT_RUNTIME_BINDING=NO
+PROJECT_AND_SNAPSHOT_AUTHORITY=D258_B_UNCHANGED
+REFERENCES_HOVER_COMPLETION=STRICT_PROOFS_UNCHANGED
+GUEST_RUNTIME_OR_LANGUAGE_SEMANTICS_CHANGE=NONE
+IMPLEMENTATION_REVISION=01c8566e6481501b051ee67d475e1d67accadb4a
+IMPLEMENTATION_VERSION=0.4.170-SNAPSHOT
+LIVE_IMPLEMENTATION_ISSUE=I168_1135
+```
+

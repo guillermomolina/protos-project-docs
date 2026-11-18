@@ -161,3 +161,33 @@ RUNTIME_AND_JIT_SEMANTICS=UNCHANGED
 PUBLIC_RELEASE=NOT_CLAIMED
 ISSUE_CLOSURE=REVIEW_PENDING_DESIGN_RECONCILIATION
 ```
+
+---
+
+## Final design reconciliation and closure acceptance — 2026-11-18
+
+**Explicit owner approval:** after a clear report that I168 was implemented, source-committed and accepted in the installed VS Code editor but awaiting **formal D110/D258 reconciliation of lexical navigation versus exact dynamic binding proof**, the project owner replied **“pues apruebo, documenta y cierra”**. This is affirmative approval of that bounded two-tier tooling contract, not a generic authorization to weaken runtime semantics, project authority, References, or future name heuristics.
+
+**Effective decision record:** [D110 post-ratification amendment](../../decisions/tooling/D110_STATIC_GO_TO_DEFINITION_PROOF_BOUNDARY_IDENTITY_AND_AMBIGUITY_CONTRACT.md#post-ratification-amendment--lexical-declaration-navigation-for-same-document-f12-2026-11-18). The original September D110 Candidate B′ remains the strict exact-proof tier. The later approved source-backed lexical declaration tier may answer F12 when exact runtime binding proof fails. D258-B continues to govern the exact open-URI/snapshot navigation-authority envelope; its historical complete-proof-only wording is superseded for the Definition result-confidence tier alone.
+
+**Invariant/delta reconciliation:** the amendment explicitly identifies and replaces the conflicting D110 universal exactness requirement (clauses 1–2, 7–8, 15 and 22), preserves the exact tier and all source authority, and specifies multiple candidates and dynamic effects. Approval is anchored in the owner's direct request to approve, document and close the previously explained discrepancy. `GITHUB021_INVARIANT_DELTA=PASS` for this explicitly bounded replacement.
+
+**Product and validation authority:** `PROTOS_REVISION=01c8566e6481501b051ee67d475e1d67accadb4a`; `PROTOS_VERSION=0.4.170-SNAPSHOT`; focal 207/207 PASS on pre-finalization source; all local tests PASS and whitespace diff check clean **owner-reported** after push; installed VS Code F12 PASS **owner-reported**. No exact final full-suite transcript, binary digest or public release is invented. Original I168 task's real-editor acceptance is satisfied.
+
+**Closure evidence conclusion:** I168 implementation and required durable publication can be marked complete once this reconciled decision/evidence revision has been published and re-read, and the owning Issue has a revision-bound final closure comment. The D110 and D258 design issues remain closed with their own historical approval preserved; no new D-family issue and no additional runtime/Java change is required.
+
+```text
+WORK_ITEM=I168
+EXACT_PRODUCT_REVISION=01c8566e6481501b051ee67d475e1d67accadb4a
+PROTOS_VERSION=0.4.170-SNAPSHOT
+DECISION_AMENDMENT=D110_LEXICAL_NAVIGATION_APPROVED_2026_11_18
+D258_SOURCE_AUTHORITY=UNCHANGED
+GITHUB021_DELTA_APPROVAL=PASS
+FOCAL_VALIDATION=207_207_PASS_PRE_FINALIZATION
+LOCAL_FULL_VALIDATION=PASS_OWNER_REPORTED
+REAL_INSTALLED_VSCODE_F12=PASS_OWNER_REPORTED
+GUEST_SEMANTICS_AND_JIT=UNCHANGED
+REQUIRED_DURABLE_PUBLICATION=PASS_WHEN_REVISION_PUBLISHED_AND_VERIFIED
+ISSUE_CLOSURE=ELIGIBLE_AFTER_FINAL_COMMENT_AND_REVISION_VERIFICATION
+```
+

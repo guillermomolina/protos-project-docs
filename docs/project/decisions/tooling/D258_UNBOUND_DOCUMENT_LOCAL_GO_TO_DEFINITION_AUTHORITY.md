@@ -163,3 +163,14 @@ I168_PRODUCT_REVISION=NOT_YET_PUBLISHED
 I168_TESTS=NOT_YET_RUN
 REAL_VSCODE_F12_ACCEPTANCE=PENDING
 ```
+
+---
+
+## Subsequent tooling-contract amendment — 2026-11-18
+
+The preceding D258-B ratification remains a correct **historical record of what was approved at that time**: exact open-buffer custody as same-document source authority, without project inference and with References/Workspace Symbols still ProjectBinding-gated. Its original complete-exact-D110-proof wording was not a grant for candidate navigation.
+
+**Later, independently approved policy:** following the implementation and editor acceptance of I168, the owner explicitly approved an additional, narrowly scoped change to D110 through the [D110 post-ratification lexical navigation amendment](./D110_STATIC_GO_TO_DEFINITION_PROOF_BOUNDARY_IDENTITY_AND_AMBIGUITY_CONTRACT.md#post-ratification-amendment--lexical-declaration-navigation-for-same-document-f12-2026-11-18). Standard F12 may now prefer an exact binding proof and otherwise return an **AST-backed lexical declaration navigation target**, which is not guaranteed to be an exact dynamically selected runtime slot. This later decision supersedes the older *unconditional proof requirement for Definition results only*. It does **not** supersede any of D258's URI, open-snapshot, source ownership, ProjectBinding or no-runtime constraints.
+
+**Owner approval provenance:** the project owner said **“pues apruebo, documenta y cierra”** on 2026-11-18 in direct response to the explicitly identified pending D110/D258 exact-proof versus lexical-navigation discrepancy. Source implementation: [`guillermomolina/protos@01c8566e6481501b051ee67d475e1d67accadb4a`](https://github.com/guillermomolina/protos/commit/01c8566e6481501b051ee67d475e1d67accadb4a). Formal implementation owner: [I168 #1135](https://github.com/guillermomolina/protos/issues/1135). No change to Protos guest semantics, runtime/JIT or the earlier project-source authority ratification.
+
