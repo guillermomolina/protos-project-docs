@@ -2,6 +2,8 @@
 
 **Status: RATIFIED — owner-approved D249-A1, 2026-11-10.** This is a non-normative tooling/CLI authority decision. It does **not** assert that the CLI flag has been implemented, that the product specification has been modified, or that JVM/Native tests have run.
 
+**Subsequent implementation checkpoint (2026-11-19; distinct from the 2026-11-10 ratification):** [I164/#1109](https://github.com/guillermomolina/protos/issues/1109) published the selected CLI contract in [Protos commit `5f40e736`](https://github.com/guillermomolina/protos/commit/5f40e736d8942465083ee844a3a5356d1dc831b1) (`0.4.177-SNAPSHOT`). The maintainer reports clean `git diff --check` and all local tests PASS. The separate Native executable acceptance run has not been supplied. See [revision-bound implementation and validation evidence](../../evidence/I164/I164_EXPLICIT_RESOLVER_CLI_IMPLEMENTATION_PUBLICATION_2026_11_19.md). This later checkpoint does not change or retroactively expand the approved decision.
+
 - Decision: [D249/#1075](https://github.com/guillermomolina/protos/issues/1075).
 - Implementation: [I164/#1109](https://github.com/guillermomolina/protos/issues/1109), independently open top-level implementation item.
 - Governing prior decisions: [D223-A1/#987](https://github.com/guillermomolina/protos/issues/987) (Resolver authority) and [D247-C/#1073](https://github.com/guillermomolina/protos/issues/1073) (independent CLI Network and service permissions).
