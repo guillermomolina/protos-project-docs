@@ -29,7 +29,7 @@ The CLI rejects duplicated/malformed value-form flags and use in bundled Tools a
 
 - New deterministic launcher regression: `src/test/java/com/guillermomolina/protos/cli/resolver/ProtosI164ResolverCliTest.java`, including SOURCE/`-e`/REPL authority matrices, independent CLI option composition, post-entry argument preservation, reused launcher, invalid/duplicate/Tool paths and service lifetime. It deliberately performs no real host DNS query.
 - Existing CLI tests, `ProtosCli010InspectTest` help assertions, workspace tests, public debugger/DAP tests, package driver/custody tests, Resolver authority and RootActor service/lifecycle tests are updated.
-- `scripts/native-test.sh` contains native CLI Resolver grant/denial/argument regression cases. Their presence in the commit is verified; **execution of the Native image is not evidenced by this record**.
+- `scripts/native-test.sh` contains native CLI Resolver grant/denial/argument regression cases. Their presence in the commit is verified. The maintainer confirms that **all local tests pass**; individual Native execution output was not separately attached.
 - `docs/guide/tools/cli.md`, networking/HTTP/TLS, embedding and Process I/O guides, example index and authority examples are updated; `protos/examples/io/resolver-only.protos` is a new Protos-first, manual hostname-resolution demonstration.
 - `spec/io/PROCESS_IO.md` specifies standalone CLI grant selection; `spec/io/NETWORK.md` §14 remains the owner of Resolver's guest-visible semantics.
 
@@ -45,11 +45,13 @@ After pushing the exact I164 commit, the maintainer explicitly reported on 2026-
 
 The pushed commit, its full SHA, changed paths, version/changelog and final help-test source were independently inspected via GitHub. The final all-local-tests statement is **owner-reported**, not an independently observed post-commit full-suite transcript. No exact final test count, post-commit commands, CI run, Native image build/execution, native DNS outcome, or release artifact digest was supplied. Do not infer any of those from the presence of `scripts/native-test.sh` regressions or the local-test statement.
 
-## 4. Acceptance boundary
+## 4. Final completion and owner acceptance (2026-11-19)
 
-The implementation and local JVM-test completion are supported by the published source and maintainer attestation. **Native executable acceptance is a separately explicit I164 issue gate** and cannot be marked PASS until the maintainer supplies an actual Native build and `scripts/native-test.sh` result or equivalent execution evidence. A release or a new DNS provider is not implied.
+The maintainer explicitly stated **"todos los tests pasan en local"**, after publishing the I164 commit, and reiterated that **all** local tests have passed when the previous coordination update incorrectly treated the absence of a separate Native transcript as a new blocking condition. This is explicit owner attestation of the complete local test set, not merely the pre-finalization 393-test run.
 
-No new I164 child issue or unrelated DNS policy work is created. Live status, closure, priority and ownership remain governed by [I164 #1109](https://github.com/guillermomolina/protos/issues/1109); this record does not independently close that Issue.
+**Disposition: I164 COMPLETE, closure authorized by the maintainer's acceptance of all local tests.** The exact published product revision, final source and corrected tests are independently verified. No further test execution or repeat confirmation is required for I164 closure. This evidence distinguishes the owner's complete local validation report from individually supplied command transcripts: no exact final test count, Native-specific log, native DNS result, release artifact, or CI status is fabricated. Neither a separate public release nor any D223 DNS protocol redesign is claimed.
+
+No new child issue, separate Native gate or follow-up acceptance issue is created by this closure. I164's GitHub Issue owns the live completed state.
 
 ## Compact evidence
 
@@ -70,6 +72,8 @@ PUBLISHED_HELP_TEST_CORRECTION_VERIFIED=PASS
 FINAL_LOCAL_TESTS=PASS_OWNER_REPORTED
 FINAL_LOCAL_GIT_DIFF_CHECK=CLEAN_OWNER_REPORTED
 POST_COMMIT_FULL_TEST_TRANSCRIPT=NOT_PROVIDED
-NATIVE_EXECUTABLE_VALIDATION=NOT_PROVIDED
+NATIVE_SPECIFIC_TRANSCRIPT=NOT_SEPARATELY_PROVIDED
+ALL_LOCAL_TESTS=PASS_OWNER_ATTESTED
+ISSUE_CLOSURE=COMPLETED_ON_OWNER_LOCAL_TEST_ACCEPTANCE
 PUBLIC_RELEASE=NOT_CLAIMED
 ```
