@@ -57,6 +57,8 @@ Evidence does not become semantic authority by location. Existing release and
 candidate evidence remains at legacy paths until a bounded migration verifies
 its references, retention role, and compatibility implications.
 
+- [I162 — D252-C1 standard String, Vector and Matrix `each` implementation and owner acceptance (2026-11-19)](I162/I162_STRING_VECTOR_MATRIX_EACH_PUBLICATION_AND_ACCEPTANCE_2026_11_19.md) — exact [Protos `c30c7dc4`](https://github.com/guillermomolina/protos/commit/c30c7dc42424a34a6a6fd8c41987316030d2992c) / `0.4.178-SNAPSHOT`, spec `0.1.504`; 26 changed paths, one existing shared structured loop, 129/129 Protos corpus and 20/20 Java focal pre-finalization checkpoints, all local tests and clean diff owner-reported after push. D252 decision complete; DOC021 cross-family documentation separately open. [I162 #1099](https://github.com/guillermomolina/protos/issues/1099).
+
 ## Evidence groups
 
 - [D245 — I160 native hierarchy and final closure (2026-11-10)](D245/D245_C_NATIVE_HIERARCHY_AND_FINAL_CLOSURE_2026_11_10.md) — owner-ratified C, verified D245 → I160 parentage, closed I160, rebuilt Native Argon2id acceptance, D245 closure checkpoint. [D245 #1071](https://github.com/guillermomolina/protos/issues/1071).
