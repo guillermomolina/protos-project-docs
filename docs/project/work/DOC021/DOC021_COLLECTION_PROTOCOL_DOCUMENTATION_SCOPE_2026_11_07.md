@@ -58,3 +58,32 @@ COMPLETION=NOT_CLAIMED
 **DOC021 remains a separate documentation-only deliverable**, not implementation authority. Interpret the earlier “do not add `each`” as **do not introduce public behavior from a DOC-only edit**, rather than as a permanent ban overriding the later owner-approved D252-C1. Until I162 actually publishes `spec/` + code, current docs must accurately describe the still-unimplemented baseline, distinguishing the **approved future contract** from shipped capabilities. Once I162 publishes, align the broad family capability/contract matrix and examples with the published revision and avoid duplicating I162's directly affected guide edits. If independent DOC021 work precedes I162, do not present `for` on String/Vector/Matrix as currently executable.
 
 No tests, product changes, DOC021 implementation completion, new priority or blocker are asserted by this project-record correction. DOC021 remains OPEN / READY; the C1 implementation is independently OPEN / READY.
+
+---
+
+## Published documentation-only DOC021 completion — 2026-11-19
+
+**Current disposition: COMPLETED.** This section supersedes the OPEN / READY and unimplemented-baseline status statements **for the present state**, without rewriting their historically accurate allocation-time context.
+
+- **Exact published Protos product commit:** [`2f03ce820b85f0fff9ec12c67cc58b4023e106eb`](https://github.com/guillermomolina/protos/commit/2f03ce820b85f0fff9ec12c67cc58b4023e106eb), subject `DOC021: Document receiver-specific collection capabilities`. Product remains `0.4.178-SNAPSHOT`.
+- **Actual published scope:** Five files — receiver-specific capability matrix and result/state/equality distinctions in the collection chapter; ordinary `for`/`each` clarification in the control-flow chapter; one Protos-first executable tutorial at `protos/tutorials/05-collections/05-collection-capabilities.protos`; and two guide/tutorial navigation updates.
+- **I162 reconciliation:** Published prior to DOC021 at [`c30c7dc42424a34a6a6fd8c41987316030d2992c`](https://github.com/guillermomolina/protos/commit/c30c7dc42424a34a6a6fd8c41987316030d2992c). Standard `String.each`, `Vector.each`, and `Matrix.each` were **already implemented**. Their dedicated linear-algebra guide was already accurate and was deliberately left unchanged by this slice. The original B-era `each` absence statement is historical only; D252-C1 and I162 remain separate authorities.
+- **Hard scope boundary verified:** The product diff contains no `spec/`, `src/`, `protos/lib/`, Java, grammar, runtime, library behavior, or version/changelog change; no new collection hierarchy, method contract or alternate execution path.
+- **Validation:** Following the push, the maintainer explicitly attested that `git diff --check` was clean and **all local tests passed**. Exact test counts and a post-commit command transcript were not supplied; do not claim separately executed validation.
+- **Independent evidence:** [DOC021 receiver-specific collection documentation publication and acceptance](../../evidence/DOC021/DOC021_RECEIVER_SPECIFIC_COLLECTION_CAPABILITIES_PUBLICATION_2026_11_19.md), pinned to the product commit above, recorded as the standalone closure evidence.
+- **Live coordination:** [DOC021 #1089](https://github.com/guillermomolina/protos/issues/1089) owns completed status and the exact project-record publication SHA through its closure note. AUD023's historical motivation, D252's decision, and I162's separate completed implementation remain unmodified.
+
+```text
+DOC=DOC021
+ISSUE=1089
+CURRENT_STATUS=COMPLETED
+PRODUCT_REVISION=2f03ce820b85f0fff9ec12c67cc58b4023e106eb
+PRODUCT_VERSION=0.4.178-SNAPSHOT
+DOC_PUBLIC_GUIDE_EDITS=PUBLISHED
+CHANGED_PRODUCT_PATHS=5
+STANDALONE_TUTORIAL=PUBLISHED
+SPEC_OR_PRODUCTION_JAVA_CHANGE=NO
+ALL_LOCAL_TESTS=PASS_OWNER_REPORTED
+GIT_DIFF_CHECK=CLEAN_OWNER_REPORTED
+REQUIRED_DURABLE_EVIDENCE=DOC021_RECEIVER_SPECIFIC_COLLECTION_CAPABILITIES_PUBLICATION_2026_11_19.md
+```
