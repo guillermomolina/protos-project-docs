@@ -23,7 +23,7 @@ Current role-first work records:
 
 - [AUD023 — Owner-approved B: cross-family collection protocol audit](AUD023/AUD023_COLLECTION_PROTOCOL_COHERENCE_AUDIT.md) — [owner approval/closure evidence](../evidence/AUD023/AUD023_B_OWNER_APPROVAL_AND_CLOSURE_2026_11_07.md) preserves fixed Array and every ratified family contract; no product/source changes or tests executed. [AUD023 #1087](https://github.com/guillermomolina/protos/issues/1087) has a separately closable audit outcome, with [DOC021 #1089](https://github.com/guillermomolina/protos/issues/1089) responsible for public teaching.
 
-- [DOC021 — Cross-family collection capability documentation scope](DOC021/DOC021_COLLECTION_PROTOCOL_DOCUMENTATION_SCOPE_2026_11_07.md) — owner-approved AUD023 Alternative B teaching plan for collection matrix, `for`/`each` and `add` distinctions and focused examples; independently OPEN / READY, **not yet delivered** in the Protos guide. [Issue #1089](https://github.com/guillermomolina/protos/issues/1089).
+- [DOC021 — Receiver-specific collection documentation completed (2026-11-19)](DOC021/DOC021_COLLECTION_PROTOCOL_DOCUMENTATION_SCOPE_2026_11_07.md) — exact published [Protos `2f03ce82`](https://github.com/guillermomolina/protos/commit/2f03ce820b85f0fff9ec12c67cc58b4023e106eb) / `0.4.178-SNAPSHOT`; cross-family capability matrix, `for`/`each` boundary, standalone Protos-first tutorial and two navigation updates (five paths). Owner-reported all local tests PASS and clean diff; [revision-bound evidence](../evidence/DOC021/DOC021_RECEIVER_SPECIFIC_COLLECTION_CAPABILITIES_PUBLICATION_2026_11_19.md). [DOC021 #1089](https://github.com/guillermomolina/protos/issues/1089).
 
 
 
