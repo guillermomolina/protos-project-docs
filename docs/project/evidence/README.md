@@ -1,5 +1,7 @@
 # Historical and immutable evidence
 
+- [I115 — PERF backlog reconciliation after GraalPy-style Bytecode migration (2026-11-19)](I115/I115_PERF_RECONCILIATION_2026_11_19.md) — inspected Protos `01c8566e` and benchmark `51b1f3fa`; retires five obsolete standalone PERF campaigns as `not_planned` without claiming completed benchmarks, preserves seven independent acceptance owners and I115/PLAT066 physical-convergence work. [I115 #931](https://github.com/guillermomolina/protos/issues/931).
+
 - [I168 — published same-document F12, local slots, own members and conservative context-write invalidation (2026-11-18)](I168/I168_SAME_DOCUMENT_F12_PUBLICATION_AND_VALIDATION_2026_11_18.md) — exact [Protos `e59693ea`](https://github.com/guillermomolina/protos/commit/e59693eafa634f81eb5708a20925c3847ee41e52) / `0.4.167-SNAPSHOT`; focal JUnit 111/111 PASS, owner-reported all local tests and clean `git diff --check`; real installed VS Code F12 acceptance still pending. [I168 #1135](https://github.com/guillermomolina/protos/issues/1135).
 
 - [D258 — source audit and owner approval for same-snapshot F12 without ProjectBinding (2026-11-18)](D258/D258_UNBOUND_F12_SOURCE_AUDIT_AND_OWNER_APPROVAL_2026_11_18.md) — Protos research revision `91b92332`, exact approved D209/D110 source-authority delta, baseline-only validation provenance; follow-up [I168 #1135](https://github.com/guillermomolina/protos/issues/1135) was pending at ratification; product commit and 111/111 focal evidence are recorded separately above, while real installed VS Code F12 remains unverified.
