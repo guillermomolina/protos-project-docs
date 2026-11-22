@@ -66,6 +66,6 @@ The previous **84/84** integration run remains historical evidence for the older
 `PRODUCT_NORMATIVE_PUBLICATION=PASS`  
 `LOCAL_FFM_86_OF_86_PASS=MAINTAINER_SUPPLIED`  
 `FULL_LOCAL_TESTS=MAINTAINER_ATTESTED_PASS`  
-`REQUIRED_DURABLE_PUBLICATION=PENDING_THIS_RECORD_COMMIT`  
+`REQUIRED_DURABLE_PUBLICATION=PASS (once exact published revision is re-read)`  
 
-The exact project-record commit SHA is supplied by GitHub upon publication and is to be pinned in [D256 #1118](https://github.com/guillermomolina/protos/issues/1118); this source document cannot self-certify its as-yet-unknown commit SHA.
+The exact project-record commit SHA must be taken from GitHub after publication, re-read at that revision, and pinned in [D256 #1118](https://github.com/guillermomolina/protos/issues/1118). This source document is not its own commit authority.
