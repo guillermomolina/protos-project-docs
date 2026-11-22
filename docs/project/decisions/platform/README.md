@@ -32,5 +32,6 @@ separate platform decision registry to
 - [`PLAT073_JAVA_25_FFM_AMENDMENT_TO_PLAT072_E.md`](PLAT073_JAVA_25_FFM_AMENDMENT_TO_PLAT072_E.md) — 2026-11-07 owner-ratified prospective Java 25 + FFM-only bridge amendment to the historical PLAT072-E; DIST022/I156 implementation and security proofs remain pending.
 
 - [`PLAT075_PROTOS_FIRST_MODULE_IMPORT_POLICY_RATIFIED.md`](PLAT075_PROTOS_FIRST_MODULE_IMPORT_POLICY_RATIFIED.md) — 2026-11-15 owner-ratified Protos-first import policy; preserves PLAT025 C-prime module lifecycle and delegates production migration to I-family work.
+- [`PLAT077_GENERIC_NATIVE_IMAGE_FFM_PROVIDER_A_RATIFIED_2026_11_22.md`](PLAT077_GENERIC_NATIVE_IMAGE_FFM_PROVIDER_A_RATIFIED_2026_11_22.md) — 2026-11-22 owner-ratified Candidate A: minimal existing generic FFM provider in Native Image, finite downcall metadata, no bundled external libraries; [I170](https://github.com/guillermomolina/protos/issues/1148) implementation pending.
 
 PLAT014 was created directly at the canonical role-first path before F3; F3 preserves it in place. Identifier gaps or future additions do not imply missing migration work by themselves. This list records the post-F3 execution-time set and is not a closed manifest for future platform decisions.
