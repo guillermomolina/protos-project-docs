@@ -181,3 +181,17 @@ La parte de **objeto Bytes con byte[]** se puede corregir independientemente de 
 - [I172 / #1161](https://github.com/guillermomolina/protos/issues/1161): implementación independiente, actualmente BLOCKED hasta resolver la ampliación exacta de [PLAT068 / #959](https://github.com/guillermomolina/protos/issues/959) a `long[]` en Matrix y `long[]/double[]` en Vector. No se presume ratificación por el mero registro de la dirección del propietario.
 - [AUD024 / #1159](https://github.com/guillermomolina/protos/issues/1159) permanece abierta para revisión del expediente. El histórico `PERF047` está sustituido, no reutilizable; no hay objetivos de rendimiento.
 - No se introducen nuevos Dxxx, PLATxxx ni cambios normativos; se utiliza el PLAT068 existente como autoridad de la cuestión todavía pendiente. Los flujos FFM/SQLite mantienen la dependencia conceptual de [D261 / #1158](https://github.com/guillermomolina/protos/issues/1158) y no habilitan cambios públicos en este AUD.
+## 11. Conformidad explícita del propietario y cierre del AUD024 — 2026-11-23
+
+**Aprobación de la auditoría:** en la conversación activa, el propietario respondió expresamente **«sí, las doy por buenas»** a la pregunta de si aprobaba las conclusiones de AUD024 y autorizaba cerrar la auditoría. El alcance exacto de su conformidad son los **hallazgos, las clasificaciones, el informe y la separación de los trabajos correctivos** documentados aquí. Se consigna esta declaración como comunicación del propietario en ChatGPT; **no se atribuye al propietario un comentario escrito por él en GitHub**.
+
+**Cierre independiente:** AUD024 / [#1159](https://github.com/guillermomolina/protos/issues/1159) se cierra **como auditoría completada**. La evidencia está publicada en el propio [informe de AUD024](AUD024_RUNTIME_VALUE_REPRESENTATION_CORRECTNESS_AUDIT_2026_11_23.md) y en el [registro inmutable de fuentes](../../evidence/AUD024/AUD024_RUNTIME_REPRESENTATION_SOURCE_TRACE_2026_11_23.md). Publicación inicial comprobada en `guillermomolina/protos-project-docs@d9ee5300e17ce92ab03ae63f327d4beea58748f8`; producto examinado: `guillermomolina/protos@89028494587d4d22309a5c048e37da3518170b18`. Esta actualización es de **trazabilidad de cierre**, no una nueva auditoría ni una aprobación de código ejecutable.
+
+**Trabajos explícitamente fuera del cierre:** [I171 / #1160](https://github.com/guillermomolina/protos/issues/1160) continúa **READY** (implementación `Bytes: byte[]`); [I172 / #1161](https://github.com/guillermomolina/protos/issues/1161) continúa **BLOCKED** a la espera de la ampliación arquitectónica concreta de [PLAT068 / #959](https://github.com/guillermomolina/protos/issues/959). Esta conformidad **no ratifica** nuevas representaciones de Vector/Matrix ni la API pública FFI R2 de D261; no elimina el bloqueo, no modifica D214, no crea trabajo de rendimiento y **no afirma que se hayan ejecutado tests o builds**.
+
+- `AUD024_OWNER_FINDINGS_APPROVAL=EXPLICIT_2026-11-23`
+- `AUD024_COMPLETION_DISPOSITION=APPROVED_AND_CLOSABLE`
+- `PRODUCT_INSPECTED_REVISION=89028494587d4d22309a5c048e37da3518170b18`
+- `INITIAL_DURABLE_PUBLICATION_REVISION=d9ee5300e17ce92ab03ae63f327d4beea58748f8`
+- `I171_IMPLEMENTATION=OPEN_READY`; `I172_IMPLEMENTATION=OPEN_BLOCKED`; `PLAT068_EXTENSION_RATIFIED=NO`
+- `AUD024_VALIDATION=READ_ONLY_SOURCE_AUDIT`; `PRODUCT_TESTS=NOT_RUN`; `PRODUCT_EDITS=NONE`
