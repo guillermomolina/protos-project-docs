@@ -1,9 +1,9 @@
 # D261-R2-G2 — Protos-first general native FFM; RootActor-only direct entry
 
-**Status:** OWNER-SELECTED ARCHITECTURE, 2026-11-23; exact R2 public API and normative specification **NOT YET RATIFIED/PUBLISHED**.  
-**Decision owner:** [D261 #1158](https://github.com/guillermomolina/protos/issues/1158).  
-**Explicit approval provenance:** [Owner selection comment](https://github.com/guillermomolina/protos/issues/1158#issuecomment-7105424394); owner response to the revised G2 comparative recommendation: **"ok apruebo recomendación."**  
-**Inspected Protos revision:** [`89028494587d4d22309a5c048e37da3518170b18`](https://github.com/guillermomolina/protos/commit/89028494587d4d22309a5c048e37da3518170b18).  
+**Status:** OWNER-SELECTED ARCHITECTURE, 2026-11-23; exact R2 public API and normative specification **NOT YET RATIFIED/PUBLISHED**.
+**Decision owner:** [D261 #1158](https://github.com/guillermomolina/protos/issues/1158).
+**Explicit approval provenance:** [Owner selection comment](https://github.com/guillermomolina/protos/issues/1158#issuecomment-7105424394); owner response to the revised G2 comparative recommendation: **"ok apruebo recomendación."**
+**Inspected Protos revision:** [`89028494587d4d22309a5c048e37da3518170b18`](https://github.com/guillermomolina/protos/commit/89028494587d4d22309a5c048e37da3518170b18).
 **Supporting research and invariant audit:** [D261 GITHUB010/GITHUB021 evidence](../../evidence/D261/D261_R2_G2_GITHUB010_GITHUB021_APPROVAL_AND_SOURCE_AUDIT_2026_11_23.md).
 
 ## 1. Selected boundary
