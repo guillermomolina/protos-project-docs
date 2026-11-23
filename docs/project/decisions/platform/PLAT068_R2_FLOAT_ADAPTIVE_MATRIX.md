@@ -1,3 +1,17 @@
+## CURRENT AMENDMENT — PLAT068-R3: private numeric storage alignment (owner-approved, 2026-11-23)
+
+**Owner-selected architecture extension:** [exact source comparison, GITHUB010 alternatives, GITHUB021 invariant reconciliation and approval record](../../evidence/PLAT068/PLAT068_R3_OWNER_APPROVED_NUMERIC_STORAGE_INVARIANTS_2026_11_23.md). The owner directed the standard Array/Vector/Matrix numeric storage specializations and, after the agent stated the precise PLAT068 replacement, explicitly replied **«ok actualiza PLAT068»**. This is a bounded ratification of the *private storage scope extension*, not authorization of any new semantics, numeric kernel, performance target or hardware backend.
+
+**Revised scope (new choice):** `Array` already has `long[]`, `double[]`, `boolean[]`, `Object[]` and remains unchanged. `Vector` will use private `long[]`, `double[]`, `Object[]`; `Matrix` will add private `long[]`, retaining the earlier lazy persistent `double[]` Float R2 and generic `Object[]`. Protos genuine Number-only admission requires `boolean[]` to remain **Array-only**; BigInteger, Fraction, Complex and mixtures use Object fallback. No coercion, guest dtype, new selector or reordering of existing method dispatch. `Bytes: byte[]` is owned independently by I171, not this PLAT.
+
+**Previously approved safeguards remain operative:** C1 ordinary object/identity/slots, D214 frozen → bounds → Number check, exact dimensions and row-major values, typed read/snapshot reification, fresh outputs and Actor/P transfer, D214-F1 strict scalar reductions, Hermitian `dot` / bilinear `matvec`/`matmul`, and no global or external host machinery. The old R2-Float Matrix representation and the separately approved SIMD deferral C are **unchanged**. Only the earlier *exclusion* of Vector R2 and Integer `long[]` is superseded by this later owner choice; the dated 2026-10-25 text below remains preserved as historical ratification.
+
+**Implementation coordination:** [I172 #1161](https://github.com/guillermomolina/protos/issues/1161) is now **READY** to implement exactly this semantics-preserving private representation, independently of but potentially in the same edit slice as [I171 #1160](https://github.com/guillermomolina/protos/issues/1160). [AUD024 #1159](https://github.com/guillermomolina/protos/issues/1159) is owner-approved and closed. No product code or tests have been run in this platform update; correctness tests, not benchmarks, are the implementation acceptance gate.
+
+**Still open:** CPU SIMD/matrix ISA, native acceleration, BLAS/GPU and numeric-result-changing alternatives. **PLAT068 Issue remains OPEN/READY** for those independent questions. This amendment doesn't close the broader PLAT068 workstream.
+
+---
+
 # PLAT068 — R2-Float adaptive Matrix storage (owner-ratified partial platform decision)
 
 **Selected component:** PLAT068 R2-Float, 2026-10-25. **Parent platform issue:** [PLAT068/#959](https://github.com/guillermomolina/protos/issues/959), which remains OPEN for SIMD, CPU matrix ISA, native-library and GPU admission. **Implementing issue:** [I124/#963](https://github.com/guillermomolina/protos/issues/963), published at [Protos `c9843f0f` / 0.3.402](https://github.com/guillermomolina/protos/commit/c9843f0f82dbec6d0c626f35ec22f8f496ffe110). **Prior diagnostic:** [I123/#960](https://github.com/guillermomolina/protos/issues/960), separately open.
