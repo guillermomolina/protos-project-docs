@@ -1,11 +1,11 @@
 # D261-R2-G2 — GITHUB010 comparative research, owner approval, GITHUB021 invariants
 
-**Date:** 2026-11-23  
-**Issue / owner:** [D261 #1158](https://github.com/guillermomolina/protos/issues/1158)  
-**Recorded approval:** [D261 issue comment #7105424394](https://github.com/guillermomolina/protos/issues/1158#issuecomment-7105424394)  
-**Selected, non-normative decision:** [D261-R2-G2](../../decisions/language/D261_R2_G2_GENERAL_JAVA_FFM_ROOT_ACTOR_ARCHITECTURE_SELECTED_2026_11_23.md)  
-**PROTOS_REVISION:** [`89028494587d4d22309a5c048e37da3518170b18`](https://github.com/guillermomolina/protos/commit/89028494587d4d22309a5c048e37da3518170b18)  
-**PROJECT_RECORD_REVISION:** use the exact publication commit linked in the D261 GitHub issue.  
+**Date:** 2026-11-23
+**Issue / owner:** [D261 #1158](https://github.com/guillermomolina/protos/issues/1158)
+**Recorded approval:** [D261 issue comment #7105424394](https://github.com/guillermomolina/protos/issues/1158#issuecomment-7105424394)
+**Selected, non-normative decision:** [D261-R2-G2](../../decisions/language/D261_R2_G2_GENERAL_JAVA_FFM_ROOT_ACTOR_ARCHITECTURE_SELECTED_2026_11_23.md)
+**PROTOS_REVISION:** [`89028494587d4d22309a5c048e37da3518170b18`](https://github.com/guillermomolina/protos/commit/89028494587d4d22309a5c048e37da3518170b18)
+**PROJECT_RECORD_REVISION:** use the exact publication commit linked in the D261 GitHub issue.
 **Source of owner authorization:** current conversation, owner explicitly approved the G2 recommendation and authorized direct commit/push in `guillermomolina/protos-project-docs` for D261 documentation.
 
 ## 1. What was actually approved — chronology and provenance
@@ -149,14 +149,14 @@ Strongest objection to **D**: a general region/layout model costs more initially
 | Earlier `FFI.inBytes/outBytes` R2-C1 proposal | **SUPERSEDED UNAPPROVED PROPOSAL**; no evidence of public approval or implementation |
 | Earlier exact names/upcall/numeric-address/Native build policy | **UNRESOLVED**, architectural approval cannot stand in for an exact public contract |
 
-**GITHUB010_COMPARATIVE_RESEARCH=RECORDED.**  
-**GITHUB021_OWNER_ARCHITECTURE_APPROVAL=PASS** (user selected G2).  
-**GITHUB021_ARCHITECTURE_INVARIANT_CONSISTENCY=PASS for explicitly presented deltas**, notably RootActor-only versus D238.  
-**EXACT_R2_PUBLIC_API_SELECTION=PENDING.**  
-**SPEC_NORMATIVE_PUBLICATION=PENDING.**  
-**PRODUCT_IMPLEMENTATION=PENDING.**  
-**JVM_NATIVE_FFM_CONFORMANCE=NOT_RUN.**  
-**LIB032_TERMINAL_B1_IMPLEMENTATION=NOT_RUN.**  
+**GITHUB010_COMPARATIVE_RESEARCH=RECORDED.**
+**GITHUB021_OWNER_ARCHITECTURE_APPROVAL=PASS** (user selected G2).
+**GITHUB021_ARCHITECTURE_INVARIANT_CONSISTENCY=PASS for explicitly presented deltas**, notably RootActor-only versus D238.
+**EXACT_R2_PUBLIC_API_SELECTION=PENDING.**
+**SPEC_NORMATIVE_PUBLICATION=PENDING.**
+**PRODUCT_IMPLEMENTATION=PENDING.**
+**JVM_NATIVE_FFM_CONFORMANCE=NOT_RUN.**
+**LIB032_TERMINAL_B1_IMPLEMENTATION=NOT_RUN.**
 **PLAT078_BACKEND_SELECTION=PENDING.**
 
 ## 7. Downstream handoff, evidence integrity and validation
