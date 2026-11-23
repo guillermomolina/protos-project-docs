@@ -27,7 +27,7 @@ separate platform decision registry to
 - [`PLAT014_TRUFFLE_COOPERATIVE_CONTINUATIONS.md`](PLAT014_TRUFFLE_COOPERATIVE_CONTINUATIONS.md)
 - [`PLAT015_TRUFFLE_DEBUGGER_SCOPE_PROJECTION.md`](PLAT015_TRUFFLE_DEBUGGER_SCOPE_PROJECTION.md)
 - [`PLAT067_UNIFIED_PROOF_OPTIMIZED_BYTECODE_DSL_WITH_LAZY_TOOLING.md`](PLAT067_UNIFIED_PROOF_OPTIMIZED_BYTECODE_DSL_WITH_LAZY_TOOLING.md) — 2026-10-19 owner-ratified Candidate B: single optimized semantic stream, lazy Truffle source/tags/instrumentation; narrow supersession of NORMAL/DEBUG physical-profile architecture.
-- [`PLAT068_R2_FLOAT_ADAPTIVE_MATRIX.md`](PLAT068_R2_FLOAT_ADAPTIVE_MATRIX.md) — 2026-10-25 partial owner-ratification: lazy persistent private binary64 Matrix packing and strict Float matmul; SIMD, CPU matrix ISA and GPU decisions remain open.
+- [`PLAT068_R2_FLOAT_ADAPTIVE_MATRIX.md`](PLAT068_R2_FLOAT_ADAPTIVE_MATRIX.md) — 2026-11-23 owner-approved R3 private `long[]`/`double[]`/`Object[]` Vector/Matrix alignment, preserving 2026-10-25 Matrix R2-Float and SIMD deferral; [exact GITHUB010/GITHUB021 evidence](../../evidence/PLAT068/PLAT068_R3_OWNER_APPROVED_NUMERIC_STORAGE_INVARIANTS_2026_11_23.md). Hardware research stays open; I172 READY.
 - [`PLAT072_LINUX_CONFINED_FILESYSTEM_BACKEND_RATIFIED.md`](PLAT072_LINUX_CONFINED_FILESYSTEM_BACKEND_RATIFIED.md) — 2026-11-07 owner-ratified Linux openat2 + Landlock + JNI isolated-workers architecture; kernel race proof and JVM/Native implementation remain I156/I155 work.
 - [`PLAT073_JAVA_25_FFM_AMENDMENT_TO_PLAT072_E.md`](PLAT073_JAVA_25_FFM_AMENDMENT_TO_PLAT072_E.md) — 2026-11-07 owner-ratified prospective Java 25 + FFM-only bridge amendment to the historical PLAT072-E; DIST022/I156 implementation and security proofs remain pending.
 
