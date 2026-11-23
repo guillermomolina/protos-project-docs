@@ -1,5 +1,7 @@
 # Language decision records
 
+- [D261-R2-G2 — owner-selected general Java FFM architecture with RootActor-only native entry (2026-11-23)](D261_R2_G2_GENERAL_JAVA_FFM_ROOT_ACTOR_ARCHITECTURE_SELECTED_2026_11_23.md) — general C ABI layouts, structs/unions, native memory and structured downcalls; libraries remain `TRUSTED_IN_PROCESS` and may create their own threads; [GITHUB010/GITHUB021 approval and source evidence](../../evidence/D261/D261_R2_G2_GITHUB010_GITHUB021_APPROVAL_AND_SOURCE_AUDIT_2026_11_23.md), [D261 #1158](https://github.com/guillermomolina/protos/issues/1158). **Exact public R2 API and normative spec pending; no implementation claimed.**
+
 - [D260-B1 — owner-approved interactive terminal Screen public contract (2026-11-23)](D260_B1_INTERACTIVE_TERMINAL_SCREEN_CONTRACT_SELECTED_2026_11_23.md) — Protos-first logical cells, explicit present, Unicode clipping, single-owned Screen, synchronous events and Closable; [GITHUB010/GITHUB021 evidence](../../evidence/D260/D260_B1_OWNER_APPROVAL_GITHUB010_GITHUB021_2026_11_23.md) and [D260 #1154](https://github.com/guillermomolina/protos/issues/1154). **Normative product spec and PLAT078 feasibility remain pending.**
 
 
