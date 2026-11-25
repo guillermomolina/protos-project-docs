@@ -21,6 +21,6 @@ The maintainer explicitly reports a clean git diff --check, all local tests pass
 
 The last implementation report explicitly states that whole-document acceptance is not connected to preservesSource. Independent candidate reparsing, span-independent canonical equivalence and invocation of the production Protos comparator before success remain unverified/unimplemented on the available evidence. Direct negative production candidate-acceptance tests and the I176 contextual match regressions remain outstanding. Passing guest-policy tests do not establish the production acceptance gate.
 
-BUG040 remains open; I176 remains blocked pending its affected validation. No new design approval, release claim or closure is inferred. PERF044 remains independent.
+At this checkpoint the implementation report still described BUG040 and I176 as blocked. On 2026-11-25 the maintainer explicitly approved closing BUG040 for the corrected defect and transferring the additional general verification gate to independent [I177 #1177](https://github.com/guillermomolina/protos/issues/1177). I176 may resume and must retain and rerun its contextual match formatter/LSP regressions; it does not depend on I177. PERF044 remains independent.
 
-This is a revision-bound partial implementation checkpoint, not closure evidence. Complete the remaining acceptance work before closure under GITHUB020.
+This revision-bound record supports BUG040 closure under the explicitly narrowed scope. The general production acceptance gate and its negative integration tests are not claimed complete; they are owned by I177. Maintainer-reported clean diff and all local tests passing remain the validation provenance.
