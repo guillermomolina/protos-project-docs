@@ -5,7 +5,7 @@ Date: 2026-11-25
 - Owning issue: [BUG040 #1174](https://github.com/guillermomolina/protos/issues/1174).
 - Dependent work: [I176 #1173](https://github.com/guillermomolina/protos/issues/1173).
 - Reported product commit subject: `BUG040: Preserve formatter comments and add Protos source-preservation comparison`.
-- Exact product revision: **pending remote verification**. The maintainer reports the push succeeded; the accessible main endpoint still returned `ac4fa8d1ec29d7d30f741d03fb499165feaf2f93`, and the new Preservation.protos path was not visible. That older revision is not the reported BUG040 commit.
+- Exact product revision: [`efb2dd5dcc56b0d9b3752dde1d739ae672897946`](https://github.com/guillermomolina/protos/commit/efb2dd5dcc56b0d9b3752dde1d739ae672897946). Verified as the remote main head after the initial visibility delay. The published change contains the three formatter Protos files, three Java test files, pom.xml and CHANGELOG.md; no production Java changes.
 
 ## Reported implementation
 
@@ -23,4 +23,4 @@ The last implementation report explicitly states that whole-document acceptance 
 
 BUG040 remains open; I176 remains blocked pending its affected validation. No new design approval, release claim or closure is inferred. PERF044 remains independent.
 
-This is a maintainer-report checkpoint, not revision-bound closure evidence. Reconcile the exact published product SHA and remaining acceptance work before closure under GITHUB020.
+This is a revision-bound partial implementation checkpoint, not closure evidence. Complete the remaining acceptance work before closure under GITHUB020.
