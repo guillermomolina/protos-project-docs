@@ -1,0 +1,26 @@
+# BUG040 — Maintainer-reported implementation and validation checkpoint
+
+Date: 2026-11-25
+
+- Owning issue: [BUG040 #1174](https://github.com/guillermomolina/protos/issues/1174).
+- Dependent work: [I176 #1173](https://github.com/guillermomolina/protos/issues/1173).
+- Reported product commit subject: `BUG040: Preserve formatter comments and add Protos source-preservation comparison`.
+- Exact product revision: **pending remote verification**. The maintainer reports the push succeeded; the accessible main endpoint still returned `ac4fa8d1ec29d7d30f741d03fb499165feaf2f93`, and the new Preservation.protos path was not visible. That older revision is not the reported BUG040 commit.
+
+## Reported implementation
+
+Map and Object entry rendering shares the existing sequence-boundary renderer with Program and Closure sequences. Comment consumption is checked per attachment, with rollback for discarded provisional renderings. Unconsumed admitted comments fail closed.
+
+The new Protos-side Preservation.protos comparator, exposed through the formatter module as preservesSource, compares ordered source-layout facts, including comments, structural paths, separator kinds, significant blank-line facts, structural and Closure forms, trailing Closures, contextual else and token spellings. Production Java and language semantics were not changed in the reported implementation.
+
+## Validation provenance
+
+The maintainer explicitly reports a clean git diff --check, all local tests passing, and publication. Earlier focal evidence reported 38 source-layout tests, 42 formatter bootstrap tests and 16 LSP formatting tests passing; the subsequent comparator slice reported 51 formatter bootstrap tests passing (including nine new guest-policy tests). These counts refer to successive validation checkpoints, not additive totals. The final full-suite test count and exact run identity were not supplied.
+
+## Remaining acceptance work
+
+The last implementation report explicitly states that whole-document acceptance is not connected to preservesSource. Independent candidate reparsing, span-independent canonical equivalence and invocation of the production Protos comparator before success remain unverified/unimplemented on the available evidence. Direct negative production candidate-acceptance tests and the I176 contextual match regressions remain outstanding. Passing guest-policy tests do not establish the production acceptance gate.
+
+BUG040 remains open; I176 remains blocked pending its affected validation. No new design approval, release claim or closure is inferred. PERF044 remains independent.
+
+This is a maintainer-report checkpoint, not revision-bound closure evidence. Reconcile the exact published product SHA and remaining acceptance work before closure under GITHUB020.
