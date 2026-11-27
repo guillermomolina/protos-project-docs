@@ -498,3 +498,15 @@ Prefer **one GitHub release issue / one cohesive slice**. Do not allocate new fo
 **Non-negotiable safeguards remain**: exact approved baseline and release-only version/lineage; no modification to concurrent development `main`; mandatory extracted Portable/JVM and Native artifact gates, runtime/platform/glibc and PLAT045 disclosure; licenses/notices; release notes with truthful claims; manifest and checksums; independent archive/provenance validation; stop on a failed required gate; explicit approval of the exact intended release; and post-publication verification of the tag and assets. A previous code test PASS does not replace validation of new distributable bytes.
 
 The human executor runs builds, tests, Git and release publication; agents arrange the minimal commands. Publication is never automatically implied by a successful implementation commit. If the current pipeline requires needless manual mechanics, **simplify or amend DIST001 and its wrappers instead of adding administrative slices**. Preserve safety properties, not ceremony. For the approved DIST015 target, see [guillermomolina/protos#849](https://github.com/guillermomolina/protos/issues/849).
+
+
+## Distribution execution policy amendment — DIST027 (2026-11-27)
+
+The owner explicitly removed all automatic product tests from distribution preparation, candidate verification and release publication. This amendment supersedes contrary active test-admission and extracted-execution requirements above, while preserving the historical evidence of DIST001 and earlier releases.
+
+- Build the selected exact source revision and verify archive structure, permissions, source/runtime identity, declared platform/ABI, license/notices, internal and external checksums, and the independent release envelope.
+- Do not invoke Java, Protos, Standard Library, foreign-provider, Native, smoke, guest-JIT or compilerability test harnesses as part of distribution. Native Image compilation is a build operation, not a test.
+- Existing test tools and CI entry points remain unchanged; no tests are moved, added or scheduled elsewhere. Use applicable existing repository validation evidence when making claims. Do not equate packaging success with runtime execution evidence.
+- Preserve explicit selection and exact-candidate/manifest publication authorization, detached release-only lineage, independent public asset verification, and truthful limitations.
+
+Authority: [DIST027 #1219](https://github.com/guillermomolina/protos/issues/1219), [published implementation and policy](https://github.com/guillermomolina/protos/commit/70a5ccf4560e7236161860bc4164748b92cdebdf), and [AGENTS.work/RELEASE.md at that revision](https://github.com/guillermomolina/protos/blob/70a5ccf4560e7236161860bc4164748b92cdebdf/AGENTS.work/RELEASE.md).
