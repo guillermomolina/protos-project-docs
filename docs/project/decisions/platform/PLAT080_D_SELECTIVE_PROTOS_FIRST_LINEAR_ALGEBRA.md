@@ -1,10 +1,18 @@
 # PLAT080-D — Selective Protos-first linear algebra direction
 
-**Status:** OWNER-SELECTED CONDITIONAL DIRECTION; feasibility remains open.  
+**Status:** OWNER APPROVED — final retention disposition (see below).
 **Date:** 2026-11-27.  
 **Issue:** [PLAT080 #1212](https://github.com/guillermomolina/protos/issues/1212), child of [AUD025 #1209](https://github.com/guillermomolina/protos/issues/1209).  
 **Evidence:** [Research and owner approval](../../evidence/PLAT080/PLAT080_D_RESEARCH_AND_OWNER_APPROVAL_2026_11_27.md), published at [14e8cf274b7d64df05e0c1aff203fa77eb0d18f9](https://github.com/guillermomolina/protos-project-docs/commit/14e8cf274b7d64df05e0c1aff203fa77eb0d18f9).  
 **Inspected Protos revision:** [509221a9d28b79e9da9accf721fad2358d81ec49](https://github.com/guillermomolina/protos/tree/509221a9d28b79e9da9accf721fad2358d81ec49).
+
+## Final owner-approved disposition (2026-11-27)
+
+The prior conditional migration direction below is historical. The owner clarified that Vector and Matrix must retain their current native representation, with no Array intermediates and no replacement for replacement's sake, and explicitly approved the final retention proposal ("si apruebo."). **Retain native fundamental linear-algebra operations; prefer Protos for naturally composable higher-level algorithms.** No new I, Java bridge, wrapper, storage change, normative change, or hardware work. D214, D252, I124, I172, PLAT068-R3, D242 and I115 invariants remain unchanged. The feasibility gate is resolved by justified retention, not by claiming migration impossible.
+
+[Final investigation and owner approval](../../evidence/PLAT080/PLAT080_NATIVE_LINEAR_ALGEBRA_RETENTION_2026_11_27.md) records the source-backed reasons and GITHUB010/GITHUB021 review at [5f2b40910f09f163e2c2987a4731c0d0d499b373](https://github.com/guillermomolina/protos/tree/5f2b40910f09f163e2c2987a4731c0d0d499b373). AUD025 phase B disposition is complete; live issue lifecycle remains in GitHub. No product changes or tests.
+
+## Historical conditional checkpoint
 
 ## Selected direction
 
