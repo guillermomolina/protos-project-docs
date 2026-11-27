@@ -50,3 +50,13 @@ PROJECT_RECORD_REVISION=SEE_PUBLISHING_COMMIT_AND_LIVE_ISSUE
 ```
 
 Actual GitHub Discussion, Reddit and X publication URLs are pending owner publication. See [formal issue](https://github.com/guillermomolina/protos/issues/1219) for the exact record revision and closure.
+
+## Supplemental maintainer validation report (2026-11-27)
+
+After public release and closure, the maintainer explicitly confirmed that `git diff --check` was clean and all local tests passed. This is additional owner-reported repository validation, not a new distribution admission requirement. The report did not supply the exact test commands, execution counts, or an independently identified tested checkout SHA; it must not be interpreted as a separately verified full suite on the detached public candidate. The earlier 17/17 focal harness transcript and exact public artifact evidence remain unchanged.
+
+```text
+MAINTAINER_GIT_DIFF_CHECK=PASS_REPORTED
+MAINTAINER_LOCAL_TESTS=PASS_REPORTED
+DISTRIBUTION_PRODUCT_TEST_EXECUTION=NONE
+```
