@@ -2,7 +2,7 @@
 
 **Work item:** [AUD025 / #1209](https://github.com/guillermomolina/protos/issues/1209).  
 **Date:** 2026-11-27.  
-**Status:** open umbrella audit; F implemented, B/C/D resolved by retention, E implemented and maintainer-validated; A remains outstanding.  
+**Status:** open umbrella audit; F implemented, B/C/D resolved by retention, E implemented and maintainer-validated; A remains outstanding.\
 **Product inspection revision:** [52591e7ce5c7e068f98101db94e77e68a64320da](https://github.com/guillermomolina/protos/tree/52591e7ce5c7e068f98101db94e77e68a64320da).  
 **Prior project-record inspection revision:** [1989f40f3e4e794f111a6ae7b20c69491c97044f](https://github.com/guillermomolina/protos-project-docs/tree/1989f40f3e4e794f111a6ae7b20c69491c97044f).  
 **Source-backed investigation:** [initial census and source references](https://github.com/guillermomolina/protos/issues/1209#issuecomment-7209250239).
