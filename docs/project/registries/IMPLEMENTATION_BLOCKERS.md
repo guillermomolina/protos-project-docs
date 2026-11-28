@@ -708,3 +708,5 @@ grammar, runtime or legacy fallback changes are authorized by this dependency.
 2026-11-28 baseline: product main 475101ed0af626b3f15b63869c5f1767bab40d0c;
 project-docs main before this update e62fb804c504356fd16282ddce101c481197b4b2.
 No implementation or test success is claimed.
+
+**Owner-selection checkpoint — 2026-11-28:** Owner explicitly approved D267-C1-R1. Exact contract selection and approval evidence are durably published at [R1 contract](../decisions/language/D267_C1_R1_STRUCTURED_HTML_EXACT_CONTRACT_SELECTED_2026_11_28.md) and [approval/invariant review](../evidence/D267/D267_C1_R1_OWNER_APPROVAL_AND_INVARIANT_REVIEW_2026_11_28.md). The earlier missing-approval condition is satisfied for R1. **B013 remains BLOCKED** until the dedicated product normative HTML contract and specification reconciliation are published and re-read on product main; approval and project-docs publication alone are not normative authority. Specification-only reconciliation belongs to D267, not I179 production implementation. Supply the verified R1 and this ledger entry as text to the offline editing agent. No product implementation or test success is claimed.
