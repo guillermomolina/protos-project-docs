@@ -664,3 +664,47 @@ can continue.
 
 **Final B012 closure checkpoint — 2026-10-08 (PLAT054-3E4):** **CLOSED** under the blocker registry's rule: the normative authorization and thread/lifecycle choices were published in spec `0.1.450`, then corresponding embedded Network implementation was published at [`guillermomolina/protos@f8f4ebe2e2d5ad903562518a39c08d3a66c8e0c2`](https://github.com/guillermomolina/protos/commit/f8f4ebe2e2d5ad903562518a39c08d3a66c8e0c2), product `0.3.294-SNAPSHOT`. See [durable I086-3E4 evidence](../evidence/I086/I086_PLAT054_3E4_DEFAULT_NETWORK_POLYGLOT_PUBLICATION.md). `ProtosEmbeddedProcess.bootstrap()` uses `Env.isSocketIOAllowed()` and provisions `ProtosEmbeddedNetworkCustody` and the bootstrap-local `network` slot only with effective socket permission; permission does not inspect file or guest-thread policy. Custody lazily creates a host-only NIO poller on first TCP acquisition, releases and revokes all Network resources on Process termination/Context close/disposal, and prevents poller creation after close. New conformance/race tests are published. Maintainer reports all local tests PASS and clean `git diff --check`, but coordinator has not run or inspected logs. Native Image/portable final acceptance remains an I086 issue-level open gate, **not a reason to keep B012 blocked**. The earlier `READY`, `null` default and "next 3E4" statements above are historical snapshots superseded by this closure.
 
+## B013 — Structured HTML combinator exact public contract
+
+Status: BLOCKED
+
+Implementation area:
+[I179 #1198](https://github.com/guillermomolina/protos/issues/1198), implementing
+[D267 #1195](https://github.com/guillermomolina/protos/issues/1195).
+
+Normative dependency:
+The owner explicitly selected C1 (structured, value-returning HTML combinators)
+on 2026-11-26. The exact public node/attribute representation, mutation and
+validation rules, supported HTML contexts and URI subset, serialization,
+deterministic resource limits and failure accounting were not yet approved.
+The implementation-agent handoff on 2026-11-28 reported this ambiguity and
+stopped without editing product files or running validation. Lack of access
+to external records in that editing-only environment is a separate handoff
+constraint, not the normative blocker.
+
+Specification authority:
+- D267 owns the pending exact Standard Library HTML contract; its dedicated
+  normative product document does not yet exist.
+- Existing normative owners: spec/semantics/CALLABLES.md,
+  spec/semantics/OBJECT_MODEL.md, spec/semantics/VALUES_AND_COLLECTIONS.md,
+  spec/semantics/MODULES.md, spec/semantics/ERRORS.md, spec/io/TEXT_IO.md and
+  spec/semantics/MARKDOWN.md. Existing std:uri remains the RFC 3986 authority.
+- [Durable C1 architecture selection](../decisions/language/D267_C1_STRUCTURED_HTML_COMBINATORS_SELECTED_2026_11_26.md).
+
+Unblock condition:
+Explicit owner approval of the exact C1 public contract, durable publication
+of that selection, and reconciliation of the governing normative Standard
+Library specification. Supply the verified decision and relevant blocker
+record in the editing handoff; check the current product main specification
+before marking READY. Do not infer approval of new observable semantics from
+the previous architectural selection or an illustrative implementation prompt.
+
+Independent work:
+D267 contract research and specification-only reconciliation after exact
+approval may proceed. Existing Markdown parsing, URI behavior and unrelated
+Protos implementation work are not blocked by this entry. No Java, Core,
+grammar, runtime or legacy fallback changes are authorized by this dependency.
+
+2026-11-28 baseline: product main 475101ed0af626b3f15b63869c5f1767bab40d0c;
+project-docs main before this update e62fb804c504356fd16282ddce101c481197b4b2.
+No implementation or test success is claimed.
