@@ -666,7 +666,7 @@ can continue.
 
 ## B013 — Structured HTML combinator exact public contract
 
-Status: BLOCKED
+Status: CLOSED — obsolete as a separate pre-implementation gate; joint normative/implementation publication authorized
 
 Implementation area:
 [I179 #1198](https://github.com/guillermomolina/protos/issues/1198), implementing
@@ -709,4 +709,6 @@ grammar, runtime or legacy fallback changes are authorized by this dependency.
 project-docs main before this update e62fb804c504356fd16282ddce101c481197b4b2.
 No implementation or test success is claimed.
 
-**Owner-selection checkpoint — 2026-11-28:** Owner explicitly approved D267-C1-R1. Exact contract selection and approval evidence are durably published at [R1 contract](../decisions/language/D267_C1_R1_STRUCTURED_HTML_EXACT_CONTRACT_SELECTED_2026_11_28.md) and [approval/invariant review](../evidence/D267/D267_C1_R1_OWNER_APPROVAL_AND_INVARIANT_REVIEW_2026_11_28.md). The earlier missing-approval condition is satisfied for R1. **B013 remains BLOCKED** until the dedicated product normative HTML contract and specification reconciliation are published and re-read on product main; approval and project-docs publication alone are not normative authority. Specification-only reconciliation belongs to D267, not I179 production implementation. Supply the verified R1 and this ledger entry as text to the offline editing agent. No product implementation or test success is claimed.
+**Owner-selection checkpoint — 2026-11-28:** Owner explicitly approved D267-C1-R1. Exact contract selection and approval evidence are durably published at [R1 contract](../decisions/language/D267_C1_R1_STRUCTURED_HTML_EXACT_CONTRACT_SELECTED_2026_11_28.md) and [approval/invariant review](../evidence/D267/D267_C1_R1_OWNER_APPROVAL_AND_INVARIANT_REVIEW_2026_11_28.md). The earlier missing-approval condition is satisfied for R1. At that historical checkpoint B013 was retained BLOCKED pending a separate product normative publication; this sequencing is superseded by the owner's subsequent explicit direction below. Supply the verified R1 and this ledger entry as text to the offline editing agent. No product implementation or test success is claimed.
+
+**Owner sequencing correction — 2026-11-28:** The owner explicitly directed that normative publication be performed together with I179 ("quiero que la publicacion normativa se haga junto con el I"). R1 is already exactly approved and durably recorded. The former requirement for an independent pre-implementation normative publication is withdrawn; B013 is CLOSED as an obsolete separate blocker, not as evidence of implemented or published product behavior. I179 may prepare the approved normative HTML document, affected normative owners and implementation/tests in one coherent delta; their final publication must be atomic, validated and revision-bound. D267 remains the design owner; no unapproved semantic changes are authorized. Supply the record and this checkpoint directly to the editing-only agent. No product implementation or test success claimed.
